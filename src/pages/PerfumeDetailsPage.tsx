@@ -1,6 +1,9 @@
 import { ArrowLeft, SearchX } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
+import { ReviewActions } from '@/components/reviews/ReviewActions';
+import { ReviewSummaryLine } from '@/components/reviews/ReviewSummaryLine';
+import { ReviewsSection } from '@/components/reviews/ReviewsSection';
 import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
 import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
 import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
@@ -84,11 +87,13 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
             <Chip variant="concentration">{CONCENTRATION_LABELS[perfume.concentration]}</Chip>
             <span className="text-sm text-muted-foreground">{meta}</span>
           </div>
+          <ReviewSummaryLine perfumeId={perfume.id} />
           {perfume.description && (
             <p className="max-w-prose text-base text-secondary-foreground">{perfume.description}</p>
           )}
           <div className="mt-4 flex flex-col gap-2 md:max-w-72">
             <CollectionToggle perfume={toPerfumeSummary(perfume)} />
+            <ReviewActions perfume={{ id: perfume.id, name: perfume.name }} />
           </div>
         </div>
       </div>
@@ -105,6 +110,8 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
           </p>
         )}
       </section>
+
+      <ReviewsSection perfumeId={perfume.id} />
     </>
   );
 }
