@@ -29,23 +29,47 @@
 }
 
 /* Vidro (Seção 9): só em camadas flutuantes; nunca em itens de lista.
-   Fallback sólido sem backdrop-filter ou com prefers-reduced-transparency. */
+   Fallback sólido sem backdrop-filter ou com prefers-reduced-transparency.
+   .glass-bar é a variante das barras fixas (navbar e navegação inferior): com um Dialog/Drawer
+   aberto (o Radix marca o body com data-scroll-locked) ela vira sólida, para nunca passar de
+   duas camadas de blur ao mesmo tempo. */
 @layer components {
-  .glass {
+  .glass,
+  .glass-bar {
     background-color: var(--glass-bg);
     -webkit-backdrop-filter: blur(var(--glass-blur));
     backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border);
   }
 
+  .glass-bar {
+    border-width: 0;
+  }
+
+  header.glass-bar {
+    border-bottom-width: 1px;
+  }
+
+  nav.glass-bar {
+    border-top-width: 1px;
+  }
+
+  body[data-scroll-locked] .glass-bar {
+    background-color: var(--popover);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass {
+    .glass,
+    .glass-bar {
       background-color: var(--popover);
     }
   }
 
   @media (prefers-reduced-transparency: reduce) {
-    .glass {
+    .glass,
+    .glass-bar {
       background-color: var(--popover);
       -webkit-backdrop-filter: none;
       backdrop-filter: none;

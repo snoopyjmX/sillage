@@ -33,6 +33,8 @@ Bucket `perfume-images`: leitura pública, escrita só admin. Sem bucket de avat
 
 ## Secrets
 
+- O cliente do Supabase vive só em `src/lib/supabase.ts` e só os services o importam. `.env.local` (valores do Supabase local, vindos de `supabase status -o env`: só API_URL e ANON_KEY) fica fora do Git; `.env.example` não tem valores.
+
 - O frontend usa só `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY`.
 - `service_role` nunca entra no frontend, no repositório nem em variáveis `VITE_*`.
 - `.env` fica fora do Git; `.env.example` não tem valores.
