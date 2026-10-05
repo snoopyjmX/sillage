@@ -26,8 +26,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
     user: null,
   });
 
+  // A navegação só acontece depois da renderização: os efeitos dos filhos (a guarda RequireAuth
+  // redirecionando para o login) rodam antes deste, então a Home vence e o logout não vira
+  // /login?redirect=<rota atual>.
+  const [pending, setPending] = useState<{ id: number; to: string } | null>(null);
+  useEffect(() => {
+    if (pending) void navigate(pending.to, { replace: true });
+  }, [pending, navigate]);
+
   useEffect(() => {
     let active = true;
+    const goTo = (to: string) => setPending((current) => ({ id: (current?.id ?? 0) + 1, to }));
 
     // Callback síncrono: sem await em chamadas ao Supabase aqui dentro (risco de deadlock).
     const unsubscribe = authService.onAuthStateChange((event, session) => {
@@ -36,9 +45,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (event === 'SIGNED_OUT') {
         // Dados privados saem da memória; o cache ['public'] (catálogo) permanece
         queryClient.removeQueries({ queryKey: ['private'] });
-        setTimeout(() => navigate('/', { replace: true }), 0);
+        goTo('/');
       } else if (event === 'PASSWORD_RECOVERY') {
-        setTimeout(() => navigate('/reset-password', { replace: true }), 0);
+        goTo('/reset-password');
       }
       // TOKEN_REFRESHED e demais eventos: só atualizam a sessão, nada a fazer na UI
     });
@@ -54,7 +63,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       active = false;
       unsubscribe();
     };
-  }, [navigate, queryClient]);
+  }, [queryClient]);
 
   const memo = useMemo(() => value, [value]);
   return <AuthContext.Provider value={memo}>{children}</AuthContext.Provider>;
