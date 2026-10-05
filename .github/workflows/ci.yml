@@ -43,3 +43,21 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v3
+        with:
+          # Mantenha igual à versão da devDependency `supabase` no package.json
+          version: 2.119.0
+
+      - name: Start local Supabase
+        run: supabase start
+
+      - name: Database tests (pgTAP)
+        run: supabase test db
