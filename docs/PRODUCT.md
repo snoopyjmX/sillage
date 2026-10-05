@@ -190,7 +190,7 @@ A autorização vive no banco: RLS ligada em todas as tabelas, sem `INSERT` dire
 | `brands`, `perfumes`, `notes`, `perfume_notes` | `anon` e `authenticated` | `is_admin()`                                     | `is_admin()`       | `is_admin()`                                   |
 | `profiles`                                     | dono                     | só o trigger `handle_new_user`                   | dono               | só por cascade                                 |
 | `collection_items`                             | dono                     | dono                                             | dono               | dono                                           |
-| `daily_perfumes`                               | dono                     | **nenhuma** (só pela função `set_daily_perfume`) | **nenhuma** (idem) | dono                                           |
+| `daily_perfumes`                               | dono                     | **nenhuma** (só pela função `set_daily_perfume`) | **nenhuma** (idem) | nenhuma (somente cascade de exclusão da conta) |
 | `perfume_reviews`                              | dono                     | dono **e** RN03                                  | dono               | nenhuma (somente cascade de exclusão da conta) |
 | `perfume_review_stats` (view)                  | `anon` e `authenticated` | n/a                                              | n/a                | n/a                                            |
 
@@ -846,8 +846,10 @@ e não enfraquece nenhuma policy de RLS.
 
 ## 14. Roadmap
 
-<img src="media/image1.png" style="width:6in;height:3.15178in" alt="roadmap · 12 fases, 4 blocos, 4 critérios de passagem" />
+<img src="media/image.png" style="width:6in;height:3.15178in" alt="roadmap · 12 fases, 4 blocos, 4 critérios de passagem" />
 
 roadmap · 12 fases, 4 blocos, 4 critérios de passagem
 
 Os critérios A a D valem como portões: o bloco seguinte só começa quando o anterior cumpre o seu. As fases 1 e 2 já incluem CI, deploy de preview e a configuração-base do PWA; a fase 11 valida o PWA completo (offline, instalação) e as metas de performance.
+
+> **Nota (Fase 2):** o preview por PR do Gate A ainda está pendente por falta de hospedagem (Vercel). Até lá, o CI roda `quality` e `database`, sem preview.
