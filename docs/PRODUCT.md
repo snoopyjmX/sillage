@@ -851,3 +851,5 @@ e não enfraquece nenhuma policy de RLS.
 roadmap · 12 fases, 4 blocos, 4 critérios de passagem
 
 Os critérios A a D valem como portões: o bloco seguinte só começa quando o anterior cumpre o seu. As fases 1 e 2 já incluem CI, deploy de preview e a configuração-base do PWA; a fase 11 valida o PWA completo (offline, instalação) e as metas de performance.
+
+> **Nota (Fase 2):** o preview por PR do Gate A ainda está pendente por falta de hospedagem (Vercel). Até lá, o CI roda `quality` e `database`, sem preview.
