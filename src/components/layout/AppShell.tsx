@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom';
-import { BottomNav } from './BottomNav';
 import { Navbar } from './Navbar';
 
 export function AppShell() {
@@ -12,11 +11,12 @@ export function AppShell() {
         Ir para o conteúdo
       </a>
       <Navbar />
-      {/* pb-24: espaço para a navegação inferior (celular) + área segura */}
-      <main id="conteudo" className="mx-auto w-full max-w-6xl flex-1 px-4 pt-6 pb-24 md:pb-10">
+      <main
+        id="conteudo"
+        className="mx-auto w-full max-w-6xl flex-1 px-4 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]"
+      >
         <Outlet />
       </main>
-      <BottomNav />
     </div>
   );
 }

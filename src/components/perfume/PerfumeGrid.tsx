@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'motion/react';
-import { staggerDelay, transitions } from '@/lib/motion';
+import { BlurFade } from '@/components/ui/blur-fade';
+import { STAGGER_MAX_ITEMS } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 import type { PerfumeSummary } from '@/types/catalog';
 import { PerfumeCard } from './PerfumeCard';
@@ -10,9 +10,9 @@ interface PerfumeGridProps {
   isRefreshing?: boolean;
 }
 
-export function PerfumeGrid({ perfumes, isRefreshing = false }: PerfumeGridProps) {
-  const reduceMotion = useReducedMotion();
+const BLUR_FADE_STEP = 0.1;
 
+export function PerfumeGrid({ perfumes, isRefreshing = false }: PerfumeGridProps) {
   return (
     <ul
       aria-label="Perfumes"
@@ -23,17 +23,12 @@ export function PerfumeGrid({ perfumes, isRefreshing = false }: PerfumeGridProps
       )}
     >
       {perfumes.map((perfume, index) => (
-        <motion.li
-          key={perfume.id}
-          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            transition: { ...transitions.page, delay: staggerDelay(index) },
-          }}
-        >
-          <PerfumeCard perfume={perfume} />
-        </motion.li>
+        <li key={perfume.id}>
+          {/* Listas longas aparecem de uma vez: o atraso para no 12º item */}
+          <BlurFade delay={BLUR_FADE_STEP * Math.min(index, STAGGER_MAX_ITEMS)} inView>
+            <PerfumeCard perfume={perfume} />
+          </BlurFade>
+        </li>
       ))}
     </ul>
   );
