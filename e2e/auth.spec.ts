@@ -26,7 +26,7 @@ const loginViaUi = async (page: Page, email: string, password: string) => {
 const signOutViaUi = async (page: Page) => {
   await page.goto('/profile');
   await page.getByRole('button', { name: 'Sair' }).click();
-  await expect(page).toHaveURL(/\/catalog$/);
+  await expect(page).toHaveURL(/\/$/);
 };
 
 test.describe('autenticação', () => {
@@ -34,7 +34,7 @@ test.describe('autenticação', () => {
     const email = uniqueEmail();
     await registerViaUi(page, email);
 
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
     await expect(page.getByRole('link', { name: 'Entrar', exact: true })).toHaveCount(0);
 
     await page.goto('/profile');
@@ -42,12 +42,15 @@ test.describe('autenticação', () => {
     await expect(page.getByText(email)).toBeVisible();
   });
 
-  test('sair limpa a sessão e volta ao catálogo', async ({ page }) => {
+  test('sair limpa a sessão e volta à Home', async ({ page }) => {
     await registerViaUi(page, uniqueEmail());
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
     await signOutViaUi(page);
 
-    await expect(page.getByRole('link', { name: 'Entrar', exact: true })).toBeVisible();
+    // Na Home há o "Entrar" da barra (desktop) e o do convite; basta que algum esteja à vista
+    await expect(
+      page.getByRole('link', { name: 'Entrar', exact: true }).locator('visible=true').first()
+    ).toBeVisible();
     await page.goto('/profile');
     await expect(page).toHaveURL(/\/login\?redirect=%2Fprofile$/);
   });
@@ -55,7 +58,7 @@ test.describe('autenticação', () => {
   test('senha incorreta mostra mensagem amigável em português', async ({ page }) => {
     const email = uniqueEmail();
     await registerViaUi(page, email);
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
     await signOutViaUi(page);
 
     await page.goto('/login');
@@ -72,7 +75,7 @@ test.describe('autenticação', () => {
   }) => {
     const email = uniqueEmail();
     await registerViaUi(page, email);
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
     await signOutViaUi(page);
 
     await page.goto('/profile');
@@ -85,18 +88,18 @@ test.describe('autenticação', () => {
 
   test('quem já está logado não vê o login e segue para o ?redirect=', async ({ page }) => {
     await registerViaUi(page, uniqueEmail());
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
 
     await page.goto('/login?redirect=%2Fprofile');
     await expect(page).toHaveURL(/\/profile$/);
     await page.goto('/register');
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
   });
 
   test('esqueci a senha: e-mail, link, nova senha e login com ela', async ({ page }) => {
     const email = uniqueEmail();
     await registerViaUi(page, email);
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
     await signOutViaUi(page);
 
     await page.goto('/forgot-password');
@@ -117,14 +120,14 @@ test.describe('autenticação', () => {
     await page.getByLabel('Nova senha', { exact: true }).fill(newPassword);
     await page.getByLabel('Repita a nova senha').fill(newPassword);
     await page.getByRole('button', { name: 'Salvar nova senha' }).click();
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
 
     await signOutViaUi(page);
     await page.goto('/login');
     await loginViaUi(page, email, PASSWORD);
     await expect(page.getByRole('alert')).toContainText('E-mail ou senha incorretos');
     await loginViaUi(page, email, newPassword);
-    await expect(page).toHaveURL(/\/catalog$/);
+    await expect(page).toHaveURL(/\/$/);
     await page.goto('/profile');
     await expect(page.getByText(email)).toBeVisible();
   });
@@ -192,7 +195,7 @@ for (const theme of THEMES) {
 
       test('redefinir senha: formulário (sessão de recuperação), com erros', async ({ page }) => {
         await registerViaUi(page, uniqueEmail());
-        await expect(page).toHaveURL(/\/catalog$/);
+        await expect(page).toHaveURL(/\/$/);
         await page.goto('/reset-password');
         await page.getByRole('button', { name: 'Salvar nova senha' }).click();
         await expect(page.getByText('A senha precisa ter pelo menos 8 caracteres.')).toBeVisible();

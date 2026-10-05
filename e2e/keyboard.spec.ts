@@ -51,11 +51,11 @@ test.describe('teclado', () => {
     await expect(trigger).toBeFocused();
   });
 
-  test('a navbar e a navegação inferior viram sólidas com a gaveta aberta (no máx. 2 vidros)', async ({
+  test('a navbar vira sólida com a gaveta aberta (no máx. 2 vidros)', async ({
     page,
     isMobile,
   }) => {
-    test.skip(!isMobile, 'Só o celular tem barra inferior e gaveta');
+    test.skip(!isMobile, 'Só o celular tem a gaveta de filtros');
     await page.goto('/catalog');
     await expect(cards(page)).toHaveCount(3);
     const blur = () =>

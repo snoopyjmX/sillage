@@ -1,16 +1,15 @@
 // Dados reais do seed (supabase/seed.sql): Amyi 2.15 (Amyi), Caipi d'Argent (Condé Parfum)
 // e Irish Green Man (In The Box). Nada aqui é inventado.
 import { expect, test } from '@playwright/test';
-import { cardTitle, cards, closeFilters, openFilters, pickNote } from './helpers.ts';
+import { cardTitle, cards, closeFilters, openFilters, openNav, pickNote } from './helpers.ts';
 
 const AMYI = 'Amyi 2.15';
 const CAIPI = "Caipi d'Argent";
 const IRISH = 'Irish Green Man';
 
 test.describe('catálogo', () => {
-  test('/ redireciona para /catalog e a página tem título', async ({ page }) => {
-    await page.goto('/');
-    await expect(page).toHaveURL(/\/catalog$/);
+  test('a página tem título (<title> do React 19)', async ({ page }) => {
+    await page.goto('/catalog');
     await expect(page.getByRole('heading', { level: 1, name: 'Catálogo' })).toBeVisible();
     // <title> do React 19, sem biblioteca, no build de produção
     await expect(page).toHaveTitle('Catálogo · Sillage');
@@ -143,19 +142,11 @@ test.describe('catálogo', () => {
     await expect(page).toHaveURL(/\/catalog$/);
   });
 
-  test('Coleção e Perfil são links; Perfume do Dia aparece desabilitado ("em breve")', async ({
-    page,
-  }) => {
+  test('Início, Coleção e Perfil são links da navegação', async ({ page, isMobile }) => {
     await page.goto('/catalog');
-    await expect(
-      page.getByRole('link', { name: /^Perfil/ }).locator('visible=true')
-    ).toHaveAttribute('href', '/profile');
-    await expect(
-      page.getByRole('link', { name: /^Coleção/ }).locator('visible=true')
-    ).toHaveAttribute('href', '/collection');
-    const daily = page
-      .getByRole('link', { name: 'Perfume do Dia, em breve' })
-      .locator('visible=true');
-    await expect(daily).toHaveAttribute('aria-disabled', 'true');
+    const nav = await openNav(page, isMobile);
+    await expect(nav.getByRole('link', { name: 'Início' })).toHaveAttribute('href', '/');
+    await expect(nav.getByRole('link', { name: 'Coleção' })).toHaveAttribute('href', '/collection');
+    await expect(nav.getByRole('link', { name: 'Perfil' })).toHaveAttribute('href', '/profile');
   });
 });
