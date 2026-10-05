@@ -8,6 +8,9 @@ const search = vi.fn();
 vi.mock('@/services/perfumeService', () => ({
   perfumeService: { search: (f: unknown) => search(f) },
 }));
+vi.mock('@/services/collectionService', () => ({
+  collectionService: { list: () => Promise.resolve([]) },
+}));
 vi.mock('@/services/authService', () => ({
   authService: {
     getSession: () => Promise.resolve(null),

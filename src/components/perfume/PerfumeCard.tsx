@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
+import { CollectionToggle } from '@/components/collection/CollectionToggle';
 import { Chip } from '@/components/ui/chip';
-import { HoverGlowButton } from '@/components/ui/hover-glow-button';
 import { CONCENTRATION_LABELS, FAMILY_LABELS, GENDER_LABELS } from '@/constants/labels';
 import { cn } from '@/lib/utils';
 import type { PerfumeSummary } from '@/types/catalog';
@@ -51,15 +51,7 @@ export function PerfumeCard({ perfume }: PerfumeCardProps) {
         </div>
       </Link>
       <div className="px-4 pb-4">
-        {/* A coleção chega em fase futura (RN02 exige login): até lá o CTA fica indisponível. */}
-        <HoverGlowButton
-          aria-disabled="true"
-          aria-label="Adicionar à Coleção, em breve"
-          className="w-full"
-          onClick={(event) => event.preventDefault()}
-        >
-          Adicionar à Coleção
-        </HoverGlowButton>
+        <CollectionToggle perfume={perfume} className="w-full" />
       </div>
     </article>
   );

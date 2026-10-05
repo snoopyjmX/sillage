@@ -1,8 +1,14 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import { AuthContext } from '@/contexts/auth-context';
 import type { PerfumeSummary } from '@/types/catalog';
 import { PerfumeCard } from './PerfumeCard';
+
+vi.mock('@/services/collectionService', () => ({
+  collectionService: { list: () => Promise.resolve([]) },
+}));
 
 const base: PerfumeSummary = {
   id: 'p1',
@@ -19,9 +25,13 @@ const base: PerfumeSummary = {
 
 const renderCard = (perfume: Partial<PerfumeSummary> = {}) =>
   render(
-    <MemoryRouter>
-      <PerfumeCard perfume={{ ...base, ...perfume }} />
-    </MemoryRouter>
+    <AuthContext.Provider value={{ status: 'unauthenticated', session: null, user: null }}>
+      <QueryClientProvider client={new QueryClient()}>
+        <MemoryRouter>
+          <PerfumeCard perfume={{ ...base, ...perfume }} />
+        </MemoryRouter>
+      </QueryClientProvider>
+    </AuthContext.Provider>
   );
 
 describe('PerfumeCard', () => {
@@ -60,10 +70,11 @@ describe('PerfumeCard', () => {
     expect(screen.getByText('Unissex')).toBeInTheDocument();
   });
 
-  it('o CTA de coleção fica fora do link e indisponível até a fase da coleção', () => {
+  it('o CTA de coleção está ativo e fica fora do link do card', () => {
     renderCard();
-    const cta = screen.getByRole('button', { name: 'Adicionar à Coleção, em breve' });
-    expect(cta).toHaveAttribute('aria-disabled', 'true');
+    const cta = screen.getByRole('button', { name: /Adicionar à Coleção/ });
+    expect(cta).toBeEnabled();
+    expect(cta).not.toHaveAttribute('aria-disabled');
     expect(screen.getByRole('link')).not.toContainElement(cta);
   });
 });
