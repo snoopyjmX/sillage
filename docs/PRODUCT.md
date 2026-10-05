@@ -456,7 +456,7 @@ search_perfumes(
 
 - **Várias marcas, famílias, concentrações ou gêneros:** `OR` dentro do grupo.
 
-- **Texto:** compara `unaccent(lower(...))` com nome do perfume e da marca; "cafe" encontra "Café". Usa `pg_trgm` para tolerar pequenos erros de digitação.
+- **Texto:** compara `lower(unaccent(...))` com nome do perfume e da marca; "cafe" encontra "Café". Usa `pg_trgm` para tolerar pequenos erros de digitação e também aceita um trecho literal do nome (`LIKE` com curingas escapados).
 
 - **Consulta exemplo:** "perfumes com bergamota no topo" é `p_note_slugs = ['bergamota']` com `p_note_position = 'top'`.
 
@@ -469,7 +469,7 @@ search_perfumes(
 | `top_rated`             | Média de `perfume_review_stats`, desempate por contagem                             |
 | `relevance`             | Similaridade do texto; só disponível quando há `p_query`, senão cai para `name_asc` |
 
-O valor de `p_sort` é validado contra essa lista dentro da função; nunca concatenado em SQL dinâmico.
+O valor de `p_sort` é validado contra essa lista dentro da função; nunca concatenado em SQL dinâmico. Valor inválido levanta `22023`; `p_limit` fica entre 1 e 100 e `p_offset` não pode ser negativo (também `22023`). Detalhes e limitações em `docs/DATABASE.md`.
 
 **Paginação.** Paginação por página, 24 itens, com `total_count` retornado na mesma consulta. A página, a busca e os filtros vivem na URL (`/catalog?q=ambar&notes=bergamota,limao&pos=top&sort=newest&page=2`), o que torna o estado compartilhável e restaurável ao voltar. A troca de página usa `placeholderData` do TanStack Query para não piscar a lista. A busca por texto tem _debounce_ de 300 ms. Infinite scroll fica para quando a base crescer e houver motivo de UX.
 

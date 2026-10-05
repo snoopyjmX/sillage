@@ -18,6 +18,15 @@ O papel vem de `app_metadata.role = 'admin'` no JWT, lido por `is_admin()`. `app
 
 `perfume_review_stats` é a única forma pública de ver avaliações e expõe apenas contagem e médias. Comentário e autor nunca saem da tabela privada (RN08).
 
+## Busca (`search_perfumes`)
+
+- `SECURITY INVOKER` e `search_path` vazio: roda com os privilégios e a RLS de quem chama, então só devolve dados públicos do catálogo. Não é `SECURITY DEFINER`.
+- `EXECUTE` revogado de `public` e concedido só a `anon` e `authenticated`. `anon` pode buscar: o catálogo é público (RN07).
+- Sem SQL dinâmico. `p_sort` é validado contra uma lista fixa e a ordenação é um `CASE` estático; valor inválido levanta `22023`.
+- Limites contra consulta abusiva: `p_limit` entre 1 e 100 e `p_offset >= 0`, senão `22023`.
+- Os curingas do `LIKE` (prefixo e trecho; barra invertida, `%` e `_`) no texto do usuário são escapados.
+- Avaliações entram só pelo agregado (`perfume_review_stats`) usado em `top_rated`; a função não devolve `user_id` nem `comment` (coberto por teste).
+
 ## Storage
 
 Bucket `perfume-images`: leitura pública, escrita só admin. Sem bucket de avatars no MVP.
@@ -31,16 +40,17 @@ Bucket `perfume-images`: leitura pública, escrita só admin. Sem bucket de avat
 
 ## Modelo de ameaça
 
-| Ameaça                                                   | Mitigação                                                               |
-| -------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Usuário A lê ou altera dados do B                        | RLS por dono + pgTAP com dois usuários                                  |
-| Cliente envia `user_id` de outro                         | `WITH CHECK ((select auth.uid()) = user_id)`                            |
-| Cliente forja a data do Perfume do Dia                   | Sem `INSERT`/`UPDATE` direto; a função calcula a data                   |
-| Autopromoção a admin                                     | Papel em `app_metadata`; `user_metadata` não vale                       |
-| Vazar comentários por agregados                          | View expõe só contagem e médias                                         |
-| Trocar `perfume_id` de uma avaliação para driblar a RN03 | `UPDATE` restrito por coluna (`perfume_id` e `user_id` imutáveis)       |
-| XSS em comentário                                        | React escapa; sem `dangerouslySetInnerHTML`; limite de 1000 caracteres  |
-| Chave privada vazada                                     | Secret scanning, `service_role` fora do app, rotação se houver suspeita |
+| Ameaça                                                   | Mitigação                                                                    |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Usuário A lê ou altera dados do B                        | RLS por dono + pgTAP com dois usuários                                       |
+| Cliente envia `user_id` de outro                         | `WITH CHECK ((select auth.uid()) = user_id)`                                 |
+| Cliente forja a data do Perfume do Dia                   | Sem `INSERT`/`UPDATE` direto; a função calcula a data                        |
+| Autopromoção a admin                                     | Papel em `app_metadata`; `user_metadata` não vale                            |
+| Vazar comentários por agregados                          | View expõe só contagem e médias                                              |
+| Busca abusiva ou injeção via ordenação                   | `p_limit` 1 a 100, `p_offset >= 0`, `p_sort` em lista fixa, sem SQL dinâmico |
+| Trocar `perfume_id` de uma avaliação para driblar a RN03 | `UPDATE` restrito por coluna (`perfume_id` e `user_id` imutáveis)            |
+| XSS em comentário                                        | React escapa; sem `dangerouslySetInnerHTML`; limite de 1000 caracteres       |
+| Chave privada vazada                                     | Secret scanning, `service_role` fora do app, rotação se houver suspeita      |
 
 ## Limitações conhecidas
 
