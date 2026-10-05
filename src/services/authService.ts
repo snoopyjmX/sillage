@@ -31,13 +31,15 @@ export const authService = {
     password: string,
     displayName: string,
     timezone: string
-  ): Promise<void> => {
-    const { error } = await supabase.auth.signUp({
+  ): Promise<{ needsEmailConfirmation: boolean }> => {
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: { data: { display_name: displayName, timezone } },
     });
     if (error) throw toAuthError(error);
+    // Com confirmação de e-mail ligada o cadastro não devolve sessão até o clique no link
+    return { needsEmailConfirmation: data.session === null };
   },
 
   signOut: async (): Promise<void> => {

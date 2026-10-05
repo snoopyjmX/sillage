@@ -39,12 +39,20 @@ describe('authService', () => {
   });
 
   it('signUp passa display_name e timezone em options.data (trigger handle_new_user)', async () => {
-    auth.signUp.mockResolvedValue({ error: null });
-    await authService.signUp('a@b.co', 'segredo123', 'Ana', 'America/Sao_Paulo');
+    auth.signUp.mockResolvedValue({ data: { session: { access_token: 't' } }, error: null });
+    const result = await authService.signUp('a@b.co', 'segredo123', 'Ana', 'America/Sao_Paulo');
+    expect(result).toEqual({ needsEmailConfirmation: false });
     expect(auth.signUp).toHaveBeenCalledWith({
       email: 'a@b.co',
       password: 'segredo123',
       options: { data: { display_name: 'Ana', timezone: 'America/Sao_Paulo' } },
+    });
+  });
+
+  it('signUp sem sessão sinaliza que falta confirmar o e-mail', async () => {
+    auth.signUp.mockResolvedValue({ data: { session: null }, error: null });
+    await expect(authService.signUp('a@b.co', 'segredo123', 'Ana', 'UTC')).resolves.toEqual({
+      needsEmailConfirmation: true,
     });
   });
 
