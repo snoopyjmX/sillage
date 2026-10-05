@@ -456,7 +456,7 @@ search_perfumes(
 
 - **Várias marcas, famílias, concentrações ou gêneros:** `OR` dentro do grupo.
 
-- **Texto:** compara `lower(unaccent(...))` com nome do perfume e da marca; "cafe" encontra "Café". Usa `pg_trgm` para tolerar pequenos erros de digitação.
+- **Texto:** compara `lower(unaccent(...))` com nome do perfume e da marca; "cafe" encontra "Café". Usa `pg_trgm` para tolerar pequenos erros de digitação e também aceita um trecho literal do nome (`LIKE` com curingas escapados).
 
 - **Consulta exemplo:** "perfumes com bergamota no topo" é `p_note_slugs = ['bergamota']` com `p_note_position = 'top'`.
 

@@ -3,7 +3,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(47);
+select plan(52);
 
 create function pg_temp.act_anon() returns void language plpgsql as $$
 begin
@@ -65,7 +65,8 @@ insert into public.brands (id, name, slug) values
   ('22222222-0000-4000-8000-000000000001', 'Zeta Maison', 'st-zeta'),
   ('22222222-0000-4000-8000-000000000002', 'Café Royale', 'st-cafe-royale'),
   ('22222222-0000-4000-8000-000000000003', 'Omega', 'st-omega'),
-  ('22222222-0000-4000-8000-000000000004', 'Gemeos', 'st-twins');
+  ('22222222-0000-4000-8000-000000000004', 'Gemeos', 'st-twins'),
+  ('22222222-0000-4000-8000-000000000005', 'Nomes Longos', 'st-longos');
 
 insert into public.notes (id, name, slug, family) values
   ('33333333-0000-4000-8000-000000000001', 'Bergamota Teste', 'st-bergamota', 'citrus'),
@@ -84,7 +85,12 @@ insert into public.perfumes (id, brand_id, name, slug, gender, concentration, re
   ('11111111-0000-4000-8000-000000000004', '22222222-0000-4000-8000-000000000002', 'Alpha', 'st-alpha', 'unisex', 'edc', 2010),
   ('11111111-0000-4000-8000-000000000005', '22222222-0000-4000-8000-000000000003', 'Zorro', 'st-zorro-puro', 'unisex', 'edp', 2012),
   ('11111111-0000-4000-8000-000000000011', '22222222-0000-4000-8000-000000000004', 'Gemeo Duplicado', 'st-gemeo-b', 'unisex', 'edp', null),
-  ('11111111-0000-4000-8000-000000000012', '22222222-0000-4000-8000-000000000004', 'Gemeo Duplicado', 'st-gemeo-a', 'unisex', 'edp', null);
+  ('11111111-0000-4000-8000-000000000012', '22222222-0000-4000-8000-000000000004', 'Gemeo Duplicado', 'st-gemeo-a', 'unisex', 'edp', null),
+  -- nomes longos: o trigram sozinho não acha um trecho curto; o LIKE de trecho acha
+  ('11111111-0000-4000-8000-000000000021', '22222222-0000-4000-8000-000000000005', 'Vetiver Extraordinaire Absolu Intense', 'st-vetiver-longo', 'unisex', 'edp', null),
+  ('11111111-0000-4000-8000-000000000022', '22222222-0000-4000-8000-000000000005', 'Alfa_Beta Intensamente Longo Nome Teste', 'st-under', 'unisex', 'edp', null),
+  ('11111111-0000-4000-8000-000000000023', '22222222-0000-4000-8000-000000000005', 'Alfa%Beta Intensamente Longo Nome Teste', 'st-pct', 'unisex', 'edp', null),
+  ('11111111-0000-4000-8000-000000000024', '22222222-0000-4000-8000-000000000005', 'Alfaxbeta Intensamente Longo Nome Teste', 'st-nowild', 'unisex', 'edp', null);
 
 insert into public.perfume_notes (perfume_id, note_id, position) values
   ('11111111-0000-4000-8000-000000000001', '33333333-0000-4000-8000-000000000001', 'top'),
@@ -117,6 +123,11 @@ select is(pg_temp.s('%'), '{}'::text[], 'texto: "%" é literal, não curinga');
 select is(pg_temp.s('_'), '{}'::text[], 'texto: "_" é literal, não curinga');
 select is(pg_temp.s('z_'), '{}'::text[], 'texto: "z_" não casa "ze..." nem "zo..."');
 select is(pg_temp.s('a\'), '{}'::text[], 'texto: barra invertida não quebra o LIKE');
+select is(pg_temp.s('vetiver', p_brands => array['st-longos']), array['st-vetiver-longo'], 'trecho: "vetiver" acha "Vetiver Extraordinaire Absolu Intense" (nome longo)');
+select is(pg_temp.s('traordin', p_brands => array['st-longos']), array['st-vetiver-longo'], 'trecho: pedaço no meio de uma palavra também acha');
+select is(pg_temp.s('alfa_beta', p_brands => array['st-longos']), array['st-under'], 'trecho: "_" é literal (não casa "Alfaxbeta")');
+select is(pg_temp.s('alfa%beta', p_brands => array['st-longos']), array['st-pct'], 'trecho: "%" é literal (não casa "Alfaxbeta")');
+select is(pg_temp.s('%%%', p_brands => array['st-longos']), '{}'::text[], 'trecho: "%%%" não vira curinga que casa tudo');
 select is(pg_temp.s('   '), array['st-alpha', 'st-cafe-noir', 'st-zephyr', 'st-zorro-puro', 'st-zorro'], 'texto: consulta vazia = sem filtro');
 
 -- Notas, posição e família

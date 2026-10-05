@@ -24,7 +24,7 @@ O papel vem de `app_metadata.role = 'admin'` no JWT, lido por `is_admin()`. `app
 - `EXECUTE` revogado de `public` e concedido só a `anon` e `authenticated`. `anon` pode buscar: o catálogo é público (RN07).
 - Sem SQL dinâmico. `p_sort` é validado contra uma lista fixa e a ordenação é um `CASE` estático; valor inválido levanta `22023`.
 - Limites contra consulta abusiva: `p_limit` entre 1 e 100 e `p_offset >= 0`, senão `22023`.
-- Os curingas do `LIKE` (barra invertida, `%` e `_`) no texto do usuário são escapados.
+- Os curingas do `LIKE` (prefixo e trecho; barra invertida, `%` e `_`) no texto do usuário são escapados.
 - Avaliações entram só pelo agregado (`perfume_review_stats`) usado em `top_rated`; a função não devolve `user_id` nem `comment` (coberto por teste).
 
 ## Storage

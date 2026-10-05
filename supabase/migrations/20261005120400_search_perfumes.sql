@@ -40,6 +40,7 @@ declare
   v_offset  int  := coalesce(p_offset, 0);
   v_q       text;
   v_prefix  text;
+  v_contains text;
   v_notes   text[];
   v_n_notes int;
 begin
@@ -63,7 +64,9 @@ begin
   end if;
 
   -- Curingas do LIKE (\ % _) vindos do usuário viram texto literal
-  v_prefix := replace(replace(replace(coalesce(v_q, ''), '\', '\\'), '%', '\%'), '_', '\_') || '%';
+  v_prefix := replace(replace(replace(coalesce(v_q, ''), '\', '\\'), '%', '\%'), '_', '\_');
+  v_contains := '%' || v_prefix || '%';
+  v_prefix := v_prefix || '%';
 
   v_notes := array(select distinct unnest(p_note_slugs));
   v_n_notes := cardinality(v_notes);
@@ -116,16 +119,19 @@ begin
       (
         v_q is null
         or case
-             -- 3+ caracteres: duas buscas trigram unidas, cada uma com seu índice GIN.
+             -- 3+ caracteres: trigram (tolera erro de digitação) OU trecho literal
+           -- (LIKE '%x%'), em duas buscas unidas, cada uma com seu índice GIN.
              -- (Um OR entre perfume e marca depois do join obriga a ler a tabela toda.)
              when length(v_q) >= 3 then
                p.id in (
                  select p2.id from public.perfumes p2
                  where p2.search_name operator(extensions.%) v_q
+                  or p2.search_name like v_contains escape '\'
                  union
                  select p3.id from public.perfumes p3
                  join public.brands b3 on b3.id = p3.brand_id
                  where b3.search_name operator(extensions.%) v_q
+                  or b3.search_name like v_contains escape '\'
                )
              else
                p.search_name like v_prefix escape '\'
