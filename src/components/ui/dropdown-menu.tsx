@@ -14,6 +14,9 @@ export function DropdownMenu({
   open,
   defaultOpen = false,
   onOpenChange,
+  // Não modal: o modo modal do Radix põe aria-hidden na raiz do app com elementos focáveis
+  // dentro (axe: aria-hidden-focus) e trava o scroll. Fecha com Esc, clique fora e seleção.
+  modal = false,
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.Root>) {
   const [current, setCurrent] = useControllableState({
@@ -23,7 +26,12 @@ export function DropdownMenu({
   });
   return (
     <OverlayContext.Provider value={{ open: current, onOpenChange: setCurrent }}>
-      <DropdownMenuPrimitive.Root open={current} onOpenChange={setCurrent} {...props} />
+      <DropdownMenuPrimitive.Root
+        open={current}
+        onOpenChange={setCurrent}
+        modal={modal}
+        {...props}
+      />
     </OverlayContext.Provider>
   );
 }
