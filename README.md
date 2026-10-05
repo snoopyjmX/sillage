@@ -27,18 +27,18 @@ Acesse `http://localhost:5173` no navegador.
 
 ## Scripts disponíveis
 
-| Script                 | Descrição                                                                |
-| ---------------------- | ------------------------------------------------------------------------ |
-| `npm run dev`          | Inicia o servidor local de desenvolvimento Vite                          |
-| `npm run build`        | Valida tipagem com `tsc -b` e compila os assets de produção              |
-| `npm run preview`      | Executa o preview local da compilação de produção                        |
-| `npm run lint`         | Executa a verificação estática com ESLint                                |
-| `npm run lint:fix`     | Corrige problemas automáticos de lint com ESLint                         |
-| `npm run format`       | Formata o código com Prettier                                            |
-| `npm run format:check` | Verifica a conformidade de formatação com Prettier                       |
+| Script                 | Descrição                                                                   |
+| ---------------------- | --------------------------------------------------------------------------- |
+| `npm run dev`          | Inicia o servidor local de desenvolvimento Vite                             |
+| `npm run build`        | Valida tipagem com `tsc -b` e compila os assets de produção                 |
+| `npm run preview`      | Executa o preview local da compilação de produção                           |
+| `npm run lint`         | Executa a verificação estática com ESLint                                   |
+| `npm run lint:fix`     | Corrige problemas automáticos de lint com ESLint                            |
+| `npm run format`       | Formata o código com Prettier                                               |
+| `npm run format:check` | Verifica a conformidade de formatação com Prettier                          |
 | `npm run typecheck`    | Executa checagem de tipos estáticos sem emitir arquivos (`tsc -b --noEmit`) |
-| `npm run test`         | Executa os testes unitários e de componentes uma única vez com Vitest    |
-| `npm run test:watch`   | Executa a suíte de testes em modo observador (watch)                     |
+| `npm run test`         | Executa os testes unitários e de componentes uma única vez com Vitest       |
+| `npm run test:watch`   | Executa a suíte de testes em modo observador (watch)                        |
 
 ## Documentação
 
