@@ -1,5 +1,6 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import type { Locator, Page } from '@playwright/test';
+import { randomUUID } from 'node:crypto';
 
 // No desktop os filtros são um painel lateral; no celular, uma gaveta aberta por um botão.
 export const openFilters = async (page: Page, isMobile: boolean): Promise<Locator> => {
@@ -37,4 +38,18 @@ export const axeViolations = async (page: Page) => {
     impact: violation.impact,
     nodes: violation.nodes.map((node) => node.target.join(' ')),
   }));
+};
+
+// Cada teste cria o próprio usuário (e-mail com UUID) e roda em paralelo com os demais.
+export const uniqueEmail = (): string => `e2e-${randomUUID()}@exemplo.com`;
+
+// Cadastra pela interface; o app já entra na conta e vai para o catálogo.
+export const registerViaUi = async (page: Page, email = uniqueEmail()): Promise<string> => {
+  await page.goto('/register');
+  await page.getByLabel('Nome').fill('Ana E2E');
+  await page.getByLabel('E-mail').fill(email);
+  await page.getByLabel('Senha', { exact: true }).fill('Sillage2026x');
+  await page.getByRole('button', { name: 'Criar conta' }).click();
+  await page.waitForURL(/\/catalog$/);
+  return email;
 };

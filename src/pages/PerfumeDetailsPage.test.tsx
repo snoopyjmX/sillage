@@ -9,6 +9,10 @@ vi.mock('@/services/perfumeService', () => ({
   perfumeService: { getBySlug: (slug: string) => getBySlug(slug) },
 }));
 
+vi.mock('@/services/collectionService', () => ({
+  collectionService: { list: () => Promise.resolve([]) },
+}));
+
 const detail: PerfumeDetail = {
   id: 'p1',
   slug: 'amyi-2-15',
@@ -31,7 +35,7 @@ describe('página de detalhes do perfume', () => {
     getBySlug.mockReset();
   });
 
-  it('mostra marca, nome, concentração, pirâmide e o CTA indisponível', async () => {
+  it('mostra marca, nome, concentração, pirâmide e o CTA de coleção ativo', async () => {
     getBySlug.mockResolvedValue(detail);
     renderApp('/perfumes/amyi-2-15');
     expect(
@@ -41,10 +45,9 @@ describe('página de detalhes do perfume', () => {
     expect(screen.getByText('Amyi')).toBeInTheDocument();
     expect(screen.getByText('EDP')).toBeInTheDocument();
     expect(screen.getByRole('group', { name: 'Pirâmide olfativa' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Adicionar à Coleção/ })).toHaveAttribute(
-      'aria-disabled',
-      'true'
-    );
+    const cta = screen.getByRole('button', { name: /Adicionar à Coleção/ });
+    expect(cta).not.toHaveAttribute('aria-disabled');
+    expect(screen.queryByText('Em breve')).not.toBeInTheDocument();
     await waitFor(() => expect(document.title).toBe('Amyi 2.15 · Amyi · Sillage'));
   });
 

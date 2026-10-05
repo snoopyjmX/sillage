@@ -10,7 +10,8 @@ export type ErrorCode =
   | 'same_password'
   | 'email_not_confirmed'
   | 'rate_limited'
-  | 'session_expired';
+  | 'session_expired'
+  | 'collection_failed';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -25,6 +26,7 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
     'Confirme seu e-mail antes de entrar. Procure a mensagem na sua caixa de entrada.',
   rate_limited: 'Muitas tentativas em pouco tempo. Aguarde um instante e tente de novo.',
   session_expired: 'O link expirou ou já foi usado. Peça um novo e-mail de recuperação.',
+  collection_failed: 'Não foi possível atualizar sua coleção. Tente novamente em instantes.',
 };
 
 export class AppError extends Error {

@@ -2,11 +2,11 @@
 
 ## Dependências
 
-| Dependência            | Tipo | O que resolve                                                                                             | Por que o que já existe não resolve                                                                                                                    |
-| ---------------------- | ---- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `supabase` (CLI)       | dev  | Sobe o Supabase local (Docker), aplica migrations/seed e roda os testes pgTAP (`supabase test db`).       | O SDK `@supabase/supabase-js` só fala com um projeto já existente; não gerencia banco local nem migrations.                                            |
-| `radix-ui`             | prod | Primitivas acessíveis (Dialog, Tabs, Slot): foco preso e devolvido, teclado, `aria-*`. Base do shadcn/ui. | Escrever focus trap e navegação por teclado à mão seria mais código e mais risco de acessibilidade. Um pacote só em vez de vários `@radix-ui/react-*`. |
-| `@fontsource/fraunces` | prod | Fonte serifada dos títulos (pesos 500 e 600, subset latino), empacotada no app.                           | Substitui a Cormorant Garamond da Fase 1 (pacote removido). Sem CDN, funciona offline.                                                                 |
+| Dependência            | Tipo | O que resolve                                                                                                           | Por que o que já existe não resolve                                                                                                                    |
+| ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `supabase` (CLI)       | dev  | Sobe o Supabase local (Docker), aplica migrations/seed e roda os testes pgTAP (`supabase test db`).                     | O SDK `@supabase/supabase-js` só fala com um projeto já existente; não gerencia banco local nem migrations.                                            |
+| `radix-ui`             | prod | Primitivas acessíveis (Dialog, Tabs, DropdownMenu, Slot): foco preso e devolvido, teclado, `aria-*`. Base do shadcn/ui. | Escrever focus trap e navegação por teclado à mão seria mais código e mais risco de acessibilidade. Um pacote só em vez de vários `@radix-ui/react-*`. |
+| `@fontsource/fraunces` | prod | Fonte serifada dos títulos (pesos 500 e 600, subset latino), empacotada no app.                                         | Substitui a Cormorant Garamond da Fase 1 (pacote removido). Sem CDN, funciona offline.                                                                 |
 
 **Decisões da Fase 3 (o que NÃO foi instalado)**
 

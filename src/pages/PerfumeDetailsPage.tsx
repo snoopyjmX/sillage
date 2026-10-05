@@ -1,5 +1,6 @@
 import { ArrowLeft, SearchX } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
+import { CollectionToggle } from '@/components/collection/CollectionToggle';
 import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
 import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
 import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
@@ -7,10 +8,10 @@ import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
 import { Chip } from '@/components/ui/chip';
 import { EmptyState } from '@/components/ui/empty-state';
-import { HoverGlowButton } from '@/components/ui/hover-glow-button';
 import { AppError, getErrorMessage } from '@/constants/errors';
 import { CONCENTRATION_LABELS, FAMILIES, GENDER_LABELS } from '@/constants/labels';
 import { usePerfumeDetail } from '@/hooks/usePerfumes';
+import { toPerfumeSummary } from '@/lib/perfume';
 import type { PerfumeDetail } from '@/types/catalog';
 
 const BackToCatalog = () => (
@@ -87,18 +88,7 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
             <p className="max-w-prose text-base text-secondary-foreground">{perfume.description}</p>
           )}
           <div className="mt-4 flex flex-col gap-2 md:max-w-72">
-            {/* A coleção chega nas fases de login e coleção: até lá o CTA fica indisponível. */}
-            <HoverGlowButton
-              aria-disabled="true"
-              aria-describedby="collection-soon"
-              title="Em breve"
-              onClick={(event) => event.preventDefault()}
-            >
-              Adicionar à Coleção
-            </HoverGlowButton>
-            <p id="collection-soon" className="text-center text-xs text-muted-foreground">
-              Em breve
-            </p>
+            <CollectionToggle perfume={toPerfumeSummary(perfume)} />
           </div>
         </div>
       </div>

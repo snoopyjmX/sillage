@@ -143,16 +143,19 @@ test.describe('catálogo', () => {
     await expect(page).toHaveURL(/\/catalog$/);
   });
 
-  test('Coleção e Perfume do Dia aparecem desabilitados ("em breve"); Perfil é link', async ({
+  test('Coleção e Perfil são links; Perfume do Dia aparece desabilitado ("em breve")', async ({
     page,
   }) => {
     await page.goto('/catalog');
     await expect(
       page.getByRole('link', { name: /^Perfil/ }).locator('visible=true')
     ).toHaveAttribute('href', '/profile');
-    for (const name of ['Coleção, em breve', 'Perfume do Dia, em breve']) {
-      const item = page.getByRole('link', { name }).locator('visible=true');
-      await expect(item).toHaveAttribute('aria-disabled', 'true');
-    }
+    await expect(
+      page.getByRole('link', { name: /^Coleção/ }).locator('visible=true')
+    ).toHaveAttribute('href', '/collection');
+    const daily = page
+      .getByRole('link', { name: 'Perfume do Dia, em breve' })
+      .locator('visible=true');
+    await expect(daily).toHaveAttribute('aria-disabled', 'true');
   });
 });

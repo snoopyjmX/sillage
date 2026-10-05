@@ -7,9 +7,9 @@ import { PageFallback } from './PageFallback';
 import { RequireAuth } from './RequireAuth';
 import { RouteError } from './RouteError';
 
-// Rotas: / -> /catalog, /catalog, /perfumes/:slug, autenticação e * (404). Páginas carregam sob demanda.
+// Rotas: / -> /catalog, /catalog, /perfumes/:slug, /collection e /profile (privadas), autenticação e * (404). Páginas carregam sob demanda.
 // AuthLayout (sessão) fica na raiz; GuestOnly e RequireAuth são guardas de UX (a segurança é a RLS).
-// Coleção e Perfume do Dia ainda não têm rota: aparecem desabilitados na navegação.
+// Perfume do Dia ainda não tem rota: aparece desabilitado na navegação.
 const page = (load: () => Promise<{ default: ComponentType }>) => async () => ({
   Component: (await load()).default,
 });
@@ -41,7 +41,10 @@ export const routes: RouteObject[] = [
           { path: 'reset-password', lazy: page(() => import('@/pages/auth/ResetPasswordPage')) },
           {
             element: <RequireAuth />,
-            children: [{ path: 'profile', lazy: page(() => import('@/pages/ProfilePage')) }],
+            children: [
+              { path: 'collection', lazy: page(() => import('@/pages/collection/CollectionPage')) },
+              { path: 'profile', lazy: page(() => import('@/pages/ProfilePage')) },
+            ],
           },
           { path: '*', lazy: page(() => import('@/pages/NotFoundPage')) },
         ],
