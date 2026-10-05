@@ -1,4 +1,5 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { AppError } from '@/constants/errors';
 import { queryKeys } from '@/lib/queryKeys';
 import type { CatalogFilters } from '@/schemas/catalogSearch';
 import { perfumeService } from '@/services/perfumeService';
@@ -9,4 +10,13 @@ export const usePerfumes = (filters: CatalogFilters) =>
     queryKey: queryKeys.perfumes.list(filters),
     queryFn: () => perfumeService.search(filters),
     placeholderData: keepPreviousData,
+  });
+
+// Slug inexistente não adianta tentar de novo; falha de rede tenta uma vez (padrão do client)
+export const usePerfumeDetail = (slug: string) =>
+  useQuery({
+    queryKey: queryKeys.perfumes.detail(slug),
+    queryFn: () => perfumeService.getBySlug(slug),
+    retry: (failureCount, error) =>
+      !(error instanceof AppError && error.code === 'not_found') && failureCount < 1,
   });

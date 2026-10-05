@@ -1,28 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Chip } from '@/components/ui/chip';
 import { HoverGlowButton } from '@/components/ui/hover-glow-button';
-import {
-  CONCENTRATION_LABELS,
-  FAMILY_LABELS,
-  GENDER_LABELS,
-  type OlfactiveFamily,
-} from '@/constants/labels';
+import { CONCENTRATION_LABELS, FAMILY_LABELS, GENDER_LABELS } from '@/constants/labels';
 import { cn } from '@/lib/utils';
 import type { PerfumeSummary } from '@/types/catalog';
-
-// Classes completas (o Tailwind precisa vê-las inteiras). Fundo suave na cor da família principal.
-const PLACEHOLDER_BG: Record<OlfactiveFamily, string> = {
-  citrus: 'bg-family-citrus',
-  floral: 'bg-family-floral',
-  woody: 'bg-family-woody',
-  green: 'bg-family-green',
-  aquatic: 'bg-family-aquatic',
-  oriental: 'bg-family-oriental',
-  spicy: 'bg-family-spicy',
-  fruity: 'bg-family-fruity',
-  aromatic: 'bg-family-aromatic',
-  musky: 'bg-family-musky',
-};
+import { PerfumePlaceholder } from './PerfumePlaceholder';
 
 const MAX_FAMILY_CHIPS = 3;
 
@@ -47,14 +29,7 @@ export function PerfumeCard({ perfume }: PerfumeCardProps) {
       )}
     >
       <Link to={`/perfumes/${perfume.slug}`} className="flex flex-1 flex-col outline-none">
-        <div
-          aria-hidden
-          data-slot="perfume-placeholder"
-          className={cn(
-            'aspect-[4/3] w-full',
-            mainFamily ? PLACEHOLDER_BG[mainFamily] : 'bg-muted'
-          )}
-        />
+        <PerfumePlaceholder family={mainFamily} className="aspect-[4/3]" />
         <div className="flex flex-1 flex-col gap-2 p-4">
           <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
             {perfume.brandName}

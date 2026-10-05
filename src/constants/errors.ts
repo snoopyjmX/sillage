@@ -1,9 +1,10 @@
 // Mensagens ao usuário por código estável. Nenhum texto técnico do Supabase chega à interface.
-export type ErrorCode = 'network' | 'invalid_request' | 'unknown';
+export type ErrorCode = 'network' | 'invalid_request' | 'not_found' | 'unknown';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
   invalid_request: 'Não foi possível processar essa busca. Ajuste os filtros e tente de novo.',
+  not_found: 'Não encontramos o que você procurou.',
   unknown: 'Não foi possível carregar agora. Tente novamente em instantes.',
 };
 

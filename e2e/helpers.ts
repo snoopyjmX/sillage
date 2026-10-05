@@ -1,3 +1,4 @@
+import { AxeBuilder } from '@axe-core/playwright';
 import type { Locator, Page } from '@playwright/test';
 
 // No desktop os filtros são um painel lateral; no celular, uma gaveta aberta por um botão.
@@ -25,3 +26,15 @@ export const pickNote = async (filters: Locator, typed: string, optionName: RegE
 export const cards = (page: Page): Locator => page.getByRole('article');
 export const cardTitle = (page: Page, name: string): Locator =>
   page.getByRole('heading', { level: 2, name });
+
+// Varredura axe com as regras WCAG 2.x A/AA; devolve só o que importa para a mensagem de falha.
+export const axeViolations = async (page: Page) => {
+  const results = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+    .analyze();
+  return results.violations.map((violation) => ({
+    id: violation.id,
+    impact: violation.impact,
+    nodes: violation.nodes.map((node) => node.target.join(' ')),
+  }));
+};

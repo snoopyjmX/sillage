@@ -28,6 +28,14 @@
   }
 }
 
+/* Anel de foco. No Tailwind 4, `outline-none` zera --tw-outline-style e `focus-visible:outline-2`
+   herda esse "none": o anel nunca aparecia. Fora de qualquer @layer, esta regra vence a utilitária
+   e devolve o estilo sólido só no foco por teclado (WCAG 2.4.7). Elementos com `outline-none` e sem
+   `focus-visible:outline-*` (contêineres de Dialog e Drawer) continuam sem anel. */
+:focus-visible {
+  --tw-outline-style: solid;
+}
+
 /* Vidro (Seção 9): só em camadas flutuantes; nunca em itens de lista.
    Fallback sólido sem backdrop-filter ou com prefers-reduced-transparency.
    .glass-bar é a variante das barras fixas (navbar e navegação inferior): com um Dialog/Drawer
