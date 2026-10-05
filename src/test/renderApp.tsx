@@ -17,5 +17,5 @@ export const renderApp = (initialPath: string) => {
       </QueryClientProvider>
     </ThemeProvider>
   );
-  return { ...utils, router };
+  return { ...utils, router, client };
 };
