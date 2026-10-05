@@ -17,6 +17,11 @@ export const queryKeys = {
   collection: {
     list: (userId: string) => ['private', userId, 'collection'] as const,
   },
+  reviews: {
+    // Lista e resumo públicos do perfume (RN08)
+    list: (perfumeId: string) => ['public', 'perfumes', perfumeId, 'reviews'] as const,
+    mine: (userId: string, perfumeId: string) => ['private', userId, 'reviews', perfumeId] as const,
+  },
   daily: {
     overview: (userId: string) => ['private', userId, 'daily'] as const,
   },
