@@ -1,0 +1,150 @@
+import { ArrowLeft, SearchX } from 'lucide-react';
+import { Link, useParams } from 'react-router-dom';
+import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
+import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
+import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
+import { AsyncBoundary } from '@/components/ui/async-boundary';
+import { Button } from '@/components/ui/button';
+import { Chip } from '@/components/ui/chip';
+import { EmptyState } from '@/components/ui/empty-state';
+import { HoverGlowButton } from '@/components/ui/hover-glow-button';
+import { AppError, getErrorMessage } from '@/constants/errors';
+import { CONCENTRATION_LABELS, FAMILIES, GENDER_LABELS } from '@/constants/labels';
+import { usePerfumeDetail } from '@/hooks/usePerfumes';
+import type { PerfumeDetail } from '@/types/catalog';
+
+const BackToCatalog = () => (
+  <Link
+    to="/catalog"
+    className="inline-flex min-h-11 items-center gap-2 self-start rounded-lg text-sm font-medium text-primary outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+  >
+    <ArrowLeft className="size-4" aria-hidden />
+    Voltar ao catálogo
+  </Link>
+);
+
+function PerfumeNotFound() {
+  return (
+    <>
+      <title>Perfume não encontrado · Sillage</title>
+      <meta name="robots" content="noindex" />
+      <h1 className="sr-only">Perfume não encontrado</h1>
+      <EmptyState
+        icon={SearchX}
+        title="Perfume não encontrado"
+        description="Esse perfume não existe ou foi removido do catálogo."
+        action={
+          <Button asChild>
+            <Link to="/catalog">Voltar ao catálogo</Link>
+          </Button>
+        }
+      />
+    </>
+  );
+}
+
+function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
+  const mainFamily = FAMILIES.find((family) =>
+    perfume.notes.some((note) => note.family === family)
+  );
+  const meta = [GENDER_LABELS[perfume.gender], perfume.releaseYear?.toString()]
+    .filter(Boolean)
+    .join(' · ');
+
+  return (
+    <>
+      <title>{`${perfume.name} · ${perfume.brandName} · Sillage`}</title>
+      {perfume.description && <meta name="description" content={perfume.description} />}
+
+      <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10">
+        <div className="overflow-hidden rounded-xl border bg-card shadow-card">
+          {perfume.imageUrl ? (
+            <img
+              src={perfume.imageUrl}
+              alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
+              width={800}
+              height={1000}
+              decoding="async"
+              className="aspect-[4/5] w-full object-cover"
+            />
+          ) : (
+            <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/5]" />
+          )}
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <p className="text-sm font-medium tracking-wider text-muted-foreground uppercase">
+            {perfume.brandName}
+          </p>
+          <h1 className="font-heading text-3xl leading-tight font-medium md:text-5xl">
+            {perfume.name}
+          </h1>
+          <div className="flex flex-wrap items-center gap-2">
+            <Chip variant="concentration">{CONCENTRATION_LABELS[perfume.concentration]}</Chip>
+            <span className="text-sm text-muted-foreground">{meta}</span>
+          </div>
+          {perfume.description && (
+            <p className="max-w-prose text-base text-secondary-foreground">{perfume.description}</p>
+          )}
+          <div className="mt-4 flex flex-col gap-2 md:max-w-72">
+            {/* A coleção chega nas fases de login e coleção: até lá o CTA fica indisponível. */}
+            <HoverGlowButton
+              aria-disabled="true"
+              aria-describedby="collection-soon"
+              title="Em breve"
+              onClick={(event) => event.preventDefault()}
+            >
+              Adicionar à Coleção
+            </HoverGlowButton>
+            <p id="collection-soon" className="text-center text-xs text-muted-foreground">
+              Em breve
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <section aria-labelledby="pyramid-title" className="flex flex-col gap-4">
+        <h2 id="pyramid-title" className="text-center font-heading text-2xl font-medium">
+          Pirâmide olfativa
+        </h2>
+        {perfume.notes.length > 0 ? (
+          <OlfactoryPyramid notes={perfume.notes} />
+        ) : (
+          <p className="text-center text-sm text-muted-foreground">
+            As notas deste perfume ainda não foram cadastradas.
+          </p>
+        )}
+      </section>
+    </>
+  );
+}
+
+export default function PerfumeDetailsPage() {
+  const { slug = '' } = useParams();
+  const detail = usePerfumeDetail(slug);
+  const notFound = detail.error instanceof AppError && detail.error.code === 'not_found';
+
+  return (
+    <div className="flex flex-col gap-6">
+      <BackToCatalog />
+      {notFound ? (
+        <PerfumeNotFound />
+      ) : (
+        <AsyncBoundary
+          status={detail.status}
+          loading={<PerfumeDetailsSkeleton />}
+          onRetry={() => void detail.refetch()}
+          errorTitle="Não foi possível carregar o perfume"
+          errorDescription={getErrorMessage(detail.error)}
+          offlineDescription="Conecte-se à internet para ver este perfume."
+        >
+          {detail.data && (
+            <div className="flex flex-col gap-10">
+              <PerfumeDetails perfume={detail.data} />
+            </div>
+          )}
+        </AsyncBoundary>
+      )}
+    </div>
+  );
+}
