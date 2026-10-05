@@ -88,14 +88,14 @@ test.describe('detalhes do perfume', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Amyi 2.15' })).toBeVisible();
   });
 
-  test('o CTA de coleção está indisponível e avisa "Em breve"', async ({ page }) => {
+  test('visitante que clica em "Adicionar à Coleção" vai para o login e volta aos detalhes', async ({
+    page,
+  }) => {
     await page.goto(URL);
     const cta = page.getByRole('button', { name: /Adicionar à Coleção/ });
-    await expect(cta).toHaveAttribute('aria-disabled', 'true');
-    await expect(cta).toHaveAccessibleDescription('Em breve');
-    // aria-disabled: o Playwright não clica sem force, mas o usuário pode tocar
-    await cta.click({ force: true });
-    await expect(page).toHaveURL(URL);
+    await expect(cta).toBeEnabled();
+    await cta.click();
+    await expect(page).toHaveURL(/\/login\?redirect=%2Fperfumes%2F/);
   });
 
   test('a rota do card do catálogo abre os detalhes e o voltar leva ao catálogo', async ({
