@@ -118,6 +118,6 @@ describe('páginas de autenticação', () => {
     });
     fireEvent.click(screen.getByRole('button', { name: 'Salvar nova senha' }));
     await waitFor(() => expect(auth.service.updatePassword).toHaveBeenCalledWith('novasenha1'));
-    await waitFor(() => expect(router.state.location.pathname).toBe('/catalog'));
+    await waitFor(() => expect(router.state.location.pathname).toBe('/'));
   });
 });

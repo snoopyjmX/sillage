@@ -45,13 +45,20 @@ describe('rotas', () => {
     search.mockResolvedValue({ items: [perfume()], total: 1 });
   });
 
-  it('/ redireciona para /catalog', async () => {
+  it('/ é a Home pública (sem redirecionar), com o convite para visitantes', async () => {
     const { router } = renderApp('/');
     // Primeira carga do chunk lazy no vitest é a mais lenta
     expect(
-      await screen.findByRole('heading', { name: 'Catálogo', level: 1 }, { timeout: 10_000 })
+      await screen.findByRole(
+        'heading',
+        { name: 'Descubra a fragrância de hoje', level: 1 },
+        { timeout: 10_000 }
+      )
     ).toBeInTheDocument();
-    expect(router.state.location.pathname).toBe('/catalog');
+    expect(router.state.location.pathname).toBe('/');
+    expect(
+      await screen.findByRole('heading', { name: 'Entre para ver o seu Perfume do Dia' })
+    ).toBeInTheDocument();
   });
 
   it('rota desconhecida mostra um 404 amigável com caminho de volta', async () => {
@@ -72,21 +79,18 @@ describe('rotas', () => {
     expect(document.head.querySelector('meta[name="description"]')).not.toBeNull();
   });
 
-  it('Catálogo, Coleção e Perfil são links; Perfume do Dia fica desabilitado', async () => {
+  it('Início, Catálogo, Coleção e Perfil são links da navegação principal', async () => {
     renderApp('/catalog');
     await screen.findByRole('heading', { name: 'Catálogo', level: 1 });
     const nav = screen.getAllByRole('navigation', { name: 'Principal' })[0];
     if (!nav) throw new Error('navegação principal não encontrada');
+    expect(within(nav).getByRole('link', { name: /Início/ })).toHaveAttribute('href', '/');
     expect(within(nav).getByRole('link', { name: /Catálogo/ })).toHaveAttribute('href', '/catalog');
     expect(within(nav).getByRole('link', { name: /Coleção/ })).toHaveAttribute(
       'href',
       '/collection'
     );
     expect(within(nav).getByRole('link', { name: /Perfil/ })).toHaveAttribute('href', '/profile');
-    expect(within(nav).getByRole('link', { name: 'Perfume do Dia, em breve' })).toHaveAttribute(
-      'aria-disabled',
-      'true'
-    );
   });
 });
 

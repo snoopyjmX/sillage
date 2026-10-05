@@ -1,14 +1,11 @@
 // Acesso a dados da Coleção (RN02). Só services importam o cliente do Supabase.
 // A autorização é a RLS: o usuário só enxerga e altera as próprias linhas.
 import { AppError, toAppError } from '@/constants/errors';
-import { FAMILIES } from '@/constants/labels';
+import { fromPerfumeRow, PERFUME_ROW_SELECT } from '@/lib/perfume';
 import { supabase } from '@/lib/supabase';
 import type { CollectionItem, CollectionStatus } from '@/types/collection';
 
-// Uma consulta só (item + perfume + marca + famílias das notas), sem N+1.
-// perfume_notes entra só para derivar as famílias do card, como faz a search_perfumes.
-const LIST_SELECT =
-  'status, updated_at, perfume:perfumes(*, brand:brands(*), perfume_notes(note:notes(family)))';
+const LIST_SELECT = `status, updated_at, ${PERFUME_ROW_SELECT}`;
 
 // Erro cru do Supabase nunca chega à interface: rede continua "rede", o resto vira falha de coleção
 const toCollectionError = (error: Parameters<typeof toAppError>[0]): AppError => {
@@ -26,26 +23,11 @@ export const collectionService = {
       .order('updated_at', { ascending: false });
     if (error) throw toCollectionError(error);
 
-    return data.map(({ status, updated_at, perfume }) => {
-      const present = new Set(perfume.perfume_notes.map(({ note }) => note.family));
-      return {
-        status,
-        updatedAt: updated_at,
-        perfume: {
-          id: perfume.id,
-          slug: perfume.slug,
-          name: perfume.name,
-          brandName: perfume.brand.name,
-          brandSlug: perfume.brand.slug,
-          concentration: perfume.concentration,
-          gender: perfume.gender,
-          releaseYear: perfume.release_year,
-          imagePath: perfume.image_path,
-          // Na ordem do enum, como a função de busca devolve
-          families: FAMILIES.filter((family) => present.has(family)),
-        },
-      };
-    });
+    return data.map(({ status, updated_at, perfume }) => ({
+      status,
+      updatedAt: updated_at,
+      perfume: fromPerfumeRow(perfume),
+    }));
   },
 
   // upsert atômico: UNIQUE(user_id, perfume_id) garante uma linha por perfume; trocar o estado
