@@ -59,4 +59,11 @@ describe('PerfumeCard', () => {
     renderCard({ releaseYear: null });
     expect(screen.getByText('Unissex')).toBeInTheDocument();
   });
+
+  it('o CTA de coleção fica fora do link e indisponível até a fase da coleção', () => {
+    renderCard();
+    const cta = screen.getByRole('button', { name: 'Adicionar à Coleção, em breve' });
+    expect(cta).toHaveAttribute('aria-disabled', 'true');
+    expect(screen.getByRole('link')).not.toContainElement(cta);
+  });
 });

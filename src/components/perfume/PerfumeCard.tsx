@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Chip } from '@/components/ui/chip';
+import { HoverGlowButton } from '@/components/ui/hover-glow-button';
 import {
   CONCENTRATION_LABELS,
   FAMILY_LABELS,
@@ -38,15 +39,14 @@ export function PerfumeCard({ perfume }: PerfumeCardProps) {
     .join(' · ');
 
   return (
-    <article className="h-full">
-      <Link
-        to={`/perfumes/${perfume.slug}`}
-        className={cn(
-          'flex h-full flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-card outline-none',
-          'transition-transform duration-150 ease-out hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
-        )}
-      >
+    <article
+      className={cn(
+        'flex h-full flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-card',
+        'transition-transform duration-150 ease-out hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+        'has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-ring'
+      )}
+    >
+      <Link to={`/perfumes/${perfume.slug}`} className="flex flex-1 flex-col outline-none">
         <div
           aria-hidden
           data-slot="perfume-placeholder"
@@ -75,6 +75,17 @@ export function PerfumeCard({ perfume }: PerfumeCardProps) {
           )}
         </div>
       </Link>
+      <div className="px-4 pb-4">
+        {/* A coleção chega em fase futura (RN02 exige login): até lá o CTA fica indisponível. */}
+        <HoverGlowButton
+          aria-disabled="true"
+          aria-label="Adicionar à Coleção, em breve"
+          className="w-full"
+          onClick={(event) => event.preventDefault()}
+        >
+          Adicionar à Coleção
+        </HoverGlowButton>
+      </div>
     </article>
   );
 }
