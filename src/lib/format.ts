@@ -16,3 +16,9 @@ export const formatInteger = (value: number): string => integer.format(value);
 // "1 perfume" / "0 perfumes" / "24 perfumes" (o CLDR trata 0 como singular em pt; aqui só 1 é singular)
 export const formatCount = (value: number, singular: string, plural: string): string =>
   `${formatInteger(value)} ${value === 1 ? singular : plural}`;
+
+// Data civil AAAA-MM-DD -> "4 de outubro" (sem fuso: a data já é a do usuário, não um instante)
+export const formatCivilDate = (date: string): string =>
+  new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', timeZone: 'UTC' }).format(
+    new Date(`${date}T00:00:00Z`)
+  );

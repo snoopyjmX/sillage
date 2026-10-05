@@ -1,6 +1,16 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import type { Locator, Page } from '@playwright/test';
+import { execFileSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
+
+// Links de navegação: na barra (desktop) ou no menu hambúrguer, que o celular precisa abrir antes.
+export const openNav = async (page: Page, isMobile: boolean): Promise<Locator> => {
+  if (!isMobile) return page.getByRole('navigation', { name: 'Principal' });
+  await page.getByRole('button', { name: 'Abrir menu' }).click();
+  const menu = page.getByRole('dialog', { name: 'Menu' });
+  await menu.waitFor();
+  return menu;
+};
 
 // No desktop os filtros são um painel lateral; no celular, uma gaveta aberta por um botão.
 export const openFilters = async (page: Page, isMobile: boolean): Promise<Locator> => {
@@ -43,13 +53,55 @@ export const axeViolations = async (page: Page) => {
 // Cada teste cria o próprio usuário (e-mail com UUID) e roda em paralelo com os demais.
 export const uniqueEmail = (): string => `e2e-${randomUUID()}@exemplo.com`;
 
-// Cadastra pela interface; o app já entra na conta e vai para o catálogo.
+// Cadastra pela interface; o app já entra na conta e vai para a Home.
 export const registerViaUi = async (page: Page, email = uniqueEmail()): Promise<string> => {
   await page.goto('/register');
   await page.getByLabel('Nome').fill('Ana E2E');
   await page.getByLabel('E-mail').fill(email);
   await page.getByLabel('Senha', { exact: true }).fill('Sillage2026x');
   await page.getByRole('button', { name: 'Criar conta' }).click();
-  await page.waitForURL(/\/catalog$/);
+  await page.waitForURL(/\/$/);
   return email;
+};
+
+// `daily_perfumes` só aceita escrita pela função set_daily_perfume (e só para hoje), então o
+// histórico de dias anteriores é semeado como dono do banco (o mesmo container do `db:start`).
+// `daysAgo` 0 = hoje no fuso do perfil, a conta que a função e o app fazem.
+const DB_CONTAINER = process.env.SUPABASE_DB_CONTAINER ?? 'supabase_db_sillage';
+
+export interface DailySeed {
+  slug: string;
+  daysAgo: number;
+}
+
+export const seedDaily = (email: string, entries: DailySeed[]): void => {
+  const values = entries
+    .map(
+      ({ slug, daysAgo }) =>
+        `((select id from public.perfumes where slug = '${slug}'), ${Number(daysAgo)})`
+    )
+    .join(', ');
+  const sql = `
+    insert into public.daily_perfumes (user_id, perfume_id, date)
+    select u.id, v.perfume_id, (now() at time zone p.timezone)::date - v.days_ago
+    from auth.users u
+    join public.profiles p on p.id = u.id
+    cross join (values ${values}) as v (perfume_id, days_ago)
+    where u.email = '${email.replaceAll("'", "''")}'`;
+  execFileSync(
+    'docker',
+    [
+      'exec',
+      '-i',
+      DB_CONTAINER,
+      'psql',
+      '-U',
+      'postgres',
+      '-d',
+      'postgres',
+      '-v',
+      'ON_ERROR_STOP=1',
+    ],
+    { input: sql }
+  );
 };

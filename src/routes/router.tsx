@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react';
-import { createBrowserRouter, redirect, type RouteObject } from 'react-router-dom';
+import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
 import { AuthLayout } from './AuthLayout';
 import { GuestOnly } from './GuestOnly';
@@ -7,9 +7,8 @@ import { PageFallback } from './PageFallback';
 import { RequireAuth } from './RequireAuth';
 import { RouteError } from './RouteError';
 
-// Rotas: / -> /catalog, /catalog, /perfumes/:slug, /collection e /profile (privadas), autenticação e * (404). Páginas carregam sob demanda.
+// Rotas: / (Home com o Perfume do Dia), /catalog, /perfumes/:slug, /collection e /profile (privadas), autenticação e * (404). Páginas carregam sob demanda.
 // AuthLayout (sessão) fica na raiz; GuestOnly e RequireAuth são guardas de UX (a segurança é a RLS).
-// Perfume do Dia ainda não tem rota: aparece desabilitado na navegação.
 const page = (load: () => Promise<{ default: ComponentType }>) => async () => ({
   Component: (await load()).default,
 });
@@ -23,7 +22,7 @@ export const routes: RouteObject[] = [
         errorElement: <RouteError />,
         HydrateFallback: PageFallback,
         children: [
-          { index: true, loader: () => redirect('/catalog') },
+          { index: true, lazy: page(() => import('@/pages/HomePage')) },
           { path: 'catalog', lazy: page(() => import('@/pages/CatalogPage')) },
           { path: 'perfumes/:slug', lazy: page(() => import('@/pages/PerfumeDetailsPage')) },
           {

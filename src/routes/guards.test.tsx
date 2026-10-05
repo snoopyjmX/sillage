@@ -43,10 +43,10 @@ describe('RequireAuth', () => {
 describe('GuestOnly', () => {
   beforeEach(() => auth.reset());
 
-  it('autenticado em /login vai para a Home (que leva ao catálogo)', async () => {
+  it('autenticado em /login vai para a Home', async () => {
     auth.setInitialSession(fakeSession());
     const { router } = renderApp('/login');
-    await waitFor(() => expect(location(router)).toBe('/catalog'));
+    await waitFor(() => expect(location(router)).toBe('/'));
   });
 
   it('autenticado em /register respeita ?redirect=', async () => {
@@ -59,7 +59,7 @@ describe('GuestOnly', () => {
   it('ignora ?redirect= que aponta para fora do app', async () => {
     auth.setInitialSession(fakeSession());
     const { router } = renderApp('/login?redirect=https%3A%2F%2Fevil.test');
-    await waitFor(() => expect(location(router)).toBe('/catalog'));
+    await waitFor(() => expect(location(router)).toBe('/'));
   });
 });
 
@@ -75,7 +75,7 @@ describe('AuthProvider', () => {
 
     act(() => auth.emit('SIGNED_OUT', null));
 
-    await waitFor(() => expect(location(router)).toBe('/catalog'));
+    await waitFor(() => expect(location(router)).toBe('/'));
     expect(client.getQueryData(['private', 'u1', 'collection'])).toBeUndefined();
     expect(client.getQueryData(['public', 'perfumes', 'list'])).toEqual([2]);
   });

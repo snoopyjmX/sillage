@@ -40,3 +40,13 @@
 - **`?redirect=` só aceita caminho interno** (`lib/redirect.ts`): sem `//host`, sem `\`, sem voltar para telas de auth.
 - **Caixa de e-mail do E2E é o Mailpit** (`http://127.0.0.1:54324`, `/api/v1/search` e `/api/v1/message/:id`). A CLI atual substituiu o Inbucket e `/api/v1/mailbox` não existe mais; ver `e2e/mailbox.ts`.
 - **`supabase/config.toml` (só local):** `site_url` e `additional_redirect_urls` com `localhost:5173` e `localhost:4173` (sem isso o link de recuperação cai na `site_url`), senha mínima de 8, limites de e-mail e de login mais altos para o E2E rodar em paralelo.
+
+## Decisões da Fase 8 (Perfume do Dia e pacote 21st.dev)
+
+| Dependência              | Tipo | O que resolve                                                    | Por que o que já existe não resolve                                                                    |
+| ------------------------ | ---- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `canvas-confetti`        | prod | Feedback visual de celebração premium (Confete) após o cadastro. | `motion/react` anima elementos do DOM; centenas de partículas com física pedem um `<canvas>` dedicado. |
+| `@types/canvas-confetti` | dev  | Tipos da lib (ela não traz os próprios).                         | TypeScript strict, sem `any`.                                                                          |
+
+- **Confete:** `components/ui/confetti.tsx` lê as cores dos tokens (`--primary` etc.) em tempo de execução e usa `disableForReducedMotion`. Dispara uma vez, no sucesso do cadastro.
+- **Perfume do Dia:** `dailyService` lê `daily_perfumes` (tabela com RLS de dono; não é view) e `profiles.timezone`. A data de "hoje" é calculada no fuso do perfil, a mesma regra de `set_daily_perfume` (RN06).

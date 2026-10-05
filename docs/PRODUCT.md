@@ -373,7 +373,7 @@ A fábrica fica em `lib/queryKeys.ts`. O prefixo decide o que o `persistQueryCli
 src/
 ├── components/
 │   ├── ui/            # shadcn + componentes curados do 21st.dev
-│   ├── layout/        # AppShell, Navbar, BottomNav, PageTransition
+│   ├── layout/        # AppShell, Navbar, PageTransition
 │   ├── perfume/       # PerfumeCard, OlfactoryPyramid, ...
 │   ├── collection/    # CollectionToggle
 │   ├── reviews/       # RatingStars, ReviewForm
@@ -394,18 +394,18 @@ supabase/
 
 **Rotas**
 
-| Rota                  | Acesso             | Função                                              |
-| --------------------- | ------------------ | --------------------------------------------------- |
-| `/`                   | pública            | Home com destaques e entrada para o catálogo        |
-| `/catalog`            | pública            | Busca, filtros e resultados; estado na query string |
-| `/perfumes/:slug`     | pública            | Detalhes; ações de coleção e avaliação exigem login |
-| `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=`                   |
-| `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                        |
-| `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)    |
-| `/collection`         | privada            | Coleção com abas Tenho e Quero                      |
-| `/daily`              | privada            | Perfume do Dia de hoje e histórico                  |
-| `/profile`            | privada            | Nome de exibição, fuso, excluir conta               |
-| `*`                   | pública            | 404                                                 |
+| Rota                  | Acesso             | Função                                                           |
+| --------------------- | ------------------ | ---------------------------------------------------------------- |
+| `/`                   | pública            | Home: Perfume do Dia e histórico (logado) ou convite (visitante) |
+| `/catalog`            | pública            | Busca, filtros e resultados; estado na query string              |
+| `/perfumes/:slug`     | pública            | Detalhes; ações de coleção e avaliação exigem login              |
+| `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=`                                |
+| `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                                     |
+| `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                 |
+| `/collection`         | privada            | Coleção com abas Tenho e Quero                                   |
+| `/daily`              | privada            | Perfume do Dia de hoje e histórico                               |
+| `/profile`            | privada            | Nome de exibição, fuso, excluir conta                            |
+| `*`                   | pública            | 404                                                              |
 
 **Fluxo de autenticação**
 

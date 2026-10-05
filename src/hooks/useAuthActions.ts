@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { fireConfetti } from '@/components/ui/confetti';
 import { getBrowserTimezone } from '@/lib/timezone';
 import type { LoginValues, RegisterValues } from '@/schemas/auth';
 import { authService } from '@/services/authService';
@@ -14,6 +15,9 @@ export const useSignUp = () =>
   useMutation({
     mutationFn: ({ email, password, displayName }: RegisterValues) =>
       authService.signUp(email, password, displayName, getBrowserTimezone()),
+    // No hook (não no componente): o redirecionamento da guarda pode desmontar a página antes do
+    // callback de `mutate`. Vale com ou sem confirmação de e-mail pendente.
+    onSuccess: fireConfetti,
   });
 
 export const useSignOut = () => useMutation({ mutationFn: () => authService.signOut() });

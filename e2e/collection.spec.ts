@@ -1,5 +1,5 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import { axeViolations, cardTitle, cards, registerViaUi } from './helpers.ts';
+import { axeViolations, cardTitle, cards, openNav, registerViaUi } from './helpers.ts';
 
 const THEME_KEY = 'sillage-theme';
 const NAME = 'Amyi 2.15';
@@ -37,6 +37,7 @@ test.describe('coleção', () => {
 
   test('logado adiciona como "Quero": toast, botão atualizado e item na aba Quero', async ({
     page,
+    isMobile,
   }) => {
     await registerViaUi(page);
     await page.goto('/catalog');
@@ -44,10 +45,7 @@ test.describe('coleção', () => {
 
     await expect(toggleIn(card(page))).toHaveText(/Quero/);
 
-    await page
-      .getByRole('link', { name: /^Coleção/ })
-      .locator('visible=true')
-      .click();
+    await (await openNav(page, isMobile)).getByRole('link', { name: 'Coleção' }).click();
     await expect(page).toHaveURL(/\/collection$/);
     await expect(page.getByRole('tab', { name: 'Tenho (0)' })).toBeVisible();
     await page.getByRole('tab', { name: 'Quero (1)' }).click();

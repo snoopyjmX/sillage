@@ -1,9 +1,30 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup, configure } from '@testing-library/react';
-import { afterEach } from 'vitest';
+import { afterEach, vi } from 'vitest';
 
 // Com `globals: false` o Testing Library não limpa o DOM sozinho
 afterEach(() => cleanup());
 
 // Páginas são lazy: no primeiro teste do arquivo o Vite ainda transforma o módulo (> 1 s)
 configure({ asyncUtilTimeout: 3000 });
+
+// O jsdom não implementa <canvas>: o confete vira no-op nos testes
+vi.mock('canvas-confetti', () => ({ default: vi.fn() }));
+
+// O jsdom não tem IntersectionObserver (usado pelo `useInView` do motion): tudo conta como visível
+class VisibleIntersectionObserver {
+  private readonly callback: IntersectionObserverCallback;
+  constructor(callback: IntersectionObserverCallback) {
+    this.callback = callback;
+  }
+  observe(target: Element) {
+    const entry = { isIntersecting: true, target } as IntersectionObserverEntry;
+    this.callback([entry], this as unknown as IntersectionObserver);
+  }
+  unobserve() {}
+  disconnect() {}
+  takeRecords(): IntersectionObserverEntry[] {
+    return [];
+  }
+}
+vi.stubGlobal('IntersectionObserver', VisibleIntersectionObserver);
