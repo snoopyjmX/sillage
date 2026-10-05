@@ -344,6 +344,27 @@ export type Database = {
           },
         ];
       };
+      perfume_reviews_public: {
+        Row: {
+          author_name: string | null;
+          comment: string | null;
+          created_at: string | null;
+          id: string | null;
+          longevity_rating: number | null;
+          perfume_id: string | null;
+          projection_rating: number | null;
+          updated_at: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'perfume_reviews_perfume_id_fkey';
+            columns: ['perfume_id'];
+            isOneToOne: false;
+            referencedRelation: 'perfumes';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Functions: {
       is_admin: { Args: Record<PropertyKey, never>; Returns: boolean };

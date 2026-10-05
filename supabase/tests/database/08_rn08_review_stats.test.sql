@@ -70,10 +70,10 @@ select is(pg_temp.affected($t$delete from public.perfume_reviews$t$), 0::bigint,
 select pg_temp.act_as('a0000000-0000-4000-8000-00000000000a');
 select is((select review_count from public.perfume_review_stats where perfume_id = '11111111-0000-4000-8000-000000000001'), 2::bigint, 'RN08: usuário logado também lê o agregado (inclui avaliações de outros)');
 select is((select count(*) from public.perfume_reviews), 1::bigint, 'RN08: usuário logado vê só a própria avaliação na tabela');
-select is(pg_temp.affected($t$delete from public.perfume_reviews where user_id = 'a0000000-0000-4000-8000-00000000000a'$t$), 0::bigint, 'RN08: DELETE em perfume_reviews afeta 0 linhas (mesmo na própria)');
-select is(pg_temp.affected($t$delete from public.perfume_reviews$t$), 0::bigint, 'RN08: DELETE em massa afeta 0 linhas');
+select is(pg_temp.affected($t$delete from public.perfume_reviews where user_id = 'a0000000-0000-4000-8000-00000000000a'$t$), 1::bigint, 'RN08: o dono apaga a própria avaliação (Fase 9)');
+select is(pg_temp.affected($t$delete from public.perfume_reviews$t$), 0::bigint, 'RN08: DELETE em massa não alcança avaliações de outros');
 select pg_temp.act_postgres();
-select is((select count(*) from public.perfume_reviews), 2::bigint, 'RN08: nenhuma avaliação foi apagada');
+select is((select count(*) from public.perfume_reviews), 1::bigint, 'RN08: só a avaliação de B sobrou');
 
 select * from finish();
 rollback;

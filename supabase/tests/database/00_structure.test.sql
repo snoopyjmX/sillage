@@ -59,7 +59,7 @@ select is((select relrowsecurity from pg_class where oid = 'public.perfume_revie
 select policies_are('public','profiles',array['profiles: owner select','profiles: owner update'],'profiles: sem INSERT nem DELETE');
 select policies_are('public','collection_items',array['collection: owner select','collection: owner insert','collection: owner update','collection: owner delete'],'collection_items: 4 policies de dono');
 select policies_are('public','daily_perfumes',array['daily: owner select'],'daily_perfumes: somente SELECT do dono');
-select policies_are('public','perfume_reviews',array['reviews: owner select','reviews: insert if authorized','reviews: owner update'],'perfume_reviews: sem DELETE');
+select policies_are('public','perfume_reviews',array['reviews: owner select','reviews: insert if authorized','reviews: owner update','reviews: owner delete'],'perfume_reviews: 4 policies de dono (insert com RN03)');
 select policies_are('public','brands',array['brands: public select','brands: admin insert','brands: admin update','brands: admin delete'],'brands: leitura pública, escrita admin');
 select policies_are('public','perfumes',array['perfumes: public select','perfumes: admin insert','perfumes: admin update','perfumes: admin delete'],'perfumes: leitura pública, escrita admin');
 select policies_are('public','notes',array['notes: public select','notes: admin insert','notes: admin update','notes: admin delete'],'notes: leitura pública, escrita admin');

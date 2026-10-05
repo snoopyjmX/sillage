@@ -26,7 +26,7 @@ PWA de catálogo e coleção de perfumaria de nicho, em português (BR), mobile-
 | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | RN03 (avaliação autorizada) virou policy SQL com `EXISTS`             | Depende de duas tabelas; um `CHECK` não alcança.                                                                                                         |
 | Perfume do Dia é gravado por função no banco, no fuso do usuário      | Evita que um registro às 22h (UTC-3) caia no dia seguinte e quebre a RN06.                                                                               |
-| Avaliações privadas + média pública por view agregada                 | A v1.0 tinha contradição: RN01 dizia privado, mas "mais avaliados" exigia agregar.                                                                       |
+| Avaliações públicas por views; tabela segue com RLS de dono (Fase 9)  | Decisão do produto: avaliações como numa rede social. A view expõe só nota, comentário e nome do autor; a escrita continua do dono.                      |
 | Perfil passa a ser privado                                            | A v1.0 dizia "informações públicas" na tabela e "privado" na RN01.                                                                                       |
 | Admin identificado por `app_metadata` do JWT                          | Define a RN07 sem permitir autopromoção; `user_metadata` é editável pelo usuário.                                                                        |
 | Busca por RPC com `unaccent` e `pg_trgm`                              | Combinar nota + posição + família + contagem total fica frágil só com filtros do PostgREST.                                                              |
@@ -54,7 +54,7 @@ O MVP entrega seis blocos: catálogo, detalhes, autenticação, coleção, Perfu
 
 **Perfume do Dia.** Um por data, no fuso do usuário, com histórico completo consultável. Escolher de novo no mesmo dia substitui o anterior.
 
-**Avaliações.** Fixação e projeção de 1 a 5, comentário opcional, uma por usuário e perfume. O comentário é privado; o público vê apenas média e contagem.
+**Avaliações.** Fixação e projeção de 1 a 5, comentário opcional, uma por usuário e perfume. Tudo é público: média, contagem, notas, comentário e nome de exibição do autor. O dono edita e apaga a própria.
 
 **Fora do MVP:** painel admin, perfis públicos, compartilhamento, notificações, importação de dados, recomendação.
 
@@ -62,16 +62,16 @@ O MVP entrega seis blocos: catálogo, detalhes, autenticação, coleção, Perfu
 
 São oito regras; cada uma tem um mecanismo de garantia no banco, e o frontend apenas reflete o resultado.
 
-| Regra                     | Enunciado                                                                                                  | Garantia                                             |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| RN01 Privacidade          | Perfil, coleção, Perfume do Dia e avaliações só são visíveis e editáveis pelo próprio dono.                | RLS com `user_id = auth.uid()`                       |
-| RN02 Coleção única        | Um perfume tem um único estado (`owned` ou `wanted`) por usuário; trocar de estado atualiza a mesma linha. | `UNIQUE(user_id, perfume_id)` + `upsert`             |
-| RN03 Avaliação autorizada | Só avalia quem tem o perfume em `owned` agora ou já o usou como Perfume do Dia.                            | Policy de `INSERT` com `EXISTS`                      |
-| RN04 Avaliação única      | Uma avaliação por usuário e perfume; reenviar atualiza.                                                    | `UNIQUE(user_id, perfume_id)` + `upsert`             |
-| RN05 Ratings 1 a 5        | Fixação e projeção só aceitam inteiros de 1 a 5.                                                           | `CHECK` no banco + Zod no front                      |
-| RN06 Um por data          | Um Perfume do Dia por usuário e por data, calculada no fuso do usuário.                                    | `UNIQUE(user_id, date)` + função `set_daily_perfume` |
-| RN07 Catálogo             | Leitura pública; escrita só para administradores.                                                          | Policies com `is_admin()`                            |
-| RN08 Agregados públicos   | Média e contagem de avaliações são públicas e anônimas; comentário e autor nunca.                          | View `perfume_review_stats`                          |
+| Regra                     | Enunciado                                                                                                                                                                                               | Garantia                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| RN01 Privacidade          | Perfil, coleção e Perfume do Dia só são visíveis e editáveis pelo próprio dono. Avaliações são editáveis só pelo dono, mas legíveis por todos (RN08).                                                   | RLS com `user_id = auth.uid()`                                              |
+| RN02 Coleção única        | Um perfume tem um único estado (`owned` ou `wanted`) por usuário; trocar de estado atualiza a mesma linha.                                                                                              | `UNIQUE(user_id, perfume_id)` + `upsert`                                    |
+| RN03 Avaliação autorizada | Só avalia quem tem o perfume em `owned` agora ou já o usou como Perfume do Dia.                                                                                                                         | Policy de `INSERT` com `EXISTS`                                             |
+| RN04 Avaliação única      | Uma avaliação por usuário e perfume; reenviar atualiza.                                                                                                                                                 | `UNIQUE(user_id, perfume_id)` + `upsert`                                    |
+| RN05 Ratings 1 a 5        | Fixação e projeção só aceitam inteiros de 1 a 5.                                                                                                                                                        | `CHECK` no banco + Zod no front                                             |
+| RN06 Um por data          | Um Perfume do Dia por usuário e por data, calculada no fuso do usuário.                                                                                                                                 | `UNIQUE(user_id, date)` + função `set_daily_perfume`                        |
+| RN07 Catálogo             | Leitura pública; escrita só para administradores.                                                                                                                                                       | Policies com `is_admin()`                                                   |
+| RN08 Agregados públicos   | Avaliações são públicas, como numa rede social: notas, comentário e nome de exibição do autor. Nunca saem `user_id`, e-mail, fuso ou qualquer outro dado do perfil; ninguém edita a avaliação de outro. | Views `perfume_review_stats` (agregados) e `perfume_reviews_public` (lista) |
 
 **Decisões que a v1.0 deixava em aberto**
 
@@ -185,14 +185,14 @@ A autorização vive no banco: RLS ligada em todas as tabelas, sem `INSERT` dire
 
 **Policies por tabela**
 
-| Tabela                                         | SELECT                   | INSERT                                           | UPDATE             | DELETE                                         |
-| ---------------------------------------------- | ------------------------ | ------------------------------------------------ | ------------------ | ---------------------------------------------- |
-| `brands`, `perfumes`, `notes`, `perfume_notes` | `anon` e `authenticated` | `is_admin()`                                     | `is_admin()`       | `is_admin()`                                   |
-| `profiles`                                     | dono                     | só o trigger `handle_new_user`                   | dono               | só por cascade                                 |
-| `collection_items`                             | dono                     | dono                                             | dono               | dono                                           |
-| `daily_perfumes`                               | dono                     | **nenhuma** (só pela função `set_daily_perfume`) | **nenhuma** (idem) | nenhuma (somente cascade de exclusão da conta) |
-| `perfume_reviews`                              | dono                     | dono **e** RN03                                  | dono               | nenhuma (somente cascade de exclusão da conta) |
-| `perfume_review_stats` (view)                  | `anon` e `authenticated` | n/a                                              | n/a                | n/a                                            |
+| Tabela                                                   | SELECT                                                       | INSERT                                           | UPDATE             | DELETE                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------ | ------------------ | ---------------------------------------------- |
+| `brands`, `perfumes`, `notes`, `perfume_notes`           | `anon` e `authenticated`                                     | `is_admin()`                                     | `is_admin()`       | `is_admin()`                                   |
+| `profiles`                                               | dono                                                         | só o trigger `handle_new_user`                   | dono               | só por cascade                                 |
+| `collection_items`                                       | dono                                                         | dono                                             | dono               | dono                                           |
+| `daily_perfumes`                                         | dono                                                         | **nenhuma** (só pela função `set_daily_perfume`) | **nenhuma** (idem) | nenhuma (somente cascade de exclusão da conta) |
+| `perfume_reviews`                                        | dono (leitura pública só pela view `perfume_reviews_public`) | dono **e** RN03                                  | dono               | dono (Fase 9)                                  |
+| `perfume_review_stats`, `perfume_reviews_public` (views) | `anon` e `authenticated`                                     | n/a                                              | n/a                | n/a                                            |
 
 "Dono" significa `(select auth.uid()) = user_id` no `USING` e no `WITH CHECK`. O `select` em volta de `auth.uid()` faz o Postgres avaliar uma vez por consulta, não por linha.
 

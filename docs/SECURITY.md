@@ -6,7 +6,7 @@ Fonte: `docs/PRODUCT.md` (Seção 6). A autorização vive no banco; o frontend 
 
 - RLS ligada nas 8 tabelas. Dados privados (`profiles`, `collection_items`, `daily_perfumes`, `perfume_reviews`) só aparecem para o dono (`(select auth.uid()) = user_id`).
 - O catálogo é público para leitura. Escrita exige `is_admin()` (RN07).
-- Não há policy de `INSERT`/`UPDATE`/`DELETE` onde o cliente não pode ser confiado: `daily_perfumes` só é escrita por `set_daily_perfume`, que calcula a data no fuso do perfil; `profiles` só nasce pelo trigger; `perfume_reviews` e `daily_perfumes` só são apagadas por cascade da exclusão da conta.
+- Não há policy de `INSERT`/`UPDATE`/`DELETE` onde o cliente não pode ser confiado: `daily_perfumes` só é escrita por `set_daily_perfume`, que calcula a data no fuso do perfil; `profiles` só nasce pelo trigger; `daily_perfumes` só é apagada por cascade da exclusão da conta. `perfume_reviews` o dono apaga e edita (só as colunas de nota e comentário); nunca a de outro.
 - A `anon key` é pública por desenho. O que protege os dados são as policies.
 - Toda mudança em migration ou policy exige atualizar os testes pgTAP (`supabase/tests/database/`).
 
@@ -16,7 +16,7 @@ O papel vem de `app_metadata.role = 'admin'` no JWT, lido por `is_admin()`. `app
 
 ## Agregados e comentários
 
-`perfume_review_stats` é a única forma pública de ver avaliações e expõe apenas contagem e médias. Comentário e autor nunca saem da tabela privada (RN08).
+A tabela `perfume_reviews` segue fechada (RLS de dono). A leitura pública passa por duas views: `perfume_review_stats` (contagem e médias) e `perfume_reviews_public` (notas, comentário e `author_name` = nome de exibição, mais `id` da avaliação). Nenhuma expõe `user_id`, e-mail, fuso ou avatar (coberto por `columns_are` no pgTAP). O comentário é texto do usuário: a interface o renderiza sempre como texto (nunca HTML).
 
 ## Busca (`search_perfumes`)
 
