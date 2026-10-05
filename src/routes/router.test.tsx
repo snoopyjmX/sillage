@@ -72,16 +72,21 @@ describe('rotas', () => {
     expect(document.head.querySelector('meta[name="description"]')).not.toBeNull();
   });
 
-  it('Catálogo e Perfil são links; Coleção e Perfume do Dia ficam desabilitados', async () => {
+  it('Catálogo, Coleção e Perfil são links; Perfume do Dia fica desabilitado', async () => {
     renderApp('/catalog');
     await screen.findByRole('heading', { name: 'Catálogo', level: 1 });
     const nav = screen.getAllByRole('navigation', { name: 'Principal' })[0];
     if (!nav) throw new Error('navegação principal não encontrada');
     expect(within(nav).getByRole('link', { name: /Catálogo/ })).toHaveAttribute('href', '/catalog');
+    expect(within(nav).getByRole('link', { name: /Coleção/ })).toHaveAttribute(
+      'href',
+      '/collection'
+    );
     expect(within(nav).getByRole('link', { name: /Perfil/ })).toHaveAttribute('href', '/profile');
-    for (const name of ['Coleção, em breve', 'Perfume do Dia, em breve']) {
-      expect(within(nav).getByRole('link', { name })).toHaveAttribute('aria-disabled', 'true');
-    }
+    expect(within(nav).getByRole('link', { name: 'Perfume do Dia, em breve' })).toHaveAttribute(
+      'aria-disabled',
+      'true'
+    );
   });
 });
 
