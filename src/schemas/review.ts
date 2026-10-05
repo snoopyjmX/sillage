@@ -19,11 +19,4 @@ export const reviewSchema = z.object({
     .max(MAX_COMMENT_LENGTH, `O comentário pode ter no máximo ${MAX_COMMENT_LENGTH} caracteres.`),
 });
 
-// Formulário: as notas começam sem valor (o usuário precisa escolher)
-export interface ReviewFormValues {
-  longevity: number | undefined;
-  projection: number | undefined;
-  comment: string;
-}
-
 export type ReviewValues = z.infer<typeof reviewSchema>;
