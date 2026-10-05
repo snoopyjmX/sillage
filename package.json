@@ -24,6 +24,7 @@
     "check:contrast": "node scripts/verify-contrast.js",
     "db:types": "supabase gen types typescript --local > src/types/database.types.ts && prettier --write src/types/database.types.ts",
     "db:fake": "supabase db query --local -f supabase/dev/fake-perfumes.sql",
+    "db:fake:e2e": "supabase db query --local -f supabase/dev/fake-perfumes-e2e.sql",
     "db:fake:clear": "supabase db query --local -f supabase/dev/fake-perfumes-clear.sql",
     "e2e": "playwright test"
   },
