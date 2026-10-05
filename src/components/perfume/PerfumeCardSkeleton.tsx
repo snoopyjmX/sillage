@@ -14,6 +14,9 @@ export function PerfumeCardSkeleton() {
           <Skeleton className="h-8 w-16 rounded-full" />
         </div>
       </div>
+      <div className="px-4 pb-4">
+        <Skeleton className="h-11 w-full rounded-lg" />
+      </div>
     </div>
   );
 }
