@@ -10,6 +10,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 | `20261005120100_functions_triggers.sql` | `set_updated_at`, `set_search_name`, `handle_new_user`, `is_admin`, `set_daily_perfume` |
 | `20261005120200_rls_policies.sql`       | RLS nas 8 tabelas, policies, `revoke`/`grant` e a view `perfume_review_stats`           |
 | `20261005120300_storage.sql`            | Bucket `perfume-images` e suas policies                                                 |
+| `20261005120400_search_perfumes.sql`    | Função `search_perfumes` (busca, filtros, ordenação e paginação do catálogo)            |
 
 ## Extensões e enums
 
@@ -73,6 +74,31 @@ Bucket público `perfume-images`: `SELECT` para `anon` e `authenticated`; `INSER
 
 `supabase/seed.sql` é idempotente (`on conflict do nothing`): 3 marcas, 3 perfumes, 27 notas (compartilhadas em uma linha só) e 30 ligações de pirâmide. Concentrações marcadas com `PLACEHOLDER: confirmar` precisam de conferência. `image_path` é `NULL` por direitos de imagem.
 
+## `search_perfumes`
+
+Assinatura e semântica na Seção 8 do `PRODUCT.md`. `SECURITY INVOKER`, `STABLE`, `search_path` vazio; `EXECUTE` só para `anon` e `authenticated`. Sem SQL dinâmico.
+
+| Parâmetro / regra | Comportamento                                                                                                                                                                                                                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `p_sort`          | `name_asc`, `name_desc`, `newest`, `top_rated`, `relevance`. Outro valor levanta erro `22023`. `relevance` sem texto vira `name_asc`; `null` vale `relevance`.                                                                                                                              |
+| `p_limit`         | Padrão 24. Fora de 1 a 100 levanta `22023` (não é cortado em silêncio).                                                                                                                                                                                                                     |
+| `p_offset`        | Padrão 0. Negativo levanta `22023`.                                                                                                                                                                                                                                                         |
+| Texto             | `lower(unaccent(trim(p_query)))` contra `search_name` do perfume ou da marca. Vazio = sem filtro. 3+ caracteres: trigram (`%`, limiar padrão 0,3 do pg_trgm). 1 a 2 caracteres: prefixo com `LIKE`, com barra invertida, `%` e `_` escapados.                                               |
+| Filtros           | `AND` entre grupos. Notas em `AND` (slug repetido conta uma vez); `p_note_position` vale para todas. Marca, concentração e gênero em `OR`. Família: ao menos uma nota de qualquer família listada. Array vazio = sem filtro.                                                                |
+| Ano               | Faixa inclusiva. Perfume sem `release_year` só é excluído se algum limite foi informado.                                                                                                                                                                                                    |
+| Ordenação         | `search_name` (nome sem acento e minúsculo) nos dois `name_*`; `newest` = ano desc, nulos por último; `top_rated` = (`avg_longevity` + `avg_projection`) / 2 desc, depois `review_count`, sem avaliação por último; `relevance` = maior similaridade. Desempate final por `slug`, em todas. |
+| Retorno           | `id, slug, name, brand_name, brand_slug, concentration, gender, release_year, image_path, families, total_count`. `families` vem das notas, sem repetição, na ordem do enum. Nada de `perfume_reviews` além do agregado usado na ordenação.                                                 |
+
+**Limitação: offset além do fim.** `total_count` é calculado junto com as linhas (`count(*) over ()`). Se `p_offset` passar do último resultado, a função devolve **zero linhas** e, portanto, nenhum `total_count`. O front não sabe o total nesse caso: ao receber página vazia com `page > 1`, deve voltar para a página 1.
+
+**Tipos.** `src/types/database.types.ts` (`npm run db:types`) marca `image_path` e `release_year` como não nulos no retorno da função porque o gerador não enxerga nulabilidade em funções; no front, trate os dois como `| null`.
+
+**Medições (somente local, dados falsos).** Com `npm run db:fake` (5.000 perfumes, 300 marcas, 30.000 ligações de notas, 6.000 avaliações), `EXPLAIN ANALYZE` da chamada completa, em faixas de execuções repetidas: texto 17 a 24 ms, prefixo de 2 letras 11 a 17 ms, nota + posição 3 a 9 ms, família 9 a 17 ms, `top_rated` 22 a 30 ms, página 50 de 24 itens 14 a 18 ms. A variação entre execuções é de alguns ms; são medições de uma máquina de desenvolvimento, não metas. O índice trigram é utilizável (com `enable_seqscan = off` a parte de texto cai de cerca de 9,5 para cerca de 5 ms), mas com 5.000 linhas o planejador escolhe varredura sequencial por conta própria. Um `OR` entre `perfumes.search_name` e `brands.search_name` depois do join impedia o uso do índice; por isso a função une duas buscas, cada uma indexável. Reavalie se o catálogo crescer uma ordem de grandeza.
+
+## Dados de volume (só desenvolvimento)
+
+`supabase/dev/fake-perfumes.sql` gera dados falsos com slug iniciando em `fake-` (e usuários `fake-*@fake.local`). `npm run db:fake` cria e `npm run db:fake:clear` apaga. Roda via `supabase db query --local`. Nunca entra em `seed.sql`, migrations nem nos testes do CI.
+
 ## Fora desta fase
 
-`search_perfumes` (Seção 8), a Edge Function de exclusão de conta e a geração de tipos TypeScript.
+A Edge Function de exclusão de conta.
