@@ -38,6 +38,9 @@ jobs:
       - name: Format check
         run: npm run format:check
 
+      - name: Contrast check
+        run: npm run check:contrast
+
       - name: Unit and component tests
         run: npm run test
 

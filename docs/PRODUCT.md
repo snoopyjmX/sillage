@@ -479,7 +479,7 @@ O valor de `p_sort` é validado contra essa lista dentro da função; nunca conc
 
 ## 9. Design system e direção visual
 
-A direção é escuro, quente e silencioso: um tema _dark-first_ com acento champagne, tipografia serifada nos títulos e vidro apenas onde há camadas flutuantes. Os valores abaixo são o ponto de partida; a fonte de verdade passa a ser `src/styles/tokens.css`, documentado em `docs/DESIGN_SYSTEM.md`.
+A direção é clara, calma e silenciosa (Verde Folha): tema **claro** como base, com alternância para escuro (claro, escuro ou sistema; padrão = sistema), acento verde-folha, tipografia serifada (Fraunces) nos títulos e vidro apenas onde há camadas flutuantes. A fonte de verdade dos valores é `src/styles/tokens.css`, documentado em `docs/DESIGN_SYSTEM.md`.
 
 **Princípios**
 
@@ -491,32 +491,33 @@ A direção é escuro, quente e silencioso: um tema _dark-first_ com acento cham
 
 4.  **Não deve parecer:** infantil, colorido demais, template de dashboard ou futurista exagerado.
 
-**Cores (tema escuro inicial)**
+**Cores**
 
-| Token                           | Valor                             | Uso                                                  |
-| ------------------------------- | --------------------------------- | ---------------------------------------------------- |
-| `background`                    | `#0B0A0C`                         | Fundo do app                                         |
-| `surface`                       | `#141217`                         | Cards e painéis                                      |
-| `surface-elevated`              | `#1C1920`                         | Modais, popovers, item em foco                       |
-| `border`                        | `rgba(255,255,255,0.08)`          | Divisórias e contornos                               |
-| `text-primary`                  | `#F4EFE8`                         | Títulos e texto principal                            |
-| `text-secondary`                | `#B9B1A6`                         | Texto de apoio                                       |
-| `text-muted`                    | `#8A847B`                         | Legendas e placeholders (≥ 4,5:1 sobre `background`) |
-| `primary`                       | `#C8A97E`                         | Acento champagne: botões, foco, estado ativo         |
-| `primary-soft`                  | `rgba(200,169,126,0.14)`          | Fundo de chips e seleção                             |
-| `success` / `warning` / `error` | `#6FAF8F` / `#D9A55B` / `#D6685F` | Feedback                                             |
+Valores completos (claro e escuro), famílias olfativas e ajustes de contraste ficam em `docs/DESIGN_SYSTEM.md`. Resumo dos tokens principais:
 
-Os tokens seguem os nomes do shadcn (`--background`, `--card`, `--primary`...) para que componentes do 21st.dev herdem o tema sem retrabalho. Tema claro fica para depois do MVP; o `theme-color` do manifest acompanha `background`.
+| Token                           | Claro                             | Escuro                            | Uso                                         |
+| ------------------------------- | --------------------------------- | --------------------------------- | ------------------------------------------- |
+| `background`                    | `#F6F4ED`                         | `#0F1411`                         | Fundo do app                                |
+| `surface` / `card`              | `#FFFFFF`                         | `#181E1A`                         | Cards, painéis, modais                      |
+| `foreground` / `text-primary`   | `#17231C`                         | `#EEF3EC`                         | Títulos e texto principal                   |
+| `text-secondary`                | `#4C5B52`                         | `#B4C0B7`                         | Texto de apoio                              |
+| `text-muted`                    | `#5F6D64`                         | `#8E9C93`                         | Legendas e placeholders (≥ 4,5:1)           |
+| `primary`                       | `#36694C`                         | `#86C9A2`                         | Acento: botões, foco, estado ativo          |
+| `primary-foreground`            | `#FFFFFF`                         | `#08150F`                         | Texto sobre o primário                      |
+| `border`                        | `rgba(0,0,0,0.08)`                | `rgba(255,255,255,0.10)`          | Divisórias e contornos                      |
+| `success` / `warning` / `error` | `#2E7D5B` / `#98641A` / `#C0392B` | `#6FAF8F` / `#D9A55B` / `#E5776E` | Feedback (texto ≥ 4,5:1 sobre a superfície) |
+
+Os tokens seguem os nomes do shadcn (`--background`, `--card`, `--primary`...) para que componentes do 21st.dev herdem o tema sem retrabalho. O `theme-color` do manifest acompanha `background` do tema ativo. `npm run check:contrast` valida os pares de contraste e roda no CI.
 
 **Tipografia**
 
-| Papel             | Fonte                            | Tamanho / altura de linha (mobile → desktop)            |
-| ----------------- | -------------------------------- | ------------------------------------------------------- |
-| Display           | Cormorant Garamond (ou Fraunces) | 40/44 → 56/60                                           |
-| Heading 1 / 2 / 3 | Cormorant Garamond               | 32/38, 24/30, 20/26                                     |
-| Body              | Inter                            | 16/24                                                   |
-| Small             | Inter                            | 14/20                                                   |
-| Caption / Label   | Inter                            | 12/16; label em caixa alta com `letter-spacing: 0.08em` |
+| Papel             | Fonte    | Tamanho / altura de linha (mobile → desktop)            |
+| ----------------- | -------- | ------------------------------------------------------- |
+| Display           | Fraunces | 40/44 → 56/60                                           |
+| Heading 1 / 2 / 3 | Fraunces | 32/38, 24/30, 20/26                                     |
+| Body              | Inter    | 16/24                                                   |
+| Small             | Inter    | 14/20                                                   |
+| Caption / Label   | Inter    | 12/16; label em caixa alta com `letter-spacing: 0.08em` |
 
 A serifada só é usada a partir de 20 px, porque em tamanhos menores perde legibilidade. Campos de formulário ficam em 16 px ou mais para o iOS não dar zoom ao focar. Fontes entram por `@fontsource`, empacotadas no app.
 
@@ -532,11 +533,11 @@ A serifada só é usada a partir de 20 px, porque em tamanhos menores perde legi
 
 - **Onde:** navbar, bottom navigation, drawers e modais, barra flutuante de filtros.
 
-- **Receita:** fundo `rgba(20,18,23,0.6)`, `backdrop-filter: blur(16px–24px)`, borda de 1 px a 8%, sombra suave.
+- **Receita:** fundo `surface` a 70% (claro e escuro), `backdrop-filter: blur(20px)`, borda de 1 px, sombra suave.
 
 - **Limites:** no máximo duas camadas de vidro visíveis ao mesmo tempo; nada de blur em itens de lista que rolam (custa caro em Android intermediário, como o viewport tipo Huawei P30 da matriz de testes).
 
-- **Fallback:** fundo sólido de `surface-elevated` quando `backdrop-filter` não é suportado e quando o usuário pede menos transparência.
+- **Fallback:** fundo sólido de `popover` quando `backdrop-filter` não é suportado e quando o usuário pede menos transparência.
 
 **Pirâmide olfativa**
 

@@ -1,68 +1,201 @@
-/* Tema escuro único. Nomes de shadcn mapeados sobre a paleta Sillage. */
+/* Tokens do Sillage. Única fonte de cores do app: componentes usam só estes nomes.
+   Claro é a base (:root); o escuro entra pela classe .dark (ThemeProvider).
+   Nomes compatíveis com shadcn. Contraste validado por `npm run check:contrast`. */
 :root {
+  color-scheme: light;
+
+  /* Superfícies e texto */
+  --background: #f6f4ed;
+  --surface: #ffffff;
+  --foreground: #17231c;
+  --text-primary: var(--foreground);
+  --text-secondary: #4c5b52;
+  --text-muted: #5f6d64;
+
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+
+  --primary: #36694c;
+  --primary-foreground: #ffffff;
+  --secondary: #eeebe2;
+  --secondary-foreground: var(--foreground);
+  --muted: #eeebe2;
+  --muted-foreground: var(--text-muted);
+  --accent: #e4ebe0;
+  --accent-foreground: var(--foreground);
+
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(23, 35, 28, 0.55);
+  --ring: var(--primary);
+
+  /* Feedback */
+  --success: #2e7d5b;
+  --warning: #98641a;
+  --error: #c0392b;
+  --destructive: var(--error);
+  --destructive-foreground: #ffffff;
+
+  /* Selo de concentração */
+  --badge-concentration: rgba(54, 105, 76, 0.1);
+  --badge-concentration-foreground: var(--primary);
+
+  /* Camadas */
+  --overlay: rgba(23, 35, 28, 0.4);
+  --glass-blur: 20px;
+  --glass-bg: color-mix(in srgb, var(--surface) 70%, transparent);
+
+  /* Elevação: borda de 1px + sombras suaves */
+  --elevation-subtle: 0 1px 2px rgba(23, 35, 28, 0.05);
+  --elevation-card: 0 1px 3px rgba(23, 35, 28, 0.06), 0 4px 12px rgba(23, 35, 28, 0.04);
+  --elevation-floating: 0 8px 24px rgba(23, 35, 28, 0.08);
+  --elevation-modal: 0 16px 48px rgba(23, 35, 28, 0.12);
+
+  /* Famílias olfativas (fundo / texto) */
+  --chip-citrus: #f6ee9a;
+  --chip-citrus-foreground: #1f1b18;
+  --chip-floral: #f8cfe0;
+  --chip-floral-foreground: #1f1b18;
+  --chip-woody: #e6cdb0;
+  --chip-woody-foreground: #1f1b18;
+  --chip-green: #cde8b8;
+  --chip-green-foreground: #1f1b18;
+  --chip-aquatic: #bfe2f2;
+  --chip-aquatic-foreground: #1f1b18;
+  --chip-oriental: #f5c98f;
+  --chip-oriental-foreground: #1f1b18;
+  --chip-spicy: #f4b9a6;
+  --chip-spicy-foreground: #1f1b18;
+  --chip-fruity: #fbc3b8;
+  --chip-fruity-foreground: #1f1b18;
+  --chip-aromatic: #d8d2f0;
+  --chip-aromatic-foreground: #1f1b18;
+  --chip-musky: #e4dad2;
+  --chip-musky-foreground: #1f1b18;
+}
+
+.dark {
   color-scheme: dark;
 
-  /* Paleta Sillage */
-  --background: #0b0a0c;
-  --surface: #141217;
-  --surface-elevated: #1c1920;
-  --border: rgba(255, 255, 255, 0.08);
-  --text-primary: #f4efe8;
-  --text-secondary: #b9b1a6;
-  --text-muted: #8a847b;
-  --primary: #c8a97e;
-  --primary-soft: rgba(200, 169, 126, 0.14);
+  --background: #0f1411;
+  --surface: #181e1a;
+  --foreground: #eef3ec;
+  --text-secondary: #b4c0b7;
+  --text-muted: #8e9c93;
+
+  --primary: #86c9a2;
+  --primary-foreground: #08150f;
+  --secondary: #202823;
+  --muted: #202823;
+  --accent: #223028;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(238, 243, 236, 0.5);
+
   --success: #6faf8f;
   --warning: #d9a55b;
-  --error: #d6685f;
+  --error: #e5776e;
+  --destructive-foreground: #1a0907;
 
-  /* Aliases shadcn */
-  --foreground: var(--text-primary);
-  --card: var(--surface);
-  --card-foreground: var(--text-primary);
-  --popover: var(--surface-elevated);
-  --popover-foreground: var(--text-primary);
-  --primary-foreground: var(--background);
-  --secondary: var(--surface-elevated);
-  --secondary-foreground: var(--text-primary);
-  --muted: var(--surface);
-  --muted-foreground: var(--text-muted);
-  --accent: var(--primary-soft);
-  --accent-foreground: var(--primary);
-  --destructive: var(--error);
-  --input: var(--border);
-  --ring: var(--primary);
+  --badge-concentration: rgba(134, 201, 162, 0.16);
+  --badge-concentration-foreground: var(--primary);
+
+  --overlay: rgba(0, 0, 0, 0.6);
+
+  --elevation-subtle: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --elevation-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+  --elevation-floating: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --elevation-modal: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  /* Famílias: cor a 22% sobre o card, texto na cor clareada */
+  --chip-citrus: rgba(246, 238, 154, 0.22);
+  --chip-citrus-foreground: #f9f4bd;
+  --chip-floral: rgba(248, 207, 224, 0.22);
+  --chip-floral-foreground: #fae0eb;
+  --chip-woody: rgba(230, 205, 176, 0.22);
+  --chip-woody-foreground: #efdecc;
+  --chip-green: rgba(205, 232, 184, 0.22);
+  --chip-green-foreground: #def0d1;
+  --chip-aquatic: rgba(191, 226, 242, 0.22);
+  --chip-aquatic-foreground: #d5ecf7;
+  --chip-oriental: rgba(245, 201, 143, 0.22);
+  --chip-oriental-foreground: #f8dcb6;
+  --chip-spicy: rgba(244, 185, 166, 0.22);
+  --chip-spicy-foreground: #f8d2c5;
+  --chip-fruity: rgba(251, 195, 184, 0.22);
+  --chip-fruity-foreground: #fcd8d1;
+  --chip-aromatic: rgba(216, 210, 240, 0.22);
+  --chip-aromatic-foreground: #e6e2f5;
+  --chip-musky: rgba(228, 218, 210, 0.22);
+  --chip-musky-foreground: #ede7e2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
-  --color-surface-elevated: var(--surface-elevated);
-  --color-border: var(--border);
-  --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary-soft: var(--primary-soft);
-  --color-success: var(--success);
-  --color-warning: var(--warning);
-  --color-error: var(--error);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
+  --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-badge-concentration: var(--badge-concentration);
+  --color-badge-concentration-foreground: var(--badge-concentration-foreground);
+  --color-overlay: var(--overlay);
+  --color-family-citrus: var(--chip-citrus);
+  --color-family-citrus-foreground: var(--chip-citrus-foreground);
+  --color-family-floral: var(--chip-floral);
+  --color-family-floral-foreground: var(--chip-floral-foreground);
+  --color-family-woody: var(--chip-woody);
+  --color-family-woody-foreground: var(--chip-woody-foreground);
+  --color-family-green: var(--chip-green);
+  --color-family-green-foreground: var(--chip-green-foreground);
+  --color-family-aquatic: var(--chip-aquatic);
+  --color-family-aquatic-foreground: var(--chip-aquatic-foreground);
+  --color-family-oriental: var(--chip-oriental);
+  --color-family-oriental-foreground: var(--chip-oriental-foreground);
+  --color-family-spicy: var(--chip-spicy);
+  --color-family-spicy-foreground: var(--chip-spicy-foreground);
+  --color-family-fruity: var(--chip-fruity);
+  --color-family-fruity-foreground: var(--chip-fruity-foreground);
+  --color-family-aromatic: var(--chip-aromatic);
+  --color-family-aromatic-foreground: var(--chip-aromatic-foreground);
+  --color-family-musky: var(--chip-musky);
+  --color-family-musky-foreground: var(--chip-musky-foreground);
+}
 
+@theme inline {
+  --shadow-subtle: var(--elevation-subtle);
+  --shadow-card: var(--elevation-card);
+  --shadow-floating: var(--elevation-floating);
+  --shadow-modal: var(--elevation-modal);
+}
+
+@theme {
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-heading: 'Fraunces', Georgia, serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
 }
