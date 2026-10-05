@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { useAuth } from '@/hooks/useAuth';
 import { NAV_ITEMS } from '@/constants/navigation';
 import { NavLinkItem } from './NavLinkItem';
 
 // Barra superior de vidro (docs/PRODUCT.md, Seção 9). No celular só marca e tema; a navegação
 // fica na BottomNav. A área segura do topo entra como padding.
 export function Navbar() {
+  const { status } = useAuth();
   return (
     <header className="glass-bar sticky top-0 z-40 pt-[env(safe-area-inset-top)]">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-4 px-4">
@@ -20,7 +23,14 @@ export function Navbar() {
             <NavLinkItem key={item.key} item={item} variant="top" />
           ))}
         </nav>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          {status === 'unauthenticated' && (
+            <Button asChild variant="outline" size="sm">
+              <Link to="/login">Entrar</Link>
+            </Button>
+          )}
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

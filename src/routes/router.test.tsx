@@ -8,6 +8,12 @@ const search = vi.fn();
 vi.mock('@/services/perfumeService', () => ({
   perfumeService: { search: (f: unknown) => search(f) },
 }));
+vi.mock('@/services/authService', () => ({
+  authService: {
+    getSession: () => Promise.resolve(null),
+    onAuthStateChange: () => () => undefined,
+  },
+}));
 vi.mock('@/services/referenceService', () => ({
   referenceService: {
     listBrands: () => Promise.resolve([{ slug: 'amyi', name: 'Amyi' }]),
@@ -63,13 +69,14 @@ describe('rotas', () => {
     expect(document.head.querySelector('meta[name="description"]')).not.toBeNull();
   });
 
-  it('só o Catálogo é link; Coleção, Perfume do Dia e Perfil ficam desabilitados', async () => {
+  it('Catálogo e Perfil são links; Coleção e Perfume do Dia ficam desabilitados', async () => {
     renderApp('/catalog');
     await screen.findByRole('heading', { name: 'Catálogo', level: 1 });
     const nav = screen.getAllByRole('navigation', { name: 'Principal' })[0];
     if (!nav) throw new Error('navegação principal não encontrada');
     expect(within(nav).getByRole('link', { name: /Catálogo/ })).toHaveAttribute('href', '/catalog');
-    for (const name of ['Coleção, em breve', 'Perfume do Dia, em breve', 'Perfil, em breve']) {
+    expect(within(nav).getByRole('link', { name: /Perfil/ })).toHaveAttribute('href', '/profile');
+    for (const name of ['Coleção, em breve', 'Perfume do Dia, em breve']) {
       expect(within(nav).getByRole('link', { name })).toHaveAttribute('aria-disabled', 'true');
     }
   });

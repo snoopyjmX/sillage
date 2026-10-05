@@ -31,3 +31,12 @@
 - **Persistência do cache (`persistQueryClient`):** é da Fase 11; o `QueryClient` desta fase só vive em memória. As chaves já seguem `['public', ...]` (fábrica em `lib/queryKeys.ts`).
 
 **Estrutura:** `src/lib/supabase.ts` (único cliente; exige `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY`, com erro claro se faltarem), `queryClient.ts`, `queryKeys.ts`; `services/` (`perfumeService`, `referenceService`) → `hooks/` (`usePerfumes`, `useBrands`, `useNotes`, `useCatalogFilters`) → `components/` → `pages/`; rotas em `routes/router.tsx` (data router com `lazy()`). Testes E2E em `e2e/` (`npm run e2e`), com `tsconfig.e2e.json` próprio.
+
+## Decisões da Fase 6 (autenticação)
+
+- **Sem dependência nova.** `react-hook-form` e `zod` já estavam instalados; a ponte entre eles é `lib/zodResolver.ts` (~20 linhas), em vez de `@hookform/resolvers`. Os testes de UI usam `fireEvent`, sem `user-event`.
+- **Só o service toca em `supabase.auth`.** `authService` expõe `getSession` e `onAuthStateChange` além das ações; o `AuthProvider` (`contexts/AuthContext.tsx`) fica dentro do router (`routes/AuthLayout.tsx`) porque navega.
+- **Navegação do logout depois da renderização.** `SIGNED_OUT` e `PASSWORD_RECOVERY` guardam o destino em estado e o `useEffect` do provider navega. Efeitos de filhos rodam antes dos do pai, então a Home vence o redirecionamento da `RequireAuth` (sem isso o logout em `/profile` acabava em `/login?redirect=/profile`).
+- **`?redirect=` só aceita caminho interno** (`lib/redirect.ts`): sem `//host`, sem `\`, sem voltar para telas de auth.
+- **Caixa de e-mail do E2E é o Mailpit** (`http://127.0.0.1:54324`, `/api/v1/search` e `/api/v1/message/:id`). A CLI atual substituiu o Inbucket e `/api/v1/mailbox` não existe mais; ver `e2e/mailbox.ts`.
+- **`supabase/config.toml` (só local):** `site_url` e `additional_redirect_urls` com `localhost:5173` e `localhost:4173` (sem isso o link de recuperação cai na `site_url`), senha mínima de 8, limites de e-mail e de login mais altos para o E2E rodar em paralelo.
