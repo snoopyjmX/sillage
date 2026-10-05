@@ -37,4 +37,27 @@ export interface NoteOption {
   family: OlfactiveFamily;
 }
 
+export interface PyramidNote {
+  slug: string;
+  name: string;
+  family: OlfactiveFamily;
+  position: NotePosition;
+}
+
+export interface PerfumeDetail {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  brandName: string;
+  brandSlug: string;
+  concentration: ConcentrationType;
+  gender: PerfumeGender;
+  releaseYear: number | null;
+  // URL pública da imagem (bucket perfume-images); nula enquanto não houver foto
+  imageUrl: string | null;
+  // Pirâmide montada no cliente: todas as notas, cada uma com a sua posição
+  notes: PyramidNote[];
+}
+
 export type { NotePosition };

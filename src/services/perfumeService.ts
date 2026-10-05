@@ -1,8 +1,8 @@
 // Acesso a dados do catálogo. Só services importam o cliente do Supabase.
-import { toAppError } from '@/constants/errors';
+import { AppError, toAppError } from '@/constants/errors';
 import { supabase } from '@/lib/supabase';
 import { PAGE_SIZE, type CatalogFilters } from '@/schemas/catalogSearch';
-import type { PerfumeSearchResult } from '@/types/catalog';
+import type { PerfumeDetail, PerfumeSearchResult } from '@/types/catalog';
 
 // "ausente" vira undefined para a função usar o padrão (null/array vazio = sem filtro)
 const orUndefined = <T>(list: T[]): T[] | undefined => (list.length > 0 ? list : undefined);
@@ -40,6 +40,40 @@ export const perfumeService = {
         families: row.families,
       })),
       total: data[0]?.total_count ?? 0,
+    };
+  },
+
+  // Uma consulta só (perfume + marca + notas embutidas), sem N+1. Slug inexistente = not_found.
+  getBySlug: async (slug: string): Promise<PerfumeDetail> => {
+    const { data, error } = await supabase
+      .from('perfumes')
+      .select('*, brand:brands(*), perfume_notes(position, note:notes(*))')
+      .eq('slug', slug)
+      .maybeSingle();
+    if (error) throw toAppError(error);
+    if (!data) throw new AppError('not_found');
+
+    return {
+      id: data.id,
+      slug: data.slug,
+      name: data.name,
+      description: data.description,
+      brandName: data.brand.name,
+      brandSlug: data.brand.slug,
+      concentration: data.concentration,
+      gender: data.gender,
+      releaseYear: data.release_year,
+      imageUrl: data.image_path
+        ? supabase.storage.from('perfume-images').getPublicUrl(data.image_path).data.publicUrl
+        : null,
+      notes: data.perfume_notes
+        .map(({ position, note }) => ({
+          slug: note.slug,
+          name: note.name,
+          family: note.family,
+          position,
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR')),
     };
   },
 };

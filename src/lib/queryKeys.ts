@@ -6,6 +6,7 @@ export const queryKeys = {
   perfumes: {
     all: ['public', 'perfumes'] as const,
     list: (filters: CatalogFilters) => ['public', 'perfumes', 'list', filters] as const,
+    detail: (slug: string) => ['public', 'perfumes', 'detail', slug] as const,
   },
   brands: {
     list: () => ['public', 'brands', 'list'] as const,
