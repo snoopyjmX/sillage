@@ -31,7 +31,7 @@ function RatingField({ label, hint, value, error, onChange }: RatingFieldProps) 
   return (
     <div className="flex flex-col gap-1">
       <span className="text-sm font-medium text-foreground">{label}</span>
-      <span className="text-sm text-muted-foreground">{hint}</span>
+      <span className="text-sm text-text-secondary">{hint}</span>
       <Rating label={label} value={value ?? null} onValueChange={onChange} showValue />
       {error && (
         <p role="alert" className="text-sm text-error">
@@ -112,7 +112,7 @@ export function ReviewForm({ perfumeId, existing, onDone }: ReviewFormProps) {
         />
         <p
           id={`${commentId}-hint`}
-          className={`text-sm ${errors.comment ? 'text-error' : 'text-muted-foreground'}`}
+          className={`text-sm ${errors.comment ? 'text-error' : 'text-text-secondary'}`}
         >
           {errors.comment?.message ??
             `Sua avaliação e seu nome ficam visíveis a todos. ${length}/${MAX_COMMENT_LENGTH}`}

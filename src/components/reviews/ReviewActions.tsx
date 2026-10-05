@@ -1,5 +1,5 @@
 import { MessageSquarePlus, Pencil } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
@@ -18,6 +18,7 @@ export function ReviewActions({ perfume }: ReviewActionsProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const mine = useUserReview(perfume.id);
 
   if (status !== 'authenticated') {
@@ -36,6 +37,7 @@ export function ReviewActions({ perfume }: ReviewActionsProps) {
   return (
     <>
       <Button
+        ref={buttonRef}
         variant="outline"
         // Só abre depois de saber se já existe avaliação (senão o formulário abriria vazio)
         disabled={mine.status === 'pending'}
@@ -45,7 +47,17 @@ export function ReviewActions({ perfume }: ReviewActionsProps) {
         <Icon aria-hidden />
         {existing ? 'Editar minha avaliação' : 'Avaliar fragrância'}
       </Button>
-      <ReviewSheet open={open} onOpenChange={setOpen} perfume={perfume} existing={existing} />
+      <ReviewSheet
+        open={open}
+        onOpenChange={setOpen}
+        perfume={perfume}
+        existing={existing}
+        onCloseAutoFocus={(event) => {
+          // Esc ou fechar: o foco volta ao botão que abriu o formulário
+          event.preventDefault();
+          buttonRef.current?.focus();
+        }}
+      />
     </>
   );
 }

@@ -21,11 +21,19 @@ interface ReviewSheetProps {
   onOpenChange: (open: boolean) => void;
   perfume: { id: string; name: string };
   existing: UserReview | null;
+  // Radix só devolve o foco sozinho a um Trigger; aqui o botão fica fora, então quem usa devolve
+  onCloseAutoFocus?: (event: Event) => void;
 }
 
 // Desktop (≥ 768 px): Dialog centralizado. Celular: bottom-sheet (Drawer, arrasta pela alça para fechar).
 // Só um dos dois existe no DOM por vez (evita ids e campos duplicados).
-export function ReviewSheet({ open, onOpenChange, perfume, existing }: ReviewSheetProps) {
+export function ReviewSheet({
+  open,
+  onOpenChange,
+  perfume,
+  existing,
+  onCloseAutoFocus,
+}: ReviewSheetProps) {
   const isDesktop = useMediaQuery('(min-width: 48rem)');
   const title = existing ? 'Editar avaliação' : 'Avaliar fragrância';
   const description = `${perfume.name}: fixação e projeção de 1 a 5, e um comentário opcional.`;
@@ -35,7 +43,7 @@ export function ReviewSheet({ open, onOpenChange, perfume, existing }: ReviewShe
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent>
+        <DialogContent onCloseAutoFocus={onCloseAutoFocus}>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>{description}</DialogDescription>
@@ -48,7 +56,7 @@ export function ReviewSheet({ open, onOpenChange, perfume, existing }: ReviewShe
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent>
+      <DrawerContent onCloseAutoFocus={onCloseAutoFocus}>
         <DrawerHeader>
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>

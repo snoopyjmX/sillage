@@ -50,3 +50,11 @@
 
 - **Confete:** `components/ui/confetti.tsx` lê as cores dos tokens (`--primary` etc.) em tempo de execução e usa `disableForReducedMotion`. Dispara uma vez, no sucesso do cadastro.
 - **Perfume do Dia:** `dailyService` lê `daily_perfumes` (tabela com RLS de dono; não é view) e `profiles.timezone`. A data de "hoje" é calculada no fuso do perfil, a mesma regra de `set_daily_perfume` (RN06).
+
+## Decisões da Fase 9 (avaliações)
+
+- **Sem dependência nova.** O formulário usa `react-hook-form` + `zod` (já presentes) e o `Rating` da Fase 3.
+- **Leitura pública por views, escrita só do dono.** `reviewService` lê `perfume_review_stats` (resumo) e `perfume_reviews_public` (lista, sem `user_id`) e escreve em `perfume_reviews`. Detalhes em `docs/DATABASE.md` e `docs/SECURITY.md`.
+- **Salvar = `update` por `id` se já existe, senão `insert`** (e, se outra aba criou no meio, vira `update`): o `WITH CHECK` da RN03 roda antes do conflito, então um `upsert` cego impediria editar depois de sair de "Tenho".
+- **Optimistic update** do resumo e da avaliação própria (`useReviews`); a lista pública espera o servidor, que sabe autor e data.
+- **Chaves:** `['public','perfumes',perfumeId,'reviews']` e `['private',userId,'reviews',perfumeId]`.
