@@ -471,6 +471,10 @@ search_perfumes(
 
 O valor de `p_sort` é validado contra essa lista dentro da função; nunca concatenado em SQL dinâmico. Valor inválido levanta `22023`; `p_limit` fica entre 1 e 100 e `p_offset` não pode ser negativo (também `22023`). Detalhes e limitações em `docs/DATABASE.md`.
 
+**Ordenação padrão (escolha de design, Fase 4).** O front usa `relevance` quando há texto de busca e `newest` quando não há. A opção "Relevância" só aparece com texto; `sort=relevance` sem texto na URL cai em `newest`. A função continua aceitando `relevance` sem texto (cai para `name_asc`), mas o front nunca a pede nesse caso.
+
+**URL é entrada do usuário.** O estado do catálogo é lido da query string com Zod (`src/schemas/catalogSearch.ts`) e **valor inválido cai no padrão, sem quebrar**: `q` (até 100 caracteres), `brands`, `notes` (slugs, até 20), `pos` (`top|heart|base`, só vale com notas), `families`, `conc`, `gender` (enums), `ymin`/`ymax` (4 dígitos, de 1700 ao ano atual + 1), `sort` e `page` (inteiro de 1 a 10.000). Itens inválidos de uma lista são descartados; o que é igual ao padrão não é gravado na URL. Página além do total mostra o estado vazio com o botão "Ir para a página 1" (o banco devolve zero linhas e nenhum total nesse caso; ver `docs/DATABASE.md`).
+
 **Paginação.** Paginação por página, 24 itens, com `total_count` retornado na mesma consulta. A página, a busca e os filtros vivem na URL (`/catalog?q=ambar&notes=bergamota,limao&pos=top&sort=newest&page=2`), o que torna o estado compartilhável e restaurável ao voltar. A troca de página usa `placeholderData` do TanStack Query para não piscar a lista. A busca por texto tem _debounce_ de 300 ms. Infinite scroll fica para quando a base crescer e houver motivo de UX.
 
 **Detalhes do perfume.** Uma única consulta por `slug` traz perfume, marca e `perfume_notes` com `notes` embutidos; a pirâmide é montada no cliente agrupando por `position`. Slug inexistente cai no 404.
@@ -531,7 +535,7 @@ A serifada só é usada a partir de 20 px, porque em tamanhos menores perde legi
 
 **Glassmorphism com regras**
 
-- **Onde:** navbar, bottom navigation, drawers e modais, barra flutuante de filtros.
+- **Onde:** navbar, bottom navigation, drawers e modais, barra flutuante de filtros. Navbar e bottom navigation (classe `.glass-bar`) viram sólidas enquanto um Dialog/Drawer está aberto, para respeitar o limite abaixo.
 
 - **Receita:** fundo `surface` a 70% (claro e escuro), `backdrop-filter: blur(20px)`, borda de 1 px, sombra suave.
 
@@ -714,7 +718,7 @@ As regras de segurança e de negócio são testadas **no banco** (pgTAP) e por i
 
 - **Avaliação:** avaliar `Tenho`, avaliar perfume do histórico, bloqueio com mensagem clara para perfume sem direito, editar.
 
-- PWA/offline: contra o build de produção (vite build + vite preview), com Service Worker ativo: shell abre offline, catálogo visitado antes aparece offline, mutations desabilitadas, após logout nenhum dado privado aparece offline, enquanto o catálogo público previamente visitado continua disponível; teste do manifest (campos e ícones).
+- PWA/offline (**Fase 11**; fora do E2E da Fase 4, que só cobre o estado offline do `AsyncBoundary` com teste de unidade), contra o build de produção (vite build + vite preview), com Service Worker ativo: shell abre offline, catálogo visitado antes aparece offline, mutations desabilitadas, após logout nenhum dado privado aparece offline, enquanto o catálogo público previamente visitado continua disponível; teste do manifest (campos e ícones).
 
 **Matriz de dispositivos (Playwright)**
 
