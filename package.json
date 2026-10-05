@@ -21,7 +21,10 @@
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
     "db:test": "supabase test db",
-    "check:contrast": "node scripts/verify-contrast.js"
+    "check:contrast": "node scripts/verify-contrast.js",
+    "db:types": "supabase gen types typescript --local > src/types/database.types.ts && prettier --write src/types/database.types.ts",
+    "db:fake": "supabase db query --local -f supabase/dev/fake-perfumes.sql",
+    "db:fake:clear": "supabase db query --local -f supabase/dev/fake-perfumes-clear.sql"
   },
   "dependencies": {
     "@fontsource/fraunces": "^5.3.0",
