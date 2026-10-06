@@ -10,7 +10,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { HoverGlowButton } from '@/components/ui/hover-glow-button';
+import { OfflineHint } from '@/components/ui/offline-hint';
 import { useAuth } from '@/hooks/useAuth';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import {
   COLLECTION_STATUS_LABELS,
   useCollectionStatus,
@@ -35,6 +37,7 @@ const isStatus = (value: string): value is CollectionStatus =>
 // O nome do perfume entra só para leitores de tela: vários cards têm o mesmo botão na página.
 export function CollectionToggle({ perfume, className }: CollectionToggleProps) {
   const { status: authStatus } = useAuth();
+  const online = useOnlineStatus();
   const location = useLocation();
   const navigate = useNavigate();
   const current = useCollectionStatus(perfume.id) ?? null;
@@ -72,33 +75,36 @@ export function CollectionToggle({ perfume, className }: CollectionToggleProps) 
   };
   const handleRemove = () => remove.mutate({ perfume });
 
+  // Não há fila de escrita: offline o botão fica desabilitado, com tooltip (OfflineHint)
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <HoverGlowButton className={className}>
-          {content}
-          <ChevronDown className="size-4 shrink-0" aria-hidden />
-        </HoverGlowButton>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent aria-label={`Coleção: ${perfume.name}`}>
-        <DropdownMenuRadioGroup value={current ?? ''} onValueChange={handleStatusChange}>
-          <DropdownMenuRadioItem value="owned">
-            {COLLECTION_STATUS_LABELS.owned}
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="wanted">
-            {COLLECTION_STATUS_LABELS.wanted}
-          </DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
-        {current && (
-          <>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onSelect={handleRemove}>
-              <Trash2 className="size-4" aria-hidden />
-              Remover da coleção
-            </DropdownMenuItem>
-          </>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <OfflineHint className={className}>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <HoverGlowButton className={className} disabled={!online}>
+            {content}
+            <ChevronDown className="size-4 shrink-0" aria-hidden />
+          </HoverGlowButton>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent aria-label={`Coleção: ${perfume.name}`}>
+          <DropdownMenuRadioGroup value={current ?? ''} onValueChange={handleStatusChange}>
+            <DropdownMenuRadioItem value="owned">
+              {COLLECTION_STATUS_LABELS.owned}
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="wanted">
+              {COLLECTION_STATUS_LABELS.wanted}
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+          {current && (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onSelect={handleRemove}>
+                <Trash2 className="size-4" aria-hidden />
+                Remover da coleção
+              </DropdownMenuItem>
+            </>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </OfflineHint>
   );
 }

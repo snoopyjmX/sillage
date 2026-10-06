@@ -175,3 +175,13 @@ Constantes em `src/lib/motion.ts` (componentes importam, não repetem números).
 | `ReviewSheet`                                     | `components/reviews` | Dialog a partir de 768 px, bottom-sheet (`Drawer`) abaixo. Só um existe no DOM. O botão que abre fica fora do Radix, então `onCloseAutoFocus` devolve o foco a ele                                                                                                                                                                          |
 | `ReviewActions`, `ReviewSummaryLine`              | `components/reviews` | Hero dos detalhes: nota média (fixação e projeção juntas) e contagem; botão "Avaliar fragrância" (visitante vai para `/login?redirect=`) que vira "Editar minha avaliação"                                                                                                                                                                  |
 | `ReviewsSection`, `ReviewCard`, `ReviewsSkeleton` | `components/reviews` | Seção abaixo da pirâmide: médias, "Sua avaliação" primeiro e a lista pública (nome de exibição, data, notas, comentário) com `BlurFade` ao rolar. `AsyncBoundary`: skeleton, vazio, erro, offline. Comentário sempre como texto                                                                                                             |
+
+## Componentes de tela (Fase 11)
+
+| Componente               | Pasta               | Notas                                                                                                                                                                 |
+| ------------------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `OfflineBanner`          | `components/layout` | Faixa sob a Navbar só sem conexão ("Você está navegando offline. O catálogo salvo continua disponível."); `role="status"`; anima só `opacity` e `y`                   |
+| `InstallAppButton`       | `components/layout` | Navbar (desktop) e menu (celular). Android: `beforeinstallprompt`; iOS: `Dialog` com "Compartilhar → Adicionar à Tela de Início". Some se já instalado ou sem suporte |
+| `Tooltip`, `OfflineHint` | `components/ui`     | Tooltip sobre Radix, sem animação. `OfflineHint` envolve o botão de escrita desabilitado num wrapper focável com a explicação                                         |
+
+Ajustes visuais da fase: `NezFab` respeita `env(safe-area-inset-bottom)` e o `<main>` reserva espaço embaixo; `PerfumeGrid` propaga `h-full` (`li` e `BlurFade`) e o placeholder do card ganhou o ícone de frasco; ícones soltos (Navbar, ReviewActions) com `size-*` explícito.

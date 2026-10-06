@@ -2,7 +2,9 @@ import { MessageSquarePlus, Pencil } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { OfflineHint } from '@/components/ui/offline-hint';
 import { useAuth } from '@/hooks/useAuth';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { useUserReview } from '@/hooks/useReviews';
 import { buildLoginPath } from '@/lib/redirect';
 import { ReviewSheet } from './ReviewSheet';
@@ -15,6 +17,7 @@ interface ReviewActionsProps {
 // (com a avaliação atual preenchida, se houver).
 export function ReviewActions({ perfume }: ReviewActionsProps) {
   const { status } = useAuth();
+  const online = useOnlineStatus();
   const location = useLocation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -26,7 +29,7 @@ export function ReviewActions({ perfume }: ReviewActionsProps) {
       void navigate(buildLoginPath(`${location.pathname}${location.search}${location.hash}`));
     return (
       <Button variant="outline" disabled={status === 'loading'} onClick={handleLogin}>
-        <MessageSquarePlus aria-hidden />
+        <MessageSquarePlus className="size-4" aria-hidden />
         Avaliar fragrância
       </Button>
     );
@@ -36,17 +39,20 @@ export function ReviewActions({ perfume }: ReviewActionsProps) {
   const Icon = existing ? Pencil : MessageSquarePlus;
   return (
     <>
-      <Button
-        ref={buttonRef}
-        variant="outline"
-        // Só abre depois de saber se já existe avaliação (senão o formulário abriria vazio)
-        disabled={mine.status === 'pending'}
-        aria-haspopup="dialog"
-        onClick={() => setOpen(true)}
-      >
-        <Icon aria-hidden />
-        {existing ? 'Editar minha avaliação' : 'Avaliar fragrância'}
-      </Button>
+      <OfflineHint>
+        <Button
+          ref={buttonRef}
+          variant="outline"
+          // Só abre depois de saber se já existe avaliação (senão o formulário abriria vazio);
+          // offline não há como enviar (sem fila de escrita)
+          disabled={mine.status === 'pending' || !online}
+          aria-haspopup="dialog"
+          onClick={() => setOpen(true)}
+        >
+          <Icon className="size-4" aria-hidden />
+          {existing ? 'Editar minha avaliação' : 'Avaliar fragrância'}
+        </Button>
+      </OfflineHint>
       <ReviewSheet
         open={open}
         onOpenChange={setOpen}

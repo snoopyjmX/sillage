@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { NezAssistant } from '@/components/nez/NezAssistant';
 import { NezProvider } from '@/contexts/NezContext';
 import { Navbar } from './Navbar';
+import { OfflineBanner } from './OfflineBanner';
 
 export function AppShell() {
   return (
@@ -14,9 +15,10 @@ export function AppShell() {
           Ir para o conteúdo
         </a>
         <Navbar />
+        <OfflineBanner />
         <main
           id="conteudo"
-          className="mx-auto w-full max-w-6xl flex-1 px-4 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]"
+          className="mx-auto w-full max-w-6xl flex-1 px-4 pt-6 pb-[calc(6rem+env(safe-area-inset-bottom))]"
         >
           <Outlet />
         </main>

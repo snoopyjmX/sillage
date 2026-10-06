@@ -28,7 +28,7 @@
 
 - **`react-helmet-async`:** o React 19 move `<title>` e `<meta>` renderizados em qualquer componente para o `<head>`. Verificado em teste de unidade (`document.title`) e no E2E contra o build de produção (`toHaveTitle`). Sem a biblioteca.
 - **`@testing-library/user-event`:** `fireEvent` basta para os testes de unidade; o fluxo real de teclado e mouse fica no Playwright.
-- **Persistência do cache (`persistQueryClient`):** é da Fase 11; o `QueryClient` desta fase só vive em memória. As chaves já seguem `['public', ...]` (fábrica em `lib/queryKeys.ts`).
+- **Persistência do cache (`persistQueryClient`):** feita na Fase 11 (ver abaixo); nesta fase o `QueryClient` só vivia em memória. As chaves já seguem `['public', ...]` (fábrica em `lib/queryKeys.ts`).
 
 **Estrutura:** `src/lib/supabase.ts` (único cliente; exige `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY`, com erro claro se faltarem), `queryClient.ts`, `queryKeys.ts`; `services/` (`perfumeService`, `referenceService`) → `hooks/` (`usePerfumes`, `useBrands`, `useNotes`, `useCatalogFilters`) → `components/` → `pages/`; rotas em `routes/router.tsx` (data router com `lazy()`). Testes E2E em `e2e/` (`npm run e2e`), com `tsconfig.e2e.json` próprio.
 
@@ -65,3 +65,35 @@
 - **Front:** `aiService.askNez` (único ponto que chama a função), `useAskNez` (mutation: a resposta é privada, nunca persistida), `NezProvider` no `AppShell` e `useNezPerfumeContext` para a página de detalhes informar o perfume em foco (notas e famílias). O botão do Nez é o `DrawerTrigger` do drawer, para o foco voltar a ele ao fechar. Só aparece para quem está logado.
 - **Similaridade:** `useSimilarPerfumes` (chave pública `['public','perfumes',id,'similar']`) e a seção "Fragrâncias com a mesma alma" abaixo das avaliações. Detalhes da função em `DATABASE.md`.
 - **E2E:** `e2e/nez.spec.ts` intercepta `**/functions/v1/nez-ai` com `page.route`; o teste nunca chama o Gemini. Os cards de similares também têm botão de coleção, então testes que miram o botão do perfume da página usam `.first()`.
+
+## Decisões da Fase 11 (PWA e offline)
+
+| Dependência                            | Tipo | O que resolve                                                                                                       | Por que o que já existe não resolve                                                                                            |
+| -------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `vite-plugin-pwa`                      | dev  | Gera manifest e Service Worker (Workbox) no build; `registerType: 'prompt'`.                                        | Escrever o SW e o precache à mão exigiria listar os arquivos com hash a cada build.                                            |
+| `workbox-window`                       | dev  | Peer do plugin: registro e ciclo de atualização do SW (`virtual:pwa-register`).                                     | Exigido pelo `vite-plugin-pwa`.                                                                                                |
+| `@tanstack/react-query-persist-client` | prod | `PersistQueryClientProvider`: restaura e grava o cache do TanStack Query com `maxAge`, `buster` e filtro de chaves. | O `QueryClient` só vive em memória; sem isso o catálogo não sobrevive a recarregar a página offline.                           |
+| `idb-keyval`                           | prod | Storage assíncrono em IndexedDB para o persister (~600 B).                                                          | `localStorage` é síncrono e limitado a ~5 MB; a spec (Seção 11) pede IndexedDB. Não precisa de `query-sync-storage-persister`. |
+
+**Service Worker (`vite.config.ts`)**
+
+- **Precache** do shell: JS, CSS, fontes (`@fontsource` empacotadas), ícones e `index.html` (com `navigateFallback`), então o app abre offline.
+- **`CacheFirst`** para imagens públicas do Storage (`/storage/v1/object/public/perfume-images/`): até 100 itens e 30 dias.
+- **`NetworkOnly`** para `/rest/v1`, `/auth/v1` e `/functions/v1` (REST, RPC, Auth e Edge Functions): nenhum dado privado fica no cache do SW.
+- `registerType: 'prompt'`: uma versão nova mostra o toast "Nova versão disponível" com o botão Atualizar (`lib/pwa.ts`). O SW só é registrado em produção (`import.meta.env.PROD`).
+- Ícones 192, 512 e 512 _maskable_ em `public/`, gerados a partir de `docs/design/favicon.png` (recorte do tile, escala; o maskable tem o ícone na zona segura sobre o fundo creme).
+
+**Persistência: divisão rígida `public` × `private`** (`lib/persist.ts`)
+
+| Chave                      | Memória | IndexedDB | Observação                                                                                                          |
+| -------------------------- | ------- | --------- | ------------------------------------------------------------------------------------------------------------------- |
+| `['public', ...]`          | sim     | **sim**   | Só com status de sucesso; validade de 7 dias; `buster` = versão do app + instante do build.                         |
+| `['private', userId, ...]` | sim     | **nunca** | `shouldPersistQuery` exige `queryKey[0] === 'public'`. No `SIGNED_OUT`, `removeQueries({ queryKey: ['private'] })`. |
+
+- `gcTime` padrão de 7 dias em `queryClient.ts` (precisa ser ≥ ao `maxAge`, senão o cache restaurado é coletado).
+- Testes: `lib/persist.test.ts` (filtro) e `e2e/pwa-offline.spec.ts` (o IndexedDB não contém `"private"` nem o e-mail do usuário).
+
+**UX offline**
+
+- `useOnlineStatus` (já existente) alimenta o `OfflineBanner` (AppShell), o `OfflineHint` (tooltip nos botões de escrita: Coleção e Avaliar) e o estado `aria-disabled` do `NezFab`. Não há fila de escrita.
+- Instalação: `InstallAppButton` (Navbar e menu do celular). O evento `beforeinstallprompt` é capturado em `lib/pwa.ts` (pode disparar antes do React montar); no iOS, uma folha explica "Compartilhar → Adicionar à Tela de Início".

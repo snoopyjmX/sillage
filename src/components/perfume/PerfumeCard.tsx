@@ -29,7 +29,7 @@ export function PerfumeCard({ perfume }: PerfumeCardProps) {
       )}
     >
       <Link to={`/perfumes/${perfume.slug}`} className="flex flex-1 flex-col outline-none">
-        <PerfumePlaceholder family={mainFamily} className="aspect-[4/3]" />
+        <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/3]" />
         <div className="flex flex-1 flex-col gap-2 p-4">
           <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
             {perfume.brandName}

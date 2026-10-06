@@ -23,9 +23,13 @@ export function PerfumeGrid({ perfumes, isRefreshing = false }: PerfumeGridProps
       )}
     >
       {perfumes.map((perfume, index) => (
-        <li key={perfume.id}>
+        <li key={perfume.id} className="h-full">
           {/* Listas longas aparecem de uma vez: o atraso para no 12º item */}
-          <BlurFade delay={BLUR_FADE_STEP * Math.min(index, STAGGER_MAX_ITEMS)} inView>
+          <BlurFade
+            className="h-full"
+            delay={BLUR_FADE_STEP * Math.min(index, STAGGER_MAX_ITEMS)}
+            inView
+          >
             <PerfumeCard perfume={perfume} />
           </BlurFade>
         </li>
