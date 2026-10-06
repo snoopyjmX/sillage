@@ -6,6 +6,7 @@ import { SearchInput } from '@/components/filters/SearchInput';
 import { SortSelect } from '@/components/filters/SortSelect';
 import { PerfumeGridSkeleton } from '@/components/perfume/PerfumeCardSkeleton';
 import { PerfumeGrid } from '@/components/perfume/PerfumeGrid';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
@@ -34,10 +35,9 @@ export default function CatalogPage() {
 
   return (
     <>
-      <title>Catálogo · Sillage</title>
-      <meta
-        name="description"
-        content="Explore perfumes de nicho por marca, notas, famílias olfativas e ano."
+      <SeoHead
+        title="Catálogo"
+        description="Explore perfumes de nicho por marca, notas, famílias olfativas e ano."
       />
 
       <div className="flex flex-col gap-6">

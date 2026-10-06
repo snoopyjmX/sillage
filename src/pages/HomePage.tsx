@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { DailyHighlight } from '@/components/daily/DailyHighlight';
 import { DailyHistory } from '@/components/daily/DailyHistory';
 import { DailySkeleton } from '@/components/daily/DailySkeleton';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
@@ -49,10 +50,9 @@ export default function HomePage() {
 
   return (
     <>
-      <title>Sillage · Perfume do Dia</title>
-      <meta
-        name="description"
-        content="Descubra a fragrância de hoje e reveja os perfumes dos dias anteriores."
+      <SeoHead
+        title="Sillage"
+        description="Descubra a fragrância de hoje e reveja os perfumes dos dias anteriores."
       />
 
       <div className="flex flex-col gap-10">

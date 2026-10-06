@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
 import { Field } from '@/components/ui/field';
@@ -42,7 +43,7 @@ export default function ResetPasswordPage() {
   if (status === 'unauthenticated') {
     return (
       <>
-        <title>Link inválido · Sillage</title>
+        <SeoHead title="Link inválido" description="O link de recuperação é inválido ou expirou." />
         <div className="mx-auto w-full max-w-md pt-4 md:pt-10">
           <h1 className="sr-only">Redefinir senha</h1>
           <EmptyState
@@ -62,7 +63,7 @@ export default function ResetPasswordPage() {
 
   return (
     <>
-      <title>Nova senha · Sillage</title>
+      <SeoHead title="Nova senha" description="Escolha uma senha nova para a sua conta." />
       <AuthCard
         title="Nova senha"
         description="Escolha uma senha nova para a sua conta."

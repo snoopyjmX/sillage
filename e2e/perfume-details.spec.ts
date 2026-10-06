@@ -16,7 +16,7 @@ test.describe('detalhes do perfume', () => {
   test('slug existente mostra hero, marca, nome, concentração e a pirâmide', async ({ page }) => {
     await page.goto(URL);
     await expect(page.getByRole('heading', { level: 1, name: 'Malbec Signature' })).toBeVisible();
-    await expect(page).toHaveTitle('Malbec Signature · O Boticário · Sillage');
+    await expect(page).toHaveTitle('Malbec Signature · O Boticário — Sillage');
     await expect(page.getByText('O Boticário', { exact: true }).first()).toBeVisible();
     await expect(page.getByText('EDC', { exact: true }).first()).toBeVisible();
     // Sem foto no seed: placeholder (com foto, seria uma <img> com alt)
@@ -135,7 +135,7 @@ test.describe('detalhes do perfume', () => {
     await expect(
       page.getByRole('heading', { name: 'Perfume não encontrado' }).first()
     ).toBeVisible();
-    await expect(page).toHaveTitle('Perfume não encontrado · Sillage');
+    await expect(page).toHaveTitle('Perfume não encontrado — Sillage');
     await expect(page.getByRole('banner')).toBeVisible();
     await page.getByRole('main').getByRole('link', { name: 'Voltar ao catálogo' }).last().click();
     await expect(page).toHaveURL(/\/catalog$/);

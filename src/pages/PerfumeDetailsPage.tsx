@@ -10,6 +10,7 @@ import { SimilarPerfumes } from '@/components/perfume/SimilarPerfumes';
 import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
 import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
 import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
 import { Chip } from '@/components/ui/chip';
@@ -32,10 +33,40 @@ const BackToCatalog = () => (
   </Link>
 );
 
+const buildSeoDescription = (perfume: PerfumeDetail) => {
+  if (perfume.description) return perfume.description;
+  const names = perfume.notes.slice(0, 5).map((note) => note.name);
+  const base = `${perfume.name}, ${CONCENTRATION_LABELS[perfume.concentration]} de ${perfume.brandName}.`;
+  return names.length > 0 ? `${base} Notas: ${names.join(', ')}.` : base;
+};
+
+// Enquanto carrega (ou se falhar) os metadados são genéricos; com dados, vêm do perfume
+function DetailsSeo({ perfume }: { perfume: PerfumeDetail | undefined }) {
+  if (!perfume) {
+    return (
+      <SeoHead
+        title="Perfume"
+        description="Veja a pirâmide olfativa, as avaliações e perfumes parecidos."
+      />
+    );
+  }
+  return (
+    <SeoHead
+      title={`${perfume.name} · ${perfume.brandName}`}
+      description={buildSeoDescription(perfume)}
+      imageUrl={perfume.imageUrl}
+      type="article"
+    />
+  );
+}
+
 function PerfumeNotFound() {
   return (
     <>
-      <title>Perfume não encontrado · Sillage</title>
+      <SeoHead
+        title="Perfume não encontrado"
+        description="Esse perfume não existe ou foi removido do catálogo."
+      />
       <meta name="robots" content="noindex" />
       <h1 className="sr-only">Perfume não encontrado</h1>
       <EmptyState
@@ -88,9 +119,6 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
 
   return (
     <>
-      <title>{`${perfume.name} · ${perfume.brandName} · Sillage`}</title>
-      {perfume.description && <meta name="description" content={perfume.description} />}
-
       <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10">
         <div className="overflow-hidden rounded-xl border bg-card shadow-card">
           <PerfumeHeroImage perfume={perfume} mainFamily={mainFamily} />
@@ -148,6 +176,7 @@ export default function PerfumeDetailsPage() {
 
   return (
     <div className="flex flex-col gap-6">
+      {!notFound && <DetailsSeo perfume={detail.data} />}
       <BackToCatalog />
       {notFound ? (
         <PerfumeNotFound />

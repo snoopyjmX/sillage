@@ -480,7 +480,7 @@ O valor de `p_sort` é validado contra essa lista dentro da função; nunca conc
 
 **Detalhes do perfume.** Uma única consulta por `slug` traz perfume, marca e `perfume_notes` com `notes` embutidos; a pirâmide é montada no cliente agrupando por `position`. Slug inexistente cai no 404.
 
-**SEO.** O app é uma SPA do Vite, então não há renderização no servidor. No MVP cada página define título e meta tags (por exemplo com `react-helmet-async`), o que basta para compartilhamento e portfólio. Indexação séria do catálogo exigiria pré-renderização ou SSR e fica explicitamente fora do escopo.
+**SEO.** O app é uma SPA do Vite, então não há renderização no servidor. No MVP cada página define título e meta tags (componente `SeoHead`, com os metadados nativos do React 19, sem `react-helmet-async`; Open Graph e Twitter Card incluídos, mais `robots.txt` e `sitemap.xml` estáticos em `public/`), o que basta para compartilhamento e portfólio. Indexação séria do catálogo exigiria pré-renderização ou SSR e fica explicitamente fora do escopo.
 
 ## 9. Design system e direção visual
 
