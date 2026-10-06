@@ -7,6 +7,8 @@ const supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL;
 const anonKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const UNAUTHORIZED = 401;
+// Acima do prazo da função (20 s): evita um spinner eterno se o servidor travar
+const REQUEST_TIMEOUT_MS = 30_000;
 
 export interface NezRequest {
   question: string;
@@ -30,8 +32,12 @@ export const aiService = {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ question, context }),
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       });
     } catch (cause) {
+      if (cause instanceof DOMException && cause.name === 'TimeoutError') {
+        throw new AppError('nez_failed', { cause });
+      }
       throw new AppError('network', { cause });
     }
 

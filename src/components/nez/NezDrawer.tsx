@@ -17,7 +17,7 @@ import { getErrorMessage } from '@/constants/errors';
 import { useAskNez, useNez } from '@/hooks/useNez';
 import { NEZ_QUESTION_MAX } from '@/lib/nez';
 
-const TYPING_SPEED_MS = 20;
+const TYPING_SPEED_MS = 18;
 
 function NezLoading() {
   return (
@@ -89,7 +89,7 @@ export function NezDrawer() {
                   <TypingAnimation
                     as="p"
                     speed={TYPING_SPEED_MS}
-                    className="font-heading text-lg leading-relaxed"
+                    className="font-heading text-lg leading-relaxed whitespace-pre-line"
                   >
                     {ask.data}
                   </TypingAnimation>
