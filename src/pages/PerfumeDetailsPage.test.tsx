@@ -76,7 +76,7 @@ describe('página de detalhes do perfume', () => {
     const cta = screen.getByRole('button', { name: /Adicionar à Coleção/ });
     expect(cta).not.toHaveAttribute('aria-disabled');
     expect(screen.queryByText('Em breve')).not.toBeInTheDocument();
-    await waitFor(() => expect(document.title).toBe('Malbec Signature · O Boticário · Sillage'));
+    await waitFor(() => expect(document.title).toBe('Malbec Signature · O Boticário — Sillage'));
   });
 
   it('mostra o melhor preço com link externo seguro quando há oferta', async () => {

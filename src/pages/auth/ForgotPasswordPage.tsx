@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Field } from '@/components/ui/field';
 import { FormAlert } from '@/components/ui/form-alert';
 import { SubmitButton } from '@/components/ui/submit-button';
@@ -21,7 +22,10 @@ export default function ForgotPasswordPage() {
 
   return (
     <>
-      <title>Recuperar senha · Sillage</title>
+      <SeoHead
+        title="Recuperar senha"
+        description="Peça um link para criar uma nova senha da sua conta Sillage."
+      />
       <AuthCard
         title="Recuperar senha"
         description="Informe seu e-mail e enviaremos um link para criar uma nova senha."

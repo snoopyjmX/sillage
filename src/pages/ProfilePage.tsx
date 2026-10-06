@@ -1,4 +1,5 @@
 import { LogOut } from 'lucide-react';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardHeader } from '@/components/ui/card';
 import { useAuth } from '@/hooks/useAuth';
@@ -16,7 +17,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <title>Perfil · Sillage</title>
+      <SeoHead title="Perfil" description="Sua conta no Sillage." />
       <div className="mx-auto w-full max-w-md pt-4 md:pt-10">
         <Card className="gap-6 p-6">
           <CardHeader>

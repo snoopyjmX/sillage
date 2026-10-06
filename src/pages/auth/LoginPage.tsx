@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Field } from '@/components/ui/field';
 import { FormAlert } from '@/components/ui/form-alert';
 import { SubmitButton } from '@/components/ui/submit-button';
@@ -28,7 +29,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <title>Entrar · Sillage</title>
+      <SeoHead title="Entrar" description="Acesse sua coleção e seu Perfume do Dia." />
       <AuthCard
         title="Entrar"
         description="Acesse sua coleção e seu Perfume do Dia."

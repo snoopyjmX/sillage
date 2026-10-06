@@ -14,7 +14,7 @@ test.describe('catálogo', () => {
     await page.goto('/catalog');
     await expect(page.getByRole('heading', { level: 1, name: 'Catálogo' })).toBeVisible();
     // <title> do React 19, sem biblioteca, no build de produção
-    await expect(page).toHaveTitle('Catálogo · Sillage');
+    await expect(page).toHaveTitle('Catálogo — Sillage');
   });
 
   test('sem filtros lista os 20 perfumes do seed', async ({ page }) => {
