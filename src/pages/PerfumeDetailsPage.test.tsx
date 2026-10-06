@@ -106,6 +106,16 @@ describe('página de detalhes do perfume', () => {
     expect(screen.queryByText('Melhor preço encontrado')).not.toBeInTheDocument();
   });
 
+  it('cai no placeholder quando a foto ainda não existe no Storage', async () => {
+    getBySlug.mockResolvedValue({ ...detail, imageUrl: 'https://cdn.test/ausente.webp' });
+    renderApp('/perfumes/malbec-signature');
+    const image = await screen.findByRole('img', { name: /Frasco do perfume/ }, { timeout: 3000 });
+    fireEvent.error(image);
+    await waitFor(() =>
+      expect(screen.queryByRole('img', { name: /Frasco do perfume/ })).not.toBeInTheDocument()
+    );
+  });
+
   it('slug inexistente mostra "Perfume não encontrado" com saída para o catálogo', async () => {
     getBySlug.mockImplementation(() => Promise.reject(new AppError('not_found')));
     renderApp('/perfumes/nao-existe');

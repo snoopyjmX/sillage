@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ArrowLeft, SearchX } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
@@ -51,6 +52,31 @@ function PerfumeNotFound() {
   );
 }
 
+// A foto pode ainda não ter sido enviada ao Storage: se falhar ao carregar, cai no placeholder
+function PerfumeHeroImage({
+  perfume,
+  mainFamily,
+}: {
+  perfume: PerfumeDetail;
+  mainFamily: (typeof FAMILIES)[number] | undefined;
+}) {
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  if (perfume.imageUrl && perfume.imageUrl !== failedUrl) {
+    return (
+      <img
+        src={perfume.imageUrl}
+        alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
+        width={800}
+        height={1000}
+        decoding="async"
+        onError={() => setFailedUrl(perfume.imageUrl)}
+        className="aspect-[4/5] w-full object-cover"
+      />
+    );
+  }
+  return <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/5]" />;
+}
+
 function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
   const mainFamily = FAMILIES.find((family) =>
     perfume.notes.some((note) => note.family === family)
@@ -67,18 +93,7 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
 
       <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10">
         <div className="overflow-hidden rounded-xl border bg-card shadow-card">
-          {perfume.imageUrl ? (
-            <img
-              src={perfume.imageUrl}
-              alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
-              width={800}
-              height={1000}
-              decoding="async"
-              className="aspect-[4/5] w-full object-cover"
-            />
-          ) : (
-            <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/5]" />
-          )}
+          <PerfumeHeroImage perfume={perfume} mainFamily={mainFamily} />
         </div>
 
         <div className="flex flex-col gap-3">

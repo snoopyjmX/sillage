@@ -169,6 +169,9 @@ playwright-report/
 blob-report/
 
 # Fotos dos perfumes: as originais e as processadas não entram no git (sobem para o Supabase Storage)
-scripts/raw-images/*
+scripts/raw-images/**/*
+!scripts/raw-images/**/
+!scripts/raw-images/**/.gitkeep
+scripts/raw-images/*.*
 !scripts/raw-images/.gitkeep
 scripts/processed-images/

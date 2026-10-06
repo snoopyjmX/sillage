@@ -1,7 +1,10 @@
 -- Seed oficial do catálogo real (docs/CATALOGO_REAL.md), determinístico e idempotente.
 -- Dados pesquisados em fontes públicas; notas, concentrações e descrições podem divergir das oficiais.
--- release_year e image_path ficam NULL (ano não confirmado; fotos entram pelo scripts/process-images.mjs).
--- Preço e loja (lowest_price_cents, store_name, store_url) são dados de TESTE: realistas, mas fictícios.
+-- release_year só está preenchido onde o ano foi confirmado em fonte pública; os demais ficam NULL.
+-- image_path já aponta para o caminho no bucket `perfume-images` ({marca}/{perfume}.webp), o mesmo que o
+-- scripts/process-images.mjs gera. Até as fotos serem enviadas, a página cai no placeholder.
+-- Preço e loja (lowest_price_cents, store_name) são dados de TESTE, não preços verificados.
+-- store_url é uma URL de busca na loja (evita 404 de página de produto que muda).
 -- "Black" (Phytoderm) fica sem oferta de propósito, para exercitar o estado sem preço.
 
 -- Marcas
@@ -60,72 +63,72 @@ insert into public.notes (slug, name, family) values
 on conflict (slug) do nothing;
 
 -- Perfumes
-insert into public.perfumes (slug, brand_id, name, gender, concentration, description, lowest_price_cents, store_name, store_url)
-select v.slug, b.id, v.name, v.gender::public.perfume_gender,
-       v.concentration::public.concentration_type, v.description,
+insert into public.perfumes (slug, brand_id, name, release_year, gender, concentration, description, image_path, lowest_price_cents, store_name, store_url)
+select v.slug, b.id, v.name, v.release_year, v.gender::public.perfume_gender,
+       v.concentration::public.concentration_type, v.description, v.image_path,
        v.lowest_price_cents, v.store_name, v.store_url
 from (values
-  ('bossa', 'granado', 'Bossa', 'unisex', 'edc',
+  ('bossa', 'granado', 'Bossa', 2020, 'unisex', 'edc',
    'Colônia cítrica e solar, com coco e flor de tiaré que lembram uma tarde de praia.',
-   19900, 'Granado', 'https://www.granado.com.br'),
-  ('boemia', 'granado', 'Boemia', 'masculine', 'edc',
+   'granado/bossa.webp', 19900, 'Granado', 'https://www.granado.com.br/catalogsearch/result/?q=Bossa'),
+  ('boemia', 'granado', 'Boemia', null::smallint, 'masculine', 'edc',
    'Amadeirado especiado, com tabaco e pimenta-preta, de espírito noturno.',
-   21900, 'Granado', 'https://www.granado.com.br'),
-  ('folha-imperial', 'granado', 'Folha Imperial', 'unisex', 'edc',
+   'granado/boemia.webp', 21900, 'Granado', 'https://www.granado.com.br/catalogsearch/result/?q=Boemia'),
+  ('folha-imperial', 'granado', 'Folha Imperial', null::smallint, 'unisex', 'edc',
    'Verde aromático, com musgo e vetiver, de frescor de jardim.',
-   17900, 'Granado', 'https://www.granado.com.br'),
-  ('essencial-unico-masculino', 'natura', 'Essencial Único Masculino', 'masculine', 'edp',
+   'granado/folha-imperial.webp', 17900, 'Granado', 'https://www.granado.com.br/catalogsearch/result/?q=Folha+Imperial'),
+  ('essencial-unico-masculino', 'natura', 'Essencial Único Masculino', 2022, 'masculine', 'edp',
    'Amadeirado amazônico, com copaíba e priprioca sobre fundo de vetiver.',
-   32900, 'Natura', 'https://www.natura.com.br'),
-  ('essencial-mirra', 'natura', 'Essencial Mirra', 'unisex', 'edp',
+   'natura/essencial-unico-masculino.webp', 32900, 'Natura', 'https://www.natura.com.br/busca?q=Essencial+%C3%9Anico+Masculino'),
+  ('essencial-mirra', 'natura', 'Essencial Mirra', null::smallint, 'unisex', 'edp',
    'Amadeirado oriental, com mirra nacional e africana.',
-   34900, 'Natura', 'https://www.natura.com.br'),
-  ('homem-sagaz', 'natura', 'Homem Sagaz', 'masculine', 'edt',
+   'natura/essencial-mirra.webp', 34900, 'Natura', 'https://www.natura.com.br/busca?q=Essencial+Mirra'),
+  ('homem-sagaz', 'natura', 'Homem Sagaz', 2017, 'masculine', 'edt',
    'Oriental amadeirado, com sálvia e âmbar.',
-   21900, 'Natura', 'https://www.natura.com.br'),
-  ('ekos-alma', 'natura', 'Ekos Alma', 'unisex', 'edc',
+   'natura/homem-sagaz.webp', 21900, 'Natura', 'https://www.natura.com.br/busca?q=Homem+Sagaz'),
+  ('ekos-alma', 'natura', 'Ekos Alma', null::smallint, 'unisex', 'edc',
    'Amadeirado amazônico, com breu-branco, priprioca e palo santo.',
-   17900, 'Natura', 'https://www.natura.com.br'),
-  ('malbec-signature', 'o-boticario', 'Malbec Signature', 'masculine', 'edc',
+   'natura/ekos-alma.webp', 17900, 'Natura', 'https://www.natura.com.br/busca?q=Ekos+Alma'),
+  ('malbec-signature', 'o-boticario', 'Malbec Signature', null::smallint, 'masculine', 'edc',
    'Amadeirado de abertura vínica, com lavanda e musgo, e fundo de patchouli e vetiver.',
-   24900, 'O Boticário', 'https://www.boticario.com.br'),
-  ('malbec-black', 'o-boticario', 'Malbec Black', 'masculine', 'edp',
+   'o-boticario/malbec-signature.webp', 24900, 'O Boticário', 'https://www.boticario.com.br/busca?q=Malbec+Signature'),
+  ('malbec-black', 'o-boticario', 'Malbec Black', null::smallint, 'masculine', 'edp',
    'Oriental amadeirado, com baunilha negra e couro.',
-   29900, 'O Boticário', 'https://www.boticario.com.br'),
-  ('lily-le-parfum', 'o-boticario', 'Lily Le Parfum', 'feminine', 'edp',
+   'o-boticario/malbec-black.webp', 29900, 'O Boticário', 'https://www.boticario.com.br/busca?q=Malbec+Black'),
+  ('lily-le-parfum', 'o-boticario', 'Lily Le Parfum', null::smallint, 'feminine', 'edp',
    'Floral branco de lírio e jasmim, sobre almíscar e sândalo.',
-   27900, 'O Boticário', 'https://www.boticario.com.br'),
-  ('egeo-vanilla-vibe', 'o-boticario', 'Egeo Vanilla Vibe', 'feminine', 'edt',
+   'o-boticario/lily-le-parfum.webp', 27900, 'O Boticário', 'https://www.boticario.com.br/busca?q=Lily+Le+Parfum'),
+  ('egeo-vanilla-vibe', 'o-boticario', 'Egeo Vanilla Vibe', 2020, 'feminine', 'edt',
    'Oriental gourmand, com baunilha, caramelo e pimenta-rosa.',
-   19900, 'O Boticário', 'https://www.boticario.com.br'),
-  ('gigi', 'avatim', 'Gigi', 'feminine', 'edp',
+   'o-boticario/egeo-vanilla-vibe.webp', 19900, 'O Boticário', 'https://www.boticario.com.br/busca?q=Egeo+Vanilla+Vibe'),
+  ('gigi', 'avatim', 'Gigi', null::smallint, 'feminine', 'edp',
    'Floral oriental, com figo, romã e baunilha.',
-   27900, 'Avatim', 'https://www.avatim.com.br'),
-  ('bonissimo', 'avatim', 'Boníssimo', 'masculine', 'edc',
+   'avatim/gigi.webp', 27900, 'Avatim', 'https://www.avatim.com.br/busca?q=Gigi'),
+  ('bonissimo', 'avatim', 'Boníssimo', null::smallint, 'masculine', 'edc',
    'Fresco aromático, com limão-siciliano e alecrim.',
-   17900, 'Avatim', 'https://www.avatim.com.br'),
-  ('apoena', 'avatim', 'Apoena', 'masculine', 'edp',
+   'avatim/bonissimo.webp', 17900, 'Avatim', 'https://www.avatim.com.br/busca?q=Bon%C3%ADssimo'),
+  ('apoena', 'avatim', 'Apoena', null::smallint, 'masculine', 'edp',
    'Amadeirado cítrico, com caju, cardamomo e cedro.',
-   25900, 'Avatim', 'https://www.avatim.com.br'),
-  ('sabah-al-ward', 'al-wataniah', 'Sabah Al Ward', 'feminine', 'edp',
+   'avatim/apoena.webp', 25900, 'Avatim', 'https://www.avatim.com.br/busca?q=Apoena'),
+  ('sabah-al-ward', 'al-wataniah', 'Sabah Al Ward', null::smallint, 'feminine', 'edp',
    'Floral oriental âmbar, com tangerina, pimenta-rosa e cacau.',
-   14900, 'Amazon Brasil', 'https://www.amazon.com.br'),
-  ('qimmah', 'al-wataniah', 'Qimmah', 'unisex', 'edp',
+   'al-wataniah/sabah-al-ward.webp', 14900, 'Amazon Brasil', 'https://www.amazon.com.br/s?k=Sabah+Al+Ward'),
+  ('qimmah', 'al-wataniah', 'Qimmah', null::smallint, 'unisex', 'edp',
    'Oriental de baunilha, com amêndoa, café e sândalo.',
-   15900, 'Amazon Brasil', 'https://www.amazon.com.br'),
-  ('kayaan-classic', 'al-wataniah', 'Kayaan Classic', 'masculine', 'edp',
+   'al-wataniah/qimmah.webp', 15900, 'Amazon Brasil', 'https://www.amazon.com.br/s?k=Qimmah'),
+  ('kayaan-classic', 'al-wataniah', 'Kayaan Classic', null::smallint, 'masculine', 'edp',
    'Amadeirado oriental, com bergamota, noz-moscada e oud.',
-   16900, 'Mercado Livre', 'https://www.mercadolivre.com.br'),
-  ('attar-al-wesal', 'al-wataniah', 'Attar Al Wesal', 'unisex', 'other',
+   'al-wataniah/kayaan-classic.webp', 16900, 'Mercado Livre', 'https://lista.mercadolivre.com.br/kayaan-classic'),
+  ('attar-al-wesal', 'al-wataniah', 'Attar Al Wesal', null::smallint, 'unisex', 'other',
    'Fresco especiado, com pêra, lavanda e almíscar.',
-   12900, 'Mercado Livre', 'https://www.mercadolivre.com.br'),
-  ('glamour', 'phytoderm', 'Glamour', 'feminine', 'edc',
+   'al-wataniah/attar-al-wesal.webp', 12900, 'Mercado Livre', 'https://lista.mercadolivre.com.br/attar-al-wesal'),
+  ('glamour', 'phytoderm', 'Glamour', null::smallint, 'feminine', 'edc',
    'Floral frutado, com tangerina, rosa e caramelo.',
-   8900, 'Mercado Livre', 'https://www.mercadolivre.com.br'),
-  ('black', 'phytoderm', 'Black', 'masculine', 'edc',
+   'phytoderm/glamour.webp', 8900, 'Mercado Livre', 'https://lista.mercadolivre.com.br/glamour'),
+  ('black', 'phytoderm', 'Black', null::smallint, 'masculine', 'edc',
    'Amadeirado especiado, com especiarias frias e âmbar.',
-   null::integer, null::text, null::text)
-) as v (slug, brand_slug, name, gender, concentration, description, lowest_price_cents, store_name, store_url)
+   'phytoderm/black.webp', null::integer, null::text, null::text)
+) as v (slug, brand_slug, name, release_year, gender, concentration, description, image_path, lowest_price_cents, store_name, store_url)
 join public.brands b on b.slug = v.brand_slug
 on conflict (slug) do nothing;
 

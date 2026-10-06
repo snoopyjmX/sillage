@@ -116,7 +116,10 @@ test.describe('detalhes do perfume', () => {
     await expect(offer).toBeVisible();
     await expect(offer).toContainText(/R\$\s249,00\sna O Boticário/);
     const link = offer.getByRole('link', { name: /Ver na loja/ });
-    await expect(link).toHaveAttribute('href', 'https://www.boticario.com.br');
+    await expect(link).toHaveAttribute(
+      'href',
+      'https://www.boticario.com.br/busca?q=Malbec+Signature'
+    );
     await expect(link).toHaveAttribute('target', '_blank');
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   });
