@@ -4,6 +4,7 @@ import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { Field } from '@/components/ui/field';
+import { PasswordField } from '@/components/ui/password-field';
 import { FormAlert } from '@/components/ui/form-alert';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { getErrorMessage } from '@/constants/errors';
@@ -49,9 +50,8 @@ export default function LoginPage() {
             error={errors.email?.message}
             {...register('email')}
           />
-          <Field
+          <PasswordField
             label="Senha"
-            type="password"
             autoComplete="current-password"
             error={errors.password?.message}
             {...register('password')}

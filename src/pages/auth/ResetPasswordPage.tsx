@@ -1,12 +1,10 @@
-import { KeyRound } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { Button } from '@/components/ui/button';
-import { EmptyState } from '@/components/ui/empty-state';
-import { Field } from '@/components/ui/field';
+import { PasswordField } from '@/components/ui/password-field';
 import { FormAlert } from '@/components/ui/form-alert';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { getErrorMessage } from '@/constants/errors';
@@ -44,19 +42,14 @@ export default function ResetPasswordPage() {
     return (
       <>
         <SeoHead title="Link inválido" description="O link de recuperação é inválido ou expirou." />
-        <div className="mx-auto w-full max-w-md pt-4 md:pt-10">
-          <h1 className="sr-only">Redefinir senha</h1>
-          <EmptyState
-            icon={KeyRound}
-            title="Link inválido ou expirado"
-            description="Peça um novo e-mail de recuperação para criar sua nova senha."
-            action={
-              <Button asChild>
-                <Link to="/forgot-password">Pedir novo link</Link>
-              </Button>
-            }
-          />
-        </div>
+        <AuthCard
+          title="Link inválido ou expirado"
+          description="Peça um novo e-mail de recuperação para criar sua nova senha."
+        >
+          <Button asChild>
+            <Link to="/forgot-password">Pedir novo link</Link>
+          </Button>
+        </AuthCard>
       </>
     );
   }
@@ -71,17 +64,15 @@ export default function ResetPasswordPage() {
       >
         <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
           {updatePassword.isError && <FormAlert>{getErrorMessage(updatePassword.error)}</FormAlert>}
-          <Field
+          <PasswordField
             label="Nova senha"
-            type="password"
             autoComplete="new-password"
             hint={`Mínimo de ${MIN_PASSWORD_LENGTH} caracteres, com letras e números.`}
             error={errors.password?.message}
             {...register('password')}
           />
-          <Field
+          <PasswordField
             label="Repita a nova senha"
-            type="password"
             autoComplete="new-password"
             error={errors.confirmPassword?.message}
             {...register('confirmPassword')}

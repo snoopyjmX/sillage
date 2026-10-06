@@ -4,6 +4,7 @@ import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { Field } from '@/components/ui/field';
+import { PasswordField } from '@/components/ui/password-field';
 import { FormAlert } from '@/components/ui/form-alert';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { getErrorMessage } from '@/constants/errors';
@@ -69,9 +70,9 @@ export default function RegisterPage() {
               error={errors.email?.message}
               {...register('email')}
             />
-            <Field
+            <PasswordField
               label="Senha"
-              type="password"
+
               autoComplete="new-password"
               hint={`Mínimo de ${MIN_PASSWORD_LENGTH} caracteres, com letras e números.`}
               error={errors.password?.message}

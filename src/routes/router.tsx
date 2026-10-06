@@ -17,14 +17,11 @@ export const routes: RouteObject[] = [
   {
     element: <AuthLayout />,
     children: [
+      // Telas de autenticação ficam fora do AppShell: layout próprio, dividido em duas colunas
       {
-        element: <AppShell />,
         errorElement: <RouteError />,
         HydrateFallback: PageFallback,
         children: [
-          { index: true, lazy: page(() => import('@/pages/HomePage')) },
-          { path: 'catalog', lazy: page(() => import('@/pages/CatalogPage')) },
-          { path: 'perfumes/:slug', lazy: page(() => import('@/pages/PerfumeDetailsPage')) },
           {
             element: <GuestOnly />,
             children: [
@@ -38,6 +35,16 @@ export const routes: RouteObject[] = [
           },
           // Acessível por qualquer um: o link do e-mail traz a sessão de recuperação
           { path: 'reset-password', lazy: page(() => import('@/pages/auth/ResetPasswordPage')) },
+        ],
+      },
+      {
+        element: <AppShell />,
+        errorElement: <RouteError />,
+        HydrateFallback: PageFallback,
+        children: [
+          { index: true, lazy: page(() => import('@/pages/HomePage')) },
+          { path: 'catalog', lazy: page(() => import('@/pages/CatalogPage')) },
+          { path: 'perfumes/:slug', lazy: page(() => import('@/pages/PerfumeDetailsPage')) },
           {
             element: <RequireAuth />,
             children: [

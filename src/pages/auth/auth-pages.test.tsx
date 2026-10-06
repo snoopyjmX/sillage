@@ -1,5 +1,6 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { fireConfetti } from '@/components/ui/confetti';
 import { AppError } from '@/constants/errors';
 import { fakeSession } from '@/test/authMock';
 import { renderApp } from '@/test/renderApp';
@@ -7,8 +8,13 @@ import { renderApp } from '@/test/renderApp';
 const auth = await vi.hoisted(async () => (await import('@/test/authMock')).createAuthMock());
 vi.mock('@/services/authService', () => ({ authService: auth.service }));
 
+vi.mock('@/components/ui/confetti', () => ({ fireConfetti: vi.fn() }));
+
 describe('páginas de autenticação', () => {
-  beforeEach(() => auth.reset());
+  beforeEach(() => {
+    auth.reset();
+    vi.mocked(fireConfetti).mockClear();
+  });
 
   it('login: erros de campo ficam ligados ao input por aria-describedby', async () => {
     renderApp('/login');
@@ -119,5 +125,48 @@ describe('páginas de autenticação', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Salvar nova senha' }));
     await waitFor(() => expect(auth.service.updatePassword).toHaveBeenCalledWith('novasenha1'));
     await waitFor(() => expect(router.state.location.pathname).toBe('/'));
+  });
+
+  it('login: botão alterna a visibilidade da senha com rótulo em pt-BR', async () => {
+    renderApp('/login');
+    await screen.findByRole('heading', { name: 'Entrar', level: 1 });
+    const password = screen.getByLabelText('Senha');
+    expect(password).toHaveAttribute('type', 'password');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Mostrar senha' }));
+    expect(password).toHaveAttribute('type', 'text');
+    fireEvent.click(screen.getByRole('button', { name: 'Ocultar senha' }));
+    expect(password).toHaveAttribute('type', 'password');
+  });
+
+  it('páginas de auth ficam fora do AppShell e têm link Voltar para a Home', async () => {
+    renderApp('/login');
+    await screen.findByRole('heading', { name: 'Entrar', level: 1 });
+    expect(screen.queryByRole('navigation', { name: 'Principal' })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Voltar' })).toHaveAttribute('href', '/');
+  });
+
+  it('cadastro bem-sucedido dispara os confetes', async () => {
+    auth.service.signUp.mockResolvedValue({ needsEmailConfirmation: true });
+    renderApp('/register');
+    await screen.findByRole('heading', { name: 'Criar conta', level: 1 });
+    fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Ana' } });
+    fireEvent.change(screen.getByLabelText('E-mail'), { target: { value: 'ana@exemplo.com' } });
+    fireEvent.change(screen.getByLabelText('Senha'), { target: { value: 'segredo123' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Criar conta' }));
+
+    await waitFor(() => expect(fireConfetti).toHaveBeenCalledOnce());
+  });
+
+  it('cadastro com erro não dispara confetes', async () => {
+    auth.service.signUp.mockRejectedValue(new AppError('email_taken'));
+    renderApp('/register');
+    await screen.findByRole('heading', { name: 'Criar conta', level: 1 });
+    fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Ana' } });
+    fireEvent.change(screen.getByLabelText('E-mail'), { target: { value: 'ana@exemplo.com' } });
+    fireEvent.change(screen.getByLabelText('Senha'), { target: { value: 'segredo123' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Criar conta' }));
+    await screen.findByRole('alert');
+    expect(fireConfetti).not.toHaveBeenCalled();
   });
 });
