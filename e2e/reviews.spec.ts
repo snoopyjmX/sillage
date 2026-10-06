@@ -31,6 +31,7 @@ const ownPerfume = async (page: Page, name: string) => {
   await page
     .getByRole('main')
     .getByRole('button', { name: /Adicionar à Coleção/ })
+    .first() // os cards de similares também têm botão; o do perfume da página vem primeiro
     .click();
   await page.getByRole('menuitemradio', { name: 'Tenho' }).click();
   await expect(page.getByText(`${name} foi para “Tenho”.`)).toBeVisible();
