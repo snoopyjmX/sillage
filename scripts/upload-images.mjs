@@ -1,5 +1,7 @@
 // Envia as imagens de scripts/processed-images/ para o bucket `perfume-images` do Supabase,
 // mantendo a estrutura {marca}/{perfume}.webp (o mesmo caminho gravado em perfumes.image_path).
+// Sobe todos os .webp gerados por process-images: o arquivo-base ({perfume}.webp) e as variantes
+// -thumb, -medium e -large ao lado dele.
 //
 // Variáveis (lidas do ambiente, de .env.local ou de .env, nesta ordem):
 //   SUPABASE_URL                (ou VITE_SUPABASE_URL)
