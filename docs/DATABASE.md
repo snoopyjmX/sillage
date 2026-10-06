@@ -13,6 +13,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 | `20261005120400_search_perfumes.sql`    | Função `search_perfumes` (busca, filtros, ordenação e paginação do catálogo)            |
 | `20261006120000_public_reviews.sql`     | Policy `reviews: owner delete` e a view `perfume_reviews_public` (Fase 9)               |
 | `20261007120000_similar_perfumes.sql`   | Função `get_similar_perfumes` (similaridade por notas em comum, Fase 10 / RN09)         |
+| `20261008120000_perfume_prices.sql`     | Colunas `lowest_price_cents`, `store_name` e `store_url` em `perfumes` (melhor preço)   |
 
 ## Extensões e enums
 
@@ -21,16 +22,16 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 
 ## Tabelas
 
-| Tabela             | Garante                                                                                                           |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| `profiles`         | `id` → `auth.users` com `CASCADE`; `timezone` padrão `America/Sao_Paulo` (RN06). Criada pelo trigger de cadastro. |
-| `brands`           | `slug` único; `search_name` mantido por trigger.                                                                  |
-| `perfumes`         | `brand_id` `RESTRICT`; `slug` único; `release_year` entre 1700 e ano atual + 1.                                   |
-| `notes`            | `slug` único; `family` é `olfactive_family`.                                                                      |
-| `perfume_notes`    | PK `(perfume_id, note_id, position)`; FKs `CASCADE`.                                                              |
-| `collection_items` | `UNIQUE(user_id, perfume_id)` (RN02); `perfume_id` `RESTRICT`.                                                    |
-| `daily_perfumes`   | `UNIQUE(user_id, date)` (RN06); `perfume_id` `RESTRICT`.                                                          |
-| `perfume_reviews`  | `UNIQUE(user_id, perfume_id)` (RN04); ratings `smallint` entre 1 e 5 (RN05); `comment` com até 1000 caracteres.   |
+| Tabela             | Garante                                                                                                                                                                                                                                   |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profiles`         | `id` → `auth.users` com `CASCADE`; `timezone` padrão `America/Sao_Paulo` (RN06). Criada pelo trigger de cadastro.                                                                                                                         |
+| `brands`           | `slug` único; `search_name` mantido por trigger.                                                                                                                                                                                          |
+| `perfumes`         | `brand_id` `RESTRICT`; `slug` único; `release_year` entre 1700 e ano atual + 1. Oferta opcional: `lowest_price_cents` (centavos, `> 0`), `store_name` e `store_url` (só `http(s)`); as policies de `perfumes` já cobrem as colunas novas. |
+| `notes`            | `slug` único; `family` é `olfactive_family`.                                                                                                                                                                                              |
+| `perfume_notes`    | PK `(perfume_id, note_id, position)`; FKs `CASCADE`.                                                                                                                                                                                      |
+| `collection_items` | `UNIQUE(user_id, perfume_id)` (RN02); `perfume_id` `RESTRICT`.                                                                                                                                                                            |
+| `daily_perfumes`   | `UNIQUE(user_id, date)` (RN06); `perfume_id` `RESTRICT`.                                                                                                                                                                                  |
+| `perfume_reviews`  | `UNIQUE(user_id, perfume_id)` (RN04); ratings `smallint` entre 1 e 5 (RN05); `comment` com até 1000 caracteres.                                                                                                                           |
 
 O `CHECK` de `release_year` usa `now()` (não imutável). O Postgres aceita, mas um dump/restore de dados antigos pode precisar revalidá-lo.
 
@@ -78,7 +79,7 @@ Bucket público `perfume-images`: `SELECT` para `anon` e `authenticated`; `INSER
 
 ## Seed
 
-`supabase/seed.sql` é idempotente (`on conflict do nothing`): 3 marcas, 3 perfumes, 27 notas (compartilhadas em uma linha só) e 30 ligações de pirâmide. Concentrações marcadas com `PLACEHOLDER: confirmar` precisam de conferência. `image_path` é `NULL` por direitos de imagem.
+`supabase/seed.sql` é o catálogo real de `docs/CATALOGO_REAL.md`, idempotente (`on conflict do nothing`): 6 marcas (Granado, Natura, O Boticário, Avatim, Al Wataniah e Phytoderm), 20 perfumes, 41 notas (compartilhadas em uma linha só) e 126 ligações de pirâmide (topo, coração e fundo em todos os perfumes). Notas, concentrações e descrições vêm de fontes públicas e podem divergir das oficiais; `release_year` e `image_path` ficam `NULL` (ano não confirmado; as fotos entram por `npm run images`). Preço, loja e link são dados de teste, realistas porém fictícios; o perfume Black (Phytoderm) fica sem oferta de propósito. Os testes E2E dependem desta topologia (ex.: bergamota só no topo, 6 perfumes).
 
 ## `search_perfumes`
 

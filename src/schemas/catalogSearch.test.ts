@@ -28,12 +28,12 @@ describe('parseCatalogSearchParams', () => {
 
   it('lê todos os parâmetros válidos', () => {
     const filters = parse(
-      'q=conde&brands=amyi,conde-parfum&notes=lima,bergamota&pos=top&families=citrus,woody' +
+      'q=granado&brands=o-boticario,granado&notes=lima,bergamota&pos=top&families=citrus,woody' +
         '&conc=edp,edt&gender=unisex&ymin=2010&ymax=2024&sort=name_desc&page=3'
     );
     expect(filters).toEqual({
-      q: 'conde',
-      brands: ['amyi', 'conde-parfum'],
+      q: 'granado',
+      brands: ['o-boticario', 'granado'],
       notes: ['lima', 'bergamota'],
       pos: 'top',
       families: ['citrus', 'woody'],
@@ -48,13 +48,13 @@ describe('parseCatalogSearchParams', () => {
 
   it('sort desconhecido cai no padrão (newest sem texto, relevance com texto)', () => {
     expect(parse('sort=preco').sort).toBe('newest');
-    expect(parse('sort=preco&q=amyi').sort).toBe('relevance');
+    expect(parse('sort=preco&q=boticario').sort).toBe('relevance');
     expect(parse('sort=DROP TABLE perfumes').sort).toBe('newest');
   });
 
   it('relevance sem texto cai no padrão, mas com texto vale', () => {
     expect(parse('sort=relevance').sort).toBe('newest');
-    expect(parse('sort=relevance&q=amyi').sort).toBe('relevance');
+    expect(parse('sort=relevance&q=boticario').sort).toBe('relevance');
   });
 
   it.each(['-1', '0', 'abc', '1.5', '', '1e3', '99999999', ' 2'])(
@@ -112,12 +112,12 @@ describe('parseCatalogSearchParams', () => {
 describe('toCatalogSearchParams', () => {
   it('não grava padrões na URL', () => {
     expect(toCatalogSearchParams(parse('')).toString()).toBe('');
-    expect(toCatalogSearchParams(parse('q=amyi')).toString()).toBe('q=amyi');
+    expect(toCatalogSearchParams(parse('q=boticario')).toString()).toBe('q=boticario');
   });
 
   it('faz o caminho de ida e volta sem perder estado', () => {
     const query =
-      'q=conde&brands=amyi&notes=lima,bergamota&pos=top&families=citrus&conc=edp&gender=unisex' +
+      'q=granado&brands=o-boticario&notes=lima,bergamota&pos=top&families=citrus&conc=edp&gender=unisex' +
       '&ymin=2010&ymax=2024&sort=name_asc&page=2';
     const filters = parse(query);
     expect(parse(toCatalogSearchParams(filters).toString())).toEqual(filters);

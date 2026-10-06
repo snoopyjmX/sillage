@@ -25,10 +25,10 @@ vi.mock('@/lib/toast', () => ({
 
 const perfume: PerfumeSummary = {
   id: 'p1',
-  slug: 'amyi-2-15',
-  name: 'Amyi 2.15',
-  brandName: 'Amyi',
-  brandSlug: 'amyi',
+  slug: 'malbec-signature',
+  name: 'Malbec Signature',
+  brandName: 'O Boticário',
+  brandSlug: 'o-boticario',
   concentration: 'edp',
   gender: 'unisex',
   releaseYear: 2022,
@@ -41,7 +41,7 @@ const items = (status: CollectionStatus | null): CollectionItem[] =>
 
 const Where = () => <p data-testid="where">{useLocation().pathname + useLocation().search}</p>;
 
-const renderToggle = (authStatus: AuthStatus, start = '/perfumes/amyi-2-15?x=1') => {
+const renderToggle = (authStatus: AuthStatus, start = '/perfumes/malbec-signature?x=1') => {
   const session = authStatus === 'authenticated' ? fakeSession() : null;
   const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
   return render(
@@ -72,7 +72,7 @@ describe('CollectionToggle', () => {
     renderToggle('unauthenticated');
     fireEvent.click(screen.getByRole('button', { name: /Adicionar à Coleção/ }));
     expect(screen.getByTestId('where')).toHaveTextContent(
-      '/login?redirect=%2Fperfumes%2Famyi-2-15%3Fx%3D1'
+      '/login?redirect=%2Fperfumes%2Fmalbec-signature%3Fx%3D1'
     );
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
     expect(list).not.toHaveBeenCalled();
@@ -101,7 +101,9 @@ describe('CollectionToggle', () => {
     openMenu(/Adicionar à Coleção/);
     fireEvent.click(await screen.findByRole('menuitemradio', { name: 'Quero' }));
     await waitFor(() => expect(setStatus).toHaveBeenCalledWith('p1', 'wanted'));
-    await waitFor(() => expect(toastSuccess).toHaveBeenCalledWith('Amyi 2.15 foi para “Quero”.'));
+    await waitFor(() =>
+      expect(toastSuccess).toHaveBeenCalledWith('Malbec Signature foi para “Quero”.')
+    );
   });
 
   it('já em Quero: o botão mostra o estado, o item fica marcado e há Remover', async () => {
@@ -126,7 +128,7 @@ describe('CollectionToggle', () => {
     fireEvent.click(await screen.findByRole('menuitem', { name: 'Remover da coleção' }));
     await waitFor(() => expect(remove).toHaveBeenCalledWith('p1'));
     await waitFor(() =>
-      expect(toastSuccess).toHaveBeenCalledWith('Amyi 2.15 saiu da sua coleção.')
+      expect(toastSuccess).toHaveBeenCalledWith('Malbec Signature saiu da sua coleção.')
     );
   });
 

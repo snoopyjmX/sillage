@@ -22,13 +22,13 @@ const row = {
   updated_at: '2026-10-05T12:00:00Z',
   perfume: {
     id: 'p1',
-    slug: 'amyi-2-15',
-    name: 'Amyi 2.15',
+    slug: 'malbec-signature',
+    name: 'Malbec Signature',
     concentration: 'edp',
     gender: 'unisex',
     release_year: 2022,
     image_path: null,
-    brand: { name: 'Amyi', slug: 'amyi' },
+    brand: { name: 'O Boticário', slug: 'o-boticario' },
     perfume_notes: [
       { note: { family: 'woody' } },
       { note: { family: 'citrus' } },
@@ -57,7 +57,7 @@ describe('collectionService', () => {
     expect(item).toMatchObject({
       status: 'wanted',
       updatedAt: '2026-10-05T12:00:00Z',
-      perfume: { id: 'p1', brandName: 'Amyi', releaseYear: 2022 },
+      perfume: { id: 'p1', brandName: 'O Boticário', releaseYear: 2022 },
     });
     expect(item?.perfume.families).toEqual(['citrus', 'woody']);
   });

@@ -1,5 +1,5 @@
 // PWA e modo offline (docs/PRODUCT.md, Seção 11), contra o build de produção com Service Worker.
-// Dados reais do seed: Amyi 2.15, Caipi d'Argent e Irish Green Man.
+// Dados reais do seed: Malbec Signature, Bossa e Boníssimo.
 import { expect, test, type Page } from '@playwright/test';
 import { cards, registerViaUi } from './helpers.ts';
 
@@ -11,7 +11,7 @@ const installServiceWorker = async (page: Page) => {
   await page.goto('/catalog');
   await page.evaluate(() => navigator.serviceWorker.ready.then(() => undefined));
   await page.reload();
-  await expect(cards(page)).toHaveCount(3);
+  await expect(cards(page)).toHaveCount(20);
   await expect
     .poll(() => page.evaluate(() => navigator.serviceWorker.controller !== null))
     .toBe(true);
@@ -76,8 +76,8 @@ test.describe('offline', () => {
     await page.reload();
 
     await expect(page.getByText(BANNER)).toBeVisible();
-    await expect(cards(page)).toHaveCount(3);
-    await expect(page.getByRole('heading', { level: 2, name: 'Amyi 2.15' })).toBeVisible();
+    await expect(cards(page)).toHaveCount(20);
+    await expect(page.getByRole('heading', { level: 2, name: 'Malbec Signature' })).toBeVisible();
   });
 
   test('o banner aparece ao perder a conexão e some ao voltar', async ({ page, context }) => {
@@ -96,7 +96,7 @@ test.describe('offline', () => {
   }) => {
     await registerViaUi(page);
     await page.goto('/catalog');
-    await expect(cards(page)).toHaveCount(3);
+    await expect(cards(page)).toHaveCount(20);
     const toggle = cards(page)
       .first()
       .getByRole('button', { name: /Adicionar à Coleção|Tenho|Quero/ });
@@ -130,7 +130,7 @@ test.describe('offline', () => {
     const email = await registerViaUi(page);
     await page.goto('/collection');
     await page.goto('/catalog');
-    await expect(cards(page)).toHaveCount(3);
+    await expect(cards(page)).toHaveCount(20);
     await expect.poll(() => readPersisted(page), { timeout: 10_000 }).toContain('"public"');
 
     const raw = (await readPersisted(page)) ?? '';

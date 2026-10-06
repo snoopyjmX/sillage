@@ -1,10 +1,10 @@
 // O Nez (Edge Function nez-ai) é SEMPRE mockado com page.route: o E2E nunca chama o Gemini
-// (sem timeout, sem gastar tokens). Dados reais do seed: Amyi 2.15 divide notas com
-// Caipi d'Argent e com Irish Green Man, então a seção de similaridade tem conteúdo.
+// (sem timeout, sem gastar tokens). Dados reais do seed: Malbec Signature divide notas com
+// vários perfumes do catálogo, então a seção de similaridade tem conteúdo.
 import { expect, test, type Page, type Route } from '@playwright/test';
 import { axeViolations, registerViaUi } from './helpers.ts';
 
-const URL = '/perfumes/amyi-2-15';
+const URL = '/perfumes/malbec-signature';
 const NEZ_ROUTE = '**/functions/v1/nez-ai';
 const ANSWER =
   'Para as noites frias, deixe a baunilha envolver o patchouli: um abraço âmbar, quente e sereno.';
@@ -54,7 +54,7 @@ const openNez = async (page: Page) => {
 test.describe('Nez, o mestre perfumista', () => {
   test('visitante não vê o botão do Nez', async ({ page }) => {
     await page.goto(URL);
-    await expect(page.getByRole('heading', { level: 1, name: 'Amyi 2.15' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Malbec Signature' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Nez' })).toHaveCount(0);
   });
 
@@ -78,8 +78,8 @@ test.describe('Nez, o mestre perfumista', () => {
     const [call] = calls;
     expect(call?.authorization).toMatch(/^Bearer .+/);
     expect(call?.body.question).toBe('O que combina com uma noite fria?');
-    expect(call?.body.context).toContain('Amyi 2.15');
-    expect(call?.body.context).toContain('Baunilha');
+    expect(call?.body.context).toContain('Malbec Signature');
+    expect(call?.body.context).toContain('Vetiver');
     expect(await axeViolations(page)).toEqual([]);
   });
 
@@ -198,25 +198,31 @@ test.describe('similaridade (RN09)', () => {
     await expect(section).toBeVisible();
 
     const list = section.getByRole('list', { name: 'Fragrâncias parecidas' });
-    await expect(list.getByRole('heading', { level: 2, name: "Caipi d'Argent" })).toBeVisible();
-    await expect(list.getByRole('heading', { level: 2, name: 'Amyi 2.15' })).toHaveCount(0);
+    const first = 'Essencial Único Masculino';
+    await expect(list.getByRole('heading', { level: 2, name: first })).toBeVisible();
+    await expect(list.getByRole('heading', { level: 2, name: 'Malbec Signature' })).toHaveCount(0);
 
-    // No seed, o único perfume que divide notas com a Amyi é o Caipi
-    await expect(list.getByRole('heading', { level: 2 })).toHaveCount(1);
+    // No seed, 7 perfumes dividem notas com o Malbec Signature; a lista mostra os 6 primeiros
+    await expect(list.getByRole('heading', { level: 2 })).toHaveCount(6);
 
-    await list.getByRole('link', { name: /Caipi d'Argent/ }).click();
-    await expect(page).toHaveURL(/\/perfumes\/caipi-d-argent$/);
+    await list.getByRole('link', { name: new RegExp(first) }).click();
+    await expect(page).toHaveURL(/\/perfumes\/essencial-unico-masculino$/);
   });
 
-  test('ordena por notas em comum: da página do Caipi, Amyi (2) vem antes de Irish Green Man (1)', async ({
+  test('ordena por notas em comum e desempata pelo nome (da página do Boníssimo)', async ({
     page,
   }) => {
-    await page.goto('/perfumes/caipi-d-argent');
+    await page.goto('/perfumes/bonissimo');
     const list = page.getByRole('list', { name: 'Fragrâncias parecidas' });
-    await expect(list.getByRole('heading', { level: 2 })).toHaveCount(2);
+    await expect(list.getByRole('heading', { level: 2 })).toHaveCount(6);
+    // Folha Imperial (4 notas em comum), Attar Al Wesal (3) e depois os de 2 e 1 em ordem alfabética
     expect(await list.getByRole('heading', { level: 2 }).allTextContents()).toEqual([
-      'Amyi 2.15',
-      'Irish Green Man',
+      'Folha Imperial',
+      'Attar Al Wesal',
+      'Bossa',
+      'Ekos Alma',
+      'Malbec Signature',
+      'Apoena',
     ]);
   });
 });

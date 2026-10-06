@@ -61,6 +61,10 @@ export interface PerfumeDetail {
   releaseYear: number | null;
   // URL pública da imagem (bucket perfume-images); nula enquanto não houver foto
   imageUrl: string | null;
+  // Melhor oferta encontrada (preço em centavos, loja e link); nulos quando não há oferta
+  lowestPriceCents: number | null;
+  storeName: string | null;
+  storeUrl: string | null;
   // Pirâmide montada no cliente: todas as notas, cada uma com a sua posição
   notes: PyramidNote[];
 }

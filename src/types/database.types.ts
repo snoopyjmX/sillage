@@ -254,10 +254,13 @@ export type Database = {
           gender: Database['public']['Enums']['perfume_gender'];
           id: string;
           image_path: string | null;
+          lowest_price_cents: number | null;
           name: string;
           release_year: number | null;
           search_name: string;
           slug: string;
+          store_name: string | null;
+          store_url: string | null;
           updated_at: string;
         };
         Insert: {
@@ -268,10 +271,13 @@ export type Database = {
           gender: Database['public']['Enums']['perfume_gender'];
           id?: string;
           image_path?: string | null;
+          lowest_price_cents?: number | null;
           name: string;
           release_year?: number | null;
           search_name: string;
           slug: string;
+          store_name?: string | null;
+          store_url?: string | null;
           updated_at?: string;
         };
         Update: {
@@ -282,10 +288,13 @@ export type Database = {
           gender?: Database['public']['Enums']['perfume_gender'];
           id?: string;
           image_path?: string | null;
+          lowest_price_cents?: number | null;
           name?: string;
           release_year?: number | null;
           search_name?: string;
           slug?: string;
+          store_name?: string | null;
+          store_url?: string | null;
           updated_at?: string;
         };
         Relationships: [

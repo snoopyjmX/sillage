@@ -26,3 +26,8 @@ export const formatCivilDate = (date: string): string =>
 // Instante ISO -> "6 de outubro de 2026" (no fuso do navegador)
 export const formatLongDate = (iso: string): string =>
   new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' }).format(new Date(iso));
+
+const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+// Centavos inteiros -> "R$ 249,00" (o espaço é o não separável do Intl: 24900 -> "R$ 249,00")
+export const formatPriceCents = (cents: number): string => brl.format(cents / 100);

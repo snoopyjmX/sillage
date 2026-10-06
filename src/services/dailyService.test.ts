@@ -22,7 +22,7 @@ const row = (date: string, name: string) => ({
     gender: 'unisex',
     release_year: 2022,
     image_path: null,
-    brand: { name: 'Amyi', slug: 'amyi' },
+    brand: { name: 'O Boticário', slug: 'o-boticario' },
     perfume_notes: [{ note: { family: 'woody' } }, { note: { family: 'citrus' } }],
   },
 });
@@ -52,7 +52,7 @@ describe('dailyService', () => {
     expect(from).toHaveBeenCalledWith('daily_perfumes');
     expect(eq).toHaveBeenCalledWith('date', '2026-10-05');
     expect(entry?.date).toBe('2026-10-05');
-    expect(entry?.perfume.brandName).toBe('Amyi');
+    expect(entry?.perfume.brandName).toBe('O Boticário');
     expect(entry?.perfume.families).toEqual(['citrus', 'woody']);
   });
 

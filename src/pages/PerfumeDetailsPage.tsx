@@ -4,6 +4,7 @@ import { CollectionToggle } from '@/components/collection/CollectionToggle';
 import { ReviewActions } from '@/components/reviews/ReviewActions';
 import { ReviewSummaryLine } from '@/components/reviews/ReviewSummaryLine';
 import { ReviewsSection } from '@/components/reviews/ReviewsSection';
+import { BestPrice } from '@/components/perfume/BestPrice';
 import { SimilarPerfumes } from '@/components/perfume/SimilarPerfumes';
 import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
 import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
@@ -98,6 +99,9 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
           <div className="mt-4 flex flex-col gap-2 md:max-w-72">
             <CollectionToggle perfume={toPerfumeSummary(perfume)} />
             <ReviewActions perfume={{ id: perfume.id, name: perfume.name }} />
+          </div>
+          <div className="md:max-w-72">
+            <BestPrice perfume={perfume} />
           </div>
         </div>
       </div>

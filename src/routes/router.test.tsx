@@ -19,7 +19,7 @@ vi.mock('@/services/authService', () => ({
 }));
 vi.mock('@/services/referenceService', () => ({
   referenceService: {
-    listBrands: () => Promise.resolve([{ slug: 'amyi', name: 'Amyi' }]),
+    listBrands: () => Promise.resolve([{ slug: 'o-boticario', name: 'O Boticário' }]),
     listNotes: () =>
       Promise.resolve([{ slug: 'bergamota', name: 'Bergamota', family: 'citrus' as const }]),
   },
@@ -27,10 +27,10 @@ vi.mock('@/services/referenceService', () => ({
 
 const perfume = (overrides: Partial<PerfumeSummary> = {}): PerfumeSummary => ({
   id: 'p1',
-  slug: 'amyi-2-15',
-  name: 'Amyi 2.15',
-  brandName: 'Amyi',
-  brandSlug: 'amyi',
+  slug: 'malbec-signature',
+  name: 'Malbec Signature',
+  brandName: 'O Boticário',
+  brandSlug: 'o-boticario',
   concentration: 'edp',
   gender: 'unisex',
   releaseYear: 2021,
@@ -102,8 +102,8 @@ describe('catálogo', () => {
   it('mostra o card com marca, concentração e famílias vindas do resultado', async () => {
     search.mockResolvedValue({ items: [perfume()], total: 1 });
     renderApp('/catalog');
-    const card = await screen.findByRole('link', { name: /Amyi 2\.15/ });
-    expect(card).toHaveAttribute('href', '/perfumes/amyi-2-15');
+    const card = await screen.findByRole('link', { name: /Malbec Signature/ });
+    expect(card).toHaveAttribute('href', '/perfumes/malbec-signature');
     expect(within(card).getByText('EDP')).toBeInTheDocument();
     expect(within(card).getByText('Cítrico')).toBeInTheDocument();
     expect(within(card).getByText('Amadeirado')).toBeInTheDocument();
@@ -113,7 +113,7 @@ describe('catálogo', () => {
   it('valores inválidos na URL caem nos padrões e não quebram', async () => {
     search.mockResolvedValue({ items: [perfume()], total: 1 });
     renderApp('/catalog?sort=zzz&page=-3&notes=%2e%2e%2f&families=bogus&ymin=abc');
-    expect(await screen.findByRole('link', { name: /Amyi 2\.15/ })).toBeInTheDocument();
+    expect(await screen.findByRole('link', { name: /Malbec Signature/ })).toBeInTheDocument();
     expect(search).toHaveBeenCalledWith(
       expect.objectContaining({ sort: 'newest', page: 1, notes: [], families: [], yearMin: null })
     );
@@ -131,12 +131,12 @@ describe('catálogo', () => {
 
   it('página além do fim mostra o estado vazio com "Ir para a página 1"', async () => {
     search.mockResolvedValue({ items: [], total: 0 });
-    const { router } = renderApp('/catalog?page=9&q=amyi');
+    const { router } = renderApp('/catalog?page=9&q=boticario');
     expect(
       await screen.findByRole('heading', { name: 'Essa página não existe' })
     ).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Ir para a página 1' }));
-    await waitFor(() => expect(router.state.location.search).toBe('?q=amyi'));
+    await waitFor(() => expect(router.state.location.search).toBe('?q=boticario'));
   });
 
   it('erro mostra mensagem segura com tentar de novo (nunca o texto técnico)', async () => {

@@ -68,6 +68,9 @@ export const perfumeService = {
       imageUrl: data.image_path
         ? supabase.storage.from('perfume-images').getPublicUrl(data.image_path).data.publicUrl
         : null,
+      lowestPriceCents: data.lowest_price_cents,
+      storeName: data.store_name,
+      storeUrl: data.store_url,
       notes: data.perfume_notes
         .map(({ position, note }) => ({
           slug: note.slug,

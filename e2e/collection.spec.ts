@@ -2,7 +2,7 @@ import { expect, test, type Locator, type Page } from '@playwright/test';
 import { axeViolations, cardTitle, cards, openNav, registerViaUi } from './helpers.ts';
 
 const THEME_KEY = 'sillage-theme';
-const NAME = 'Amyi 2.15';
+const NAME = 'Malbec Signature';
 
 const card = (page: Page, name = NAME): Locator =>
   cards(page).filter({ has: cardTitle(page, name) });
@@ -82,7 +82,7 @@ test.describe('coleção', () => {
     page,
   }) => {
     await registerViaUi(page);
-    await page.goto(`/perfumes/amyi-2-15`);
+    await page.goto(`/perfumes/malbec-signature`);
     await toggleIn(page.getByRole('main')).click();
     await page.getByRole('menuitemradio', { name: 'Tenho' }).click();
     await expect(page.getByText(`${NAME} foi para “Tenho”.`)).toBeVisible();
@@ -131,7 +131,7 @@ for (const theme of ['light', 'dark'] as const) {
       await registerViaUi(page);
       await page.goto('/catalog');
       await choose(page, card(page), 'Tenho');
-      await choose(page, card(page, 'Irish Green Man'), 'Quero', 'Irish Green Man');
+      await choose(page, card(page, 'Boníssimo'), 'Quero', 'Boníssimo');
 
       await page.goto('/collection');
       await expect(page.locator('html')).toHaveClass(theme === 'dark' ? /dark/ : /^(?!.*dark)/);
@@ -139,10 +139,10 @@ for (const theme of ['light', 'dark'] as const) {
       expect(await axeViolations(page)).toEqual([]);
 
       await page.getByRole('tab', { name: 'Quero (1)' }).click();
-      await expect(card(page, 'Irish Green Man')).toBeVisible();
+      await expect(card(page, 'Boníssimo')).toBeVisible();
       expect(await axeViolations(page)).toEqual([]);
 
-      await toggleIn(card(page, 'Irish Green Man')).click();
+      await toggleIn(card(page, 'Boníssimo')).click();
       await expect(page.getByRole('menu')).toBeVisible();
       expect(await axeViolations(page)).toEqual([]);
     });

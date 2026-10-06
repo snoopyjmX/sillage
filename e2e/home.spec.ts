@@ -4,13 +4,13 @@ import { axeViolations, registerViaUi, seedDaily } from './helpers.ts';
 const THEME_KEY = 'sillage-theme';
 const TITLE = 'Descubra a fragrância de hoje';
 
-// Hoje: Amyi 2.15. Ontem e anteontem: Caipi d'Argent e Irish Green Man.
+// Hoje: Malbec Signature. Ontem e anteontem: Bossa e Boníssimo.
 const registerWithHistory = async (page: Page) => {
   const email = await registerViaUi(page);
   seedDaily(email, [
-    { slug: 'amyi-2-15', daysAgo: 0 },
-    { slug: 'caipi-d-argent', daysAgo: 1 },
-    { slug: 'irish-green-man', daysAgo: 2 },
+    { slug: 'malbec-signature', daysAgo: 0 },
+    { slug: 'bossa', daysAgo: 1 },
+    { slug: 'bonissimo', daysAgo: 2 },
   ]);
 };
 
@@ -60,17 +60,17 @@ test.describe('home', () => {
     await page.goto('/');
 
     const highlight = page.getByRole('article', { name: 'Perfume do Dia' });
-    await expect(highlight.getByRole('heading', { name: 'Amyi 2.15' })).toBeVisible();
+    await expect(highlight.getByRole('heading', { name: 'Malbec Signature' })).toBeVisible();
 
     const history = page.getByRole('list', { name: 'Perfumes dos dias anteriores' });
     await expect(history.getByRole('listitem')).toHaveCount(2);
     // Mais recente primeiro, e hoje não se repete no histórico
-    await expect(history.getByRole('listitem').first()).toContainText("Caipi d'Argent");
-    await expect(history.getByRole('listitem').last()).toContainText('Irish Green Man');
-    await expect(history).not.toContainText('Amyi 2.15');
+    await expect(history.getByRole('listitem').first()).toContainText('Bossa');
+    await expect(history.getByRole('listitem').last()).toContainText('Boníssimo');
+    await expect(history).not.toContainText('Malbec Signature');
 
-    await history.getByRole('link', { name: /Irish Green Man/ }).click();
-    await expect(page).toHaveURL(/\/perfumes\/irish-green-man$/);
+    await history.getByRole('link', { name: /Boníssimo/ }).click();
+    await expect(page).toHaveURL(/\/perfumes\/bonissimo$/);
   });
 
   test('o histórico de um usuário não aparece para outro (RLS)', async ({ page, browser }) => {
@@ -82,7 +82,7 @@ test.describe('home', () => {
     await expect(
       other.getByRole('heading', { name: 'Você ainda não escolheu um Perfume do Dia' })
     ).toBeVisible();
-    await expect(other.getByText("Caipi d'Argent")).toHaveCount(0);
+    await expect(other.getByText('Bossa')).toHaveCount(0);
     await otherContext.close();
   });
 });

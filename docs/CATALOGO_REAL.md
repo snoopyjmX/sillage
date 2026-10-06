@@ -1,6 +1,6 @@
 # Plano de Curadoria: Catálogo Real & Fotos de Alta Definição
 
-> **Status:** Planejado para execução pós-Fase 11 (PWA) e pré-Deploy (Fase 14).  
+> **Status:** Seed real, comparador de preço e script de imagens implementados (20 dos perfumes abaixo estão em `supabase/seed.sql`). Faltam as fotos (`npm run images`) e o envio ao Storage.  
 > **Custo:** R$ 0,00 (100% suportado no Free Tier do Supabase Storage e Vercel CDN).
 
 ---

@@ -31,15 +31,18 @@ vi.mock('@/services/collectionService', () => ({
 
 const detail: PerfumeDetail = {
   id: 'p1',
-  slug: 'amyi-2-15',
-  name: 'Amyi 2.15',
+  slug: 'malbec-signature',
+  name: 'Malbec Signature',
   description: 'Um perfume de teste.',
-  brandName: 'Amyi',
-  brandSlug: 'amyi',
+  brandName: 'O Boticário',
+  brandSlug: 'o-boticario',
   concentration: 'edp',
   gender: 'unisex',
   releaseYear: 2022,
   imageUrl: null,
+  lowestPriceCents: null,
+  storeName: null,
+  storeUrl: null,
   notes: [
     { slug: 'bergamota', name: 'Bergamota', family: 'citrus', position: 'top' },
     { slug: 'vetiver', name: 'Vetiver', family: 'woody', position: 'base' },
@@ -62,18 +65,45 @@ describe('página de detalhes do perfume', () => {
 
   it('mostra marca, nome, concentração, pirâmide e o CTA de coleção ativo', async () => {
     getBySlug.mockResolvedValue(detail);
-    renderApp('/perfumes/amyi-2-15');
+    renderApp('/perfumes/malbec-signature');
     expect(
-      await screen.findByRole('heading', { level: 1, name: 'Amyi 2.15' }, { timeout: 3000 })
+      await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 3000 })
     ).toBeInTheDocument();
-    expect(getBySlug).toHaveBeenCalledWith('amyi-2-15');
-    expect(screen.getByText('Amyi')).toBeInTheDocument();
+    expect(getBySlug).toHaveBeenCalledWith('malbec-signature');
+    expect(screen.getByText('O Boticário')).toBeInTheDocument();
     expect(screen.getByText('EDP')).toBeInTheDocument();
     expect(screen.getByRole('group', { name: 'Pirâmide olfativa' })).toBeInTheDocument();
     const cta = screen.getByRole('button', { name: /Adicionar à Coleção/ });
     expect(cta).not.toHaveAttribute('aria-disabled');
     expect(screen.queryByText('Em breve')).not.toBeInTheDocument();
-    await waitFor(() => expect(document.title).toBe('Amyi 2.15 · Amyi · Sillage'));
+    await waitFor(() => expect(document.title).toBe('Malbec Signature · O Boticário · Sillage'));
+  });
+
+  it('mostra o melhor preço com link externo seguro quando há oferta', async () => {
+    getBySlug.mockResolvedValue({
+      ...detail,
+      lowestPriceCents: 24900,
+      storeName: 'O Boticário',
+      storeUrl: 'https://www.boticario.com.br',
+    });
+    renderApp('/perfumes/malbec-signature');
+    const section = await screen.findByRole(
+      'region',
+      { name: 'Melhor preço encontrado' },
+      { timeout: 3000 }
+    );
+    expect(section).toHaveTextContent(/R\$\s249,00\sna O Boticário/);
+    const link = within(section).getByRole('link');
+    expect(link).toHaveAttribute('href', 'https://www.boticario.com.br');
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
+  it('omite a seção de preço quando não há oferta', async () => {
+    getBySlug.mockResolvedValue(detail);
+    renderApp('/perfumes/malbec-signature');
+    await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 3000 });
+    expect(screen.queryByText('Melhor preço encontrado')).not.toBeInTheDocument();
   });
 
   it('slug inexistente mostra "Perfume não encontrado" com saída para o catálogo', async () => {
@@ -95,7 +125,7 @@ describe('página de detalhes do perfume', () => {
 
   it('erro de rede mostra a mensagem amigável e tenta de novo pelo botão', async () => {
     getBySlug.mockImplementation(() => Promise.reject(new AppError('network')));
-    renderApp('/perfumes/amyi-2-15');
+    renderApp('/perfumes/malbec-signature');
     expect(await screen.findByRole('alert', {}, { timeout: 3000 })).toHaveTextContent(
       'Sem conexão com o servidor'
     );
@@ -128,7 +158,7 @@ describe('página de detalhes do perfume', () => {
     it('mostra a média e a contagem no topo e a lista da comunidade abaixo da pirâmide', async () => {
       getBySlug.mockResolvedValue(detail);
       getPerfumeReviews.mockResolvedValue(community);
-      renderApp('/perfumes/amyi-2-15');
+      renderApp('/perfumes/malbec-signature');
       expect(
         (await screen.findAllByText('2 avaliações', { exact: false }, { timeout: 3000 })).length
       ).toBeGreaterThan(0);
@@ -144,7 +174,7 @@ describe('página de detalhes do perfume', () => {
 
     it('sem avaliações: "Ainda sem avaliações" e o estado vazio da seção', async () => {
       getBySlug.mockResolvedValue(detail);
-      renderApp('/perfumes/amyi-2-15');
+      renderApp('/perfumes/malbec-signature');
       expect(
         await screen.findByText('Ainda sem avaliações.', {}, { timeout: 3000 })
       ).toBeInTheDocument();
@@ -153,13 +183,13 @@ describe('página de detalhes do perfume', () => {
 
     it('visitante que clica em "Avaliar fragrância" vai para o login com ?redirect=', async () => {
       getBySlug.mockResolvedValue(detail);
-      const { router } = renderApp('/perfumes/amyi-2-15');
+      const { router } = renderApp('/perfumes/malbec-signature');
       fireEvent.click(
         await screen.findByRole('button', { name: 'Avaliar fragrância' }, { timeout: 3000 })
       );
       await waitFor(() =>
         expect(router.state.location.pathname + router.state.location.search).toBe(
-          '/login?redirect=%2Fperfumes%2Famyi-2-15'
+          '/login?redirect=%2Fperfumes%2Fmalbec-signature'
         )
       );
     });
@@ -175,7 +205,7 @@ describe('página de detalhes do perfume', () => {
         comment: 'meu comentário',
         updatedAt: '2026-10-06T12:00:00Z',
       });
-      renderApp('/perfumes/amyi-2-15');
+      renderApp('/perfumes/malbec-signature');
       fireEvent.click(
         await screen.findByRole('button', { name: 'Editar minha avaliação' }, { timeout: 3000 })
       );
