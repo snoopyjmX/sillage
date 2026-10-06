@@ -7,11 +7,10 @@ const BANNER = 'Você está navegando offline. O catálogo salvo continua dispon
 const PERSIST_KEY = 'sillage-query-cache';
 
 // A primeira visita instala o Service Worker; a seguinte já nasce controlada por ele.
-const installServiceWorker = async (page: Page) => {
-  await page.goto('/catalog');
+const installServiceWorker = async (page: Page, path = '/catalog') => {
+  await page.goto(path);
   await page.evaluate(() => navigator.serviceWorker.ready.then(() => undefined));
   await page.reload();
-  await expect(cards(page)).toHaveCount(20);
   await expect
     .poll(() => page.evaluate(() => navigator.serviceWorker.controller !== null))
     .toBe(true);
@@ -64,11 +63,13 @@ test.describe('PWA', () => {
 });
 
 test.describe('offline', () => {
-  test('o catálogo visitado antes continua aparecendo sem internet, com o banner', async ({
+  test('logado: o catálogo visitado antes continua aparecendo sem internet, com o banner', async ({
     page,
     context,
   }) => {
+    await registerViaUi(page);
     await installServiceWorker(page);
+    await expect(cards(page)).toHaveCount(20);
     // O cache persistido é gravado com atraso (throttle): espera aparecer no IndexedDB
     await expect.poll(() => readPersisted(page), { timeout: 10_000 }).toContain('"public"');
 
@@ -81,6 +82,7 @@ test.describe('offline', () => {
   });
 
   test('o banner aparece ao perder a conexão e some ao voltar', async ({ page, context }) => {
+    await registerViaUi(page);
     await page.goto('/catalog');
     await expect(page.getByText(BANNER)).toHaveCount(0);
     await context.setOffline(true);
@@ -136,5 +138,50 @@ test.describe('offline', () => {
     const raw = (await readPersisted(page)) ?? '';
     expect(raw).not.toContain('"private"');
     expect(raw).not.toContain(email);
+  });
+
+  // D7 (docs/PRODUCT.md, Seção 12): o cache público persistido continua existindo depois do logout,
+  // mas sem login só a Landing abre: não há tela que o mostre.
+  test('após o logout, offline, só a Landing abre e nenhum dado do catálogo aparece', async ({
+    page,
+    context,
+  }) => {
+    await registerViaUi(page);
+    await installServiceWorker(page);
+    await expect(cards(page)).toHaveCount(20);
+    await expect.poll(() => readPersisted(page), { timeout: 10_000 }).toContain('"public"');
+
+    await page.goto('/profile');
+    await page.getByRole('button', { name: 'Sair' }).click();
+    await expect(page).toHaveURL(/\/$/);
+
+    await context.setOffline(true);
+    await page.goto('/catalog');
+    await expect(page).toHaveURL(/\/\?redirect=%2Fcatalog$/);
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'Descubra perfumes pelas suas notas' })
+    ).toBeVisible();
+    await expect(cards(page)).toHaveCount(0);
+    await expect(page.getByText('Malbec Signature')).toHaveCount(0);
+  });
+
+  test('visitante offline: a Landing abre pelo shell e as rotas protegidas não mostram dados', async ({
+    page,
+    context,
+  }) => {
+    await installServiceWorker(page, '/');
+    await context.setOffline(true);
+    await page.reload();
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'Descubra perfumes pelas suas notas' })
+    ).toBeVisible();
+    await expect(page.getByText('Você está navegando offline.')).toBeVisible();
+
+    for (const path of ['/catalog', '/perfumes/malbec-signature', '/collection']) {
+      await page.goto(path);
+      await expect(page).toHaveURL(/\/\?redirect=/);
+      await expect(cards(page)).toHaveCount(0);
+      await expect(page.getByText('Malbec Signature')).toHaveCount(0);
+    }
   });
 });

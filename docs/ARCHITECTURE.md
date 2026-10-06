@@ -98,3 +98,21 @@
 
 - `useOnlineStatus` (já existente) alimenta o `OfflineBanner` (AppShell), o `OfflineHint` (tooltip nos botões de escrita: Coleção e Avaliar) e o estado `aria-disabled` do `NezFab`. Não há fila de escrita.
 - Instalação: `InstallAppButton` (Navbar e menu do celular). O evento `beforeinstallprompt` é capturado em `lib/pwa.ts` (pode disparar antes do React montar); no iOS, uma folha explica "Compartilhar → Adicionar à Tela de Início".
+
+## Decisões da Fase 14B (Landing e gate de rotas)
+
+Sem dependência nova, sem migration e sem mudança de policy. O gate é só de interface (a RLS segue como estava; ver `docs/SECURITY.md`).
+
+| Rota                                                     | Acesso             | Layout                       | Guarda                                        |
+| -------------------------------------------------------- | ------------------ | ---------------------------- | --------------------------------------------- |
+| `/`                                                      | pública            | `PublicLayout` ou `AppShell` | `RootEntry`: esqueleto, Landing ou Home       |
+| `/login`, `/register`, `/forgot-password`                | só visitantes      | `PublicLayout`               | `GuestOnly` (logado volta ao destino)         |
+| `/reset-password`                                        | via link do e-mail | `PublicLayout`               | nenhuma                                       |
+| `/catalog`, `/perfumes/:slug`, `/collection`, `/profile` | privada            | `AppShell`                   | `RequireAuth` (visitante vai a `/?redirect=`) |
+| `*` (404)                                                | privada            | `AppShell`                   | `RequireAuth`                                 |
+
+- **`RootEntry`** (`routes/RootEntry.tsx`) decide a tela de `/` pelo `status` da sessão: `loading` mostra `AuthPending` (nunca a Landing para quem já está logado), `authenticated` mostra a Home no `AppShell` e `unauthenticated` mostra a Landing no `PublicLayout`. `AppShell` e `PublicLayout` aceitam `children` para esse caso e usam `<Outlet />` nas demais rotas.
+- **`PublicLayout`** é pequeno de propósito: `Navbar` com a pílula em modo `landing`, `OfflineBanner` (sem a promessa de catálogo salvo), `Footer`. Não carrega a navegação privada nem o Nez.
+- **`lib/redirect`**: `buildGatePath` (destino para `/?redirect=`) e `withRedirect` (repassa o destino saneado para `/login` e `/register`). Regra pura, com teste.
+- A Landing é estática (não consulta o banco), então abre offline pelo shell em precache. A vitrine opcional de perfumes reais ficou de fora.
+- **Lighthouse CI** (`lighthouserc.json`) audita `/`, `/login` e `/register`. O workflow `.github/workflows/lighthouse.yml` não muda.

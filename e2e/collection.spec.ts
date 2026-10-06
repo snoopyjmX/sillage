@@ -23,22 +23,6 @@ const choose = async (page: Page, scope: Locator, option: 'Tenho' | 'Quero', nam
 };
 
 test.describe('coleção', () => {
-  test('visitante que tenta adicionar vai para o login com ?redirect= da página', async ({
-    page,
-  }) => {
-    await page.goto('/catalog');
-    await expect(card(page)).toBeVisible();
-    await toggleIn(card(page)).click();
-
-    await expect(page).toHaveURL(/\/login\?redirect=%2Fcatalog$/);
-    await expect(page.getByRole('menu')).toHaveCount(0);
-  });
-
-  test('visitante em /collection também cai no login com ?redirect=', async ({ page }) => {
-    await page.goto('/collection');
-    await expect(page).toHaveURL(/\/login\?redirect=%2Fcollection$/);
-  });
-
   test('logado adiciona como "Quero": toast, botão atualizado e item na aba Quero', async ({
     page,
     isMobile,

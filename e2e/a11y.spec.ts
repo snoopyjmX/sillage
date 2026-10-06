@@ -1,6 +1,11 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
-import { cards, openFilters } from './helpers.ts';
+import { cards, openFilters, registerViaUi } from './helpers.ts';
+
+// O gate libera estas rotas só para quem tem conta: cada teste entra antes de navegar.
+test.beforeEach(async ({ page }) => {
+  await registerViaUi(page);
+});
 
 const THEMES = ['light', 'dark'] as const;
 // Mesmo ThemeProvider do app: a chave de localStorage é a do índice (src/lib/theme.ts)

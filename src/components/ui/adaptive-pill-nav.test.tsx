@@ -87,3 +87,27 @@ describe('AdaptivePillNav', () => {
     );
   });
 });
+
+describe('AdaptivePillNav (modo landing, fora de "/" e com redirect)', () => {
+  it('âncoras viram "/#seção" quando a pílula está em outra rota', () => {
+    renderNav('landing', '/login');
+    expect(within(mainNav()).getByRole('link', { name: 'Recursos' })).toHaveAttribute(
+      'href',
+      '/#recursos'
+    );
+  });
+
+  it('Entrar e Criar conta levam o ?redirect= seguro; o malicioso é descartado', () => {
+    const { unmount } = renderNav('landing', '/?redirect=%2Fcatalog');
+    expect(within(mainNav()).getByRole('link', { name: 'Entrar' })).toHaveAttribute(
+      'href',
+      '/login?redirect=%2Fcatalog'
+    );
+    unmount();
+    renderNav('landing', '/?redirect=%2F%2Fevil.com');
+    expect(within(mainNav()).getByRole('link', { name: 'Criar conta' })).toHaveAttribute(
+      'href',
+      '/register'
+    );
+  });
+});

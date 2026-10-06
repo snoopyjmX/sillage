@@ -5,7 +5,11 @@ import { OFFLINE_BANNER_TEXT } from '@/constants/offline';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { transitions } from '@/lib/motion';
 
-export function OfflineBanner() {
+interface OfflineBannerProps {
+  text?: string;
+}
+
+export function OfflineBanner({ text = OFFLINE_BANNER_TEXT }: OfflineBannerProps) {
   const online = useOnlineStatus();
   return (
     <AnimatePresence>
@@ -20,7 +24,7 @@ export function OfflineBanner() {
         >
           <p className="mx-auto flex w-full max-w-6xl items-center gap-2 px-4 py-2 text-sm">
             <WifiOff className="size-4 shrink-0" aria-hidden />
-            {OFFLINE_BANNER_TEXT}
+            {text}
           </p>
         </motion.div>
       )}

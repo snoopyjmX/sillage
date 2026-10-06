@@ -1,7 +1,8 @@
-// Só UX: a segurança real é a RLS (docs/PRODUCT.md, Seção 7).
+// Só UX: a segurança real é a RLS (docs/PRODUCT.md, Seção 7). Visitante vai para a Landing ("/")
+// com ?redirect=<rota original>; o gate NÃO é barreira de dados (a leitura do catálogo segue pública no banco).
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
-import { buildLoginPath } from '@/lib/redirect';
+import { buildGatePath } from '@/lib/redirect';
 import { AuthPending } from './AuthPending';
 
 export function RequireAuth() {
@@ -12,7 +13,7 @@ export function RequireAuth() {
   if (status === 'unauthenticated') {
     return (
       <Navigate
-        to={buildLoginPath(`${location.pathname}${location.search}${location.hash}`)}
+        to={buildGatePath(`${location.pathname}${location.search}${location.hash}`)}
         replace
       />
     );

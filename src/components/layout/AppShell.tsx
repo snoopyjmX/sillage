@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NezAssistant } from '@/components/nez/NezAssistant';
 import { NezProvider } from '@/contexts/NezContext';
@@ -5,7 +6,8 @@ import { Footer } from './Footer';
 import { Navbar } from './Navbar';
 import { OfflineBanner } from './OfflineBanner';
 
-export function AppShell() {
+// `children` serve à rota "/" (Home do logado); nas demais, o conteúdo vem do {children ?? <Outlet />}.
+export function AppShell({ children }: { children?: ReactNode }) {
   return (
     <NezProvider>
       <div className="flex min-h-dvh flex-col">
@@ -18,7 +20,7 @@ export function AppShell() {
         <Navbar />
         <OfflineBanner />
         <main id="conteudo" className="mx-auto w-full max-w-6xl flex-1 px-4 pt-6 pb-8">
-          <Outlet />
+          {children ?? <Outlet />}
         </main>
         {/* Reserva o espaço do botão flutuante do Nez e a área segura de baixo */}
         <Footer className="pb-[calc(5rem+env(safe-area-inset-bottom))]" />

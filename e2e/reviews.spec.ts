@@ -48,15 +48,15 @@ test.beforeEach(({ isMobile }) => {
 });
 
 test.describe('avaliações', () => {
-  test('visitante que clica em "Avaliar fragrância" vai para o login e a página mostra "Ainda sem avaliações"', async ({
+  test('logado sem avaliações vê "Ainda sem avaliações" e o botão para avaliar', async ({
     page,
     isMobile,
   }) => {
     const { slug } = perfumeFor(isMobile);
+    await registerViaUi(page);
     await page.goto(`/perfumes/${slug}`);
     await expect(page.getByText('Ainda sem avaliações.')).toBeVisible();
-    await page.getByRole('button', { name: 'Avaliar fragrância' }).click();
-    await expect(page).toHaveURL(new RegExp(`/login\\?redirect=%2Fperfumes%2F${slug}$`));
+    await expect(page.getByRole('button', { name: 'Avaliar fragrância' })).toBeVisible();
   });
 
   test('logado avalia só com o teclado nas estrelas, envia e a média e a contagem atualizam', async ({
@@ -191,7 +191,7 @@ test.describe('avaliações', () => {
     await expect(page.getByText('Ainda sem avaliações.')).toBeVisible();
   });
 
-  test('outras pessoas (e visitantes) veem a avaliação com o nome do autor, sem poder alterá-la', async ({
+  test('outras pessoas veem a avaliação com o nome do autor, sem poder alterá-la', async ({
     page,
     browser,
     isMobile,
@@ -219,8 +219,12 @@ test.describe('avaliações', () => {
       await expect(summaryLine(other)).toContainText('1 avaliação');
     };
 
+    // Visitante não chega à página (gate): cai na Landing, sem ver avaliação alguma
     const visitorContext = await browser.newContext({ baseURL });
-    await checkAs(await visitorContext.newPage());
+    const visitor = await visitorContext.newPage();
+    await visitor.goto(`/perfumes/${slug}`);
+    await expect(visitor).toHaveURL(new RegExp(`/\\?redirect=%2Fperfumes%2F${slug}$`));
+    await expect(visitor.getByText('Recomendo!')).toHaveCount(0);
     await visitorContext.close();
 
     const otherContext = await browser.newContext({ baseURL });

@@ -42,17 +42,16 @@ test.describe('autenticação', () => {
     await expect(page.getByText(email)).toBeVisible();
   });
 
-  test('sair limpa a sessão e volta à Home', async ({ page }) => {
+  test('sair limpa a sessão e volta à Landing', async ({ page }) => {
     await registerViaUi(page, uniqueEmail());
     await expect(page).toHaveURL(/\/$/);
     await signOutViaUi(page);
 
-    // Na Home há o "Entrar" da barra (desktop) e o do convite; basta que algum esteja à vista
     await expect(
-      page.getByRole('link', { name: 'Entrar', exact: true }).locator('visible=true').first()
+      page.getByRole('heading', { level: 1, name: 'Descubra perfumes pelas suas notas' })
     ).toBeVisible();
     await page.goto('/profile');
-    await expect(page).toHaveURL(/\/login\?redirect=%2Fprofile$/);
+    await expect(page).toHaveURL(/\/\?redirect=%2Fprofile$/);
   });
 
   test('senha incorreta mostra mensagem amigável em português', async ({ page }) => {
@@ -70,7 +69,7 @@ test.describe('autenticação', () => {
     await expect(page).toHaveURL(/\/login$/);
   });
 
-  test('rota privada redireciona para o login e volta ao destino depois de entrar', async ({
+  test('rota privada leva à Landing, o Entrar repassa o destino e o login volta a ele', async ({
     page,
   }) => {
     const email = uniqueEmail();
@@ -79,6 +78,8 @@ test.describe('autenticação', () => {
     await signOutViaUi(page);
 
     await page.goto('/profile');
+    await expect(page).toHaveURL(/\/\?redirect=%2Fprofile$/);
+    await page.locator('#inicio').getByRole('link', { name: 'Entrar' }).click();
     await expect(page).toHaveURL(/\/login\?redirect=%2Fprofile$/);
     await loginViaUi(page, email, PASSWORD);
 

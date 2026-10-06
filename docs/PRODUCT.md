@@ -1,8 +1,8 @@
-# Sillage — Especificação v1.2
+# Sillage — Especificação v1.3
 
 Oct 4, 2026 · @João Marcelo
 
-## 1. Visão geral e o que mudou na v1.2
+## 1. Visão geral e o que mudou na v1.2 e na v1.3
 
 PWA de catálogo e coleção de perfumaria de nicho, em português (BR), mobile-first, feito como case de portfólio full-stack: UI premium com animações, regras de negócio garantidas no banco e QA automatizado.
 
@@ -16,7 +16,7 @@ PWA de catálogo e coleção de perfumaria de nicho, em português (BR), mobile-
 
 4.  Privacidade real: dados privados protegidos por RLS, nunca só pelo frontend.
 
-5.  PWA instalável, com shell offline e catálogo público consultável sem rede.
+5.  PWA instalável, com shell offline; quem tem conta consulta o catálogo salvo sem rede. Só a Landing e as telas de acesso abrem sem login (v1.3).
 
 6.  Visual de perfumaria de nicho (minimalista, luxuoso), consistente porque nasce de um design system e não de componentes soltos.
 
@@ -38,7 +38,19 @@ PWA de catálogo e coleção de perfumaria de nicho, em português (BR), mobile-
 | Índice de busca normalizado para pg_trgm                              | unaccent() é STABLE e não pode ser usado diretamente em uma expressão de índice; search_name será mantido por trigger e indexado com GIN + pg_trgm.      |
 | Histórico do Perfume do Dia protegido contra DELETE direto            | O histórico não pode ser apagado pelo usuário; a função permite apenas substituir o registro do dia atual. Exclusão ocorre somente por cascata da conta. |
 | Exclusão de conta via Edge Function protegida                         | auth.admin.deleteUser() exige privilégios administrativos; o service_role fica somente no runtime da função, nunca no frontend.                          |
-| Logout preserva cache público e remove apenas dados privados          | O catálogo público offline continua disponível após sair da conta, enquanto queries privadas são removidas da memória e nunca são persistidas.           |
+| Logout preserva cache público e remove apenas dados privados          | Queries privadas são removidas da memória e nunca são persistidas. O cache público persistido permanece, mas sem login nenhuma tela o exibe (v1.3).      |
+
+**Mudanças da v1.3 (Fase 14B: Landing e acesso só com cadastro)**
+
+| Mudança                                                                             | Por quê                                                                                                                                                     |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Só Landing, login, cadastro e recuperação de senha são públicos                     | Decisão do produto (D1). `/catalog`, `/perfumes/:slug`, `/collection`, `/profile` e o 404 exigem login; visitante vai para `/` com `?redirect=`.            |
+| O gate é **só de interface**; RN07 e a RLS ficam como estavam                       | O catálogo segue com leitura pública no banco (a `anon key` já é pública). O gate organiza a experiência; não é barreira de dados (ver `docs/SECURITY.md`). |
+| `/` é a Landing para visitante e a Home para logado, na mesma URL                   | O `start_url` do PWA continua `/` (D8). Enquanto a sessão carrega, mostra-se o esqueleto, nunca a Landing.                                                  |
+| Lighthouse audita `/`, `/login` e `/register` (mesmas metas)                        | As demais rotas redirecionam para a Landing sem login (D2).                                                                                                 |
+| SEO: sitemap só com `/`; `robots.txt` bloqueia as rotas privadas                    | As rotas privadas só redirecionam para a Landing e não têm conteúdo indexável (D1).                                                                         |
+| Offline: sem login só a Landing abre; o cache público persistido continua, sem tela | Reescreve o teste "após logout o catálogo continua disponível" (D7).                                                                                        |
+| Divergência: `AGENTS.md` citava `docs/QA.md`, que não existe                        | A matriz de testes é a seção 12 deste documento (fonte de verdade); nenhum arquivo novo foi criado.                                                         |
 
 ## 2. Escopo do MVP
 
@@ -49,6 +61,8 @@ O MVP entrega seis blocos: catálogo, detalhes, autenticação, coleção, Perfu
 **Detalhes.** Uma página por slug (`/perfumes/amyi-2-15`) com hero, informações principais, descrição, pirâmide olfativa interativa, média pública de avaliações, estado na coleção, ações de coleção e de Perfume do Dia, e a avaliação do próprio usuário.
 
 **Autenticação.** Supabase Auth com cadastro, login, logout, recuperação de senha, sessão persistida, rotas privadas e redirecionamento de volta ao destino original após o login.
+
+**Landing e acesso só com cadastro (v1.3).** Visitante vê apenas a Landing (`/`), o login, o cadastro e a recuperação de senha; todo o resto exige conta. A Landing descreve só o que o produto faz (sem depoimentos nem números inventados), tem dois CTAs sempre visíveis ("Criar conta" e "Entrar") e a assinatura "Enciclopédia olfativa". O gate é de interface: a leitura do catálogo continua pública no banco (RN07).
 
 **Coleção.** Cada perfume está em `Tenho` ou `Quero` por usuário, nunca nos dois. Ações: adicionar, remover, alternar estado, listar e filtrar.
 
@@ -70,7 +84,7 @@ São oito regras; cada uma tem um mecanismo de garantia no banco, e o frontend a
 | RN04 Avaliação única      | Uma avaliação por usuário e perfume; reenviar atualiza.                                                                                                                                                 | `UNIQUE(user_id, perfume_id)` + `upsert`                                                 |
 | RN05 Ratings 1 a 5        | Fixação e projeção só aceitam inteiros de 1 a 5.                                                                                                                                                        | `CHECK` no banco + Zod no front                                                          |
 | RN06 Um por data          | Um Perfume do Dia por usuário e por data, calculada no fuso do usuário.                                                                                                                                 | `UNIQUE(user_id, date)` + função `set_daily_perfume`                                     |
-| RN07 Catálogo             | Leitura pública; escrita só para administradores.                                                                                                                                                       | Policies com `is_admin()`                                                                |
+| RN07 Catálogo             | Leitura pública **no banco**; escrita só para administradores. Desde a v1.3 a interface só mostra o catálogo a quem tem conta: o gate é UX e não restringe a leitura.                                   | Policies com `is_admin()`                                                                |
 | RN08 Agregados públicos   | Avaliações são públicas, como numa rede social: notas, comentário e nome de exibição do autor. Nunca saem `user_id`, e-mail, fuso ou qualquer outro dado do perfil; ninguém edita a avaliação de outro. | Views `perfume_review_stats` (agregados) e `perfume_reviews_public` (lista)              |
 | RN09 Similaridade e Nez   | Perfumes parecidos são os que dividem mais notas com o alvo (nunca ele mesmo). O Nez (IA) só responde a usuário logado; a chave do Gemini fica só no servidor.                                          | Função `get_similar_perfumes` + Edge Function `nez-ai` (JWT validado com `auth.getUser`) |
 
@@ -395,26 +409,27 @@ supabase/
 
 **Rotas**
 
-| Rota                  | Acesso             | Função                                                           |
-| --------------------- | ------------------ | ---------------------------------------------------------------- |
-| `/`                   | pública            | Home: Perfume do Dia e histórico (logado) ou convite (visitante) |
-| `/catalog`            | pública            | Busca, filtros e resultados; estado na query string              |
-| `/perfumes/:slug`     | pública            | Detalhes; ações de coleção e avaliação exigem login              |
-| `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=`                                |
-| `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                                     |
-| `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                 |
-| `/collection`         | privada            | Coleção com abas Tenho e Quero                                   |
-| `/daily`              | privada            | Perfume do Dia de hoje e histórico                               |
-| `/profile`            | privada            | Nome de exibição, fuso, excluir conta                            |
-| `*`                   | pública            | 404                                                              |
+| Rota                  | Acesso             | Função                                                                           |
+| --------------------- | ------------------ | -------------------------------------------------------------------------------- |
+| `/`                   | pública            | Landing para visitante; Home (Perfume do Dia e histórico) para logado, mesma URL |
+| `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=` (logado volta para o destino ou `/`)           |
+| `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                                                     |
+| `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                                 |
+| `/catalog`            | privada            | Busca, filtros e resultados; estado na query string                              |
+| `/perfumes/:slug`     | privada            | Detalhes; coleção, avaliação e Nez                                               |
+| `/collection`         | privada            | Coleção com abas Tenho e Quero                                                   |
+| `/profile`            | privada            | Nome de exibição, fuso, excluir conta                                            |
+| `*`                   | privada            | 404 (visitante em rota desconhecida vai para `/?redirect=`)                      |
+
+"Privada" significa que o visitante é levado a `/?redirect=<rota original>` (saneado por `lib/redirect`: só caminhos internos passam; `//host`, `https://...` e `javascript:` são descartados). Os botões da Landing repassam o destino para `/login` e `/register`. O Perfume do Dia mora na Home (`/`); não há rota `/daily`.
 
 **Fluxo de autenticação**
 
 1.  `AuthProvider` lê a sessão inicial e assina `onAuthStateChange`.
 
-2.  `RequireAuth` redireciona para `/login?redirect=<rota original>`; depois do login, volta para ela.
+2.  `RequireAuth` redireciona o visitante para `/?redirect=<rota original>` (a Landing); o botão "Entrar" leva o destino para `/login` e, depois do login, a `GuestOnly` volta para ele.
 
-3.  SIGNED_OUT: remove queries privadas do TanStack Query, preserva o cache público persistido do catálogo e navega para /.
+3.  SIGNED_OUT: remove queries privadas do TanStack Query, preserva o cache público persistido do catálogo (sem tela que o mostre sem login) e navega para `/`, a Landing.
 
 4.  `PASSWORD_RECOVERY`: navega para `/reset-password`.
 
@@ -422,7 +437,7 @@ supabase/
 
 6.  Dentro do callback de `onAuthStateChange` não se deve fazer `await` em chamadas ao Supabase (risco conhecido de deadlock); dispare o trabalho depois, fora do callback.
 
-A proteção de rota no React serve só para UX. A segurança real é a RLS.
+A proteção de rota no React serve só para UX. A segurança real é a RLS. **O gate não é barreira de dados:** o catálogo continua legível por qualquer cliente com a `anon key`, por desenho (RN07).
 
 ## 8. Catálogo, busca e paginação
 
@@ -480,7 +495,7 @@ O valor de `p_sort` é validado contra essa lista dentro da função; nunca conc
 
 **Detalhes do perfume.** Uma única consulta por `slug` traz perfume, marca e `perfume_notes` com `notes` embutidos; a pirâmide é montada no cliente agrupando por `position`. Slug inexistente cai no 404.
 
-**SEO.** O app é uma SPA do Vite, então não há renderização no servidor. No MVP cada página define título e meta tags (componente `SeoHead`, com os metadados nativos do React 19, sem `react-helmet-async`; Open Graph e Twitter Card incluídos, mais `robots.txt` e `sitemap.xml` estáticos em `public/`), o que basta para compartilhamento e portfólio. Indexação séria do catálogo exigiria pré-renderização ou SSR e fica explicitamente fora do escopo.
+**SEO.** O app é uma SPA do Vite, então não há renderização no servidor. No MVP cada página define título e meta tags (componente `SeoHead`, com os metadados nativos do React 19, sem `react-helmet-async`; Open Graph e Twitter Card incluídos, mais `robots.txt` e `sitemap.xml` estáticos em `public/`), o que basta para compartilhamento e portfólio. Indexação séria do catálogo exigiria pré-renderização ou SSR e fica explicitamente fora do escopo. Desde a v1.3 só a Landing é indexável: o `sitemap.xml` lista apenas `/` e o `robots.txt` bloqueia `/catalog`, `/perfumes/`, `/collection` e `/profile`, que sem login só redirecionam para a Landing.
 
 ## 9. Design system e direção visual
 
@@ -614,7 +629,7 @@ O objetivo é aproveitar o acabamento dos componentes sem importar uma colcha de
 
 ## 11. Estados de UI, PWA, acessibilidade e performance
 
-O shell e as imagens vêm do Service Worker; os dados públicos do catálogo vêm do cache persistido do TanStack Query; os dados privados nunca ficam em disco.
+O shell e as imagens vêm do Service Worker; os dados públicos do catálogo vêm do cache persistido do TanStack Query; os dados privados nunca ficam em disco. Sem login, só a Landing e as telas de acesso abrem (a Landing é estática e funciona offline pelo shell em precache); o catálogo salvo é consultável offline por quem tem conta.
 
 **Estados de UI.** Toda tela que depende de dados assíncronos trata cinco estados: carregando, sucesso, vazio, erro (com ação de tentar de novo) e offline. Um componente único (`AsyncBoundary`) padroniza isso. Skeletons têm as mesmas dimensões do conteúdo final (proporção de imagem fixa, altura de linha igual), o que mantém o CLS abaixo de 0,1. Spinner central sozinho não é aceito.
 
@@ -644,7 +659,7 @@ Com `prompt`, uma atualização do app aparece como toast "Nova versão disponí
 
 - O catálogo offline vem de `persistQueryClient` (storage assíncrono em IndexedDB), gravando apenas queries com chave `['public', ...]` e status de sucesso, com validade de 7 dias e `buster` atrelado à versão do app.
 
-- Queries \['private', userId, ...\] não são persistidas. No SIGNED_OUT: removeQueries({ queryKey: \['private'\] }); o cache persistido público permanece para que o catálogo continue disponível offline. Não há dados privados persistidos para limpar.
+- Queries \['private', userId, ...\] não são persistidas. No SIGNED_OUT: removeQueries({ queryKey: \['private'\] }); o cache persistido público permanece (o logout não o apaga), mas sem login não há tela que o exiba: o catálogo salvo só reaparece depois de entrar de novo. Não há dados privados persistidos para limpar.
 
 - Offline, o app mostra um banner, serve o que está em cache e **desabilita as mutations** com explicação (adicionar à coleção, definir Perfume do Dia, avaliar). Não há fila de escrita no MVP. Ao voltar a conexão, o TanStack Query refaz as consultas ativas.
 
@@ -687,7 +702,7 @@ As regras de segurança e de negócio são testadas **no banco** (pgTAP) e por i
 | Integração     | Vitest contra Supabase local               | Usuário A vs B pelo SDK com `anon key` e sessão real                                                          | Todo PR                                                  |
 | E2E            | Playwright                                 | Fluxos críticos em vários viewports, offline, recuperação de senha                                            | Todo PR (suite completa em 2 projetos, smoke nos demais) |
 | Acessibilidade | `@axe-core/playwright` + testes de teclado | Páginas principais, pirâmide, dialogs, formulários                                                            | Todo PR                                                  |
-| Desempenho     | Lighthouse CI                              | LCP, CLS, INP/TBT, orçamento de JS                                                                            | PR para `main`                                           |
+| Desempenho     | Lighthouse CI                              | LCP, CLS, INP/TBT, orçamento de JS, em `/`, `/login` e `/register` (as demais rotas exigem login)             | PR para `main`                                           |
 
 **Casos obrigatórios no banco e na integração (RLS)**
 
@@ -719,7 +734,25 @@ As regras de segurança e de negócio são testadas **no banco** (pgTAP) e por i
 
 - **Avaliação:** avaliar `Tenho`, avaliar perfume do histórico, bloqueio com mensagem clara para perfume sem direito, editar.
 
-- PWA/offline (**Fase 11**; fora do E2E da Fase 4, que só cobre o estado offline do `AsyncBoundary` com teste de unidade), contra o build de produção (vite build + vite preview), com Service Worker ativo: shell abre offline, catálogo visitado antes aparece offline, mutations desabilitadas, após logout nenhum dado privado aparece offline, enquanto o catálogo público previamente visitado continua disponível; teste do manifest (campos e ícones).
+- PWA/offline (**Fase 11**; fora do E2E da Fase 4, que só cobre o estado offline do `AsyncBoundary` com teste de unidade), contra o build de produção (vite build + vite preview), com Service Worker ativo: shell abre offline, logado vê offline o catálogo visitado antes, mutations desabilitadas, após logout offline só a Landing abre e nenhum dado do catálogo aparece (D7), visitante offline abre a Landing e as rotas protegidas não mostram dados; teste do manifest (campos e ícones).
+
+**Gate de acesso (v1.3: `src/routes/guards.test.tsx`, `src/lib/redirect.test.ts`, `e2e/gate.spec.ts`)**
+
+- **Negado:** visitante em `/catalog`, `/perfumes/<slug existente>`, `/perfumes/<slug inexistente>`, `/collection`, `/profile` e rota inventada cai na Landing em `/` com `?redirect=` preservado, sem dado do catálogo na tela e sem consulta ao banco.
+
+- **Negado:** `?redirect=` malicioso (`//evil.com`, `https://evil.com`, `javascript:`) é descartado (unitário em `lib/redirect`; nos botões da Landing e depois do cadastro, no E2E).
+
+- **Permitido:** visitante abre `/`, `/login`, `/register`, `/forgot-password` e `/reset-password`; depois do login volta para a rota original; logado em `/` vê a Home, não a Landing.
+
+- **Negado:** logado em `/login` e `/register` volta para `/`.
+
+- **Offline como visitante:** a Landing abre e as rotas protegidas não mostram dados.
+
+- **Landing:** axe em 360 e 1280 px, nos dois temas; pílula do modo landing só com teclado; reduced motion; sem rolagem horizontal.
+
+- **Banco intacto:** `git diff --stat main -- supabase/` vazio e `supabase test db` verde (o gate não muda RLS).
+
+Os specs que assumiam acesso anônimo foram **adaptados** (login antes, via `registerViaUi`); os que testavam o visitante em rota agora privada viraram testes de negação.
 
 **Matriz de dispositivos (Playwright)**
 
@@ -751,7 +784,7 @@ O repositório mantém seis documentos em `docs/` e **um único arquivo de instr
 | `docs/DATABASE.md`      | Diagrama, tabelas, enums, índices, funções, policies                                                            |
 | `docs/SECURITY.md`      | Autenticação, RLS, admin, Storage, secrets, modelo de ameaça, limitação da RN03                                 |
 | `docs/DESIGN_SYSTEM.md` | Tokens, tipografia, motion, glassmorphism, pirâmide, inventário de componentes com origem                       |
-| `docs/QA.md`            | Camadas de teste, casos críticos, matriz de dispositivos, critérios de aprovação                                |
+| Seção 12 do PRODUCT.md  | Camadas de teste, casos críticos, matriz de dispositivos, critérios de aprovação (não há `docs/QA.md`)          |
 
 **O que muda em relação aos arquivos de IA da v1.0**
 
@@ -771,7 +804,7 @@ O repositório mantém seis documentos em `docs/` e **um único arquivo de instr
 ## Fonte de verdade
 
 docs/PRODUCT.md (regras RN01–RN08), DATABASE.md, SECURITY.md,
-ARCHITECTURE.md, DESIGN_SYSTEM.md, QA.md. Leia o relevante antes de mexer.
+ARCHITECTURE.md, DESIGN_SYSTEM.md. A matriz de testes está na seção 12 do PRODUCT.md. Leia o relevante antes de mexer.
 Mudança estrutural = atualizar o doc no mesmo PR.
 
 ## Arquitetura

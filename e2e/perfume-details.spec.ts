@@ -2,7 +2,12 @@
 // (topo: bergamota e acorde vínico; coração: lavanda e cardamomo; fundo: musgo de carvalho,
 // patchouli, âmbar e vetiver). O seed não traz foto, então o hero usa o placeholder.
 import { expect, test, type Page } from '@playwright/test';
-import { axeViolations, cards } from './helpers.ts';
+import { axeViolations, cards, registerViaUi } from './helpers.ts';
+
+// O gate libera estas rotas só para quem tem conta: cada teste entra antes de navegar.
+test.beforeEach(async ({ page }) => {
+  await registerViaUi(page);
+});
 
 const URL = '/perfumes/malbec-signature';
 const THEME_KEY = 'sillage-theme';
@@ -88,15 +93,19 @@ test.describe('detalhes do perfume', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Malbec Signature' })).toBeVisible();
   });
 
-  test('visitante que clica em "Adicionar à Coleção" vai para o login e volta aos detalhes', async ({
-    page,
+  test('visitante não chega aos detalhes: cai na Landing e o login devolve a eles', async ({
+    browser,
+    baseURL,
   }) => {
-    await page.goto(URL);
-    // A seção de similares também tem botões de coleção: o do perfume da página vem primeiro
-    const cta = page.getByRole('button', { name: /Adicionar à Coleção/ }).first();
-    await expect(cta).toBeEnabled();
-    await cta.click();
-    await expect(page).toHaveURL(/\/login\?redirect=%2Fperfumes%2F/);
+    // O hook do arquivo já deixou `page` logada; o visitante usa um contexto limpo
+    const context = await browser.newContext({ baseURL });
+    const visitor = await context.newPage();
+    await visitor.goto(URL);
+    await expect(visitor).toHaveURL(/\/\?redirect=%2Fperfumes%2Fmalbec-signature$/);
+    await expect(visitor.getByRole('button', { name: /Adicionar à Coleção/ })).toHaveCount(0);
+    await visitor.locator('#inicio').getByRole('link', { name: 'Entrar' }).click();
+    await expect(visitor).toHaveURL(/\/login\?redirect=%2Fperfumes%2Fmalbec-signature$/);
+    await context.close();
   });
 
   test('a rota do card do catálogo abre os detalhes e o voltar leva ao catálogo', async ({
