@@ -35,6 +35,24 @@ test.describe('teclado', () => {
     );
   });
 
+  test('a pílula de navegação se opera só com teclado (Tab e Enter)', async ({
+    page,
+    isMobile,
+  }) => {
+    test.skip(isMobile, 'No celular a navegação é o menu (coberto em home.spec)');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/');
+    expect(
+      await tabUntil(page, 'nav[aria-label="Principal"] a[href="/collection"]'),
+      'foco chegou ao link Coleção'
+    ).toBe(true);
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/collection$/);
+    await expect(
+      page.getByRole('navigation', { name: 'Principal' }).getByRole('link', { name: 'Coleção' })
+    ).toHaveAttribute('aria-current', 'page');
+  });
+
   test('Esc fecha a gaveta de filtros e devolve o foco ao botão', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'A gaveta só existe no celular; no desktop os filtros são um painel fixo');
     await page.goto('/catalog');

@@ -8,6 +8,10 @@ const card = (page: Page, name = NAME): Locator =>
   cards(page).filter({ has: cardTitle(page, name) });
 const toggleIn = (scope: Locator): Locator =>
   scope.getByRole('button', { name: /Adicionar à Coleção|Tenho|Quero/ });
+// Botão da própria página do perfume: a página também lista parecidos, cada um com o seu botão,
+// então o escopo "main" é ambíguo. O nome acessível traz o nome do perfume ("Adicionar à Coleção : X").
+const pageToggle = (page: Page, name = NAME): Locator =>
+  page.getByRole('button', { name: new RegExp(`^Adicionar à Coleção\\s*:\\s*${name}$`) });
 
 // Escolhe "Tenho" ou "Quero" no menu do card e espera o toast confirmar a gravação.
 const choose = async (page: Page, scope: Locator, option: 'Tenho' | 'Quero', name = NAME) => {
@@ -83,7 +87,7 @@ test.describe('coleção', () => {
   }) => {
     await registerViaUi(page);
     await page.goto(`/perfumes/malbec-signature`);
-    await toggleIn(page.getByRole('main')).click();
+    await pageToggle(page).click();
     await page.getByRole('menuitemradio', { name: 'Tenho' }).click();
     await expect(page.getByText(`${NAME} foi para “Tenho”.`)).toBeVisible();
 

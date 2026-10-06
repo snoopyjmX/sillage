@@ -10,7 +10,10 @@ const { version } = JSON.parse(readFileSync('./package.json', 'utf-8')) as { ver
 
 // https://vite.dev/config/
 export default defineConfig({
-  define: { __APP_VERSION__: JSON.stringify(`${version}-${Date.now()}`) },
+  define: {
+    __APP_VERSION__: JSON.stringify(`${version}-${Date.now()}`),
+    __PKG_VERSION__: JSON.stringify(version),
+  },
   plugins: [
     react(),
     tailwindcss(),

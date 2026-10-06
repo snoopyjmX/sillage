@@ -13,6 +13,7 @@ export const durations = {
   short: 0.24, // 200-280 ms
   page: 0.36, // 320-420 ms
   exit: 0.18, // saídas nunca passam de 200 ms
+  ambient: 9, // loops decorativos lentos (ex.: rastro do Footer); nunca em conteúdo
 } as const;
 
 export const springs = {

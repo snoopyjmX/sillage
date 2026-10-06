@@ -44,7 +44,9 @@ describe('HomePage', () => {
     auth.setInitialSession(null);
     renderApp('/');
     expect(await screen.findByRole('heading', TITLE)).toBeInTheDocument();
-    expect(await screen.findByRole('link', { name: 'Criar conta' })).toHaveAttribute(
+    // O Footer também tem "Criar conta" para visitante: o convite é o do conteúdo principal
+    const main = within(screen.getByRole('main'));
+    expect(await main.findByRole('link', { name: 'Criar conta' })).toHaveAttribute(
       'href',
       '/register'
     );

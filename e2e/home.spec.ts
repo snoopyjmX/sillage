@@ -36,10 +36,10 @@ test.describe('home', () => {
     await expect(
       page.getByRole('heading', { name: 'Entre para ver o seu Perfume do Dia' })
     ).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Criar conta' })).toHaveAttribute(
-      'href',
-      '/register'
-    );
+    // O Footer também tem "Criar conta": o convite é o do conteúdo principal
+    await expect(
+      page.locator('#conteudo').getByRole('link', { name: 'Criar conta' })
+    ).toHaveAttribute('href', '/register');
   });
 
   test('conta nova, sem nada escolhido, vê o estado vazio com saída para o catálogo', async ({
@@ -104,6 +104,26 @@ test.describe('navbar', () => {
     await expect(brand.locator('img')).not.toHaveClass(/invert/);
     await nav.getByRole('link', { name: 'Catálogo' }).click();
     await expect(page).toHaveURL(/\/catalog$/);
+  });
+
+  test('o item da página atual tem aria-current e o rodapé tem a pirâmide olfativa', async ({
+    page,
+    isMobile,
+  }) => {
+    test.skip(isMobile, 'Layout de tela larga');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/catalog');
+    const nav = page.getByRole('navigation', { name: 'Principal' });
+    await expect(nav.getByRole('link', { name: 'Catálogo' })).toHaveAttribute(
+      'aria-current',
+      'page'
+    );
+    await expect(nav.getByRole('link', { name: 'Início' })).not.toHaveAttribute('aria-current');
+    const footer = page.getByRole('contentinfo');
+    for (const name of ['Topo', 'Coração', 'Fundo']) {
+      await expect(footer.getByText(name, { exact: true })).toBeVisible();
+    }
+    await expect(footer.getByText('Feito por João Marcelo')).toBeVisible();
   });
 
   test('no celular os links ficam no menu hambúrguer, que fecha ao navegar', async ({ page }) => {

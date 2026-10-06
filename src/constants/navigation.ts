@@ -14,3 +14,17 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { key: 'collection', label: 'Coleção', icon: Library, to: '/collection' },
   { key: 'profile', label: 'Perfil', icon: UserRound, to: '/profile' },
 ];
+
+// Âncoras das seções da Landing (modo "landing" da pílula de navegação)
+export interface LandingItem {
+  key: string;
+  label: string;
+  hash: string;
+}
+
+export const LANDING_ITEMS: readonly LandingItem[] = [
+  { key: 'inicio', label: 'Início', hash: '#inicio' },
+  { key: 'como-funciona', label: 'Como funciona', hash: '#como-funciona' },
+  { key: 'recursos', label: 'Recursos', hash: '#recursos' },
+  { key: 'acessar', label: 'Acessar', hash: '#acessar' },
+];

@@ -51,6 +51,8 @@
   --elevation-card: 0 1px 3px rgba(23, 35, 28, 0.06), 0 4px 12px rgba(23, 35, 28, 0.04);
   --elevation-floating: 0 8px 24px rgba(23, 35, 28, 0.08);
   --elevation-modal: 0 16px 48px rgba(23, 35, 28, 0.12);
+  /* Pílula de navegação: relevo estático (realce interno em cima + sombra suave embaixo) */
+  --elevation-pill: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 8px rgba(23, 35, 28, 0.08);
 
   /* Famílias olfativas (fundo / texto) */
   --chip-citrus: #f6ee9a;
@@ -107,6 +109,7 @@
   --elevation-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
   --elevation-floating: 0 8px 24px rgba(0, 0, 0, 0.35);
   --elevation-modal: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --elevation-pill: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.35);
 
   /* Famílias: cor a 22% sobre o card, texto na cor clareada */
   --chip-citrus: rgba(246, 238, 154, 0.22);
@@ -187,6 +190,7 @@
   --shadow-card: var(--elevation-card);
   --shadow-floating: var(--elevation-floating);
   --shadow-modal: var(--elevation-modal);
+  --shadow-pill: var(--elevation-pill);
 }
 
 @theme {
