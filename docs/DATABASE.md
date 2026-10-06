@@ -12,6 +12,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 | `20261005120300_storage.sql`            | Bucket `perfume-images` e suas policies                                                 |
 | `20261005120400_search_perfumes.sql`    | Função `search_perfumes` (busca, filtros, ordenação e paginação do catálogo)            |
 | `20261006120000_public_reviews.sql`     | Policy `reviews: owner delete` e a view `perfume_reviews_public` (Fase 9)               |
+| `20261007120000_similar_perfumes.sql`   | Função `get_similar_perfumes` (similaridade por notas em comum, Fase 10 / RN09)         |
 
 ## Extensões e enums
 
@@ -107,3 +108,13 @@ Assinatura e semântica na Seção 8 do `PRODUCT.md`. `SECURITY INVOKER`, `STABL
 ## Fora desta fase
 
 A Edge Function de exclusão de conta.
+
+## `get_similar_perfumes` (RN09)
+
+`get_similar_perfumes(target_id uuid, limit_count int default 6)`. `SECURITY INVOKER`, `STABLE`, `search_path` vazio; `EXECUTE` só para `anon` e `authenticated`.
+
+- Similaridade = número de notas **distintas** em comum com o alvo (a mesma nota em duas posições conta uma vez). Ordem: mais notas em comum, depois nome, depois `id`.
+- Exclui o próprio `target_id` e perfumes sem nenhuma nota em comum. Alvo inexistente devolve lista vazia.
+- `limit_count` fora de 1 a 24 levanta `22023`.
+- Retorno: `id, name, brand_id, slug, image_path` (contrato da interface) mais `brand_name, brand_slug, concentration, gender, release_year, families, common_notes`, para o `PerfumeCard` não precisar de segunda consulta.
+- Testes: `supabase/tests/database/14_similar_perfumes.test.sql`.

@@ -367,6 +367,23 @@ export type Database = {
       };
     };
     Functions: {
+      get_similar_perfumes: {
+        Args: { limit_count?: number; target_id: string };
+        Returns: {
+          brand_id: string;
+          brand_name: string;
+          brand_slug: string;
+          common_notes: number;
+          concentration: Database['public']['Enums']['concentration_type'];
+          families: Database['public']['Enums']['olfactive_family'][];
+          gender: Database['public']['Enums']['perfume_gender'];
+          id: string;
+          image_path: string;
+          name: string;
+          release_year: number;
+          slug: string;
+        }[];
+      };
       is_admin: { Args: Record<PropertyKey, never>; Returns: boolean };
       search_perfumes: {
         Args: {
