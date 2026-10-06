@@ -178,7 +178,7 @@ Extensões: unaccent e pg_trgm para busca; ids usam gen_random_uuid() nativo qua
 
 `perfume_review_stats(perfume_id, review_count, avg_longevity, avg_projection)`, criada para expor só agregados. Detalhes de acesso na seção 6.
 
-**Migrations e seed.** Tudo em `supabase/migrations`, versionado; `supabase/seed.sql` roda em `supabase db reset` e é reproduzível. Os três perfumes iniciais (Amyi 2.15, Caipi d'Argent, Irish Green Man) entram com marca, descrição, slug e pirâmide completa. **Imagens:** fotos de frascos costumam ter direitos autorais; para o portfólio, use fotos próprias, imagens liberadas pela marca ou ilustrações/placeholders consistentes.
+**Migrations e seed.** Tudo em `supabase/migrations`, versionado; `supabase/seed.sql` roda em `supabase db reset` e é reproduzível. Os 20 perfumes iniciais do catálogo real (docs/CATALOGO_REAL.md) entram com marca, descrição, slug e pirâmide completa. **Imagens:** fotos de frascos costumam ter direitos autorais; para o portfólio, use fotos próprias, imagens liberadas pela marca ou ilustrações/placeholders consistentes.
 
 ## 6. Segurança e RLS
 

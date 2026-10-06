@@ -9,9 +9,7 @@ const THEME_KEY = 'sillage-theme';
 test.describe.configure({ mode: 'default' });
 
 const perfumeFor = (isMobile: boolean) =>
-  isMobile
-    ? { slug: 'irish-green-man', name: 'Irish Green Man' }
-    : { slug: 'caipi-d-argent', name: "Caipi d'Argent" };
+  isMobile ? { slug: 'bonissimo', name: 'Boníssimo' } : { slug: 'bossa', name: 'Bossa' };
 
 const radioGroup = (scope: Page | Locator, name: string): Locator =>
   scope.getByRole('radiogroup', { name, exact: true });

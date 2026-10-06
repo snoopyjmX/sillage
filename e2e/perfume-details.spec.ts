@@ -1,10 +1,10 @@
-// Dados reais do seed (supabase/seed.sql): Amyi 2.15 tem pirâmide completa
-// (topo: folha de cravo e bergamota; coração: mimosa, magnólia e lírio-do-vale; fundo: baunilha,
-// patchouli, almíscar e vetiver). O seed não traz foto, então o hero usa o placeholder.
+// Dados reais do seed (supabase/seed.sql): Malbec Signature tem pirâmide completa
+// (topo: bergamota e acorde vínico; coração: lavanda e cardamomo; fundo: musgo de carvalho,
+// patchouli, âmbar e vetiver). O seed não traz foto, então o hero usa o placeholder.
 import { expect, test, type Page } from '@playwright/test';
 import { axeViolations, cards } from './helpers.ts';
 
-const URL = '/perfumes/amyi-2-15';
+const URL = '/perfumes/malbec-signature';
 const THEME_KEY = 'sillage-theme';
 
 const layer = (page: Page, name: string) =>
@@ -15,10 +15,10 @@ const note = (page: Page, name: string) =>
 test.describe('detalhes do perfume', () => {
   test('slug existente mostra hero, marca, nome, concentração e a pirâmide', async ({ page }) => {
     await page.goto(URL);
-    await expect(page.getByRole('heading', { level: 1, name: 'Amyi 2.15' })).toBeVisible();
-    await expect(page).toHaveTitle('Amyi 2.15 · Amyi · Sillage');
-    await expect(page.getByText('Amyi', { exact: true })).toBeVisible();
-    await expect(page.getByText('Outra', { exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Malbec Signature' })).toBeVisible();
+    await expect(page).toHaveTitle('Malbec Signature · O Boticário · Sillage');
+    await expect(page.getByText('O Boticário', { exact: true }).first()).toBeVisible();
+    await expect(page.getByText('EDC', { exact: true }).first()).toBeVisible();
     // Sem foto no seed: placeholder (com foto, seria uma <img> com alt)
     await expect(page.locator('[data-slot="perfume-placeholder"], main img').first()).toBeVisible();
     await expect(page.getByRole('group', { name: 'Pirâmide olfativa' })).toBeVisible();
@@ -51,7 +51,7 @@ test.describe('detalhes do perfume', () => {
       await base.click();
     }
     await expect(base).toHaveAttribute('aria-expanded', 'true');
-    for (const name of ['Baunilha', 'Patchouli', 'Almíscar', 'Vetiver']) {
+    for (const name of ['Musgo de carvalho', 'Patchouli', 'Âmbar', 'Vetiver']) {
       await expect(note(page, name)).toBeVisible();
     }
 
@@ -85,7 +85,7 @@ test.describe('detalhes do perfume', () => {
     await note(page, 'Bergamota').click();
     await expect(page).toHaveURL(/\/catalog\?notes=bergamota&pos=top$/);
     await expect(cards(page).first()).toBeVisible();
-    await expect(page.getByRole('heading', { level: 2, name: 'Amyi 2.15' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 2, name: 'Malbec Signature' })).toBeVisible();
   });
 
   test('visitante que clica em "Adicionar à Coleção" vai para o login e volta aos detalhes', async ({
@@ -103,11 +103,31 @@ test.describe('detalhes do perfume', () => {
     page,
   }) => {
     await page.goto('/catalog');
-    await page.getByRole('link', { name: /Amyi 2\.15/ }).click();
+    await page.getByRole('link', { name: /Malbec Signature/ }).click();
     await expect(page).toHaveURL(URL);
-    await expect(page.getByRole('heading', { level: 1, name: 'Amyi 2.15' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Malbec Signature' })).toBeVisible();
     await page.getByRole('link', { name: 'Voltar ao catálogo' }).click();
     await expect(page).toHaveURL(/\/catalog$/);
+  });
+
+  test('mostra o melhor preço com link externo seguro para a loja', async ({ page }) => {
+    await page.goto(URL);
+    const offer = page.getByRole('region', { name: 'Melhor preço encontrado' });
+    await expect(offer).toBeVisible();
+    await expect(offer).toContainText(/R\$\s249,00\sna O Boticário/);
+    const link = offer.getByRole('link', { name: /Ver na loja/ });
+    await expect(link).toHaveAttribute(
+      'href',
+      'https://www.boticario.com.br/busca?q=Malbec+Signature'
+    );
+    await expect(link).toHaveAttribute('target', '_blank');
+    await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
+  test('perfume sem oferta (Black, da Phytoderm) omite a seção de preço', async ({ page }) => {
+    await page.goto('/perfumes/black');
+    await expect(page.getByRole('heading', { level: 1, name: 'Black' })).toBeVisible();
+    await expect(page.getByText('Melhor preço encontrado')).toHaveCount(0);
   });
 
   test('slug inexistente mostra "Perfume não encontrado", sem tela branca', async ({ page }) => {
@@ -180,7 +200,7 @@ test.describe('com animação ligada', () => {
     for (let i = 0; i < 4; i += 1) await heart.click();
     await expect(heart).toHaveAttribute('aria-expanded', 'false');
     await heart.click();
-    await expect(note(page, 'Mimosa')).toBeVisible();
-    await expect(note(page, 'Mimosa')).toBeEnabled();
+    await expect(note(page, 'Lavanda')).toBeVisible();
+    await expect(note(page, 'Lavanda')).toBeEnabled();
   });
 });

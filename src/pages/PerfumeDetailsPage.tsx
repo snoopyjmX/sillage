@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { ArrowLeft, SearchX } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
 import { ReviewActions } from '@/components/reviews/ReviewActions';
 import { ReviewSummaryLine } from '@/components/reviews/ReviewSummaryLine';
 import { ReviewsSection } from '@/components/reviews/ReviewsSection';
+import { BestPrice } from '@/components/perfume/BestPrice';
 import { SimilarPerfumes } from '@/components/perfume/SimilarPerfumes';
 import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
 import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
@@ -50,6 +52,31 @@ function PerfumeNotFound() {
   );
 }
 
+// A foto pode ainda não ter sido enviada ao Storage: se falhar ao carregar, cai no placeholder
+function PerfumeHeroImage({
+  perfume,
+  mainFamily,
+}: {
+  perfume: PerfumeDetail;
+  mainFamily: (typeof FAMILIES)[number] | undefined;
+}) {
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  if (perfume.imageUrl && perfume.imageUrl !== failedUrl) {
+    return (
+      <img
+        src={perfume.imageUrl}
+        alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
+        width={800}
+        height={1000}
+        decoding="async"
+        onError={() => setFailedUrl(perfume.imageUrl)}
+        className="aspect-[4/5] w-full object-cover"
+      />
+    );
+  }
+  return <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/5]" />;
+}
+
 function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
   const mainFamily = FAMILIES.find((family) =>
     perfume.notes.some((note) => note.family === family)
@@ -66,18 +93,7 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
 
       <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10">
         <div className="overflow-hidden rounded-xl border bg-card shadow-card">
-          {perfume.imageUrl ? (
-            <img
-              src={perfume.imageUrl}
-              alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
-              width={800}
-              height={1000}
-              decoding="async"
-              className="aspect-[4/5] w-full object-cover"
-            />
-          ) : (
-            <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/5]" />
-          )}
+          <PerfumeHeroImage perfume={perfume} mainFamily={mainFamily} />
         </div>
 
         <div className="flex flex-col gap-3">
@@ -98,6 +114,9 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
           <div className="mt-4 flex flex-col gap-2 md:max-w-72">
             <CollectionToggle perfume={toPerfumeSummary(perfume)} />
             <ReviewActions perfume={{ id: perfume.id, name: perfume.name }} />
+          </div>
+          <div className="md:max-w-72">
+            <BestPrice perfume={perfume} />
           </div>
         </div>
       </div>

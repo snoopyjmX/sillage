@@ -12,10 +12,10 @@ vi.mock('@/services/collectionService', () => ({
 
 const base: PerfumeSummary = {
   id: 'p1',
-  slug: 'caipi-d-argent',
-  name: "Caipi d'Argent",
-  brandName: 'Condé Parfum',
-  brandSlug: 'conde-parfum',
+  slug: 'bossa',
+  name: 'Bossa',
+  brandName: 'Granado',
+  brandSlug: 'granado',
   concentration: 'edp',
   gender: 'unisex',
   releaseYear: 2023,
@@ -37,9 +37,9 @@ const renderCard = (perfume: Partial<PerfumeSummary> = {}) =>
 describe('PerfumeCard', () => {
   it('é um link para o perfume, com marca, nome, concentração, gênero e ano', () => {
     renderCard();
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/perfumes/caipi-d-argent');
-    expect(screen.getByRole('heading', { name: "Caipi d'Argent" })).toBeInTheDocument();
-    expect(screen.getByText('Condé Parfum')).toBeInTheDocument();
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/perfumes/bossa');
+    expect(screen.getByRole('heading', { name: 'Bossa' })).toBeInTheDocument();
+    expect(screen.getByText('Granado')).toBeInTheDocument();
     expect(screen.getByText('EDP')).toBeInTheDocument();
     expect(screen.getByText('Unissex · 2023')).toBeInTheDocument();
   });

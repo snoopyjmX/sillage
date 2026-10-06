@@ -3,7 +3,9 @@ import { buildLoginPath, getSafeRedirect } from './redirect';
 
 describe('getSafeRedirect', () => {
   it('aceita caminhos internos com query e hash', () => {
-    expect(getSafeRedirect('/perfumes/amyi-2-15?x=1#topo')).toBe('/perfumes/amyi-2-15?x=1#topo');
+    expect(getSafeRedirect('/perfumes/malbec-signature?x=1#topo')).toBe(
+      '/perfumes/malbec-signature?x=1#topo'
+    );
   });
 
   it.each([null, undefined, '', 'https://evil.test', '//evil.test', '/\\evil.test', 'profile'])(

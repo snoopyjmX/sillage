@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatCount, formatDecimal, formatInteger } from './format';
+import { formatCount, formatDecimal, formatInteger, formatPriceCents } from './format';
 
 describe('formatDecimal', () => {
   it('usa vírgula como separador decimal', () => {
@@ -18,5 +18,14 @@ describe('formatInteger e formatCount', () => {
     expect(formatCount(1, 'perfume', 'perfumes')).toBe('1 perfume');
     expect(formatCount(0, 'perfume', 'perfumes')).toBe('0 perfumes');
     expect(formatCount(24, 'perfume', 'perfumes')).toBe('24 perfumes');
+  });
+});
+
+describe('formatPriceCents', () => {
+  it('converte centavos em reais pt-BR', () => {
+    // O Intl separa o símbolo do valor com um espaço não separável
+    expect(formatPriceCents(24900).replace(/\s/g, ' ')).toBe('R$ 249,00');
+    expect(formatPriceCents(8905).replace(/\s/g, ' ')).toBe('R$ 89,05');
+    expect(formatPriceCents(123456).replace(/\s/g, ' ')).toBe('R$ 1.234,56');
   });
 });

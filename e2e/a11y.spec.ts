@@ -29,14 +29,14 @@ for (const theme of THEMES) {
 
     test('catálogo com resultados', async ({ page }) => {
       await page.goto('/catalog');
-      await expect(cards(page)).toHaveCount(3);
+      await expect(cards(page)).toHaveCount(20);
       await expect(page.locator('html')).toHaveClass(theme === 'dark' ? /dark/ : /^(?!.*dark)/);
       expect(await scan(page)).toEqual([]);
     });
 
     test('gaveta de filtros aberta, com notas e posição', async ({ page }) => {
       await page.goto('/catalog?notes=bergamota&pos=top');
-      await expect(cards(page)).toHaveCount(2);
+      await expect(cards(page)).toHaveCount(6);
       const filters = await openFilters(page, true);
       await filters.getByRole('combobox', { name: 'Buscar nota' }).focus();
       await expect(filters.getByRole('listbox')).toBeVisible();
@@ -63,7 +63,7 @@ test('axe no desktop (1280 px) com o painel lateral de filtros', async ({ page, 
   test.skip(isMobile, 'O painel lateral só existe em telas largas');
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/catalog?notes=bergamota&pos=top');
-  await expect(cards(page)).toHaveCount(2);
+  await expect(cards(page)).toHaveCount(6);
   await expect(page.getByRole('complementary', { name: 'Filtros' })).toBeVisible();
   expect(await scan(page)).toEqual([]);
 });
