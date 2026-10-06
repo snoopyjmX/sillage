@@ -256,6 +256,7 @@ export type Database = {
           image_path: string | null;
           lowest_price_cents: number | null;
           name: string;
+          perfumer: string | null;
           release_year: number | null;
           search_name: string;
           slug: string;
@@ -273,6 +274,7 @@ export type Database = {
           image_path?: string | null;
           lowest_price_cents?: number | null;
           name: string;
+          perfumer?: string | null;
           release_year?: number | null;
           search_name: string;
           slug: string;
@@ -290,6 +292,7 @@ export type Database = {
           image_path?: string | null;
           lowest_price_cents?: number | null;
           name?: string;
+          perfumer?: string | null;
           release_year?: number | null;
           search_name?: string;
           slug?: string;

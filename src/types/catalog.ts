@@ -67,6 +67,8 @@ export interface PerfumeDetail {
   lowestPriceCents: number | null;
   storeName: string | null;
   storeUrl: string | null;
+  // Perfumista (nariz); nulo quando não informado
+  perfumer: string | null;
   // Pirâmide montada no cliente: todas as notas, cada uma com a sua posição
   notes: PyramidNote[];
 }

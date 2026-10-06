@@ -28,6 +28,7 @@ const row = {
   lowest_price_cents: 24900,
   store_name: 'O Boticário',
   store_url: 'https://www.boticario.com.br',
+  perfumer: 'Olivier Cresp',
   brand: { name: 'O Boticário', slug: 'o-boticario' },
   perfume_notes: [
     { position: 'base', note: { slug: 'vetiver', name: 'Vetiver', family: 'woody' } },
@@ -57,6 +58,7 @@ describe('perfumeService.getBySlug', () => {
       lowestPriceCents: 24900,
       storeName: 'O Boticário',
       storeUrl: 'https://www.boticario.com.br',
+      perfumer: 'Olivier Cresp',
     });
     expect(detail.notes.map((n) => `${n.name}:${n.position}`)).toEqual([
       'Bergamota:top',

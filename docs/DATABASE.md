@@ -4,16 +4,17 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 
 ## Migrations
 
-| Arquivo                                 | Conteúdo                                                                                |
-| --------------------------------------- | --------------------------------------------------------------------------------------- |
-| `20261005120000_schema.sql`             | Extensões, enums, tabelas, constraints e índices                                        |
-| `20261005120100_functions_triggers.sql` | `set_updated_at`, `set_search_name`, `handle_new_user`, `is_admin`, `set_daily_perfume` |
-| `20261005120200_rls_policies.sql`       | RLS nas 8 tabelas, policies, `revoke`/`grant` e a view `perfume_review_stats`           |
-| `20261005120300_storage.sql`            | Bucket `perfume-images` e suas policies                                                 |
-| `20261005120400_search_perfumes.sql`    | Função `search_perfumes` (busca, filtros, ordenação e paginação do catálogo)            |
-| `20261006120000_public_reviews.sql`     | Policy `reviews: owner delete` e a view `perfume_reviews_public` (Fase 9)               |
-| `20261007120000_similar_perfumes.sql`   | Função `get_similar_perfumes` (similaridade por notas em comum, Fase 10 / RN09)         |
-| `20261008120000_perfume_prices.sql`     | Colunas `lowest_price_cents`, `store_name` e `store_url` em `perfumes` (melhor preço)   |
+| Arquivo                                  | Conteúdo                                                                                |
+| ---------------------------------------- | --------------------------------------------------------------------------------------- |
+| `20261005120000_schema.sql`              | Extensões, enums, tabelas, constraints e índices                                        |
+| `20261005120100_functions_triggers.sql`  | `set_updated_at`, `set_search_name`, `handle_new_user`, `is_admin`, `set_daily_perfume` |
+| `20261005120200_rls_policies.sql`        | RLS nas 8 tabelas, policies, `revoke`/`grant` e a view `perfume_review_stats`           |
+| `20261005120300_storage.sql`             | Bucket `perfume-images` e suas policies                                                 |
+| `20261005120400_search_perfumes.sql`     | Função `search_perfumes` (busca, filtros, ordenação e paginação do catálogo)            |
+| `20261006120000_public_reviews.sql`      | Policy `reviews: owner delete` e a view `perfume_reviews_public` (Fase 9)               |
+| `20261007120000_similar_perfumes.sql`    | Função `get_similar_perfumes` (similaridade por notas em comum, Fase 10 / RN09)         |
+| `20261008120000_perfume_prices.sql`      | Colunas `lowest_price_cents`, `store_name` e `store_url` em `perfumes` (melhor preço)   |
+| `20261009120000_add_perfumer_column.sql` | Coluna opcional `perfumer` em `perfumes` (perfumista; `CHECK` 1–150 caracteres)         |
 
 ## Extensões e enums
 
@@ -22,16 +23,16 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 
 ## Tabelas
 
-| Tabela             | Garante                                                                                                                                                                                                                                   |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `profiles`         | `id` → `auth.users` com `CASCADE`; `timezone` padrão `America/Sao_Paulo` (RN06). Criada pelo trigger de cadastro.                                                                                                                         |
-| `brands`           | `slug` único; `search_name` mantido por trigger.                                                                                                                                                                                          |
-| `perfumes`         | `brand_id` `RESTRICT`; `slug` único; `release_year` entre 1700 e ano atual + 1. Oferta opcional: `lowest_price_cents` (centavos, `> 0`), `store_name` e `store_url` (só `http(s)`); as policies de `perfumes` já cobrem as colunas novas. |
-| `notes`            | `slug` único; `family` é `olfactive_family`.                                                                                                                                                                                              |
-| `perfume_notes`    | PK `(perfume_id, note_id, position)`; FKs `CASCADE`.                                                                                                                                                                                      |
-| `collection_items` | `UNIQUE(user_id, perfume_id)` (RN02); `perfume_id` `RESTRICT`.                                                                                                                                                                            |
-| `daily_perfumes`   | `UNIQUE(user_id, date)` (RN06); `perfume_id` `RESTRICT`.                                                                                                                                                                                  |
-| `perfume_reviews`  | `UNIQUE(user_id, perfume_id)` (RN04); ratings `smallint` entre 1 e 5 (RN05); `comment` com até 1000 caracteres.                                                                                                                           |
+| Tabela             | Garante                                                                                                                                                                                                                                                                                                      |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `profiles`         | `id` → `auth.users` com `CASCADE`; `timezone` padrão `America/Sao_Paulo` (RN06). Criada pelo trigger de cadastro.                                                                                                                                                                                            |
+| `brands`           | `slug` único; `search_name` mantido por trigger.                                                                                                                                                                                                                                                             |
+| `perfumes`         | `brand_id` `RESTRICT`; `slug` único; `release_year` entre 1700 e ano atual + 1. Oferta opcional: `lowest_price_cents` (centavos, `> 0`), `store_name` e `store_url` (só `http(s)`); as policies de `perfumes` já cobrem as colunas novas. `perfumer` opcional (texto de 1 a 150 caracteres, sem só espaços). |
+| `notes`            | `slug` único; `family` é `olfactive_family`.                                                                                                                                                                                                                                                                 |
+| `perfume_notes`    | PK `(perfume_id, note_id, position)`; FKs `CASCADE`.                                                                                                                                                                                                                                                         |
+| `collection_items` | `UNIQUE(user_id, perfume_id)` (RN02); `perfume_id` `RESTRICT`.                                                                                                                                                                                                                                               |
+| `daily_perfumes`   | `UNIQUE(user_id, date)` (RN06); `perfume_id` `RESTRICT`.                                                                                                                                                                                                                                                     |
+| `perfume_reviews`  | `UNIQUE(user_id, perfume_id)` (RN04); ratings `smallint` entre 1 e 5 (RN05); `comment` com até 1000 caracteres.                                                                                                                                                                                              |
 
 O `CHECK` de `release_year` usa `now()` (não imutável). O Postgres aceita, mas um dump/restore de dados antigos pode precisar revalidá-lo.
 
