@@ -1,5 +1,5 @@
 import { Sparkles } from 'lucide-react';
-import { useId, useState, type FormEvent } from 'react';
+import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import {
   Drawer,
   DrawerContent,
@@ -15,9 +15,18 @@ import { Textarea } from '@/components/ui/textarea';
 import { TypingAnimation } from '@/components/ui/typing-animation';
 import { getErrorMessage } from '@/constants/errors';
 import { useAskNez, useNez } from '@/hooks/useNez';
+import type { NezMessage } from '@/services/aiService';
 import { NEZ_QUESTION_MAX } from '@/lib/nez';
 
 const TYPING_SPEED_MS = 18;
+// O servidor só usa as últimas mensagens; não vale mandar mais que isso
+const HISTORY_SENT = 6;
+
+interface ChatMessage extends NezMessage {
+  id: string;
+}
+
+const SUGGESTIONS = ['Que perfume combina com uma noite fria?', 'O que há de amadeirado por aqui?'];
 
 function NezLoading() {
   return (
@@ -29,18 +38,49 @@ function NezLoading() {
   );
 }
 
-// Drawer lateral do Nez: pergunta (com o perfume em foco como contexto) e resposta digitada.
+// Drawer lateral do Nez: conversa da sessão (perguntas e respostas), com o perfume em foco como
+// contexto. Só a resposta mais recente é digitada; as anteriores aparecem prontas.
 export function NezDrawer() {
   const { open, setOpen, perfumeContext } = useNez();
   const ask = useAskNez();
   const [question, setQuestion] = useState('');
-  const [asked, setAsked] = useState('');
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  // Pergunta que ainda não foi respondida (em andamento ou com erro), para "Tentar novamente"
+  const [pending, setPending] = useState<string | null>(null);
+  const nextId = useRef(0);
+  const scroller = useRef<HTMLDivElement>(null);
   const inputId = useId();
   const trimmed = question.trim();
 
+  const newMessage = (role: NezMessage['role'], text: string): ChatMessage => ({
+    id: `m${nextId.current++}`,
+    role,
+    text,
+  });
+
+  // `pending` só vira mensagem quando a resposta chega: o histórico enviado nunca tem pergunta
+  // sem resposta, e um erro não deixa mensagens órfãs.
   const send = (text: string) => {
-    setAsked(text);
-    ask.mutate({ question: text, context: perfumeContext ?? undefined });
+    setPending(text);
+    ask.mutate(
+      {
+        question: text,
+        context: perfumeContext ?? undefined,
+        history: messages
+          .slice(-HISTORY_SENT)
+          .map(({ role, text: body }) => ({ role, text: body })),
+      },
+      {
+        onSuccess: (answer) => {
+          setMessages((current) => [
+            ...current,
+            newMessage('user', text),
+            newMessage('assistant', answer),
+          ]);
+          setPending(null);
+        },
+      }
+    );
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -49,6 +89,16 @@ export function NezDrawer() {
     send(trimmed);
     setQuestion('');
   };
+
+  // Auto-scroll até o fim quando entra pergunta, carregamento ou resposta. O espaço da resposta
+  // digitada já é reservado, então um scroll por mudança basta.
+  useEffect(() => {
+    const element = scroller.current;
+    if (element) element.scrollTop = element.scrollHeight;
+  }, [messages.length, pending, ask.status, open]);
+
+  const latestAssistantId = messages.findLast((message) => message.role === 'assistant')?.id;
+  const empty = messages.length === 0 && pending === null;
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -66,34 +116,73 @@ export function NezDrawer() {
           </DrawerDescription>
         </DrawerHeader>
 
-        <div className="flex min-h-0 flex-1 flex-col gap-4" aria-live="polite">
-          {ask.status === 'idle' ? (
-            <p className="text-sm text-text-secondary">
-              Experimente: “Que perfume combina com uma noite fria?” ou “O que há de amadeirado por
-              aqui?”
-            </p>
-          ) : (
+        <div
+          ref={scroller}
+          role="log"
+          aria-label="Conversa com o Nez"
+          aria-live="polite"
+          className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto"
+        >
+          {empty && (
+            <div className="flex flex-col gap-2 text-sm text-text-secondary">
+              <p>Experimente perguntar:</p>
+              <ul className="flex flex-col gap-2">
+                {SUGGESTIONS.map((suggestion) => (
+                  <li key={suggestion}>
+                    <button
+                      type="button"
+                      onClick={() => setQuestion(suggestion)}
+                      className="min-h-11 w-full rounded-lg border bg-card px-3 text-left text-foreground outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    >
+                      {suggestion}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {messages.map((message) =>
+            message.role === 'user' ? (
+              <p
+                key={message.id}
+                className="max-w-[85%] self-end rounded-xl bg-accent px-3 py-2 text-sm text-accent-foreground"
+              >
+                {message.text}
+              </p>
+            ) : message.id === latestAssistantId ? (
+              <TypingAnimation
+                key={message.id}
+                as="p"
+                speed={TYPING_SPEED_MS}
+                className="font-heading text-lg leading-relaxed whitespace-pre-line"
+              >
+                {message.text}
+              </TypingAnimation>
+            ) : (
+              <p
+                key={message.id}
+                className="font-heading text-lg leading-relaxed whitespace-pre-line"
+              >
+                {message.text}
+              </p>
+            )
+          )}
+
+          {pending !== null && (
             <>
-              <p className="self-end rounded-xl bg-accent px-3 py-2 text-sm text-accent-foreground">
-                {asked}
+              <p className="max-w-[85%] self-end rounded-xl bg-accent px-3 py-2 text-sm text-accent-foreground">
+                {pending}
               </p>
               <AsyncBoundary
-                status={ask.status === 'pending' ? 'pending' : ask.status}
+                status={ask.status === 'error' ? 'error' : 'pending'}
                 loading={<NezLoading />}
-                onRetry={() => send(asked)}
+                onRetry={() => send(pending)}
                 errorTitle="O Nez não respondeu"
                 errorDescription={getErrorMessage(ask.error)}
                 offlineDescription="Conecte-se à internet para falar com o Nez."
               >
-                {ask.data && (
-                  <TypingAnimation
-                    as="p"
-                    speed={TYPING_SPEED_MS}
-                    className="font-heading text-lg leading-relaxed whitespace-pre-line"
-                  >
-                    {ask.data}
-                  </TypingAnimation>
-                )}
+                {null}
               </AsyncBoundary>
             </>
           )}

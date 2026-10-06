@@ -12,8 +12,11 @@ const MODEL = Deno.env.get('GEMINI_MODEL') ?? 'gemini-3.5-flash-lite';
 const FALLBACK_MODEL = Deno.env.get('GEMINI_FALLBACK_MODEL') ?? 'gemini-3.5-flash';
 const MAX_QUESTION = 500;
 const MAX_CONTEXT = 4000;
-// Teto da resposta: 2 a 3 frases curtas. Com thinking mínimo, os tokens vão para o texto.
-const MAX_OUTPUT_TOKENS = 220;
+// Memória da conversa: só as últimas mensagens, cada uma com tamanho limitado
+const MAX_HISTORY = 6;
+const MAX_HISTORY_TEXT = 1200;
+// Teto da resposta (2 a 4 frases, com folga para não cortar no meio). Com thinking mínimo, os tokens vão para o texto.
+const MAX_OUTPUT_TOKENS = 380;
 // Orçamento total da requisição, abaixo do wall clock do isolate da Edge Function
 const DEADLINE_MS = 20_000;
 // Cada tentativa tem prazo próprio: modelo sobrecarregado demora a falhar, e a reserva precisa de tempo
@@ -21,8 +24,16 @@ const ATTEMPT_MS = 8_000;
 const RETRY_DELAY_MS = 600;
 const TRANSIENT_STATUS = new Set([429, 500, 502, 503, 504]);
 
-const SYSTEM_PROMPT =
-  'Você é Nez, o Mestre Perfumista (Le Nez) virtual da casa Sillage. Você fala português de forma elegante, poética e concisa: no máximo 3 frases curtas, sem listas nem títulos. Você baseia suas recomendações nas notas e famílias olfativas dos perfumes que o usuário enviar no contexto.';
+const SYSTEM_PROMPT = `Você é Nez, o Mestre Perfumista (Le Nez) da casa Sillage: um curador de alta perfumaria, caloroso e preciso, que fala português do Brasil.
+
+Repertório: você domina a pirâmide olfativa (notas de topo, de coração e de fundo), as famílias olfativas (cítrica, floral, amadeirada, verde, aquática, oriental/ambarada, especiada, frutada, aromática, almiscarada) e os acordes clássicos (chypre, fougère, gourmand, ambarado), além de fixação (quanto dura na pele) e projeção (o rastro que deixa).
+
+Como responder:
+- 2 a 4 frases envolventes, em prosa: sem listas, títulos, markdown ou emojis. Poético, mas concreto; evite clichês vazios ("uma viagem sensorial", "cativante").
+- Quando houver um perfume em foco no contexto, cruze a pergunta com as notas específicas dele, citando-as pelo nome, e diga em que camada da pirâmide elas aparecem.
+- Quando não houver contexto, recomende caminhos olfativos (famílias, acordes e notas), sem inventar perfumes ou marcas específicos.
+- Use só o que o contexto informa sobre o perfume em foco. Se não souber algo (preço, lançamento, fixação exata), diga com naturalidade em vez de inventar.
+- Mantenha a coerência com o que já foi dito na conversa e responda apenas sobre perfumaria; para outros assuntos, convide gentilmente a voltar ao universo dos perfumes.`;
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -44,6 +55,29 @@ const readBearer = (req: Request): string | null => {
 
 const asText = (value: unknown, max: number): string | null =>
   typeof value === 'string' && value.trim() !== '' ? value.trim().slice(0, max) : null;
+
+interface Turn {
+  role: 'user' | 'model';
+  parts: { text: string }[];
+}
+
+// Aceita só { role: 'user' | 'assistant', text } válidos; o Gemini chama o assistente de "model"
+const parseHistory = (value: unknown): Turn[] => {
+  if (!Array.isArray(value)) return [];
+  const turns: Turn[] = [];
+  for (const item of value.slice(-MAX_HISTORY)) {
+    const entry = (typeof item === 'object' && item !== null ? item : {}) as Record<
+      string,
+      unknown
+    >;
+    const text = asText(entry.text, MAX_HISTORY_TEXT);
+    if (!text || (entry.role !== 'user' && entry.role !== 'assistant')) continue;
+    turns.push({ role: entry.role === 'user' ? 'user' : 'model', parts: [{ text }] });
+  }
+  // A conversa precisa começar por uma fala do usuário
+  while (turns[0]?.role === 'model') turns.shift();
+  return turns;
+};
 
 Deno.serve(async (req: Request) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS_HEADERS });
@@ -81,6 +115,7 @@ Deno.serve(async (req: Request) => {
   const question = asText(payload.question, MAX_QUESTION);
   if (!question) return json({ error: 'invalid_request' }, 400);
   const context = asText(payload.context, MAX_CONTEXT);
+  const history = parseHistory(payload.history);
 
   const apiKey = Deno.env.get('GEMINI_API_KEY');
   if (!apiKey) {
@@ -92,17 +127,18 @@ Deno.serve(async (req: Request) => {
   // (503 "high demand", 429, 5xx, rede). Tudo dentro de um prazo total para não estourar o isolate.
   const ai = new GoogleGenAI({ apiKey });
   const prompt = context
-    ? `Contexto dos perfumes:\n${context}\n\nPergunta: ${question}`
+    ? `Perfume em foco na tela:\n${context}\n\nPergunta: ${question}`
     : `Pergunta: ${question}`;
+  const contents: Turn[] = [...history, { role: 'user', parts: [{ text: prompt }] }];
   const deadline = AbortSignal.timeout(DEADLINE_MS);
 
   const generate = async (model: string): Promise<string | null> => {
     const response = await ai.models.generateContent({
       model,
-      contents: prompt,
+      contents,
       config: {
         systemInstruction: SYSTEM_PROMPT,
-        temperature: 0.8,
+        temperature: 0.7,
         maxOutputTokens: MAX_OUTPUT_TOKENS,
         // Família 3.x pensa por padrão (e gasta os tokens da resposta); `minimal` mantém só o texto
         thinkingConfig: { thinkingLevel: 'MINIMAL' },

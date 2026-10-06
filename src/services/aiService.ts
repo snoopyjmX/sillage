@@ -10,14 +10,21 @@ const UNAUTHORIZED = 401;
 // Acima do prazo da função (20 s): evita um spinner eterno se o servidor travar
 const REQUEST_TIMEOUT_MS = 30_000;
 
+export interface NezMessage {
+  role: 'user' | 'assistant';
+  text: string;
+}
+
 export interface NezRequest {
   question: string;
   // Texto do perfume em foco (notas e famílias); opcional
   context?: string;
+  // Mensagens anteriores da sessão (o servidor usa só as últimas)
+  history?: NezMessage[];
 }
 
 export const aiService = {
-  askNez: async ({ question, context }: NezRequest): Promise<string> => {
+  askNez: async ({ question, context, history }: NezRequest): Promise<string> => {
     const { data } = await supabase.auth.getSession();
     const token = data.session?.access_token;
     if (!token) throw new AppError('session_expired');
@@ -31,7 +38,7 @@ export const aiService = {
           apikey: anonKey,
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ question, context }),
+        body: JSON.stringify({ question, context, history }),
         signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       });
     } catch (cause) {

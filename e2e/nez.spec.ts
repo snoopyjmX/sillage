@@ -16,7 +16,11 @@ const CORS = {
 
 interface NezCall {
   authorization: string | undefined;
-  body: { question?: string; context?: string };
+  body: {
+    question?: string;
+    context?: string;
+    history?: { role: string; text: string }[];
+  };
 }
 
 // Intercepta o Nez e registra o que o front mandou
@@ -77,6 +81,45 @@ test.describe('Nez, o mestre perfumista', () => {
     expect(call?.body.context).toContain('Amyi 2.15');
     expect(call?.body.context).toContain('Baunilha');
     expect(await axeViolations(page)).toEqual([]);
+  });
+
+  test('conversa em sequência: mantém o histórico, manda as mensagens anteriores e só digita a última', async ({
+    page,
+  }) => {
+    let n = 0;
+    const calls = await mockNez(page, async (route) => {
+      n += 1;
+      await route.fulfill({
+        status: 200,
+        headers: CORS,
+        json: { text: `Resposta número ${n} do Nez.` },
+      });
+    });
+    await registerViaUi(page);
+    await page.goto(URL);
+
+    const drawer = await openNez(page);
+    const input = drawer.getByLabel('Sua pergunta ao Nez');
+    await input.fill('Primeira pergunta');
+    await drawer.getByRole('button', { name: 'Perguntar' }).click();
+    await expect(drawer.getByText('Resposta número 1 do Nez.').first()).toBeVisible();
+
+    await input.fill('Segunda pergunta');
+    await drawer.getByRole('button', { name: 'Perguntar' }).click();
+    await expect(drawer.getByText('Resposta número 2 do Nez.').first()).toBeVisible();
+
+    const log = drawer.getByRole('log', { name: 'Conversa com o Nez' });
+    await expect(log).toContainText('Primeira pergunta');
+    await expect(log).toContainText('Resposta número 1 do Nez.');
+    await expect(log).toContainText('Segunda pergunta');
+    // Só a resposta mais recente usa a digitação; a antiga é texto estático
+    await expect(log.locator('[data-slot="typing-animation"]')).toHaveCount(1);
+
+    expect(calls[0]?.body.history ?? []).toEqual([]);
+    expect(calls[1]?.body.history).toEqual([
+      { role: 'user', text: 'Primeira pergunta' },
+      { role: 'assistant', text: 'Resposta número 1 do Nez.' },
+    ]);
   });
 
   test('com animação ligada a resposta é digitada até o fim', async ({ page }) => {
