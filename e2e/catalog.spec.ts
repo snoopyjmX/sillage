@@ -63,6 +63,27 @@ test.describe('catálogo', () => {
     await expect(cardTitle(page, BOSSA)).toBeVisible();
   });
 
+  test('o filtro de marca lista as 6 marcas do banco e filtra os perfumes reais', async ({
+    page,
+    isMobile,
+  }) => {
+    await page.goto('/catalog');
+    const filters = await openFilters(page, isMobile);
+    const brands = filters.getByRole('group', { name: 'Marca', exact: true });
+    for (const name of ['Al Wataniah', 'Avatim', 'Granado', 'Natura', 'O Boticário', 'Phytoderm']) {
+      await expect(brands.getByRole('button', { name, exact: true })).toBeVisible();
+    }
+    await expect(brands.getByRole('button')).toHaveCount(6);
+
+    await brands.getByRole('button', { name: 'Granado', exact: true }).click();
+    await closeFilters(page, isMobile);
+
+    await expect(cards(page)).toHaveCount(3);
+    await expect(cardTitle(page, BOSSA)).toBeVisible();
+    await expect(cardTitle(page, MALBEC)).toHaveCount(0);
+    await expect(page).toHaveURL(/brands=granado/);
+  });
+
   test('bergamota no coração = estado vazio, com saída pelo "Limpar filtros"', async ({
     page,
     isMobile,

@@ -52,7 +52,14 @@ O banco já aponta cada perfume para `{marca}/{perfume}.webp` no bucket `perfume
 2. Rode `npm run images`: o resultado (800×800, WebP, qualidade 80) sai em `scripts/processed-images/{marca}/{perfume}.webp`.
 3. Envie a pasta `scripts/processed-images/` para o bucket `perfume-images` mantendo a estrutura. Fotos de frascos podem ter direitos autorais: use fotos próprias ou liberadas pela marca.
 
-Nada é baixado automaticamente: o script só processa o que você colocar na pasta.
+Scripts do pipeline (todos locais; o `images:upload` usa a `service_role`, que só pode estar no `.env.local` como `SUPABASE_SERVICE_ROLE_KEY`, nunca com prefixo `VITE_`):
+
+| Comando                   | O que faz                                                                                                                                           |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run images:download` | Tenta baixar uma foto candidata por perfume (DuckDuckGo via Chromium). Hoje o site não devolve imagens a navegador automatizado: use as fotos à mão |
+| `npm run images`          | Processa `raw-images/` em `processed-images/`                                                                                                       |
+| `npm run images:upload`   | Envia `processed-images/` ao bucket `perfume-images` (só aceita Supabase local, a menos que `ALLOW_REMOTE_UPLOAD=1`)                                |
+| `npm run images:all`      | Os três em sequência                                                                                                                                |
 
 ## Documentação
 
