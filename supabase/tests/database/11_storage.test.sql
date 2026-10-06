@@ -58,7 +58,7 @@ select lives_ok($t$insert into storage.objects (bucket_id, name) values ('perfum
 select is(pg_temp.affected($t$update storage.objects set name = 'admin2.png' where name = 'admin.png'$t$), 1::bigint, 'Storage: admin atualiza objeto');
 select set_config('storage.allow_delete_query', 'true', true);
 select pg_temp.act_anon();
-select is((select count(*) from storage.objects where bucket_id = 'perfume-images'), 1::bigint, 'Storage: anon lê perfume-images');
+select is((select count(*) from storage.objects where bucket_id = 'perfume-images' and name = 'admin2.png'), 1::bigint, 'Storage: anon lê perfume-images');
 select throws_ok($t$insert into storage.objects (bucket_id, name) values ('perfume-images', 'anon.png')$t$, '42501', null, 'Storage: anon não insere');
 select is(pg_temp.affected($t$update storage.objects set name = 'hack.png' where bucket_id = 'perfume-images'$t$), 0::bigint, 'Storage: anon não atualiza');
 select is(pg_temp.affected($t$delete from storage.objects where bucket_id = 'perfume-images'$t$), 0::bigint, 'Storage: anon não apaga');
@@ -66,7 +66,7 @@ select set_config('storage.allow_delete_query', 'true', true);
 select pg_temp.act_as('a0000000-0000-4000-8000-00000000000a');
 select is(pg_temp.affected($t$delete from storage.objects where bucket_id = 'perfume-images'$t$), 0::bigint, 'Storage: usuário comum não apaga');
 select pg_temp.act_as('a0000000-0000-4000-8000-00000000000a', '{"role":"admin"}'::jsonb);
-select is(pg_temp.affected($t$delete from storage.objects where bucket_id = 'perfume-images'$t$), 1::bigint, 'Storage: admin apaga objeto');
+select is(pg_temp.affected($t$delete from storage.objects where bucket_id = 'perfume-images' and name = 'admin2.png'$t$), 1::bigint, 'Storage: admin apaga objeto');
 select pg_temp.act_postgres();
 select is((select public from storage.buckets where id = 'perfume-images'), true, 'Storage: bucket perfume-images é público');
 select is((select count(*) from storage.buckets where id = 'avatars'), 0::bigint, 'Storage: não há bucket de avatars no MVP');

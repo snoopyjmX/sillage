@@ -18,6 +18,7 @@ export const toPerfumeSummary = (detail: PerfumeDetail): PerfumeSummary => ({
   gender: detail.gender,
   releaseYear: detail.releaseYear,
   imagePath: null,
+  imageUrl: detail.imageUrl ?? null,
   families: FAMILIES.filter((family) => detail.notes.some((note) => note.family === family)),
 });
 
@@ -38,7 +39,8 @@ export interface PerfumeRow {
 export const PERFUME_ROW_SELECT =
   'perfume:perfumes(*, brand:brands(*), perfume_notes(note:notes(family)))';
 
-export const fromPerfumeRow = (row: PerfumeRow): PerfumeSummary => {
+// A URL pública vem do service (só ele importa o Supabase)
+export const fromPerfumeRow = (row: PerfumeRow, imageUrl?: string | null): PerfumeSummary => {
   const present = new Set(row.perfume_notes.map(({ note }) => note.family));
   return {
     id: row.id,
@@ -50,6 +52,7 @@ export const fromPerfumeRow = (row: PerfumeRow): PerfumeSummary => {
     gender: row.gender,
     releaseYear: row.release_year,
     imagePath: row.image_path,
+    imageUrl: imageUrl ?? null,
     // Na ordem do enum, como a função de busca devolve
     families: FAMILIES.filter((family) => present.has(family)),
   };

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
 import { Chip } from '@/components/ui/chip';
@@ -12,9 +13,10 @@ interface PerfumeCardProps {
   perfume: PerfumeSummary;
 }
 
-// Sem fotos por enquanto (image_path nulo por direitos de imagem): o placeholder usa a primeira
+// Foto real quando há imageUrl; sem ela (ou se falhar ao carregar) o placeholder usa a primeira
 // família da lista (a função devolve na ordem do enum) e nenhum logo.
 export function PerfumeCard({ perfume }: PerfumeCardProps) {
+  const [imageFailed, setImageFailed] = useState(false);
   const mainFamily = perfume.families[0];
   const meta = [GENDER_LABELS[perfume.gender], perfume.releaseYear?.toString()]
     .filter(Boolean)
@@ -29,7 +31,20 @@ export function PerfumeCard({ perfume }: PerfumeCardProps) {
       )}
     >
       <Link to={`/perfumes/${perfume.slug}`} className="flex flex-1 flex-col outline-none">
-        <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/3]" />
+        {perfume.imageUrl && !imageFailed ? (
+          <img
+            src={perfume.imageUrl}
+            alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
+            width={400}
+            height={300}
+            loading="lazy"
+            decoding="async"
+            onError={() => setImageFailed(true)}
+            className="aspect-[4/3] w-full object-cover"
+          />
+        ) : (
+          <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/3]" />
+        )}
         <div className="flex flex-1 flex-col gap-2 p-4">
           <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
             {perfume.brandName}

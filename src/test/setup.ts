@@ -11,6 +11,11 @@ configure({ asyncUtilTimeout: 3000 });
 // O jsdom não implementa <canvas>: o confete vira no-op nos testes
 vi.mock('canvas-confetti', () => ({ default: vi.fn() }));
 
+// O módulo virtual do vite-plugin-pwa não existe fora do Vite: o registro do SW vira no-op
+vi.mock('virtual:pwa-register', () => ({
+  registerSW: vi.fn(() => vi.fn()),
+}));
+
 // O jsdom não tem IntersectionObserver (usado pelo `useInView` do motion): tudo conta como visível
 class VisibleIntersectionObserver {
   private readonly callback: IntersectionObserverCallback;
