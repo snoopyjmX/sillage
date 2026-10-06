@@ -22,3 +22,7 @@ export const formatCivilDate = (date: string): string =>
   new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', timeZone: 'UTC' }).format(
     new Date(`${date}T00:00:00Z`)
   );
+
+// Instante ISO -> "6 de outubro de 2026" (no fuso do navegador)
+export const formatLongDate = (iso: string): string =>
+  new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' }).format(new Date(iso));

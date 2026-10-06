@@ -74,20 +74,8 @@ export interface DailySeed {
   daysAgo: number;
 }
 
-export const seedDaily = (email: string, entries: DailySeed[]): void => {
-  const values = entries
-    .map(
-      ({ slug, daysAgo }) =>
-        `((select id from public.perfumes where slug = '${slug}'), ${Number(daysAgo)})`
-    )
-    .join(', ');
-  const sql = `
-    insert into public.daily_perfumes (user_id, perfume_id, date)
-    select u.id, v.perfume_id, (now() at time zone p.timezone)::date - v.days_ago
-    from auth.users u
-    join public.profiles p on p.id = u.id
-    cross join (values ${values}) as v (perfume_id, days_ago)
-    where u.email = '${email.replaceAll("'", "''")}'`;
+// Executa SQL como dono do banco (container do `db:start`), para preparar ou limpar dados de teste
+export const runSql = (sql: string): void => {
   execFileSync(
     'docker',
     [
@@ -105,3 +93,26 @@ export const seedDaily = (email: string, entries: DailySeed[]): void => {
     { input: sql }
   );
 };
+
+export const seedDaily = (email: string, entries: DailySeed[]): void => {
+  const values = entries
+    .map(
+      ({ slug, daysAgo }) =>
+        `((select id from public.perfumes where slug = '${slug}'), ${Number(daysAgo)})`
+    )
+    .join(', ');
+  runSql(`
+    insert into public.daily_perfumes (user_id, perfume_id, date)
+    select u.id, v.perfume_id, (now() at time zone p.timezone)::date - v.days_ago
+    from auth.users u
+    join public.profiles p on p.id = u.id
+    cross join (values ${values}) as v (perfume_id, days_ago)
+    where u.email = '${email.replaceAll("'", "''")}'`);
+};
+
+// Apaga as avaliações de um perfume (isolamento entre execuções: os testes de avaliação usam um
+// perfume por projeto do Playwright e comparam médias e contagens exatas)
+export const clearReviews = (perfumeSlug: string): void =>
+  runSql(
+    `delete from public.perfume_reviews where perfume_id = (select id from public.perfumes where slug = '${perfumeSlug}')`
+  );

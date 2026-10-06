@@ -11,6 +11,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 | `20261005120200_rls_policies.sql`       | RLS nas 8 tabelas, policies, `revoke`/`grant` e a view `perfume_review_stats`           |
 | `20261005120300_storage.sql`            | Bucket `perfume-images` e suas policies                                                 |
 | `20261005120400_search_perfumes.sql`    | Função `search_perfumes` (busca, filtros, ordenação e paginação do catálogo)            |
+| `20261006120000_public_reviews.sql`     | Policy `reviews: owner delete` e a view `perfume_reviews_public` (Fase 9)               |
 
 ## Extensões e enums
 
@@ -56,7 +57,7 @@ FKs: `perfumes(brand_id)`, `perfume_notes(note_id, position)`, `collection_items
 | `profiles`                                     | dono                    | nenhuma (só o trigger)           | dono         | nenhuma (só cascade)          |
 | `collection_items`                             | dono                    | dono                             | dono         | dono                          |
 | `daily_perfumes`                               | dono                    | nenhuma (só `set_daily_perfume`) | nenhuma      | nenhuma (só cascade da conta) |
-| `perfume_reviews`                              | dono                    | dono e RN03                      | dono         | nenhuma (só cascade da conta) |
+| `perfume_reviews`                              | dono                    | dono e RN03                      | dono         | dono                          |
 
 - **RN03:** a policy `reviews: insert if authorized` exige `owned` agora ou histórico em `daily_perfumes`.
 - **UPDATE de avaliação:** a policy só confere o dono, então a migration restringe o privilégio de UPDATE às colunas `longevity_rating`, `projection_rating` e `comment`. Assim `perfume_id` e `user_id` não mudam depois de criados (sem isso, o dono driblaria a RN03). Consequência para o front: o `reviewService` faz `update` por `id` ou `insert`, nunca um `upsert` que reescreva `perfume_id`.
@@ -65,6 +66,10 @@ FKs: `perfumes(brand_id)`, `perfume_notes(note_id, position)`, `collection_items
 ## View `perfume_review_stats` (RN08)
 
 `perfume_id, review_count, avg_longevity, avg_projection`, com `security_invoker = false` para ignorar a RLS de `perfume_reviews`. Expõe só agregados, nunca `user_id` nem `comment`. `anon` e `authenticated` têm `SELECT`.
+
+## View `perfume_reviews_public` (Fase 9)
+
+`id, perfume_id, longevity_rating, projection_rating, comment, created_at, updated_at, author_name`, com `security_invoker = false`. Junta `perfume_reviews` e `profiles` e expõe só o nome de exibição do autor: nunca `user_id`, e-mail, fuso ou avatar. `anon` e `authenticated` têm `SELECT`; a view não aceita escrita. A tabela segue com RLS de dono.
 
 ## Storage
 

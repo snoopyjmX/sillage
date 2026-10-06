@@ -12,7 +12,9 @@ export type ErrorCode =
   | 'rate_limited'
   | 'session_expired'
   | 'collection_failed'
-  | 'daily_failed';
+  | 'daily_failed'
+  | 'review_failed'
+  | 'review_forbidden';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -29,6 +31,9 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   session_expired: 'O link expirou ou já foi usado. Peça um novo e-mail de recuperação.',
   collection_failed: 'Não foi possível atualizar sua coleção. Tente novamente em instantes.',
   daily_failed: 'Não foi possível carregar o Perfume do Dia. Tente novamente em instantes.',
+  review_failed: 'Não foi possível salvar sua avaliação. Tente novamente em instantes.',
+  review_forbidden:
+    'Para avaliar, coloque o perfume em “Tenho” ou escolha-o como Perfume do Dia primeiro.',
 };
 
 export class AppError extends Error {
