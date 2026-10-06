@@ -1,5 +1,5 @@
 // PWA e modo offline (docs/PRODUCT.md, Seção 11), contra o build de produção com Service Worker.
-// Dados reais do seed: Malbec Signature, Bossa e Boníssimo.
+// Dados reais do seed: 20 perfumes de 6 marcas (catálogo real, Fase 12).
 import { expect, test, type Page } from '@playwright/test';
 import { cards, registerViaUi } from './helpers.ts';
 
