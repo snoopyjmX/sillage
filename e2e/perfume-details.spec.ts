@@ -1,7 +1,8 @@
 // Dados reais do seed (supabase/seed.sql): Malbec Signature tem pirâmide completa
 // (topo: bergamota e acorde vínico; coração: lavanda e cardamomo; fundo: musgo de carvalho,
 // patchouli, âmbar e vetiver). O seed não traz foto, então o hero usa o placeholder.
-import { expect, test, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
 import { axeViolations, cards } from './helpers.ts';
 
 const URL = '/perfumes/malbec-signature';

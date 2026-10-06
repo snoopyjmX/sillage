@@ -26,4 +26,20 @@ export const queryKeys = {
   daily: {
     overview: (userId: string) => ['private', userId, 'daily'] as const,
   },
+  profile: {
+    timezone: (userId: string) => ['private', userId, 'profile', 'timezone'] as const,
+  },
+  // Clima e localização: sempre privados (nunca persistidos). Coordenadas já arredondadas.
+  weather: {
+    city: (userId: string, timezone: string) =>
+      ['private', userId, 'weather', 'city', timezone] as const,
+    current: (userId: string, latitude: number, longitude: number) =>
+      ['private', userId, 'weather', 'current', latitude, longitude] as const,
+  },
+  // Home: catálogo público (persistível)
+  home: {
+    suggestion: (date: string, families: string[]) =>
+      ['public', 'home', 'suggestion', date, families.join(',')] as const,
+    recent: (limit: number) => ['public', 'home', 'recent', limit] as const,
+  },
 } as const;

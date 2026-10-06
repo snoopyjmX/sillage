@@ -96,6 +96,9 @@ const getPublicReviews = async (perfumeId: string): Promise<PublicReview[]> => {
 };
 
 export const reviewService = {
+  // Só a média e a contagem públicas (RN08)
+  getSummary,
+
   // Resumo (média e contagem) e as avaliações mais recentes, visíveis a qualquer pessoa
   getPerfumeReviews: async (perfumeId: string): Promise<ReviewsOverview> => {
     const [summary, reviews] = await Promise.all([

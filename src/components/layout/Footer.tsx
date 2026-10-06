@@ -3,6 +3,7 @@
 // lento; some em reduced motion. Usado no AppShell e na Landing.
 import { motion, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { OPEN_METEO_ATTRIBUTION } from '@/constants/weather';
 import { useAuth } from '@/hooks/useAuth';
 import { durations, easings } from '@/lib/motion';
 import { cn } from '@/lib/utils';
@@ -136,8 +137,17 @@ export function Footer({ className }: FooterProps) {
           </ul>
         </div>
       </div>
-      {/* Reservado: atribuição do Open-Meteo (entra na 14D), em linha própria abaixo das colunas */}
-      <div className="relative mx-auto flex w-full max-w-6xl flex-wrap gap-x-4 px-4 pb-4 text-xs text-text-muted" />
+      {/* Atribuição exigida pela licença CC BY 4.0 do Open-Meteo, em linha própria */}
+      <div className="relative mx-auto flex w-full max-w-6xl flex-wrap gap-x-4 px-4 pb-4 text-xs text-text-muted">
+        <a
+          href={OPEN_METEO_ATTRIBUTION.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-sm underline underline-offset-4 outline-none hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        >
+          {OPEN_METEO_ATTRIBUTION.text}
+        </a>
+      </div>
     </footer>
   );
 }

@@ -1,6 +1,6 @@
 // Dados reais do seed (supabase/seed.sql): 20 perfumes de 6 marcas (Granado, Natura, O Boticário,
 // Avatim, Al Wataniah e Phytoderm). Bergamota só aparece no topo, em 6 perfumes, e nunca no coração.
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
 import { cardTitle, cards, closeFilters, openFilters, openNav, pickNote } from './helpers.ts';
 
 const MALBEC = 'Malbec Signature';

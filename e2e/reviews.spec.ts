@@ -1,4 +1,5 @@
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
+import { expect, stubOpenMeteo, test } from './fixtures.ts';
 import { axeViolations, clearReviews, registerViaUi } from './helpers.ts';
 
 const THEME_KEY = 'sillage-theme';
@@ -220,10 +221,12 @@ test.describe('avaliações', () => {
     };
 
     const visitorContext = await browser.newContext({ baseURL });
+    await stubOpenMeteo(visitorContext);
     await checkAs(await visitorContext.newPage());
     await visitorContext.close();
 
     const otherContext = await browser.newContext({ baseURL });
+    await stubOpenMeteo(otherContext);
     const other = await otherContext.newPage();
     await registerViaUi(other);
     await checkAs(other);

@@ -40,6 +40,15 @@ Bucket `perfume-images`: leitura pública, escrita só admin. Sem bucket de avat
 - `.env` fica fora do Git; `.env.example` não tem valores.
 - Produção: confirmação de e-mail ligada (no local ela fica desligada para testes), redirect URLs restritas e tamanho mínimo de senha definido.
 
+## Clima e localização (Fase 14D)
+
+- **Terceiro:** o navegador chama o Open-Meteo (previsão e geocoding) direto, sem chave e sem cookies (`credentials: 'omit'`, `referrerPolicy: 'no-referrer'`). O Open-Meteo vê o IP do usuário e a cidade ou as coordenadas consultadas; nada disso passa pelo nosso backend. Sem migration e sem mudança de policy: a RLS segue igual (`supabase test db` verde).
+- **Cidade:** vem de `profiles.timezone` (já privado, RN01). Só o nome da cidade vai ao geocoding.
+- **Geolocalização do aparelho:** só por clique em "Usar minha localização" ou, se a Permissions API já disser `granted`, direto. Nunca é pedida ao abrir a página.
+- **Coordenadas nunca persistem:** arredondadas a 2 casas (~1 km), vivem só em estado de memória do hook `useGeolocation` e na chave `['private', userId, 'weather', 'current', lat, lon]`, que **nunca** é persistida (`shouldPersistQuery` só aceita `['public', ...]`). Não vão para `localStorage`, `sessionStorage`, IndexedDB, banco, nem para chave persistida, e não são enviadas ao nosso backend. O E2E confere o storage.
+- **Respostas validadas** com Zod; falha de formato vira `weather_failed`. Mensagens ao usuário só por `constants/errors.ts`.
+- **Limitação:** o Open-Meteo não tem SLA e a API gratuita é não comercial; a barra de clima degrada para "Clima indisponível" e a sugestão do dia segue funcionando sem clima.
+
 ## Modelo de ameaça
 
 | Ameaça                                                   | Mitigação                                                                    |
@@ -52,6 +61,7 @@ Bucket `perfume-images`: leitura pública, escrita só admin. Sem bucket de avat
 | Busca abusiva ou injeção via ordenação                   | `p_limit` 1 a 100, `p_offset >= 0`, `p_sort` em lista fixa, sem SQL dinâmico |
 | Trocar `perfume_id` de uma avaliação para driblar a RN03 | `UPDATE` restrito por coluna (`perfume_id` e `user_id` imutáveis)            |
 | XSS em comentário                                        | React escapa; sem `dangerouslySetInnerHTML`; limite de 1000 caracteres       |
+| Vazar localização do usuário                             | Só por clique, arredondada, só em memória; chave privada nunca persistida    |
 | Chave privada vazada                                     | Secret scanning, `service_role` fora do app, rotação se houver suspeita      |
 
 ## Limitações conhecidas

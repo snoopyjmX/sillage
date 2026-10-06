@@ -1,4 +1,5 @@
-import { expect, test, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { expect, stubOpenMeteo, test } from './fixtures.ts';
 import { axeViolations, registerViaUi, seedDaily } from './helpers.ts';
 
 const THEME_KEY = 'sillage-theme';
@@ -77,12 +78,14 @@ test.describe('home', () => {
     await registerWithHistory(page);
 
     const otherContext = await browser.newContext({ baseURL: page.url().replace(/\/$/, '') });
+    await stubOpenMeteo(otherContext);
     const other = await otherContext.newPage();
     await registerViaUi(other);
     await expect(
       other.getByRole('heading', { name: 'Você ainda não escolheu um Perfume do Dia' })
     ).toBeVisible();
-    await expect(other.getByText('Bossa')).toHaveCount(0);
+    // A Home também lista o catálogo (Novidades): o que não pode aparecer é o Memorial do outro
+    await expect(other.getByRole('list', { name: 'Perfumes dos dias anteriores' })).toHaveCount(0);
     await otherContext.close();
   });
 });

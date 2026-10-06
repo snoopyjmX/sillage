@@ -40,4 +40,12 @@ describe('Footer', () => {
     expect(screen.getByText(/^Versão /)).toBeInTheDocument();
     expect(container.querySelector('[aria-hidden="true"]')).not.toBeNull();
   });
+
+  it('credita o Open-Meteo com o texto exato da licença e link', () => {
+    renderFooter('unauthenticated');
+    expect(screen.getByRole('link', { name: 'Weather data by Open-Meteo.com' })).toHaveAttribute(
+      'href',
+      'https://open-meteo.com/'
+    );
+  });
 });

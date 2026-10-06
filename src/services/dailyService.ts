@@ -34,11 +34,20 @@ const toEntry = ({ date, perfume }: DailyRow): DailyEntry => ({
 });
 
 export const dailyService = {
-  // Data de hoje no fuso do perfil (a RLS limita a leitura ao próprio perfil)
-  getTodayDate: async (): Promise<string> => {
+  // Fuso IANA do perfil (a RLS limita a leitura ao próprio perfil)
+  getTimezone: async (): Promise<string> => {
     const { data, error } = await supabase.from('profiles').select('timezone').maybeSingle();
     if (error) throw toDailyError(error);
-    return todayInTimezone(data?.timezone ?? DEFAULT_TIMEZONE);
+    return data?.timezone ?? DEFAULT_TIMEZONE;
+  },
+
+  // Data de hoje no fuso do perfil
+  getTodayDate: async (): Promise<string> => todayInTimezone(await dailyService.getTimezone()),
+
+  // Escolhe o Perfume do Dia de hoje (função set_daily_perfume: a data é calculada no banco)
+  setToday: async (perfumeId: string): Promise<void> => {
+    const { error } = await supabase.rpc('set_daily_perfume', { p_perfume_id: perfumeId });
+    if (error) throw toDailyError(error);
   },
 
   getToday: async (date: string): Promise<DailyEntry | null> => {

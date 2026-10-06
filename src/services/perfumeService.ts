@@ -10,7 +10,10 @@ const orUndefined = <T>(list: T[]): T[] | undefined => (list.length > 0 ? list :
 export const SIMILAR_LIMIT = 6;
 
 export const perfumeService = {
-  search: async (filters: CatalogFilters): Promise<PerfumeSearchResult> => {
+  search: async (
+    filters: CatalogFilters,
+    limit: number = PAGE_SIZE
+  ): Promise<PerfumeSearchResult> => {
     const { data, error } = await supabase.rpc('search_perfumes', {
       p_query: filters.q === '' ? undefined : filters.q,
       p_brand_slugs: orUndefined(filters.brands),
@@ -22,8 +25,8 @@ export const perfumeService = {
       p_year_min: filters.yearMin ?? undefined,
       p_year_max: filters.yearMax ?? undefined,
       p_sort: filters.sort,
-      p_limit: PAGE_SIZE,
-      p_offset: (filters.page - 1) * PAGE_SIZE,
+      p_limit: limit,
+      p_offset: (filters.page - 1) * limit,
     });
     if (error) throw toAppError(error);
 

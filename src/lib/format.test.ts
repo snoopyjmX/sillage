@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { formatCount, formatDecimal, formatInteger, formatPriceCents } from './format';
+import {
+  formatCount,
+  formatDecimal,
+  formatInteger,
+  formatMonthYear,
+  formatPriceCents,
+} from './format';
 
 describe('formatDecimal', () => {
   it('usa vírgula como separador decimal', () => {
@@ -27,5 +33,12 @@ describe('formatPriceCents', () => {
     expect(formatPriceCents(24900).replace(/\s/g, ' ')).toBe('R$ 249,00');
     expect(formatPriceCents(8905).replace(/\s/g, ' ')).toBe('R$ 89,05');
     expect(formatPriceCents(123456).replace(/\s/g, ' ')).toBe('R$ 1.234,56');
+  });
+});
+
+describe('formatMonthYear', () => {
+  it('mostra mês e ano por extenso, sem depender do fuso do navegador', () => {
+    expect(formatMonthYear('2026-10-06')).toBe('outubro de 2026');
+    expect(formatMonthYear('2026-01-01')).toBe('janeiro de 2026');
   });
 });

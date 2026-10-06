@@ -74,9 +74,13 @@ Scripts do pipeline (todos locais; o `images:upload` usa a `service_role`, que s
 | `npm run images:upload`   | Envia `processed-images/` ao bucket `perfume-images` (só aceita Supabase local, a menos que `ALLOW_REMOTE_UPLOAD=1`)                                |
 | `npm run images:all`      | Os três em sequência                                                                                                                                |
 
+## Créditos
+
+- **Clima:** [Weather data by Open-Meteo.com](https://open-meteo.com/) (dados sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)). A API gratuita do Open-Meteo é para uso não comercial; este projeto a usa sem chave, direto do navegador, e mostra a atribuição no rodapé do app.
+
 ## Documentação
 
-Para diretrizes completas de produto, regras de negócio (RN01–RN08), arquitetura e cronograma, consulte a especificação em [docs/PRODUCT.md](docs/PRODUCT.md).
+Para diretrizes completas de produto, regras de negócio (RN01–RN10), arquitetura e cronograma, consulte a especificação em [docs/PRODUCT.md](docs/PRODUCT.md).
 
 ## Status
 

@@ -15,7 +15,11 @@ export type ErrorCode =
   | 'daily_failed'
   | 'review_failed'
   | 'review_forbidden'
-  | 'nez_failed';
+  | 'nez_failed'
+  | 'weather_failed'
+  | 'weather_timeout'
+  | 'weather_rate_limited'
+  | 'location_denied';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -36,6 +40,10 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   review_forbidden:
     'Para avaliar, coloque o perfume em “Tenho” ou escolha-o como Perfume do Dia primeiro.',
   nez_failed: 'O Nez não conseguiu responder agora. Tente novamente em instantes.',
+  weather_failed: 'Clima indisponível no momento. Tente novamente em instantes.',
+  weather_timeout: 'O serviço de clima demorou a responder. Tente novamente em instantes.',
+  weather_rate_limited: 'O serviço de clima recebeu pedidos demais. Tente de novo mais tarde.',
+  location_denied: 'Não foi possível usar a sua localização. Verifique a permissão do navegador.',
 };
 
 export class AppError extends Error {

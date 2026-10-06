@@ -31,3 +31,9 @@ const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' 
 
 // Centavos inteiros -> "R$ 249,00" (o espaço é o não separável do Intl: 24900 -> "R$ 249,00")
 export const formatPriceCents = (cents: number): string => brl.format(cents / 100);
+
+// Data civil AAAA-MM-DD -> "outubro de 2026" (selo da edição diária)
+export const formatMonthYear = (date: string): string =>
+  new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
+    new Date(`${date}T00:00:00Z`)
+  );

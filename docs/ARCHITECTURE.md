@@ -98,3 +98,12 @@
 
 - `useOnlineStatus` (já existente) alimenta o `OfflineBanner` (AppShell), o `OfflineHint` (tooltip nos botões de escrita: Coleção e Avaliar) e o estado `aria-disabled` do `NezFab`. Não há fila de escrita.
 - Instalação: `InstallAppButton` (Navbar e menu do celular). O evento `beforeinstallprompt` é capturado em `lib/pwa.ts` (pode disparar antes do React montar); no iOS, uma folha explica "Compartilhar → Adicionar à Tela de Início".
+
+## Decisões da Fase 14D (Home: clima, sugestão e descobertas)
+
+- **Sem dependência nova e sem migration.** Fetch nativo com `AbortController` (8 s) e Zod, que já estavam no projeto.
+- **Camadas:** `weatherService` (Open-Meteo, único arquivo que o chama) e `homeService` (sugestão e novidades) → hooks (`useWeather`, `useGeolocation`, `useProfileTimezone`, `useDailySuggestion`, `useRecentPerfumes`, `useWearToday`) → componentes só de apresentação (`WeatherBar`, `DailySuggestionCard`, `HomeHeader`, `RecentPerfumes`, `SimilarToToday`, `FamilyExplorer`) → `HomePage`.
+- **Regras puras** em `src/lib` (`climate.ts`, `location.ts`, `images.ts`, `groupNotesByPosition` em `perfume.ts`) com teste unitário; números em `src/constants/climate.ts` e `src/constants/weather.ts`. As regras são a RN10 em `docs/PRODUCT.md`.
+- **Query keys:** `['private', userId, 'weather', 'city' | 'current', ...]` e `['private', userId, 'profile', 'timezone']` (nunca persistidas); `['public', 'home', 'suggestion' | 'recent', ...]` (catálogo, persistível). A data da sugestão e as famílias entram na chave; o fuso do usuário não.
+- **`perfumeService.search` ganhou o parâmetro `limit`** (padrão `PAGE_SIZE`; o teto da RPC é 100) para os 100 candidatos da sugestão. `dailyService` ganhou `getTimezone` e `setToday` (`set_daily_perfume`); `reviewService` expõe `getSummary`.
+- **E2E:** `e2e/fixtures.ts` substitui o `test` do Playwright e dá a todo contexto respostas padrão do Open-Meteo; nenhum teste usa rede real.

@@ -1,4 +1,5 @@
-import { expect, test, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
 
 const ogTitle = (page: Page) => page.locator('meta[property="og:title"]');
 

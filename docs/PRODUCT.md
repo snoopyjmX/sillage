@@ -54,25 +54,42 @@ O MVP entrega seis blocos: catálogo, detalhes, autenticação, coleção, Perfu
 
 **Perfume do Dia.** Um por data, no fuso do usuário, com histórico completo consultável. Escolher de novo no mesmo dia substitui o anterior.
 
+**Home (Fase 14D).** Barra de clima (cidade, temperatura, descrição, frase da faixa, umidade e as famílias em destaque), selo "Edição diária", a **sugestão do dia** (RN10) com imagem, notas por posição e medidores de Fixação, Rastro e Clima adequado, as ações "Vestir hoje" (grava o Perfume do Dia) e "Ver detalhes", "Seu Perfume de hoje", "Memorial" (histórico) e as descobertas: "Novidades no catálogo", "Parecidos com o seu perfume de hoje" e "Explore por família". O clima vem do Open-Meteo, sem backend nosso (seção 11); visitante vê o convite e as descobertas públicas.
+
 **Avaliações.** Fixação e projeção de 1 a 5, comentário opcional, uma por usuário e perfume. Tudo é público: média, contagem, notas, comentário e nome de exibição do autor. O dono edita e apaga a própria.
 
 **Fora do MVP:** painel admin, perfis públicos, compartilhamento, notificações, importação de dados, recomendação.
 
 ## 3. Regras de negócio
 
-São oito regras; cada uma tem um mecanismo de garantia no banco, e o frontend apenas reflete o resultado.
+São dez regras (RN01 a RN10). As nove primeiras têm um mecanismo de garantia no banco, e o frontend apenas reflete o resultado. A RN10 é editorial e vive no frontend, em regras puras testadas (`src/lib/climate.ts`).
 
-| Regra                     | Enunciado                                                                                                                                                                                               | Garantia                                                                                 |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| RN01 Privacidade          | Perfil, coleção e Perfume do Dia só são visíveis e editáveis pelo próprio dono. Avaliações são editáveis só pelo dono, mas legíveis por todos (RN08).                                                   | RLS com `user_id = auth.uid()`                                                           |
-| RN02 Coleção única        | Um perfume tem um único estado (`owned` ou `wanted`) por usuário; trocar de estado atualiza a mesma linha.                                                                                              | `UNIQUE(user_id, perfume_id)` + `upsert`                                                 |
-| RN03 Avaliação autorizada | Só avalia quem tem o perfume em `owned` agora ou já o usou como Perfume do Dia.                                                                                                                         | Policy de `INSERT` com `EXISTS`                                                          |
-| RN04 Avaliação única      | Uma avaliação por usuário e perfume; reenviar atualiza.                                                                                                                                                 | `UNIQUE(user_id, perfume_id)` + `upsert`                                                 |
-| RN05 Ratings 1 a 5        | Fixação e projeção só aceitam inteiros de 1 a 5.                                                                                                                                                        | `CHECK` no banco + Zod no front                                                          |
-| RN06 Um por data          | Um Perfume do Dia por usuário e por data, calculada no fuso do usuário.                                                                                                                                 | `UNIQUE(user_id, date)` + função `set_daily_perfume`                                     |
-| RN07 Catálogo             | Leitura pública; escrita só para administradores.                                                                                                                                                       | Policies com `is_admin()`                                                                |
-| RN08 Agregados públicos   | Avaliações são públicas, como numa rede social: notas, comentário e nome de exibição do autor. Nunca saem `user_id`, e-mail, fuso ou qualquer outro dado do perfil; ninguém edita a avaliação de outro. | Views `perfume_review_stats` (agregados) e `perfume_reviews_public` (lista)              |
-| RN09 Similaridade e Nez   | Perfumes parecidos são os que dividem mais notas com o alvo (nunca ele mesmo). O Nez (IA) só responde a usuário logado; a chave do Gemini fica só no servidor.                                          | Função `get_similar_perfumes` + Edge Function `nez-ai` (JWT validado com `auth.getUser`) |
+| Regra                     | Enunciado                                                                                                                                                                                                             | Garantia                                                                                 |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| RN01 Privacidade          | Perfil, coleção e Perfume do Dia só são visíveis e editáveis pelo próprio dono. Avaliações são editáveis só pelo dono, mas legíveis por todos (RN08).                                                                 | RLS com `user_id = auth.uid()`                                                           |
+| RN02 Coleção única        | Um perfume tem um único estado (`owned` ou `wanted`) por usuário; trocar de estado atualiza a mesma linha.                                                                                                            | `UNIQUE(user_id, perfume_id)` + `upsert`                                                 |
+| RN03 Avaliação autorizada | Só avalia quem tem o perfume em `owned` agora ou já o usou como Perfume do Dia.                                                                                                                                       | Policy de `INSERT` com `EXISTS`                                                          |
+| RN04 Avaliação única      | Uma avaliação por usuário e perfume; reenviar atualiza.                                                                                                                                                               | `UNIQUE(user_id, perfume_id)` + `upsert`                                                 |
+| RN05 Ratings 1 a 5        | Fixação e projeção só aceitam inteiros de 1 a 5.                                                                                                                                                                      | `CHECK` no banco + Zod no front                                                          |
+| RN06 Um por data          | Um Perfume do Dia por usuário e por data, calculada no fuso do usuário.                                                                                                                                               | `UNIQUE(user_id, date)` + função `set_daily_perfume`                                     |
+| RN07 Catálogo             | Leitura pública; escrita só para administradores.                                                                                                                                                                     | Policies com `is_admin()`                                                                |
+| RN08 Agregados públicos   | Avaliações são públicas, como numa rede social: notas, comentário e nome de exibição do autor. Nunca saem `user_id`, e-mail, fuso ou qualquer outro dado do perfil; ninguém edita a avaliação de outro.               | Views `perfume_review_stats` (agregados) e `perfume_reviews_public` (lista)              |
+| RN09 Similaridade e Nez   | Perfumes parecidos são os que dividem mais notas com o alvo (nunca ele mesmo). O Nez (IA) só responde a usuário logado; a chave do Gemini fica só no servidor.                                                        | Função `get_similar_perfumes` + Edge Function `nez-ai` (JWT validado com `auth.getUser`) |
+| RN10 Clima e sugestão     | A sugestão do dia combina o clima de hoje com a curadoria da casa (tabela abaixo). A escolha é estável: a mesma data dá o mesmo perfume para todos. Sem clima, sorteia no catálogo todo e avisa "Clima indisponível". | Funções puras em `src/lib/climate.ts` + constantes em `src/constants/climate.ts`         |
+
+**RN10: heurísticas editoriais (Fase 14D).** São escolhas da curadoria, não dados de perfumaria. Qualquer número daqui vive em `src/constants/climate.ts`; mudou lá, mude aqui.
+
+| Item                                        | Regra                                                                                                                                                                                |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Faixa ideal por família (°C)                | citrus 22–35, aquatic 22–35, fruity 20–32, green 18–30, aromatic 15–28, floral 15–28, musky 10–25, woody 5–22, spicy 5–20, oriental 0–18                                             |
+| Faixa de um perfume                         | As famílias vêm das notas (não há coluna). Média ponderada, pelo nº de notas de cada família, dos mínimos e dos máximos, arredondada. Sem notas, não há faixa                        |
+| Faixas de temperatura                       | Frio: abaixo de 15 °C ("Projeção ideal para dias frios"). Ameno: de 15 a menos de 25 °C ("... dias amenos"). Quente: 25 °C ou mais ("... dias quentes")                              |
+| Famílias em destaque ("Sillage ótima")      | As famílias cuja faixa contém a temperatura, das mais centradas às menos (empate pela ordem do enum), até 3. Se nenhuma contiver, as 2 mais próximas                                 |
+| Clima adequado (medidor)                    | 100% se a temperatura está na faixa do perfume; perde 10 pontos por °C fora dela, no mínimo 0%                                                                                       |
+| Rótulo do Rastro (média de projeção, 1 a 5) | Menor que 2,5: Íntimo. De 2,5 a menos de 3,5: Moderado. 3,5 ou mais: Forte. Sem avaliações: "Sem avaliações"                                                                         |
+| Escolha estável do dia                      | Candidatos: `search_perfumes` com as famílias em destaque, ordenado por nome, limite 100. Índice: FNV-1a de 32 bits da data AAAA-MM-DD (fuso do usuário) módulo o nº de candidatos   |
+| Sem clima                                   | Mesmo sorteio sobre o catálogo todo (sem filtro de família), com a nota "Clima indisponível" no medidor                                                                              |
+| Localização                                 | Cidade = último trecho do identificador IANA de `profiles.timezone`, buscada no geocoding; vale o resultado cujo `timezone` é igual ao do perfil. Não resolveu: "Clima indisponível" |
 
 **Decisões que a v1.0 deixava em aberto**
 
@@ -395,18 +412,18 @@ supabase/
 
 **Rotas**
 
-| Rota                  | Acesso             | Função                                                           |
-| --------------------- | ------------------ | ---------------------------------------------------------------- |
-| `/`                   | pública            | Home: Perfume do Dia e histórico (logado) ou convite (visitante) |
-| `/catalog`            | pública            | Busca, filtros e resultados; estado na query string              |
-| `/perfumes/:slug`     | pública            | Detalhes; ações de coleção e avaliação exigem login              |
-| `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=`                                |
-| `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                                     |
-| `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                 |
-| `/collection`         | privada            | Coleção com abas Tenho e Quero                                   |
-| `/daily`              | privada            | Perfume do Dia de hoje e histórico                               |
-| `/profile`            | privada            | Nome de exibição, fuso, excluir conta                            |
-| `*`                   | pública            | 404                                                              |
+| Rota                  | Acesso             | Função                                                                                                      |
+| --------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `/`                   | pública            | Home: clima, sugestão, Perfume do Dia, Memorial e descobertas (logado) ou convite e descobertas (visitante) |
+| `/catalog`            | pública            | Busca, filtros e resultados; estado na query string                                                         |
+| `/perfumes/:slug`     | pública            | Detalhes; ações de coleção e avaliação exigem login                                                         |
+| `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=`                                                                           |
+| `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                                                                                |
+| `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                                                            |
+| `/collection`         | privada            | Coleção com abas Tenho e Quero                                                                              |
+| `/daily`              | privada            | Perfume do Dia de hoje e histórico                                                                          |
+| `/profile`            | privada            | Nome de exibição, fuso, excluir conta                                                                       |
+| `*`                   | pública            | 404                                                                                                         |
 
 **Fluxo de autenticação**
 
@@ -647,6 +664,14 @@ Com `prompt`, uma atualização do app aparece como toast "Nova versão disponí
 - Queries \['private', userId, ...\] não são persistidas. No SIGNED_OUT: removeQueries({ queryKey: \['private'\] }); o cache persistido público permanece para que o catálogo continue disponível offline. Não há dados privados persistidos para limpar.
 
 - Offline, o app mostra um banner, serve o que está em cache e **desabilita as mutations** com explicação (adicionar à coleção, definir Perfume do Dia, avaliar). Não há fila de escrita no MVP. Ao voltar a conexão, o TanStack Query refaz as consultas ativas.
+
+**Clima (Open-Meteo, Fase 14D).** O navegador chama direto `api.open-meteo.com` (previsão: `current=temperature_2m,relative_humidity_2m,weather_code`) e `geocoding-api.open-meteo.com` (cidade), sem chave e sem backend nosso. A API gratuita é só para **uso não comercial** (limites: 600/min, 5.000/h, 10.000/dia, 300.000/mês, sem garantia de uptime); a licença dos dados é CC BY 4.0 e exige a atribuição "Weather data by Open-Meteo.com", com link para https://open-meteo.com/, no rodapé. Se o Sillage ganhar anúncios ou assinatura, é preciso migrar para um plano comercial.
+
+- **Cache:** chaves `['private', userId, 'weather', ...]`, nunca persistidas. `staleTime` de 30 min para a previsão (poupa o limite) e de 24 h para a cidade. O Service Worker não intercepta o Open-Meteo.
+- **Estados da barra de clima:** carregando (skeleton), pronto, erro com "Tentar novamente", "Clima indisponível" (fuso sem cidade ou sem resultado no geocoding) e offline.
+- **Mensagens:** timeout (8 s), 429, 4xx/5xx e resposta fora do formato viram códigos estáveis em `constants/errors.ts`; texto cru do serviço nunca aparece.
+- **Localização do aparelho:** só por clique em "Usar minha localização" (ou direto, se a Permissions API já disser `granted`). Coordenadas arredondadas a 2 casas, só em memória (ver `docs/SECURITY.md`).
+- **Imagens:** `lib/images.ts` monta a variante (`thumb`, `medium`, `large`) a partir do `image_path`; se ela não existir, o `PerfumeImage` cai no arquivo original e, sem ele, no placeholder.
 
 **Acessibilidade (meta: WCAG 2.2 AA)**
 

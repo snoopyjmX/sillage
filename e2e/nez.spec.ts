@@ -1,7 +1,8 @@
 // O Nez (Edge Function nez-ai) é SEMPRE mockado com page.route: o E2E nunca chama o Gemini
 // (sem timeout, sem gastar tokens). Dados reais do seed: Malbec Signature divide notas com
 // vários perfumes do catálogo, então a seção de similaridade tem conteúdo.
-import { expect, test, type Page, type Route } from '@playwright/test';
+import type { Page, Route } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
 import { axeViolations, registerViaUi } from './helpers.ts';
 
 const URL = '/perfumes/malbec-signature';

@@ -1,4 +1,5 @@
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
+import { expect, stubOpenMeteo, test } from './fixtures.ts';
 import { axeViolations, cardTitle, cards, openNav, registerViaUi } from './helpers.ts';
 
 const THEME_KEY = 'sillage-theme';
@@ -113,6 +114,7 @@ test.describe('coleção', () => {
 
     // Contexto novo = outro navegador, sem a sessão do primeiro
     const otherContext = await browser.newContext({ baseURL: page.url().split('/catalog')[0] });
+    await stubOpenMeteo(otherContext);
     const other = await otherContext.newPage();
     await registerViaUi(other);
     await other.goto('/collection');

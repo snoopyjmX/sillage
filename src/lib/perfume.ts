@@ -1,10 +1,12 @@
 import {
   FAMILIES,
+  POSITIONS,
+  type NotePosition,
   type ConcentrationType,
   type OlfactiveFamily,
   type PerfumeGender,
 } from '@/constants/labels';
-import type { PerfumeDetail, PerfumeSummary } from '@/types/catalog';
+import type { PerfumeDetail, PerfumeSummary, PyramidNote } from '@/types/catalog';
 
 // A página de detalhes tem o perfume completo; a coleção guarda o resumo (o mesmo do card).
 // Famílias derivadas das notas, na ordem do enum, como a função de busca devolve.
@@ -57,3 +59,12 @@ export const fromPerfumeRow = (row: PerfumeRow, imageUrl?: string | null): Perfu
     families: FAMILIES.filter((family) => present.has(family)),
   };
 };
+
+export type NotesByPosition = { position: NotePosition; notes: PyramidNote[] }[];
+
+// Notas agrupadas por posição (topo, coração, fundo); posição sem notas some
+export const groupNotesByPosition = (notes: readonly PyramidNote[]): NotesByPosition =>
+  POSITIONS.map((position) => ({
+    position,
+    notes: notes.filter((note) => note.position === position),
+  })).filter((group) => group.notes.length > 0);

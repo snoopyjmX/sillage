@@ -10,7 +10,29 @@ const auth = await vi.hoisted(async () => (await import('@/test/authMock')).crea
 vi.mock('@/services/authService', () => ({ authService: auth.service }));
 const getOverview = vi.fn();
 vi.mock('@/services/dailyService', () => ({
-  dailyService: { getOverview: () => getOverview() },
+  dailyService: {
+    getOverview: () => getOverview(),
+    getTimezone: () => Promise.resolve('America/Sao_Paulo'),
+    setToday: () => Promise.resolve(),
+  },
+}));
+const getCurrent = vi.fn();
+const searchCity = vi.fn();
+vi.mock('@/services/weatherService', () => ({
+  weatherService: {
+    getCurrent: (...args: unknown[]) => getCurrent(...args),
+    searchCity: (...args: unknown[]) => searchCity(...args),
+  },
+}));
+const getDailySuggestion = vi.fn();
+vi.mock('@/services/homeService', () => ({
+  homeService: {
+    getDailySuggestion: (...args: unknown[]) => getDailySuggestion(...args),
+    getRecent: () => Promise.resolve([]),
+  },
+}));
+vi.mock('@/services/perfumeService', () => ({
+  perfumeService: { getSimilar: () => Promise.resolve([]) },
 }));
 vi.mock('@/services/collectionService', () => ({
   collectionService: { list: () => Promise.resolve([]) },
@@ -38,6 +60,21 @@ describe('HomePage', () => {
   beforeEach(() => {
     auth.reset();
     getOverview.mockReset();
+    getCurrent.mockReset();
+    searchCity.mockReset();
+    getDailySuggestion.mockReset();
+    searchCity.mockResolvedValue([
+      {
+        name: 'São Paulo',
+        country: 'Brasil',
+        countryCode: 'BR',
+        latitude: -23.55,
+        longitude: -46.63,
+        timezone: 'America/Sao_Paulo',
+      },
+    ]);
+    getCurrent.mockResolvedValue({ temperature: 28, humidity: 60, code: 2 });
+    getDailySuggestion.mockResolvedValue(null);
   });
 
   it('visitante vê o título e o convite, sem consultar o Perfume do Dia (é privado)', async () => {
@@ -101,5 +138,86 @@ describe('HomePage', () => {
       )
     ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Tentar novamente' })).toBeInTheDocument();
+  });
+
+  it('mostra a barra de clima com cidade, temperatura, frase e famílias em destaque', async () => {
+    auth.setInitialSession(fakeSession());
+    getOverview.mockResolvedValue({ today: null, history: [] });
+    renderApp('/');
+    const bar = await screen.findByRole('region', { name: 'Clima de hoje' });
+    expect(await within(bar).findByText('São Paulo, BRASIL')).toBeInTheDocument();
+    expect(within(bar).getByText('28°C')).toBeInTheDocument();
+    expect(within(bar).getByText('Parcialmente nublado')).toBeInTheDocument();
+    expect(within(bar).getByText('Umidade 60%')).toBeInTheDocument();
+    expect(within(bar).getByText('Projeção ideal para dias quentes')).toBeInTheDocument();
+    expect(
+      within(bar).getByRole('list', { name: 'Famílias em destaque hoje' })
+    ).toBeInTheDocument();
+  });
+
+  it('fuso que não resolve cidade mostra "Clima indisponível" e a sugestão cai no catálogo todo', async () => {
+    auth.setInitialSession(fakeSession());
+    getOverview.mockResolvedValue({ today: null, history: [] });
+    searchCity.mockResolvedValue([]);
+    renderApp('/');
+    const bar = await screen.findByRole('region', { name: 'Clima de hoje' });
+    expect(await within(bar).findByText('Clima indisponível')).toBeInTheDocument();
+    expect(getCurrent).not.toHaveBeenCalled();
+    // Sem famílias em destaque: catálogo todo
+    await vi.waitFor(() =>
+      expect(getDailySuggestion).toHaveBeenCalledWith(
+        expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+        []
+      )
+    );
+  });
+
+  it('falha do clima mostra a mensagem amigável e tentar de novo', async () => {
+    auth.setInitialSession(fakeSession());
+    getOverview.mockResolvedValue({ today: null, history: [] });
+    getCurrent.mockRejectedValue(new AppError('weather_failed'));
+    renderApp('/');
+    const bar = await screen.findByRole('region', { name: 'Clima de hoje' });
+    expect(
+      await within(bar).findByText('Clima indisponível no momento. Tente novamente em instantes.')
+    ).toBeInTheDocument();
+    expect(within(bar).getByRole('button', { name: 'Tentar novamente' })).toBeInTheDocument();
+  });
+
+  it('mostra a sugestão do dia com medidores e as duas ações', async () => {
+    auth.setInitialSession(fakeSession());
+    getOverview.mockResolvedValue({ today: null, history: [] });
+    const perfume = entry('2026-10-06', 'Sugerido').perfume;
+    getDailySuggestion.mockResolvedValue({
+      perfume: {
+        ...perfume,
+        description: 'Fresco e luminoso.',
+        imageUrl: null,
+        lowestPriceCents: null,
+        storeName: null,
+        storeUrl: null,
+        perfumer: null,
+        notes: [
+          { slug: 'limao', name: 'Limão', family: 'citrus', position: 'top' },
+          { slug: 'cedro', name: 'Cedro', family: 'woody', position: 'base' },
+        ],
+      },
+      summary: { count: 2, avgLongevity: 4, avgProjection: 3 },
+    });
+    renderApp('/');
+    const card = await screen.findByRole('article', { name: 'Sugestão do dia' });
+    expect(within(card).getByRole('heading', { name: 'Sugerido' })).toBeInTheDocument();
+    expect(within(card).getByText('Limão')).toBeInTheDocument();
+    expect(within(card).getByRole('img', { name: 'Fixação: 4,0 de 5' })).toBeInTheDocument();
+    expect(within(card).getByRole('meter', { name: 'Rastro' })).toHaveAttribute(
+      'aria-valuetext',
+      'Moderado (3,0 de 5)'
+    );
+    expect(within(card).getByRole('meter', { name: 'Clima adequado' })).toBeInTheDocument();
+    expect(within(card).getByRole('button', { name: 'Vestir hoje' })).toBeInTheDocument();
+    expect(within(card).getByRole('link', { name: 'Ver detalhes' })).toHaveAttribute(
+      'href',
+      '/perfumes/sugerido'
+    );
   });
 });
