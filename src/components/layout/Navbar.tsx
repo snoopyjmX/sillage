@@ -19,6 +19,7 @@ import { ThemeToggler } from '@/components/ui/theme-toggler';
 import { NAV_ITEMS } from '@/constants/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { transitions } from '@/lib/motion';
+import { InstallAppButton } from './InstallAppButton';
 import { NavLinkItem } from './NavLinkItem';
 
 function Brand() {
@@ -60,11 +61,12 @@ export function Navbar() {
               <Link to="/login">Entrar</Link>
             </Button>
           )}
+          <InstallAppButton className="hidden md:inline-flex" />
           <ThemeToggler />
           <Drawer open={menuOpen} onOpenChange={setMenuOpen}>
             <DrawerTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden" aria-label="Abrir menu">
-                <Menu aria-hidden />
+                <Menu className="size-5" aria-hidden />
               </Button>
             </DrawerTrigger>
             <DrawerContent side="right">
@@ -77,6 +79,7 @@ export function Navbar() {
                   <NavLinkItem key={item.key} item={item} variant="menu" onNavigate={closeMenu} />
                 ))}
               </nav>
+              <InstallAppButton variant="outline" onDone={closeMenu} />
               {guest && (
                 <Button asChild onClick={closeMenu}>
                   <Link to="/login">Entrar</Link>
