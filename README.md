@@ -1,29 +1,42 @@
 # Sillage
 
-PWA de catálogo e coleção de perfumaria de nicho, em português (BR), mobile-first, desenvolvido com foco em interface de alta fidelidade e regras de negócio garantidas no banco de dados.
+**Produção:** https://sillage-ashy-gamma.vercel.app/
+
+PWA de catálogo e coleção de perfumaria de nicho, em português (BR), mobile-first. Explore perfumes pela pirâmide olfativa, monte sua coleção (Tenho / Quero), avalie e pergunte ao Nez, o mestre perfumista virtual. Instalável no celular e com o catálogo disponível offline.
 
 ## Stack
 
-- **Frontend & Build:** React 19, Vite, TypeScript (strict mode)
-- **Estilização & Design System:** Tailwind CSS v4, tokens CSS customizados, Motion
-- **Qualidade & Testes:** ESLint, Prettier, Vitest, Testing Library (`@testing-library/react`, `@testing-library/jest-dom`), jsdom
-- **Backend & Dados (próximas fases):** Supabase (PostgreSQL, RLS, Edge Functions, pgTAP)
+- **Frontend:** React 19, Vite, TypeScript (strict), React Router, TanStack Query
+- **UI:** Tailwind CSS v4, tokens CSS próprios, Radix, Motion
+- **Backend:** Supabase (PostgreSQL com RLS, Auth, Storage, Edge Functions em Deno)
+- **Qualidade:** ESLint, Prettier, Vitest, Playwright + axe, pgTAP, Lighthouse CI
+- **Deploy:** Vercel (frontend) e GitHub Actions (CI)
+
+## Desafios técnicos resolvidos
+
+- **Catálogo offline:** o cache do TanStack Query é persistido em IndexedDB (só chaves `['public', ...]`), e o Service Worker faz precache do shell e cache das imagens. Dados privados nunca são persistidos.
+- **Segurança ponta a ponta, sem regra de negócio no front:** RLS é a autorização; as regras RN01–RN08 vivem em constraints, funções e policies, cobertas por testes pgTAP. O front só usa a `anon key`, e erros do Supabase são traduzidos em mensagens próprias.
+- **PWA instalável:** manifest, ícones maskable, atualização por prompt e instruções de instalação para iOS.
+- **Edge Function (Nez AI):** a chave do Gemini fica só no servidor; o JWT é validado na função, com retry, modelo de reserva e códigos de erro estáveis.
+- **Qualidade medida:** testes unitários, de banco e E2E em dois viewports, acessibilidade com axe e auditoria Lighthouse no CI.
 
 ## Pré-requisitos
 
-- [Node.js](https://nodejs.org/) versão LTS recomendada: `24.14.0` (ou qualquer versão compatível conforme engines: `^20.19.0 || >=22.12.0`). O repositório inclui `.nvmrc` para conveniência (`nvm use`).
-- npm 10+ (ou compatível com a versão do Node)
+- [Node.js](https://nodejs.org/) `24.14.0` (veja `.nvmrc`; `nvm use`). Compatível com `^20.19.0 || >=22.12.0`.
+- npm 10+
+- [Docker](https://www.docker.com/) aberto, para o Supabase local
 
-## Como rodar
-
-Instale as dependências e inicialize o servidor de desenvolvimento:
+## Como rodar localmente
 
 ```bash
 npm install
+npm run db:start                  # sobe o Supabase local (migrations + seed)
+npx supabase status -o env        # copie API_URL e ANON_KEY
+cp .env.example .env.local        # preencha VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY
 npm run dev
 ```
 
-Acesse `http://localhost:5173` no navegador.
+Acesse `http://localhost:5173`. Para testar o Nez localmente, defina `GEMINI_API_KEY` em `supabase/functions/.env`. Nunca coloque `service_role` no front.
 
 ## Scripts disponíveis
 
@@ -67,4 +80,4 @@ Para diretrizes completas de produto, regras de negócio (RN01–RN08), arquitet
 
 ## Status
 
-Em desenvolvimento — **Fase 1 de 12** do Roadmap (Fundação, higiene de repositório e infraestrutura de CI).
+**v1.0** — as 12 fases do Roadmap concluídas.
