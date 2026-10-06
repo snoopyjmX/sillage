@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import { AuthContext } from '@/contexts/auth-context';
@@ -49,6 +49,22 @@ describe('PerfumeCard', () => {
     const placeholder = container.querySelector('[data-slot="perfume-placeholder"]');
     expect(placeholder).toHaveClass('bg-family-citrus');
     expect(container.querySelector('img')).toBeNull();
+  });
+
+  it('com imageUrl mostra a foto com src e alt corretos, sem placeholder', () => {
+    const { container } = renderCard({ imageUrl: 'http://127.0.0.1/bossa.webp' });
+    const image = screen.getByRole('img', { name: 'Frasco do perfume Bossa, Granado' });
+    expect(image).toHaveAttribute('src', 'http://127.0.0.1/bossa.webp');
+    expect(container.querySelector('[data-slot="perfume-placeholder"]')).toBeNull();
+  });
+
+  it('se a foto falhar ao carregar, volta para o placeholder', () => {
+    const { container } = renderCard({ imageUrl: 'http://127.0.0.1/quebrada.webp' });
+    fireEvent.error(screen.getByRole('img', { name: /Frasco do perfume Bossa/ }));
+    expect(container.querySelector('img')).toBeNull();
+    expect(container.querySelector('[data-slot="perfume-placeholder"]')).toHaveClass(
+      'bg-family-citrus'
+    );
   });
 
   it('sem famílias usa o fundo neutro e não mostra a lista de chips', () => {

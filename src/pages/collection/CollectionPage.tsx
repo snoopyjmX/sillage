@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PerfumeGridSkeleton } from '@/components/perfume/PerfumeCardSkeleton';
 import { PerfumeGrid } from '@/components/perfume/PerfumeGrid';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
@@ -37,7 +38,7 @@ export default function CollectionPage() {
 
   return (
     <>
-      <title>Coleção · Sillage</title>
+      <SeoHead title="Coleção" description="Os perfumes que você tem e os que quer." />
 
       <div className="flex flex-col gap-6">
         <header className="flex flex-col gap-1">

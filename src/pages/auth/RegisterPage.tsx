@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Field } from '@/components/ui/field';
 import { FormAlert } from '@/components/ui/form-alert';
 import { SubmitButton } from '@/components/ui/submit-button';
@@ -32,7 +33,10 @@ export default function RegisterPage() {
 
   return (
     <>
-      <title>Criar conta · Sillage</title>
+      <SeoHead
+        title="Criar conta"
+        description="Monte sua coleção, avalie perfumes e escolha o Perfume do Dia."
+      />
       <AuthCard
         title="Criar conta"
         description="Monte sua coleção, avalie perfumes e escolha o Perfume do Dia."

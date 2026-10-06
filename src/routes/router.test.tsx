@@ -75,7 +75,7 @@ describe('rotas', () => {
   it('o React 19 resolve <title> e <meta> sem biblioteca (hoist para o head)', async () => {
     renderApp('/catalog');
     await screen.findByRole('heading', { name: 'Catálogo', level: 1 });
-    await waitFor(() => expect(document.title).toBe('Catálogo · Sillage'));
+    await waitFor(() => expect(document.title).toBe('Catálogo — Sillage'));
     expect(document.head.querySelector('meta[name="description"]')).not.toBeNull();
   });
 

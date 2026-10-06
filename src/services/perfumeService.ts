@@ -39,6 +39,9 @@ export const perfumeService = {
         // O gerador de tipos não enxerga nulabilidade em funções; no banco os dois podem ser nulos
         releaseYear: (row.release_year as number | null) ?? null,
         imagePath: (row.image_path as string | null) ?? null,
+        imageUrl: row.image_path
+          ? supabase.storage.from('perfume-images').getPublicUrl(row.image_path).data.publicUrl
+          : null,
         families: row.families,
       })),
       total: data[0]?.total_count ?? 0,
@@ -101,6 +104,9 @@ export const perfumeService = {
       // O gerador de tipos não enxerga nulabilidade em funções; no banco os dois podem ser nulos
       releaseYear: (row.release_year as number | null) ?? null,
       imagePath: (row.image_path as string | null) ?? null,
+      imageUrl: row.image_path
+        ? supabase.storage.from('perfume-images').getPublicUrl(row.image_path).data.publicUrl
+        : null,
       families: row.families,
       commonNotes: row.common_notes,
     }));

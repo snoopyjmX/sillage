@@ -26,7 +26,12 @@ export const collectionService = {
     return data.map(({ status, updated_at, perfume }) => ({
       status,
       updatedAt: updated_at,
-      perfume: fromPerfumeRow(perfume),
+      perfume: fromPerfumeRow(
+        perfume,
+        perfume.image_path
+          ? supabase.storage.from('perfume-images').getPublicUrl(perfume.image_path).data.publicUrl
+          : null
+      ),
     }));
   },
 

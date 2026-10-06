@@ -25,7 +25,12 @@ interface DailyRow {
 
 const toEntry = ({ date, perfume }: DailyRow): DailyEntry => ({
   date,
-  perfume: fromPerfumeRow(perfume),
+  perfume: fromPerfumeRow(
+    perfume,
+    perfume.image_path
+      ? supabase.storage.from('perfume-images').getPublicUrl(perfume.image_path).data.publicUrl
+      : null
+  ),
 });
 
 export const dailyService = {

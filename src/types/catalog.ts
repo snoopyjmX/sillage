@@ -16,6 +16,8 @@ export interface PerfumeSummary {
   gender: PerfumeGender;
   releaseYear: number | null;
   imagePath: string | null;
+  // URL pública no Storage, montada pelo service a partir de imagePath
+  imageUrl?: string | null;
   // Vem da função search_perfumes (derivada das notas), na ordem do enum
   families: OlfactiveFamily[];
 }

@@ -9,7 +9,7 @@
 //      com a mesma estrutura de pastas, e suba para o bucket `perfume-images` do Supabase Storage.
 //      Depois preencha perfumes.image_path com o caminho no bucket (ex.: o-boticario/malbec-signature.webp).
 //
-// O recorte é "cover" centralizado: a imagem preenche o quadrado e as sobras são cortadas.
+// O ajuste é "contain" sobre fundo branco: o frasco inteiro cabe no quadrado, sem cortar tampa nem base.
 import { mkdir, readdir, stat } from 'node:fs/promises';
 import { dirname, extname, join, parse, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -41,7 +41,7 @@ const processImage = async (file) => {
   await mkdir(dirname(target), { recursive: true });
   await sharp(file)
     .rotate() // respeita a orientação EXIF da câmera
-    .resize(SIZE, SIZE, { fit: 'cover', position: 'centre' })
+    .resize(SIZE, SIZE, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 1 } })
     .webp({ quality: QUALITY })
     .toFile(target);
   const { size } = await stat(target);
