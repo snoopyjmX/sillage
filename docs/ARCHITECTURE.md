@@ -58,3 +58,10 @@
 - **Salvar = `update` por `id` se já existe, senão `insert`** (e, se outra aba criou no meio, vira `update`): o `WITH CHECK` da RN03 roda antes do conflito, então um `upsert` cego impediria editar depois de sair de "Tenho".
 - **Optimistic update** do resumo e da avaliação própria (`useReviews`); a lista pública espera o servidor, que sabe autor e data.
 - **Chaves:** `['public','perfumes',perfumeId,'reviews']` e `['private',userId,'reviews',perfumeId]`.
+
+## Decisões da Fase 10 (Nez e similaridade)
+
+- **Edge Function `nez-ai`** (Deno, `supabase/functions/nez-ai`): `verify_jwt = false` no gateway e a validação é feita no código com `auth.getUser(token)`, para devolver 401 em JSON no nosso formato. SDK `npm:@google/genai`; modelo em `GEMINI_MODEL` (padrão `gemini-2.5-flash`); secret `GEMINI_API_KEY` só no servidor (local: `supabase/functions/.env` ou `supabase secrets set`). Erros do provedor vão para o log e o front recebe só um código estável (`nez_failed`).
+- **Front:** `aiService.askNez` (único ponto que chama a função), `useAskNez` (mutation: a resposta é privada, nunca persistida), `NezProvider` no `AppShell` e `useNezPerfumeContext` para a página de detalhes informar o perfume em foco (notas e famílias). O botão do Nez é o `DrawerTrigger` do drawer, para o foco voltar a ele ao fechar. Só aparece para quem está logado.
+- **Similaridade:** `useSimilarPerfumes` (chave pública `['public','perfumes',id,'similar']`) e a seção "Fragrâncias com a mesma alma" abaixo das avaliações. Detalhes da função em `DATABASE.md`.
+- **E2E:** `e2e/nez.spec.ts` intercepta `**/functions/v1/nez-ai` com `page.route`; o teste nunca chama o Gemini. Os cards de similares também têm botão de coleção, então testes que miram o botão do perfume da página usam `.first()`.

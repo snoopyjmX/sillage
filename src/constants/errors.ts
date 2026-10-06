@@ -14,7 +14,8 @@ export type ErrorCode =
   | 'collection_failed'
   | 'daily_failed'
   | 'review_failed'
-  | 'review_forbidden';
+  | 'review_forbidden'
+  | 'nez_failed';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -34,6 +35,7 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   review_failed: 'Não foi possível salvar sua avaliação. Tente novamente em instantes.',
   review_forbidden:
     'Para avaliar, coloque o perfume em “Tenho” ou escolha-o como Perfume do Dia primeiro.',
+  nez_failed: 'O Nez não conseguiu responder agora. Tente novamente em instantes.',
 };
 
 export class AppError extends Error {

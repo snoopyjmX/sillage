@@ -1,0 +1,21 @@
+import { Sparkles } from 'lucide-react';
+import { DrawerTrigger } from '@/components/ui/drawer';
+
+// Botão fixo do Nez: vidro fosco, pílula com ícone e rótulo. É o gatilho do drawer (dentro dele),
+// então o Radix devolve o foco a ele ao fechar.
+export function NezFab() {
+  return (
+    <DrawerTrigger
+      className={[
+        'fixed right-6 bottom-6 z-40 inline-flex h-12 items-center gap-2 rounded-full px-5',
+        'border border-border bg-surface/80 text-foreground shadow-floating backdrop-blur-md',
+        'font-medium outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+        'transition-transform duration-150 ease-out hover:-translate-y-0.5 active:scale-[0.97]',
+        'motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100',
+      ].join(' ')}
+    >
+      <Sparkles className="size-5 text-primary" aria-hidden />
+      Nez
+    </DrawerTrigger>
+  );
+}

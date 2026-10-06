@@ -20,6 +20,11 @@ export interface PerfumeSummary {
   families: OlfactiveFamily[];
 }
 
+// Resultado de get_similar_perfumes (RN09): o resumo do card mais o nº de notas em comum com o alvo
+export interface SimilarPerfume extends PerfumeSummary {
+  commonNotes: number;
+}
+
 export interface PerfumeSearchResult {
   items: PerfumeSummary[];
   // Zero quando a página pedida passa do fim (limitação documentada em docs/DATABASE.md)

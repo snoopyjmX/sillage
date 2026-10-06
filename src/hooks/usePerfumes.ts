@@ -20,3 +20,11 @@ export const usePerfumeDetail = (slug: string) =>
     retry: (failureCount, error) =>
       !(error instanceof AppError && error.code === 'not_found') && failureCount < 1,
   });
+
+// RN09: "Fragrâncias com a mesma alma". Público, então persistível.
+export const useSimilarPerfumes = (perfumeId: string) =>
+  useQuery({
+    queryKey: queryKeys.perfumes.similar(perfumeId),
+    queryFn: () => perfumeService.getSimilar(perfumeId),
+    enabled: perfumeId !== '',
+  });

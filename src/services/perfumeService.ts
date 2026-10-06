@@ -2,10 +2,12 @@
 import { AppError, toAppError } from '@/constants/errors';
 import { supabase } from '@/lib/supabase';
 import { PAGE_SIZE, type CatalogFilters } from '@/schemas/catalogSearch';
-import type { PerfumeDetail, PerfumeSearchResult } from '@/types/catalog';
+import type { PerfumeDetail, PerfumeSearchResult, SimilarPerfume } from '@/types/catalog';
 
 // "ausente" vira undefined para a função usar o padrão (null/array vazio = sem filtro)
 const orUndefined = <T>(list: T[]): T[] | undefined => (list.length > 0 ? list : undefined);
+
+export const SIMILAR_LIMIT = 6;
 
 export const perfumeService = {
   search: async (filters: CatalogFilters): Promise<PerfumeSearchResult> => {
@@ -75,5 +77,29 @@ export const perfumeService = {
         }))
         .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR')),
     };
+  },
+
+  // RN09: perfumes com mais notas em comum com o alvo (nunca o próprio alvo)
+  getSimilar: async (targetId: string, limit = SIMILAR_LIMIT): Promise<SimilarPerfume[]> => {
+    const { data, error } = await supabase.rpc('get_similar_perfumes', {
+      target_id: targetId,
+      limit_count: limit,
+    });
+    if (error) throw toAppError(error);
+
+    return data.map((row) => ({
+      id: row.id,
+      slug: row.slug,
+      name: row.name,
+      brandName: row.brand_name,
+      brandSlug: row.brand_slug,
+      concentration: row.concentration,
+      gender: row.gender,
+      // O gerador de tipos não enxerga nulabilidade em funções; no banco os dois podem ser nulos
+      releaseYear: (row.release_year as number | null) ?? null,
+      imagePath: (row.image_path as string | null) ?? null,
+      families: row.families,
+      commonNotes: row.common_notes,
+    }));
   },
 };
