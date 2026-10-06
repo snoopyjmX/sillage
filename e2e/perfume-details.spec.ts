@@ -92,7 +92,8 @@ test.describe('detalhes do perfume', () => {
     page,
   }) => {
     await page.goto(URL);
-    const cta = page.getByRole('button', { name: /Adicionar à Coleção/ });
+    // A seção de similares também tem botões de coleção: o do perfume da página vem primeiro
+    const cta = page.getByRole('button', { name: /Adicionar à Coleção/ }).first();
     await expect(cta).toBeEnabled();
     await cta.click();
     await expect(page).toHaveURL(/\/login\?redirect=%2Fperfumes%2F/);

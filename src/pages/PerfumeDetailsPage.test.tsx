@@ -7,7 +7,10 @@ import type { PerfumeDetail } from '@/types/catalog';
 
 const getBySlug = vi.fn();
 vi.mock('@/services/perfumeService', () => ({
-  perfumeService: { getBySlug: (slug: string) => getBySlug(slug) },
+  perfumeService: {
+    getBySlug: (slug: string) => getBySlug(slug),
+    getSimilar: () => Promise.resolve([]),
+  },
 }));
 
 const auth = await vi.hoisted(async () => (await import('@/test/authMock')).createAuthMock());

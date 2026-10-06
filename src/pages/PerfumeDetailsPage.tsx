@@ -4,6 +4,7 @@ import { CollectionToggle } from '@/components/collection/CollectionToggle';
 import { ReviewActions } from '@/components/reviews/ReviewActions';
 import { ReviewSummaryLine } from '@/components/reviews/ReviewSummaryLine';
 import { ReviewsSection } from '@/components/reviews/ReviewsSection';
+import { SimilarPerfumes } from '@/components/perfume/SimilarPerfumes';
 import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
 import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
 import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
@@ -13,7 +14,9 @@ import { Chip } from '@/components/ui/chip';
 import { EmptyState } from '@/components/ui/empty-state';
 import { AppError, getErrorMessage } from '@/constants/errors';
 import { CONCENTRATION_LABELS, FAMILIES, GENDER_LABELS } from '@/constants/labels';
+import { useNezPerfumeContext } from '@/hooks/useNez';
 import { usePerfumeDetail } from '@/hooks/usePerfumes';
+import { buildPerfumeContext } from '@/lib/nez';
 import { toPerfumeSummary } from '@/lib/perfume';
 import type { PerfumeDetail } from '@/types/catalog';
 
@@ -54,6 +57,7 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
   const meta = [GENDER_LABELS[perfume.gender], perfume.releaseYear?.toString()]
     .filter(Boolean)
     .join(' · ');
+  useNezPerfumeContext(buildPerfumeContext(perfume));
 
   return (
     <>
@@ -112,6 +116,8 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
       </section>
 
       <ReviewsSection perfumeId={perfume.id} />
+
+      <SimilarPerfumes perfumeId={perfume.id} />
     </>
   );
 }

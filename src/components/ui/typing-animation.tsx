@@ -26,7 +26,9 @@ export function TypingAnimation({
   cursor = true,
 }: TypingAnimationProps) {
   const reduceMotion = useReducedMotion();
-  const [count, setCount] = useState(0);
+  // O progresso guarda o texto a que pertence: ao chegar outro texto, a digitação recomeça do zero
+  const [progress, setProgress] = useState({ text, count: 0 });
+  const count = progress.text === text ? progress.count : 0;
   const done = reduceMotion || count >= text.length;
   const typed = reduceMotion ? text : text.slice(0, count);
 
@@ -34,11 +36,15 @@ export function TypingAnimation({
     if (reduceMotion) return;
     let interval: number | undefined;
     const timeout = window.setTimeout(() => {
+      const startedAt = performance.now();
+      // Posição calculada pelo relógio (não por contagem de ticks): abas em segundo plano, que
+      // atrasam os timers, não deixam a digitação lenta nem parada no meio
       interval = window.setInterval(() => {
-        setCount((current) => {
-          if (current + 1 >= text.length) window.clearInterval(interval);
-          return current + 1;
-        });
+        const next = Math.min(text.length, Math.floor((performance.now() - startedAt) / speed) + 1);
+        setProgress((current) =>
+          current.text === text && current.count === next ? current : { text, count: next }
+        );
+        if (next >= text.length) window.clearInterval(interval);
       }, speed);
     }, startDelay);
     return () => {
