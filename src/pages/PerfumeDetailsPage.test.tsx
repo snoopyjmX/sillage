@@ -43,6 +43,7 @@ const detail: PerfumeDetail = {
   lowestPriceCents: null,
   storeName: null,
   storeUrl: null,
+  perfumer: null,
   notes: [
     { slug: 'bergamota', name: 'Bergamota', family: 'citrus', position: 'top' },
     { slug: 'vetiver', name: 'Vetiver', family: 'woody', position: 'base' },
@@ -77,6 +78,21 @@ describe('página de detalhes do perfume', () => {
     expect(cta).not.toHaveAttribute('aria-disabled');
     expect(screen.queryByText('Em breve')).not.toBeInTheDocument();
     await waitFor(() => expect(document.title).toBe('Malbec Signature · O Boticário — Sillage'));
+  });
+
+  it('mostra o perfumista só quando informado', async () => {
+    getBySlug.mockResolvedValue({ ...detail, perfumer: 'Olivier Cresp' });
+    renderApp('/perfumes/malbec-signature');
+    expect(
+      await screen.findByText('Perfumista: Olivier Cresp', {}, { timeout: 3000 })
+    ).toBeInTheDocument();
+  });
+
+  it('não mostra a linha de perfumista quando é nulo', async () => {
+    getBySlug.mockResolvedValue(detail);
+    renderApp('/perfumes/malbec-signature');
+    await screen.findByRole('heading', { level: 1 }, { timeout: 3000 });
+    expect(screen.queryByText(/Perfumista:/)).not.toBeInTheDocument();
   });
 
   it('mostra o melhor preço com link externo seguro quando há oferta', async () => {

@@ -135,6 +135,9 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
             <Chip variant="concentration">{CONCENTRATION_LABELS[perfume.concentration]}</Chip>
             <span className="text-sm text-muted-foreground">{meta}</span>
           </div>
+          {perfume.perfumer && (
+            <p className="text-sm text-muted-foreground">Perfumista: {perfume.perfumer}</p>
+          )}
           <ReviewSummaryLine perfumeId={perfume.id} />
           {perfume.description && (
             <p className="max-w-prose text-base text-secondary-foreground">{perfume.description}</p>

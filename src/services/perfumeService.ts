@@ -74,6 +74,7 @@ export const perfumeService = {
       lowestPriceCents: data.lowest_price_cents,
       storeName: data.store_name,
       storeUrl: data.store_url,
+      perfumer: data.perfumer,
       notes: data.perfume_notes
         .map(({ position, note }) => ({
           slug: note.slug,

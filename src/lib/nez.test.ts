@@ -16,6 +16,7 @@ const perfume: PerfumeDetail = {
   lowestPriceCents: null,
   storeName: null,
   storeUrl: null,
+  perfumer: null,
   notes: [
     { slug: 'bergamota', name: 'Bergamota', family: 'citrus', position: 'top' },
     { slug: 'baunilha', name: 'Baunilha', family: 'oriental', position: 'base' },
