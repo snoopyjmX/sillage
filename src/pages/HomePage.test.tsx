@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react';
+import { fireEvent, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AppError } from '@/constants/errors';
 import { fakeSession } from '@/test/authMock';
@@ -58,6 +58,7 @@ const entry = (date: string, name: string): DailyEntry => {
 
 describe('HomePage', () => {
   beforeEach(() => {
+    window.localStorage.clear();
     auth.reset();
     getOverview.mockReset();
     getTimezone.mockReset();
@@ -172,7 +173,8 @@ describe('HomePage', () => {
       await vi.waitFor(() =>
         expect(getDailySuggestion).toHaveBeenCalledWith(
           expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
-          []
+          [],
+          null
         )
       );
     }
@@ -188,7 +190,8 @@ describe('HomePage', () => {
     await vi.waitFor(() =>
       expect(getDailySuggestion).toHaveBeenCalledWith(
         expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
-        []
+        [],
+        null
       )
     );
     expect(await screen.findByText('Nenhuma sugestão por enquanto')).toBeInTheDocument();
@@ -206,7 +209,8 @@ describe('HomePage', () => {
     await vi.waitFor(() =>
       expect(getDailySuggestion).toHaveBeenCalledWith(
         expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
-        []
+        [],
+        null
       )
     );
   });
@@ -285,5 +289,89 @@ describe('HomePage', () => {
     expect(
       await within(card).findByRole('button', { name: 'Adicione a Tenho para vestir' })
     ).toBeDisabled();
+  });
+
+  describe('filtro de gênero da sugestão', () => {
+    const filter = () => screen.findByRole('list', { name: 'Filtrar sugestão por gênero' });
+
+    it('começa em "Todos" e consulta sem gênero', async () => {
+      auth.setInitialSession(fakeSession());
+      getOverview.mockResolvedValue({ today: null, history: [] });
+      renderApp('/');
+      const group = await filter();
+      expect(within(group).getByRole('button', { name: 'Todos' })).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+      await vi.waitFor(() =>
+        expect(getDailySuggestion).toHaveBeenCalledWith(
+          expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+          expect.any(Array),
+          null
+        )
+      );
+    });
+
+    it('trocar o filtro consulta com o gênero e guarda a preferência', async () => {
+      auth.setInitialSession(fakeSession());
+      getOverview.mockResolvedValue({ today: null, history: [] });
+      renderApp('/');
+      const group = await filter();
+      fireEvent.click(within(group).getByRole('button', { name: 'Feminino' }));
+      expect(within(group).getByRole('button', { name: 'Feminino' })).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+      expect(within(group).getByRole('button', { name: 'Todos' })).toHaveAttribute(
+        'aria-pressed',
+        'false'
+      );
+      await vi.waitFor(() =>
+        expect(getDailySuggestion).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.any(Array),
+          'feminine'
+        )
+      );
+      expect(window.localStorage.getItem('sillage-home-gender')).toBe('feminine');
+    });
+
+    it('lê a preferência guardada e ignora valor inválido', async () => {
+      auth.setInitialSession(fakeSession());
+      getOverview.mockResolvedValue({ today: null, history: [] });
+      window.localStorage.setItem('sillage-home-gender', 'masculine');
+      renderApp('/');
+      const group = await filter();
+      expect(within(group).getByRole('button', { name: 'Masculino' })).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+    });
+
+    it('valor inválido guardado volta para "Todos"', async () => {
+      auth.setInitialSession(fakeSession());
+      getOverview.mockResolvedValue({ today: null, history: [] });
+      window.localStorage.setItem('sillage-home-gender', 'robot');
+      renderApp('/');
+      const group = await filter();
+      expect(within(group).getByRole('button', { name: 'Todos' })).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+    });
+
+    it('gênero sem candidatos mostra o estado vazio com link para o catálogo', async () => {
+      auth.setInitialSession(fakeSession());
+      getOverview.mockResolvedValue({ today: null, history: [] });
+      renderApp('/');
+      const group = await filter();
+      fireEvent.click(within(group).getByRole('button', { name: 'Unissex' }));
+      expect(await screen.findByText('Nenhuma sugestão por enquanto')).toBeInTheDocument();
+      expect(screen.getByText(/Não há perfumes deste gênero/)).toBeInTheDocument();
+      expect(screen.getAllByRole('link', { name: 'Explorar o catálogo' })[0]).toHaveAttribute(
+        'href',
+        '/catalog'
+      );
+    });
   });
 });

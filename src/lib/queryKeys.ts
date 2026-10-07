@@ -1,5 +1,6 @@
 // Fábrica das chaves de query (docs/PRODUCT.md, Seção 7). Hooks usam esta fábrica, nunca string solta.
 // ['public', ...] é persistível; ['private', userId, ...] nunca é persistido (e sai da memória no logout).
+import type { PerfumeGender } from '@/constants/labels';
 import type { CatalogFilters } from '@/schemas/catalogSearch';
 
 export const queryKeys = {
@@ -42,8 +43,8 @@ export const queryKeys = {
   },
   // Home: catálogo público (persistível)
   home: {
-    suggestion: (date: string, families: string[]) =>
-      ['public', 'home', 'suggestion', date, families.join(',')] as const,
+    suggestion: (date: string, families: string[], gender?: PerfumeGender | null) =>
+      ['public', 'home', 'suggestion', date, families.join(','), gender ?? 'all'] as const,
     recent: (limit: number) => ['public', 'home', 'recent', limit] as const,
   },
 } as const;

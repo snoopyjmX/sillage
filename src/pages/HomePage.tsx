@@ -1,4 +1,5 @@
 import { CalendarHeart, History, Sparkles } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DailyHighlight } from '@/components/daily/DailyHighlight';
 import { DailyHistory } from '@/components/daily/DailyHistory';
@@ -14,6 +15,7 @@ import { SimilarToToday } from '@/components/home/SimilarToToday';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
+import { Chip } from '@/components/ui/chip';
 import { EmptyState } from '@/components/ui/empty-state';
 import { WeatherBar } from '@/components/weather/WeatherBar';
 import { getErrorMessage } from '@/constants/errors';
@@ -23,6 +25,12 @@ import { useDailySuggestion } from '@/hooks/useDailySuggestion';
 import { useProfileTimezone } from '@/hooks/useProfileTimezone';
 import { useWeather } from '@/hooks/useWeather';
 import { formatMonthYear } from '@/lib/format';
+import {
+  HOME_GENDER_OPTIONS,
+  readStoredHomeGender,
+  storeHomeGender,
+  type HomeGenderFilter,
+} from '@/lib/homeGender';
 import { getBrowserTimezone, todayInTimezone } from '@/lib/timezone';
 
 const CatalogButton = () => (
@@ -37,13 +45,18 @@ const CatalogButton = () => (
 export default function HomePage() {
   const daily = useDaily();
   const weather = useWeather();
-  const suggestion = useDailySuggestion(weather.view);
+  const [gender, setGender] = useState<HomeGenderFilter>(readStoredHomeGender);
+  const suggestion = useDailySuggestion(weather.view, gender === 'all' ? null : gender);
   const wear = useWearToday();
   const timezone = useProfileTimezone().data ?? getBrowserTimezone();
 
   const today = daily.data?.today ?? null;
   const history = daily.data?.history ?? [];
   const suggested = suggestion.data ?? null;
+  const handleGenderChange = (value: HomeGenderFilter) => {
+    setGender(value);
+    storeHomeGender(value);
+  };
   const isSuggestedOwned = useCollectionStatus(suggested?.perfume.id ?? '') === 'owned';
 
   return (
@@ -60,6 +73,23 @@ export default function HomePage() {
 
         <>
           <section aria-label="Sugestão do dia" className="flex flex-col gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+              <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
+                Sugestão do dia para
+              </p>
+              <ul aria-label="Filtrar sugestão por gênero" className="flex flex-wrap gap-1.5">
+                {HOME_GENDER_OPTIONS.map((option) => (
+                  <li key={option.value}>
+                    <Chip
+                      selected={gender === option.value}
+                      onClick={() => handleGenderChange(option.value)}
+                    >
+                      {option.label}
+                    </Chip>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <AsyncBoundary
               status={suggestion.status}
               isEmpty={suggested === null}
@@ -68,7 +98,11 @@ export default function HomePage() {
                 <EmptyState
                   icon={Sparkles}
                   title="Nenhuma sugestão por enquanto"
-                  description="O catálogo ainda não tem perfumes para sugerir."
+                  description={
+                    gender === 'all'
+                      ? 'O catálogo ainda não tem perfumes para sugerir.'
+                      : 'Não há perfumes deste gênero para o clima de hoje. Tente outro filtro ou explore o catálogo.'
+                  }
                   action={<CatalogButton />}
                 />
               }

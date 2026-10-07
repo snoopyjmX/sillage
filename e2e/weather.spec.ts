@@ -88,6 +88,27 @@ test.describe('home: clima e sugestão do dia', () => {
     await expect(card.getByRole('button', { name: 'Você já veste hoje' })).toBeDisabled();
   });
 
+  test('filtro de gênero da sugestão persiste entre recargas', async ({ page }) => {
+    await mockOpenMeteo(page, 28);
+    await registerViaUi(page);
+    const group = page.getByRole('list', { name: 'Filtrar sugestão por gênero' });
+    await expect(group.getByRole('button', { name: 'Todos' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    await group.getByRole('button', { name: 'Unissex' }).click();
+    await expect(group.getByRole('button', { name: 'Unissex' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    await page.reload();
+    await expect(
+      page
+        .getByRole('list', { name: 'Filtrar sugestão por gênero' })
+        .getByRole('button', { name: 'Unissex' })
+    ).toHaveAttribute('aria-pressed', 'true');
+  });
+
   test('a sugestão é estável: recarregar no mesmo dia mantém o mesmo perfume', async ({ page }) => {
     await mockOpenMeteo(page, 28);
     await registerViaUi(page);

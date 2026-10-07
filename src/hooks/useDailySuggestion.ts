@@ -1,6 +1,7 @@
 // Sugestão do dia (RN10): candidatos pelas famílias da temperatura de hoje e escolha estável pela
 // data no fuso do usuário. Sem clima, sorteio estável sobre o catálogo todo. Chave pública.
 import { useQuery } from '@tanstack/react-query';
+import type { PerfumeGender } from '@/constants/labels';
 import { useProfileTimezone } from '@/hooks/useProfileTimezone';
 import { climateFit, highlightFamilies, perfumeTempRange, projectionLabel } from '@/lib/climate';
 import { queryKeys } from '@/lib/queryKeys';
@@ -20,7 +21,7 @@ export interface SuggestionView {
   fit: number | null;
 }
 
-export const useDailySuggestion = (weather: WeatherView) => {
+export const useDailySuggestion = (weather: WeatherView, gender?: PerfumeGender | null) => {
   const tz = useProfileTimezone();
   // Só espera enquanto o fuso carrega: vazio, inválido ou com a consulta falha, cai no padrão
   const date = tz.isPending ? '' : todayInTimezone(tz.data ?? DEFAULT_TIMEZONE);
@@ -30,8 +31,8 @@ export const useDailySuggestion = (weather: WeatherView) => {
   const families = temperature === null ? [] : highlightFamilies(temperature);
 
   const query = useQuery({
-    queryKey: queryKeys.home.suggestion(date, families),
-    queryFn: () => homeService.getDailySuggestion(date, families),
+    queryKey: queryKeys.home.suggestion(date, families, gender),
+    queryFn: () => homeService.getDailySuggestion(date, families, gender),
     enabled: date !== '' && settled,
     select: (suggestion): SuggestionView | null => {
       if (!suggestion) return null;
