@@ -24,6 +24,11 @@ Este documento registra o estado atual do projeto para transição entre computa
     - Migration `20261012120000_avatars_storage.sql`: bucket público `avatars` e 4 policies (leitura pública, escrita do dono na própria pasta), com testes pgTAP em `11_storage.test.sql`.
     - `src/lib/avatar.ts` (valida, recorta 1:1 e reexporta em WebP no canvas), `profileService.uploadAvatar/removeAvatar`, `ProfileAvatar` editável e hooks `useUploadAvatar`/`useRemoveAvatar`.
     - `ProfileForm`: caixa "Detectar fuso horário automaticamente" (padrão ligada, `localStorage` `sillage-timezone-auto`).
+  - ✅ **15E (Home: filtro de gênero, card de clima e prompt do Nez):**
+    - Filtro "Todos / Feminino / Masculino / Unissex" na Sugestão do dia (`lib/homeGender.ts`, chips com `aria-pressed`, preferência em `localStorage` `sillage-home-gender`, padrão `all`); `homeService.getDailySuggestion(date, families, gender)` repassa `genders` à RPC `search_perfumes` (sem migration) e o gênero entra na query key.
+    - `WeatherBar` reorganizado: cabeçalho (cidade + botão de 44 px), métricas (temperatura grande, descrição, umidade) e linha "Sillage recomendada" com fundo `bg-accent/40`; todos os estados mantidos.
+    - `SYSTEM_PROMPT` do `nez-ai` com volatilidade das notas por clima e evolução da pirâmide.
+    - Testes: `HomePage.test.tsx` (filtro), novo `WeatherBar.test.tsx` e e2e do filtro em `weather.spec.ts`.
 - **Commits realizados nesta branch:**
   - `d0cd4a1` docs(security): registra a confirmação de e-mail desativada como risco aceito
   - `361cb93` feat(catalog): remove a concentração other
@@ -33,7 +38,7 @@ Este documento registra o estado atual do projeto para transição entre computa
 
 ## 2. 🗺️ Próximo Passo Imediato (Onde Retomar)
 
-O próximo bloco de trabalho na mesma branch é a **Subfase 15E** (filtro de gênero na Home, reorganização do card de clima e melhorias de prompt do Nez), seguida da **15F** (bundle/Lighthouse).
+A 15E está concluída. O próximo bloco de trabalho na mesma branch é a **Subfase 15F** (auditoria de bundle e Lighthouse).
 
 ---
 
@@ -60,4 +65,4 @@ npx supabase test db
 
 Ao abrir o chat no outro computador, basta dizer:
 
-> _"Estou no outro PC. Vamos retomar da Subfase 15E do HANDOFF.md na branch feat/phase-15-catalog-and-auth."_
+> _"Estou no outro PC. Vamos retomar da Subfase 15F do HANDOFF.md na branch feat/phase-15-catalog-and-auth."_
