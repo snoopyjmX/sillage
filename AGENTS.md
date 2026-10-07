@@ -3,7 +3,7 @@
 ## Fonte de verdade
 
 docs/PRODUCT.md (regras RN01–RN08), DATABASE.md, SECURITY.md,
-ARCHITECTURE.md, DESIGN_SYSTEM.md, QA.md. Leia o relevante antes de mexer.
+ARCHITECTURE.md, DESIGN_SYSTEM.md. A matriz de testes está na seção 12 do PRODUCT.md. Leia o relevante antes de mexer.
 Mudança estrutural = atualizar o doc no mesmo PR.
 
 ## Arquitetura

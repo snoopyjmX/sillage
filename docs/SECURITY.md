@@ -10,6 +10,10 @@ Fonte: `docs/PRODUCT.md` (Seção 6). A autorização vive no banco; o frontend 
 - A `anon key` é pública por desenho. O que protege os dados são as policies.
 - Toda mudança em migration ou policy exige atualizar os testes pgTAP (`supabase/tests/database/`).
 
+## Gate de acesso (v1.3): é UX, não barreira de dados
+
+Só a Landing, o login, o cadastro e a recuperação de senha abrem sem login; `RequireAuth` leva o visitante a `/?redirect=`. **Isso é um gate de interface.** A RLS não mudou e o catálogo continua com leitura pública no banco (RN07): qualquer cliente com a `anon key` (pública por desenho) consegue ler perfumes, marcas, notas e as views públicas de avaliações, com ou sem a interface. Os dados privados continuam protegidos só pela RLS. `?redirect=` é entrada do usuário e passa por `lib/redirect` (só caminhos internos; `//host`, `https://...` e `javascript:` são descartados). O `robots.txt` bloqueia as rotas privadas só por higiene de SEO: não é controle de acesso.
+
 ## Admin
 
 O papel vem de `app_metadata.role = 'admin'` no JWT, lido por `is_admin()`. `app_metadata` só muda com `service_role` (painel do Supabase ou script local). `user_metadata`, que o usuário edita pelo SDK, nunca concede acesso (coberto por teste). A claim chega no próximo refresh do token.

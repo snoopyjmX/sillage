@@ -167,10 +167,10 @@ Constantes em `src/lib/motion.ts` (componentes importam, não repetem números).
 
 ## Componentes de tela (Fase 8)
 
-| Componente                                        | Pasta              | Notas                                                                                                                                                                                                                               |
-| ------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `HomePage`                                        | `pages`            | Rota pública `/`. Momento de assinatura: o título digitado (`TypingAnimation`). Visitante vê o convite (Entrar e Criar conta); logado vê o Perfume de hoje e o Histórico. `AsyncBoundary` com `DailySkeleton`, vazio, erro, offline |
-| `DailyHighlight`, `DailyHistory`, `DailySkeleton` | `components/daily` | Destaque maior (placeholder pela primeira família, chips, link para os detalhes) em `BlurFade`; histórico em grid compacto (até 12 dias anteriores); skeleton com as mesmas dimensões                                               |
+| Componente                                        | Pasta              | Notas                                                                                                                                                                                                                        |
+| ------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `HomePage`                                        | `pages`            | Home do logado na rota `/` (o visitante vê a `LandingPage`). Momento de assinatura: o título digitado (`TypingAnimation`). Mostra o Perfume de hoje e o Histórico. `AsyncBoundary` com `DailySkeleton`, vazio, erro, offline |
+| `DailyHighlight`, `DailyHistory`, `DailySkeleton` | `components/daily` | Destaque maior (placeholder pela primeira família, chips, link para os detalhes) em `BlurFade`; histórico em grid compacto (até 12 dias anteriores); skeleton com as mesmas dimensões                                        |
 
 ## Componentes de tela (Fase 9)
 
@@ -220,3 +220,13 @@ Momento de assinatura da tela: a digitação do título ("Descubra a fragrância
 | `DangerZone`    | `components/profile` | Cartão com borda `destructive`, botão "Excluir conta" e `Dialog` de confirmação com "Cancelar" e a ação destrutiva desativada ("Em breve")                      |
 
 Estados: o perfil e o resumo usam `AsyncBoundary` (skeleton, vazio, erro com tentar de novo, offline), cada um no seu bloco: falha do resumo não esconde o formulário. Sem dados, o resumo vira um `EmptyState` com link para o catálogo.
+
+## Componentes de tela (Fase 14B: Landing e acesso)
+
+| Componente       | Pasta                | Notas                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ---------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PublicLayout`   | `components/layout`  | Layout dos visitantes (Landing, login, cadastro, recuperação). `Navbar` com a `AdaptivePillNav` em modo `landing`, `OfflineBanner` próprio ("Você está navegando offline.") e `Footer`. Sem Nez e sem navegação privada. Aceita `children` (rota `/`) ou `<Outlet />`                                                                                                                                                             |
+| `LandingPyramid` | `components/landing` | Momento de assinatura da Landing: Topo, Coração e Fundo revelados em camadas, só com tokens (`bg-accent`, `bg-secondary`, `bg-primary`). Decorativa (`aria-hidden`). Anima só `opacity` e `y` com `transitions.page` e `staggerDelay`; pronta em reduced motion                                                                                                                                                                   |
+| `LandingPage`    | `pages`              | Rota `/` do visitante. Seções com âncoras `#inicio`, `#como-funciona`, `#recursos` e `#acessar`; assinatura "Enciclopédia olfativa"; dois CTAs sempre visíveis ("Criar conta" e "Entrar"), que repassam `?redirect=`. Estática: sem dado assíncrono, logo sem estados de loading, vazio ou erro; abre offline pelo shell. Só o que o produto faz: sem depoimentos nem números. Cards em `BlurFade` ao rolar (até 12 itens, 40 ms) |
+
+A `AdaptivePillNav` em modo `landing` passa a repassar `?redirect=` (saneado) para "Entrar" e "Criar conta" e, fora de `/`, aponta as âncoras para `/#seção`. A `HomePage` agora é só do logado (o convite do visitante saiu).

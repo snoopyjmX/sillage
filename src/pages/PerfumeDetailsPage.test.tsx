@@ -54,7 +54,8 @@ describe('página de detalhes do perfume', () => {
   beforeEach(() => {
     getBySlug.mockReset();
     auth.reset();
-    auth.setInitialSession(null);
+    // O gate só libera a rota para quem tem sessão
+    auth.setInitialSession(fakeSession());
     getUserReview.mockReset();
     getUserReview.mockResolvedValue(null);
     getPerfumeReviews.mockReset();
@@ -207,17 +208,16 @@ describe('página de detalhes do perfume', () => {
       expect(await screen.findByText('Ainda não há avaliações')).toBeInTheDocument();
     });
 
-    it('visitante que clica em "Avaliar fragrância" vai para o login com ?redirect=', async () => {
+    it('visitante não chega aos detalhes: cai na Landing com ?redirect= e nada é consultado', async () => {
+      auth.setInitialSession(null);
       getBySlug.mockResolvedValue(detail);
       const { router } = renderApp('/perfumes/malbec-signature');
-      fireEvent.click(
-        await screen.findByRole('button', { name: 'Avaliar fragrância' }, { timeout: 3000 })
+      await screen.findByRole('heading', { name: 'Descubra perfumes pelas suas notas', level: 1 });
+      expect(router.state.location.pathname + router.state.location.search).toBe(
+        '/?redirect=%2Fperfumes%2Fmalbec-signature'
       );
-      await waitFor(() =>
-        expect(router.state.location.pathname + router.state.location.search).toBe(
-          '/login?redirect=%2Fperfumes%2Fmalbec-signature'
-        )
-      );
+      expect(screen.queryByText('Malbec Signature')).not.toBeInTheDocument();
+      expect(getBySlug).not.toHaveBeenCalled();
     });
 
     it('logado abre o formulário; com avaliação própria o botão vira "Editar" e vem preenchido', async () => {

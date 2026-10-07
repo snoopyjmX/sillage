@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /catalog
+Disallow: /perfumes/
+Disallow: /collection
+Disallow: /profile
 
 Sitemap: https://sillage-ashy-gamma.vercel.app/sitemap.xml

@@ -3,7 +3,6 @@ import { expect, stubOpenMeteo, test } from './fixtures.ts';
 import { axeViolations, registerViaUi, seedDaily } from './helpers.ts';
 
 const THEME_KEY = 'sillage-theme';
-const TITLE = 'Descubra a fragrância de hoje';
 
 // Hoje: Malbec Signature. Ontem e anteontem: Bossa e Boníssimo.
 const registerWithHistory = async (page: Page) => {
@@ -28,21 +27,6 @@ const setTheme = (page: Page, theme: 'light' | 'dark') =>
   );
 
 test.describe('home', () => {
-  test('visitante vê o título e o convite para entrar (Perfume do Dia é privado)', async ({
-    page,
-  }) => {
-    await page.goto('/');
-    await expect(page).toHaveURL(/\/$/);
-    await expect(page.getByRole('heading', { level: 1, name: TITLE })).toBeVisible();
-    await expect(
-      page.getByRole('heading', { name: 'Entre para ver o seu Perfume do Dia' })
-    ).toBeVisible();
-    // O Footer também tem "Criar conta": o convite é o do conteúdo principal
-    await expect(
-      page.locator('#conteudo').getByRole('link', { name: 'Criar conta' })
-    ).toHaveAttribute('href', '/register');
-  });
-
   test('conta nova, sem nada escolhido, vê o estado vazio com saída para o catálogo', async ({
     page,
   }) => {
@@ -91,6 +75,10 @@ test.describe('home', () => {
 });
 
 test.describe('navbar', () => {
+  test.beforeEach(async ({ page }) => {
+    await registerViaUi(page);
+  });
+
   test('no desktop mostra os links na barra e nenhum botão de menu', async ({ page, isMobile }) => {
     test.skip(isMobile, 'Layout de tela larga');
     await page.setViewportSize({ width: 1280, height: 800 });
@@ -140,7 +128,8 @@ test.describe('navbar', () => {
     for (const name of ['Início', 'Catálogo', 'Coleção', 'Perfil']) {
       await expect(menu.getByRole('link', { name })).toBeVisible();
     }
-    await expect(menu.getByRole('link', { name: 'Entrar' })).toBeVisible();
+    // Logado: sem "Entrar" no menu
+    await expect(menu.getByRole('link', { name: 'Entrar' })).toHaveCount(0);
 
     await menu.getByRole('link', { name: 'Catálogo' }).click();
     await expect(page).toHaveURL(/\/catalog$/);
@@ -187,13 +176,6 @@ for (const theme of ['light', 'dark'] as const) {
       test.beforeEach(async ({ page }) => {
         await setTheme(page, theme);
         await page.setViewportSize(viewport);
-      });
-
-      test('visitante', async ({ page }) => {
-        await page.goto('/');
-        await expect(page.getByRole('heading', { level: 1, name: TITLE })).toBeVisible();
-        await expect(page.getByRole('heading', { name: /^Entre para ver/ })).toBeVisible();
-        expect(await axeViolations(page)).toEqual([]);
       });
 
       test('logado, com Perfume do Dia e histórico', async ({ page }) => {

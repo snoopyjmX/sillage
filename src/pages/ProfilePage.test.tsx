@@ -47,10 +47,10 @@ describe('ProfilePage', () => {
     countDays.mockResolvedValue(5);
   });
 
-  it('NEGADO: visitante em /profile cai no login com ?redirect e nada é consultado', async () => {
+  it('NEGADO: visitante em /profile cai na Landing (gate) com ?redirect e nada é consultado', async () => {
     auth.setInitialSession(null);
     const { router } = renderApp('/profile');
-    await waitFor(() => expect(router.state.location.pathname).toBe('/login'));
+    await waitFor(() => expect(router.state.location.pathname).toBe('/'));
     expect(router.state.location.search).toBe('?redirect=%2Fprofile');
     expect(getProfile).not.toHaveBeenCalled();
   });

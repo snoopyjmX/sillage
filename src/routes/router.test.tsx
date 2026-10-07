@@ -1,5 +1,6 @@
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { fakeSession } from '@/test/authMock';
 import { renderApp } from '@/test/renderApp';
 import type { PerfumeSummary } from '@/types/catalog';
 
@@ -11,11 +12,10 @@ vi.mock('@/services/perfumeService', () => ({
 vi.mock('@/services/collectionService', () => ({
   collectionService: { list: () => Promise.resolve([]) },
 }));
-vi.mock('@/services/authService', () => ({
-  authService: {
-    getSession: () => Promise.resolve(null),
-    onAuthStateChange: () => () => undefined,
-  },
+const auth = await vi.hoisted(async () => (await import('@/test/authMock')).createAuthMock());
+vi.mock('@/services/authService', () => ({ authService: auth.service }));
+vi.mock('@/services/dailyService', () => ({
+  dailyService: { getOverview: () => Promise.resolve({ today: null, history: [] }) },
 }));
 vi.mock('@/services/referenceService', () => ({
   referenceService: {
@@ -41,11 +41,14 @@ const perfume = (overrides: Partial<PerfumeSummary> = {}): PerfumeSummary => ({
 
 describe('rotas', () => {
   beforeEach(() => {
+    auth.reset();
+    // O gate só libera as rotas privadas para quem tem sessão
+    auth.setInitialSession(fakeSession());
     search.mockReset();
     search.mockResolvedValue({ items: [perfume()], total: 1 });
   });
 
-  it('/ é a Home pública (sem redirecionar), com o convite para visitantes', async () => {
+  it('/ para o logado é a Home (não a Landing), sem redirecionar', async () => {
     const { router } = renderApp('/');
     // Primeira carga do chunk lazy no vitest é a mais lenta
     expect(
@@ -57,8 +60,23 @@ describe('rotas', () => {
     ).toBeInTheDocument();
     expect(router.state.location.pathname).toBe('/');
     expect(
-      await screen.findByRole('heading', { name: 'Entre para ver o seu Perfume do Dia' })
+      screen.queryByRole('heading', { name: 'Descubra perfumes pelas suas notas' })
+    ).not.toBeInTheDocument();
+  }, 15_000);
+
+  it('/ para o visitante é a Landing, na mesma URL', async () => {
+    auth.setInitialSession(null);
+    const { router } = renderApp('/');
+    expect(
+      await screen.findByRole(
+        'heading',
+        { name: 'Descubra perfumes pelas suas notas', level: 1 },
+        { timeout: 10_000 }
+      )
     ).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe('/');
+    expect(screen.getAllByRole('link', { name: /Criar conta/ }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('link', { name: 'Entrar' }).length).toBeGreaterThan(0);
   });
 
   it('rota desconhecida mostra um 404 amigável com caminho de volta', async () => {
@@ -96,6 +114,8 @@ describe('rotas', () => {
 
 describe('catálogo', () => {
   beforeEach(() => {
+    auth.reset();
+    auth.setInitialSession(fakeSession());
     search.mockReset();
   });
 

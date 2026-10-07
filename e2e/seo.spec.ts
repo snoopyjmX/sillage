@@ -1,5 +1,11 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
+import { registerViaUi } from './helpers.ts';
+
+// O gate libera estas rotas só para quem tem conta: cada teste entra antes de navegar.
+test.beforeEach(async ({ page }) => {
+  await registerViaUi(page);
+});
 
 const ogTitle = (page: Page) => page.locator('meta[property="og:title"]');
 

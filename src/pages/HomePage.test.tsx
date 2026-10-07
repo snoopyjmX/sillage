@@ -54,8 +54,6 @@ const entry = (date: string, name: string): DailyEntry => {
   return { date, perfume };
 };
 
-const TITLE = { name: 'Descubra a fragrância de hoje', level: 1 } as const;
-
 describe('HomePage', () => {
   beforeEach(() => {
     auth.reset();
@@ -77,16 +75,15 @@ describe('HomePage', () => {
     getDailySuggestion.mockResolvedValue(null);
   });
 
-  it('visitante vê o título e o convite, sem consultar o Perfume do Dia (é privado)', async () => {
+  it('visitante vê a Landing, sem consultar o Perfume do Dia (é privado)', async () => {
     auth.setInitialSession(null);
     renderApp('/');
-    expect(await screen.findByRole('heading', TITLE)).toBeInTheDocument();
-    // O Footer também tem "Criar conta" para visitante: o convite é o do conteúdo principal
-    const main = within(screen.getByRole('main'));
-    expect(await main.findByRole('link', { name: 'Criar conta' })).toHaveAttribute(
-      'href',
-      '/register'
-    );
+    expect(
+      await screen.findByRole('heading', { name: 'Descubra perfumes pelas suas notas', level: 1 })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', { name: 'Descubra a fragrância de hoje' })
+    ).not.toBeInTheDocument();
     expect(getOverview).not.toHaveBeenCalled();
   });
 

@@ -8,7 +8,7 @@
 import { Menu } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useEffect, useState, type ReactNode } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   Drawer,
@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/drawer';
 import { LANDING_ITEMS, NAV_ITEMS } from '@/constants/navigation';
 import { transitions } from '@/lib/motion';
+import { withRedirect } from '@/lib/redirect';
 import { cn } from '@/lib/utils';
 
 export type AdaptivePillNavMode = 'app' | 'landing';
@@ -73,6 +74,13 @@ export function AdaptivePillNav({ mode, menuExtra, className }: AdaptivePillNavP
   const closeMenu = () => setMenuOpen(false);
   const landing = mode === 'landing';
   const hash = useHash(landing);
+  // Fora da Landing (login, cadastro...), as âncoras levam à seção em "/"
+  const anchorBase = pathname === '/' ? '' : '/';
+  // O destino original (?redirect=) segue para o login e o cadastro; valor inseguro é descartado
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get('redirect');
+  const loginTo = withRedirect('/login', redirect);
+  const registerTo = withRedirect('/register', redirect);
 
   const activeApp = NAV_ITEMS.find((item) =>
     item.to === '/' ? pathname === '/' : pathname.startsWith(item.to)
@@ -91,7 +99,7 @@ export function AdaptivePillNav({ mode, menuExtra, className }: AdaptivePillNavP
                 return (
                   <li key={item.key} className="isolate">
                     <a
-                      href={item.hash}
+                      href={anchorBase + item.hash}
                       aria-current={active ? 'location' : undefined}
                       className={cn(itemBase, active ? 'text-primary' : 'hover:bg-accent')}
                     >
@@ -127,10 +135,10 @@ export function AdaptivePillNav({ mode, menuExtra, className }: AdaptivePillNavP
           {landing && (
             <li className="flex items-center gap-1 pl-1">
               <Button asChild variant="ghost" size="sm" className="h-11 rounded-full">
-                <Link to="/login">Entrar</Link>
+                <Link to={loginTo}>Entrar</Link>
               </Button>
               <Button asChild size="sm" className="h-11 rounded-full">
-                <Link to="/register">Criar conta</Link>
+                <Link to={registerTo}>Criar conta</Link>
               </Button>
             </li>
           )}
@@ -156,7 +164,7 @@ export function AdaptivePillNav({ mode, menuExtra, className }: AdaptivePillNavP
                 ? LANDING_ITEMS.map((item) => (
                     <a
                       key={item.key}
-                      href={item.hash}
+                      href={anchorBase + item.hash}
                       onClick={closeMenu}
                       aria-current={item.hash === hash ? 'location' : undefined}
                       className={cn(
@@ -189,10 +197,10 @@ export function AdaptivePillNav({ mode, menuExtra, className }: AdaptivePillNavP
             {landing && (
               <div className="flex flex-col gap-2">
                 <Button asChild onClick={closeMenu}>
-                  <Link to="/register">Criar conta</Link>
+                  <Link to={registerTo}>Criar conta</Link>
                 </Button>
                 <Button asChild variant="outline" onClick={closeMenu}>
-                  <Link to="/login">Entrar</Link>
+                  <Link to={loginTo}>Entrar</Link>
                 </Button>
               </div>
             )}
