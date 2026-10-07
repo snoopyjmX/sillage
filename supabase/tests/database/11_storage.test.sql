@@ -1,9 +1,9 @@
--- Storage: perfume-images com leitura pública e escrita só admin
+-- Storage: perfume-images (leitura pública, escrita só admin) e avatars (leitura pública, escrita do dono)
 begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(11);
+select plan(17);
 
 -- Helpers: trocam o papel do Postgres e as claims do JWT (nunca testamos como superusuário)
 create function pg_temp.act_as(
@@ -69,7 +69,19 @@ select pg_temp.act_as('a0000000-0000-4000-8000-00000000000a', '{"role":"admin"}'
 select is(pg_temp.affected($t$delete from storage.objects where bucket_id = 'perfume-images' and name = 'admin2.png'$t$), 1::bigint, 'Storage: admin apaga objeto');
 select pg_temp.act_postgres();
 select is((select public from storage.buckets where id = 'perfume-images'), true, 'Storage: bucket perfume-images é público');
-select is((select count(*) from storage.buckets where id = 'avatars'), 0::bigint, 'Storage: não há bucket de avatars no MVP');
+select is((select public from storage.buckets where id = 'avatars'), true, 'Storage: bucket avatars é público');
+
+-- avatars: o dono escreve só na própria pasta
+select pg_temp.act_as('a0000000-0000-4000-8000-00000000000a');
+select lives_ok($t$insert into storage.objects (bucket_id, name) values ('avatars', 'a0000000-0000-4000-8000-00000000000a/avatar.webp')$t$, 'Storage: dono insere o próprio avatar');
+select throws_ok($t$insert into storage.objects (bucket_id, name) values ('avatars', 'b0000000-0000-4000-8000-00000000000b/avatar.webp')$t$, '42501', null, 'Storage: não insere na pasta de outro usuário');
+select is(pg_temp.affected($t$update storage.objects set name = 'a0000000-0000-4000-8000-00000000000a/avatar.webp' where bucket_id = 'avatars' and name = 'a0000000-0000-4000-8000-00000000000a/avatar.webp'$t$), 1::bigint, 'Storage: dono atualiza o próprio avatar');
+select pg_temp.act_as('b0000000-0000-4000-8000-00000000000b');
+select is(pg_temp.affected($t$update storage.objects set metadata = '{}'::jsonb where bucket_id = 'avatars' and name = 'a0000000-0000-4000-8000-00000000000a/avatar.webp'$t$), 0::bigint, 'Storage: outro usuário não atualiza o avatar alheio');
+select set_config('storage.allow_delete_query', 'true', true);
+select is(pg_temp.affected($t$delete from storage.objects where bucket_id = 'avatars' and name = 'a0000000-0000-4000-8000-00000000000a/avatar.webp'$t$), 0::bigint, 'Storage: outro usuário não apaga o avatar alheio');
+select pg_temp.act_anon();
+select is((select count(*) from storage.objects where bucket_id = 'avatars' and name = 'a0000000-0000-4000-8000-00000000000a/avatar.webp'), 1::bigint, 'Storage: anon lê avatars');
 
 select * from finish();
 rollback;
