@@ -25,8 +25,12 @@ export const queryKeys = {
   },
   daily: {
     overview: (userId: string) => ['private', userId, 'daily'] as const,
+    // Dias no memorial (filha de `overview`: invalidar o resumo atualiza a contagem)
+    count: (userId: string) => ['private', userId, 'daily', 'count'] as const,
   },
   profile: {
+    all: (userId: string) => ['private', userId, 'profile'] as const,
+    detail: (userId: string) => ['private', userId, 'profile', 'detail'] as const,
     timezone: (userId: string) => ['private', userId, 'profile', 'timezone'] as const,
   },
   // Clima e localização: sempre privados (nunca persistidos). Coordenadas já arredondadas.

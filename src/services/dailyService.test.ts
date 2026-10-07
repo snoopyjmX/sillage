@@ -91,4 +91,20 @@ describe('dailyService', () => {
     expect(overview.history).toHaveLength(1);
     expect(lt).toHaveBeenCalledWith('date', '2026-10-05');
   });
+
+  it('countDays conta as linhas do dono sem baixar os dados (head + count exact)', async () => {
+    select.mockReturnValueOnce(Promise.resolve({ count: 4, error: null }) as never);
+    await expect(dailyService.countDays()).resolves.toBe(4);
+    expect(from).toHaveBeenCalledWith('daily_perfumes');
+    expect(select).toHaveBeenCalledWith('date', { count: 'exact', head: true });
+  });
+
+  it('countDays sem linhas devolve 0 real e erro vira mensagem amigável', async () => {
+    select.mockReturnValueOnce(Promise.resolve({ count: null, error: null }) as never);
+    await expect(dailyService.countDays()).resolves.toBe(0);
+    select.mockReturnValueOnce(
+      Promise.resolve({ count: null, error: { code: 'XX000', message: 'interno' } }) as never
+    );
+    await expect(dailyService.countDays()).rejects.toMatchObject({ code: 'daily_failed' });
+  });
 });

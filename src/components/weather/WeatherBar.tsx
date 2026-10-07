@@ -11,10 +11,7 @@ interface LocationControls {
   supported: boolean;
   status: GeolocationStatus;
   error: string | null;
-  // Coordenadas do aparelho em uso (em vez da cidade do perfil)
-  active: boolean;
   request: () => void;
-  clear: () => void;
 }
 
 interface WeatherBarProps {
@@ -25,14 +22,6 @@ interface WeatherBarProps {
 
 function LocationButton({ location }: { location: LocationControls }) {
   if (!location.supported) return null;
-  if (location.active) {
-    return (
-      <Button variant="ghost" size="sm" onClick={location.clear}>
-        <MapPin aria-hidden />
-        Voltar à minha cidade
-      </Button>
-    );
-  }
   const requesting = location.status === 'requesting';
   return (
     <Button

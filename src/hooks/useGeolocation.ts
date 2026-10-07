@@ -1,11 +1,25 @@
-// Localização do aparelho, só por clique (ou se a permissão já estiver "granted").
+// Localização do aparelho: por clique, ou direto se a permissão já foi concedida.
 // As coordenadas ficam apenas em estado de memória, arredondadas: nunca em storage, banco, rede
-// nossa ou chave persistida (docs/SECURITY.md).
+// nossa ou chave persistida. O único dado gravado é um aviso booleano (docs/SECURITY.md).
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { GEO_PERMISSION_DENIED } from '@/constants/weather';
+import { clearGeoHint, hasGeoHint, setGeoHint } from '@/lib/geoHint';
 import { roundCoordinate } from '@/lib/location';
 import type { Coordinates, GeolocationStatus } from '@/types/weather';
 
 const POSITION_OPTIONS: PositionOptions = { maximumAge: 10 * 60_000, timeout: 10_000 };
+
+// 'unknown': a Permissions API não existe ou não respondeu
+type PermissionOutcome = PermissionState | 'unknown';
+
+const queryPermission = async (): Promise<PermissionOutcome> => {
+  if (typeof navigator === 'undefined' || !navigator.permissions) return 'unknown';
+  try {
+    return (await navigator.permissions.query({ name: 'geolocation' })).state;
+  } catch {
+    return 'unknown';
+  }
+};
 
 export const useGeolocation = () => {
   const [coords, setCoords] = useState<Coordinates | null>(null);
@@ -28,6 +42,8 @@ export const useGeolocation = () => {
     setStatus('requesting');
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        // Concedida: guarda só o aviso; as coordenadas ficam em memória
+        setGeoHint();
         if (!mounted.current) return;
         setCoords({
           latitude: roundCoordinate(position.coords.latitude),
@@ -35,29 +51,31 @@ export const useGeolocation = () => {
         });
         setStatus('idle');
       },
-      () => {
-        if (mounted.current) setStatus('denied');
+      (error) => {
+        // Só permissão negada apaga o aviso; timeout e sinal fraco não revogam nada
+        const denied = error.code === GEO_PERMISSION_DENIED;
+        if (denied) clearGeoHint();
+        if (mounted.current) setStatus(denied ? 'denied' : 'failed');
       },
       POSITION_OPTIONS
     );
   }, [supported]);
 
-  // Permissão já concedida antes: pode usar direto, sem novo clique
+  // Uma única checagem ao montar, sem clique: `granted` usa a localização direto; sem Permissions
+  // API (ou sem resposta), o aviso booleano diz se já houve concessão (o navegador não pergunta
+  // de novo). `prompt` e `denied` nunca disparam pedido, e o aviso velho é apagado.
   useEffect(() => {
-    if (!supported || !navigator.permissions) return;
+    if (!supported) return;
     let cancelled = false;
-    navigator.permissions
-      .query({ name: 'geolocation' })
-      .then((result) => {
-        if (!cancelled && result.state === 'granted') request();
-      })
-      .catch(() => undefined);
+    void queryPermission().then((state) => {
+      if (cancelled) return;
+      if (state === 'granted' || (state === 'unknown' && hasGeoHint())) request();
+      else clearGeoHint();
+    });
     return () => {
       cancelled = true;
     };
   }, [supported, request]);
 
-  const clear = useCallback(() => setCoords(null), []);
-
-  return { coords, status, supported, request, clear };
+  return { coords, status, supported, request };
 };

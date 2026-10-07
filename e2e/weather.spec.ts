@@ -173,8 +173,9 @@ test.describe('home: clima e sugestão do dia', () => {
     });
     expect(idb).not.toMatch(/-22\.9|-43\.1/);
 
-    await bar.getByRole('button', { name: 'Voltar à minha cidade' }).click();
-    await expect(bar.getByText('São Paulo, BRASIL')).toBeVisible();
+    // Não há mais "voltar à minha cidade": só o botão de usar a localização
+    await expect(page.getByRole('button', { name: 'Voltar à minha cidade' })).toHaveCount(0);
+    await expect(bar.getByRole('button', { name: 'Usar minha localização' })).toBeVisible();
   });
 
   test('negar a localização mostra mensagem amigável', async ({ page, context }) => {
@@ -251,3 +252,82 @@ for (const viewport of [
     });
   });
 }
+
+test.describe('home: localização persistente e negação', () => {
+  test('permissão concedida: a localização volta sozinha ao recarregar, só com o aviso no storage', async ({
+    page,
+    context,
+  }) => {
+    const requests = await mockOpenMeteo(page, 12);
+    await registerViaUi(page);
+    await context.grantPermissions(['geolocation']);
+    await context.setGeolocation({ latitude: -22.906847, longitude: -43.172896 });
+
+    const bar = page.getByRole('region', { name: 'Clima de hoje' });
+    await page.getByRole('button', { name: 'Usar minha localização' }).click();
+    await expect(bar.getByText('Sua localização', { exact: true })).toBeVisible();
+    // Só o botão de usar a localização: não há mais "voltar à cidade"
+    await expect(page.getByRole('button', { name: /Voltar à minha cidade/i })).toHaveCount(0);
+
+    await page.reload();
+    // Sem clique: a Permissions API diz "granted" e a localização é usada direto
+    await expect(bar.getByText('Sua localização', { exact: true })).toBeVisible();
+    await expect(bar.getByText('12°C')).toBeVisible();
+    expect(
+      requests.filter(
+        (url) =>
+          url.pathname === '/v1/forecast' &&
+          url.searchParams.get('latitude') === '-22.91' &&
+          url.searchParams.get('longitude') === '-43.17'
+      ).length
+    ).toBeGreaterThan(0);
+
+    // Só o aviso booleano é gravado; coordenadas nunca
+    const local = await page.evaluate(() => ({ ...window.localStorage }));
+    expect(local['sillage-geo-hint']).toBe('1');
+    const stored = await page.evaluate(() =>
+      JSON.stringify({ ...window.localStorage, ...window.sessionStorage })
+    );
+    expect(stored).not.toMatch(/-?22\.9|-?43\.1/);
+  });
+
+  test('permissão negada: mensagem em pt-BR, aviso apagado e nenhum pedido novo automático', async ({
+    page,
+  }) => {
+    await mockOpenMeteo(page, 12);
+    // Conta as chamadas à geolocalização em cada carregamento da página (a original continua valendo)
+    await page.addInitScript(() => {
+      const w = window as unknown as { __geoCalls: number };
+      w.__geoCalls = 0;
+      const original = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+      navigator.geolocation.getCurrentPosition = (...args) => {
+        w.__geoCalls += 1;
+        return original(...args);
+      };
+    });
+    await registerViaUi(page);
+    // Aviso antigo de uma concessão que o navegador já não honra
+    await page.evaluate(() => window.localStorage.setItem('sillage-geo-hint', '1'));
+
+    // Navegador sem permissão em headless: o pedido é negado
+    await page.getByRole('button', { name: 'Usar minha localização' }).click();
+    const bar = page.getByRole('region', { name: 'Clima de hoje' });
+    await expect(
+      bar.getByRole('alert').filter({ hasText: 'Não foi possível usar a sua localização' })
+    ).toBeVisible();
+    expect(await page.evaluate(() => window.localStorage.getItem('sillage-geo-hint'))).toBeNull();
+    const callsAfterClick = await page.evaluate(
+      () => (window as unknown as { __geoCalls: number }).__geoCalls
+    );
+    expect(callsAfterClick).toBe(1);
+
+    // Recarregar não pede de novo: nenhuma chamada, nenhuma mensagem, cidade do perfil
+    await page.reload();
+    await expect(bar.getByText('São Paulo, BRASIL')).toBeVisible();
+    await page.waitForTimeout(500);
+    expect(
+      await page.evaluate(() => (window as unknown as { __geoCalls: number }).__geoCalls)
+    ).toBe(0);
+    await expect(bar.getByRole('alert')).toHaveCount(0);
+  });
+});

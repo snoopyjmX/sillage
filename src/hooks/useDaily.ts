@@ -16,6 +16,17 @@ export const useDaily = () => {
   });
 };
 
+// Quantos dias o usuário já registrou no memorial. Chave: ['private', userId, 'daily', 'count'].
+export const useDailyCount = () => {
+  const { user } = useAuth();
+  const userId = user?.id ?? '';
+  return useQuery({
+    queryKey: queryKeys.daily.count(userId),
+    queryFn: dailyService.countDays,
+    enabled: userId !== '',
+  });
+};
+
 // "Vestir hoje": grava o Perfume do Dia pela função do banco e atualiza o resumo da Home
 export const useWearToday = () => {
   const { user } = useAuth();
