@@ -62,13 +62,13 @@ O MVP entrega seis blocos: catálogo, detalhes, autenticação, coleção, Perfu
 
 **Autenticação.** Supabase Auth com cadastro, login, logout, recuperação de senha, sessão persistida, rotas privadas e redirecionamento de volta ao destino original após o login.
 
-**Landing e acesso só com cadastro (v1.3).** Visitante vê apenas a Landing (`/`), o login, o cadastro e a recuperação de senha; todo o resto exige conta. A Landing descreve só o que o produto faz (sem depoimentos nem números inventados), tem dois CTAs sempre visíveis ("Criar conta" e "Entrar") e a assinatura "Enciclopédia olfativa". O gate é de interface: a leitura do catálogo continua pública no banco (RN07).
+**Landing e acesso só com cadastro (v1.3).** Visitante vê apenas a Landing (`/`), o login, o cadastro e a recuperação de senha; todo o resto exige conta. A Landing descreve só o que o produto faz (sem depoimentos nem números inventados), tem dois CTAs sempre visíveis ("Criar conta" e "Entrar") e a assinatura "Enciclopédia olfativa". O gate é de interface: a leitura do catálogo continua pública no banco (RN07). O painel de marca das telas de acesso usa uma arte local (WebP em `public/auth-art/`, só a partir de `md`; ver `docs/DESIGN_SYSTEM.md`), com a frase "Todo perfume deixa um rastro. O seu começa aqui." por cima.
 
 **Coleção.** Cada perfume está em `Tenho` ou `Quero` por usuário, nunca nos dois. Ações: adicionar, remover, alternar estado, listar e filtrar.
 
 **Perfume do Dia.** Um por data, no fuso do usuário, com histórico completo consultável. Escolher de novo no mesmo dia substitui o anterior.
 
-**Home (Fase 14D).** Barra de clima (cidade, temperatura, descrição, frase da faixa, umidade e as famílias em destaque), selo "Edição diária", a **sugestão do dia** (RN10) com imagem, notas por posição e medidores de Fixação, Rastro e Clima adequado, as ações "Vestir hoje" (grava o Perfume do Dia) e "Ver detalhes", "Seu Perfume de hoje", "Memorial" (histórico) e as descobertas: "Novidades no catálogo", "Parecidos com o seu perfume de hoje" e "Explore por família". O clima vem do Open-Meteo, sem backend nosso (seção 11); visitante vê o convite e as descobertas públicas.
+**Home (Fase 14D).** Barra de clima (cidade, temperatura, descrição, frase da faixa, umidade e as famílias em destaque), selo "Edição diária", a **sugestão do dia** (RN10) com imagem, notas por posição e medidores de Fixação, Rastro e Clima adequado, as ações "Vestir hoje" (grava o Perfume do Dia) e "Ver detalhes", "Seu Perfume de hoje", "Memorial" (histórico) e as descobertas: "Novidades no catálogo", "Parecidos com o seu perfume de hoje" e "Explore por família". O clima vem do Open-Meteo, sem backend nosso (seção 11); a Home é só do logado (visitante vê a Landing).
 
 **Perfil (Fase 14E).** Rota privada `/profile`, dentro do `AppShell`. Cabeçalho com avatar de **iniciais** (primeira letra da primeira e da última palavra do nome, acentos mantidos, emoji ignorado; sem letra, um ícone; **upload de foto está fora do MVP**), nome de exibição, fuso e e-mail, e o botão "Sair". **Resumo** só com dados que já existem: quantos perfumes em "Tenho", quantos em "Quero" e quantos **dias no memorial** (linhas de `daily_perfumes`, hoje incluído); sem nenhum dado, estado vazio com saída para o catálogo, nunca número inventado. **Formulário** de nome e fuso (React Hook Form + Zod): nome obrigatório, aparado, **até 60 caracteres** (o banco só exige `not null`, sem limite: o teto é conservador e vive só no front, o mesmo do cadastro); fuso válido no `Intl` (identificador IANA, com lista de sugestões do navegador). Salvar atualiza só `display_name` e `timezone` do próprio perfil (RLS de dono) e refaz o Perfume do Dia e o clima, que dependem do fuso. **Zona de perigo:** "Excluir conta" abre um dialog de confirmação, mas a ação fica desativada ("Em breve") até a fase da Edge Function (ver Roadmap). Estados: carregando (skeleton equivalente), vazio, erro com tentar de novo e offline.
 
@@ -666,11 +666,12 @@ O shell e as imagens vêm do Service Worker; os dados públicos do catálogo vê
 
 **Service Worker (`vite-plugin-pwa`, `registerType: 'prompt'`)**
 
-| O que                                  | Estratégia                           | Observação                                                          |
-| -------------------------------------- | ------------------------------------ | ------------------------------------------------------------------- |
-| JS, CSS, fontes, ícones, `index.html`  | Precache                             | App shell abre offline                                              |
-| Imagens do Storage (`perfume-images`)  | `CacheFirst`, até 100 itens, 30 dias | Só bucket público                                                   |
-| Chamadas ao Supabase (REST, RPC, Auth) | `NetworkOnly`                        | Nada de dados privados no cache do SW; RPC é `POST` e não cacheável |
+| O que                                  | Estratégia                                   | Observação                                                          |
+| -------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------- |
+| JS, CSS, fontes, ícones, `index.html`  | Precache                                     | App shell abre offline                                              |
+| Imagens do Storage (`perfume-images`)  | `CacheFirst`, até 100 itens, 30 dias         | Só bucket público                                                   |
+| Arte das telas de auth (`/auth-art/`)  | `StaleWhileRevalidate`, até 3 itens, 30 dias | Fora do precache (decorativa); só quem a vê a baixa                 |
+| Chamadas ao Supabase (REST, RPC, Auth) | `NetworkOnly`                                | Nada de dados privados no cache do SW; RPC é `POST` e não cacheável |
 
 Com `prompt`, uma atualização do app aparece como toast "Nova versão disponível" com botão Atualizar, em vez de recarregar a tela no meio de uma ação.
 

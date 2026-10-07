@@ -5,7 +5,7 @@ Fonte: `docs/PRODUCT.md` (Seção 6). A autorização vive no banco; o frontend 
 ## Autorização por RLS
 
 - RLS ligada nas 8 tabelas. Dados privados (`profiles`, `collection_items`, `daily_perfumes`, `perfume_reviews`) só aparecem para o dono (`(select auth.uid()) = user_id`).
-- O catálogo é público para leitura. Escrita exige `is_admin()` (RN07).
+- O catálogo é público para leitura **no banco** (a interface o mostra só a quem tem conta; ver o gate abaixo). Escrita exige `is_admin()` (RN07).
 - Não há policy de `INSERT`/`UPDATE`/`DELETE` onde o cliente não pode ser confiado: `daily_perfumes` só é escrita por `set_daily_perfume`, que calcula a data no fuso do perfil; `profiles` só nasce pelo trigger; `daily_perfumes` só é apagada por cascade da exclusão da conta. `perfume_reviews` o dono apaga e edita (só as colunas de nota e comentário); nunca a de outro.
 - A `anon key` é pública por desenho. O que protege os dados são as policies.
 - Toda mudança em migration ou policy exige atualizar os testes pgTAP (`supabase/tests/database/`).

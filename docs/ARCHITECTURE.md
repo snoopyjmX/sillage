@@ -117,8 +117,8 @@ Sem dependência nova, sem migration e sem mudança de policy. O gate é só de 
 | Rota                                                     | Acesso             | Layout                       | Guarda                                        |
 | -------------------------------------------------------- | ------------------ | ---------------------------- | --------------------------------------------- |
 | `/`                                                      | pública            | `PublicLayout` ou `AppShell` | `RootEntry`: esqueleto, Landing ou Home       |
-| `/login`, `/register`, `/forgot-password`                | só visitantes      | `PublicLayout`               | `GuestOnly` (logado volta ao destino)         |
-| `/reset-password`                                        | via link do e-mail | `PublicLayout`               | nenhuma                                       |
+| `/login`, `/register`, `/forgot-password`                | só visitantes      | `AuthCard` (layout próprio)  | `GuestOnly` (logado volta ao destino)         |
+| `/reset-password`                                        | via link do e-mail | `AuthCard` (layout próprio)  | nenhuma                                       |
 | `/catalog`, `/perfumes/:slug`, `/collection`, `/profile` | privada            | `AppShell`                   | `RequireAuth` (visitante vai a `/?redirect=`) |
 | `*` (404)                                                | privada            | `AppShell`                   | `RequireAuth`                                 |
 
@@ -127,3 +127,13 @@ Sem dependência nova, sem migration e sem mudança de policy. O gate é só de 
 - **`lib/redirect`**: `buildGatePath` (destino para `/?redirect=`) e `withRedirect` (repassa o destino saneado para `/login` e `/register`). Regra pura, com teste.
 - A Landing é estática (não consulta o banco), então abre offline pelo shell em precache. A vitrine opcional de perfumes reais ficou de fora.
 - **Lighthouse CI** (`lighthouserc.json`) audita `/`, `/login` e `/register`. O workflow `.github/workflows/lighthouse.yml` não muda.
+
+## Decisões da Fase 14F (fechamento e arte de login/cadastro)
+
+Sem dependência nova, sem migration e sem mudança de policy.
+
+- **Estrutura de assets:** `public/auth-art/` guarda as variantes WebP da arte decorativa das telas de auth, geradas por `scripts/process-auth-art.mjs` a partir de `docs/design/arte login-cadastro.jpg` (o original não é servido). `public/` segue como único lugar de imagens estáticas; não existe `src/assets/`.
+- **Carregamento:** a `<img>` da arte só é montada a partir de `md` (`useMediaQuery`), então o celular não a baixa. A arte é decorativa e de baixa prioridade (`fetchPriority="low"`).
+- **PWA:** a arte fica **fora do precache** (o `globPatterns` do Workbox não inclui `webp`) e entra por `runtimeCaching` `StaleWhileRevalidate` (`auth-art`). Motivo: é decorativa, só aparece para o visitante e não deve inflar a instalação nem o precache obrigatório. Sem a imagem, o painel mostra a superfície de token.
+- **Logo:** `Brand` (em `components/layout/Navbar.tsx`) passou a ser exportada e é a única logo, usada também no topo do formulário do `AuthCard`.
+- **Layouts:** as telas de auth usam o layout próprio do `AuthCard`, fora do `PublicLayout` (que ficou só para a Landing).
