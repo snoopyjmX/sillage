@@ -19,7 +19,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 ## Extensões e enums
 
 - `unaccent` e `pg_trgm`, no schema `extensions`.
-- `collection_status` (`owned`, `wanted`), `note_position` (`top`, `heart`, `base`), `perfume_gender` (`masculine`, `feminine`, `unisex`), `concentration_type` (`parfum`, `extrait`, `edp`, `edt`, `edc`, `other`), `olfactive_family` (`citrus`, `floral`, `woody`, `green`, `aquatic`, `oriental`, `spicy`, `fruity`, `aromatic`, `musky`).
+- `collection_status` (`owned`, `wanted`), `note_position` (`top`, `heart`, `base`), `perfume_gender` (`masculine`, `feminine`, `unisex`), `concentration_type` (`parfum`, `extrait`, `edp`, `edt`, `edc`; o `other` saiu na migration `20261010120000_remove_concentration_other.sql`, que migrou esses perfumes para `extrait` e recriou o tipo e as funções que o usam), `olfactive_family` (`citrus`, `floral`, `woody`, `green`, `aquatic`, `oriental`, `spicy`, `fruity`, `aromatic`, `musky`).
 
 ## Tabelas
 

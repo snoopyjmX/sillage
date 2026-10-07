@@ -45,14 +45,17 @@ const FAMILIES = [
   'musky',
 ];
 const POSITIONS = ['top', 'heart', 'base'];
-const CONCENTRATIONS = ['parfum', 'extrait', 'edp', 'edt', 'edc', 'other'];
+const CONCENTRATIONS = ['parfum', 'extrait', 'edp', 'edt', 'edc'];
 const GENDERS = ['masculine', 'feminine', 'unisex'];
 
 const PerfumeSchema = z.object({
   name: z.string().describe('Nome do perfume sem a marca, ex.: "Aventus"'),
   brand: z.string().describe('Nome da marca, ex.: "Creed"'),
   releaseYear: z.number().int().nullable().describe('Ano de lançamento; null se incerto'),
-  concentration: z.enum(CONCENTRATIONS),
+  concentration: z
+    .enum(CONCENTRATIONS)
+    .nullable()
+    .describe('Concentração oficial; null se não for possível confirmar'),
   gender: z.enum(GENDERS),
   perfumer: z.string().nullable().describe('Perfumista (nariz); null se desconhecido'),
   description: z
@@ -88,14 +91,21 @@ const fetchFromGemini = async (query) => {
       `Perfume: "${query}". Retorne os dados oficiais desse perfume. ` +
       'Use apenas informações em que você tem confiança: se não souber o ano ou o perfumista, ' +
       'use null; não invente notas. Nomes de notas em português do Brasil (ex.: Bergamota, Baunilha). ' +
-      'Concentração "other" só se nenhuma das opções couber.',
+      'A concentração deve ser exatamente uma de: parfum, extrait, edp, edt, edc. ' +
+      'Se não for possível confirmar a concentração oficial, use null: não chute.',
     config: {
       responseMimeType: 'application/json',
       responseJsonSchema: RESPONSE_JSON_SCHEMA,
     },
   });
   // O SDK não valida: o Zod garante o formato antes de tocar no banco
-  return PerfumeSchema.parse(JSON.parse(response.text ?? ''));
+  const perfume = PerfumeSchema.parse(JSON.parse(response.text ?? ''));
+  if (perfume.concentration === null) {
+    throw new Error(
+      `Concentração oficial de "${query}" não confirmada (aceitas: ${CONCENTRATIONS.join(', ')}). Cadastro recusado.`
+    );
+  }
+  return perfume;
 };
 
 const unwrap = ({ data, error }, action) => {

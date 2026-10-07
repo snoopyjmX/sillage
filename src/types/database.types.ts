@@ -445,7 +445,7 @@ export type Database = {
     };
     Enums: {
       collection_status: 'owned' | 'wanted';
-      concentration_type: 'parfum' | 'extrait' | 'edp' | 'edt' | 'edc' | 'other';
+      concentration_type: 'parfum' | 'extrait' | 'edp' | 'edt' | 'edc';
       note_position: 'top' | 'heart' | 'base';
       olfactive_family:
         | 'citrus'
@@ -574,7 +574,7 @@ export const Constants = {
   public: {
     Enums: {
       collection_status: ['owned', 'wanted'],
-      concentration_type: ['parfum', 'extrait', 'edp', 'edt', 'edc', 'other'],
+      concentration_type: ['parfum', 'extrait', 'edp', 'edt', 'edc'],
       note_position: ['top', 'heart', 'base'],
       olfactive_family: [
         'citrus',

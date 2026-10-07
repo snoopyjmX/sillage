@@ -11,7 +11,7 @@ export type OlfactiveFamily =
   | 'aromatic'
   | 'musky';
 
-export type ConcentrationType = 'parfum' | 'extrait' | 'edp' | 'edt' | 'edc' | 'other';
+export type ConcentrationType = 'parfum' | 'extrait' | 'edp' | 'edt' | 'edc';
 
 export const FAMILY_LABELS: Record<OlfactiveFamily, string> = {
   citrus: 'Cítrico',
@@ -32,7 +32,6 @@ export const CONCENTRATION_LABELS: Record<ConcentrationType, string> = {
   edp: 'EDP',
   edt: 'EDT',
   edc: 'EDC',
-  other: 'Outra',
 };
 
 export const FAMILIES = Object.keys(FAMILY_LABELS) as OlfactiveFamily[];

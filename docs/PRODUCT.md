@@ -60,7 +60,7 @@ O MVP entrega seis blocos: catálogo, detalhes, autenticação, coleção, Perfu
 
 **Detalhes.** Uma página por slug (`/perfumes/amyi-2-15`) com hero, informações principais, descrição, pirâmide olfativa interativa, média pública de avaliações, estado na coleção, ações de coleção e de Perfume do Dia, e a avaliação do próprio usuário.
 
-**Autenticação.** Supabase Auth com cadastro, login, logout, recuperação de senha, sessão persistida, rotas privadas e redirecionamento de volta ao destino original após o login.
+**Autenticação.** Supabase Auth com cadastro, login, logout, recuperação de senha, sessão persistida, rotas privadas e redirecionamento de volta ao destino original após o login. O cadastro é imediato: a confirmação de e-mail está desativada, inclusive em produção (risco aceito, ver `docs/SECURITY.md`).
 
 **Landing e acesso só com cadastro (v1.3).** Visitante vê apenas a Landing (`/`), o login, o cadastro e a recuperação de senha; todo o resto exige conta. A Landing descreve só o que o produto faz (sem depoimentos nem números inventados), tem dois CTAs sempre visíveis ("Criar conta" e "Entrar") e a assinatura "Enciclopédia olfativa". O gate é de interface: a leitura do catálogo continua pública no banco (RN07). O painel de marca das telas de acesso usa uma arte local (WebP em `public/auth-art/`, só a partir de `md`; ver `docs/DESIGN_SYSTEM.md`), com a frase "Todo perfume deixa um rastro. O seu começa aqui." por cima.
 
@@ -157,7 +157,7 @@ Extensões: unaccent e pg_trgm para busca; ids usam gen_random_uuid() nativo qua
 | `collection_status`  | `owned`, `wanted`                                                                                                                                |
 | `note_position`      | `top`, `heart`, `base`                                                                                                                           |
 | `perfume_gender`     | `masculine`, `feminine`, `unisex`                                                                                                                |
-| `concentration_type` | `parfum`, `extrait`, `edp`, `edt`, `edc`, `other`                                                                                                |
+| `concentration_type` | `parfum`, `extrait`, `edp`, `edt`, `edc` (o valor `other` foi removido na Fase 15B)                                                              |
 | `olfactive_family`   | `citrus`, `floral`, `woody`, `green`, `aquatic`, `oriental`, `spicy`, `fruity`, `aromatic`, `musky` (rótulos em português ficam em `constants/`) |
 
 **Tabelas**
@@ -350,7 +350,7 @@ A view roda com os privilégios do dono para ignorar a RLS de `perfume_reviews`,
 
 - `.env` fora do Git, `.env.example` sem valores, secret scanning ligado no GitHub.
 
-- Em produção: confirmação de e-mail ligada, lista de redirect URLs do Auth restrita ao domínio e aos previews da Vercel, tamanho mínimo de senha definido.
+- Em produção: lista de redirect URLs do Auth restrita ao domínio e aos previews da Vercel, tamanho mínimo de senha definido. **A confirmação de e-mail fica desativada também em produção (risco aceito de projeto de portfólio, sem SMTP próprio; Fase 15A).** As proteções de RLS não dependem de e-mail verificado (`auth.uid() = user_id`). Detalhes e mitigação em `docs/SECURITY.md`.
 
 Exclusão de conta (LGPD): o frontend chama uma Edge Function autenticada; a função executa auth.admin.deleteUser() com service_role disponível somente no runtime. O service_role nunca é enviado ao navegador, não entra em VITE\_\* e não é versionado.
 

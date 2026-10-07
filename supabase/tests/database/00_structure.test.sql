@@ -3,7 +3,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(21);
+select plan(23);
 
 -- Helpers: trocam o papel do Postgres e as claims do JWT (nunca testamos como superusuário)
 create function pg_temp.act_as(
@@ -69,6 +69,12 @@ select has_index('public','perfumes','perfumes_search_name_trgm_idx','índice tr
 select has_index('public','brands','brands_search_name_trgm_idx','índice trigram em brands.search_name');
 select has_function('public','set_daily_perfume',array['uuid'],'set_daily_perfume(uuid) existe');
 select is((select prosecdef from pg_proc where proname='set_updated_at' and pronamespace='public'::regnamespace), false, 'set_updated_at não é security definer');
+select is(
+  (select array_agg(e.enumlabel::text order by e.enumsortorder) from pg_enum e join pg_type t on t.oid = e.enumtypid where t.typname = 'concentration_type'),
+  array['parfum', 'extrait', 'edp', 'edt', 'edc'],
+  'concentration_type aceita só parfum, extrait, edp, edt e edc'
+);
+select throws_ok($t$select 'other'::public.concentration_type$t$, '22P02', null, 'concentration_type rejeita "other"');
 
 select * from finish();
 rollback;

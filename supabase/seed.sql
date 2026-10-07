@@ -119,7 +119,7 @@ from (values
   ('kayaan-classic', 'al-wataniah', 'Kayaan Classic', null::smallint, 'masculine', 'edp',
    'Amadeirado oriental, com bergamota, noz-moscada e oud.',
    'al-wataniah/kayaan-classic.webp', 16900, 'Mercado Livre', 'https://lista.mercadolivre.com.br/kayaan-classic'),
-  ('attar-al-wesal', 'al-wataniah', 'Attar Al Wesal', null::smallint, 'unisex', 'other',
+  ('attar-al-wesal', 'al-wataniah', 'Attar Al Wesal', null::smallint, 'unisex', 'extrait',
    'Fresco especiado, com pêra, lavanda e almíscar.',
    'al-wataniah/attar-al-wesal.webp', 12900, 'Mercado Livre', 'https://lista.mercadolivre.com.br/attar-al-wesal'),
   ('glamour', 'phytoderm', 'Glamour', null::smallint, 'feminine', 'edc',
