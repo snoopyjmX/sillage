@@ -25,3 +25,22 @@ export const todayInTimezone = (timezone: string, now: Date = new Date()): strin
     return format(DEFAULT_TIMEZONE);
   }
 };
+
+const TIMEZONE_AUTO_KEY = 'sillage-timezone-auto';
+
+// Preferência de detectar o fuso pelo navegador. Padrão: ligada. Só do aparelho (localStorage).
+export const readTimezoneAuto = (): boolean => {
+  try {
+    return window.localStorage.getItem(TIMEZONE_AUTO_KEY) !== 'false';
+  } catch {
+    return true;
+  }
+};
+
+export const writeTimezoneAuto = (auto: boolean): void => {
+  try {
+    window.localStorage.setItem(TIMEZONE_AUTO_KEY, String(auto));
+  } catch {
+    // Sem armazenamento: a escolha vale só nesta sessão
+  }
+};

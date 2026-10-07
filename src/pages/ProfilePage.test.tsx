@@ -8,8 +8,20 @@ const auth = await vi.hoisted(async () => (await import('@/test/authMock')).crea
 vi.mock('@/services/authService', () => ({ authService: auth.service }));
 const getProfile = vi.fn();
 const updateProfile = vi.fn();
+const uploadAvatar = vi.fn();
+const removeAvatar = vi.fn();
 vi.mock('@/services/profileService', () => ({
-  profileService: { get: () => getProfile(), update: (v: unknown) => updateProfile(v) },
+  profileService: {
+    get: () => getProfile(),
+    update: (v: unknown) => updateProfile(v),
+    uploadAvatar: (b: unknown) => uploadAvatar(b),
+    removeAvatar: () => removeAvatar(),
+  },
+}));
+const processAvatarImage = vi.fn();
+vi.mock('@/lib/avatar', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/avatar')>()),
+  processAvatarImage: (f: unknown) => processAvatarImage(f),
 }));
 const listCollection = vi.fn();
 vi.mock('@/services/collectionService', () => ({
@@ -26,8 +38,14 @@ vi.mock('@/services/dailyService', () => ({
 const toastSuccess = vi.fn();
 const toastError = vi.fn();
 vi.mock('@/lib/toast', () => ({
-  toast: { success: (m: string) => toastSuccess(m), error: (m: string) => toastError(m) },
+  toast: {
+    success: (m: string) => toastSuccess(m),
+    error: (m: string) => toastError(m),
+    info: vi.fn(),
+  },
 }));
+
+const AUTO_TZ = 'Detectar fuso horário automaticamente';
 
 const item = (status: 'owned' | 'wanted') => ({ status });
 
@@ -40,9 +58,13 @@ describe('ProfilePage', () => {
   beforeEach(() => {
     auth.reset();
     vi.clearAllMocks();
+    window.localStorage.clear();
     auth.setInitialSession(fakeSession('ana@exemplo.com'));
     getProfile.mockResolvedValue({ displayName: 'Ana Silva', timezone: 'America/Sao_Paulo' });
     updateProfile.mockResolvedValue(undefined);
+    processAvatarImage.mockResolvedValue(new Blob(['x'], { type: 'image/webp' }));
+    uploadAvatar.mockResolvedValue('https://cdn/avatars/u/avatar.webp?t=1');
+    removeAvatar.mockResolvedValue(undefined);
     listCollection.mockResolvedValue([item('owned'), item('owned'), item('wanted')]);
     countDays.mockResolvedValue(5);
   });
@@ -119,6 +141,7 @@ describe('ProfilePage', () => {
   it('PERMITIDO: edita nome e fuso e salva só esses dois campos', async () => {
     renderApp('/profile');
     const form = await screen.findByRole('form', { name: 'Dados do perfil' });
+    fireEvent.click(within(form).getByRole('checkbox', { name: AUTO_TZ }));
     fireEvent.change(within(form).getByLabelText('Nome'), { target: { value: '  Beatriz  ' } });
     fireEvent.change(within(form).getByLabelText('Fuso horário'), {
       target: { value: 'Europe/Lisbon' },
@@ -136,6 +159,7 @@ describe('ProfilePage', () => {
   it('NEGADO: fuso inválido é rejeitado e nada é salvo', async () => {
     renderApp('/profile');
     const form = await screen.findByRole('form', { name: 'Dados do perfil' });
+    fireEvent.click(within(form).getByRole('checkbox', { name: AUTO_TZ }));
     fireEvent.change(within(form).getByLabelText('Fuso horário'), {
       target: { value: 'Marte/Olympus' },
     });
@@ -182,5 +206,58 @@ describe('ProfilePage', () => {
     expect(within(dialog).getByRole('button', { name: 'Em breve' })).toBeDisabled();
     fireEvent.click(within(dialog).getByRole('button', { name: 'Cancelar' }));
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+  });
+
+  it('avatar: escolhe a foto, processa no navegador, envia e avisa', async () => {
+    renderApp('/profile');
+    const input = await screen.findByLabelText('Alterar foto de perfil');
+    const file = new File(['x'], 'eu.png', { type: 'image/png' });
+    fireEvent.change(input, { target: { files: [file] } });
+    await waitFor(() => expect(processAvatarImage).toHaveBeenCalledWith(file));
+    await waitFor(() => expect(uploadAvatar).toHaveBeenCalledOnce());
+    await waitFor(() => expect(toastSuccess).toHaveBeenCalledWith('Foto de perfil atualizada.'));
+  });
+
+  it('avatar: foto inválida mostra a mensagem amigável e nada é enviado', async () => {
+    processAvatarImage.mockRejectedValueOnce(new AppError('avatar_too_large'));
+    renderApp('/profile');
+    const input = await screen.findByLabelText('Alterar foto de perfil');
+    fireEvent.change(input, {
+      target: { files: [new File(['x'], 'g.png', { type: 'image/png' })] },
+    });
+    await waitFor(() =>
+      expect(toastError).toHaveBeenCalledWith(
+        'A imagem escolhida é muito grande. Escolha uma foto de até 5 MB.'
+      )
+    );
+    expect(uploadAvatar).not.toHaveBeenCalled();
+  });
+
+  it('avatar: com foto salva mostra a imagem e permite remover', async () => {
+    getProfile.mockResolvedValue({
+      displayName: 'Ana Silva',
+      timezone: 'America/Sao_Paulo',
+      avatarUrl: 'https://cdn/avatars/u/avatar.webp?t=1',
+    });
+    renderApp('/profile');
+    fireEvent.click(await screen.findByRole('button', { name: 'Remover foto de perfil' }));
+    await waitFor(() => expect(removeAvatar).toHaveBeenCalledOnce());
+    await waitFor(() => expect(toastSuccess).toHaveBeenCalledWith('Foto de perfil removida.'));
+  });
+
+  it('salvar com fuso automático envia o fuso do navegador e não mexe na foto', async () => {
+    renderApp('/profile');
+    const form = await screen.findByRole('form', { name: 'Dados do perfil' });
+    const browserZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    await waitFor(() =>
+      expect(within(form).getByLabelText('Fuso horário')).toHaveValue(browserZone)
+    );
+    fireEvent.click(within(form).getByRole('button', { name: 'Salvar alterações' }));
+    await waitFor(() =>
+      expect(updateProfile).toHaveBeenCalledWith({
+        displayName: 'Ana Silva',
+        timezone: browserZone,
+      })
+    );
   });
 });

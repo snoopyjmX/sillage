@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Field } from '@/components/ui/field';
 import { SubmitButton } from '@/components/ui/submit-button';
+import { toast } from '@/lib/toast';
+import { getBrowserTimezone, readTimezoneAuto, writeTimezoneAuto } from '@/lib/timezone';
 import { zodResolver } from '@/lib/zodResolver';
 import { MAX_NAME_LENGTH } from '@/schemas/auth';
 import { profileSchema, type ProfileValues } from '@/schemas/profile';
@@ -19,8 +22,26 @@ export function ProfileForm({ values, timezones, saving, onSave }: ProfileFormPr
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<ProfileValues>({ resolver: zodResolver(profileSchema), values });
+
+  // Fuso automático: o campo acompanha o navegador (e fica só leitura) até o usuário desligar
+  const [auto, setAuto] = useState(readTimezoneAuto);
+  useEffect(() => {
+    if (auto) setValue('timezone', getBrowserTimezone(), { shouldDirty: true });
+  }, [auto, values.timezone, setValue]);
+
+  const handleAutoChange = (next: boolean) => {
+    setAuto(next);
+    writeTimezoneAuto(next);
+    if (next) {
+      setValue('timezone', getBrowserTimezone(), { shouldDirty: true });
+      toast.success('Detecção automática de fuso ativada.');
+    } else {
+      toast.info('Detecção automática desligada, o fuso agora é manual.');
+    }
+  };
 
   const onSubmit = handleSubmit((next) => onSave(next));
 
@@ -44,10 +65,24 @@ export function ProfileForm({ values, timezones, saving, onSave }: ProfileFormPr
         autoCapitalize="none"
         spellCheck={false}
         list={DATALIST_ID}
-        hint="Define a data do seu Perfume do Dia e a cidade do clima. Ex.: America/Sao_Paulo."
+        readOnly={auto}
+        hint={
+          auto
+            ? 'Detectado automaticamente pelo navegador.'
+            : 'Define a data do seu Perfume do Dia e a cidade do clima. Ex.: America/Sao_Paulo.'
+        }
         error={errors.timezone?.message}
         {...register('timezone')}
       />
+      <label className="flex cursor-pointer items-center gap-3 text-sm font-medium">
+        <input
+          type="checkbox"
+          checked={auto}
+          onChange={(event) => handleAutoChange(event.target.checked)}
+          className="size-5 accent-primary"
+        />
+        Detectar fuso horário automaticamente
+      </label>
       <datalist id={DATALIST_ID}>
         {timezones.map((zone) => (
           <option key={zone} value={zone} />

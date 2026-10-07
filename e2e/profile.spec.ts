@@ -17,6 +17,8 @@ test.describe('perfil', () => {
 
     const form = page.getByRole('form', { name: 'Dados do perfil' });
     await form.getByLabel('Nome').fill('Beatriz Souza');
+    // O fuso vem automático do navegador; para escolher à mão, desliga a detecção
+    await form.getByRole('checkbox', { name: 'Detectar fuso horário automaticamente' }).uncheck();
     await form.getByLabel('Fuso horário').fill('America/Recife');
     await form.getByRole('button', { name: 'Salvar alterações' }).click();
 
@@ -38,6 +40,7 @@ test.describe('perfil', () => {
     const form = page.getByRole('form', { name: 'Dados do perfil' });
     await expect(form.getByLabel('Nome')).toHaveValue('Ana E2E');
 
+    await form.getByRole('checkbox', { name: 'Detectar fuso horário automaticamente' }).uncheck();
     await form.getByLabel('Fuso horário').fill('Marte/Olympus');
     await form.getByRole('button', { name: 'Salvar alterações' }).click();
     await expect(form.getByText(/Fuso horário inválido/)).toBeVisible();

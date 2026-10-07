@@ -13,7 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { getErrorMessage } from '@/constants/errors';
 import { useAuth } from '@/hooks/useAuth';
 import { useSignOut } from '@/hooks/useAuthActions';
-import { useProfile, useUpdateProfile } from '@/hooks/useProfile';
+import { useProfile, useRemoveAvatar, useUpdateProfile, useUploadAvatar } from '@/hooks/useProfile';
 import { useProfileStats } from '@/hooks/useProfileStats';
 import { getInitials } from '@/lib/profile';
 import { toast } from '@/lib/toast';
@@ -41,6 +41,8 @@ export default function ProfilePage() {
   const signOut = useSignOut();
   const profile = useProfile();
   const updateProfile = useUpdateProfile();
+  const uploadAvatar = useUploadAvatar();
+  const removeAvatar = useRemoveAvatar();
   const summary = useProfileStats();
 
   const handleSignOut = () =>
@@ -87,6 +89,10 @@ export default function ProfilePage() {
               <BlurFade>
                 <ProfileHeader
                   initials={getInitials(data.displayName)}
+                  avatarUrl={data.avatarUrl}
+                  uploadingAvatar={uploadAvatar.isPending || removeAvatar.isPending}
+                  onUploadAvatar={(file) => uploadAvatar.mutate(file)}
+                  onRemoveAvatar={() => removeAvatar.mutate()}
                   displayName={data.displayName}
                   timezone={data.timezone}
                   email={user?.email ?? ''}
@@ -130,7 +136,7 @@ export default function ProfilePage() {
                     Seus dados
                   </h2>
                   <ProfileForm
-                    values={data}
+                    values={{ displayName: data.displayName, timezone: data.timezone }}
                     timezones={TIMEZONES}
                     saving={updateProfile.isPending}
                     onSave={(values) => updateProfile.mutate(values)}

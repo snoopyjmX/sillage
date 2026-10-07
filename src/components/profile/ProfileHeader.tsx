@@ -5,6 +5,10 @@ import { ProfileAvatar } from './ProfileAvatar';
 
 interface ProfileHeaderProps {
   initials: string;
+  avatarUrl?: string | null;
+  uploadingAvatar: boolean;
+  onUploadAvatar: (file: File) => void;
+  onRemoveAvatar: () => void;
   displayName: string;
   timezone: string;
   email: string;
@@ -24,9 +28,13 @@ export function ProfileHeaderSkeleton() {
   );
 }
 
-// Cabeçalho: avatar de iniciais, nome de exibição, fuso e e-mail. Só apresenta.
+// Cabeçalho: avatar (foto ou iniciais), nome de exibição, fuso e e-mail. Só apresenta.
 export function ProfileHeader({
   initials,
+  avatarUrl,
+  uploadingAvatar,
+  onUploadAvatar,
+  onRemoveAvatar,
   displayName,
   timezone,
   email,
@@ -36,7 +44,14 @@ export function ProfileHeader({
   return (
     <header className="flex flex-col gap-4 sm:flex-row sm:items-center">
       <div className="flex min-w-0 flex-1 items-center gap-4">
-        <ProfileAvatar initials={initials} />
+        <ProfileAvatar
+          initials={initials}
+          avatarUrl={avatarUrl}
+          editable
+          uploading={uploadingAvatar}
+          onUpload={onUploadAvatar}
+          onRemove={onRemoveAvatar}
+        />
         <div className="flex min-w-0 flex-col gap-0.5">
           <h2 className="truncate font-heading text-2xl leading-tight font-medium">
             {displayName}

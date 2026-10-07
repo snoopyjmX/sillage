@@ -23,7 +23,10 @@ export type ErrorCode =
   | 'location_denied'
   | 'location_failed'
   | 'profile_load_failed'
-  | 'profile_failed';
+  | 'profile_failed'
+  | 'avatar_failed'
+  | 'avatar_too_large'
+  | 'avatar_invalid_type';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -53,6 +56,9 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   location_failed: 'Não conseguimos obter a sua localização agora. Tente novamente em instantes.',
   profile_load_failed: 'Não foi possível carregar o seu perfil. Tente novamente em instantes.',
   profile_failed: 'Não foi possível salvar o seu perfil. Tente novamente em instantes.',
+  avatar_failed: 'Não foi possível salvar sua foto de perfil. Tente novamente em instantes.',
+  avatar_too_large: 'A imagem escolhida é muito grande. Escolha uma foto de até 5 MB.',
+  avatar_invalid_type: 'Formato de imagem não suportado. Use JPG, PNG ou WebP.',
 };
 
 export class AppError extends Error {
