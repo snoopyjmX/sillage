@@ -18,6 +18,12 @@ Este documento registra o estado atual do projeto para transição entre computa
     - Script de ingestão rejeita perfumes sem concentração oficial confirmada.
     - Script `scripts/process-images.mjs` totalmente local com `sharp`: algoritmo determinístico de flood fill que remove fundo branco preservando o interior do frasco e rótulos. Dependência externa do Remove.bg completamente removida.
     - Testes: 257 testes pgTAP (`supabase test db`) e 519 testes Vitest passando 100% verde.
+  - ✅ **15C (Perfume do Dia restrito à coleção, RN06):**
+    - Migration `20261011120000_daily_perfume_owned_only.sql`: `set_daily_perfume` exige `collection_items.status = 'owned'` (`42501`, `perfume not owned`); erro `daily_not_owned` no front; "Vestir hoje" na aba "Tenho" da Coleção e botão da sugestão da Home desabilitado fora do "Tenho".
+  - ✅ **15D (Perfil: foto de avatar e fuso automático):**
+    - Migration `20261012120000_avatars_storage.sql`: bucket público `avatars` e 4 policies (leitura pública, escrita do dono na própria pasta), com testes pgTAP em `11_storage.test.sql`.
+    - `src/lib/avatar.ts` (valida, recorta 1:1 e reexporta em WebP no canvas), `profileService.uploadAvatar/removeAvatar`, `ProfileAvatar` editável e hooks `useUploadAvatar`/`useRemoveAvatar`.
+    - `ProfileForm`: caixa "Detectar fuso horário automaticamente" (padrão ligada, `localStorage` `sillage-timezone-auto`).
 - **Commits realizados nesta branch:**
   - `d0cd4a1` docs(security): registra a confirmação de e-mail desativada como risco aceito
   - `361cb93` feat(catalog): remove a concentração other
@@ -27,11 +33,7 @@ Este documento registra o estado atual do projeto para transição entre computa
 
 ## 2. 🗺️ Próximo Passo Imediato (Onde Retomar)
 
-O próximo bloco de trabalho na mesma branch é a **Subfase 15C: Perfume do Dia Restrito à Coleção (RN06)**:
-
-- Regra de negócio: só permitir vestir perfume que o usuário tenha na coleção (`status = 'owned'`).
-- UI da Coleção: botão "Vestir hoje" na prateleira "Tenho".
-- UI da Home & Detalhes: validação se o perfume do dia / sugerido pertence à prateleira "Tenho" antes de permitir vestir.
+O próximo bloco de trabalho na mesma branch é a **Subfase 15E** (filtro de gênero na Home, reorganização do card de clima e melhorias de prompt do Nez), seguida da **15F** (bundle/Lighthouse).
 
 ---
 
@@ -58,4 +60,4 @@ npx supabase test db
 
 Ao abrir o chat no outro computador, basta dizer:
 
-> _"Estou no outro PC. Vamos retomar da Subfase 15C do HANDOFF.md na branch feat/phase-15-catalog-and-auth."_
+> _"Estou no outro PC. Vamos retomar da Subfase 15E do HANDOFF.md na branch feat/phase-15-catalog-and-auth."_

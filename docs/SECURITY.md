@@ -33,7 +33,9 @@ A tabela `perfume_reviews` segue fechada (RLS de dono). A leitura pública passa
 
 ## Storage
 
-Bucket `perfume-images`: leitura pública, escrita só admin. Sem bucket de avatars no MVP.
+Bucket `perfume-images`: leitura pública, escrita só admin.
+
+Bucket `avatars`: leitura pública (quem tem a URL vê a foto; é a natureza de um bucket público), escrita só do dono, e somente na própria pasta `<user_id>/` (`INSERT`, `UPDATE` e `DELETE` com `(storage.foldername(name))[1] = (select auth.uid())::text`). O app valida tipo e tamanho (até 5 MB) e reencoda a imagem no navegador antes de enviar; isso é conveniência, a barreira é a policy. Não guardar nada sensível nessa pasta.
 
 ## Secrets
 

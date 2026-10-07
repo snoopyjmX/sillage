@@ -71,7 +71,7 @@ O MVP entrega seis blocos: catálogo, detalhes, autenticação, coleção, Perfu
 
 **Home (Fase 14D).** Barra de clima (cidade, temperatura, descrição, frase da faixa, umidade e as famílias em destaque), selo "Edição diária", a **sugestão do dia** (RN10) com imagem, notas por posição e medidores de Fixação, Rastro e Clima adequado, as ações "Vestir hoje" (grava o Perfume do Dia) e "Ver detalhes", "Seu Perfume de hoje", "Memorial" (histórico) e as descobertas: "Novidades no catálogo", "Parecidos com o seu perfume de hoje" e "Explore por família". O clima vem do Open-Meteo, sem backend nosso (seção 11); a Home é só do logado (visitante vê a Landing).
 
-**Perfil (Fase 14E).** Rota privada `/profile`, dentro do `AppShell`. Cabeçalho com avatar de **iniciais** (primeira letra da primeira e da última palavra do nome, acentos mantidos, emoji ignorado; sem letra, um ícone; **upload de foto está fora do MVP**), nome de exibição, fuso e e-mail, e o botão "Sair". **Resumo** só com dados que já existem: quantos perfumes em "Tenho", quantos em "Quero" e quantos **dias no memorial** (linhas de `daily_perfumes`, hoje incluído); sem nenhum dado, estado vazio com saída para o catálogo, nunca número inventado. **Formulário** de nome e fuso (React Hook Form + Zod): nome obrigatório, aparado, **até 60 caracteres** (o banco só exige `not null`, sem limite: o teto é conservador e vive só no front, o mesmo do cadastro); fuso válido no `Intl` (identificador IANA, com lista de sugestões do navegador). Salvar atualiza só `display_name` e `timezone` do próprio perfil (RLS de dono) e refaz o Perfume do Dia e o clima, que dependem do fuso. **Zona de perigo:** "Excluir conta" abre um dialog de confirmação, mas a ação fica desativada ("Em breve") até a fase da Edge Function (ver Roadmap). Estados: carregando (skeleton equivalente), vazio, erro com tentar de novo e offline.
+**Perfil (Fase 14E).** Rota privada `/profile`, dentro do `AppShell`. Cabeçalho com avatar de **iniciais** (primeira letra da primeira e da última palavra do nome, acentos mantidos, emoji ignorado; sem letra, um ícone; com **foto de perfil** (15D) a imagem redonda substitui as iniciais e, se não carregar, elas voltam), nome de exibição, fuso e e-mail, e o botão "Sair". **Resumo** só com dados que já existem: quantos perfumes em "Tenho", quantos em "Quero" e quantos **dias no memorial** (linhas de `daily_perfumes`, hoje incluído); sem nenhum dado, estado vazio com saída para o catálogo, nunca número inventado. **Formulário** de nome e fuso (React Hook Form + Zod): nome obrigatório, aparado, **até 60 caracteres** (o banco só exige `not null`, sem limite: o teto é conservador e vive só no front, o mesmo do cadastro); fuso válido no `Intl` (identificador IANA, com lista de sugestões do navegador). **Foto de perfil (15D):** o botão de câmera (um `<input type="file">` acessível) aceita PNG, JPEG, WebP e AVIF de até 5 MB; o navegador recorta o quadrado central (320 px), exporta WebP a 0,85 (JPEG se o navegador não gerar WebP) e envia ao bucket `avatars` em `<user_id>/avatar.webp`; `profiles.avatar_url` recebe a URL pública com `?t=<timestamp>` para furar o cache. "Remover foto" apaga o arquivo e zera `avatar_url`. **Fuso automático (15D):** a caixa "Detectar fuso horário automaticamente" (padrão ligada, preferência em `localStorage`, chave `sillage-timezone-auto`) mantém o campo igual ao fuso do navegador e somente leitura; desligar libera a escolha manual. Salvar atualiza só `display_name` e `timezone` do próprio perfil (RLS de dono) e refaz o Perfume do Dia e o clima, que dependem do fuso. **Zona de perigo:** "Excluir conta" abre um dialog de confirmação, mas a ação fica desativada ("Em breve") até a fase da Edge Function (ver Roadmap). Estados: carregando (skeleton equivalente), vazio, erro com tentar de novo e offline.
 
 **Avaliações.** Fixação e projeção de 1 a 5, comentário opcional, uma por usuário e perfume. Tudo é público: média, contagem, notas, comentário e nome de exibição do autor. O dono edita e apaga a própria.
 
@@ -349,7 +349,7 @@ A view roda com os privilégios do dono para ignorar a RLS de `perfume_reviews`,
 
 - `perfume-images`: leitura pública, escrita só para `is_admin()`.
 
-- `avatars` (se entrar no MVP): caminho `avatars/<user_id>/...`, com policy `(storage.foldername(name))[1] = (select auth.uid())::text`.
+- `avatars` (Fase 15D): bucket público; leitura para `anon` e `authenticated`; `INSERT`, `UPDATE` e `DELETE` só do dono, no caminho `<user_id>/...`, com policy `(storage.foldername(name))[1] = (select auth.uid())::text`. Migration `20261012120000_avatars_storage.sql`.
 
 **Secrets e ambiente**
 
@@ -435,17 +435,17 @@ supabase/
 
 **Rotas**
 
-| Rota                  | Acesso             | Função                                                                                        |
-| --------------------- | ------------------ | --------------------------------------------------------------------------------------------- |
-| `/`                   | pública            | Landing para visitante; Home (Perfume do Dia e histórico) para logado, mesma URL              |
-| `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=` (logado volta para o destino ou `/`)                        |
-| `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                                                                  |
-| `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                                              |
-| `/catalog`            | privada            | Busca, filtros e resultados; estado na query string                                           |
-| `/perfumes/:slug`     | privada            | Detalhes; coleção, avaliação e Nez                                                            |
-| `/collection`         | privada            | Coleção com abas Tenho e Quero                                                                |
-| `/profile`            | privada            | Avatar de iniciais, resumo, nome de exibição, fuso e zona de perigo (excluir conta: em breve) |
-| `*`                   | privada            | 404 (visitante em rota desconhecida vai para `/?redirect=`)                                   |
+| Rota                  | Acesso             | Função                                                                                               |
+| --------------------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| `/`                   | pública            | Landing para visitante; Home (Perfume do Dia e histórico) para logado, mesma URL                     |
+| `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=` (logado volta para o destino ou `/`)                               |
+| `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                                                                         |
+| `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                                                     |
+| `/catalog`            | privada            | Busca, filtros e resultados; estado na query string                                                  |
+| `/perfumes/:slug`     | privada            | Detalhes; coleção, avaliação e Nez                                                                   |
+| `/collection`         | privada            | Coleção com abas Tenho e Quero                                                                       |
+| `/profile`            | privada            | Avatar (foto ou iniciais), resumo, nome de exibição, fuso e zona de perigo (excluir conta: em breve) |
+| `*`                   | privada            | 404 (visitante em rota desconhecida vai para `/?redirect=`)                                          |
 
 "Privada" significa que o visitante é levado a `/?redirect=<rota original>` (saneado por `lib/redirect`: só caminhos internos passam; `//host`, `https://...` e `javascript:` são descartados). Os botões da Landing repassam o destino para `/login` e `/register`. O Perfume do Dia mora na Home (`/`); não há rota `/daily`.
 

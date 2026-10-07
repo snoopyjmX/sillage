@@ -16,6 +16,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 | `20261008120000_perfume_prices.sql`             | Colunas `lowest_price_cents`, `store_name` e `store_url` em `perfumes` (melhor preço)   |
 | `20261009120000_add_perfumer_column.sql`        | Coluna opcional `perfumer` em `perfumes` (perfumista; `CHECK` 1–150 caracteres)         |
 | `20261010120000_remove_concentration_other.sql` | Remove `other` de `concentration_type`                                                  |
+| `20261012120000_avatars_storage.sql`            | Bucket público `avatars` e 4 policies de dono (Fase 15D)                                |
 | `20261011120000_daily_perfume_owned_only.sql`   | `set_daily_perfume` exige o perfume em “Tenho” (`owned`), senão `42501` (RN06)          |
 
 ## Extensões e enums
@@ -78,7 +79,7 @@ FKs: `perfumes(brand_id)`, `perfume_notes(note_id, position)`, `collection_items
 
 ## Storage
 
-Bucket público `perfume-images`: `SELECT` para `anon` e `authenticated`; `INSERT`, `UPDATE` e `DELETE` só com `is_admin()`. Não há bucket de avatars no MVP. O Storage bloqueia `DELETE` direto em `storage.objects` por trigger; remoções devem passar pela API do Storage.
+Bucket público `perfume-images`: `SELECT` para `anon` e `authenticated`; `INSERT`, `UPDATE` e `DELETE` só com `is_admin()`. Bucket público `avatars` (Fase 15D): `SELECT` para `anon` e `authenticated`; `INSERT`, `UPDATE` e `DELETE` só do dono, na pasta `<user_id>/` (`(storage.foldername(name))[1] = (select auth.uid())::text`); o app grava `<user_id>/avatar.webp` e `profiles.avatar_url`. O Storage bloqueia `DELETE` direto em `storage.objects` por trigger; remoções devem passar pela API do Storage.
 
 ## Seed
 
