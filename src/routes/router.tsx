@@ -1,6 +1,5 @@
 import type { ComponentType } from 'react';
 import { createBrowserRouter, type RouteObject } from 'react-router-dom';
-import { AppShell } from '@/components/layout/AppShell';
 import { AuthLayout } from './AuthLayout';
 import { GuestOnly } from './GuestOnly';
 import { PageFallback } from './PageFallback';
@@ -48,7 +47,9 @@ export const routes: RouteObject[] = [
         element: <RequireAuth />,
         children: [
           {
-            element: <AppShell />,
+            lazy: async () => ({
+              Component: (await import('@/components/layout/AppShell')).AppShell,
+            }),
             errorElement: <RouteError />,
             HydrateFallback: PageFallback,
             children: [
