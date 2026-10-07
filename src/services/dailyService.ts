@@ -47,7 +47,10 @@ export const dailyService = {
   // Escolhe o Perfume do Dia de hoje (função set_daily_perfume: a data é calculada no banco)
   setToday: async (perfumeId: string): Promise<void> => {
     const { error } = await supabase.rpc('set_daily_perfume', { p_perfume_id: perfumeId });
-    if (error) throw toDailyError(error);
+    if (error) {
+      const notOwned = error.code === '42501' || error.message.includes('perfume not owned');
+      throw notOwned ? new AppError('daily_not_owned', { cause: error }) : toDailyError(error);
+    }
   },
 
   getToday: async (date: string): Promise<DailyEntry | null> => {

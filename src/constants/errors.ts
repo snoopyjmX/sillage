@@ -13,6 +13,7 @@ export type ErrorCode =
   | 'session_expired'
   | 'collection_failed'
   | 'daily_failed'
+  | 'daily_not_owned'
   | 'review_failed'
   | 'review_forbidden'
   | 'nez_failed'
@@ -39,6 +40,8 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   session_expired: 'O link expirou ou já foi usado. Peça um novo e-mail de recuperação.',
   collection_failed: 'Não foi possível atualizar sua coleção. Tente novamente em instantes.',
   daily_failed: 'Não foi possível carregar o Perfume do Dia. Tente novamente em instantes.',
+  daily_not_owned:
+    'Você só pode escolher como Perfume do Dia uma fragrância que está na sua coleção em “Tenho”.',
   review_failed: 'Não foi possível salvar sua avaliação. Tente novamente em instantes.',
   review_forbidden:
     'Para avaliar, coloque o perfume em “Tenho” ou escolha-o como Perfume do Dia primeiro.',

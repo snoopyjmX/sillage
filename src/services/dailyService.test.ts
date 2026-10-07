@@ -7,8 +7,11 @@ const eq = vi.fn(() => ({ maybeSingle }));
 const lt = vi.fn(() => ({ order: () => ({ limit }) }));
 const select = vi.fn((columns: string) => ({ eq, lt, maybeSingle, columns }));
 const from = vi.fn((table: string) => ({ select, table }));
+const rpc = vi.fn();
 
-vi.mock('@/lib/supabase', () => ({ supabase: { from: (table: string) => from(table) } }));
+vi.mock('@/lib/supabase', () => ({
+  supabase: { from: (table: string) => from(table), rpc: (...args: unknown[]) => rpc(...args) },
+}));
 
 const { dailyService } = await import('./dailyService');
 
@@ -106,5 +109,29 @@ describe('dailyService', () => {
       Promise.resolve({ count: null, error: { code: 'XX000', message: 'interno' } }) as never
     );
     await expect(dailyService.countDays()).rejects.toMatchObject({ code: 'daily_failed' });
+  });
+
+  describe('setToday', () => {
+    it('chama set_daily_perfume com o id do perfume', async () => {
+      rpc.mockResolvedValue({ error: null });
+      await expect(dailyService.setToday('p1')).resolves.toBeUndefined();
+      expect(rpc).toHaveBeenCalledWith('set_daily_perfume', { p_perfume_id: 'p1' });
+    });
+
+    it.each([
+      ['pelo código 42501', { code: '42501', message: 'x' }],
+      ['pela mensagem', { code: 'P0001', message: 'perfume not owned' }],
+    ])('perfume fora do "Tenho" (%s) vira daily_not_owned', async (_label, error) => {
+      rpc.mockResolvedValue({ error });
+      const failure = await dailyService.setToday('p1').catch((e: unknown) => e);
+      expect(failure).toBeInstanceOf(AppError);
+      expect((failure as AppError).code).toBe('daily_not_owned');
+      expect((failure as AppError).message).not.toContain('perfume not owned');
+    });
+
+    it('outro erro vira daily_failed sem expor a mensagem crua', async () => {
+      rpc.mockResolvedValue({ error: { code: 'XX000', message: 'interno' } });
+      await expect(dailyService.setToday('p1')).rejects.toMatchObject({ code: 'daily_failed' });
+    });
   });
 });

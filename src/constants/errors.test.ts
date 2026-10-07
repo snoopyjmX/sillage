@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ERROR_MESSAGES, getErrorMessage, toAuthError } from './errors';
+import { AppError, ERROR_MESSAGES, getErrorMessage, toAuthError } from './errors';
 
 describe('toAuthError', () => {
   it.each([
@@ -24,5 +24,12 @@ describe('toAuthError', () => {
     expect(error.code).toBe('unknown');
     expect(getErrorMessage(error)).toBe(ERROR_MESSAGES.unknown);
     expect(error.message).not.toMatch(/duplicate key/);
+  });
+});
+
+describe('daily_not_owned', () => {
+  it('tem mensagem própria orientando a usar "Tenho"', () => {
+    expect(getErrorMessage(new AppError('daily_not_owned'))).toBe(ERROR_MESSAGES.daily_not_owned);
+    expect(ERROR_MESSAGES.daily_not_owned).toContain('“Tenho”');
   });
 });
