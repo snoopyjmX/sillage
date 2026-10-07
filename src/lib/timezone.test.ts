@@ -22,4 +22,11 @@ describe('todayInTimezone', () => {
   it('fuso inválido cai no padrão em vez de lançar', () => {
     expect(todayInTimezone('Marte/Olympus', new Date('2026-10-06T01:00:00Z'))).toBe('2026-10-05');
   });
+
+  it.each(['', 'xx', 'UTC+99', "'; drop table profiles; --"])(
+    'fuso inválido %j cai no padrão (America/Sao_Paulo), nunca no fuso do aparelho',
+    (invalid) => {
+      expect(todayInTimezone(invalid, new Date('2026-10-06T01:00:00Z'))).toBe('2026-10-05');
+    }
+  );
 });

@@ -5,7 +5,7 @@ import { useProfileTimezone } from '@/hooks/useProfileTimezone';
 import { climateFit, highlightFamilies, perfumeTempRange, projectionLabel } from '@/lib/climate';
 import { queryKeys } from '@/lib/queryKeys';
 import { groupNotesByPosition, type NotesByPosition } from '@/lib/perfume';
-import { todayInTimezone } from '@/lib/timezone';
+import { DEFAULT_TIMEZONE, todayInTimezone } from '@/lib/timezone';
 import { homeService } from '@/services/homeService';
 import type { PerfumeDetail } from '@/types/catalog';
 import type { WeatherView } from '@/types/weather';
@@ -21,8 +21,9 @@ export interface SuggestionView {
 }
 
 export const useDailySuggestion = (weather: WeatherView) => {
-  const timezone = useProfileTimezone().data;
-  const date = timezone ? todayInTimezone(timezone) : '';
+  const tz = useProfileTimezone();
+  // Só espera enquanto o fuso carrega: vazio, inválido ou com a consulta falha, cai no padrão
+  const date = tz.isPending ? '' : todayInTimezone(tz.data ?? DEFAULT_TIMEZONE);
   // Espera o clima resolver; erro ou indisponível caem no sorteio do catálogo todo
   const settled = weather.status !== 'loading';
   const temperature = weather.status === 'ready' ? weather.weather.temperature : null;
