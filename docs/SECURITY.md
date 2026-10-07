@@ -44,28 +44,31 @@ Bucket `perfume-images`: leitura pública, escrita só admin. Sem bucket de avat
 
 - **Terceiro:** o navegador chama o Open-Meteo (previsão e geocoding) direto, sem chave e sem cookies (`credentials: 'omit'`, `referrerPolicy: 'no-referrer'`). O Open-Meteo vê o IP do usuário e a cidade ou as coordenadas consultadas; nada disso passa pelo nosso backend. Sem migration e sem mudança de policy: a RLS segue igual (`supabase test db` verde).
 - **Cidade:** vem de `profiles.timezone` (já privado, RN01). Só o nome da cidade vai ao geocoding.
-- **Geolocalização do aparelho:** só por clique em "Usar minha localização" ou, se a Permissions API já disser `granted`, direto. Nunca é pedida ao abrir a página.
-- **Coordenadas nunca persistem:** arredondadas a 2 casas (~1 km), vivem só em estado de memória do hook `useGeolocation` e na chave `['private', userId, 'weather', 'current', lat, lon]`, que **nunca** é persistida (`shouldPersistQuery` só aceita `['public', ...]`). Não vão para `localStorage`, `sessionStorage`, IndexedDB, banco, nem para chave persistida, e não são enviadas ao nosso backend. O E2E confere o storage.
+- **Geolocalização do aparelho:** só por clique em "Usar minha localização" ou, ao abrir a Home, se a Permissions API já disser `granted` (uso direto, sem clique). Se a Permissions API não existir para geolocalização ou não responder, vale o aviso booleano abaixo: com ele, o app chama a geolocalização (o navegador não pergunta de novo se a permissão já foi concedida). Com o estado `prompt` ou `denied`, nunca há pedido automático. Depois de uma negação não há novo pedido sozinho, nem ao recarregar: só um novo clique.
+- **Aviso booleano de preferência (única coisa de localização em storage):** o `localStorage` guarda só a chave `sillage-geo-hint` com o valor `1`, que significa "o usuário já concedeu a localização". É gravada quando o usuário clica e a permissão é concedida; é apagada quando a permissão é negada (pelo pedido ou pelo estado `denied`/`prompt` da Permissions API). **Coordenadas, latitude, longitude, cidade ou qualquer derivado delas nunca são gravados em `localStorage`, `sessionStorage` ou IndexedDB.** O aviso não identifica ninguém nem diz onde o usuário está.
+- **Rótulo:** com a localização do aparelho, o clima mostra "Sua localização". Não há geocoding reverso: o plano gratuito do Open-Meteo só oferece busca por nome, e não adotamos outro serviço.
+- **Coordenadas nunca persistem:** arredondadas a 2 casas (~1 km), vivem só em estado de memória do hook `useGeolocation` e na chave `['private', userId, 'weather', 'current', lat, lon]`, que **nunca** é persistida (`shouldPersistQuery` só aceita `['public', ...]`). Não vão para `localStorage`, `sessionStorage`, IndexedDB, banco, nem para chave persistida, e não são enviadas ao nosso backend. O teste unitário do hook e o E2E conferem o storage (só o aviso `1` existe).
 - **Respostas validadas** com Zod; falha de formato vira `weather_failed`. Mensagens ao usuário só por `constants/errors.ts`.
 - **Limitação:** o Open-Meteo não tem SLA e a API gratuita é não comercial; a barra de clima degrada para "Clima indisponível" e a sugestão do dia segue funcionando sem clima.
 
 ## Modelo de ameaça
 
-| Ameaça                                                   | Mitigação                                                                    |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Usuário A lê ou altera dados do B                        | RLS por dono + pgTAP com dois usuários                                       |
-| Cliente envia `user_id` de outro                         | `WITH CHECK ((select auth.uid()) = user_id)`                                 |
-| Cliente forja a data do Perfume do Dia                   | Sem `INSERT`/`UPDATE` direto; a função calcula a data                        |
-| Autopromoção a admin                                     | Papel em `app_metadata`; `user_metadata` não vale                            |
-| Vazar comentários por agregados                          | View expõe só contagem e médias                                              |
-| Busca abusiva ou injeção via ordenação                   | `p_limit` 1 a 100, `p_offset >= 0`, `p_sort` em lista fixa, sem SQL dinâmico |
-| Trocar `perfume_id` de uma avaliação para driblar a RN03 | `UPDATE` restrito por coluna (`perfume_id` e `user_id` imutáveis)            |
-| XSS em comentário                                        | React escapa; sem `dangerouslySetInnerHTML`; limite de 1000 caracteres       |
-| Vazar localização do usuário                             | Só por clique, arredondada, só em memória; chave privada nunca persistida    |
-| Chave privada vazada                                     | Secret scanning, `service_role` fora do app, rotação se houver suspeita      |
+| Ameaça                                                   | Mitigação                                                                                                                                      |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Usuário A lê ou altera dados do B                        | RLS por dono + pgTAP com dois usuários                                                                                                         |
+| Cliente envia `user_id` de outro                         | `WITH CHECK ((select auth.uid()) = user_id)`                                                                                                   |
+| Cliente forja a data do Perfume do Dia                   | Sem `INSERT`/`UPDATE` direto; a função calcula a data                                                                                          |
+| Autopromoção a admin                                     | Papel em `app_metadata`; `user_metadata` não vale                                                                                              |
+| Vazar comentários por agregados                          | View expõe só contagem e médias                                                                                                                |
+| Busca abusiva ou injeção via ordenação                   | `p_limit` 1 a 100, `p_offset >= 0`, `p_sort` em lista fixa, sem SQL dinâmico                                                                   |
+| Trocar `perfume_id` de uma avaliação para driblar a RN03 | `UPDATE` restrito por coluna (`perfume_id` e `user_id` imutáveis)                                                                              |
+| XSS em comentário                                        | React escapa; sem `dangerouslySetInnerHTML`; limite de 1000 caracteres                                                                         |
+| Vazar localização do usuário                             | Só por clique (ou permissão já concedida), arredondada, só em memória; storage guarda apenas um aviso booleano; chave privada nunca persistida |
+| Chave privada vazada                                     | Secret scanning, `service_role` fora do app, rotação se houver suspeita                                                                        |
 
 ## Limitações conhecidas
 
 - **RN03 é autodeclarada.** O histórico de Perfume do Dia é gravado pelo próprio usuário via `set_daily_perfume`, então "já usou o perfume" funciona como filtro de coerência, não como prova de posse. Qualquer usuário pode escolher um perfume como Perfume do Dia e depois avaliá-lo. Isso é aceito para o produto.
-- **Fuso inválido em `profiles.timezone`.** O trigger de cadastro valida o fuso, mas o dono pode editar o campo depois. Um valor inexistente faz `set_daily_perfume` falhar para ele (só para ele). Validar no front (Zod) e, se necessário, no banco numa fase futura.
-- **Exclusão de conta** (Edge Function com `service_role`) ainda não existe nesta fase.
+- **Fuso inválido em `profiles.timezone`.** O trigger de cadastro valida o fuso, mas o dono pode editar o campo depois. Um valor inexistente faz `set_daily_perfume` falhar para ele (só para ele). O formulário de perfil já valida o fuso com `Intl` (Zod, `src/schemas/profile.ts`); o banco continua sem constraint, então uma chamada direta à API ainda pode gravar um valor inválido. Constraint no banco: fase futura, com migration.
+- **Nome de exibição sem limite no banco.** `profiles.display_name` é `text not null`, sem `check` de tamanho. O limite de 60 caracteres vale só no front (cadastro e perfil). Constraint no banco: fase futura.
+- **Exclusão de conta** (Edge Function com `service_role`) ainda não existe. O Perfil tem a "Zona de perigo" com o dialog de confirmação e a ação desativada ("Em breve"); nada chama o backend. A função entra numa fase própria, junto com o `supabase/`.

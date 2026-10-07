@@ -56,6 +56,8 @@ O MVP entrega seis blocos: catálogo, detalhes, autenticação, coleção, Perfu
 
 **Home (Fase 14D).** Barra de clima (cidade, temperatura, descrição, frase da faixa, umidade e as famílias em destaque), selo "Edição diária", a **sugestão do dia** (RN10) com imagem, notas por posição e medidores de Fixação, Rastro e Clima adequado, as ações "Vestir hoje" (grava o Perfume do Dia) e "Ver detalhes", "Seu Perfume de hoje", "Memorial" (histórico) e as descobertas: "Novidades no catálogo", "Parecidos com o seu perfume de hoje" e "Explore por família". O clima vem do Open-Meteo, sem backend nosso (seção 11); visitante vê o convite e as descobertas públicas.
 
+**Perfil (Fase 14E).** Rota privada `/profile`, dentro do `AppShell`. Cabeçalho com avatar de **iniciais** (primeira letra da primeira e da última palavra do nome, acentos mantidos, emoji ignorado; sem letra, um ícone; **upload de foto está fora do MVP**), nome de exibição, fuso e e-mail, e o botão "Sair". **Resumo** só com dados que já existem: quantos perfumes em "Tenho", quantos em "Quero" e quantos **dias no memorial** (linhas de `daily_perfumes`, hoje incluído); sem nenhum dado, estado vazio com saída para o catálogo, nunca número inventado. **Formulário** de nome e fuso (React Hook Form + Zod): nome obrigatório, aparado, **até 60 caracteres** (o banco só exige `not null`, sem limite: o teto é conservador e vive só no front, o mesmo do cadastro); fuso válido no `Intl` (identificador IANA, com lista de sugestões do navegador). Salvar atualiza só `display_name` e `timezone` do próprio perfil (RLS de dono) e refaz o Perfume do Dia e o clima, que dependem do fuso. **Zona de perigo:** "Excluir conta" abre um dialog de confirmação, mas a ação fica desativada ("Em breve") até a fase da Edge Function (ver Roadmap). Estados: carregando (skeleton equivalente), vazio, erro com tentar de novo e offline.
+
 **Avaliações.** Fixação e projeção de 1 a 5, comentário opcional, uma por usuário e perfume. Tudo é público: média, contagem, notas, comentário e nome de exibição do autor. O dono edita e apaga a própria.
 
 **Fora do MVP:** painel admin, perfis públicos, compartilhamento, notificações, importação de dados, recomendação.
@@ -79,17 +81,17 @@ São dez regras (RN01 a RN10). As nove primeiras têm um mecanismo de garantia n
 
 **RN10: heurísticas editoriais (Fase 14D).** São escolhas da curadoria, não dados de perfumaria. Qualquer número daqui vive em `src/constants/climate.ts`; mudou lá, mude aqui.
 
-| Item                                        | Regra                                                                                                                                                                                |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Faixa ideal por família (°C)                | citrus 22–35, aquatic 22–35, fruity 20–32, green 18–30, aromatic 15–28, floral 15–28, musky 10–25, woody 5–22, spicy 5–20, oriental 0–18                                             |
-| Faixa de um perfume                         | As famílias vêm das notas (não há coluna). Média ponderada, pelo nº de notas de cada família, dos mínimos e dos máximos, arredondada. Sem notas, não há faixa                        |
-| Faixas de temperatura                       | Frio: abaixo de 15 °C ("Projeção ideal para dias frios"). Ameno: de 15 a menos de 25 °C ("... dias amenos"). Quente: 25 °C ou mais ("... dias quentes")                              |
-| Famílias em destaque ("Sillage ótima")      | As famílias cuja faixa contém a temperatura, das mais centradas às menos (empate pela ordem do enum), até 3. Se nenhuma contiver, as 2 mais próximas                                 |
-| Clima adequado (medidor)                    | 100% se a temperatura está na faixa do perfume; perde 10 pontos por °C fora dela, no mínimo 0%                                                                                       |
-| Rótulo do Rastro (média de projeção, 1 a 5) | Menor que 2,5: Íntimo. De 2,5 a menos de 3,5: Moderado. 3,5 ou mais: Forte. Sem avaliações: "Sem avaliações"                                                                         |
-| Escolha estável do dia                      | Candidatos: `search_perfumes` com as famílias em destaque, ordenado por nome, limite 100. Índice: FNV-1a de 32 bits da data AAAA-MM-DD (fuso do usuário) módulo o nº de candidatos   |
-| Sem clima                                   | Mesmo sorteio sobre o catálogo todo (sem filtro de família), com a nota "Clima indisponível" no medidor                                                                              |
-| Localização                                 | Cidade = último trecho do identificador IANA de `profiles.timezone`, buscada no geocoding; vale o resultado cujo `timezone` é igual ao do perfil. Não resolveu: "Clima indisponível" |
+| Item                                        | Regra                                                                                                                                                                                                                                                |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Faixa ideal por família (°C)                | citrus 22–35, aquatic 22–35, fruity 20–32, green 18–30, aromatic 15–28, floral 15–28, musky 10–25, woody 5–22, spicy 5–20, oriental 0–18                                                                                                             |
+| Faixa de um perfume                         | As famílias vêm das notas (não há coluna). Média ponderada, pelo nº de notas de cada família, dos mínimos e dos máximos, arredondada. Sem notas, não há faixa                                                                                        |
+| Faixas de temperatura                       | Frio: abaixo de 15 °C ("Projeção ideal para dias frios"). Ameno: de 15 a menos de 25 °C ("... dias amenos"). Quente: 25 °C ou mais ("... dias quentes")                                                                                              |
+| Famílias em destaque ("Sillage ótima")      | As famílias cuja faixa contém a temperatura, das mais centradas às menos (empate pela ordem do enum), até 3. Se nenhuma contiver, as 2 mais próximas                                                                                                 |
+| Clima adequado (medidor)                    | 100% se a temperatura está na faixa do perfume; perde 10 pontos por °C fora dela, no mínimo 0%                                                                                                                                                       |
+| Rótulo do Rastro (média de projeção, 1 a 5) | Menor que 2,5: Íntimo. De 2,5 a menos de 3,5: Moderado. 3,5 ou mais: Forte. Sem avaliações: "Sem avaliações"                                                                                                                                         |
+| Escolha estável do dia                      | Candidatos: `search_perfumes` com as famílias em destaque, ordenado por nome, limite 100. Índice: FNV-1a de 32 bits da data AAAA-MM-DD (fuso do usuário) módulo o nº de candidatos                                                                   |
+| Sem clima                                   | Mesmo sorteio sobre o catálogo todo (sem filtro de família), com a nota "Clima indisponível" no medidor                                                                                                                                              |
+| Localização                                 | Com a localização do aparelho: rótulo "Sua localização". Senão, cidade = último trecho do identificador IANA de `profiles.timezone`, buscada no geocoding; vale o resultado cujo `timezone` é igual ao do perfil. Não resolveu: "Clima indisponível" |
 
 **Decisões que a v1.0 deixava em aberto**
 
@@ -422,7 +424,7 @@ supabase/
 | `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                                                            |
 | `/collection`         | privada            | Coleção com abas Tenho e Quero                                                                              |
 | `/daily`              | privada            | Perfume do Dia de hoje e histórico                                                                          |
-| `/profile`            | privada            | Nome de exibição, fuso, excluir conta                                                                       |
+| `/profile`            | privada            | Avatar de iniciais, resumo, nome de exibição, fuso e zona de perigo (excluir conta: em breve)               |
 | `*`                   | pública            | 404                                                                                                         |
 
 **Fluxo de autenticação**
@@ -670,7 +672,7 @@ Com `prompt`, uma atualização do app aparece como toast "Nova versão disponí
 - **Cache:** chaves `['private', userId, 'weather', ...]`, nunca persistidas. `staleTime` de 30 min para a previsão (poupa o limite) e de 24 h para a cidade. O Service Worker não intercepta o Open-Meteo.
 - **Estados da barra de clima:** carregando (skeleton), pronto, erro com "Tentar novamente", "Clima indisponível" (fuso sem cidade ou sem resultado no geocoding) e offline.
 - **Mensagens:** timeout (8 s), 429, 4xx/5xx e resposta fora do formato viram códigos estáveis em `constants/errors.ts`; texto cru do serviço nunca aparece.
-- **Localização do aparelho:** só por clique em "Usar minha localização" (ou direto, se a Permissions API já disser `granted`). Coordenadas arredondadas a 2 casas, só em memória (ver `docs/SECURITY.md`).
+- **Localização do aparelho:** só por clique em "Usar minha localização"; ao abrir a Home, direto se a Permissions API disser `granted` (ou, sem ela, se o aviso booleano de concessão existir). Rótulo "Sua localização" (o Open-Meteo gratuito não tem geocoding reverso). Coordenadas arredondadas a 2 casas, só em memória; só o aviso booleano vai ao `localStorage` (ver `docs/SECURITY.md`). O botão é só "Usar minha localização": não há "voltar à minha cidade"; sem a localização, vale a cidade de `profiles.timezone`.
 - **Imagens:** `lib/images.ts` monta a variante (`thumb`, `medium`, `large`) a partir do `image_path`; se ela não existir, o `PerfumeImage` cai no arquivo original e, sem ele, no placeholder.
 
 **Acessibilidade (meta: WCAG 2.2 AA)**
@@ -882,5 +884,7 @@ e não enfraquece nenhuma policy de RLS.
 roadmap · 12 fases, 4 blocos, 4 critérios de passagem
 
 Os critérios A a D valem como portões: o bloco seguinte só começa quando o anterior cumpre o seu. As fases 1 e 2 já incluem CI, deploy de preview e a configuração-base do PWA; a fase 11 valida o PWA completo (offline, instalação) e as metas de performance.
+
+> **Pendência (Fase 14E):** a **exclusão de conta** (Edge Function autenticada com `auth.admin.deleteUser()` e `service_role` só no runtime, seção 11) foi adiada para uma fase própria, que mexe em `supabase/`. Enquanto isso, o Perfil mostra a "Zona de perigo" com o dialog de confirmação e a ação desativada ("Em breve"). Quando a função existir: ligar a ação, testar com a função interceptada no E2E e com pgTAP para o cascade, e atualizar `docs/SECURITY.md` e `docs/DATABASE.md`.
 
 > **Nota (Fase 2):** o preview por PR do Gate A ainda está pendente por falta de hospedagem (Vercel). Até lá, o CI roda `quality` e `database`, sem preview.
