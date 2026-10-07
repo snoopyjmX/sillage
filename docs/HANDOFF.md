@@ -28,6 +28,7 @@ Este documento registra o estado atual do projeto para transição entre computa
 ## 2. 🗺️ Próximo Passo Imediato (Onde Retomar)
 
 O próximo bloco de trabalho na mesma branch é a **Subfase 15C: Perfume do Dia Restrito à Coleção (RN06)**:
+
 - Regra de negócio: só permitir vestir perfume que o usuário tenha na coleção (`status = 'owned'`).
 - UI da Coleção: botão "Vestir hoje" na prateleira "Tenho".
 - UI da Home & Detalhes: validação se o perfume do dia / sugerido pertence à prateleira "Tenho" antes de permitir vestir.
@@ -56,5 +57,5 @@ npx supabase test db
 ## 4. 🚀 Comando de Retomada com a IA
 
 Ao abrir o chat no outro computador, basta dizer:
-> *"Estou no outro PC. Vamos retomar da Subfase 15C do HANDOFF.md na branch feat/phase-15-catalog-and-auth."*
 
+> _"Estou no outro PC. Vamos retomar da Subfase 15C do HANDOFF.md na branch feat/phase-15-catalog-and-auth."_
