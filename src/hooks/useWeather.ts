@@ -91,10 +91,13 @@ export const useWeather = () => {
     location: {
       supported: geo.supported,
       status: geo.status,
-      error: geo.status === 'denied' ? ERROR_MESSAGES.location_denied : null,
-      active: geo.coords !== null,
+      error:
+        geo.status === 'denied'
+          ? ERROR_MESSAGES.location_denied
+          : geo.status === 'failed'
+            ? ERROR_MESSAGES.location_failed
+            : null,
       request: geo.request,
-      clear: geo.clear,
     },
   };
 };

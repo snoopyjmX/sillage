@@ -9,10 +9,11 @@ import type { DailyEntry } from '@/types/daily';
 const auth = await vi.hoisted(async () => (await import('@/test/authMock')).createAuthMock());
 vi.mock('@/services/authService', () => ({ authService: auth.service }));
 const getOverview = vi.fn();
+const getTimezone = vi.fn();
 vi.mock('@/services/dailyService', () => ({
   dailyService: {
     getOverview: () => getOverview(),
-    getTimezone: () => Promise.resolve('America/Sao_Paulo'),
+    getTimezone: () => getTimezone(),
     setToday: () => Promise.resolve(),
   },
 }));
@@ -54,12 +55,12 @@ const entry = (date: string, name: string): DailyEntry => {
   return { date, perfume };
 };
 
-const TITLE = { name: 'Descubra a fragrância de hoje', level: 1 } as const;
-
 describe('HomePage', () => {
   beforeEach(() => {
     auth.reset();
     getOverview.mockReset();
+    getTimezone.mockReset();
+    getTimezone.mockResolvedValue('America/Sao_Paulo');
     getCurrent.mockReset();
     searchCity.mockReset();
     getDailySuggestion.mockReset();
@@ -77,16 +78,15 @@ describe('HomePage', () => {
     getDailySuggestion.mockResolvedValue(null);
   });
 
-  it('visitante vê o título e o convite, sem consultar o Perfume do Dia (é privado)', async () => {
+  it('visitante vê a Landing, sem consultar o Perfume do Dia (é privado)', async () => {
     auth.setInitialSession(null);
     renderApp('/');
-    expect(await screen.findByRole('heading', TITLE)).toBeInTheDocument();
-    // O Footer também tem "Criar conta" para visitante: o convite é o do conteúdo principal
-    const main = within(screen.getByRole('main'));
-    expect(await main.findByRole('link', { name: 'Criar conta' })).toHaveAttribute(
-      'href',
-      '/register'
-    );
+    expect(
+      await screen.findByRole('heading', { name: 'Descubra perfumes pelas suas notas', level: 1 })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', { name: 'Descubra a fragrância de hoje' })
+    ).not.toBeInTheDocument();
     expect(getOverview).not.toHaveBeenCalled();
   });
 
@@ -153,6 +153,42 @@ describe('HomePage', () => {
     expect(
       within(bar).getByRole('list', { name: 'Famílias em destaque hoje' })
     ).toBeInTheDocument();
+  });
+
+  it.each(['Marte/Olympus', 'xx', '', 'Etc/Nope', "'; drop table profiles; --"])(
+    'fuso inválido salvo no perfil (%j) não quebra a Home: data no padrão e clima indisponível',
+    async (invalid) => {
+      auth.setInitialSession(fakeSession());
+      getOverview.mockResolvedValue({ today: null, history: [] });
+      getTimezone.mockResolvedValue(invalid);
+      renderApp('/');
+      const bar = await screen.findByRole('region', { name: 'Clima de hoje' });
+      expect(await within(bar).findByText('Clima indisponível')).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Descubra a fragrância de hoje' })).toBeVisible();
+      expect(getCurrent).not.toHaveBeenCalled();
+      await vi.waitFor(() =>
+        expect(getDailySuggestion).toHaveBeenCalledWith(
+          expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+          []
+        )
+      );
+    }
+  );
+
+  it('consulta do fuso falhando: a sugestão não fica carregando para sempre', async () => {
+    auth.setInitialSession(fakeSession());
+    getOverview.mockResolvedValue({ today: null, history: [] });
+    getTimezone.mockRejectedValue(new AppError('network'));
+    renderApp('/');
+    const bar = await screen.findByRole('region', { name: 'Clima de hoje' });
+    expect(await within(bar).findByText('Clima indisponível')).toBeInTheDocument();
+    await vi.waitFor(() =>
+      expect(getDailySuggestion).toHaveBeenCalledWith(
+        expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+        []
+      )
+    );
+    expect(await screen.findByText('Nenhuma sugestão por enquanto')).toBeInTheDocument();
   });
 
   it('fuso que não resolve cidade mostra "Clima indisponível" e a sugestão cai no catálogo todo', async () => {

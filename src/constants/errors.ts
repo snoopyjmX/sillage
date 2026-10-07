@@ -19,7 +19,10 @@ export type ErrorCode =
   | 'weather_failed'
   | 'weather_timeout'
   | 'weather_rate_limited'
-  | 'location_denied';
+  | 'location_denied'
+  | 'location_failed'
+  | 'profile_load_failed'
+  | 'profile_failed';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -44,6 +47,9 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   weather_timeout: 'O serviço de clima demorou a responder. Tente novamente em instantes.',
   weather_rate_limited: 'O serviço de clima recebeu pedidos demais. Tente de novo mais tarde.',
   location_denied: 'Não foi possível usar a sua localização. Verifique a permissão do navegador.',
+  location_failed: 'Não conseguimos obter a sua localização agora. Tente novamente em instantes.',
+  profile_load_failed: 'Não foi possível carregar o seu perfil. Tente novamente em instantes.',
+  profile_failed: 'Não foi possível salvar o seu perfil. Tente novamente em instantes.',
 };
 
 export class AppError extends Error {

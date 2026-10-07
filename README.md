@@ -85,3 +85,14 @@ Para diretrizes completas de produto, regras de negócio (RN01–RN10), arquitet
 ## Status
 
 **v1.0** — as 12 fases do Roadmap concluídas.
+
+## Rotas
+
+Só a Landing e as telas de acesso abrem sem login; o resto exige conta (gate de interface: o banco segue com leitura pública e a RLS protege os dados privados).
+
+| Rota                                                     | Acesso                                          |
+| -------------------------------------------------------- | ----------------------------------------------- |
+| `/`                                                      | Landing (visitante) ou Home (logado), mesma URL |
+| `/login`, `/register`, `/forgot-password`                | Só visitantes                                   |
+| `/reset-password`                                        | Via link do e-mail                              |
+| `/catalog`, `/perfumes/:slug`, `/collection`, `/profile` | Exigem login (visitante vai para `/?redirect=`) |

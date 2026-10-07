@@ -116,3 +116,17 @@ export const clearReviews = (perfumeSlug: string): void =>
   runSql(
     `delete from public.perfume_reviews where perfume_id = (select id from public.perfumes where slug = '${perfumeSlug}')`
   );
+
+// `collection_items` aceita escrita do dono pela API, mas semear por SQL é mais rápido e não
+// depende da interface do catálogo: dá ao usuário `owned` perfumes "Tenho" e `wanted` "Quero".
+export const seedCollection = (email: string, owned: number, wanted: number): void =>
+  runSql(`
+    insert into public.collection_items (user_id, perfume_id, status)
+    select u.id, p.id, case when p.rn <= ${Number(owned)} then 'owned'::public.collection_status
+                            else 'wanted'::public.collection_status end
+    from auth.users u
+    cross join (
+      select id, row_number() over (order by slug) as rn from public.perfumes
+      order by slug limit ${Number(owned) + Number(wanted)}
+    ) p
+    where u.email = '${email.replaceAll("'", "''")}'`);

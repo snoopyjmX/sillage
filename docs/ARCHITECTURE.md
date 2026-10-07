@@ -103,7 +103,38 @@
 
 - **Sem dependência nova e sem migration.** Fetch nativo com `AbortController` (8 s) e Zod, que já estavam no projeto.
 - **Camadas:** `weatherService` (Open-Meteo, único arquivo que o chama) e `homeService` (sugestão e novidades) → hooks (`useWeather`, `useGeolocation`, `useProfileTimezone`, `useDailySuggestion`, `useRecentPerfumes`, `useWearToday`) → componentes só de apresentação (`WeatherBar`, `DailySuggestionCard`, `HomeHeader`, `RecentPerfumes`, `SimilarToToday`, `FamilyExplorer`) → `HomePage`.
+- **Localização:** `useGeolocation` consulta a Permissions API uma vez ao montar (`granted` usa direto; sem a API, vale o aviso booleano de `lib/geoHint.ts`; `prompt` e `denied` nunca pedem sozinhos). Só o aviso `sillage-geo-hint` vai ao `localStorage`, nunca coordenadas (`docs/SECURITY.md`).
+- **Perfil (14E):** `profileService` (lê e atualiza `display_name` e `timezone` do dono; 0 linhas afetadas é falha) e `dailyService.countDays` → hooks (`useProfile`, `useUpdateProfile`, `useProfileStats`, `useDailyCount`) → `ProfileAvatar`, `ProfileHeader`, `ProfileStats`, `ProfileForm`, `DangerZone` → `ProfilePage`. Chaves: `['private', userId, 'profile', 'detail']` e `['private', userId, 'daily', 'count']` (nunca persistidas); salvar invalida `profile` e `daily`. Regras puras em `lib/profile.ts` (iniciais, contagem) e schema em `schemas/profile.ts`. Sem dependência nova, migration ou mudança de policy.
 - **Regras puras** em `src/lib` (`climate.ts`, `location.ts`, `images.ts`, `groupNotesByPosition` em `perfume.ts`) com teste unitário; números em `src/constants/climate.ts` e `src/constants/weather.ts`. As regras são a RN10 em `docs/PRODUCT.md`.
 - **Query keys:** `['private', userId, 'weather', 'city' | 'current', ...]` e `['private', userId, 'profile', 'timezone']` (nunca persistidas); `['public', 'home', 'suggestion' | 'recent', ...]` (catálogo, persistível). A data da sugestão e as famílias entram na chave; o fuso do usuário não.
 - **`perfumeService.search` ganhou o parâmetro `limit`** (padrão `PAGE_SIZE`; o teto da RPC é 100) para os 100 candidatos da sugestão. `dailyService` ganhou `getTimezone` e `setToday` (`set_daily_perfume`); `reviewService` expõe `getSummary`.
 - **E2E:** `e2e/fixtures.ts` substitui o `test` do Playwright e dá a todo contexto respostas padrão do Open-Meteo; nenhum teste usa rede real.
+
+## Decisões da Fase 14B (Landing e gate de rotas)
+
+Sem dependência nova, sem migration e sem mudança de policy. O gate é só de interface (a RLS segue como estava; ver `docs/SECURITY.md`).
+
+| Rota                                                     | Acesso             | Layout                       | Guarda                                        |
+| -------------------------------------------------------- | ------------------ | ---------------------------- | --------------------------------------------- |
+| `/`                                                      | pública            | `PublicLayout` ou `AppShell` | `RootEntry`: esqueleto, Landing ou Home       |
+| `/login`, `/register`, `/forgot-password`                | só visitantes      | `AuthCard` (layout próprio)  | `GuestOnly` (logado volta ao destino)         |
+| `/reset-password`                                        | via link do e-mail | `AuthCard` (layout próprio)  | nenhuma                                       |
+| `/catalog`, `/perfumes/:slug`, `/collection`, `/profile` | privada            | `AppShell`                   | `RequireAuth` (visitante vai a `/?redirect=`) |
+| `*` (404)                                                | privada            | `AppShell`                   | `RequireAuth`                                 |
+
+- **`RootEntry`** (`routes/RootEntry.tsx`) decide a tela de `/` pelo `status` da sessão: `loading` mostra `AuthPending` (nunca a Landing para quem já está logado), `authenticated` mostra a Home no `AppShell` e `unauthenticated` mostra a Landing no `PublicLayout`. `AppShell` e `PublicLayout` aceitam `children` para esse caso e usam `<Outlet />` nas demais rotas.
+- **`PublicLayout`** é pequeno de propósito: `Navbar` com a pílula em modo `landing`, `OfflineBanner` (sem a promessa de catálogo salvo), `Footer`. Não carrega a navegação privada nem o Nez.
+- **`lib/redirect`**: `buildGatePath` (destino para `/?redirect=`) e `withRedirect` (repassa o destino saneado para `/login` e `/register`). Regra pura, com teste.
+- A Landing é estática (não consulta o banco), então abre offline pelo shell em precache. A vitrine opcional de perfumes reais ficou de fora.
+- **Lighthouse CI** (`lighthouserc.json`) audita `/`, `/login` e `/register`. O workflow `.github/workflows/lighthouse.yml` não muda.
+
+## Decisões da Fase 14F (fechamento e arte de login/cadastro)
+
+Sem dependência nova, sem migration e sem mudança de policy.
+
+- **Estrutura de assets:** `public/auth-art/` guarda as variantes WebP da arte decorativa das telas de auth, geradas por `scripts/process-auth-art.mjs` a partir de `docs/design/arte login-cadastro.jpg` (o original não é servido). `public/` segue como único lugar de imagens estáticas; não existe `src/assets/`.
+- **Carregamento:** a `<img>` da arte só é montada a partir de `md` (`useMediaQuery`), então o celular não a baixa. A arte é decorativa e de baixa prioridade (`fetchPriority="low"`).
+- **PWA:** a arte fica **fora do precache** (o `globPatterns` do Workbox não inclui `webp`) e entra por `runtimeCaching` `StaleWhileRevalidate` (`auth-art`). Motivo: é decorativa, só aparece para o visitante e não deve inflar a instalação nem o precache obrigatório. Sem a imagem, o painel mostra a superfície de token.
+- **Logo:** `Brand` (em `components/layout/Navbar.tsx`) passou a ser exportada e é a única logo, usada também no topo do formulário do `AuthCard`.
+- **Layouts:** as telas de auth usam o layout próprio do `AuthCard`, fora do `PublicLayout` (que ficou só para a Landing).
+- **Passada de performance (Lighthouse mobile, config do projeto):** (a) preload das quatro fontes em uso (Inter 400 e 500, Fraunces 500 e 600) em `index.html`; `font-display: swap` já vinha do `@fontsource`. (b) `AppShell` e `PublicLayout` viraram lazy (rota e `RootEntry`) e o `NezDrawer` só carrega para quem está logado, então o visitante não baixa o Nez, o Footer nem a navegação do app. `LazyMotion` (`m` no lugar de `motion`, disponível no motion 14) foi testado e **descartado**: não melhorou a nota. (c) O Vite 8 usa o Rolldown (sem `manualChunks`); a opção experimental de inlining de chunks comuns exige `preserveEntrySignatures: false` e foi descartada. Notas antes e depois: `/` 0,72–0,82 para 0,81; `/login` 0,78 para 0,80; `/register` 0,78 para 0,79. **Ainda abaixo de 0,90**: o resto vem dos bytes de JavaScript antes do primeiro render (React, router, query, Supabase e Zod; ver o relatório da 14F).

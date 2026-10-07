@@ -8,6 +8,35 @@
     <meta name="theme-color" content="#f6f4ed" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f1411" media="(prefers-color-scheme: dark)" />
     <title>Sillage</title>
+    <!-- Fontes críticas (corpo e títulos): o preload tira a descoberta delas do fim da cascata -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/fraunces/files/fraunces-latin-500-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/fraunces/files/fraunces-latin-600-normal.woff2"
+    />
     <script>
       // Aplica o tema antes da primeira pintura (evita o "flash" do tema errado).
       // Mantenha a chave igual a THEME_STORAGE_KEY em src/lib/theme.ts.

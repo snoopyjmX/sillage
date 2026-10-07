@@ -93,10 +93,11 @@ describe('CollectionPage', () => {
     ).toBeInTheDocument();
   });
 
-  it('visitante é levado ao login com ?redirect=/collection', async () => {
+  it('visitante é levado à Landing com ?redirect=/collection', async () => {
     auth.setInitialSession(null);
     const { router } = renderApp('/collection');
-    await screen.findByRole('heading', { name: 'Entrar', level: 1 });
+    await screen.findByRole('heading', { name: 'Descubra perfumes pelas suas notas', level: 1 });
+    expect(router.state.location.pathname).toBe('/');
     expect(router.state.location.search).toBe('?redirect=%2Fcollection');
     expect(list).not.toHaveBeenCalled();
   });

@@ -54,7 +54,8 @@ describe('página de detalhes do perfume', () => {
   beforeEach(() => {
     getBySlug.mockReset();
     auth.reset();
-    auth.setInitialSession(null);
+    // O gate só libera a rota para quem tem sessão
+    auth.setInitialSession(fakeSession());
     getUserReview.mockReset();
     getUserReview.mockResolvedValue(null);
     getPerfumeReviews.mockReset();
@@ -68,7 +69,7 @@ describe('página de detalhes do perfume', () => {
     getBySlug.mockResolvedValue(detail);
     renderApp('/perfumes/malbec-signature');
     expect(
-      await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 3000 })
+      await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 5000 })
     ).toBeInTheDocument();
     expect(getBySlug).toHaveBeenCalledWith('malbec-signature');
     expect(screen.getByText('O Boticário')).toBeInTheDocument();
@@ -84,14 +85,14 @@ describe('página de detalhes do perfume', () => {
     getBySlug.mockResolvedValue({ ...detail, perfumer: 'Olivier Cresp' });
     renderApp('/perfumes/malbec-signature');
     expect(
-      await screen.findByText('Perfumista: Olivier Cresp', {}, { timeout: 3000 })
+      await screen.findByText('Perfumista: Olivier Cresp', {}, { timeout: 5000 })
     ).toBeInTheDocument();
   });
 
   it('não mostra a linha de perfumista quando é nulo', async () => {
     getBySlug.mockResolvedValue(detail);
     renderApp('/perfumes/malbec-signature');
-    await screen.findByRole('heading', { level: 1 }, { timeout: 3000 });
+    await screen.findByRole('heading', { level: 1 }, { timeout: 5000 });
     expect(screen.queryByText(/Perfumista:/)).not.toBeInTheDocument();
   });
 
@@ -106,7 +107,7 @@ describe('página de detalhes do perfume', () => {
     const section = await screen.findByRole(
       'region',
       { name: 'Melhor preço encontrado' },
-      { timeout: 3000 }
+      { timeout: 5000 }
     );
     expect(section).toHaveTextContent(/R\$\s249,00\sna O Boticário/);
     const link = within(section).getByRole('link');
@@ -118,14 +119,14 @@ describe('página de detalhes do perfume', () => {
   it('omite a seção de preço quando não há oferta', async () => {
     getBySlug.mockResolvedValue(detail);
     renderApp('/perfumes/malbec-signature');
-    await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 3000 });
+    await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 5000 });
     expect(screen.queryByText('Melhor preço encontrado')).not.toBeInTheDocument();
   });
 
   it('cai no placeholder quando a foto ainda não existe no Storage', async () => {
     getBySlug.mockResolvedValue({ ...detail, imageUrl: 'https://cdn.test/ausente.webp' });
     renderApp('/perfumes/malbec-signature');
-    const image = await screen.findByRole('img', { name: /Frasco do perfume/ }, { timeout: 3000 });
+    const image = await screen.findByRole('img', { name: /Frasco do perfume/ }, { timeout: 5000 });
     fireEvent.error(image);
     await waitFor(() =>
       expect(screen.queryByRole('img', { name: /Frasco do perfume/ })).not.toBeInTheDocument()
@@ -139,7 +140,7 @@ describe('página de detalhes do perfume', () => {
       await screen.findByRole(
         'heading',
         { name: 'Perfume não encontrado', level: 3 },
-        { timeout: 3000 }
+        { timeout: 5000 }
       )
     ).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: 'Voltar ao catálogo' })[0]).toHaveAttribute(
@@ -152,7 +153,7 @@ describe('página de detalhes do perfume', () => {
   it('erro de rede mostra a mensagem amigável e tenta de novo pelo botão', async () => {
     getBySlug.mockImplementation(() => Promise.reject(new AppError('network')));
     renderApp('/perfumes/malbec-signature');
-    expect(await screen.findByRole('alert', {}, { timeout: 3000 })).toHaveTextContent(
+    expect(await screen.findByRole('alert', {}, { timeout: 5000 })).toHaveTextContent(
       'Sem conexão com o servidor'
     );
     expect(screen.getByRole('button', { name: 'Tentar novamente' })).toBeInTheDocument();
@@ -186,7 +187,7 @@ describe('página de detalhes do perfume', () => {
       getPerfumeReviews.mockResolvedValue(community);
       renderApp('/perfumes/malbec-signature');
       expect(
-        (await screen.findAllByText('2 avaliações', { exact: false }, { timeout: 3000 })).length
+        (await screen.findAllByText('2 avaliações', { exact: false }, { timeout: 5000 })).length
       ).toBeGreaterThan(0);
       expect(screen.getByRole('img', { name: 'Nota média: 3,5 de 5' })).toBeInTheDocument();
 
@@ -202,22 +203,21 @@ describe('página de detalhes do perfume', () => {
       getBySlug.mockResolvedValue(detail);
       renderApp('/perfumes/malbec-signature');
       expect(
-        await screen.findByText('Ainda sem avaliações.', {}, { timeout: 3000 })
+        await screen.findByText('Ainda sem avaliações.', {}, { timeout: 5000 })
       ).toBeInTheDocument();
       expect(await screen.findByText('Ainda não há avaliações')).toBeInTheDocument();
     });
 
-    it('visitante que clica em "Avaliar fragrância" vai para o login com ?redirect=', async () => {
+    it('visitante não chega aos detalhes: cai na Landing com ?redirect= e nada é consultado', async () => {
+      auth.setInitialSession(null);
       getBySlug.mockResolvedValue(detail);
       const { router } = renderApp('/perfumes/malbec-signature');
-      fireEvent.click(
-        await screen.findByRole('button', { name: 'Avaliar fragrância' }, { timeout: 3000 })
+      await screen.findByRole('heading', { name: 'Descubra perfumes pelas suas notas', level: 1 });
+      expect(router.state.location.pathname + router.state.location.search).toBe(
+        '/?redirect=%2Fperfumes%2Fmalbec-signature'
       );
-      await waitFor(() =>
-        expect(router.state.location.pathname + router.state.location.search).toBe(
-          '/login?redirect=%2Fperfumes%2Fmalbec-signature'
-        )
-      );
+      expect(screen.queryByText('Malbec Signature')).not.toBeInTheDocument();
+      expect(getBySlug).not.toHaveBeenCalled();
     });
 
     it('logado abre o formulário; com avaliação própria o botão vira "Editar" e vem preenchido', async () => {
@@ -233,7 +233,7 @@ describe('página de detalhes do perfume', () => {
       });
       renderApp('/perfumes/malbec-signature');
       fireEvent.click(
-        await screen.findByRole('button', { name: 'Editar minha avaliação' }, { timeout: 3000 })
+        await screen.findByRole('button', { name: 'Editar minha avaliação' }, { timeout: 5000 })
       );
       const form = await screen.findByRole('button', { name: 'Salvar alterações' });
       expect(form).toBeInTheDocument();

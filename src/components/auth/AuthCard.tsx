@@ -1,9 +1,11 @@
-// Moldura das telas de autenticação (fora do AppShell): formulário de um lado e, a partir de md,
-// painel de marca do outro. Só tokens, sem imagem externa.
+// Moldura das telas de autenticação (fora do AppShell): logo e formulário de um lado e, a partir de
+// md, painel de marca do outro, com a arte local ao fundo. Só tokens, sem imagem externa.
 import { ArrowLeft } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { Brand } from '@/components/layout/Navbar';
 import { TypingAnimation } from '@/components/ui/typing-animation';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface AuthCardProps {
   title: string;
@@ -12,37 +14,48 @@ interface AuthCardProps {
   footer?: ReactNode;
 }
 
-const PYRAMID_LAYERS = [
-  { label: 'Topo', width: 'w-1/3', tone: 'border bg-card text-foreground' },
-  { label: 'Coração', width: 'w-2/3', tone: 'border border-primary bg-card text-foreground' },
-  { label: 'Base', width: 'w-full', tone: 'bg-primary text-primary-foreground' },
-] as const;
+// Arte decorativa (docs/DESIGN_SYSTEM.md, "Arte das telas de auth"): WebP servido pelo próprio site.
+// A largura 1200 é a do original; o painel ocupa metade da tela (sizes).
+const ART_WIDTH = 1200;
+const ART_HEIGHT = 1888;
+const ART_WIDTHS = [640, 960, 1200] as const;
+const ART_SRCSET = ART_WIDTHS.map((w) => `/auth-art/auth-art-${w}.webp ${w}w`).join(', ');
+const ART_SRC = '/auth-art/auth-art-960.webp';
+// Mesmo ponto de corte do `md:` do Tailwind (48rem): abaixo dele o painel nem aparece
+const PANEL_QUERY = '(min-width: 48rem)';
 
 const focusRing =
   'rounded-lg outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring';
 
 function BrandPanel() {
+  // A <img> só entra na árvore a partir de md: no celular o painel está oculto e a arte não é baixada
+  const showArt = useMediaQuery(PANEL_QUERY);
+
   return (
     <aside
       data-slot="auth-brand-panel"
-      className="hidden flex-col justify-between border-l bg-accent p-10 md:flex lg:p-14"
+      className="relative isolate hidden flex-col justify-end overflow-hidden border-l bg-accent p-10 md:flex lg:p-14"
     >
-      <div className="flex items-center gap-2">
-        <img src="/favicon-32x32.png" alt="" width={32} height={32} className="size-8" />
-        <span className="font-heading text-2xl font-semibold text-primary">Sillage</span>
-      </div>
-
-      {/* Pirâmide olfativa decorativa: o conteúdo real está na página de cada perfume */}
-      <div aria-hidden className="mx-auto flex w-full max-w-xs flex-col items-center gap-2">
-        {PYRAMID_LAYERS.map(({ label, width, tone }) => (
-          <div
-            key={label}
-            className={`${width} ${tone} rounded-lg py-2 text-center text-sm font-medium`}
-          >
-            {label}
-          </div>
-        ))}
-      </div>
+      {showArt && (
+        <img
+          data-slot="auth-art"
+          src={ART_SRC}
+          srcSet={ART_SRCSET}
+          sizes="50vw"
+          width={ART_WIDTH}
+          height={ART_HEIGHT}
+          alt=""
+          aria-hidden
+          decoding="async"
+          fetchPriority="low"
+          className="absolute inset-0 -z-20 size-full object-cover"
+        />
+      )}
+      {/* Camada de token: garante o contraste da frase sobre a arte clara (mais forte no escuro) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-linear-to-t from-background/80 via-background/40 to-background/10 dark:from-background/90 dark:via-background/80 dark:to-background/70"
+      />
 
       <figure className="flex flex-col gap-3">
         <blockquote>
@@ -54,7 +67,7 @@ function BrandPanel() {
             Todo perfume deixa um rastro. O seu começa aqui.
           </TypingAnimation>
         </blockquote>
-        <figcaption className="text-sm text-text-secondary">— Sillage</figcaption>
+        <figcaption className="text-sm text-foreground">— Sillage</figcaption>
       </figure>
     </aside>
   );
@@ -72,6 +85,9 @@ export function AuthCard({ title, description, children, footer }: AuthCardProps
           Voltar
         </Link>
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center gap-6 py-8">
+          <div className="self-start">
+            <Brand alwaysShowName />
+          </div>
           <header className="flex flex-col gap-2">
             <h1 className="font-heading text-3xl leading-tight font-medium">{title}</h1>
             {description && <p className="text-muted-foreground">{description}</p>}

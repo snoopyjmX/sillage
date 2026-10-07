@@ -26,7 +26,7 @@ export interface ResolvedLocation extends Coordinates {
   label: string;
 }
 
-export type GeolocationStatus = 'idle' | 'requesting' | 'denied';
+export type GeolocationStatus = 'idle' | 'requesting' | 'denied' | 'failed';
 
 export type WeatherView =
   | { status: 'loading' }

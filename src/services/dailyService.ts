@@ -72,6 +72,15 @@ export const dailyService = {
     return data.map(toEntry);
   },
 
+  // Dias com Perfume do Dia registrado (hoje incluído). A RLS limita a contagem às linhas do dono.
+  countDays: async (): Promise<number> => {
+    const { count, error } = await supabase
+      .from('daily_perfumes')
+      .select('date', { count: 'exact', head: true });
+    if (error) throw toDailyError(error);
+    return count ?? 0;
+  },
+
   getOverview: async (): Promise<DailyOverview> => {
     const date = await dailyService.getTodayDate();
     const [today, history] = await Promise.all([

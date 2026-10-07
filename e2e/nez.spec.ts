@@ -53,10 +53,19 @@ const openNez = async (page: Page) => {
 };
 
 test.describe('Nez, o mestre perfumista', () => {
-  test('visitante não vê o botão do Nez', async ({ page }) => {
+  test('visitante não vê o botão do Nez: a página de detalhes cai na Landing (gate)', async ({
+    page,
+  }) => {
+    await page.goto(URL);
+    await expect(page).toHaveURL(/\/\?redirect=%2Fperfumes%2Fmalbec-signature$/);
+    await expect(page.getByRole('button', { name: 'Nez' })).toHaveCount(0);
+  });
+
+  test('logado vê o botão do Nez nos detalhes', async ({ page }) => {
+    await registerViaUi(page);
     await page.goto(URL);
     await expect(page.getByRole('heading', { level: 1, name: 'Malbec Signature' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Nez' })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Nez' })).toBeVisible();
   });
 
   test('abre o drawer, envia a pergunta com o perfume como contexto e mostra a resposta digitada', async ({
@@ -191,6 +200,10 @@ test.describe('Nez, o mestre perfumista', () => {
 });
 
 test.describe('similaridade (RN09)', () => {
+  test.beforeEach(async ({ page }) => {
+    await registerViaUi(page);
+  });
+
   test('a página de detalhes mostra "Fragrâncias com a mesma alma" sem o próprio perfume', async ({
     page,
   }) => {

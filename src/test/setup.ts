@@ -5,8 +5,10 @@ import { afterEach, vi } from 'vitest';
 // Com `globals: false` o Testing Library não limpa o DOM sozinho
 afterEach(() => cleanup());
 
-// Páginas são lazy: no primeiro teste do arquivo o Vite ainda transforma o módulo (> 1 s)
-configure({ asyncUtilTimeout: 3000 });
+// Páginas são lazy: no primeiro teste do arquivo o Vite ainda transforma o módulo (> 1 s). Com a
+// suíte inteira em paralelo (55 arquivos) esse import a frio passava de 3 s e dava falha
+// intermitente; 5 s dá folga sem esconder travamento de verdade (o testTimeout fica em 10 s).
+configure({ asyncUtilTimeout: 5000 });
 
 // O jsdom não implementa <canvas>: o confete vira no-op nos testes
 vi.mock('canvas-confetti', () => ({ default: vi.fn() }));

@@ -10,6 +10,13 @@ export const GEOCODING_STALE_TIME = 24 * 60 * 60_000;
 export const GEOCODING_RESULT_COUNT = 20;
 export const COORD_DECIMALS = 2;
 
+// Aviso de preferência (booleano) no localStorage: "o usuário já concedeu a localização". É só o
+// aviso, nunca coordenadas (docs/SECURITY.md). Serve de plano B quando a Permissions API não
+// informa o estado da permissão.
+export const GEO_HINT_KEY = 'sillage-geo-hint';
+// GeolocationPositionError.PERMISSION_DENIED
+export const GEO_PERMISSION_DENIED = 1;
+
 // Atribuição exigida pela licença (CC BY 4.0), com link
 export const OPEN_METEO_ATTRIBUTION = {
   text: 'Weather data by Open-Meteo.com',

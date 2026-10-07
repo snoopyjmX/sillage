@@ -11,15 +11,23 @@ import { useAuth } from '@/hooks/useAuth';
 import { transitions } from '@/lib/motion';
 import { InstallAppButton } from './InstallAppButton';
 
-function Brand() {
+interface BrandProps {
+  // Telas de auth têm espaço: o nome fica visível mesmo abaixo de 400 px
+  alwaysShowName?: boolean;
+}
+
+// Logo da marca: usada na Navbar e no topo do formulário das telas de auth (alvo de toque de 44 px)
+export function Brand({ alwaysShowName = false }: BrandProps) {
   return (
     <Link
       to="/"
-      className="flex items-center gap-2 rounded-lg outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      className="flex min-h-11 items-center gap-2 rounded-lg outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     >
       {/* Logo da marca: sem inversão de cor no escuro (distorceria a cor) */}
       <img src="/favicon-32x32.png" alt="" width={32} height={32} className="size-8" />
-      <span className="font-heading text-2xl font-semibold text-primary max-[400px]:sr-only">
+      <span
+        className={`font-heading text-2xl font-semibold text-primary ${alwaysShowName ? '' : 'max-[400px]:sr-only'}`}
+      >
         Sillage
       </span>
     </Link>

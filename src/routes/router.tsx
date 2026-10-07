@@ -1,14 +1,17 @@
 import type { ComponentType } from 'react';
 import { createBrowserRouter, type RouteObject } from 'react-router-dom';
-import { AppShell } from '@/components/layout/AppShell';
 import { AuthLayout } from './AuthLayout';
 import { GuestOnly } from './GuestOnly';
 import { PageFallback } from './PageFallback';
 import { RequireAuth } from './RequireAuth';
+import { RootEntry } from './RootEntry';
 import { RouteError } from './RouteError';
 
-// Rotas: / (Home com o Perfume do Dia), /catalog, /perfumes/:slug, /collection e /profile (privadas), autenticação e * (404). Páginas carregam sob demanda.
-// AuthLayout (sessão) fica na raiz; GuestOnly e RequireAuth são guardas de UX (a segurança é a RLS).
+// Rotas públicas: "/" (Landing para visitante, Home para logado), /login, /register, /forgot-password
+// e /reset-password. Todo o resto (catalog, perfumes/:slug, collection, profile e o 404 "*") exige
+// login. Páginas carregam sob demanda.
+// AuthLayout (sessão) fica na raiz; GuestOnly e RequireAuth são guardas de UX: o gate NÃO é barreira
+// de dados (a segurança é a RLS, e a leitura do catálogo segue pública no banco).
 const page = (load: () => Promise<{ default: ComponentType }>) => async () => ({
   Component: (await load()).default,
 });
@@ -16,8 +19,11 @@ const page = (load: () => Promise<{ default: ComponentType }>) => async () => ({
 export const routes: RouteObject[] = [
   {
     element: <AuthLayout />,
+    errorElement: <RouteError />,
     children: [
-      // Telas de autenticação ficam fora do AppShell: layout próprio, dividido em duas colunas
+      { index: true, element: <RootEntry /> },
+      // Telas de autenticação ficam fora do AppShell e do PublicLayout: layout próprio (AuthCard),
+      // dividido em duas colunas
       {
         errorElement: <RouteError />,
         HydrateFallback: PageFallback,
@@ -38,21 +44,22 @@ export const routes: RouteObject[] = [
         ],
       },
       {
-        element: <AppShell />,
-        errorElement: <RouteError />,
-        HydrateFallback: PageFallback,
+        element: <RequireAuth />,
         children: [
-          { index: true, lazy: page(() => import('@/pages/HomePage')) },
-          { path: 'catalog', lazy: page(() => import('@/pages/CatalogPage')) },
-          { path: 'perfumes/:slug', lazy: page(() => import('@/pages/PerfumeDetailsPage')) },
           {
-            element: <RequireAuth />,
+            lazy: async () => ({
+              Component: (await import('@/components/layout/AppShell')).AppShell,
+            }),
+            errorElement: <RouteError />,
+            HydrateFallback: PageFallback,
             children: [
+              { path: 'catalog', lazy: page(() => import('@/pages/CatalogPage')) },
+              { path: 'perfumes/:slug', lazy: page(() => import('@/pages/PerfumeDetailsPage')) },
               { path: 'collection', lazy: page(() => import('@/pages/collection/CollectionPage')) },
               { path: 'profile', lazy: page(() => import('@/pages/ProfilePage')) },
+              { path: '*', lazy: page(() => import('@/pages/NotFoundPage')) },
             ],
           },
-          { path: '*', lazy: page(() => import('@/pages/NotFoundPage')) },
         ],
       },
     ],
