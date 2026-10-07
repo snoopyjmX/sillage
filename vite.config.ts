@@ -60,6 +60,18 @@ export default defineConfig({
             },
           },
           {
+            // Arte decorativa das telas de auth (WebP em public/auth-art): fora do precache para não
+            // inflar a instalação; entra no cache só quando o visitante a vê. Sem ela, o painel
+            // mostra a superfície de token.
+            urlPattern: ({ url }) => url.pathname.startsWith('/auth-art/'),
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'auth-art',
+              expiration: { maxEntries: 3, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [200] },
+            },
+          },
+          {
             urlPattern: ({ url }) => /^\/(rest|auth|functions)\/v1\//.test(url.pathname),
             handler: 'NetworkOnly',
           },
