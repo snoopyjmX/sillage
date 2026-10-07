@@ -10,6 +10,8 @@ import { EmptyState } from '@/components/ui/empty-state';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getErrorMessage } from '@/constants/errors';
 import { COLLECTION_STATUS_LABELS, useCollection } from '@/hooks/useCollection';
+import { useDaily, useWearToday } from '@/hooks/useDaily';
+import type { PerfumeSummary } from '@/types/catalog';
 import type { CollectionItem, CollectionStatus } from '@/types/collection';
 
 const STATUSES: readonly CollectionStatus[] = ['owned', 'wanted'];
@@ -27,6 +29,9 @@ const CatalogLink = () => (
 export default function CollectionPage() {
   const [tab, setTab] = useState<CollectionStatus>('owned');
   const collection = useCollection();
+  const daily = useDaily();
+  const wear = useWearToday();
+  const wornTodayId = daily.data?.today?.perfume.id;
 
   const items: CollectionItem[] = collection.data ?? [];
   const byStatus = (status: CollectionStatus) => items.filter((item) => item.status === status);
@@ -34,6 +39,23 @@ export default function CollectionPage() {
 
   const handleTabChange = (value: string) => {
     if (isStatus(value)) setTab(value);
+  };
+
+  // Só "Tenho" pode virar Perfume do Dia (RN06); "Quero" não recebe a ação
+  const renderWearAction = (perfume: PerfumeSummary) => {
+    const isWornToday = wornTodayId === perfume.id;
+    const isSaving = wear.isPending && wear.variables === perfume.id;
+    return (
+      <Button
+        variant="outline"
+        className="w-full"
+        disabled={isWornToday || wear.isPending}
+        aria-busy={isSaving}
+        onClick={() => wear.mutate(perfume.id)}
+      >
+        {isWornToday ? 'Você veste hoje' : isSaving ? 'Salvando…' : 'Vestir hoje'}
+      </Button>
+    );
   };
 
   return (
@@ -90,7 +112,10 @@ export default function CollectionPage() {
                   errorDescription={getErrorMessage(collection.error)}
                   offlineDescription="Conecte-se à internet para ver sua coleção."
                 >
-                  <PerfumeGrid perfumes={list.map((item) => item.perfume)} />
+                  <PerfumeGrid
+                    perfumes={list.map((item) => item.perfume)}
+                    renderAction={status === 'owned' ? renderWearAction : undefined}
+                  />
                 </AsyncBoundary>
               </TabsContent>
             );

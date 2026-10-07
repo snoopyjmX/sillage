@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { BlurFade } from '@/components/ui/blur-fade';
 import { STAGGER_MAX_ITEMS } from '@/lib/motion';
 import { cn } from '@/lib/utils';
@@ -8,11 +9,13 @@ interface PerfumeGridProps {
   perfumes: PerfumeSummary[];
   // Troca de página/filtro: a lista anterior fica meio apagada até a nova chegar
   isRefreshing?: boolean;
+  // Ação extra por card (ex.: "Vestir hoje")
+  renderAction?: (perfume: PerfumeSummary) => ReactNode;
 }
 
 const BLUR_FADE_STEP = 0.1;
 
-export function PerfumeGrid({ perfumes, isRefreshing = false }: PerfumeGridProps) {
+export function PerfumeGrid({ perfumes, isRefreshing = false, renderAction }: PerfumeGridProps) {
   return (
     <ul
       aria-label="Perfumes"
@@ -30,7 +33,7 @@ export function PerfumeGrid({ perfumes, isRefreshing = false }: PerfumeGridProps
             delay={BLUR_FADE_STEP * Math.min(index, STAGGER_MAX_ITEMS)}
             inView
           >
-            <PerfumeCard perfume={perfume} />
+            <PerfumeCard perfume={perfume} action={renderAction?.(perfume)} />
           </BlurFade>
         </li>
       ))}

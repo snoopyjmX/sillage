@@ -16,6 +16,8 @@ interface DailySuggestionCardProps {
   suggestion: SuggestionView;
   // Já é o Perfume do Dia de hoje
   isWornToday: boolean;
+  // Está na coleção como "Tenho": só assim pode virar Perfume do Dia (RN06)
+  isOwned: boolean;
   isWearing: boolean;
   onWear: () => void;
 }
@@ -24,6 +26,7 @@ interface DailySuggestionCardProps {
 export function DailySuggestionCard({
   suggestion,
   isWornToday,
+  isOwned,
   isWearing,
   onWear,
 }: DailySuggestionCardProps) {
@@ -127,8 +130,18 @@ export function DailySuggestionCard({
           </div>
 
           <div className="flex flex-wrap gap-2 pt-2">
-            <Button onClick={onWear} disabled={isWornToday || isWearing} aria-busy={isWearing}>
-              {isWornToday ? 'Você já veste hoje' : isWearing ? 'Salvando…' : 'Vestir hoje'}
+            <Button
+              onClick={onWear}
+              disabled={isWornToday || !isOwned || isWearing}
+              aria-busy={isWearing}
+            >
+              {isWornToday
+                ? 'Você já veste hoje'
+                : !isOwned
+                  ? 'Adicione a Tenho para vestir'
+                  : isWearing
+                    ? 'Salvando…'
+                    : 'Vestir hoje'}
             </Button>
             <Button asChild variant="outline">
               <Link to={`/perfumes/${perfume.slug}`}>Ver detalhes</Link>

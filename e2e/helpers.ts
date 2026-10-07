@@ -130,3 +130,12 @@ export const seedCollection = (email: string, owned: number, wanted: number): vo
       order by slug limit ${Number(owned) + Number(wanted)}
     ) p
     where u.email = '${email.replaceAll("'", "''")}'`);
+
+// Põe um perfume (pelo slug) na coleção do usuário como "Tenho"
+export const addOwned = (email: string, perfumeSlug: string): void =>
+  runSql(`
+    insert into public.collection_items (user_id, perfume_id, status)
+    select u.id, p.id, 'owned'::public.collection_status
+    from auth.users u, public.perfumes p
+    where u.email = '${email.replaceAll("'", "''")}' and p.slug = '${perfumeSlug.replaceAll("'", "''")}'
+    on conflict (user_id, perfume_id) do update set status = 'owned'`);

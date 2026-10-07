@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
 import { Chip } from '@/components/ui/chip';
@@ -11,11 +11,13 @@ const MAX_FAMILY_CHIPS = 3;
 
 interface PerfumeCardProps {
   perfume: PerfumeSummary;
+  // Ação extra opcional abaixo do botão da coleção (ex.: "Vestir hoje" na Coleção)
+  action?: ReactNode;
 }
 
 // Foto real quando há imageUrl; sem ela (ou se falhar ao carregar) o placeholder usa a primeira
 // família da lista (a função devolve na ordem do enum) e nenhum logo.
-export function PerfumeCard({ perfume }: PerfumeCardProps) {
+export function PerfumeCard({ perfume, action }: PerfumeCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const mainFamily = perfume.families[0];
   const meta = [GENDER_LABELS[perfume.gender], perfume.releaseYear?.toString()]
@@ -65,8 +67,9 @@ export function PerfumeCard({ perfume }: PerfumeCardProps) {
           )}
         </div>
       </Link>
-      <div className="px-4 pb-4">
+      <div className="flex flex-col gap-2 px-4 pb-4">
         <CollectionToggle perfume={perfume} className="w-full" />
+        {action}
       </div>
     </article>
   );

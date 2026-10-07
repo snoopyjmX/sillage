@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
 import { WeatherBar } from '@/components/weather/WeatherBar';
 import { getErrorMessage } from '@/constants/errors';
+import { useCollectionStatus } from '@/hooks/useCollection';
 import { useDaily, useWearToday } from '@/hooks/useDaily';
 import { useDailySuggestion } from '@/hooks/useDailySuggestion';
 import { useProfileTimezone } from '@/hooks/useProfileTimezone';
@@ -43,6 +44,7 @@ export default function HomePage() {
   const today = daily.data?.today ?? null;
   const history = daily.data?.history ?? [];
   const suggested = suggestion.data ?? null;
+  const isSuggestedOwned = useCollectionStatus(suggested?.perfume.id ?? '') === 'owned';
 
   return (
     <>
@@ -79,6 +81,7 @@ export default function HomePage() {
                 <DailySuggestionCard
                   suggestion={suggested}
                   isWornToday={today?.perfume.id === suggested.perfume.id}
+                  isOwned={isSuggestedOwned}
                   isWearing={wear.isPending}
                   onWear={() => wear.mutate(suggested.perfume.id)}
                 />

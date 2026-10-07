@@ -35,8 +35,9 @@ vi.mock('@/services/homeService', () => ({
 vi.mock('@/services/perfumeService', () => ({
   perfumeService: { getSimilar: () => Promise.resolve([]) },
 }));
+const listCollection = vi.fn();
 vi.mock('@/services/collectionService', () => ({
-  collectionService: { list: () => Promise.resolve([]) },
+  collectionService: { list: () => listCollection() },
 }));
 
 const entry = (date: string, name: string): DailyEntry => {
@@ -64,6 +65,8 @@ describe('HomePage', () => {
     getCurrent.mockReset();
     searchCity.mockReset();
     getDailySuggestion.mockReset();
+    listCollection.mockReset();
+    listCollection.mockResolvedValue([]);
     searchCity.mockResolvedValue([
       {
         name: 'São Paulo',
@@ -224,6 +227,9 @@ describe('HomePage', () => {
     auth.setInitialSession(fakeSession());
     getOverview.mockResolvedValue({ today: null, history: [] });
     const perfume = entry('2026-10-06', 'Sugerido').perfume;
+    listCollection.mockResolvedValue([
+      { status: 'owned', updatedAt: '2026-10-06T12:00:00Z', perfume },
+    ]);
     getDailySuggestion.mockResolvedValue({
       perfume: {
         ...perfume,
@@ -255,5 +261,29 @@ describe('HomePage', () => {
       'href',
       '/perfumes/sugerido'
     );
+  });
+
+  it('sugestão fora do "Tenho" mostra o botão desabilitado com orientação', async () => {
+    auth.setInitialSession(fakeSession());
+    getOverview.mockResolvedValue({ today: null, history: [] });
+    const perfume = entry('2026-10-06', 'Sugerido').perfume;
+    getDailySuggestion.mockResolvedValue({
+      perfume: {
+        ...perfume,
+        description: null,
+        imageUrl: null,
+        lowestPriceCents: null,
+        storeName: null,
+        storeUrl: null,
+        perfumer: null,
+        notes: [],
+      },
+      summary: { count: 0, avgLongevity: null, avgProjection: null },
+    });
+    renderApp('/');
+    const card = await screen.findByRole('article', { name: 'Sugestão do dia' });
+    expect(
+      await within(card).findByRole('button', { name: 'Adicione a Tenho para vestir' })
+    ).toBeDisabled();
   });
 });

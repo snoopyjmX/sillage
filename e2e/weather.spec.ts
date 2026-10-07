@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
-import { axeViolations, registerViaUi, seedDaily } from './helpers.ts';
+import { addOwned, axeViolations, registerViaUi, seedDaily } from './helpers.ts';
 
 // NUNCA rede real: o Open-Meteo é sempre interceptado. Qualquer outra chamada a ele falha o teste.
 const GEOCODING = '**://geocoding-api.open-meteo.com/**';
@@ -65,7 +65,7 @@ test.describe('home: clima e sugestão do dia', () => {
 
   test('sugestão do dia com medidores, notas e as duas ações', async ({ page }) => {
     await mockOpenMeteo(page, 28);
-    await registerViaUi(page);
+    const email = await registerViaUi(page);
 
     const card = page.getByRole('article', { name: 'Sugestão do dia' });
     await expect(card).toBeVisible();
@@ -73,6 +73,14 @@ test.describe('home: clima e sugestão do dia', () => {
     await expect(card.getByText('Fixação')).toBeVisible();
     await expect(card.getByText('Rastro')).toBeVisible();
     await expect(card.getByRole('link', { name: 'Ver detalhes' })).toBeVisible();
+
+    // RN06: só quem está em "Tenho" vira Perfume do Dia
+    const slug = (await card.getByRole('link', { name: 'Ver detalhes' }).getAttribute('href'))
+      ?.split('/')
+      .pop();
+    await expect(card.getByRole('button', { name: 'Adicione a Tenho para vestir' })).toBeDisabled();
+    addOwned(email, slug ?? '');
+    await page.reload();
 
     await card.getByRole('button', { name: 'Vestir hoje' }).click();
     const highlight = page.getByRole('article', { name: 'Perfume do Dia' });
