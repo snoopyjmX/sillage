@@ -4,17 +4,19 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 
 ## Migrations
 
-| Arquivo                                  | Conteúdo                                                                                |
-| ---------------------------------------- | --------------------------------------------------------------------------------------- |
-| `20261005120000_schema.sql`              | Extensões, enums, tabelas, constraints e índices                                        |
-| `20261005120100_functions_triggers.sql`  | `set_updated_at`, `set_search_name`, `handle_new_user`, `is_admin`, `set_daily_perfume` |
-| `20261005120200_rls_policies.sql`        | RLS nas 8 tabelas, policies, `revoke`/`grant` e a view `perfume_review_stats`           |
-| `20261005120300_storage.sql`             | Bucket `perfume-images` e suas policies                                                 |
-| `20261005120400_search_perfumes.sql`     | Função `search_perfumes` (busca, filtros, ordenação e paginação do catálogo)            |
-| `20261006120000_public_reviews.sql`      | Policy `reviews: owner delete` e a view `perfume_reviews_public` (Fase 9)               |
-| `20261007120000_similar_perfumes.sql`    | Função `get_similar_perfumes` (similaridade por notas em comum, Fase 10 / RN09)         |
-| `20261008120000_perfume_prices.sql`      | Colunas `lowest_price_cents`, `store_name` e `store_url` em `perfumes` (melhor preço)   |
-| `20261009120000_add_perfumer_column.sql` | Coluna opcional `perfumer` em `perfumes` (perfumista; `CHECK` 1–150 caracteres)         |
+| Arquivo                                         | Conteúdo                                                                                |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `20261005120000_schema.sql`                     | Extensões, enums, tabelas, constraints e índices                                        |
+| `20261005120100_functions_triggers.sql`         | `set_updated_at`, `set_search_name`, `handle_new_user`, `is_admin`, `set_daily_perfume` |
+| `20261005120200_rls_policies.sql`               | RLS nas 8 tabelas, policies, `revoke`/`grant` e a view `perfume_review_stats`           |
+| `20261005120300_storage.sql`                    | Bucket `perfume-images` e suas policies                                                 |
+| `20261005120400_search_perfumes.sql`            | Função `search_perfumes` (busca, filtros, ordenação e paginação do catálogo)            |
+| `20261006120000_public_reviews.sql`             | Policy `reviews: owner delete` e a view `perfume_reviews_public` (Fase 9)               |
+| `20261007120000_similar_perfumes.sql`           | Função `get_similar_perfumes` (similaridade por notas em comum, Fase 10 / RN09)         |
+| `20261008120000_perfume_prices.sql`             | Colunas `lowest_price_cents`, `store_name` e `store_url` em `perfumes` (melhor preço)   |
+| `20261009120000_add_perfumer_column.sql`        | Coluna opcional `perfumer` em `perfumes` (perfumista; `CHECK` 1–150 caracteres)         |
+| `20261010120000_remove_concentration_other.sql` | Remove `other` de `concentration_type`                                                  |
+| `20261011120000_daily_perfume_owned_only.sql`   | `set_daily_perfume` exige o perfume em “Tenho” (`owned`), senão `42501` (RN06)          |
 
 ## Extensões e enums
 
@@ -42,13 +44,13 @@ FKs: `perfumes(brand_id)`, `perfume_notes(note_id, position)`, `collection_items
 
 ## Funções e triggers
 
-| Função / trigger          | O que faz                                                                                                                                                                                                | Regra |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| `set_updated_at()`        | Atualiza `updated_at` antes de UPDATE. Comum (não `security definer`), `search_path` vazio.                                                                                                              | —     |
-| `set_search_name()`       | `lower(unaccent(name))` em `brands` e `perfumes`, antes de INSERT e de UPDATE de `name`.                                                                                                                 | Busca |
-| `handle_new_user()`       | Após INSERT em `auth.users`, cria o perfil. Nome: `name`, depois `display_name`, senão `Membro`. Fuso: o dos metadados se existir em `pg_timezone_names`, senão `America/Sao_Paulo`. `security definer`. | RN01  |
-| `is_admin()`              | `true` se `app_metadata.role = 'admin'` no JWT.                                                                                                                                                          | RN07  |
-| `set_daily_perfume(uuid)` | Calcula a data no fuso do perfil e faz upsert em `daily_perfumes`. Único caminho de escrita. Só `authenticated` executa.                                                                                 | RN06  |
+| Função / trigger          | O que faz                                                                                                                                                                                                             | Regra |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| `set_updated_at()`        | Atualiza `updated_at` antes de UPDATE. Comum (não `security definer`), `search_path` vazio.                                                                                                                           | —     |
+| `set_search_name()`       | `lower(unaccent(name))` em `brands` e `perfumes`, antes de INSERT e de UPDATE de `name`.                                                                                                                              | Busca |
+| `handle_new_user()`       | Após INSERT em `auth.users`, cria o perfil. Nome: `name`, depois `display_name`, senão `Membro`. Fuso: o dos metadados se existir em `pg_timezone_names`, senão `America/Sao_Paulo`. `security definer`.              | RN01  |
+| `is_admin()`              | `true` se `app_metadata.role = 'admin'` no JWT.                                                                                                                                                                       | RN07  |
+| `set_daily_perfume(uuid)` | Exige o perfume em `collection_items` com `status = 'owned'` (`42501`, `perfume not owned`), calcula a data no fuso do perfil e faz upsert em `daily_perfumes`. Único caminho de escrita. Só `authenticated` executa. | RN06  |
 
 ## Policies
 

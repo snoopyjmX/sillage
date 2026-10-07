@@ -25,6 +25,7 @@ PWA de catálogo e coleção de perfumaria de nicho, em português (BR), mobile-
 | Mudança                                                               | Por quê                                                                                                                                                  |
 | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | RN03 (avaliação autorizada) virou policy SQL com `EXISTS`             | Depende de duas tabelas; um `CHECK` não alcança.                                                                                                         |
+| Perfume do Dia só aceita perfume em “Tenho” (Fase 15C)                | Decisão do produto: vestir exige ter o frasco. A função `set_daily_perfume` valida `collection_items.status = 'owned'`.                                  |
 | Perfume do Dia é gravado por função no banco, no fuso do usuário      | Evita que um registro às 22h (UTC-3) caia no dia seguinte e quebre a RN06.                                                                               |
 | Avaliações públicas por views; tabela segue com RLS de dono (Fase 9)  | Decisão do produto: avaliações como numa rede social. A view expõe só nota, comentário e nome do autor; a escrita continua do dono.                      |
 | Perfil passa a ser privado                                            | A v1.0 dizia "informações públicas" na tabela e "privado" na RN01.                                                                                       |
@@ -87,7 +88,7 @@ São dez regras (RN01 a RN10). As nove primeiras têm um mecanismo de garantia n
 | RN03 Avaliação autorizada | Só avalia quem tem o perfume em `owned` agora ou já o usou como Perfume do Dia.                                                                                                                                       | Policy de `INSERT` com `EXISTS`                                                          |
 | RN04 Avaliação única      | Uma avaliação por usuário e perfume; reenviar atualiza.                                                                                                                                                               | `UNIQUE(user_id, perfume_id)` + `upsert`                                                 |
 | RN05 Ratings 1 a 5        | Fixação e projeção só aceitam inteiros de 1 a 5.                                                                                                                                                                      | `CHECK` no banco + Zod no front                                                          |
-| RN06 Um por data          | Um Perfume do Dia por usuário e por data, calculada no fuso do usuário.                                                                                                                                               | `UNIQUE(user_id, date)` + função `set_daily_perfume`                                     |
+| RN06 Um por data          | Um Perfume do Dia por usuário e por data, calculada no fuso do usuário. O perfume precisa estar na coleção do usuário como “Tenho” (`owned`).                                                                         | `UNIQUE(user_id, date)` + função `set_daily_perfume`                                     |
 | RN07 Catálogo             | Leitura pública **no banco**; escrita só para administradores. Desde a v1.3 a interface só mostra o catálogo a quem tem conta: o gate é UX e não restringe a leitura.                                                 | Policies com `is_admin()`                                                                |
 | RN08 Agregados públicos   | Avaliações são públicas, como numa rede social: notas, comentário e nome de exibição do autor. Nunca saem `user_id`, e-mail, fuso ou qualquer outro dado do perfil; ninguém edita a avaliação de outro.               | Views `perfume_review_stats` (agregados) e `perfume_reviews_public` (lista)              |
 | RN09 Similaridade e Nez   | Perfumes parecidos são os que dividem mais notas com o alvo (nunca ele mesmo). O Nez (IA) só responde a usuário logado; a chave do Gemini fica só no servidor.                                                        | Função `get_similar_perfumes` + Edge Function `nez-ai` (JWT validado com `auth.getUser`) |
@@ -201,7 +202,7 @@ Extensões: unaccent e pg_trgm para busca; ids usam gen_random_uuid() nativo qua
 
 - `handle_new_user()` cria o `profiles` ao inserir em `auth.users`.
 
-- `set_daily_perfume(p_perfume_id uuid)`: calcula `(now() at time zone profiles.timezone)::date` e faz `upsert` em `daily_perfumes`. Roda com `SECURITY DEFINER` e `search_path` vazio, valida `auth.uid()` e é o único caminho de escrita nessa tabela (seção 6).
+- `set_daily_perfume(p_perfume_id uuid)`: calcula `(now() at time zone profiles.timezone)::date` e faz `upsert` em `daily_perfumes`. Exige o perfume em `collection_items` com `status = 'owned'` (senão `perfume not owned`, `42501`). Roda com `SECURITY DEFINER` e `search_path` vazio, valida `auth.uid()` e é o único caminho de escrita nessa tabela (seção 6).
 
 - `search_perfumes(...)`: ver seção 8.
 
@@ -293,6 +294,12 @@ declare
   v_row public.daily_perfumes;
 begin
   if v_uid is null then raise exception 'not authenticated'; end if;
+  if not exists (
+    select 1 from public.collection_items ci
+    where ci.user_id = v_uid and ci.perfume_id = p_perfume_id and ci.status = 'owned'
+  ) then
+    raise exception 'perfume not owned' using errcode = '42501';
+  end if;
   select (now() at time zone p.timezone)::date into v_date
     from public.profiles p where p.id = v_uid;
   insert into public.daily_perfumes (user_id, perfume_id, date)
@@ -744,7 +751,7 @@ As regras de segurança e de negócio são testadas **no banco** (pgTAP) e por i
 
 - **RN05:** rating 0 e 6 são rejeitados.
 
-- **RN06:** `set_daily_perfume` chamado duas vezes no mesmo dia mantém uma linha; `INSERT` direto em `daily_perfumes` é negado; a data respeita `profiles.timezone` (testar com `Pacific/Kiritimati` e `Pacific/Pago_Pago`, que têm datas diferentes no mesmo instante).
+- **RN06:** `set_daily_perfume` nega perfume fora da coleção ou em `wanted` (`42501`) e aceita `owned`; chamado duas vezes no mesmo dia mantém uma linha; `INSERT` direto em `daily_perfumes` é negado; a data respeita `profiles.timezone` (testar com `Pacific/Kiritimati` e `Pacific/Pago_Pago`, que têm datas diferentes no mesmo instante).
 
 - **RN07:** usuário comum não escreve em `perfumes`; usuário com `app_metadata.role = 'admin'` escreve; alterar `user_metadata.role` **não** concede acesso.
 

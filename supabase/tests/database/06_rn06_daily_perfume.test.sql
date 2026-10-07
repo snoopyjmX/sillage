@@ -3,7 +3,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(16);
+select plan(19);
 
 -- Helpers: trocam o papel do Postgres e as claims do JWT (nunca testamos como superusuário)
 create function pg_temp.act_as(
@@ -60,8 +60,19 @@ insert into auth.users (id, aud, role, email, raw_user_meta_data) values
   ('c0000000-0000-4000-8000-0000000000c1', 'authenticated', 'authenticated', 'k@test.local', '{"timezone":"Pacific/Kiritimati"}'),
   ('c0000000-0000-4000-8000-0000000000c2', 'authenticated', 'authenticated', 'p@test.local', '{"timezone":"Pacific/Pago_Pago"}');
 
+-- RN06: só "Tenho" (owned) vira Perfume do Dia
+insert into public.collection_items (user_id, perfume_id, status) values
+  ('a0000000-0000-4000-8000-00000000000a', '11111111-0000-4000-8000-000000000001', 'owned'),
+  ('a0000000-0000-4000-8000-00000000000a', '11111111-0000-4000-8000-000000000002', 'owned'),
+  ('a0000000-0000-4000-8000-00000000000a', '11111111-0000-4000-8000-000000000004', 'wanted'),
+  ('c0000000-0000-4000-8000-0000000000c1', '11111111-0000-4000-8000-000000000001', 'owned'),
+  ('c0000000-0000-4000-8000-0000000000c2', '11111111-0000-4000-8000-000000000001', 'owned');
+
 select pg_temp.act_as('a0000000-0000-4000-8000-00000000000a');
 select throws_ok($t$insert into public.daily_perfumes (user_id, perfume_id, date) values ('a0000000-0000-4000-8000-00000000000a', '11111111-0000-4000-8000-000000000001', current_date)$t$, '42501', null, 'RN06: INSERT direto em daily_perfumes é negado');
+select throws_ok($t$select public.set_daily_perfume('11111111-0000-4000-8000-000000000003')$t$, '42501', 'perfume not owned', 'RN06: perfume fora da coleção é negado');
+select throws_ok($t$select public.set_daily_perfume('11111111-0000-4000-8000-000000000004')$t$, '42501', 'perfume not owned', 'RN06: perfume em "Quero" (wanted) é negado');
+select lives_ok($t$select public.set_daily_perfume('11111111-0000-4000-8000-000000000002')$t$, 'RN06: perfume em "Tenho" (owned) é aceito');
 select is((select (public.set_daily_perfume('11111111-0000-4000-8000-000000000001')).perfume_id::text), '11111111-0000-4000-8000-000000000001'::text, 'RN06: set_daily_perfume cria o registro');
 select is((select count(*) from public.daily_perfumes where user_id = 'a0000000-0000-4000-8000-00000000000a'), 1::bigint, 'RN06: 1 linha após a primeira chamada');
 select lives_ok($t$select public.set_daily_perfume('11111111-0000-4000-8000-000000000002')$t$, 'RN06: segunda chamada no mesmo dia funciona');
