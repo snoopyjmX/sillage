@@ -42,7 +42,8 @@ Bucket `perfume-images`: leitura pública, escrita só admin. Sem bucket de avat
 - O frontend usa só `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY`.
 - `service_role` nunca entra no frontend, no repositório nem em variáveis `VITE_*`.
 - `.env` fica fora do Git; `.env.example` não tem valores.
-- Produção: confirmação de e-mail ligada (no local ela fica desligada para testes), redirect URLs restritas e tamanho mínimo de senha definido.
+- Produção: redirect URLs restritas e tamanho mínimo de senha definido.
+- **Risco aceito (Fase 15A): confirmação de e-mail desativada no Supabase Authentication, também em produção.** O projeto é de portfólio e não tem SMTP próprio; o envio padrão do Supabase é limitado e travaria o cadastro imediato no ambiente online. Consequência: qualquer pessoa cria conta com um e-mail que não controla, e o endereço não prova identidade. Mitigação: a autorização nunca depende do e-mail. Usuário não verificado tem as mesmas proteções de RLS de qualquer outro e só alcança os próprios dados (`auth.uid() = user_id`); o catálogo é de leitura pública e só admin escreve (RN07, papel em `app_metadata`). Se o projeto sair do modo portfólio (SMTP próprio ou dados sensíveis), ligar a confirmação e remover este item.
 
 ## Clima e localização (Fase 14D)
 
