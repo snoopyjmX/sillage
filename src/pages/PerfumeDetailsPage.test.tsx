@@ -1,3 +1,6 @@
+// TODO: ocasionalmente flaky na suíte completa (passa isolado; já falhou também em árvore limpa).
+// Hipótese, não confirmada: o import lazy a frio da rota sob carga. Investigar prefetch da rota ou
+// um fallback explícito de Suspense no teste.
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AppError } from '@/constants/errors';
