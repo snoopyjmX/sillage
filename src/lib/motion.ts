@@ -36,12 +36,6 @@ export const fade: Variants = {
   exit: { opacity: 0, transition: transitions.exit },
 };
 
-export const pageEnter: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: transitions.page },
-  exit: { opacity: 0, transition: transitions.exit },
-};
-
 // Stagger: no máximo 12 itens, até 40 ms entre eles. Listas longas aparecem de uma vez.
 export const STAGGER_MAX_ITEMS = 12;
 export const STAGGER_STEP = 0.04;
