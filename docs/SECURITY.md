@@ -58,6 +58,14 @@ Bucket `avatars`: leitura pública (quem tem a URL vê a foto; é a natureza de 
 - **Respostas validadas** com Zod; falha de formato vira `weather_failed`. Mensagens ao usuário só por `constants/errors.ts`.
 - **Limitação:** o Open-Meteo não tem SLA e a API gratuita é não comercial; a barra de clima degrada para "Clima indisponível" e a sugestão do dia segue funcionando sem clima.
 
+## Cabeçalhos HTTP (`vercel.json`)
+
+- **CSP:** `script-src 'self'` mais o hash SHA-256 do script inline de tema do `index.html` (sem `unsafe-inline` em scripts). `connect-src` só para o próprio site, o Supabase (`*.supabase.co`, HTTPS e WebSocket) e as duas APIs do Open-Meteo. `img-src` aceita `data:`, `blob:` e o Storage do Supabase. `object-src 'none'`, `base-uri` e `form-action` restritos a `'self'`; `frame-ancestors 'none'`.
+- **Estilos:** `style-src` mantém `'unsafe-inline'` porque a biblioteca de animação e alguns componentes escrevem estilos inline. O risco em estilo é menor que em script, e aceito.
+- **Outros:** `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin` e `Permissions-Policy` (câmera e microfone bloqueados; geolocalização só no próprio site).
+- **CORS da Edge Function `nez-ai`:** sem `*`. A função só devolve `Access-Control-Allow-Origin` (com `Vary: Origin`) para origens do secret `ALLOWED_ORIGINS`; sem o secret, só o ambiente local (falha fechada). Isso impede que outro site leia a resposta no navegador do usuário; quem barra o acesso é o JWT, validado com `auth.getUser`. Em produção, definir o secret no deploy, senão o Nez para de funcionar online.
+- **Manutenção:** editar o script inline do `index.html` muda o hash e quebra o tema. Recalcule o SHA-256 do conteúdo do `<script>` e atualize a CSP. Domínio customizado do Supabase ou outra API externa também precisam entrar em `connect-src` (e `img-src`, se servir imagens).
+
 ## Modelo de ameaça
 
 | Ameaça                                                   | Mitigação                                                                                                                                      |
@@ -78,4 +86,5 @@ Bucket `avatars`: leitura pública (quem tem a URL vê a foto; é a natureza de 
 - **RN03 é autodeclarada.** O histórico de Perfume do Dia é gravado pelo próprio usuário via `set_daily_perfume`, então "já usou o perfume" funciona como filtro de coerência, não como prova de posse. Qualquer usuário pode escolher um perfume como Perfume do Dia e depois avaliá-lo. Isso é aceito para o produto.
 - **Fuso inválido em `profiles.timezone`.** O trigger de cadastro valida o fuso, mas o dono pode editar o campo depois. Um valor inexistente faz `set_daily_perfume` falhar para ele (só para ele). O formulário de perfil já valida o fuso com `Intl` (Zod, `src/schemas/profile.ts`); o banco continua sem constraint, então uma chamada direta à API ainda pode gravar um valor inválido. Constraint no banco: fase futura, com migration.
 - **Nome de exibição sem limite no banco.** `profiles.display_name` é `text not null`, sem `check` de tamanho. O limite de 60 caracteres vale só no front (cadastro e perfil). Constraint no banco: fase futura.
+- **Sem rate limit no Nez (risco aceito).** A Edge Function `nez-ai` exige JWT e limita o tamanho da pergunta, do contexto e do histórico, mas não limita quantas chamadas cada usuário faz. Um usuário logado pode consumir a cota do Gemini (custo e disponibilidade do Nez, nunca dados). Aceito para o escopo de portfólio. Se o projeto sair desse modo, limitar por `user_id` (contador no banco ou no gateway) e reduzir o `max_instances` da função.
 - **Exclusão de conta** (Edge Function com `service_role`) ainda não existe. O Perfil tem a "Zona de perigo" com o dialog de confirmação e a ação desativada ("Em breve"); nada chama o backend. A função entra numa fase própria, junto com o `supabase/`.

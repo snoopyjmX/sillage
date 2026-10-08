@@ -40,17 +40,25 @@ Como responder:
 - Use só o que o contexto informa sobre o perfume em foco. Se não souber algo (preço, lançamento, fixação exata), diga com naturalidade em vez de inventar.
 - Mantenha a coerência com o que já foi dito na conversa e responda apenas sobre perfumaria; para outros assuntos, convide gentilmente a voltar ao universo dos perfumes.`;
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-};
+// Origens do app que podem chamar a função (lista separada por vírgula no secret ALLOWED_ORIGINS,
+// ex.: https://sillage.vercel.app). Sem o secret, só o ambiente local. Origem fora da lista não
+// recebe Access-Control-Allow-Origin e o navegador bloqueia a resposta; o JWT segue obrigatório.
+const ALLOWED_ORIGINS = new Set(
+  (Deno.env.get('ALLOWED_ORIGINS') ?? 'http://localhost:5173,http://localhost:4173')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+);
 
-const json = (body: unknown, status = 200): Response =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
-  });
+const corsHeaders = (req: Request): Record<string, string> => {
+  const origin = req.headers.get('Origin');
+  return {
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    Vary: 'Origin',
+    ...(origin && ALLOWED_ORIGINS.has(origin) ? { 'Access-Control-Allow-Origin': origin } : {}),
+  };
+};
 
 const readBearer = (req: Request): string | null => {
   const header = req.headers.get('Authorization');
@@ -85,7 +93,14 @@ const parseHistory = (value: unknown): Turn[] => {
 };
 
 Deno.serve(async (req: Request) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS_HEADERS });
+  const cors = corsHeaders(req);
+  const json = (body: unknown, status = 200): Response =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+
+  if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
   if (req.method !== 'POST') return json({ error: 'method_not_allowed' }, 405);
 
   // 1. Autenticação: sem Authorization, ou token que o Auth não reconhece, é 401
