@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
@@ -78,7 +79,52 @@ export default defineConfig({
         ],
       },
     }),
+    // `npm run analyze` gera stats.html (treemap com gzip); fora disso não entra no build
+    ...(process.env.ANALYZE
+      ? [
+          visualizer({
+            filename: process.env.ANALYZE_FILE ?? 'stats.html',
+            template: process.env.ANALYZE_TEMPLATE === 'raw-data' ? 'raw-data' : 'treemap',
+            gzipSize: true,
+          }),
+        ]
+      : []),
   ],
+  build: {
+    rolldownOptions: {
+      output: {
+        // Vendor chunks lógicos: estáveis entre deploys (hash só muda quando a lib muda), cacheáveis
+        // pelo Service Worker e com origem legível no treemap. Cada grupo só entra no caminho crítico
+        // se o shell o importar; o resto continua carregando sob demanda com as rotas lazy.
+        codeSplitting: {
+          groups: [
+            {
+              name: 'vendor-react',
+              test: /node_modules\/(react|react-dom|scheduler)\//,
+              priority: 50,
+            },
+            {
+              name: 'vendor-router',
+              test: /node_modules\/(react-router|react-router-dom)\//,
+              priority: 40,
+            },
+            { name: 'vendor-supabase', test: /node_modules\/@supabase\//, priority: 40 },
+            { name: 'vendor-query', test: /node_modules\/@tanstack\//, priority: 40 },
+            {
+              name: 'vendor-forms',
+              test: /node_modules\/(zod|react-hook-form|@hookform)\//,
+              priority: 40,
+            },
+            {
+              name: 'vendor-radix',
+              test: /node_modules\/(@radix-ui\/(?!react-(slot|compose-refs|primitive)\/)|radix-ui|@floating-ui|react-remove-scroll|react-remove-scroll-bar|react-style-singleton|use-callback-ref|use-sidecar|aria-hidden)\//,
+              priority: 30,
+            },
+          ],
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

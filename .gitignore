@@ -175,3 +175,5 @@ scripts/raw-images/**/*
 scripts/raw-images/*.*
 !scripts/raw-images/.gitkeep
 scripts/processed-images/
+stats.html
+.lighthouseci
