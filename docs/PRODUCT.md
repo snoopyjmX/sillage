@@ -525,7 +525,7 @@ O valor de `p_sort` é validado contra essa lista dentro da função; nunca conc
 
 ## 9. Design system e direção visual
 
-A direção é clara, calma e silenciosa (Verde Folha): tema **claro** como base, com alternância para escuro (claro, escuro ou sistema; padrão = sistema), acento verde-folha, tipografia serifada (Fraunces) nos títulos e vidro apenas onde há camadas flutuantes. A fonte de verdade dos valores é `src/styles/tokens.css`, documentado em `docs/DESIGN_SYSTEM.md`.
+A direção é clara, calma e silenciosa (Verde Folha): tema **claro** como base, com alternância binária para escuro (claro ou escuro; sem escolha salva, segue o tema do aparelho), acento verde-folha, tipografia serifada (Fraunces) nos títulos e vidro apenas onde há camadas flutuantes. A fonte de verdade dos valores é `src/styles/tokens.css`, documentado em `docs/DESIGN_SYSTEM.md`.
 
 **Princípios**
 

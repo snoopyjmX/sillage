@@ -2,7 +2,7 @@
 // Não entra no build de produção. Mostra os componentes nos dois modos lado a lado.
 import { Bell, SearchX } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { ThemeToggler } from '@/components/ui/theme-toggler';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -221,7 +221,7 @@ export default function Showcase() {
     <main className="min-h-screen bg-background text-foreground">
       <header className="flex items-center justify-between border-b px-6 py-3">
         <h1 className="font-heading text-2xl font-semibold text-primary">Vitrine de componentes</h1>
-        <ThemeToggle />
+        <ThemeToggler />
       </header>
       <div className="grid lg:grid-cols-2">
         <Panel mode="light" />

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { THEME_STORAGE_KEY } from '@/lib/theme';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { ThemeToggler } from '@/components/ui/theme-toggler';
 import { ThemeProvider } from './ThemeProvider';
 
 const mockSystem = (dark: boolean) => {
@@ -19,9 +19,12 @@ const mockSystem = (dark: boolean) => {
 const renderToggle = () =>
   render(
     <ThemeProvider>
-      <ThemeToggle />
+      <ThemeToggler />
     </ThemeProvider>
   );
+
+const TO_DARK = { name: 'Mudar para o tema escuro' };
+const TO_LIGHT = { name: 'Mudar para o tema claro' };
 
 describe('tema', () => {
   beforeEach(() => {
@@ -30,32 +33,41 @@ describe('tema', () => {
   });
   afterEach(() => vi.unstubAllGlobals());
 
-  it('padrão é sistema: segue o sistema claro', () => {
+  it('sem escolha salva, segue o sistema claro', () => {
     mockSystem(false);
     renderToggle();
     expect(document.documentElement).not.toHaveClass('dark');
-    expect(screen.getByRole('button', { name: /Tema: Sistema/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', TO_DARK)).toBeInTheDocument();
   });
 
-  it('padrão é sistema: segue o sistema escuro', () => {
+  it('sem escolha salva, segue o sistema escuro', () => {
     mockSystem(true);
     renderToggle();
     expect(document.documentElement).toHaveClass('dark');
+    expect(screen.getByRole('button', TO_LIGHT)).toBeInTheDocument();
   });
 
-  it('alterna claro -> escuro -> sistema e persiste a escolha', () => {
+  it('alterna claro <-> escuro e persiste a escolha', () => {
     mockSystem(false);
     window.localStorage.setItem(THEME_STORAGE_KEY, 'light');
     renderToggle();
     expect(document.documentElement).not.toHaveClass('dark');
 
-    fireEvent.click(screen.getByRole('button', { name: /Tema: Claro/ }));
+    fireEvent.click(screen.getByRole('button', TO_DARK));
     expect(document.documentElement).toHaveClass('dark');
     expect(window.localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark');
 
-    fireEvent.click(screen.getByRole('button', { name: /Tema: Escuro/ }));
-    expect(window.localStorage.getItem(THEME_STORAGE_KEY)).toBe('system');
+    fireEvent.click(screen.getByRole('button', TO_LIGHT));
     expect(document.documentElement).not.toHaveClass('dark');
+    expect(window.localStorage.getItem(THEME_STORAGE_KEY)).toBe('light');
+  });
+
+  it('a escolha explícita vence o sistema', () => {
+    mockSystem(true);
+    renderToggle();
+    fireEvent.click(screen.getByRole('button', TO_LIGHT));
+    expect(document.documentElement).not.toHaveClass('dark');
+    expect(window.localStorage.getItem(THEME_STORAGE_KEY)).toBe('light');
   });
 
   it('lê a escolha salva ao carregar', () => {
@@ -74,8 +86,8 @@ describe('tema', () => {
       throw new Error('bloqueado');
     });
     renderToggle();
-    fireEvent.click(screen.getByRole('button', { name: /Tema: Sistema/ }));
-    expect(document.documentElement).not.toHaveClass('dark');
+    fireEvent.click(screen.getByRole('button', TO_DARK));
+    expect(document.documentElement).toHaveClass('dark');
     vi.restoreAllMocks();
   });
 });
