@@ -12,7 +12,7 @@ import { transitions } from '@/lib/motion';
 import { InstallAppButton } from './InstallAppButton';
 
 interface BrandProps {
-  // Telas de auth têm espaço: o nome fica visível mesmo abaixo de 400 px
+  // Telas de auth têm espaço: o nome fica visível mesmo abaixo de 340 px
   alwaysShowName?: boolean;
 }
 
@@ -26,7 +26,7 @@ export function Brand({ alwaysShowName = false }: BrandProps) {
       {/* Logo da marca: sem inversão de cor no escuro (distorceria a cor) */}
       <img src="/favicon-32x32.png" alt="" width={32} height={32} className="size-8" />
       <span
-        className={`font-heading text-2xl font-semibold text-primary ${alwaysShowName ? '' : 'max-[400px]:sr-only'}`}
+        className={`font-heading text-2xl font-semibold text-primary ${alwaysShowName ? '' : 'max-[340px]:sr-only'}`}
       >
         Sillage
       </span>

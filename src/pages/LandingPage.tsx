@@ -52,7 +52,7 @@ export default function LandingPage() {
         description="Explore perfumes pelas notas, monte sua coleção e converse com o Nez. Crie sua conta no Sillage."
       />
 
-      <div className="flex flex-col gap-20 pb-6 md:gap-28">
+      <div className="flex flex-col gap-20 pb-6 md:gap-24">
         <section
           id="inicio"
           aria-labelledby="titulo-inicio"
@@ -68,7 +68,7 @@ export default function LandingPage() {
             >
               Descubra perfumes pelas suas notas
             </h1>
-            <p className="max-w-xl text-base text-text-secondary md:text-lg">
+            <p className="max-w-xl text-base leading-relaxed text-text-secondary md:text-lg">
               Explore o catálogo pela pirâmide olfativa, guarde o que você tem e o que quer, e
               escolha o perfume do seu dia.
             </p>

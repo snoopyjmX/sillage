@@ -26,5 +26,4 @@ export const LANDING_ITEMS: readonly LandingItem[] = [
   { key: 'inicio', label: 'Início', hash: '#inicio' },
   { key: 'como-funciona', label: 'Como funciona', hash: '#como-funciona' },
   { key: 'recursos', label: 'Recursos', hash: '#recursos' },
-  { key: 'acessar', label: 'Acessar', hash: '#acessar' },
 ];
