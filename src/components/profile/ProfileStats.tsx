@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { formatInteger } from '@/lib/format';
 
@@ -8,7 +9,7 @@ interface StatCardProps {
 }
 
 const StatCard = ({ label, value, hint }: StatCardProps) => (
-  <div className="flex flex-col gap-1 rounded-xl border bg-card p-4 shadow-subtle">
+  <Card className="gap-1 p-4 shadow-subtle">
     <dt className="text-sm font-medium text-muted-foreground">{label}</dt>
     <dd className="flex flex-col gap-1">
       <span className="font-heading text-3xl leading-tight font-medium text-foreground">
@@ -16,7 +17,7 @@ const StatCard = ({ label, value, hint }: StatCardProps) => (
       </span>
       <span className="text-sm text-muted-foreground">{hint}</span>
     </dd>
-  </div>
+  </Card>
 );
 
 export function ProfileStatsSkeleton() {

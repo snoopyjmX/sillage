@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
 // Mesmas dimensões do ReviewCard (cabeçalho, duas linhas de nota e comentário)
@@ -10,7 +11,7 @@ export function ReviewsSkeleton() {
     >
       {Array.from({ length: 2 }, (_, index) => (
         <li key={index}>
-          <div className="flex flex-col gap-3 rounded-xl border bg-card p-4 shadow-card">
+          <Card className="gap-3 p-4">
             <div className="flex flex-col gap-1">
               <Skeleton className="h-6 w-1/3" />
               <Skeleton className="h-3 w-1/4" />
@@ -18,7 +19,7 @@ export function ReviewsSkeleton() {
             <Skeleton className="h-6 w-full" />
             <Skeleton className="h-6 w-full" />
             <Skeleton className="h-10 w-full" />
-          </div>
+          </Card>
         </li>
       ))}
     </ul>
