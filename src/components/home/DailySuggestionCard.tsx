@@ -21,6 +21,8 @@ interface DailySuggestionCardProps {
   isOwned: boolean;
   isWearing: boolean;
   onWear: () => void;
+  // Rótulo acima da marca: "Sugestão do dia" (catálogo) ou "Do seu armário"
+  eyebrow?: string;
 }
 
 // Sugestão do dia (RN10): imagem, notas por posição, medidores e as duas ações. Só apresenta.
@@ -30,6 +32,7 @@ export function DailySuggestionCard({
   isOwned,
   isWearing,
   onWear,
+  eyebrow = 'Sugestão do dia',
 }: DailySuggestionCardProps) {
   const { perfume, notes, longevity, projection, fit } = suggestion;
   return (
@@ -60,7 +63,7 @@ export function DailySuggestionCard({
         <div className="flex flex-col gap-4 p-6 md:p-8">
           <div className="flex flex-col gap-2">
             <h2 className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
-              Sugestão do dia · {perfume.brandName}
+              {eyebrow} · {perfume.brandName}
             </h2>
             <h3 className="font-heading text-3xl leading-tight font-medium md:text-4xl">
               {perfume.name}

@@ -26,9 +26,11 @@ vi.mock('@/services/weatherService', () => ({
   },
 }));
 const getDailySuggestion = vi.fn();
+const getClosetSuggestion = vi.fn();
 vi.mock('@/services/homeService', () => ({
   homeService: {
     getDailySuggestion: (...args: unknown[]) => getDailySuggestion(...args),
+    getClosetSuggestion: (...args: unknown[]) => getClosetSuggestion(...args),
     getRecent: () => Promise.resolve([]),
   },
 }));
@@ -66,6 +68,7 @@ describe('HomePage', () => {
     getCurrent.mockReset();
     searchCity.mockReset();
     getDailySuggestion.mockReset();
+    getClosetSuggestion.mockReset();
     listCollection.mockReset();
     listCollection.mockResolvedValue([]);
     searchCity.mockResolvedValue([
@@ -372,6 +375,124 @@ describe('HomePage', () => {
         'href',
         '/catalog'
       );
+    });
+  });
+
+  describe('origem da sugestão: Catálogo e Meu armário (17B)', () => {
+    const owned = (name: string) => ({
+      status: 'owned',
+      updatedAt: '2026-10-06T12:00:00Z',
+      perfume: { ...entry('2026-10-06', name).perfume, noteFamilies: ['citrus', 'citrus'] },
+    });
+    const shelf = () => ['Alfa', 'Beta', 'Gama'].map(owned);
+    const source = () => screen.findByRole('group', { name: 'Origem da sugestão' });
+
+    beforeEach(() => {
+      auth.setInitialSession(fakeSession());
+      getOverview.mockResolvedValue({ today: null, history: [] });
+      getClosetSuggestion.mockImplementation(({ id, slug }: { id: string; slug: string }) =>
+        Promise.resolve({
+          perfume: {
+            ...entry('2026-10-06', id).perfume,
+            slug,
+            description: null,
+            imageUrl: null,
+            lowestPriceCents: null,
+            storeName: null,
+            storeUrl: null,
+            perfumer: null,
+            notes: [{ slug: 'limao', name: 'Limão', family: 'citrus', position: 'top' }],
+          },
+          summary: { count: 0, avgLongevity: null, avgProjection: null },
+        })
+      );
+    });
+
+    it('com 3 ou mais em "Tenho" e sem escolha, o armário é o padrão e o filtro de gênero some', async () => {
+      listCollection.mockResolvedValue(shelf());
+      renderApp('/');
+      const group = await source();
+      await vi.waitFor(() =>
+        expect(within(group).getByRole('button', { name: 'Meu armário' })).toHaveAttribute(
+          'aria-pressed',
+          'true'
+        )
+      );
+      const card = await screen.findByRole('article', { name: 'Sugestão do dia' });
+      expect(within(card).getByRole('heading', { level: 2 })).toHaveTextContent(
+        /^Do seu armário · O Boticário$/
+      );
+      expect(
+        screen.queryByRole('list', { name: 'Filtrar sugestão por gênero' })
+      ).not.toBeInTheDocument();
+      expect(getDailySuggestion).not.toHaveBeenCalled();
+    });
+
+    it('com menos de 3 em "Tenho" e sem escolha, o padrão é o Catálogo', async () => {
+      listCollection.mockResolvedValue(shelf().slice(0, 2));
+      renderApp('/');
+      const group = await source();
+      await vi.waitFor(() =>
+        expect(within(group).getByRole('button', { name: 'Catálogo' })).toHaveAttribute(
+          'aria-pressed',
+          'true'
+        )
+      );
+      expect(
+        await screen.findByRole('list', { name: 'Filtrar sugestão por gênero' })
+      ).toBeVisible();
+      expect(getClosetSuggestion).not.toHaveBeenCalled();
+    });
+
+    it('a escolha explícita vale e é lembrada', async () => {
+      listCollection.mockResolvedValue(shelf());
+      renderApp('/');
+      const group = await source();
+      await screen.findByRole('article', { name: 'Sugestão do dia' });
+      fireEvent.click(within(group).getByRole('button', { name: 'Catálogo' }));
+      expect(window.localStorage.getItem('sillage-home-source')).toBe('catalog');
+      expect(
+        await screen.findByRole('list', { name: 'Filtrar sugestão por gênero' })
+      ).toBeVisible();
+      fireEvent.click(within(group).getByRole('button', { name: 'Meu armário' }));
+      expect(window.localStorage.getItem('sillage-home-source')).toBe('closet');
+    });
+
+    it('lê a escolha guardada mesmo com poucos perfumes', async () => {
+      window.localStorage.setItem('sillage-home-source', 'closet');
+      listCollection.mockResolvedValue([owned('Alfa')]);
+      renderApp('/');
+      const card = await screen.findByRole('article', { name: 'Sugestão do dia' });
+      expect(within(card).getByRole('heading', { level: 3 })).toHaveTextContent('Alfa');
+    });
+
+    it('"Vestir hoje" já vem habilitado: o perfume é do "Tenho" (RN06)', async () => {
+      listCollection.mockResolvedValue(shelf());
+      renderApp('/');
+      const card = await screen.findByRole('article', { name: 'Sugestão do dia' });
+      expect(await within(card).findByRole('button', { name: 'Vestir hoje' })).toBeEnabled();
+    });
+
+    it('"Tenho" vazio no modo armário mostra a prateleira vazia com saída para o catálogo', async () => {
+      window.localStorage.setItem('sillage-home-source', 'closet');
+      listCollection.mockResolvedValue([]);
+      renderApp('/');
+      expect(await screen.findByText('Sua prateleira está vazia')).toBeInTheDocument();
+      expect(getClosetSuggestion).not.toHaveBeenCalled();
+    });
+
+    it('falha no detalhe mostra o erro com tentar de novo', async () => {
+      window.localStorage.setItem('sillage-home-source', 'closet');
+      listCollection.mockResolvedValue(shelf());
+      getClosetSuggestion.mockRejectedValueOnce(new AppError('network'));
+      renderApp('/');
+      expect(
+        await screen.findByText('Não foi possível carregar a sugestão do dia')
+      ).toBeInTheDocument();
+      fireEvent.click(
+        screen.getAllByRole('button', { name: 'Tentar novamente' })[0] as HTMLElement
+      );
+      expect(await screen.findByRole('article', { name: 'Sugestão do dia' })).toBeInTheDocument();
     });
   });
 });

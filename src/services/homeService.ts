@@ -36,6 +36,16 @@ export const homeService = {
     return { perfume, summary };
   },
 
+  // Detalhe e resumo de avaliações do perfume que a regra do armário escolheu (Fase 17B). A escolha
+  // é do front (lib/closetSuggestion.ts); aqui só vêm os dados públicos que o card mostra.
+  getClosetSuggestion: async (pick: { id: string; slug: string }): Promise<DailySuggestion> => {
+    const [perfume, summary] = await Promise.all([
+      perfumeService.getBySlug(pick.slug),
+      reviewService.getSummary(pick.id),
+    ]);
+    return { perfume, summary };
+  },
+
   // Novidades: os lançamentos mais recentes do catálogo
   getRecent: async (limit: number) =>
     (await perfumeService.search({ ...DEFAULT_FILTERS, sort: 'newest' }, limit)).items,

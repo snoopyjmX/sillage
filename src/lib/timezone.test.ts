@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { todayInTimezone } from './timezone';
+import { addCivilDays, todayInTimezone } from './timezone';
 
 // Mesmo instante, datas diferentes: espelha o teste pgTAP da RN06 (set_daily_perfume)
 const INSTANT = new Date('2026-10-05T12:00:00Z');
@@ -29,4 +29,17 @@ describe('todayInTimezone', () => {
       expect(todayInTimezone(invalid, new Date('2026-10-06T01:00:00Z'))).toBe('2026-10-05');
     }
   );
+});
+
+describe('addCivilDays', () => {
+  it('soma e subtrai dias na data civil', () => {
+    expect(addCivilDays('2026-10-13', -3)).toBe('2026-10-10');
+    expect(addCivilDays('2026-10-13', 2)).toBe('2026-10-15');
+  });
+
+  it('atravessa mês, ano e fevereiro bissexto', () => {
+    expect(addCivilDays('2026-10-02', -3)).toBe('2026-09-29');
+    expect(addCivilDays('2027-01-01', -1)).toBe('2026-12-31');
+    expect(addCivilDays('2028-03-01', -1)).toBe('2028-02-29');
+  });
 });

@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
-import { addOwned, axeViolations, registerViaUi, seedDaily } from './helpers.ts';
+import { addOwned, axeViolations, registerViaUi, seedCollection, seedDaily } from './helpers.ts';
 
 // NUNCA rede real: o Open-Meteo é sempre interceptado. Qualquer outra chamada a ele falha o teste.
 const GEOCODING = '**://geocoding-api.open-meteo.com/**';
@@ -86,6 +86,51 @@ test.describe('home: clima e sugestão do dia', () => {
     const highlight = page.getByRole('article', { name: 'Perfume do Dia' });
     await expect(highlight).toBeVisible();
     await expect(card.getByRole('button', { name: 'Você já veste hoje' })).toBeDisabled();
+  });
+
+  test('Meu armário: com 3 perfumes em "Tenho" vira o padrão, sugere do "Tenho" e não troca ao vestir', async ({
+    page,
+  }) => {
+    await mockOpenMeteo(page, 28);
+    const email = await registerViaUi(page);
+    seedCollection(email, 3, 0);
+    await page.goto('/');
+
+    const source = page.getByRole('group', { name: 'Origem da sugestão' });
+    await expect(source.getByRole('button', { name: 'Meu armário' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    // No armário a coleção já é a escolha: sem filtro de gênero
+    await expect(page.getByRole('list', { name: 'Filtrar sugestão por gênero' })).toHaveCount(0);
+
+    const card = page.getByRole('article', { name: 'Sugestão do dia' });
+    await expect(card.getByRole('heading', { level: 2 })).toContainText('Do seu armário');
+    const name = await card.getByRole('heading', { level: 3 }).textContent();
+
+    // O perfume é do "Tenho": vestir já vem habilitado e a sugestão não muda depois
+    await card.getByRole('button', { name: 'Vestir hoje' }).click();
+    await expect(card.getByRole('button', { name: 'Você já veste hoje' })).toBeDisabled();
+    await expect(card.getByRole('heading', { level: 3 })).toHaveText(name ?? '');
+
+    // A escolha explícita é lembrada
+    await source.getByRole('button', { name: 'Catálogo' }).click();
+    await expect(page.getByRole('list', { name: 'Filtrar sugestão por gênero' })).toBeVisible();
+    await page.reload();
+    await expect(source.getByRole('button', { name: 'Catálogo' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+  });
+
+  test('Meu armário: conta sem "Tenho" vê a prateleira vazia, nunca o armário de outra pessoa', async ({
+    page,
+  }) => {
+    await mockOpenMeteo(page, 28);
+    await registerViaUi(page);
+    await page.evaluate(() => window.localStorage.setItem('sillage-home-source', 'closet'));
+    await page.reload();
+    await expect(page.getByText('Sua prateleira está vazia')).toBeVisible();
   });
 
   test('filtro de gênero da sugestão persiste entre recargas', async ({ page }) => {
