@@ -37,7 +37,7 @@ const perfume: PerfumeSummary = {
 };
 
 const items = (status: CollectionStatus | null): CollectionItem[] =>
-  status ? [{ status, updatedAt: '2026-01-01', perfume }] : [];
+  status ? [{ status, format: null, volumeMl: null, updatedAt: '2026-01-01', perfume }] : [];
 
 const Where = () => <p data-testid="where">{useLocation().pathname + useLocation().search}</p>;
 

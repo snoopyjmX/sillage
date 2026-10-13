@@ -6,11 +6,15 @@ const select = vi.fn((columns: string) => ({ order, columns }));
 const upsert = vi.fn();
 const eq = vi.fn();
 const deleteFn = vi.fn(() => ({ eq }));
+const updateSelect = vi.fn();
+const updateEqStatus = vi.fn(() => ({ select: updateSelect }));
+const updateEqPerfume = vi.fn(() => ({ eq: updateEqStatus }));
+const update = vi.fn(() => ({ eq: updateEqPerfume }));
 const getSession = vi.fn();
 
 vi.mock('@/lib/supabase', () => ({
   supabase: {
-    from: () => ({ select, upsert, delete: deleteFn }),
+    from: () => ({ select, upsert, update, delete: deleteFn }),
     auth: { getSession: () => getSession() },
   },
 }));
@@ -19,6 +23,8 @@ const { collectionService } = await import('./collectionService');
 
 const row = {
   status: 'wanted',
+  format: null,
+  volume_ml: null,
   updated_at: '2026-10-05T12:00:00Z',
   perfume: {
     id: 'p1',
@@ -77,6 +83,60 @@ describe('collectionService', () => {
       { user_id: 'u1', perfume_id: 'p1', status: 'owned' },
       { onConflict: 'user_id, perfume_id' }
     );
+  });
+
+  it('RN11 setStatus: "Quero" envia formato e volume nulos (a troca owned -> wanted limpa os campos)', async () => {
+    upsert.mockResolvedValue({ error: null });
+    await collectionService.setStatus('p1', 'wanted');
+    expect(upsert).toHaveBeenCalledWith(
+      { user_id: 'u1', perfume_id: 'p1', status: 'wanted', format: null, volume_ml: null },
+      { onConflict: 'user_id, perfume_id' }
+    );
+  });
+
+  it('RN11 setStatus: "Tenho" envia só o estado e não apaga o que já foi detalhado', async () => {
+    upsert.mockResolvedValue({ error: null });
+    await collectionService.setStatus('p1', 'owned');
+    const [payload] = upsert.mock.calls[0] ?? [];
+    expect(payload).not.toHaveProperty('format');
+    expect(payload).not.toHaveProperty('volume_ml');
+  });
+
+  it('list: pede formato e volume e monta o domínio', async () => {
+    order.mockResolvedValue({
+      data: [{ ...row, status: 'owned', format: 'decant', volume_ml: 10 }],
+      error: null,
+    });
+    const [item] = await collectionService.list();
+    expect(select.mock.calls[0]?.[0]).toContain('format, volume_ml');
+    expect(item).toMatchObject({ status: 'owned', format: 'decant', volumeMl: 10 });
+  });
+
+  it('setDetails: atualiza formato e volume só da linha em "Tenho" do perfume', async () => {
+    updateSelect.mockResolvedValue({ data: [{ id: 'row1' }], error: null });
+    await collectionService.setDetails('p1', { format: 'bottle', volumeMl: 100 });
+    expect(update).toHaveBeenCalledWith({ format: 'bottle', volume_ml: 100 });
+    expect(updateEqPerfume).toHaveBeenCalledWith('perfume_id', 'p1');
+    expect(updateEqStatus).toHaveBeenCalledWith('status', 'owned');
+  });
+
+  it('setDetails: nenhuma linha afetada é falha, nunca finge que salvou', async () => {
+    updateSelect.mockResolvedValue({ data: [], error: null });
+    await expect(
+      collectionService.setDetails('p1', { format: 'sample', volumeMl: 2 })
+    ).rejects.toMatchObject({ code: 'collection_failed' });
+  });
+
+  it('setDetails: erro do banco vira a mensagem amigável', async () => {
+    updateSelect.mockResolvedValue({
+      data: null,
+      error: { code: '23514', message: 'check violation' },
+    });
+    const error = await collectionService
+      .setDetails('p1', { format: 'sample', volumeMl: 2 })
+      .catch((e: unknown) => e);
+    expect(error).toMatchObject({ code: 'collection_failed' });
+    expect((error as Error).message).not.toMatch(/check/);
   });
 
   it('setStatus: sem sessão não chama o banco', async () => {

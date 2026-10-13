@@ -1,6 +1,7 @@
 import { Library } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FormatBadge } from '@/components/collection/FormatBadge';
 import { PerfumeGridSkeleton } from '@/components/perfume/PerfumeCardSkeleton';
 import { PerfumeGrid } from '@/components/perfume/PerfumeGrid';
 import { SeoHead } from '@/components/seo/SeoHead';
@@ -11,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getErrorMessage } from '@/constants/errors';
 import { COLLECTION_STATUS_LABELS, useCollection } from '@/hooks/useCollection';
 import { useDaily, useWearToday } from '@/hooks/useDaily';
+import { openCollectionDetails } from '@/lib/collectionDetailsStore';
 import type { PerfumeSummary } from '@/types/catalog';
 import type { CollectionItem, CollectionStatus } from '@/types/collection';
 
@@ -46,16 +48,29 @@ export default function CollectionPage() {
     const isWornToday = wornTodayId === perfume.id;
     const isSaving = wear.isPending && wear.variables === perfume.id;
     return (
-      <Button
-        variant="outline"
-        className="w-full"
-        disabled={isWornToday || wear.isPending}
-        aria-busy={isSaving}
-        onClick={() => wear.mutate(perfume.id)}
-      >
-        {isWornToday ? 'Você veste hoje' : isSaving ? 'Salvando…' : 'Vestir hoje'}
-      </Button>
+      <div className="flex gap-2">
+        <Button
+          variant="outline"
+          className="flex-1"
+          disabled={isWornToday || wear.isPending}
+          aria-busy={isSaving}
+          onClick={() => wear.mutate(perfume.id)}
+        >
+          {isWornToday ? 'Você veste hoje' : isSaving ? 'Salvando…' : 'Vestir hoje'}
+        </Button>
+        {/* RN11: formato e volume (opcionais) só existem em "Tenho" */}
+        <Button variant="ghost" onClick={() => openCollectionDetails(perfume)}>
+          Detalhar <span className="sr-only">formato de {perfume.name}</span>
+        </Button>
+      </div>
     );
+  };
+
+  const renderFormatBadge = (perfume: PerfumeSummary) => {
+    const item = items.find((candidate) => candidate.perfume.id === perfume.id);
+    return item && item.status === 'owned' ? (
+      <FormatBadge format={item.format} volumeMl={item.volumeMl} />
+    ) : null;
   };
 
   return (
@@ -115,6 +130,7 @@ export default function CollectionPage() {
                   <PerfumeGrid
                     perfumes={list.map((item) => item.perfume)}
                     renderAction={status === 'owned' ? renderWearAction : undefined}
+                    renderBadge={status === 'owned' ? renderFormatBadge : undefined}
                   />
                 </AsyncBoundary>
               </TabsContent>

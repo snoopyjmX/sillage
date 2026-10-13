@@ -3,9 +3,9 @@
 import { AppError, toAppError } from '@/constants/errors';
 import { fromPerfumeRow, PERFUME_ROW_SELECT } from '@/lib/perfume';
 import { supabase } from '@/lib/supabase';
-import type { CollectionItem, CollectionStatus } from '@/types/collection';
+import type { CollectionDetails, CollectionItem, CollectionStatus } from '@/types/collection';
 
-const LIST_SELECT = `status, updated_at, ${PERFUME_ROW_SELECT}`;
+const LIST_SELECT = `status, format, volume_ml, updated_at, ${PERFUME_ROW_SELECT}`;
 
 // Erro cru do Supabase nunca chega à interface: rede continua "rede", o resto vira falha de coleção
 const toCollectionError = (error: Parameters<typeof toAppError>[0]): AppError => {
@@ -23,8 +23,10 @@ export const collectionService = {
       .order('updated_at', { ascending: false });
     if (error) throw toCollectionError(error);
 
-    return data.map(({ status, updated_at, perfume }) => ({
+    return data.map(({ status, format, volume_ml, updated_at, perfume }) => ({
       status,
+      format,
+      volumeMl: volume_ml,
       updatedAt: updated_at,
       perfume: fromPerfumeRow(
         perfume,
@@ -36,7 +38,8 @@ export const collectionService = {
   },
 
   // upsert atômico: UNIQUE(user_id, perfume_id) garante uma linha por perfume; trocar o estado
-  // atualiza a mesma linha em vez de falhar ou duplicar.
+  // atualiza a mesma linha em vez de falhar ou duplicar. RN11: "Quero" envia formato e volume
+  // nulos (o banco rejeita o contrário); "Tenho" envia só o estado e preserva o que já foi detalhado.
   setStatus: async (perfumeId: string, status: CollectionStatus): Promise<void> => {
     // Leitura local da sessão (sem rede); a RLS confere o user_id contra o JWT de qualquer forma
     const { data: auth } = await supabase.auth.getSession();
@@ -46,10 +49,25 @@ export const collectionService = {
     const { error } = await supabase
       .from('collection_items')
       .upsert(
-        { user_id: userId, perfume_id: perfumeId, status },
+        status === 'wanted'
+          ? { user_id: userId, perfume_id: perfumeId, status, format: null, volume_ml: null }
+          : { user_id: userId, perfume_id: perfumeId, status },
         { onConflict: 'user_id, perfume_id' }
       );
     if (error) throw toCollectionError(error);
+  },
+
+  // Detalha o formato e o volume de um perfume em "Tenho" (RN11). Só atualiza linha existente em
+  // "owned": zero linhas afetadas é falha, nunca finge que salvou. A RLS limita ao próprio usuário.
+  setDetails: async (perfumeId: string, { format, volumeMl }: CollectionDetails): Promise<void> => {
+    const { data, error } = await supabase
+      .from('collection_items')
+      .update({ format, volume_ml: volumeMl })
+      .eq('perfume_id', perfumeId)
+      .eq('status', 'owned')
+      .select('id');
+    if (error) throw toCollectionError(error);
+    if (data.length === 0) throw new AppError('collection_failed');
   },
 
   // A RLS limita o delete às linhas do próprio usuário

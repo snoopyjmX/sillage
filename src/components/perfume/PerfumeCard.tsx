@@ -15,11 +15,13 @@ interface PerfumeCardProps {
   perfume: PerfumeSummary;
   // Ação extra opcional abaixo do botão da coleção (ex.: "Vestir hoje" na Coleção)
   action?: ReactNode;
+  // Selo discreto ao lado da concentração (ex.: o formato "Frasco 100 ml" na Coleção)
+  badge?: ReactNode;
 }
 
 // Foto real quando há imageUrl; sem ela (ou se falhar ao carregar) o placeholder usa a primeira
 // família da lista (a função devolve na ordem do enum) e nenhum logo.
-export function PerfumeCard({ perfume, action }: PerfumeCardProps) {
+export function PerfumeCard({ perfume, action, badge }: PerfumeCardProps) {
   const mainFamily = perfume.families[0];
   const meta = [GENDER_LABELS[perfume.gender], perfume.releaseYear?.toString()]
     .filter(Boolean)
@@ -56,6 +58,7 @@ export function PerfumeCard({ perfume, action }: PerfumeCardProps) {
             <Chip variant="concentration">{CONCENTRATION_LABELS[perfume.concentration]}</Chip>
             <span className="text-sm text-muted-foreground">{meta}</span>
           </div>
+          {badge}
           {perfume.families.length > 0 && (
             <ul aria-label="Famílias olfativas" className="mt-auto flex flex-wrap gap-1.5 pt-2">
               {perfume.families.slice(0, MAX_FAMILY_CHIPS).map((family) => (
