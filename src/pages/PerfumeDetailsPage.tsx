@@ -1,6 +1,8 @@
-import { ArrowLeft, SearchX } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
+import { ArrowLeft, Scale, SearchX } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
+import { ComparePicker } from '@/components/compare/ComparePicker';
 import { ReviewActions } from '@/components/reviews/ReviewActions';
 import { ReviewSummaryLine } from '@/components/reviews/ReviewSummaryLine';
 import { ReviewsSection } from '@/components/reviews/ReviewsSection';
@@ -23,6 +25,7 @@ import { useNezPerfumeContext } from '@/hooks/useNez';
 import { usePerfumeDetail } from '@/hooks/usePerfumes';
 import { buildPerfumeContext } from '@/lib/nez';
 import { toPerfumeSummary } from '@/lib/perfume';
+import { buildComparePath } from '@/schemas/compareSearch';
 import type { PerfumeDetail } from '@/types/catalog';
 
 const BackToCatalog = () => (
@@ -119,6 +122,8 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
     .filter(Boolean)
     .join(' · ');
   useNezPerfumeContext(buildPerfumeContext(perfume));
+  const navigate = useNavigate();
+  const [comparing, setComparing] = useState(false);
 
   return (
     <>
@@ -148,6 +153,10 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
           <div className="mt-4 flex flex-col gap-2 md:max-w-72">
             <CollectionToggle perfume={toPerfumeSummary(perfume)} />
             <ReviewActions perfume={{ id: perfume.id, name: perfume.name }} />
+            <Button variant="outline" onClick={() => setComparing(true)}>
+              <Scale aria-hidden />
+              Comparar com…
+            </Button>
           </div>
           <div className="md:max-w-72">
             <BestPrice perfume={perfume} />
@@ -173,6 +182,16 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
       <ReviewsSection perfumeId={perfume.id} />
 
       <SimilarPerfumes perfumeId={perfume.id} />
+
+      <ComparePicker
+        open={comparing}
+        onOpenChange={setComparing}
+        excludeSlugs={[perfume.slug]}
+        onPick={(other) => {
+          setComparing(false);
+          void navigate(buildComparePath({ a: perfume.slug, b: other.slug }));
+        }}
+      />
     </>
   );
 }

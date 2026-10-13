@@ -5,11 +5,12 @@ import type { CatalogFilters } from '@/schemas/catalogSearch';
 import { perfumeService } from '@/services/perfumeService';
 
 // Troca de página/filtro mantém a lista anterior na tela (sem piscar) até a nova chegar
-export const usePerfumes = (filters: CatalogFilters) =>
+export const usePerfumes = (filters: CatalogFilters, enabled = true) =>
   useQuery({
     queryKey: queryKeys.perfumes.list(filters),
     queryFn: () => perfumeService.search(filters),
     placeholderData: keepPreviousData,
+    enabled,
   });
 
 // Slug inexistente não adianta tentar de novo; falha de rede tenta uma vez (padrão do client)

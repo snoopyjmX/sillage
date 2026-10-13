@@ -236,6 +236,16 @@ Momento de assinatura da tela: a digitação do título ("Descubra a fragrância
 
 A imagem (`lib/sotdCanvas.ts`) usa só tokens, lidos com `getComputedStyle` (`--surface`, `--border`, `--stage*`, `--foreground`, `--text-*`, `--primary` e `--chip-<família>` no placeholder), Fraunces no nome e no wordmark e Inter no resto; sem emojis. Os ícones do selo de clima são os caminhos do Lucide (`constants/share.ts`), porque o canvas não renderiza componentes React.
 
+## Comparador (Fase 18B)
+
+`/compare` usa o `AppShell`. Calmo: sem momento de assinatura novo, sem animação própria; só tokens. Duas colunas até 360 px (`grid-cols-2`), cada linha com um `h2` em caixa alta pequena e as duas células em grupos nomeados pelo perfume (`role="group"`).
+
+| Componente      | Pasta                | Notas                                                                                                                                                                                                                                                                                     |
+| --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ComparePage`   | `pages`              | Cabeçalho por lado (`PerfumeStage` quadrado, marca, nome, concentração, "Ver detalhes" e "Trocar", alvos de 44 px); lado vazio com "Escolher perfume"; `AsyncBoundary` por lado (skeleton, erro com tentar de novo, offline)                                                              |
+| `CompareTable`  | `components/compare` | Linhas Pirâmide (`dl` com as notas por camada), Famílias (`FamilyBar`), Fixação e rastro (`Rating` somente leitura e `Meter`), Clima de hoje (`Meter`), Melhor preço e Combina com você?. Só apresenta                                                                                    |
+| `ComparePicker` | `components/compare` | `Dialog` com `SearchInput` (debounce de 300 ms), resultados em botões de 44 px (nome em `font-heading`, marca em `text-text-secondary`: fica sobre vidro) e os estados de dica, carregando, vazio, erro e offline. Também abre pelo botão "Comparar com…" (`Scale`) do detalhe do perfume |
+
 ## Perfil (Fase 14E)
 
 `/profile` usa o `AppShell` (pílula e Footer). Momento de assinatura da tela: a entrada do avatar de iniciais (escala e opacidade, mola `physical`, sem animar em reduced motion); o resto é calmo (`BlurFade` com stagger de 40 ms). Só tokens, só `transform` e `opacity`. Upload de foto está fora do MVP.
