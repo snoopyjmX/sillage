@@ -26,7 +26,8 @@ export type ErrorCode =
   | 'profile_failed'
   | 'avatar_failed'
   | 'avatar_too_large'
-  | 'avatar_invalid_type';
+  | 'avatar_invalid_type'
+  | 'account_delete_failed';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -59,6 +60,7 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   avatar_failed: 'Não foi possível salvar sua foto de perfil. Tente novamente em instantes.',
   avatar_too_large: 'A imagem escolhida é muito grande. Escolha uma foto de até 5 MB.',
   avatar_invalid_type: 'Formato de imagem não suportado. Use JPG, PNG ou WebP.',
+  account_delete_failed: 'Não foi possível excluir a sua conta. Tente novamente em instantes.',
 };
 
 export class AppError extends Error {

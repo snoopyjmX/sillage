@@ -84,4 +84,46 @@ describe('authService', () => {
     authService.onAuthStateChange(vi.fn())();
     expect(unsubscribe).toHaveBeenCalledOnce();
   });
+
+  describe('deleteAccount', () => {
+    const fetchMock = vi.fn();
+
+    beforeEach(() => {
+      fetchMock.mockReset();
+      vi.stubGlobal('fetch', fetchMock);
+      auth.getSession.mockResolvedValue({ data: { session: { access_token: 'tok' } } });
+      auth.signOut.mockResolvedValue({ error: null });
+    });
+
+    it('204: chama a função com o token e encerra a sessão local', async () => {
+      fetchMock.mockResolvedValue(new Response(null, { status: 204 }));
+      await authService.deleteAccount();
+      const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+      expect(url).toMatch(/\/functions\/v1\/delete-account$/);
+      expect(init.method).toBe('POST');
+      expect((init.headers as Record<string, string>).Authorization).toBe('Bearer tok');
+      expect(auth.signOut).toHaveBeenCalledWith({ scope: 'local' });
+    });
+
+    it('401 vira session_expired e não encerra a sessão', async () => {
+      fetchMock.mockResolvedValue(new Response('{"code":"unauthorized"}', { status: 401 }));
+      await expect(authService.deleteAccount()).rejects.toMatchObject({ code: 'session_expired' });
+      expect(auth.signOut).not.toHaveBeenCalled();
+    });
+
+    it('500 vira account_delete_failed sem expor o corpo', async () => {
+      fetchMock.mockResolvedValue(new Response('erro interno do servidor', { status: 500 }));
+      const error = await authService.deleteAccount().catch((e: unknown) => e);
+      expect(error).toMatchObject({ code: 'account_delete_failed' });
+      expect((error as AppError).message).not.toMatch(/interno/);
+      expect(auth.signOut).not.toHaveBeenCalled();
+    });
+
+    it('sem sessão vira session_expired; sem rede vira network', async () => {
+      auth.getSession.mockResolvedValueOnce({ data: { session: null } });
+      await expect(authService.deleteAccount()).rejects.toMatchObject({ code: 'session_expired' });
+      fetchMock.mockRejectedValue(new TypeError('Failed to fetch'));
+      await expect(authService.deleteAccount()).rejects.toMatchObject({ code: 'network' });
+    });
+  });
 });

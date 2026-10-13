@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { fireConfetti } from '@/components/ui/confetti';
+import { toast } from '@/lib/toast';
 import { getBrowserTimezone } from '@/lib/timezone';
 import type { LoginValues, RegisterValues } from '@/schemas/auth';
 import { authService } from '@/services/authService';
@@ -27,3 +28,10 @@ export const useSendPasswordReset = () =>
 
 export const useUpdatePassword = () =>
   useMutation({ mutationFn: (password: string) => authService.updatePassword(password) });
+
+// O signOut local do service dispara SIGNED_OUT: o AuthProvider limpa o cache privado e vai para a Home
+export const useDeleteAccount = () =>
+  useMutation({
+    mutationFn: () => authService.deleteAccount(),
+    onSuccess: () => toast.success('Sua conta foi excluída.'),
+  });

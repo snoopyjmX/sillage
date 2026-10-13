@@ -113,14 +113,24 @@ test.describe('perfil', () => {
     await otherContext.close();
   });
 
-  test('exclusão: o dialog pede confirmação, a ação está desativada e nada é chamado', async ({
+  test('exclusão: só liga ao digitar EXCLUIR, chama a função e volta deslogado para a Home', async ({
     page,
   }) => {
-    // Nenhuma chamada à Edge Function de exclusão (nem à rede real): qualquer uma falha o teste
+    // A Edge Function é sempre mockada: o E2E nunca apaga um usuário de verdade
     const calls: string[] = [];
-    await page.route('**/functions/v1/**', (route) => {
-      calls.push(route.request().url());
-      return route.abort();
+    await page.route('**/functions/v1/delete-account', async (route) => {
+      if (route.request().method() === 'OPTIONS') {
+        await route.fulfill({
+          status: 204,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info',
+          },
+        });
+        return;
+      }
+      calls.push(route.request().headers()['authorization'] ?? '');
+      await route.fulfill({ status: 204, headers: { 'Access-Control-Allow-Origin': '*' } });
     });
     await registerViaUi(page);
     await page.goto('/profile');
@@ -129,10 +139,17 @@ test.describe('perfil', () => {
     await page.getByRole('button', { name: 'Excluir conta' }).click();
     const dialog = page.getByRole('dialog', { name: 'Excluir a sua conta?' });
     await expect(dialog).toBeVisible();
-    await expect(dialog.getByRole('button', { name: 'Em breve' })).toBeDisabled();
-    await dialog.getByRole('button', { name: 'Cancelar' }).click();
-    await expect(dialog).toBeHidden();
-    expect(calls).toEqual([]);
+    const confirm = dialog.getByRole('button', { name: 'Excluir conta definitivamente' });
+    await expect(confirm).toBeDisabled();
+    await dialog.getByLabel('Digite EXCLUIR para confirmar').fill('EXCLUIR');
+    await expect(confirm).toBeEnabled();
+    await confirm.click();
+
+    await expect(page).toHaveURL('/');
+    expect(calls).toHaveLength(1);
+    expect(calls[0]).toMatch(/^Bearer /);
+    await page.goto('/profile');
+    await expect(page).toHaveURL(/redirect=%2Fprofile/);
   });
 });
 
