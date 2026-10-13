@@ -146,7 +146,7 @@ export default function HomePage() {
                   Seu Perfume de hoje
                 </h2>
                 {today ? (
-                  <DailyHighlight entry={today} />
+                  <DailyHighlight entry={today} weather={weather.view} />
                 ) : (
                   <EmptyState
                     icon={CalendarHeart}

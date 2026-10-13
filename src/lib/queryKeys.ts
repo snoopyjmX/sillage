@@ -29,6 +29,11 @@ export const queryKeys = {
     // Dias no memorial (filha de `overview`: invalidar o resumo atualiza a contagem)
     count: (userId: string) => ['private', userId, 'daily', 'count'] as const,
   },
+  // Card SOTD gerado no aparelho (Blob): privado, nunca persistido
+  shareCard: {
+    image: (userId: string, parts: readonly (string | number | null)[]) =>
+      ['private', userId, 'share-card', ...parts] as const,
+  },
   profile: {
     all: (userId: string) => ['private', userId, 'profile'] as const,
     detail: (userId: string) => ['private', userId, 'profile', 'detail'] as const,

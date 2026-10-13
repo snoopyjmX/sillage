@@ -58,6 +58,21 @@ test.describe('home', () => {
     await expect(page).toHaveURL(/\/perfumes\/bonissimo$/);
   });
 
+  test('"Compartilhar dia" gera o card e baixa a imagem em JPEG', async ({ page }) => {
+    await registerWithHistory(page);
+    await page.goto('/');
+
+    await page.getByRole('button', { name: 'Compartilhar dia' }).click();
+    const dialog = page.getByRole('dialog', { name: 'Compartilhar o seu dia' });
+    await expect(dialog.getByRole('img', { name: /Card do Perfume do Dia/ })).toBeVisible();
+
+    expect(await axeViolations(page)).toEqual([]);
+
+    const download = page.waitForEvent('download');
+    await dialog.getByRole('button', { name: 'Baixar imagem' }).click();
+    expect((await download).suggestedFilename()).toMatch(/^sillage-malbec-signature-.*.jpg$/);
+  });
+
   test('o histórico de um usuário não aparece para outro (RLS)', async ({ page, browser }) => {
     await registerWithHistory(page);
 

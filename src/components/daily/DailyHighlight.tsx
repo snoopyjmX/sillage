@@ -1,5 +1,9 @@
+import { Share2 } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ShareCardDialog } from '@/components/daily/ShareCardDialog';
 import { BlurFade } from '@/components/ui/blur-fade';
+import { Button } from '@/components/ui/button';
 import { Chip } from '@/components/ui/chip';
 import { PerfumeImage } from '@/components/perfume/PerfumeImage';
 import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
@@ -7,15 +11,19 @@ import { PerfumeStage } from '@/components/perfume/PerfumeStage';
 import { CONCENTRATION_LABELS, FAMILY_LABELS, GENDER_LABELS } from '@/constants/labels';
 import { formatCivilDate } from '@/lib/format';
 import type { DailyEntry } from '@/types/daily';
+import type { WeatherView } from '@/types/weather';
 
 interface DailyHighlightProps {
   entry: DailyEntry;
+  // Clima de hoje: enfeita o card de compartilhar, que sai sem ele se faltar
+  weather: WeatherView;
 }
 
 // O Perfume do Dia em destaque: maior que um card de catálogo, mesma linguagem (placeholder pela
 // primeira família, chips, link para os detalhes).
-export function DailyHighlight({ entry }: DailyHighlightProps) {
+export function DailyHighlight({ entry, weather }: DailyHighlightProps) {
   const { perfume } = entry;
+  const [shareOpen, setShareOpen] = useState(false);
   const meta = [GENDER_LABELS[perfume.gender], perfume.releaseYear?.toString()]
     .filter(Boolean)
     .join(' · ');
@@ -63,13 +71,25 @@ export function DailyHighlight({ entry }: DailyHighlightProps) {
           <p className="text-sm text-muted-foreground">
             Escolhido em {formatCivilDate(entry.date)}.
           </p>
-          <Link
-            to={`/perfumes/${perfume.slug}`}
-            className="w-fit rounded-lg text-base font-medium text-primary underline-offset-4 outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-          >
-            Ver detalhes de {perfume.name}
-          </Link>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Link
+              to={`/perfumes/${perfume.slug}`}
+              className="w-fit rounded-lg text-base font-medium text-primary underline-offset-4 outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              Ver detalhes de {perfume.name}
+            </Link>
+            <Button variant="outline" onClick={() => setShareOpen(true)}>
+              <Share2 aria-hidden />
+              Compartilhar dia
+            </Button>
+          </div>
         </div>
+        <ShareCardDialog
+          open={shareOpen}
+          onOpenChange={setShareOpen}
+          entry={entry}
+          weather={weather}
+        />
       </article>
     </BlurFade>
   );
