@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import type { PyramidNote } from '@/types/catalog';
 import { OlfactoryPyramid } from './OlfactoryPyramid';
 
@@ -24,85 +24,69 @@ const renderPyramid = (list = notes) =>
     </MemoryRouter>
   );
 
-const layerButton = (name: RegExp) => screen.getByRole('button', { name });
-// Os botões de camada são os que controlam um painel (os chips das notas também são botões)
-const layerButtons = () =>
-  screen.getAllByRole('button').filter((button) => button.hasAttribute('aria-controls'));
 const noteButton = (name: RegExp) => screen.getByRole('button', { name });
-
-const mockDesktop = (matches: boolean) =>
-  vi.stubGlobal(
-    'matchMedia',
-    vi.fn().mockImplementation(() => ({
-      matches,
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-    }))
-  );
+const layerSection = (name: string) => screen.getByRole('region', { name });
 
 describe('OlfactoryPyramid', () => {
-  afterEach(() => vi.unstubAllGlobals());
-
   it('mostra as camadas na ordem Topo, Coração, Fundo, com o tempo e a contagem', () => {
     renderPyramid();
-    expect(layerButtons().map((button) => button.textContent)).toEqual([
-      'Topo0–30 min · 2 notas',
-      'Coração30 min–4 h · 1 nota',
-      'Fundo4 h ou mais · 1 nota',
-    ]);
+    const titles = screen
+      .getAllByRole('heading', { level: 3 })
+      .map((heading) => heading.textContent);
+    expect(titles).toEqual(['Topo', 'Coração', 'Fundo']);
+    expect(layerSection('Topo')).toHaveTextContent('0–30 min · 2 notas');
+    expect(layerSection('Coração')).toHaveTextContent('30 min–4 h · 1 nota');
+    expect(layerSection('Fundo')).toHaveTextContent('4 h ou mais · 1 nota');
   });
 
-  it('no celular só o Topo começa aberto', () => {
-    mockDesktop(false);
+  it('as três camadas ficam sempre abertas, sem botão de acordeão', () => {
     renderPyramid();
-    expect(layerButton(/^Topo/)).toHaveAttribute('aria-expanded', 'true');
-    expect(layerButton(/^Coração/)).toHaveAttribute('aria-expanded', 'false');
-    expect(layerButton(/^Fundo/)).toHaveAttribute('aria-expanded', 'false');
-    expect(noteButton(/^Bergamota/)).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /^Vetiver/ })).not.toBeInTheDocument();
-  });
-
-  it('no desktop todas começam abertas', () => {
-    mockDesktop(true);
-    renderPyramid();
-    for (const name of [/^Topo/, /^Coração/, /^Fundo/]) {
-      expect(layerButton(name)).toHaveAttribute('aria-expanded', 'true');
-    }
+    expect(document.querySelector('[aria-expanded]')).toBeNull();
     for (const name of [/^Bergamota/, /^Lima/, /^Lavanda/, /^Vetiver/]) {
       expect(noteButton(name)).toBeInTheDocument();
     }
   });
 
-  it('o botão abre e fecha a camada (o teclado é coberto no E2E)', async () => {
-    mockDesktop(false);
+  it('a pirâmide mostra o nome e o tempo de cada camada dentro da faixa', () => {
     renderPyramid();
-    const heart = layerButton(/^Coração/);
+    const shape = document.querySelector('[data-slot="pyramid-shape"]') as HTMLElement;
+    expect(shape).toHaveAttribute('aria-hidden', 'true');
+    expect(shape).toHaveTextContent('Topo0–30 minCoração30 min–4 hFundo4 h ou mais');
+    expect(shape).not.toHaveTextContent('sem notas');
+  });
 
-    fireEvent.click(heart);
-    expect(heart).toHaveAttribute('aria-expanded', 'true');
-    expect(await screen.findByRole('button', { name: /^Lavanda/ })).toBeInTheDocument();
+  it('camada sem notas aparece na pirâmide com a legenda "sem notas"', () => {
+    renderPyramid(notes.filter((note) => note.position !== 'heart'));
+    const shape = document.querySelector('[data-slot="pyramid-shape"]') as HTMLElement;
+    expect(shape).toHaveTextContent('sem notas');
+    expect(shape.querySelector('[data-position="heart"]')).toHaveClass('fill-muted');
+  });
 
-    fireEvent.click(heart);
-    expect(heart).toHaveAttribute('aria-expanded', 'false');
+  it('passar o mouse na camada realça a faixa correspondente', () => {
+    renderPyramid();
+    const band = document.querySelector('[data-slot="pyramid-shape"] [data-position="base"]');
+    expect(layerSection('Fundo')).not.toHaveClass('border-primary');
+    fireEvent.mouseEnter(layerSection('Fundo'));
+    expect(layerSection('Fundo')).toHaveClass('border-primary');
+    expect(band).toBeInTheDocument();
+    fireEvent.mouseLeave(layerSection('Fundo'));
+    expect(layerSection('Fundo')).not.toHaveClass('border-primary');
   });
 
   it('resume o acorde dominante e lista as famílias com a porcentagem', () => {
-    mockDesktop(false);
     renderPyramid();
     expect(screen.getByText('Cítrico · Amadeirado')).toBeInTheDocument();
-    // geral: 2 de 4 notas são cítricas; no painel do Topo (aberto), 100%
+    // geral: 2 de 4 notas são cítricas (as camadas não repetem a barra)
     expect(screen.getByText('Cítrico 50%')).toBeInTheDocument();
-    expect(screen.getByText('Cítrico 100%')).toBeInTheDocument();
+    expect(screen.queryByText('Cítrico 100%')).not.toBeInTheDocument();
   });
 
   it('o painel da camada traz a frase da camada', () => {
-    mockDesktop(false);
     renderPyramid();
     expect(screen.getByText('A abertura: o que você sente ao borrifar')).toBeInTheDocument();
   });
 
   it('a nota abre o painel com a descrição e o link para o catálogo filtrado', async () => {
-    mockDesktop(true);
     renderPyramid();
     fireEvent.click(noteButton(/^Lavanda/));
 
@@ -115,7 +99,6 @@ describe('OlfactoryPyramid', () => {
   });
 
   it('nota sem descrição mostra "Descrição em breve."', async () => {
-    mockDesktop(true);
     renderPyramid();
     fireEvent.click(noteButton(/^Lima/));
     const dialog = await screen.findByRole('dialog', { name: 'Lima' });
@@ -125,14 +108,15 @@ describe('OlfactoryPyramid', () => {
     ).toHaveAttribute('href', '/catalog?notes=lima&pos=top');
   });
 
-  it('não mostra camadas sem nota', () => {
+  it('não lista camadas sem nota ao lado da pirâmide', () => {
     renderPyramid(notes.filter((note) => note.position === 'top'));
-    expect(layerButtons()).toHaveLength(1);
+    expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(1);
   });
 
   it('sem nenhuma nota não mostra acorde nem camadas', () => {
     renderPyramid([]);
     expect(screen.queryAllByRole('button')).toHaveLength(0);
+    expect(screen.queryAllByRole('heading')).toHaveLength(0);
     expect(screen.queryByText(/Acorde dominante/)).not.toBeInTheDocument();
   });
 });

@@ -589,13 +589,13 @@ A serifada só é usada a partir de 20 px, porque em tamanhos menores perde legi
 
 É o componente mais importante do produto e tem especificação própria.
 
-- **Estrutura:** forma de pirâmide (SVG de três faixas, decorativo), resumo do acorde dominante com a barra de famílias ("Amadeirado 60%") e três camadas (Topo, Coração, Fundo). Cada camada mostra o tempo (0–30 min, 30 min–4 h, 4 h ou mais), a frase do que ela faz, a barra de famílias da camada e os chips de notas.
+- **Estrutura:** pirâmide grande (SVG de três trapézios de alturas iguais, decorativa) com o nome e o tempo de cada camada dentro da faixa e um ponto por nota, na cor da família; camada sem notas fica em `fill-muted` com a legenda "sem notas". Ao lado (abaixo no celular): resumo do acorde dominante com a barra de famílias ("Amadeirado 60%") e as três camadas (Topo, Coração, Fundo), sempre abertas, cada uma com o tempo, a frase do que ela faz e os chips de notas.
 
-- **Interação:** cada camada é um botão com `aria-expanded` que abre e fecha; no mobile só o Topo começa aberto, no desktop todas. Tocar numa nota abre o painel dela (Dialog no desktop, Drawer no celular) com a família, a camada, a descrição (`notes.description`; sem ela, "Descrição em breve.") e o link "Ver perfumes com {nota} no {camada}", que leva ao catálogo filtrado (`/catalog?notes=<slug>&pos=<top|heart|base>`). Esc fecha e devolve o foco ao chip.
+- **Interação:** sem acordeão. Passar o mouse ou focar uma camada realça a faixa correspondente (e o contrário). Tocar numa nota abre o painel dela (Dialog no desktop, Drawer no celular) com a família, a camada, a descrição (`notes.description`; sem ela, "Descrição em breve.") e o link "Ver perfumes com {nota} no {camada}", que leva ao catálogo filtrado (`/catalog?notes=<slug>&pos=<top|heart|base>`). Esc fecha e devolve o foco ao chip.
 
-- **Movimento:** altura animada com spring curta, chips entram com _stagger_ de até 40 ms, nada bloqueia o toque durante a animação.
+- **Movimento (momento de assinatura da tela):** ao entrar na viewport as faixas sobem de baixo para cima (opacity + translateY, `springs.modal` com `staggerDelay`) e o rótulo de cada faixa entra em seguida; os chips entram com _stagger_ de até 40 ms. Nada bloqueia o toque.
 
-- **Acessibilidade:** teclado (Enter/Espaço), foco visível, ordem de leitura Topo → Coração → Fundo, e animação desligada com `prefers-reduced-motion`.
+- **Acessibilidade:** a forma é `aria-hidden` (a informação está nas camadas, `section` com `aria-labelledby`), foco visível nos chips, ordem de leitura Topo → Coração → Fundo, e animação desligada com `prefers-reduced-motion`.
 
 **Inventário de componentes.** Cada componente em `components/ui` entra no `DESIGN_SYSTEM.md` com origem (shadcn, 21st.dev ou próprio), variantes e estados. Ordem de construção da Fase 3: tokens, Button, Input, Card, Pill/Chip, Dialog, Drawer, Tabs, Rating, Skeleton, EmptyState, ErrorState, Toast.
 
