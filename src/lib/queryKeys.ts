@@ -28,6 +28,9 @@ export const queryKeys = {
     overview: (userId: string) => ['private', userId, 'daily'] as const,
     // Dias no memorial (filha de `overview`: invalidar o resumo atualiza a contagem)
     count: (userId: string) => ['private', userId, 'daily', 'count'] as const,
+    // Um intervalo de dias (calendário do memorial); filha de `overview`, então vestir hoje o atualiza
+    range: (userId: string, from: string, to: string) =>
+      ['private', userId, 'daily', 'range', from, to] as const,
   },
   // DNA olfativo do Perfil: privado (depende da coleção e do memorial)
   dna: {

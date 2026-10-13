@@ -1,6 +1,6 @@
 # Planejamento de Produto, Pesquisa de Mercado e Diferenciais
 
-Este documento registra a pesquisa de mercado, a análise competitiva e o planejamento das fases de produto do Sillage depois da Fase 15. A revisão de 13/10/2026 conferiu cada premissa contra o código, corrigiu as que não batiam e fechou as decisões de produto (seção 4). Andamento: a **16B** (`feat/sotd-share-card`), a **16A** (`feat/olfactory-dna`) e a **17B** (`feat/closet-suggestion`) a **17A** (`feat/collection-formats`) a **18A** (`feat/affinity`) e a **18B** (`feat/compare`) estão implementadas; o restante não. Ao implementar cada fase, a especificação passa para `PRODUCT.md`, `DATABASE.md` e `DESIGN_SYSTEM.md` no mesmo PR.
+Este documento registra a pesquisa de mercado, a análise competitiva e o planejamento das fases de produto do Sillage depois da Fase 15. A revisão de 13/10/2026 conferiu cada premissa contra o código, corrigiu as que não batiam e fechou as decisões de produto (seção 4). Andamento: **todas as fases foram implementadas** (16B, 16A, 17B, 17A, 18A, 18B e 19, uma branch por item, empilhadas); a ideia "Seu ano em perfumes" (seção 5.5) segue como próximo passo. Ao implementar cada fase, a especificação passa para `PRODUCT.md`, `DATABASE.md` e `DESIGN_SYSTEM.md` no mesmo PR.
 
 ---
 

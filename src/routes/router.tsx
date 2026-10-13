@@ -57,6 +57,7 @@ export const routes: RouteObject[] = [
               { path: 'perfumes/:slug', lazy: page(() => import('@/pages/PerfumeDetailsPage')) },
               { path: 'collection', lazy: page(() => import('@/pages/collection/CollectionPage')) },
               { path: 'compare', lazy: page(() => import('@/pages/ComparePage')) },
+              { path: 'memorial', lazy: page(() => import('@/pages/MemorialPage')) },
               { path: 'profile', lazy: page(() => import('@/pages/ProfilePage')) },
               { path: '*', lazy: page(() => import('@/pages/NotFoundPage')) },
             ],

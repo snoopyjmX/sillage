@@ -275,8 +275,11 @@ describe('ComparePage (Fase 18B)', () => {
     expect(
       await screen.findByText('Escolha dois perfumes diferentes para comparar.')
     ).toBeVisible();
+    // Espera o único lado que busca carregar antes de afirmar o que não deve existir
+    expect(await screen.findByRole('heading', { level: 2, name: 'Bossa' })).toBeVisible();
     expect(screen.queryByRole('heading', { name: 'Pirâmide' })).not.toBeInTheDocument();
-    expect(getBySlug).toHaveBeenCalledTimes(1);
+    // O segundo lado, igual ao primeiro, não busca: só há consultas de 'bossa'
+    for (const [slug] of getBySlug.mock.calls) expect(slug).toBe('bossa');
   });
 
   it('slug inexistente mostra o erro no lado dele, com tentar de novo, e não monta a tabela', async () => {

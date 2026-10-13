@@ -193,9 +193,17 @@ export default function HomePage() {
               </section>
 
               <section aria-labelledby="memorial" className="flex flex-col gap-4">
-                <h2 id="memorial" className="font-heading text-2xl font-medium">
-                  Memorial
-                </h2>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h2 id="memorial" className="font-heading text-2xl font-medium">
+                    Memorial
+                  </h2>
+                  <Link
+                    to="/memorial"
+                    className="inline-flex min-h-11 items-center rounded-lg text-sm font-medium text-primary underline-offset-4 outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    Ver calendário
+                  </Link>
+                </div>
                 {history.length > 0 ? (
                   <DailyHistory entries={history} />
                 ) : (

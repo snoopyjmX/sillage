@@ -4,6 +4,7 @@ Disallow: /catalog
 Disallow: /perfumes/
 Disallow: /collection
 Disallow: /compare
+Disallow: /memorial
 Disallow: /profile
 
 Sitemap: https://sillage-ashy-gamma.vercel.app/sitemap.xml
