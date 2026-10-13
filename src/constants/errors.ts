@@ -29,7 +29,8 @@ export type ErrorCode =
   | 'avatar_invalid_type'
   | 'account_delete_failed'
   | 'share_card_failed'
-  | 'share_failed';
+  | 'share_failed'
+  | 'dna_failed';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -65,6 +66,7 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   account_delete_failed: 'Não foi possível excluir a sua conta. Tente novamente em instantes.',
   share_card_failed: 'Não foi possível gerar a imagem agora. Tente novamente em instantes.',
   share_failed: 'Não foi possível compartilhar a imagem. Tente baixá-la.',
+  dna_failed: 'Não foi possível carregar o seu DNA olfativo. Tente novamente em instantes.',
 };
 
 export class AppError extends Error {

@@ -140,4 +140,18 @@ describe('useCollection', () => {
     await waitFor(() => expect(toastSuccess).toHaveBeenCalledWith('Alfa saiu da sua coleção.'));
     expect(client.getQueryData<CollectionItem[]>(key)).toEqual([]);
   });
+
+  it('mudar a coleção invalida o DNA olfativo do Perfil', async () => {
+    setStatus.mockResolvedValue(undefined);
+    const { client, wrapper } = setup();
+    const query = renderHook(() => useCollection(), { wrapper });
+    await waitFor(() => expect(query.result.current.isSuccess).toBe(true));
+    client.setQueryData(queryKeys.dna.get('u1'), { perfumeCount: 1 });
+    const { result } = renderHook(() => useSetCollectionStatus(), { wrapper });
+
+    act(() => result.current.mutate({ perfume: B, status: 'owned' }));
+    await waitFor(() =>
+      expect(client.getQueryState(queryKeys.dna.get('u1'))?.isInvalidated).toBe(true)
+    );
+  });
 });

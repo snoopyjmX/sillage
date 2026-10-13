@@ -91,8 +91,46 @@ test.describe('perfil', () => {
       page.getByRole('heading', { name: 'Sua coleção e o memorial ainda estão vazios' })
     ).toBeVisible();
     await expect(page.getByRole('term')).toHaveCount(0);
-    await page.getByRole('link', { name: 'Explorar o catálogo' }).click();
+    // O resumo e o DNA vazio oferecem a mesma saída: a do resumo vem primeiro
+    await page.getByRole('link', { name: 'Explorar o catálogo' }).first().click();
     await expect(page).toHaveURL(/\/catalog$/);
+  });
+
+  test('DNA olfativo: com 3 ou mais perfumes mostra famílias, notas e a base do cálculo', async ({
+    page,
+  }) => {
+    const email = await registerViaUi(page);
+    seedCollection(email, 3, 0);
+    seedDaily(email, [{ slug: 'malbec-signature', daysAgo: 1 }]);
+    await page.goto('/profile');
+    const dna = page.getByRole('region', { name: 'Seu DNA olfativo' });
+    await expect(dna.getByRole('list', { name: 'Famílias olfativas' })).toBeVisible();
+    const notes = dna.getByRole('list', { name: 'Notas que mais aparecem' });
+    await expect(notes).toBeVisible();
+    await expect(dna.getByText(/^Baseado em \d+ perfumes? e 1 dia no memorial\.$/)).toBeVisible();
+    await notes.getByRole('link').first().click();
+    await expect(page).toHaveURL(/\/catalog\?notes=/);
+  });
+
+  test('DNA olfativo: outro usuário sem perfumes vê o progresso e nada do seu DNA (RLS)', async ({
+    page,
+    browser,
+  }) => {
+    const email = await registerViaUi(page);
+    seedCollection(email, 3, 0);
+    await page.goto('/profile');
+    await expect(page.getByRole('list', { name: 'Famílias olfativas' })).toBeVisible();
+
+    const otherContext = await browser.newContext({ baseURL: page.url().split('/profile')[0] });
+    await stubOpenMeteo(otherContext);
+    const other = await otherContext.newPage();
+    await registerViaUi(other, uniqueEmail());
+    await other.goto('/profile');
+    await expect(
+      other.getByRole('heading', { name: 'Faltam 3 perfumes para o seu DNA aparecer' })
+    ).toBeVisible();
+    await expect(other.getByRole('list', { name: 'Famílias olfativas' })).toHaveCount(0);
+    await otherContext.close();
   });
 
   test('um usuário não vê os dados de outro (RLS)', async ({ page, browser }) => {
@@ -165,10 +203,11 @@ for (const theme of ['light', 'dark'] as const) {
       );
       await page.setViewportSize(viewport);
       const email = await registerViaUi(page);
-      seedCollection(email, 1, 1);
+      seedCollection(email, 3, 1);
       await page.goto('/profile');
       await expect(page.locator('html')).toHaveClass(theme === 'dark' ? /dark/ : /^(?!.*dark)/);
-      await expect(stat(page, 'Tenho')).toContainText('1');
+      await expect(stat(page, 'Tenho')).toContainText('3');
+      await expect(page.getByRole('list', { name: 'Famílias olfativas' })).toBeVisible();
       expect(await axeViolations(page)).toEqual([]);
 
       await page.getByRole('button', { name: 'Excluir conta' }).click();

@@ -382,6 +382,7 @@ export type Database = {
       };
     };
     Functions: {
+      get_olfactory_dna: { Args: Record<PropertyKey, never>; Returns: Json };
       get_similar_perfumes: {
         Args: { limit_count?: number; target_id: string };
         Returns: {

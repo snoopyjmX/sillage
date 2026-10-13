@@ -17,6 +17,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 | `20261009120000_add_perfumer_column.sql`        | Coluna opcional `perfumer` em `perfumes` (perfumista; `CHECK` 1–150 caracteres)         |
 | `20261010120000_remove_concentration_other.sql` | Remove `other` de `concentration_type`                                                  |
 | `20261012120000_avatars_storage.sql`            | Bucket público `avatars` e 4 policies de dono (Fase 15D)                                |
+| `20261014120000_olfactory_dna.sql`              | Função `get_olfactory_dna` (DNA olfativo do Perfil, Fase 16A; sem tabela nova)          |
 | `20261011120000_daily_perfume_owned_only.sql`   | `set_daily_perfume` exige o perfume em “Tenho” (`owned`), senão `42501` (RN06)          |
 
 ## Extensões e enums
@@ -123,3 +124,13 @@ A Edge Function `delete-account` (a exclusão em cascata de `auth.users` → `pr
 - `limit_count` fora de 1 a 24 levanta `22023`.
 - Retorno: `id, name, brand_id, slug, image_path` (contrato da interface) mais `brand_name, brand_slug, concentration, gender, release_year, families, common_notes`, para o `PerfumeCard` não precisar de segunda consulta.
 - Testes: `supabase/tests/database/14_similar_perfumes.test.sql`.
+
+## `get_olfactory_dna` (Fase 16A)
+
+`get_olfactory_dna()` devolve `jsonb`. `SECURITY INVOKER`, `STABLE`, `search_path` vazio; `EXECUTE` só para `authenticated` (revogado de `public` e de `anon`: o Supabase concede `execute` a `anon` por padrão em funções novas). Lê `collection_items` e `daily_perfumes` do próprio usuário: a RLS de dono filtra (RN01) e o filtro por `auth.uid()` deixa a intenção explícita. Sem tabela nova.
+
+- **Peso (D1):** cada perfume em "Tenho" vale 1 e cada dia no memorial vale 1 (um perfume vestido em 2 dias e em "Tenho" pesa 3). "Quero" fica fora do espectro.
+- **Notas e famílias:** o perfume pesa em cada nota **distinta** que tem (a mesma nota em duas posições conta uma vez); o peso da família é a soma dos pesos das suas notas.
+- **Retorno:** `families` (`[{ family, weight }]`, do maior ao menor, empate pela ordem do enum), `top_notes` (até 3: `slug, name, family, weight`), `wish_family` (família mais frequente entre os perfumes em "Quero"; nulo sem itens), `wanted_count`, `perfume_count` (perfumes distintos em "Tenho" ∪ memorial) e `memorial_days`.
+- Os limiares do produto (mínimo de 3 perfumes, 3 itens em "Quero") ficam no front, em `constants/dna.ts`.
+- Testes: `supabase/tests/database/17_olfactory_dna.test.sql`.

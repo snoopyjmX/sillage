@@ -29,6 +29,10 @@ export const queryKeys = {
     // Dias no memorial (filha de `overview`: invalidar o resumo atualiza a contagem)
     count: (userId: string) => ['private', userId, 'daily', 'count'] as const,
   },
+  // DNA olfativo do Perfil: privado (depende da coleção e do memorial)
+  dna: {
+    get: (userId: string) => ['private', userId, 'olfactory-dna'] as const,
+  },
   // Card SOTD gerado no aparelho (Blob): privado, nunca persistido
   shareCard: {
     image: (userId: string, parts: readonly (string | number | null)[]) =>

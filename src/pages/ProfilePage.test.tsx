@@ -35,6 +35,8 @@ vi.mock('@/services/dailyService', () => ({
     getOverview: () => Promise.resolve({ today: null, history: [] }),
   },
 }));
+const getDna = vi.fn();
+vi.mock('@/services/dnaService', () => ({ dnaService: { get: () => getDna() } }));
 const toastSuccess = vi.fn();
 const toastError = vi.fn();
 vi.mock('@/lib/toast', () => ({
@@ -44,6 +46,15 @@ vi.mock('@/lib/toast', () => ({
     info: vi.fn(),
   },
 }));
+
+const readyDna = {
+  families: [{ family: 'woody', weight: 6 }],
+  topNotes: [{ slug: 'cedro', name: 'Cedro', family: 'woody', weight: 4 }],
+  wishFamily: null,
+  wantedCount: 0,
+  perfumeCount: 4,
+  memorialDays: 2,
+};
 
 const AUTO_TZ = 'Detectar fuso horário automaticamente';
 
@@ -67,6 +78,46 @@ describe('ProfilePage', () => {
     removeAvatar.mockResolvedValue(undefined);
     listCollection.mockResolvedValue([item('owned'), item('owned'), item('wanted')]);
     countDays.mockResolvedValue(5);
+    getDna.mockResolvedValue(readyDna);
+  });
+
+  describe('DNA olfativo', () => {
+    it('mostra o DNA entre o resumo e os dados', async () => {
+      renderApp('/profile');
+      const heading = await screen.findByRole('heading', { name: 'Seu DNA olfativo' });
+      expect(heading).toBeInTheDocument();
+      const legend = await screen.findByRole('list', { name: 'Famílias olfativas' });
+      expect(within(legend).getByText('Amadeirado 100%')).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: 'Cedro' })).toHaveAttribute(
+        'href',
+        '/catalog?notes=cedro'
+      );
+      const titles = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent);
+      expect(titles.indexOf('Resumo')).toBeLessThan(titles.indexOf('Seu DNA olfativo'));
+      expect(titles.indexOf('Seu DNA olfativo')).toBeLessThan(titles.indexOf('Seus dados'));
+    });
+
+    it('com menos de 3 perfumes mostra o progresso (D3)', async () => {
+      getDna.mockResolvedValue({ ...readyDna, perfumeCount: 1 });
+      renderApp('/profile');
+      expect(
+        await screen.findByRole('heading', { name: 'Faltam 2 perfumes para o seu DNA aparecer' })
+      ).toBeInTheDocument();
+      expect(screen.queryByRole('list', { name: 'Famílias olfativas' })).not.toBeInTheDocument();
+    });
+
+    it('falha do DNA mostra erro com tentar de novo e não esconde o resto', async () => {
+      getDna.mockRejectedValueOnce(new AppError('dna_failed'));
+      renderApp('/profile');
+      expect(
+        await screen.findByText(
+          'Não foi possível carregar o seu DNA olfativo. Tente novamente em instantes.'
+        )
+      ).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Seus dados' })).toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
+      expect(await screen.findByRole('list', { name: 'Famílias olfativas' })).toBeInTheDocument();
+    });
   });
 
   it('NEGADO: visitante em /profile cai na Landing (gate) com ?redirect e nada é consultado', async () => {
