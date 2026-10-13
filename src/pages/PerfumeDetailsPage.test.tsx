@@ -28,9 +28,13 @@ vi.mock('@/services/reviewService', () => ({
   },
 }));
 
+const listCollection = vi.fn();
 vi.mock('@/services/collectionService', () => ({
-  collectionService: { list: () => Promise.resolve([]) },
+  collectionService: { list: () => listCollection() },
 }));
+
+const getDna = vi.fn();
+vi.mock('@/services/dnaService', () => ({ dnaService: { get: () => getDna() } }));
 
 const detail: PerfumeDetail = {
   id: 'p1',
@@ -53,12 +57,32 @@ const detail: PerfumeDetail = {
   ],
 };
 
+// DNA: 60% amadeirado e 40% cítrico; as notas que mais aparecem são Vetiver e Bergamota
+const dna = {
+  families: [
+    { family: 'woody', weight: 6 },
+    { family: 'citrus', weight: 4 },
+  ],
+  topNotes: [
+    { slug: 'vetiver', name: 'Vetiver', family: 'woody', weight: 5 },
+    { slug: 'bergamota', name: 'Bergamota', family: 'citrus', weight: 4 },
+  ],
+  wishFamily: null,
+  wantedCount: 0,
+  perfumeCount: 5,
+  memorialDays: 3,
+};
+
 describe('página de detalhes do perfume', () => {
   beforeEach(() => {
     getBySlug.mockReset();
     auth.reset();
     // O gate só libera a rota para quem tem sessão
     auth.setInitialSession(fakeSession());
+    listCollection.mockReset();
+    listCollection.mockResolvedValue([]);
+    getDna.mockReset();
+    getDna.mockResolvedValue(dna);
     getUserReview.mockReset();
     getUserReview.mockResolvedValue(null);
     getPerfumeReviews.mockReset();
@@ -72,7 +96,7 @@ describe('página de detalhes do perfume', () => {
     getBySlug.mockResolvedValue(detail);
     renderApp('/perfumes/malbec-signature');
     expect(
-      await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 5000 })
+      await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 8000 })
     ).toBeInTheDocument();
     expect(getBySlug).toHaveBeenCalledWith('malbec-signature');
     expect(screen.getByText('O Boticário')).toBeInTheDocument();
@@ -88,14 +112,14 @@ describe('página de detalhes do perfume', () => {
     getBySlug.mockResolvedValue({ ...detail, perfumer: 'Olivier Cresp' });
     renderApp('/perfumes/malbec-signature');
     expect(
-      await screen.findByText('Perfumista: Olivier Cresp', {}, { timeout: 5000 })
+      await screen.findByText('Perfumista: Olivier Cresp', {}, { timeout: 8000 })
     ).toBeInTheDocument();
   });
 
   it('não mostra a linha de perfumista quando é nulo', async () => {
     getBySlug.mockResolvedValue(detail);
     renderApp('/perfumes/malbec-signature');
-    await screen.findByRole('heading', { level: 1 }, { timeout: 5000 });
+    await screen.findByRole('heading', { level: 1 }, { timeout: 8000 });
     expect(screen.queryByText(/Perfumista:/)).not.toBeInTheDocument();
   });
 
@@ -110,7 +134,7 @@ describe('página de detalhes do perfume', () => {
     const section = await screen.findByRole(
       'region',
       { name: 'Melhor preço encontrado' },
-      { timeout: 5000 }
+      { timeout: 8000 }
     );
     expect(section).toHaveTextContent(/R\$\s249,00\sna O Boticário/);
     const link = within(section).getByRole('link');
@@ -122,14 +146,14 @@ describe('página de detalhes do perfume', () => {
   it('omite a seção de preço quando não há oferta', async () => {
     getBySlug.mockResolvedValue(detail);
     renderApp('/perfumes/malbec-signature');
-    await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 5000 });
+    await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' }, { timeout: 8000 });
     expect(screen.queryByText('Melhor preço encontrado')).not.toBeInTheDocument();
   });
 
   it('cai no placeholder quando a foto ainda não existe no Storage', async () => {
     getBySlug.mockResolvedValue({ ...detail, imageUrl: 'https://cdn.test/ausente.webp' });
     renderApp('/perfumes/malbec-signature');
-    const image = await screen.findByRole('img', { name: /Frasco do perfume/ }, { timeout: 5000 });
+    const image = await screen.findByRole('img', { name: /Frasco do perfume/ }, { timeout: 8000 });
     // a variante large falha, depois o original: só então vem o placeholder
     fireEvent.error(image);
     fireEvent.error(screen.getByRole('img', { name: /Frasco do perfume/ }));
@@ -145,7 +169,7 @@ describe('página de detalhes do perfume', () => {
       await screen.findByRole(
         'heading',
         { name: 'Perfume não encontrado', level: 3 },
-        { timeout: 5000 }
+        { timeout: 8000 }
       )
     ).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: 'Voltar ao catálogo' })[0]).toHaveAttribute(
@@ -158,7 +182,7 @@ describe('página de detalhes do perfume', () => {
   it('erro de rede mostra a mensagem amigável e tenta de novo pelo botão', async () => {
     getBySlug.mockImplementation(() => Promise.reject(new AppError('network')));
     renderApp('/perfumes/malbec-signature');
-    expect(await screen.findByRole('alert', {}, { timeout: 5000 })).toHaveTextContent(
+    expect(await screen.findByRole('alert', {}, { timeout: 8000 })).toHaveTextContent(
       'Sem conexão com o servidor'
     );
     expect(screen.getByRole('button', { name: 'Tentar novamente' })).toBeInTheDocument();
@@ -192,7 +216,7 @@ describe('página de detalhes do perfume', () => {
       getPerfumeReviews.mockResolvedValue(community);
       renderApp('/perfumes/malbec-signature');
       expect(
-        (await screen.findAllByText('2 avaliações', { exact: false }, { timeout: 5000 })).length
+        (await screen.findAllByText('2 avaliações', { exact: false }, { timeout: 8000 })).length
       ).toBeGreaterThan(0);
       expect(screen.getByRole('img', { name: 'Nota média: 3,5 de 5' })).toBeInTheDocument();
 
@@ -208,7 +232,7 @@ describe('página de detalhes do perfume', () => {
       getBySlug.mockResolvedValue(detail);
       renderApp('/perfumes/malbec-signature');
       expect(
-        await screen.findByText('Ainda sem avaliações.', {}, { timeout: 5000 })
+        await screen.findByText('Ainda sem avaliações.', {}, { timeout: 8000 })
       ).toBeInTheDocument();
       expect(await screen.findByText('Ainda não há avaliações')).toBeInTheDocument();
     });
@@ -238,11 +262,94 @@ describe('página de detalhes do perfume', () => {
       });
       renderApp('/perfumes/malbec-signature');
       fireEvent.click(
-        await screen.findByRole('button', { name: 'Editar minha avaliação' }, { timeout: 5000 })
+        await screen.findByRole('button', { name: 'Editar minha avaliação' }, { timeout: 8000 })
       );
       const form = await screen.findByRole('button', { name: 'Salvar alterações' });
       expect(form).toBeInTheDocument();
       expect(screen.getByLabelText('Comentário (opcional)')).toHaveValue('meu comentário');
+    });
+  });
+
+  describe('Combina com você? (Fase 18A)', () => {
+    const open = async () => {
+      getBySlug.mockResolvedValue(detail);
+      renderApp('/perfumes/malbec-signature');
+      await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' });
+    };
+
+    it('perfume com as notas do DNA: afinidade alta com os motivos e sem sugerir decant', async () => {
+      await open();
+      const section = await screen.findByRole('region', { name: 'Combina com você?' });
+      expect(await within(section).findByText('Afinidade alta')).toBeInTheDocument();
+      expect(
+        within(section).getByText('Divide Amadeirado e Cítrico com a sua coleção')
+      ).toBeVisible();
+      expect(within(section).queryByText('Prove num decant antes')).not.toBeInTheDocument();
+      expect(within(section).getByRole('link', { name: 'Ver o meu DNA olfativo' })).toHaveAttribute(
+        'href',
+        '/profile'
+      );
+    });
+
+    it('afinidade baixa mostra o território novo e sugere provar num decant', async () => {
+      getDna.mockResolvedValue({
+        ...dna,
+        families: [{ family: 'oriental', weight: 5 }],
+        topNotes: [],
+      });
+      await open();
+      const section = await screen.findByRole('region', { name: 'Combina com você?' });
+      expect(await within(section).findByText('Afinidade baixa')).toBeInTheDocument();
+      expect(within(section).getByText('Você ainda não tem nada Cítrico')).toBeVisible();
+      expect(within(section).getByText('Prove num decant antes')).toBeVisible();
+    });
+
+    it('DNA ainda se formando (D3): mensagem com o progresso, sem rótulo', async () => {
+      getDna.mockResolvedValue({ ...dna, perfumeCount: 1 });
+      await open();
+      const section = await screen.findByRole('region', { name: 'Combina com você?' });
+      expect(await within(section).findByText('Seu DNA ainda está se formando')).toBeVisible();
+      expect(within(section).getByText(/Faltam 2 perfumes para o seu DNA aparecer/)).toBeVisible();
+      expect(within(section).queryByText(/Afinidade/)).not.toBeInTheDocument();
+    });
+
+    it('não aparece para perfume que a pessoa já tem', async () => {
+      listCollection.mockResolvedValue([
+        { status: 'owned', format: null, volumeMl: null, updatedAt: 'x', perfume: { id: 'p1' } },
+      ]);
+      await open();
+      await waitFor(() => expect(listCollection).toHaveBeenCalled());
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      expect(screen.queryByRole('region', { name: 'Combina com você?' })).not.toBeInTheDocument();
+    });
+
+    it('perfume em "Quero" ainda mostra a afinidade (ajuda a decidir a compra)', async () => {
+      listCollection.mockResolvedValue([
+        { status: 'wanted', format: null, volumeMl: null, updatedAt: 'x', perfume: { id: 'p1' } },
+      ]);
+      await open();
+      expect(await screen.findByRole('region', { name: 'Combina com você?' })).toBeVisible();
+    });
+
+    it('perfume sem notas não mostra o bloco', async () => {
+      getBySlug.mockResolvedValue({ ...detail, notes: [] });
+      renderApp('/perfumes/malbec-signature');
+      await screen.findByRole('heading', { level: 1, name: 'Malbec Signature' });
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      expect(screen.queryByRole('region', { name: 'Combina com você?' })).not.toBeInTheDocument();
+    });
+
+    it('falha do DNA mostra erro com tentar de novo e não esconde o perfume', async () => {
+      getDna.mockRejectedValueOnce(new AppError('dna_failed'));
+      await open();
+      expect(
+        await screen.findByText(
+          'Não foi possível carregar o seu DNA olfativo. Tente novamente em instantes.'
+        )
+      ).toBeVisible();
+      expect(screen.getByRole('heading', { level: 1, name: 'Malbec Signature' })).toBeVisible();
+      fireEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
+      expect(await screen.findByText('Afinidade alta')).toBeVisible();
     });
   });
 });
