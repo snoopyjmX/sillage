@@ -9,9 +9,11 @@ import { renderApp } from '@/test/renderApp';
 import type { PerfumeDetail } from '@/types/catalog';
 
 const getBySlug = vi.fn();
+const searchPerfumes = vi.fn();
 vi.mock('@/services/perfumeService', () => ({
   perfumeService: {
     getBySlug: (slug: string) => getBySlug(slug),
+    search: (...args: unknown[]) => searchPerfumes(...args),
     getSimilar: () => Promise.resolve([]),
   },
 }));
@@ -267,6 +269,44 @@ describe('página de detalhes do perfume', () => {
       const form = await screen.findByRole('button', { name: 'Salvar alterações' });
       expect(form).toBeInTheDocument();
       expect(screen.getByLabelText('Comentário (opcional)')).toHaveValue('meu comentário');
+    });
+  });
+
+  describe('Comparar com… (Fase 18B)', () => {
+    const bossa = {
+      id: 'p2',
+      slug: 'bossa',
+      name: 'Bossa',
+      brandName: 'Marca X',
+      brandSlug: 'marca-x',
+      concentration: 'edp',
+      gender: 'unisex',
+      releaseYear: 2020,
+      imagePath: null,
+      families: ['woody'],
+    };
+
+    it('busca no catálogo, não oferece o próprio perfume e leva ao comparador', async () => {
+      searchPerfumes.mockReset();
+      searchPerfumes.mockResolvedValue({
+        items: [{ ...bossa, id: 'p1', slug: 'malbec-signature', name: 'Malbec Signature' }, bossa],
+        total: 2,
+      });
+      getBySlug.mockResolvedValue(detail);
+      const { router } = renderApp('/perfumes/malbec-signature');
+      fireEvent.click(await screen.findByRole('button', { name: 'Comparar com…' }));
+      const dialog = await screen.findByRole('dialog', { name: 'Escolher perfume' });
+      fireEvent.change(within(dialog).getByRole('searchbox'), { target: { value: 'bo' } });
+      const results = await within(dialog).findByRole('list', { name: 'Resultados' });
+      expect(
+        within(results).queryByRole('button', { name: /Malbec Signature/ })
+      ).not.toBeInTheDocument();
+      fireEvent.click(within(results).getByRole('button', { name: /Bossa/ }));
+      await waitFor(() =>
+        expect(router.state.location.pathname + router.state.location.search).toBe(
+          '/compare?a=malbec-signature&b=bossa'
+        )
+      );
     });
   });
 

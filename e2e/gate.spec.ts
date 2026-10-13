@@ -22,6 +22,7 @@ const DENIED = [
   { path: '/perfumes/malbec-signature', label: 'detalhes de perfume existente' },
   { path: '/perfumes/nao-existe-xyz', label: 'detalhes de perfume inexistente' },
   { path: '/collection', label: 'coleção' },
+  { path: '/compare?a=malbec-signature&b=bossa', label: 'comparador' },
   { path: '/profile', label: 'perfil' },
   { path: '/rota-inventada', label: 'rota inventada (404)' },
 ] as const;
@@ -168,7 +169,7 @@ test.describe('SEO da Landing', () => {
     expect(sitemap.match(/<loc>/g)).toHaveLength(1);
     expect(sitemap).not.toContain('/catalog');
     const robots = await (await request.get('/robots.txt')).text();
-    for (const path of ['/catalog', '/perfumes/', '/collection', '/profile']) {
+    for (const path of ['/catalog', '/perfumes/', '/collection', '/compare', '/profile']) {
       expect(robots).toContain(`Disallow: ${path}`);
     }
   });
