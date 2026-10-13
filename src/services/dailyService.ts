@@ -75,6 +75,19 @@ export const dailyService = {
     return data.map(toEntry);
   },
 
+  // Dias de `from` a `to` (datas civis AAAA-MM-DD, as duas pontas incluídas), do mais antigo ao mais
+  // novo. O índice (user_id, date desc) atende; a RLS limita às linhas do dono. Sem conversão de fuso.
+  getRange: async (from: string, to: string): Promise<DailyEntry[]> => {
+    const { data, error } = await supabase
+      .from('daily_perfumes')
+      .select(DAILY_SELECT)
+      .gte('date', from)
+      .lte('date', to)
+      .order('date', { ascending: true });
+    if (error) throw toDailyError(error);
+    return data.map(toEntry);
+  },
+
   // Dias com Perfume do Dia registrado (hoje incluído). A RLS limita a contagem às linhas do dono.
   countDays: async (): Promise<number> => {
     const { count, error } = await supabase

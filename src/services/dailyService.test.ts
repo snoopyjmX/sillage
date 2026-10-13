@@ -5,7 +5,10 @@ const maybeSingle = vi.fn();
 const limit = vi.fn();
 const eq = vi.fn(() => ({ maybeSingle }));
 const lt = vi.fn(() => ({ order: () => ({ limit }) }));
-const select = vi.fn((columns: string) => ({ eq, lt, maybeSingle, columns }));
+const rangeOrder = vi.fn();
+const lte = vi.fn(() => ({ order: rangeOrder }));
+const gte = vi.fn(() => ({ lte }));
+const select = vi.fn((columns: string) => ({ eq, lt, gte, maybeSingle, columns }));
 const from = vi.fn((table: string) => ({ select, table }));
 const rpc = vi.fn();
 
@@ -133,5 +136,29 @@ describe('dailyService', () => {
       rpc.mockResolvedValue({ error: { code: 'XX000', message: 'interno' } });
       await expect(dailyService.setToday('p1')).rejects.toMatchObject({ code: 'daily_failed' });
     });
+  });
+
+  it('getRange: pede as duas pontas incluídas, do mais antigo ao mais novo, e monta o domínio', async () => {
+    rangeOrder.mockResolvedValue({
+      data: [row('2026-10-01', 'Alfa'), row('2026-10-02', 'Beta')],
+      error: null,
+    });
+    const entries = await dailyService.getRange('2026-10-01', '2026-10-31');
+    expect(from).toHaveBeenCalledWith('daily_perfumes');
+    expect(gte).toHaveBeenCalledWith('date', '2026-10-01');
+    expect(lte).toHaveBeenCalledWith('date', '2026-10-31');
+    expect(rangeOrder).toHaveBeenCalledWith('date', { ascending: true });
+    expect(entries.map((entry) => [entry.date, entry.perfume.name])).toEqual([
+      ['2026-10-01', 'Alfa'],
+      ['2026-10-02', 'Beta'],
+    ]);
+  });
+
+  it('getRange: erro do banco vira a mensagem amigável, nunca o texto cru', async () => {
+    rangeOrder.mockResolvedValue({ data: null, error: { code: 'XX000', message: 'boom interno' } });
+    const error = await dailyService.getRange('2026-10-01', '2026-10-31').catch((e: unknown) => e);
+    expect(error).toBeInstanceOf(AppError);
+    expect((error as AppError).code).toBe('daily_failed');
+    expect((error as AppError).message).not.toContain('boom');
   });
 });
