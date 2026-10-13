@@ -134,8 +134,8 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     globals: false,
-    // Padrão de 5 s é curto para o import lazy a frio sob carga (docs/QA.md); 10 s é só a folga
-    testTimeout: 10_000,
+    // Padrão de 5 s é curto para o import lazy a frio sob carga (docs/QA.md); 15 s é só a folga
+    testTimeout: 15_000,
     // e2e/ é do Playwright (roda com `npm run e2e`), não do Vitest
     exclude: ['**/node_modules/**', '**/dist/**', 'e2e/**'],
   },

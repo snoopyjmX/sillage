@@ -67,6 +67,69 @@ test.describe('coleção', () => {
     await expect(page.getByRole('tab', { name: 'Quero (0)' })).toBeVisible();
   });
 
+  test('formato (RN11): o toast de "Tenho" oferece detalhar, o selo persiste e "Quero" limpa', async ({
+    page,
+  }) => {
+    await registerViaUi(page);
+    await page.goto('/catalog');
+    await choose(page, card(page), 'Tenho');
+
+    // D8: marcar "Tenho" não pede nada; o toast só oferece detalhar
+    await page.getByRole('button', { name: 'Detalhar formato' }).click();
+    const dialog = page.getByRole('dialog', { name: 'Detalhar formato' });
+    await dialog.getByRole('radio', { name: 'Decant' }).check({ force: true });
+    await dialog.getByRole('button', { name: '10 ml' }).click();
+    await dialog.getByRole('button', { name: 'Salvar' }).click();
+    await expect(page.getByText(`Formato de ${NAME} atualizado.`)).toBeVisible();
+
+    await page.goto('/collection');
+    await expect(card(page).getByText('Decant 10 ml')).toBeVisible();
+    await page.reload();
+    await expect(card(page).getByText('Decant 10 ml')).toBeVisible();
+
+    // Detalhar de novo pelo botão do card: vem preenchido e dá para remover os detalhes
+    await card(page)
+      .getByRole('button', { name: `Detalhar formato de ${NAME}` })
+      .click();
+    const again = page.getByRole('dialog', { name: 'Detalhar formato' });
+    await expect(again.getByRole('radio', { name: 'Decant' })).toBeChecked();
+    await again.getByRole('button', { name: 'Remover detalhes' }).click();
+    await expect(page.getByText(`Formato de ${NAME} atualizado.`)).toBeVisible();
+    await expect(card(page).getByText(/Decant/)).toHaveCount(0);
+
+    // Detalha de novo e troca para "Quero": o banco limpa formato e volume (RN11)
+    await card(page)
+      .getByRole('button', { name: `Detalhar formato de ${NAME}` })
+      .click();
+    const third = page.getByRole('dialog', { name: 'Detalhar formato' });
+    await third.getByRole('radio', { name: 'Frasco' }).check({ force: true });
+    await third.getByRole('button', { name: '100 ml' }).click();
+    await third.getByRole('button', { name: 'Salvar' }).click();
+    await expect(card(page).getByText('Frasco 100 ml')).toBeVisible();
+    await choose(page, card(page), 'Quero');
+    await page.getByRole('tab', { name: 'Tenho (0)' }).click();
+    await page.getByRole('tab', { name: 'Quero (1)' }).click();
+    await expect(card(page).getByText(/Frasco/)).toHaveCount(0);
+    await choose(page, card(page), 'Tenho');
+    await page.getByRole('tab', { name: 'Tenho (1)' }).click();
+    await expect(card(page)).toBeVisible();
+    await expect(card(page).getByText(/Frasco/)).toHaveCount(0);
+  });
+
+  test('formato (RN11): o diálogo de detalhar passa no axe', async ({ page }) => {
+    await registerViaUi(page);
+    await page.goto('/catalog');
+    await choose(page, card(page), 'Tenho');
+    await page.goto('/collection');
+    await card(page)
+      .getByRole('button', { name: `Detalhar formato de ${NAME}` })
+      .click();
+    const dialog = page.getByRole('dialog', { name: 'Detalhar formato' });
+    await dialog.getByRole('radio', { name: 'Amostra' }).check({ force: true });
+    await expect(dialog).toHaveCSS('opacity', '1');
+    expect(await axeViolations(page)).toEqual([]);
+  });
+
   test('remover o único item mostra "Sua coleção está vazia", com saída para o catálogo', async ({
     page,
   }) => {

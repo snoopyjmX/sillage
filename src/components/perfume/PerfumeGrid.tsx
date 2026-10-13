@@ -11,11 +11,18 @@ interface PerfumeGridProps {
   isRefreshing?: boolean;
   // Ação extra por card (ex.: "Vestir hoje")
   renderAction?: (perfume: PerfumeSummary) => ReactNode;
+  // Selo por card (ex.: o formato na Coleção)
+  renderBadge?: (perfume: PerfumeSummary) => ReactNode;
 }
 
 const BLUR_FADE_STEP = 0.1;
 
-export function PerfumeGrid({ perfumes, isRefreshing = false, renderAction }: PerfumeGridProps) {
+export function PerfumeGrid({
+  perfumes,
+  isRefreshing = false,
+  renderAction,
+  renderBadge,
+}: PerfumeGridProps) {
   return (
     <ul
       aria-label="Perfumes"
@@ -33,7 +40,11 @@ export function PerfumeGrid({ perfumes, isRefreshing = false, renderAction }: Pe
             delay={BLUR_FADE_STEP * Math.min(index, STAGGER_MAX_ITEMS)}
             inView
           >
-            <PerfumeCard perfume={perfume} action={renderAction?.(perfume)} />
+            <PerfumeCard
+              perfume={perfume}
+              action={renderAction?.(perfume)}
+              badge={renderBadge?.(perfume)}
+            />
           </BlurFade>
         </li>
       ))}

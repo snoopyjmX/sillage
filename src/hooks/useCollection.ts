@@ -3,11 +3,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getErrorMessage } from '@/constants/errors';
 import { useAuth } from '@/hooks/useAuth';
+import { openCollectionDetails } from '@/lib/collectionDetailsStore';
 import { queryKeys } from '@/lib/queryKeys';
 import { toast } from '@/lib/toast';
 import { collectionService } from '@/services/collectionService';
 import type { PerfumeSummary } from '@/types/catalog';
-import type { CollectionItem, CollectionStatus } from '@/types/collection';
+import type { CollectionDetails, CollectionItem, CollectionStatus } from '@/types/collection';
 
 export const COLLECTION_STATUS_LABELS: Record<CollectionStatus, string> = {
   owned: 'Tenho',
@@ -45,13 +46,31 @@ interface RemoveVariables {
   perfume: PerfumeSummary;
 }
 
+interface SetDetailsVariables extends CollectionDetails {
+  perfume: PerfumeSummary;
+}
+
+// RN11: "Tenho" preserva o que já foi detalhado; "Quero" limpa formato e volume (como o servidor)
 const withStatus = (
   items: CollectionItem[],
   { perfume, status }: SetStatusVariables
-): CollectionItem[] => [
-  { status, updatedAt: new Date().toISOString(), perfume },
-  ...items.filter((item) => item.perfume.id !== perfume.id),
-];
+): CollectionItem[] => {
+  const previous = items.find((item) => item.perfume.id === perfume.id);
+  const kept: CollectionDetails =
+    status === 'owned' && previous
+      ? { format: previous.format, volumeMl: previous.volumeMl }
+      : { format: null, volumeMl: null };
+  return [
+    { status, ...kept, updatedAt: new Date().toISOString(), perfume },
+    ...items.filter((item) => item.perfume.id !== perfume.id),
+  ];
+};
+
+const withDetails = (
+  items: CollectionItem[],
+  { perfume, format, volumeMl }: SetDetailsVariables
+): CollectionItem[] =>
+  items.map((item) => (item.perfume.id === perfume.id ? { ...item, format, volumeMl } : item));
 
 const without = (items: CollectionItem[], { perfume }: RemoveVariables): CollectionItem[] =>
   items.filter((item) => item.perfume.id !== perfume.id);
@@ -60,6 +79,8 @@ const useOptimisticCollection = <V extends { perfume: PerfumeSummary }>(options:
   mutationFn: (variables: V) => Promise<void>;
   apply: (items: CollectionItem[], variables: V) => CollectionItem[];
   successMessage: (variables: V) => string;
+  // Ação do toast de sucesso (ex.: "Detalhar formato"); sem ela o toast é só a mensagem
+  successAction?: (variables: V) => { label: string; onClick: () => void } | undefined;
 }) => {
   const queryClient = useQueryClient();
   const { user } = useAuth();
@@ -81,7 +102,9 @@ const useOptimisticCollection = <V extends { perfume: PerfumeSummary }>(options:
       toast.error(getErrorMessage(error));
     },
     onSuccess: (_data, variables) => {
-      toast.success(options.successMessage(variables));
+      const action = options.successAction?.(variables);
+      if (action) toast.success(options.successMessage(variables), { action });
+      else toast.success(options.successMessage(variables));
     },
     // O servidor é a fonte de verdade: confirma (ou corrige) o que o cache assumiu
     onSettled: () =>
@@ -101,6 +124,20 @@ export const useSetCollectionStatus = () =>
       status === 'owned'
         ? `${perfume.name} foi para “Tenho”.`
         : `${perfume.name} foi para “Quero”.`,
+    // D8: o formato é opcional; o toast só oferece detalhar, marcar "Tenho" continua a um toque
+    successAction: ({ perfume, status }) =>
+      status === 'owned'
+        ? { label: 'Detalhar formato', onClick: () => openCollectionDetails(perfume) }
+        : undefined,
+  });
+
+// Formato e volume de um perfume em "Tenho" (RN11), com o mesmo padrão otimista
+export const useSetCollectionDetails = () =>
+  useOptimisticCollection<SetDetailsVariables>({
+    mutationFn: ({ perfume, format, volumeMl }) =>
+      collectionService.setDetails(perfume.id, { format, volumeMl }),
+    apply: withDetails,
+    successMessage: ({ perfume }) => `Formato de ${perfume.name} atualizado.`,
   });
 
 export const useRemoveFromCollection = () =>

@@ -3,7 +3,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(27);
+select plan(31);
 
 -- Helpers: trocam o papel do Postgres e as claims do JWT (nunca testamos como superusuário)
 create function pg_temp.act_as(
@@ -87,6 +87,16 @@ select throws_ok(
   $t$insert into public.notes (slug, name, family, description) values ('t-vazia', 'T', 'citrus', '')$t$,
   '23514', null, 'notes.description rejeita texto vazio'
 );
+
+-- Fase 17A (RN11): formato e volume da coleção
+select is(
+  (select array_agg(e.enumlabel::text order by e.enumsortorder) from pg_enum e join pg_type t on t.oid = e.enumtypid where t.typname = 'collection_format'),
+  array['bottle', 'decant', 'sample'],
+  'collection_format aceita só bottle, decant e sample'
+);
+select col_type_is('public', 'collection_items', 'format', 'public', 'collection_format', 'collection_items.format é collection_format');
+select col_is_null('public', 'collection_items', 'format', 'collection_items.format é opcional');
+select col_type_is('public', 'collection_items', 'volume_ml', 'numeric(5,1)', 'collection_items.volume_ml é numeric(5,1)');
 
 select * from finish();
 rollback;

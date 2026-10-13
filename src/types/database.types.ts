@@ -59,27 +59,33 @@ export type Database = {
       collection_items: {
         Row: {
           created_at: string;
+          format: Database['public']['Enums']['collection_format'] | null;
           id: string;
           perfume_id: string;
           status: Database['public']['Enums']['collection_status'];
           updated_at: string;
           user_id: string;
+          volume_ml: number | null;
         };
         Insert: {
           created_at?: string;
+          format?: Database['public']['Enums']['collection_format'] | null;
           id?: string;
           perfume_id: string;
           status: Database['public']['Enums']['collection_status'];
           updated_at?: string;
           user_id: string;
+          volume_ml?: number | null;
         };
         Update: {
           created_at?: string;
+          format?: Database['public']['Enums']['collection_format'] | null;
           id?: string;
           perfume_id?: string;
           status?: Database['public']['Enums']['collection_status'];
           updated_at?: string;
           user_id?: string;
+          volume_ml?: number | null;
         };
         Relationships: [
           {
@@ -448,6 +454,7 @@ export type Database = {
       };
     };
     Enums: {
+      collection_format: 'bottle' | 'decant' | 'sample';
       collection_status: 'owned' | 'wanted';
       concentration_type: 'parfum' | 'extrait' | 'edp' | 'edt' | 'edc';
       note_position: 'top' | 'heart' | 'base';
@@ -577,6 +584,7 @@ export const Constants = {
   },
   public: {
     Enums: {
+      collection_format: ['bottle', 'decant', 'sample'],
       collection_status: ['owned', 'wanted'],
       concentration_type: ['parfum', 'extrait', 'edp', 'edt', 'edc'],
       note_position: ['top', 'heart', 'base'],

@@ -7,13 +7,21 @@ import { queryKeys } from '@/lib/queryKeys';
 import { fakeSession } from '@/test/authMock';
 import type { PerfumeSummary } from '@/types/catalog';
 import type { CollectionItem } from '@/types/collection';
-import { useCollection, useRemoveFromCollection, useSetCollectionStatus } from './useCollection';
+import { closeCollectionDetails, getCollectionDetailsTarget } from '@/lib/collectionDetailsStore';
+import {
+  useCollection,
+  useRemoveFromCollection,
+  useSetCollectionDetails,
+  useSetCollectionStatus,
+} from './useCollection';
 
 const list = vi.fn();
 const setStatus = vi.fn();
 const remove = vi.fn();
+const setDetails = vi.fn();
 vi.mock('@/services/collectionService', () => ({
   collectionService: {
+    setDetails: (id: string, details: unknown) => setDetails(id, details),
     list: () => list(),
     setStatus: (id: string, status: string) => setStatus(id, status),
     remove: (id: string) => remove(id),
@@ -21,8 +29,15 @@ vi.mock('@/services/collectionService', () => ({
 }));
 const toastError = vi.fn();
 const toastSuccess = vi.fn();
+const toastAction = vi.fn();
 vi.mock('@/lib/toast', () => ({
-  toast: { error: (m: string) => toastError(m), success: (m: string) => toastSuccess(m) },
+  toast: {
+    error: (m: string) => toastError(m),
+    success: (m: string, options?: { action?: unknown }) => {
+      toastSuccess(m);
+      if (options?.action) toastAction(options.action);
+    },
+  },
 }));
 
 const perfume = (id: string, name: string): PerfumeSummary => ({
@@ -40,7 +55,9 @@ const perfume = (id: string, name: string): PerfumeSummary => ({
 
 const A = perfume('a', 'Alfa');
 const B = perfume('b', 'Beta');
-const initial: CollectionItem[] = [{ status: 'wanted', updatedAt: '2026-01-01', perfume: A }];
+const initial: CollectionItem[] = [
+  { status: 'wanted', format: null, volumeMl: null, updatedAt: '2026-01-01', perfume: A },
+];
 
 const session = fakeSession();
 const key = queryKeys.collection.list('u1');
@@ -153,5 +170,113 @@ describe('useCollection', () => {
     await waitFor(() =>
       expect(client.getQueryState(queryKeys.dna.get('u1'))?.isInvalidated).toBe(true)
     );
+  });
+
+  describe('formatos (RN11, Fase 17A)', () => {
+    const owned = (format: 'bottle' | 'decant' | 'sample' | null, volumeMl: number | null) => [
+      { status: 'owned' as const, format, volumeMl, updatedAt: '2026-01-01', perfume: A },
+    ];
+
+    beforeEach(() => closeCollectionDetails());
+
+    it('detalhar grava formato e volume no cache e chama o serviço', async () => {
+      // A segunda leitura (depois da mutação) já traz o que o servidor gravou
+      list.mockResolvedValueOnce(owned(null, null)).mockResolvedValue(owned('bottle', 100));
+      setDetails.mockResolvedValue(undefined);
+      const { client, wrapper } = setup();
+      const query = renderHook(() => useCollection(), { wrapper });
+      await waitFor(() => expect(query.result.current.isSuccess).toBe(true));
+      const { result } = renderHook(() => useSetCollectionDetails(), { wrapper });
+
+      act(() => result.current.mutate({ perfume: A, format: 'bottle', volumeMl: 100 }));
+      await waitFor(() =>
+        expect(client.getQueryData<CollectionItem[]>(key)?.[0]).toMatchObject({
+          format: 'bottle',
+          volumeMl: 100,
+        })
+      );
+      await waitFor(() =>
+        expect(setDetails).toHaveBeenCalledWith('a', { format: 'bottle', volumeMl: 100 })
+      );
+      await waitFor(() => expect(toastSuccess).toHaveBeenCalledWith('Formato de Alfa atualizado.'));
+    });
+
+    it('desfaz o detalhe e avisa quando a API falha', async () => {
+      list.mockResolvedValue(owned(null, null));
+      setDetails.mockRejectedValue(new Error('x'));
+      const { client, wrapper } = setup();
+      const query = renderHook(() => useCollection(), { wrapper });
+      await waitFor(() => expect(query.result.current.isSuccess).toBe(true));
+      const { result } = renderHook(() => useSetCollectionDetails(), { wrapper });
+
+      act(() => result.current.mutate({ perfume: A, format: 'decant', volumeMl: 5 }));
+      await waitFor(() => expect(toastError).toHaveBeenCalled());
+      expect(client.getQueryData<CollectionItem[]>(key)?.[0]).toMatchObject({
+        format: null,
+        volumeMl: null,
+      });
+    });
+
+    it('owned -> wanted limpa formato e volume no cache (como o servidor)', async () => {
+      list
+        .mockResolvedValueOnce(owned('decant', 10))
+        .mockResolvedValue([
+          { status: 'wanted', format: null, volumeMl: null, updatedAt: '2026-01-02', perfume: A },
+        ]);
+      setStatus.mockResolvedValue(undefined);
+      const { client, wrapper } = setup();
+      const query = renderHook(() => useCollection(), { wrapper });
+      await waitFor(() => expect(query.result.current.isSuccess).toBe(true));
+      const { result } = renderHook(() => useSetCollectionStatus(), { wrapper });
+
+      act(() => result.current.mutate({ perfume: A, status: 'wanted' }));
+      await waitFor(() =>
+        expect(client.getQueryData<CollectionItem[]>(key)?.[0]).toMatchObject({
+          status: 'wanted',
+          format: null,
+          volumeMl: null,
+        })
+      );
+    });
+
+    it('marcar Tenho de novo preserva o que já foi detalhado', async () => {
+      list.mockResolvedValue(owned('decant', 10));
+      setStatus.mockResolvedValue(undefined);
+      const { client, wrapper } = setup();
+      const query = renderHook(() => useCollection(), { wrapper });
+      await waitFor(() => expect(query.result.current.isSuccess).toBe(true));
+      const { result } = renderHook(() => useSetCollectionStatus(), { wrapper });
+
+      act(() => result.current.mutate({ perfume: A, status: 'owned' }));
+      await waitFor(() => expect(toastSuccess).toHaveBeenCalled());
+      expect(client.getQueryData<CollectionItem[]>(key)?.[0]).toMatchObject({
+        format: 'decant',
+        volumeMl: 10,
+      });
+    });
+
+    it('o toast de "Tenho" oferece "Detalhar formato" e a ação abre o diálogo (D8)', async () => {
+      setStatus.mockResolvedValue(undefined);
+      const { wrapper } = setup();
+      const { result } = renderHook(() => useSetCollectionStatus(), { wrapper });
+
+      act(() => result.current.mutate({ perfume: B, status: 'owned' }));
+      await waitFor(() => expect(toastAction).toHaveBeenCalledTimes(1));
+      const action = toastAction.mock.calls[0]?.[0] as { label: string; onClick: () => void };
+      expect(action.label).toBe('Detalhar formato');
+      expect(getCollectionDetailsTarget()).toBeNull();
+      action.onClick();
+      expect(getCollectionDetailsTarget()).toBe(B);
+    });
+
+    it('o toast de "Quero" não oferece detalhar', async () => {
+      setStatus.mockResolvedValue(undefined);
+      const { wrapper } = setup();
+      const { result } = renderHook(() => useSetCollectionStatus(), { wrapper });
+
+      act(() => result.current.mutate({ perfume: B, status: 'wanted' }));
+      await waitFor(() => expect(toastSuccess).toHaveBeenCalled());
+      expect(toastAction).not.toHaveBeenCalled();
+    });
   });
 });

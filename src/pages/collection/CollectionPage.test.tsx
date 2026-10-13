@@ -2,6 +2,7 @@ import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AppError } from '@/constants/errors';
 import { fakeSession } from '@/test/authMock';
+import { closeCollectionDetails } from '@/lib/collectionDetailsStore';
 import { renderApp } from '@/test/renderApp';
 import type { PerfumeSummary } from '@/types/catalog';
 import type { CollectionItem } from '@/types/collection';
@@ -9,8 +10,12 @@ import type { CollectionItem } from '@/types/collection';
 const auth = await vi.hoisted(async () => (await import('@/test/authMock')).createAuthMock());
 vi.mock('@/services/authService', () => ({ authService: auth.service }));
 const list = vi.fn();
+const setDetails = vi.fn();
 vi.mock('@/services/collectionService', () => ({
-  collectionService: { list: () => list() },
+  collectionService: {
+    list: () => list(),
+    setDetails: (id: string, details: unknown) => setDetails(id, details),
+  },
 }));
 
 const perfume = (id: string, name: string): PerfumeSummary => ({
@@ -28,6 +33,8 @@ const perfume = (id: string, name: string): PerfumeSummary => ({
 
 const entry = (status: CollectionItem['status'], id: string, name: string): CollectionItem => ({
   status,
+  format: null,
+  volumeMl: null,
   updatedAt: '2026-10-05T12:00:00Z',
   perfume: perfume(id, name),
 });
@@ -36,6 +43,8 @@ describe('CollectionPage', () => {
   beforeEach(() => {
     auth.reset();
     list.mockReset();
+    setDetails.mockReset();
+    closeCollectionDetails();
     auth.setInitialSession(fakeSession());
   });
 
@@ -100,5 +109,53 @@ describe('CollectionPage', () => {
     expect(router.state.location.pathname).toBe('/');
     expect(router.state.location.search).toBe('?redirect=%2Fcollection');
     expect(list).not.toHaveBeenCalled();
+  });
+
+  describe('formatos (RN11, Fase 17A)', () => {
+    const withFormat = (
+      id: string,
+      name: string,
+      format: CollectionItem['format'],
+      volumeMl: number | null
+    ): CollectionItem => ({ ...entry('owned', id, name), format, volumeMl });
+
+    it('mostra o selo do formato em "Tenho" e nada quando não foi informado', async () => {
+      list.mockResolvedValue([
+        withFormat('a', 'Alfa', 'bottle', 100),
+        withFormat('b', 'Beta', 'decant', 2.5),
+        withFormat('c', 'Gama', null, null),
+      ]);
+      renderApp('/collection');
+      expect(await screen.findByText('Frasco 100 ml')).toBeInTheDocument();
+      expect(screen.getByText('Decant 2,5 ml')).toBeInTheDocument();
+      expect(document.querySelectorAll('[data-slot="format-badge"]')).toHaveLength(2);
+    });
+
+    it('"Quero" não tem selo nem botão Detalhar', async () => {
+      list.mockResolvedValue([entry('wanted', 'b', 'Beta')]);
+      renderApp('/collection');
+      fireEvent.mouseDown(await screen.findByRole('tab', { name: 'Quero (1)' }));
+      await screen.findByRole('heading', { level: 2, name: 'Beta' });
+      expect(screen.queryByRole('button', { name: /Detalhar/ })).not.toBeInTheDocument();
+      expect(document.querySelector('[data-slot="format-badge"]')).toBeNull();
+    });
+
+    it('"Detalhar" abre o diálogo do perfume e salva formato e volume', async () => {
+      list.mockResolvedValue([withFormat('a', 'Alfa', null, null)]);
+      setDetails.mockResolvedValue(undefined);
+      renderApp('/collection');
+      fireEvent.click(await screen.findByRole('button', { name: 'Detalhar formato de Alfa' }));
+      const dialog = await screen.findByRole('dialog', { name: 'Detalhar formato' });
+      expect(within(dialog).getByText(/Alfa, O Boticário/)).toBeInTheDocument();
+      fireEvent.click(within(dialog).getByRole('radio', { name: 'Decant' }));
+      fireEvent.click(within(dialog).getByRole('button', { name: '10 ml' }));
+      fireEvent.click(within(dialog).getByRole('button', { name: 'Salvar' }));
+      await waitFor(() =>
+        expect(setDetails).toHaveBeenCalledWith('a', { format: 'decant', volumeMl: 10 })
+      );
+      await waitFor(() =>
+        expect(screen.queryByRole('dialog', { name: 'Detalhar formato' })).not.toBeInTheDocument()
+      );
+    });
   });
 });
