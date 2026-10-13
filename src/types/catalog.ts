@@ -49,6 +49,7 @@ export interface PyramidNote {
   name: string;
   family: OlfactiveFamily;
   position: NotePosition;
+  description: string | null;
 }
 
 export interface PerfumeDetail {

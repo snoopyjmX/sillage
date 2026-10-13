@@ -48,8 +48,8 @@ const detail: PerfumeDetail = {
   storeUrl: null,
   perfumer: null,
   notes: [
-    { slug: 'bergamota', name: 'Bergamota', family: 'citrus', position: 'top' },
-    { slug: 'vetiver', name: 'Vetiver', family: 'woody', position: 'base' },
+    { slug: 'bergamota', name: 'Bergamota', family: 'citrus', position: 'top', description: null },
+    { slug: 'vetiver', name: 'Vetiver', family: 'woody', position: 'base', description: null },
   ],
 };
 

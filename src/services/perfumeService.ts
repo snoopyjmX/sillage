@@ -84,6 +84,7 @@ export const perfumeService = {
           name: note.name,
           family: note.family,
           position,
+          description: note.description,
         }))
         .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR')),
     };

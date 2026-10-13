@@ -16,7 +16,7 @@ const THEME_KEY = 'sillage-theme';
 const layer = (page: Page, name: string) =>
   page.getByRole('button', { name: new RegExp(`^${name}`) });
 const note = (page: Page, name: string) =>
-  page.getByRole('link', { name: new RegExp(`^${name}:`) });
+  page.getByRole('button', { name: new RegExp(`^${name}:`) });
 
 test.describe('detalhes do perfume', () => {
   test('slug existente mostra hero, marca, nome, concentração e a pirâmide', async ({ page }) => {
@@ -36,7 +36,10 @@ test.describe('detalhes do perfume', () => {
     isMobile,
   }) => {
     await page.goto(URL);
-    const buttons = page.getByRole('group', { name: 'Pirâmide olfativa' }).getByRole('button');
+    // os chips das notas também são botões: as camadas são as que controlam um painel
+    const buttons = page
+      .getByRole('group', { name: 'Pirâmide olfativa' })
+      .locator('button[aria-controls]');
     await expect(buttons).toHaveCount(3);
     await expect(buttons.nth(0)).toContainText('Topo');
     await expect(buttons.nth(1)).toContainText('Coração');
@@ -86,12 +89,40 @@ test.describe('detalhes do perfume', () => {
     await expect(note(page, 'Bergamota')).toBeVisible();
   });
 
-  test('tocar numa nota leva ao catálogo filtrado por nota e posição', async ({ page }) => {
+  test('tocar numa nota abre o painel, e o link do painel leva ao catálogo filtrado', async ({
+    page,
+  }) => {
     await page.goto(URL);
     await note(page, 'Bergamota').click();
+    const dialog = page.getByRole('dialog', { name: 'Bergamota' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByText('Topo · 0–30 min')).toBeVisible();
+    await expect(dialog.getByText('Cítrico', { exact: true })).toBeVisible();
+    await dialog.getByRole('link', { name: 'Ver perfumes com Bergamota no Topo' }).click();
     await expect(page).toHaveURL(/\/catalog\?notes=bergamota&pos=top$/);
     await expect(cards(page).first()).toBeVisible();
     await expect(page.getByRole('heading', { level: 2, name: 'Malbec Signature' })).toBeVisible();
+  });
+
+  test('mostra a forma, o acorde dominante e o tempo de cada camada', async ({ page }) => {
+    await page.goto(URL);
+    const pyramid = page.getByRole('group', { name: 'Pirâmide olfativa' });
+    await expect(pyramid.locator('[data-slot="pyramid-shape"]')).toBeVisible();
+    await expect(pyramid.getByText('Acorde dominante:')).toBeVisible();
+    await expect(layer(page, 'Topo')).toContainText('0–30 min');
+    await expect(layer(page, 'Coração')).toContainText('30 min–4 h');
+    await expect(layer(page, 'Fundo')).toContainText('4 h ou mais');
+  });
+
+  test('teclado: Esc fecha o painel da nota e devolve o foco ao chip', async ({ page }) => {
+    await page.goto(URL);
+    const chip = note(page, 'Bergamota');
+    await chip.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('dialog', { name: 'Bergamota' })).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog')).toBeHidden();
+    await expect(chip).toBeFocused();
   });
 
   test('visitante não chega aos detalhes: cai na Landing e o login devolve a eles', async ({
@@ -174,6 +205,13 @@ for (const theme of ['light', 'dark'] as const) {
       expect(await axeViolations(page)).toEqual([]);
     });
 
+    test('detalhes com o painel de uma nota aberto', async ({ page }) => {
+      await page.goto(URL);
+      await note(page, 'Bergamota').click();
+      await expect(page.getByRole('dialog', { name: 'Bergamota' })).toBeVisible();
+      expect(await axeViolations(page)).toEqual([]);
+    });
+
     test('detalhes com a pirâmide fechada', async ({ page }) => {
       await page.goto(URL);
       await layer(page, 'Topo').click();
@@ -195,6 +233,14 @@ test('axe no desktop (1280 px) com a pirâmide inteira aberta', async ({ page })
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto(URL);
   await expect(layer(page, 'Fundo')).toHaveAttribute('aria-expanded', 'true');
+  expect(await axeViolations(page)).toEqual([]);
+});
+
+test('axe no desktop (1280 px) com o painel de uma nota aberto', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto(URL);
+  await note(page, 'Vetiver').click();
+  await expect(page.getByRole('dialog', { name: 'Vetiver' })).toBeVisible();
   expect(await axeViolations(page)).toEqual([]);
 });
 

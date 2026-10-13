@@ -7,6 +7,7 @@ const note = (slug: string, position: PyramidNote['position']): PyramidNote => (
   name: slug,
   family: 'woody',
   position,
+  description: null,
 });
 
 describe('groupNotesByPosition', () => {

@@ -589,9 +589,9 @@ A serifada só é usada a partir de 20 px, porque em tamanhos menores perde legi
 
 É o componente mais importante do produto e tem especificação própria.
 
-- **Estrutura:** três camadas (Topo, Coração, Fundo), em largura crescente para sugerir a pirâmide, cada uma com seus chips de notas.
+- **Estrutura:** forma de pirâmide (SVG de três faixas, decorativo), resumo do acorde dominante com a barra de famílias ("Amadeirado 60%") e três camadas (Topo, Coração, Fundo). Cada camada mostra o tempo (0–30 min, 30 min–4 h, 4 h ou mais), a frase do que ela faz, a barra de famílias da camada e os chips de notas.
 
-- **Interação:** cada camada é um botão com `aria-expanded` que abre e fecha; no mobile só o Topo começa aberto, no desktop todas. Tocar numa nota leva ao catálogo filtrado (`/catalog?notes=<slug>&pos=<top|heart|base>`), e uma nota já filtrada aparece destacada.
+- **Interação:** cada camada é um botão com `aria-expanded` que abre e fecha; no mobile só o Topo começa aberto, no desktop todas. Tocar numa nota abre o painel dela (Dialog no desktop, Drawer no celular) com a família, a camada, a descrição (`notes.description`; sem ela, "Descrição em breve.") e o link "Ver perfumes com {nota} no {camada}", que leva ao catálogo filtrado (`/catalog?notes=<slug>&pos=<top|heart|base>`). Esc fecha e devolve o foco ao chip.
 
 - **Movimento:** altura animada com spring curta, chips entram com _stagger_ de até 40 ms, nada bloqueia o toque durante a animação.
 

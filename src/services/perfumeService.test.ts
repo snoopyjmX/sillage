@@ -31,8 +31,19 @@ const row = {
   perfumer: 'Olivier Cresp',
   brand: { name: 'O Boticário', slug: 'o-boticario' },
   perfume_notes: [
-    { position: 'base', note: { slug: 'vetiver', name: 'Vetiver', family: 'woody' } },
-    { position: 'top', note: { slug: 'bergamota', name: 'Bergamota', family: 'citrus' } },
+    {
+      position: 'base',
+      note: {
+        slug: 'vetiver',
+        name: 'Vetiver',
+        family: 'woody',
+        description: 'Raiz aromática.',
+      },
+    },
+    {
+      position: 'top',
+      note: { slug: 'bergamota', name: 'Bergamota', family: 'citrus', description: null },
+    },
   ],
 };
 
@@ -64,6 +75,12 @@ describe('perfumeService.getBySlug', () => {
       'Bergamota:top',
       'Vetiver:base',
     ]);
+  });
+
+  it('leva a descrição da nota (ou null) para a pirâmide', async () => {
+    maybeSingle.mockResolvedValue({ data: row, error: null });
+    const detail = await perfumeService.getBySlug('malbec-signature');
+    expect(detail.notes.map((n) => n.description)).toEqual([null, 'Raiz aromática.']);
   });
 
   it('com image_path devolve a URL pública do bucket', async () => {

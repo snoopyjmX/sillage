@@ -140,6 +140,7 @@ export type Database = {
       notes: {
         Row: {
           created_at: string;
+          description: string | null;
           family: Database['public']['Enums']['olfactive_family'];
           id: string;
           name: string;
@@ -148,6 +149,7 @@ export type Database = {
         };
         Insert: {
           created_at?: string;
+          description?: string | null;
           family: Database['public']['Enums']['olfactive_family'];
           id?: string;
           name: string;
@@ -156,6 +158,7 @@ export type Database = {
         };
         Update: {
           created_at?: string;
+          description?: string | null;
           family?: Database['public']['Enums']['olfactive_family'];
           id?: string;
           name?: string;
