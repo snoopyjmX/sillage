@@ -174,7 +174,7 @@ Constantes em `src/lib/motion.ts` (componentes importam, não repetem números).
 | Componente                                        | Pasta              | Notas                                                                                                                                                                                                                                             |
 | ------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `HomePage`                                        | `pages`            | Home do logado na rota `/` (o visitante vê a `LandingPage`). Versão da Fase 8; a Home atual (clima, sugestão, Perfume de hoje, Memorial e descobertas) está na seção "Home (Fase 14D)". `AsyncBoundary` com `DailySkeleton`, vazio, erro, offline |
-| `DailyHighlight`, `DailyHistory`, `DailySkeleton` | `components/daily` | Destaque maior (placeholder pela primeira família, chips, link para os detalhes) em `BlurFade`; histórico em grid compacto (até 12 dias anteriores); skeleton com as mesmas dimensões                                                             |
+| `DailyHighlight`, `DailyHistory`, `DailySkeleton` | `components/daily` | Destaque maior (placeholder pela primeira família, chips, link para os detalhes e o botão `outline` com `Share2` "Compartilhar dia") em `BlurFade`; histórico em grid compacto (até 12 dias anteriores); skeleton com as mesmas dimensões         |
 
 ## Componentes de tela (Fase 9)
 
@@ -226,6 +226,12 @@ Momento de assinatura da tela: a digitação do título ("Descubra a fragrância
 | `DailySuggestionCard`                                | `components/home`    | Imagem (variante `medium`, fundo transparente sobre `accent`), concentração, marca, nome, descrição, notas por posição (chips), Fixação (`Rating` 1 a 5), Rastro e Clima adequado (`Meter`), "Vestir hoje" e "Ver detalhes". Sem dados inventados (nada de curadoria nº, volume ou evolução). Skeleton com as mesmas dimensões                                                                                                                             |
 | `PerfumeImage`                                       | `components/perfume` | Cadeia variante → original → placeholder (`onError`), com largura e altura declaradas; com `sizes` a primeira tentativa usa `srcset` (320w/640w/1280w)                                                                                                                                                                                                                                                                                                     |
 | `RecentPerfumes`, `SimilarToToday`, `FamilyExplorer` | `components/home`    | Descobertas. Todas com `AsyncBoundary` (carregando, vazio, erro, offline); "Explore por família" são links para `/catalog?families=...` com alvo de 44 px                                                                                                                                                                                                                                                                                                  |
+
+### Card SOTD (Fase 16B)
+
+`ShareCardDialog` (`components/daily`) sobre o `Dialog` de `components/ui`: prévia 9:16 (a própria imagem gerada, `aspect-[9/16]`), a caixa "Mostrar a cidade" (alvo de 44 px, `accent-primary`) e as ações "Compartilhar" (`Share2`, só com `navigator.canShare({ files })`) e "Baixar imagem" (`Download`, sempre). Estados via `AsyncBoundary`: gerando (skeleton com a mesma proporção da prévia), erro com tentar de novo e offline. Sem momento de assinatura novo: o diálogo é calmo.
+
+A imagem (`lib/sotdCanvas.ts`) usa só tokens, lidos com `getComputedStyle` (`--surface`, `--border`, `--stage*`, `--foreground`, `--text-*`, `--primary` e `--chip-<família>` no placeholder), Fraunces no nome e no wordmark e Inter no resto; sem emojis. Os ícones do selo de clima são os caminhos do Lucide (`constants/share.ts`), porque o canvas não renderiza componentes React.
 
 ## Perfil (Fase 14E)
 

@@ -13,10 +13,11 @@ export const usePerfumes = (filters: CatalogFilters) =>
   });
 
 // Slug inexistente não adianta tentar de novo; falha de rede tenta uma vez (padrão do client)
-export const usePerfumeDetail = (slug: string) =>
+export const usePerfumeDetail = (slug: string, enabled = true) =>
   useQuery({
     queryKey: queryKeys.perfumes.detail(slug),
     queryFn: () => perfumeService.getBySlug(slug),
+    enabled,
     retry: (failureCount, error) =>
       !(error instanceof AppError && error.code === 'not_found') && failureCount < 1,
   });
