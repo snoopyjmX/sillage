@@ -5,6 +5,7 @@ import { ReviewActions } from '@/components/reviews/ReviewActions';
 import { ReviewSummaryLine } from '@/components/reviews/ReviewSummaryLine';
 import { ReviewsSection } from '@/components/reviews/ReviewsSection';
 import { BestPrice } from '@/components/perfume/BestPrice';
+import { PerfumeAffinity } from '@/components/perfume/PerfumeAffinity';
 import { SimilarPerfumes } from '@/components/perfume/SimilarPerfumes';
 import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
 import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
@@ -166,6 +167,8 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
           </p>
         )}
       </section>
+
+      <PerfumeAffinity perfumeId={perfume.id} notes={perfume.notes} />
 
       <ReviewsSection perfumeId={perfume.id} />
 
