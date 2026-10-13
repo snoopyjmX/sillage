@@ -165,9 +165,9 @@ test.describe('detalhes do perfume', () => {
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
-  test('perfume sem oferta (Black, da Phytoderm) omite a seção de preço', async ({ page }) => {
-    await page.goto('/perfumes/black');
-    await expect(page.getByRole('heading', { level: 1, name: 'Black' })).toBeVisible();
+  test('perfume sem oferta (Here I Am, da Phytoderm) omite a seção de preço', async ({ page }) => {
+    await page.goto('/perfumes/here-i-am');
+    await expect(page.getByRole('heading', { level: 1, name: 'Here I Am' })).toBeVisible();
     await expect(page.getByText('Melhor preço encontrado')).toHaveCount(0);
   });
 
