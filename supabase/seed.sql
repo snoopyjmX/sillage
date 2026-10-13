@@ -5,7 +5,7 @@
 -- scripts/process-images.mjs gera. Até as fotos serem enviadas, a página cai no placeholder.
 -- Preço e loja (lowest_price_cents, store_name) são dados de TESTE, não preços verificados.
 -- store_url é uma URL de busca na loja (evita 404 de página de produto que muda).
--- "Black" (Phytoderm) fica sem oferta de propósito, para exercitar o estado sem preço.
+-- "Here I Am" (Phytoderm) fica sem oferta de propósito, para exercitar o estado sem preço.
 
 -- Marcas
 insert into public.brands (slug, name, description, website_url) values
@@ -125,7 +125,7 @@ from (values
   ('glamour', 'phytoderm', 'Glamour', null::smallint, 'feminine', 'edc',
    'Floral frutado, com tangerina, rosa e caramelo.',
    'phytoderm/glamour.8698aa89.webp', 8900, 'Mercado Livre', 'https://lista.mercadolivre.com.br/glamour'),
-  ('black', 'phytoderm', 'Black', null::smallint, 'masculine', 'edc',
+  ('here-i-am', 'phytoderm', 'Here I Am', null::smallint, 'masculine', 'edc',
    'Amadeirado especiado, com especiarias frias e âmbar.',
    'phytoderm/black.16919889.webp', null::integer, null::text, null::text)
 ) as v (slug, brand_slug, name, release_year, gender, concentration, description, image_path, lowest_price_cents, store_name, store_url)
@@ -256,12 +256,12 @@ from (values
   ('glamour', 'jasmim', 'heart'),
   ('glamour', 'caramelo', 'base'),
   ('glamour', 'almiscar', 'base'),
-  ('black', 'pimenta-preta', 'top'),
-  ('black', 'cardamomo', 'top'),
-  ('black', 'noz-moscada', 'heart'),
-  ('black', 'canela', 'heart'),
-  ('black', 'ambar', 'base'),
-  ('black', 'cedro', 'base')
+  ('here-i-am', 'pimenta-preta', 'top'),
+  ('here-i-am', 'cardamomo', 'top'),
+  ('here-i-am', 'noz-moscada', 'heart'),
+  ('here-i-am', 'canela', 'heart'),
+  ('here-i-am', 'ambar', 'base'),
+  ('here-i-am', 'cedro', 'base')
 ) as v (perfume_slug, note_slug, position)
 join public.perfumes p on p.slug = v.perfume_slug
 join public.notes n on n.slug = v.note_slug

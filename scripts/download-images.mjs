@@ -123,7 +123,7 @@ const PERFUMES = [
   ['al-wataniah', 'kayaan-classic', 'Al Wataniah Kayaan Classic'],
   ['al-wataniah', 'attar-al-wesal', 'Al Wataniah Attar Al Wesal'],
   ['phytoderm', 'glamour', 'Phytoderm Glamour'],
-  ['phytoderm', 'black', 'Phytoderm Black'],
+  ['phytoderm', 'black', 'Phytoderm Here I Am'],
 ];
 
 // Já existe {slug}.* na pasta da marca? (qualquer extensão de imagem)
