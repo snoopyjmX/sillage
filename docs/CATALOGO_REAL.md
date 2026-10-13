@@ -72,3 +72,8 @@
      - `notes` (notas reais)
      - `perfumes` (dados do frasco e imagem no bucket)
      - `perfume_notes` (camadas: Topo, Coração e Fundo)
+
+4. **Perfume novo (`npm run ingest`):**
+   - `npm run ingest -- [--dry-run] "Marca Perfume"` pergunta ao Gemini (`gemini-3.5-flash`, saída estruturada validada com Zod; `GEMINI_API_KEY` no `.env.local`) e gera `supabase/migrations/<timestamp>_ingest_<slug>.sql`.
+   - O script só lê o catálogo com a chave anon e não grava no banco. A migration é idempotente (`on conflict do nothing`) e traz marca, notas novas (com `description`), perfume e `perfume_notes`.
+   - Revise o SQL e aplique com `npx supabase migration up` (local) ou `db push` (produção). Concentração não confirmada recusa o cadastro. Imagem e preço entram depois.
