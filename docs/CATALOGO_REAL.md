@@ -72,3 +72,5 @@
      - `notes` (notas reais)
      - `perfumes` (dados do frasco e imagem no bucket)
      - `perfume_notes` (camadas: Topo, Coração e Fundo)
+
+4. **Links das lojas:** cada `store_url` é a página do produto (não uma busca), conferida em 2026-10-13. Perfumes sem página confiável (Folha Imperial, Malbec Black, Qimmah e Kayaan Classic) ficam sem oferta; o `BestPrice` some sozinho. Rode `scripts/validate-store-links.mjs` antes de publicar novos links.

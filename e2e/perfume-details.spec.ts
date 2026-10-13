@@ -159,7 +159,7 @@ test.describe('detalhes do perfume', () => {
     const link = offer.getByRole('link', { name: /Ver na loja/ });
     await expect(link).toHaveAttribute(
       'href',
-      'https://www.boticario.com.br/busca?q=Malbec+Signature'
+      'https://www.boticario.com.br/produto/malbec-signature-eau-de-parfum-90ml'
     );
     await expect(link).toHaveAttribute('target', '_blank');
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
