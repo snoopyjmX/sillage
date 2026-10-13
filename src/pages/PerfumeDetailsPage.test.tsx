@@ -130,7 +130,9 @@ describe('página de detalhes do perfume', () => {
     getBySlug.mockResolvedValue({ ...detail, imageUrl: 'https://cdn.test/ausente.webp' });
     renderApp('/perfumes/malbec-signature');
     const image = await screen.findByRole('img', { name: /Frasco do perfume/ }, { timeout: 5000 });
+    // a variante large falha, depois o original: só então vem o placeholder
     fireEvent.error(image);
+    fireEvent.error(screen.getByRole('img', { name: /Frasco do perfume/ }));
     await waitFor(() =>
       expect(screen.queryByRole('img', { name: /Frasco do perfume/ })).not.toBeInTheDocument()
     );

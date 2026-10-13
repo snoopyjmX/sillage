@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { ArrowLeft, SearchX } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
@@ -9,7 +8,9 @@ import { BestPrice } from '@/components/perfume/BestPrice';
 import { SimilarPerfumes } from '@/components/perfume/SimilarPerfumes';
 import { OlfactoryPyramid } from '@/components/perfume/OlfactoryPyramid';
 import { PerfumeDetailsSkeleton } from '@/components/perfume/PerfumeDetailsSkeleton';
+import { PerfumeImage } from '@/components/perfume/PerfumeImage';
 import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
+import { PerfumeStage } from '@/components/perfume/PerfumeStage';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
@@ -91,21 +92,22 @@ function PerfumeHeroImage({
   perfume: PerfumeDetail;
   mainFamily: (typeof FAMILIES)[number] | undefined;
 }) {
-  const [failedUrl, setFailedUrl] = useState<string | null>(null);
-  if (perfume.imageUrl && perfume.imageUrl !== failedUrl) {
-    return (
-      <img
-        src={perfume.imageUrl}
+  return (
+    <PerfumeStage className="aspect-[4/5] w-full">
+      <PerfumeImage
+        key={perfume.imageUrl}
+        url={perfume.imageUrl}
+        variant="large"
+        sizes="(min-width: 768px) 40vw, 100vw"
+        priority
         alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
         width={800}
         height={1000}
-        decoding="async"
-        onError={() => setFailedUrl(perfume.imageUrl)}
-        className="aspect-[4/5] w-full object-cover"
+        className="size-full object-contain"
+        fallback={<PerfumePlaceholder family={mainFamily} showIcon className="size-full" />}
       />
-    );
-  }
-  return <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/5]" />;
+    </PerfumeStage>
+  );
 }
 
 function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {

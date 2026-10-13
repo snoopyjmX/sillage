@@ -1,11 +1,13 @@
-import { useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
 import { Chip } from '@/components/ui/chip';
 import { CONCENTRATION_LABELS, FAMILY_LABELS, GENDER_LABELS } from '@/constants/labels';
 import { cn } from '@/lib/utils';
 import type { PerfumeSummary } from '@/types/catalog';
+import { PerfumeImage } from './PerfumeImage';
 import { PerfumePlaceholder } from './PerfumePlaceholder';
+import { PerfumeStage } from './PerfumeStage';
 
 const MAX_FAMILY_CHIPS = 3;
 
@@ -18,7 +20,6 @@ interface PerfumeCardProps {
 // Foto real quando há imageUrl; sem ela (ou se falhar ao carregar) o placeholder usa a primeira
 // família da lista (a função devolve na ordem do enum) e nenhum logo.
 export function PerfumeCard({ perfume, action }: PerfumeCardProps) {
-  const [imageFailed, setImageFailed] = useState(false);
   const mainFamily = perfume.families[0];
   const meta = [GENDER_LABELS[perfume.gender], perfume.releaseYear?.toString()]
     .filter(Boolean)
@@ -33,20 +34,19 @@ export function PerfumeCard({ perfume, action }: PerfumeCardProps) {
       )}
     >
       <Link to={`/perfumes/${perfume.slug}`} className="flex flex-1 flex-col outline-none">
-        {perfume.imageUrl && !imageFailed ? (
-          <img
-            src={perfume.imageUrl}
+        <PerfumeStage className="aspect-[4/3]">
+          <PerfumeImage
+            key={perfume.imageUrl}
+            url={perfume.imageUrl}
+            variant="thumb"
+            sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 90vw"
             alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
-            width={400}
-            height={300}
-            loading="lazy"
-            decoding="async"
-            onError={() => setImageFailed(true)}
-            className="aspect-[4/3] w-full object-cover"
+            width={320}
+            height={400}
+            className="size-full object-contain"
+            fallback={<PerfumePlaceholder family={mainFamily} showIcon className="size-full" />}
           />
-        ) : (
-          <PerfumePlaceholder family={mainFamily} showIcon className="aspect-[4/3]" />
-        )}
+        </PerfumeStage>
         <div className="flex flex-1 flex-col gap-2 p-4">
           <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
             {perfume.brandName}

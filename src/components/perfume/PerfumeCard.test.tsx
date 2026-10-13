@@ -54,12 +54,14 @@ describe('PerfumeCard', () => {
   it('com imageUrl mostra a foto com src e alt corretos, sem placeholder', () => {
     const { container } = renderCard({ imageUrl: 'http://127.0.0.1/bossa.webp' });
     const image = screen.getByRole('img', { name: 'Frasco do perfume Bossa, Granado' });
-    expect(image).toHaveAttribute('src', 'http://127.0.0.1/bossa.webp');
+    expect(image).toHaveAttribute('src', 'http://127.0.0.1/bossa-thumb.webp');
     expect(container.querySelector('[data-slot="perfume-placeholder"]')).toBeNull();
   });
 
   it('se a foto falhar ao carregar, volta para o placeholder', () => {
     const { container } = renderCard({ imageUrl: 'http://127.0.0.1/quebrada.webp' });
+    // a variante falha, depois o original: só então vem o placeholder
+    fireEvent.error(screen.getByRole('img', { name: /Frasco do perfume Bossa/ }));
     fireEvent.error(screen.getByRole('img', { name: /Frasco do perfume Bossa/ }));
     expect(container.querySelector('img')).toBeNull();
     expect(container.querySelector('[data-slot="perfume-placeholder"]')).toHaveClass(

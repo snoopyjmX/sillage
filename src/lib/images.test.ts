@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { imageSources, variantUrl } from './images';
+import { imageSources, imageSrcSet, variantUrl } from './images';
 
 const BASE =
   'https://x.supabase.co/storage/v1/object/public/perfume-images/o-boticario/malbec.webp';
@@ -18,5 +18,21 @@ describe('imageSources', () => {
   it('sem imagem não há fontes', () => {
     expect(imageSources(null, 'medium')).toEqual([]);
     expect(imageSources(undefined, 'thumb')).toEqual([]);
+  });
+});
+
+describe('imageSrcSet', () => {
+  it('lista as três variantes com a largura de cada uma', () => {
+    expect(imageSrcSet(BASE)).toBe(
+      [
+        `${BASE.replace('.webp', '-thumb.webp')} 320w`,
+        `${BASE.replace('.webp', '-medium.webp')} 640w`,
+        `${BASE.replace('.webp', '-large.webp')} 1280w`,
+      ].join(', ')
+    );
+  });
+
+  it('sem .webp não há srcset', () => {
+    expect(imageSrcSet('https://x/y.png')).toBeUndefined();
   });
 });

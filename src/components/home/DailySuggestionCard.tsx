@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
 import { PerfumeImage } from '@/components/perfume/PerfumeImage';
+import { PerfumeStage } from '@/components/perfume/PerfumeStage';
 import { BlurFade } from '@/components/ui/blur-fade';
 import { Button } from '@/components/ui/button';
 import { Chip } from '@/components/ui/chip';
@@ -37,7 +38,7 @@ export function DailySuggestionCard({
         aria-label="Sugestão do dia"
         className="grid overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-floating md:grid-cols-[2fr_3fr]"
       >
-        <div className="grid aspect-[4/3] place-items-center bg-accent md:aspect-auto md:min-h-96">
+        <PerfumeStage className="aspect-[4/3] md:aspect-auto md:min-h-96">
           <PerfumeImage
             key={perfume.imageUrl}
             url={perfume.imageUrl}
@@ -46,7 +47,7 @@ export function DailySuggestionCard({
             width={640}
             height={640}
             priority
-            className="size-full object-contain p-6"
+            className="size-full object-contain p-2"
             fallback={
               <PerfumePlaceholder
                 family={perfume.notes[0]?.family}
@@ -55,7 +56,7 @@ export function DailySuggestionCard({
               />
             }
           />
-        </div>
+        </PerfumeStage>
         <div className="flex flex-col gap-4 p-6 md:p-8">
           <div className="flex flex-col gap-2">
             <h2 className="text-xs font-medium tracking-wider text-muted-foreground uppercase">

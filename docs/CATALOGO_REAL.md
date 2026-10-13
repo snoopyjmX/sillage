@@ -1,6 +1,6 @@
 # Plano de Curadoria: Catálogo Real & Fotos de Alta Definição
 
-> **Status:** Seed real, comparador de preço e script de imagens implementados (20 dos perfumes abaixo estão em `supabase/seed.sql`). Faltam as fotos (`npm run images`) e o envio ao Storage.  
+> **Status:** Seed real, comparador de preço e pipeline de imagens implementados (20 dos perfumes abaixo estão em `supabase/seed.sql`). As fotos já têm fundo transparente, enquadramento 4:5 e hash no nome; o envio à produção é feito pelo mantenedor (`images:upload` com a `service_role`).  
 > **Custo:** R$ 0,00 (100% suportado no Free Tier do Supabase Storage e Vercel CDN).
 
 ---
@@ -56,14 +56,15 @@
 ## 2. Pipeline de Processamento de Imagens (Script Node + Sharp)
 
 1. **Estrutura de Armazenamento:**
-   - Bucket Supabase: `perfumes/` (Público, com cache de borda de 31536000s).
-   - Nomenclatura padronizada: `perfumes/{brand-slug}/{perfume-slug}.webp`.
+   - Bucket Supabase: `perfume-images` (público, `cacheControl` de 31536000 s).
+   - Nome com hash do conteúdo: `{brand-slug}/{perfume-slug}.{hash8}.webp` (+ `-thumb`, `-medium`, `-large`). Mudou a foto, mudou o nome: o cache de 1 ano e o `CacheFirst` do service worker nunca servem a versão velha.
 
-2. **Processamento Automático:**
-   - Resolução: 800 × 800 px (1:1).
-   - Formato: WebP com 80% de qualidade.
-   - Tamanho médio por imagem: ~40 KB a 65 KB.
-   - 50 perfumes = ~2.5 MB total (menos de 0.3% do limite de 1 GB do plano gratuito do Supabase).
+2. **Processamento Automático (`scripts/process-images.mjs`, só sharp):**
+   - Fluxo: `npm run images` → `npm run images:preview` (revisar `processed-images/_preview.png` nos três palcos) → `npm run images:upload`.
+   - Fundo: cor detectada pela mediana das bordas, flood fill por distância de cor, borda suavizada e descontaminada (sem halo). Casos difíceis em `scripts/image-overrides.json` (`tolerance`, `background`, `cropBottom`).
+   - Canvas 4:5 transparente: 320×400, 640×800 e 1280×1600, frasco recortado pelo alfa com margem de 6%.
+   - Formato: WebP com 80% de qualidade (~10 a 110 KB por variante).
+   - Saídas: `manifest.json` (slug → `image_path`) e o SQL de `update perfumes`. O upload sobe só o que está no manifest; a migration `perfume_images_v2` e o seed já apontam para os novos caminhos.
 
 3. **Automação do Seed SQL:**
    - Criação da migration `seed_real_perfumes.sql` populando:

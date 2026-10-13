@@ -3,6 +3,7 @@ import { BlurFade } from '@/components/ui/blur-fade';
 import { Chip } from '@/components/ui/chip';
 import { PerfumeImage } from '@/components/perfume/PerfumeImage';
 import { PerfumePlaceholder } from '@/components/perfume/PerfumePlaceholder';
+import { PerfumeStage } from '@/components/perfume/PerfumeStage';
 import { CONCENTRATION_LABELS, FAMILY_LABELS, GENDER_LABELS } from '@/constants/labels';
 import { formatCivilDate } from '@/lib/format';
 import type { DailyEntry } from '@/types/daily';
@@ -25,7 +26,7 @@ export function DailyHighlight({ entry }: DailyHighlightProps) {
         aria-label="Perfume do Dia"
         className="grid overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-floating md:grid-cols-2"
       >
-        <div className="grid aspect-[4/3] place-items-center md:aspect-auto md:min-h-80">
+        <PerfumeStage className="aspect-[4/3] md:aspect-auto md:min-h-80">
           <PerfumeImage
             key={perfume.imageUrl}
             url={perfume.imageUrl}
@@ -33,12 +34,12 @@ export function DailyHighlight({ entry }: DailyHighlightProps) {
             alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
             width={640}
             height={640}
-            className="size-full object-contain p-6"
+            className="size-full object-contain p-2"
             fallback={
               <PerfumePlaceholder family={perfume.families[0]} showIcon className="size-full" />
             }
           />
-        </div>
+        </PerfumeStage>
         <div className="flex flex-col justify-center gap-3 p-6 md:p-10">
           <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
             {perfume.brandName}

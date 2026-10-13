@@ -1,7 +1,7 @@
 // Envia as imagens de scripts/processed-images/ para o bucket `perfume-images` do Supabase,
 // mantendo a estrutura {marca}/{perfume}.webp (o mesmo caminho gravado em perfumes.image_path).
-// Sobe todos os .webp gerados por process-images: o arquivo-base ({perfume}.webp) e as variantes
-// -thumb, -medium e -large ao lado dele.
+// Sobe só o que está em processed-images/manifest.json: o arquivo-base ({perfume}.{hash}.webp) e as
+// variantes -thumb, -medium e -large ao lado dele. O hash no nome faz o cache de 1 ano ser seguro.
 //
 // Variáveis (lidas do ambiente, de .env.local ou de .env, nesta ordem):
 //   SUPABASE_URL                (ou VITE_SUPABASE_URL)
@@ -10,9 +10,8 @@
 // A service_role ignora a RLS: use só neste script, na sua máquina. Nunca com prefixo VITE_
 // (iria para o bundle do front) e nunca commitada. Por segurança, o script só aceita um Supabase
 // local; para outro destino, rode com ALLOW_REMOTE_UPLOAD=1 sabendo o que está fazendo.
-import { readdir } from 'node:fs/promises';
 import { readFile } from 'node:fs/promises';
-import { dirname, join, relative } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import process from 'node:process';
 import { createClient } from '@supabase/supabase-js';
@@ -50,37 +49,36 @@ if (!['127.0.0.1', 'localhost'].includes(hostname) && process.env.ALLOW_REMOTE_U
   fail(`${hostname} não é um Supabase local. Para enviar mesmo assim, use ALLOW_REMOTE_UPLOAD=1.`);
 }
 
-const listWebp = async (dir) => {
-  const entries = await readdir(dir, { withFileTypes: true });
-  const nested = await Promise.all(
-    entries.map((entry) => {
-      const path = join(dir, entry.name);
-      if (entry.isDirectory()) return listWebp(path);
-      return entry.name.toLowerCase().endsWith('.webp') ? [path] : [];
-    })
+const VARIANT_SUFFIXES = ['', '-thumb', '-medium', '-large'];
+
+// Caminhos (relativos a processed-images) de todos os arquivos que o manifest referencia
+const listManifestFiles = async () => {
+  let manifest;
+  try {
+    manifest = JSON.parse(await readFile(join(INPUT_DIR, 'manifest.json'), 'utf8'));
+  } catch {
+    fail('scripts/processed-images/manifest.json não existe. Rode `npm run images` antes.');
+  }
+  return Object.values(manifest).flatMap((imagePath) =>
+    VARIANT_SUFFIXES.map((suffix) => imagePath.replace(/\.webp$/, `${suffix}.webp`))
   );
-  return nested.flat();
 };
 
 const main = async () => {
-  let files;
-  try {
-    files = await listWebp(INPUT_DIR);
-  } catch {
-    fail('scripts/processed-images/ não existe. Rode `npm run images` antes.');
-  }
-  if (files.length === 0) fail('Nenhum .webp em scripts/processed-images/.');
+  const paths = await listManifestFiles();
+  if (paths.length === 0) fail('O manifest.json está vazio.');
 
   const supabase = createClient(url, serviceKey, { auth: { persistSession: false } });
   let failures = 0;
 
-  for (const file of files) {
-    const path = relative(INPUT_DIR, file).split('\\').join('/');
-    const { error } = await supabase.storage.from(BUCKET).upload(path, await readFile(file), {
-      contentType: 'image/webp',
-      cacheControl: ONE_YEAR_SECONDS,
-      upsert: true,
-    });
+  for (const path of paths) {
+    const { error } = await supabase.storage
+      .from(BUCKET)
+      .upload(path, await readFile(join(INPUT_DIR, path)), {
+        contentType: 'image/webp',
+        cacheControl: ONE_YEAR_SECONDS,
+        upsert: true,
+      });
     if (error) {
       failures += 1;
       console.error(`✖ ${path}: ${error.message}`);
@@ -89,7 +87,7 @@ const main = async () => {
     }
   }
 
-  console.log(`\n${files.length - failures} de ${files.length} enviadas para o bucket ${BUCKET}.`);
+  console.log(`\n${paths.length - failures} de ${paths.length} enviadas para o bucket ${BUCKET}.`);
   if (failures > 0) process.exitCode = 1;
 };
 

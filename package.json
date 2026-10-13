@@ -32,7 +32,8 @@
     "images": "node scripts/process-images.mjs",
     "images:download": "node scripts/download-images.mjs",
     "images:upload": "node scripts/upload-images.mjs",
-    "images:all": "npm run images:download && npm run images && node scripts/upload-images.mjs"
+    "images:all": "npm run images:download && npm run images && node scripts/upload-images.mjs",
+    "images:preview": "node scripts/preview-images.mjs"
   },
   "dependencies": {
     "@fontsource/fraunces": "^5.3.0",
