@@ -5,6 +5,7 @@
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 import { GoogleGenAI } from 'npm:@google/genai';
 import { createClient } from 'npm:@supabase/supabase-js@2';
+import { corsHeaders } from '../_shared/cors.ts';
 
 const MODEL = Deno.env.get('GEMINI_MODEL') ?? 'gemini-3.5-flash-lite';
 // Usado quando o principal segue indisponível depois do retry. `gemini-flash-latest` e os 2.5 não
@@ -39,26 +40,6 @@ Como responder:
 - Quando não houver contexto, recomende caminhos olfativos (famílias, acordes e notas), sem inventar perfumes ou marcas específicos.
 - Use só o que o contexto informa sobre o perfume em foco. Se não souber algo (preço, lançamento, fixação exata), diga com naturalidade em vez de inventar.
 - Mantenha a coerência com o que já foi dito na conversa e responda apenas sobre perfumaria; para outros assuntos, convide gentilmente a voltar ao universo dos perfumes.`;
-
-// Origens do app que podem chamar a função (lista separada por vírgula no secret ALLOWED_ORIGINS,
-// ex.: https://sillage.vercel.app). Sem o secret, só o ambiente local. Origem fora da lista não
-// recebe Access-Control-Allow-Origin e o navegador bloqueia a resposta; o JWT segue obrigatório.
-const ALLOWED_ORIGINS = new Set(
-  (Deno.env.get('ALLOWED_ORIGINS') ?? 'http://localhost:5173,http://localhost:4173')
-    .split(',')
-    .map((origin) => origin.trim())
-    .filter(Boolean)
-);
-
-const corsHeaders = (req: Request): Record<string, string> => {
-  const origin = req.headers.get('Origin');
-  return {
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    Vary: 'Origin',
-    ...(origin && ALLOWED_ORIGINS.has(origin) ? { 'Access-Control-Allow-Origin': origin } : {}),
-  };
-};
 
 const readBearer = (req: Request): string | null => {
   const header = req.headers.get('Authorization');

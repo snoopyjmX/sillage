@@ -112,7 +112,7 @@ Assinatura e semântica na Seção 8 do `PRODUCT.md`. `SECURITY INVOKER`, `STABL
 
 ## Fora desta fase
 
-A Edge Function de exclusão de conta.
+A Edge Function `delete-account` (a exclusão em cascata de `auth.users` → `profiles` → coleção, memorial e avaliações é testada em `16_account_deletion.test.sql`).
 
 ## `get_similar_perfumes` (RN09)
 

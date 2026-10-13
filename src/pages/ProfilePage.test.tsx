@@ -198,12 +198,14 @@ describe('ProfilePage', () => {
     );
   });
 
-  it('zona de perigo: o dialog abre, a ação está desativada ("Em breve") e cancelar fecha', async () => {
+  it('zona de perigo: o dialog abre, a exclusão pede EXCLUIR e cancelar fecha', async () => {
     renderApp('/profile');
     await screen.findByRole('heading', { name: 'Zona de perigo' });
     fireEvent.click(screen.getByRole('button', { name: 'Excluir conta' }));
     const dialog = await screen.findByRole('dialog', { name: 'Excluir a sua conta?' });
-    expect(within(dialog).getByRole('button', { name: 'Em breve' })).toBeDisabled();
+    expect(
+      within(dialog).getByRole('button', { name: 'Excluir conta definitivamente' })
+    ).toBeDisabled();
     fireEvent.click(within(dialog).getByRole('button', { name: 'Cancelar' }));
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
   });
