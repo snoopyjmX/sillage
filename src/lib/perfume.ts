@@ -57,6 +57,7 @@ export const fromPerfumeRow = (row: PerfumeRow, imageUrl?: string | null): Perfu
     imageUrl: imageUrl ?? null,
     // Na ordem do enum, como a função de busca devolve
     families: FAMILIES.filter((family) => present.has(family)),
+    noteFamilies: row.perfume_notes.map(({ note }) => note.family),
   };
 };
 

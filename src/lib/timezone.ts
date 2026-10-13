@@ -26,6 +26,13 @@ export const todayInTimezone = (timezone: string, now: Date = new Date()): strin
   }
 };
 
+// Data civil AAAA-MM-DD deslocada em `days` dias (negativo = passado). Sem fuso: a data já é civil.
+export const addCivilDays = (date: string, days: number): string => {
+  const shifted = new Date(`${date}T00:00:00Z`);
+  shifted.setUTCDate(shifted.getUTCDate() + days);
+  return shifted.toISOString().slice(0, 10);
+};
+
 const TIMEZONE_AUTO_KEY = 'sillage-timezone-auto';
 
 // Preferência de detectar o fuso pelo navegador. Padrão: ligada. Só do aparelho (localStorage).

@@ -7,7 +7,7 @@ import { climateFit, highlightFamilies, perfumeTempRange, projectionLabel } from
 import { queryKeys } from '@/lib/queryKeys';
 import { groupNotesByPosition, type NotesByPosition } from '@/lib/perfume';
 import { DEFAULT_TIMEZONE, todayInTimezone } from '@/lib/timezone';
-import { homeService } from '@/services/homeService';
+import { homeService, type DailySuggestion } from '@/services/homeService';
 import type { PerfumeDetail } from '@/types/catalog';
 import type { WeatherView } from '@/types/weather';
 
@@ -21,7 +21,29 @@ export interface SuggestionView {
   fit: number | null;
 }
 
-export const useDailySuggestion = (weather: WeatherView, gender?: PerfumeGender | null) => {
+// Detalhe + resumo de avaliações -> o que o card mostra (também usado pela sugestão do armário)
+export const buildSuggestionView = (
+  { perfume, summary }: DailySuggestion,
+  temperature: number | null
+): SuggestionView => {
+  const range = perfumeTempRange(perfume.notes.map((note) => note.family));
+  return {
+    perfume,
+    notes: groupNotesByPosition(perfume.notes),
+    longevity: summary.avgLongevity,
+    projection: {
+      average: summary.avgProjection,
+      label: projectionLabel(summary.avgProjection),
+    },
+    fit: range && temperature !== null ? climateFit(range, temperature) : null,
+  };
+};
+
+export const useDailySuggestion = (
+  weather: WeatherView,
+  gender?: PerfumeGender | null,
+  enabled = true
+) => {
   const tz = useProfileTimezone();
   // Só espera enquanto o fuso carrega: vazio, inválido ou com a consulta falha, cai no padrão
   const date = tz.isPending ? '' : todayInTimezone(tz.data ?? DEFAULT_TIMEZONE);
@@ -33,22 +55,9 @@ export const useDailySuggestion = (weather: WeatherView, gender?: PerfumeGender 
   const query = useQuery({
     queryKey: queryKeys.home.suggestion(date, families, gender),
     queryFn: () => homeService.getDailySuggestion(date, families, gender),
-    enabled: date !== '' && settled,
-    select: (suggestion): SuggestionView | null => {
-      if (!suggestion) return null;
-      const { perfume, summary } = suggestion;
-      const range = perfumeTempRange(perfume.notes.map((note) => note.family));
-      return {
-        perfume,
-        notes: groupNotesByPosition(perfume.notes),
-        longevity: summary.avgLongevity,
-        projection: {
-          average: summary.avgProjection,
-          label: projectionLabel(summary.avgProjection),
-        },
-        fit: range && temperature !== null ? climateFit(range, temperature) : null,
-      };
-    },
+    enabled: enabled && date !== '' && settled,
+    select: (suggestion): SuggestionView | null =>
+      suggestion ? buildSuggestionView(suggestion, temperature) : null,
   });
   return query;
 };

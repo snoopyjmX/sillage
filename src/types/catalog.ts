@@ -20,6 +20,9 @@ export interface PerfumeSummary {
   imageUrl?: string | null;
   // Vem da função search_perfumes (derivada das notas), na ordem do enum
   families: OlfactiveFamily[];
+  // Família de cada nota, com repetição (a mesma conta de `perfumeTempRange` no detalhe). Só vem de
+  // consultas que trazem as notas (coleção e memorial); sem ela vale `families`.
+  noteFamilies?: OlfactiveFamily[];
 }
 
 // Resultado de get_similar_perfumes (RN09): o resumo do card mais o nº de notas em comum com o alvo

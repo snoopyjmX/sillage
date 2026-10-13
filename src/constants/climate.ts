@@ -40,6 +40,13 @@ export const HIGHLIGHT_FALLBACK = 2;
 // Adequação ao clima: 100% dentro da faixa, perde 10 pontos por °C fora dela
 export const FIT_PENALTY_PER_DEGREE = 10;
 
+// Meu armário (sugestão a partir do "Tenho"): entram os perfumes com clima adequado até este
+// tanto de pontos abaixo do melhor; evita os vestidos nos dias anteriores (hoje não conta, para a
+// sugestão não trocar depois de "Vestir hoje"); o armário vira o padrão com este mínimo em "Tenho"
+export const CLOSET_BAND_POINTS = 10;
+export const CLOSET_AVOID_DAYS = 3;
+export const CLOSET_DEFAULT_MIN = 3;
+
 // Rótulo do Rastro pela média de projeção (1 a 5)
 export const PROJECTION_INTIMATE_BELOW = 2.5;
 export const PROJECTION_STRONG_FROM = 3.5;

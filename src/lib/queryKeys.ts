@@ -55,5 +55,8 @@ export const queryKeys = {
     suggestion: (date: string, families: string[], gender?: PerfumeGender | null) =>
       ['public', 'home', 'suggestion', date, families.join(','), gender ?? 'all'] as const,
     recent: (limit: number) => ['public', 'home', 'recent', limit] as const,
+    // Sugestão do armário: depende da coleção do usuário, então é privada (nunca persistida)
+    closet: (userId: string, date: string, perfumeId: string) =>
+      ['private', userId, 'home', 'closet', date, perfumeId] as const,
   },
 } as const;
