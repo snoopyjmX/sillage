@@ -12,9 +12,8 @@ test.beforeEach(async ({ page }) => {
 
 const URL = '/perfumes/malbec-signature';
 const THEME_KEY = 'sillage-theme';
-
 const layer = (page: Page, name: string) =>
-  page.getByRole('button', { name: new RegExp(`^${name}`) });
+  page.getByRole('group', { name: 'Pirâmide olfativa' }).getByRole('region', { name });
 const note = (page: Page, name: string) =>
   page.getByRole('button', { name: new RegExp(`^${name}:`) });
 
@@ -31,62 +30,28 @@ test.describe('detalhes do perfume', () => {
     for (const name of ['Topo', 'Coração', 'Fundo']) await expect(layer(page, name)).toBeVisible();
   });
 
-  test('camadas na ordem Topo, Coração, Fundo e estado inicial por tamanho de tela', async ({
-    page,
-    isMobile,
-  }) => {
+  test('camadas na ordem Topo, Coração, Fundo, todas sempre abertas', async ({ page }) => {
     await page.goto(URL);
-    // os chips das notas também são botões: as camadas são as que controlam um painel
-    const buttons = page
-      .getByRole('group', { name: 'Pirâmide olfativa' })
-      .locator('button[aria-controls]');
-    await expect(buttons).toHaveCount(3);
-    await expect(buttons.nth(0)).toContainText('Topo');
-    await expect(buttons.nth(1)).toContainText('Coração');
-    await expect(buttons.nth(2)).toContainText('Fundo');
-
-    // celular: só o Topo aberto; desktop: todas abertas
-    await expect(layer(page, 'Topo')).toHaveAttribute('aria-expanded', 'true');
-    const others = isMobile ? 'false' : 'true';
-    await expect(layer(page, 'Coração')).toHaveAttribute('aria-expanded', others);
-    await expect(layer(page, 'Fundo')).toHaveAttribute('aria-expanded', others);
-  });
-
-  test('clicar na camada abre e fecha, e as notas aparecem e somem', async ({ page, isMobile }) => {
-    await page.goto(URL);
-    const base = layer(page, 'Fundo');
-    if (isMobile) {
-      await expect(note(page, 'Vetiver')).toBeHidden();
-      await base.click();
-    }
-    await expect(base).toHaveAttribute('aria-expanded', 'true');
-    for (const name of ['Musgo de carvalho', 'Patchouli', 'Âmbar', 'Vetiver']) {
+    const pyramid = page.getByRole('group', { name: 'Pirâmide olfativa' });
+    await expect(pyramid.getByRole('heading', { level: 3 })).toHaveText([
+      'Topo',
+      'Coração',
+      'Fundo',
+    ]);
+    await expect(pyramid.locator('[aria-expanded]')).toHaveCount(0);
+    for (const name of ['Bergamota', 'Lavanda', 'Vetiver']) {
       await expect(note(page, name)).toBeVisible();
     }
-
-    await base.click();
-    await expect(base).toHaveAttribute('aria-expanded', 'false');
-    await expect(note(page, 'Vetiver')).toBeHidden();
-    // As outras camadas não são afetadas
-    await expect(note(page, 'Bergamota')).toBeVisible();
   });
 
-  test('teclado: Enter e Espaço alternam a camada e o foco fica visível', async ({ page }) => {
+  test('teclado: Tab chega às notas com o foco visível', async ({ page }) => {
     await page.goto(URL);
-    const top = layer(page, 'Topo');
-    await top.focus();
-    // Foco por teclado (não por script) é o que ativa :focus-visible
+    const chip = note(page, 'Bergamota');
+    await chip.focus();
     await page.keyboard.press('Shift+Tab');
     await page.keyboard.press('Tab');
-    await expect(top).toBeFocused();
-    await expect(top).toHaveCSS('outline-style', 'solid');
-
-    await page.keyboard.press('Enter');
-    await expect(top).toHaveAttribute('aria-expanded', 'false');
-    await expect(note(page, 'Bergamota')).toBeHidden();
-    await page.keyboard.press('Space');
-    await expect(top).toHaveAttribute('aria-expanded', 'true');
-    await expect(note(page, 'Bergamota')).toBeVisible();
+    await expect(chip).toBeFocused();
+    await expect(chip).toHaveCSS('outline-style', 'solid');
   });
 
   test('tocar numa nota abre o painel, e o link do painel leva ao catálogo filtrado', async ({
@@ -104,10 +69,15 @@ test.describe('detalhes do perfume', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Malbec Signature' })).toBeVisible();
   });
 
-  test('mostra a forma, o acorde dominante e o tempo de cada camada', async ({ page }) => {
+  test('mostra a pirâmide grande, o acorde dominante e o tempo de cada camada', async ({
+    page,
+  }) => {
     await page.goto(URL);
     const pyramid = page.getByRole('group', { name: 'Pirâmide olfativa' });
-    await expect(pyramid.locator('[data-slot="pyramid-shape"]')).toBeVisible();
+    const shape = pyramid.locator('[data-slot="pyramid-shape"]');
+    await expect(shape).toBeVisible();
+    await expect(shape).toContainText('Topo');
+    await expect(shape).toContainText('Fundo');
     await expect(pyramid.getByText('Acorde dominante:')).toBeVisible();
     await expect(layer(page, 'Topo')).toContainText('0–30 min');
     await expect(layer(page, 'Coração')).toContainText('30 min–4 h');
@@ -193,14 +163,10 @@ for (const theme of ['light', 'dark'] as const) {
       await page.setViewportSize({ width: 360, height: 780 });
     });
 
-    test('detalhes com a pirâmide aberta (contraste das notas e aria-expanded)', async ({
+    test('detalhes com a pirâmide e as três camadas (contraste das faixas e das notas)', async ({
       page,
     }) => {
       await page.goto(URL);
-      for (const name of ['Coração', 'Fundo']) {
-        await layer(page, name).click();
-        await expect(layer(page, name)).toHaveAttribute('aria-expanded', 'true');
-      }
       await expect(note(page, 'Vetiver')).toBeVisible();
       expect(await axeViolations(page)).toEqual([]);
     });
@@ -209,13 +175,6 @@ for (const theme of ['light', 'dark'] as const) {
       await page.goto(URL);
       await note(page, 'Bergamota').click();
       await expect(page.getByRole('dialog', { name: 'Bergamota' })).toBeVisible();
-      expect(await axeViolations(page)).toEqual([]);
-    });
-
-    test('detalhes com a pirâmide fechada', async ({ page }) => {
-      await page.goto(URL);
-      await layer(page, 'Topo').click();
-      await expect(layer(page, 'Topo')).toHaveAttribute('aria-expanded', 'false');
       expect(await axeViolations(page)).toEqual([]);
     });
 
@@ -229,10 +188,10 @@ for (const theme of ['light', 'dark'] as const) {
   });
 }
 
-test('axe no desktop (1280 px) com a pirâmide inteira aberta', async ({ page }) => {
+test('axe no desktop (1280 px) com a pirâmide e as três camadas', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto(URL);
-  await expect(layer(page, 'Fundo')).toHaveAttribute('aria-expanded', 'true');
+  await expect(note(page, 'Vetiver')).toBeVisible();
   expect(await axeViolations(page)).toEqual([]);
 });
 
@@ -244,19 +203,17 @@ test('axe no desktop (1280 px) com o painel de uma nota aberto', async ({ page }
   expect(await axeViolations(page)).toEqual([]);
 });
 
-// Roda sem reducedMotion: a animação de altura e o stagger não podem travar o toque nem deixar
-// as camadas num estado errado ao alternar rápido.
+// Roda sem reducedMotion: a entrada das faixas e o stagger das notas não podem travar o toque
+// nem deixar a pirâmide num estado errado.
 test.describe('com animação ligada', () => {
   test.use({ reducedMotion: 'no-preference' });
 
-  test('alternar várias vezes seguidas termina no estado esperado', async ({ page }) => {
+  test('a pirâmide termina visível, com as camadas e as notas clicáveis', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 780 });
     await page.goto(URL);
-    const heart = layer(page, 'Coração');
-    for (let i = 0; i < 4; i += 1) await heart.click();
-    await expect(heart).toHaveAttribute('aria-expanded', 'false');
-    await heart.click();
-    await expect(note(page, 'Lavanda')).toBeVisible();
+    const shape = page.locator('[data-slot="pyramid-shape"]');
+    await shape.scrollIntoViewIfNeeded();
+    await expect(shape.locator('polygon[data-position="base"]')).toHaveCSS('opacity', '1');
     await expect(note(page, 'Lavanda')).toBeEnabled();
   });
 });

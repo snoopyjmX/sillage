@@ -20,14 +20,14 @@ export function PerfumeDetailsSkeleton() {
           <Skeleton className="mt-4 h-11 w-full md:w-72" />
         </div>
       </div>
-      <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-8">
-        <Skeleton className="mx-auto aspect-[5/3] w-28 shrink-0 md:mx-0 md:w-44" />
+      <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
+        <Skeleton className="mx-auto aspect-[5/4] w-full max-w-sm shrink-0 md:mx-0 md:w-2/5 md:max-w-none" />
         <div className="flex min-w-0 flex-1 flex-col gap-3">
           <Skeleton className="h-4 w-1/2" />
           <Skeleton className="h-2 w-full rounded-full" />
-          <Skeleton className="h-16 w-full rounded-xl" />
-          <Skeleton className="h-16 w-full rounded-xl" />
-          <Skeleton className="h-16 w-full rounded-xl" />
+          <Skeleton className="h-32 w-full rounded-xl" />
+          <Skeleton className="h-32 w-full rounded-xl" />
+          <Skeleton className="h-32 w-full rounded-xl" />
         </div>
       </div>
     </div>
