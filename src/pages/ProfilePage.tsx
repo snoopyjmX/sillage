@@ -1,6 +1,11 @@
-import { UserRound } from 'lucide-react';
+import { Fingerprint, UserRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DangerZone } from '@/components/profile/DangerZone';
+import {
+  OlfactoryDnaCard,
+  OlfactoryDnaEmpty,
+  OlfactoryDnaSkeleton,
+} from '@/components/profile/OlfactoryDnaCard';
 import { ProfileForm } from '@/components/profile/ProfileForm';
 import { ProfileHeader, ProfileHeaderSkeleton } from '@/components/profile/ProfileHeader';
 import { ProfileStats, ProfileStatsSkeleton } from '@/components/profile/ProfileStats';
@@ -14,7 +19,9 @@ import { getErrorMessage } from '@/constants/errors';
 import { useAuth } from '@/hooks/useAuth';
 import { useSignOut } from '@/hooks/useAuthActions';
 import { useProfile, useRemoveAvatar, useUpdateProfile, useUploadAvatar } from '@/hooks/useProfile';
+import { useOlfactoryDna } from '@/hooks/useOlfactoryDna';
 import { useProfileStats } from '@/hooks/useProfileStats';
+import { isDnaReady, perfumesMissing } from '@/lib/olfactoryDna';
 import { getInitials } from '@/lib/profile';
 import { toast } from '@/lib/toast';
 import { listTimezones } from '@/schemas/profile';
@@ -44,6 +51,7 @@ export default function ProfilePage() {
   const uploadAvatar = useUploadAvatar();
   const removeAvatar = useRemoveAvatar();
   const summary = useProfileStats();
+  const dna = useOlfactoryDna();
 
   const handleSignOut = () =>
     signOut.mutate(undefined, { onError: (error) => toast.error(getErrorMessage(error)) });
@@ -131,6 +139,30 @@ export default function ProfilePage() {
               </BlurFade>
 
               <BlurFade delay={0.08}>
+                <section aria-labelledby="dna-title" className="flex flex-col gap-3">
+                  <h2
+                    id="dna-title"
+                    className="flex items-center gap-2 font-heading text-xl font-medium"
+                  >
+                    <Fingerprint className="size-5 text-primary" aria-hidden />
+                    Seu DNA olfativo
+                  </h2>
+                  <AsyncBoundary
+                    status={dna.status}
+                    isEmpty={dna.data !== undefined && !isDnaReady(dna.data)}
+                    loading={<OlfactoryDnaSkeleton />}
+                    empty={dna.data && <OlfactoryDnaEmpty missing={perfumesMissing(dna.data)} />}
+                    onRetry={() => void dna.refetch()}
+                    errorTitle="Não foi possível carregar o seu DNA olfativo"
+                    errorDescription={getErrorMessage(dna.error)}
+                    offlineDescription="Conecte-se à internet para ver o seu DNA olfativo."
+                  >
+                    {dna.data && <OlfactoryDnaCard dna={dna.data} />}
+                  </AsyncBoundary>
+                </section>
+              </BlurFade>
+
+              <BlurFade delay={0.12}>
                 <section aria-labelledby="edit-title" className="flex flex-col gap-3">
                   <h2 id="edit-title" className="font-heading text-xl font-medium">
                     Seus dados
@@ -144,7 +176,7 @@ export default function ProfilePage() {
                 </section>
               </BlurFade>
 
-              <BlurFade delay={0.12}>
+              <BlurFade delay={0.16}>
                 <DangerZone />
               </BlurFade>
             </div>

@@ -36,7 +36,11 @@ export const useWearToday = () => {
     mutationFn: (perfumeId: string) => dailyService.setToday(perfumeId),
     onSuccess: () => {
       toast.success('Perfume do Dia atualizado.');
-      return client.invalidateQueries({ queryKey: queryKeys.daily.overview(userId) });
+      return Promise.all([
+        client.invalidateQueries({ queryKey: queryKeys.daily.overview(userId) }),
+        // O memorial pesa no DNA olfativo do Perfil
+        client.invalidateQueries({ queryKey: queryKeys.dna.get(userId) }),
+      ]);
     },
     onError: (error) => toast.error(getErrorMessage(error)),
   });

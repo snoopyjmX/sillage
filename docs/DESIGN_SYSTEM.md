@@ -245,6 +245,8 @@ A imagem (`lib/sotdCanvas.ts`) usa só tokens, lidos com `getComputedStyle` (`--
 | `ProfileForm`   | `components/profile` | Nome e fuso (RHF + Zod) com `Field` (alvo de 44 px); o fuso usa `datalist` com os fusos do navegador; `SubmitButton` com "Salvando…"                                                                                                                                                                                                                                                               |
 | `DangerZone`    | `components/profile` | Cartão com borda `destructive`, botão "Excluir conta" e `Dialog` de confirmação com campo "Digite EXCLUIR para confirmar", "Cancelar" e a ação destrutiva (`SubmitButton`, desativada até o texto exato e offline)                                                                                                                                                                                 |
 
+`OlfactoryDnaCard` (`components/profile`, Fase 16A): `Card` com o `FamilyBar` (legenda com porcentagem em texto), "Notas que mais aparecem" (até 3 `Chip` neutros dentro de links com alvo de 44 px), a linha de desejo e o rodapé discreto; ícone `Fingerprint` no título da seção. `OlfactoryDnaEmpty` mostra o progresso ("Faltam N perfumes") com "Explorar o catálogo"; `OlfactoryDnaSkeleton` tem a altura do card. Sem momento de assinatura novo: o do Perfil continua sendo o avatar.
+
 Estados: o perfil e o resumo usam `AsyncBoundary` (skeleton, vazio, erro com tentar de novo, offline), cada um no seu bloco: falha do resumo não esconde o formulário. Sem dados, o resumo vira um `EmptyState` com link para o catálogo.
 
 ## Componentes de tela (Fase 14B: Landing e acesso)

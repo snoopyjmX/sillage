@@ -84,7 +84,12 @@ const useOptimisticCollection = <V extends { perfume: PerfumeSummary }>(options:
       toast.success(options.successMessage(variables));
     },
     // O servidor é a fonte de verdade: confirma (ou corrige) o que o cache assumiu
-    onSettled: () => queryClient.invalidateQueries({ queryKey: key }),
+    onSettled: () =>
+      Promise.all([
+        queryClient.invalidateQueries({ queryKey: key }),
+        // O DNA olfativo do Perfil depende do "Tenho" e do "Quero"
+        queryClient.invalidateQueries({ queryKey: queryKeys.dna.get(user?.id ?? '') }),
+      ]),
   });
 };
 
