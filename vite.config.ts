@@ -108,6 +108,8 @@ export default defineConfig({
               test: /node_modules\/(react-router|react-router-dom)\//,
               priority: 40,
             },
+            // tslib é usado por Radix e Supabase: sozinho, nenhum dos dois puxa o chunk do outro
+            { name: 'vendor-tslib', test: /node_modules\/tslib\//, priority: 45 },
             { name: 'vendor-supabase', test: /node_modules\/@supabase\//, priority: 40 },
             { name: 'vendor-query', test: /node_modules\/@tanstack\//, priority: 40 },
             {
