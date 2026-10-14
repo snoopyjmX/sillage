@@ -53,7 +53,7 @@ test.describe('seo', () => {
     await page.goto('/catalog');
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
       'content',
-      /^https?:\/\/.+\/pwa-512x512\.png$/
+      /^https?:\/\/.+\/og-image\.jpg$/
     );
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
       'content',

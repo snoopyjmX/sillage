@@ -33,6 +33,7 @@
     "images:download": "node scripts/download-images.mjs",
     "images:upload": "node scripts/upload-images.mjs",
     "images:all": "npm run images:download && npm run images && node scripts/upload-images.mjs",
+    "og-image": "node scripts/og-image.mjs",
     "images:preview": "node scripts/preview-images.mjs"
   },
   "dependencies": {
