@@ -73,7 +73,7 @@ from (values
    'granado/bossa.02001cd9.webp', 19900, 'Granado', 'https://www.granado.com.br/granado/eau-de-toilette-bossa-100ml'),
   ('boemia', 'granado', 'Boemia', null::smallint, 'masculine', 'edc',
    'Amadeirado especiado, com tabaco e pimenta-preta, de espírito noturno.',
-   'granado/boemia.692fab20.webp', 21900, 'Granado', 'https://www.granado.com.br/granado/perfume-boemia-75ml-granado'),
+   'granado/boemia.e99cb1e7.webp', 21900, 'Granado', 'https://www.granado.com.br/granado/perfume-boemia-75ml-granado'),
   ('folha-imperial', 'granado', 'Folha Imperial', null::smallint, 'unisex', 'edc',
    'Verde aromático, com musgo e vetiver, de frescor de jardim.',
    'granado/folha-imperial.e0a6de2f.webp', null::integer, null::text, null::text),
