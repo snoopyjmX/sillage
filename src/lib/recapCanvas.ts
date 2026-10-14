@@ -63,6 +63,12 @@ export interface RecapLayout {
   wordmark: TextLine;
 }
 
+// Cabeçalho do card: "SEU ANO EM PERFUMES", com a cidade do perfil quando houver
+const eyebrowText = (content: RecapCardContent): string =>
+  content.city
+    ? `SEU ANO EM PERFUMES · ${content.city.toLocaleUpperCase('pt-BR')}`
+    : 'SEU ANO EM PERFUMES';
+
 export const computeRecapLayout = (
   content: RecapCardContent,
   measure: MeasureText
@@ -121,7 +127,7 @@ export const computeRecapLayout = (
   );
 
   return {
-    eyebrow: { text: 'SEU ANO EM PERFUMES', y: EYEBROW_BASELINE },
+    eyebrow: { text: eyebrowText(content), y: EYEBROW_BASELINE },
     year: { text: String(content.year), y: YEAR_BASELINE },
     days: { text: daysLine, y: DAYS_BASELINE },
     consistency: { text: content.consistencyLabel, y: CONSISTENCY_BASELINE },
@@ -169,7 +175,7 @@ export const renderRecapCard = async (content: RecapCardContent): Promise<Blob> 
     [RECAP_FONTS.wordmark, SHARE_CARD_WORDMARK],
     [RECAP_FONTS.season, content.seasons.map((s) => `${s.label} ${s.perfume ?? ''}`).join(' ')],
     [RECAP_FONTS.note, content.topNote ?? ''],
-    [RECAP_FONTS.eyebrow, `SEU ANO EM PERFUMES ${content.consistencyLabel}`],
+    [RECAP_FONTS.eyebrow, eyebrowText(content)],
   ]);
   const { canvas, context, measure } = createCardCanvas();
   const layout = computeRecapLayout(content, measure);

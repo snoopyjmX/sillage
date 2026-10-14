@@ -9,12 +9,17 @@ import { canShareFile, downloadFile, shareFile } from '@/lib/shareFile';
 import { toast } from '@/lib/toast';
 import type { AnnualRecap } from '@/types/recap';
 
+export interface ShareRecapInput {
+  recap: AnnualRecap;
+  city: string | null;
+}
+
 export const useShareRecap = () =>
   useMutation({
-    mutationFn: async (recap: AnnualRecap): Promise<void> => {
+    mutationFn: async ({ recap, city }: ShareRecapInput): Promise<void> => {
       let blob: Blob;
       try {
-        blob = await renderRecapCard(buildRecapCardContent(recap));
+        blob = await renderRecapCard(buildRecapCardContent(recap, city));
       } catch (error) {
         throw error instanceof AppError
           ? error

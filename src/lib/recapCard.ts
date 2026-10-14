@@ -7,6 +7,7 @@ import type { AnnualRecap } from '@/types/recap';
 
 export interface RecapCardContent {
   year: number;
+  city: string | null;
   daysLabel: string;
   consistencyLabel: string;
   signature: { brand: string; name: string; daysLabel: string; imageUrl: string | null } | null;
@@ -17,8 +18,13 @@ export interface RecapCardContent {
   family: OlfactiveFamily | null;
 }
 
-export const buildRecapCardContent = (recap: AnnualRecap): RecapCardContent => ({
+// A cidade vem do fuso do perfil (nunca da localização do aparelho); sem cidade, o card não a mostra
+export const buildRecapCardContent = (
+  recap: AnnualRecap,
+  city: string | null
+): RecapCardContent => ({
   year: recap.year,
+  city,
   daysLabel: `${formatCount(recap.daysWorn, 'dia', 'dias')} com perfume`,
   consistencyLabel: `${consistencyPercent(recap.consistency)}% do ano`,
   signature: recap.signature && {

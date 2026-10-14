@@ -33,14 +33,15 @@ const recap: AnnualRecap = {
 };
 
 const content = (overrides: Partial<RecapCardContent> = {}): RecapCardContent => ({
-  ...buildRecapCardContent(recap),
+  ...buildRecapCardContent(recap, 'Sao Paulo'),
   ...overrides,
 });
 
 describe('buildRecapCardContent', () => {
   it('formata dias, consistência, assinatura, estações e nota', () => {
-    expect(buildRecapCardContent(recap)).toEqual({
+    expect(buildRecapCardContent(recap, 'Sao Paulo')).toEqual({
       year: 2026,
+      city: 'Sao Paulo',
       daysLabel: '248 dias com perfume',
       consistencyLabel: '68% do ano',
       signature: { brand: 'Granado', name: 'Bossa', daysLabel: '80 dias', imageUrl: null },
@@ -55,12 +56,19 @@ describe('buildRecapCardContent', () => {
     });
   });
 
+  it('a cidade do perfil vai ao card; sem ela, fica nula', () => {
+    expect(buildRecapCardContent(recap, 'Curitiba').city).toBe('Curitiba');
+    expect(buildRecapCardContent(recap, null).city).toBeNull();
+  });
+
   it('um dia só fica no singular', () => {
-    expect(buildRecapCardContent({ ...recap, daysWorn: 1 }).daysLabel).toBe('1 dia com perfume');
+    expect(buildRecapCardContent({ ...recap, daysWorn: 1 }, null).daysLabel).toBe(
+      '1 dia com perfume'
+    );
   });
 
   it('sem assinatura nem nota, esses campos saem nulos', () => {
-    const empty = buildRecapCardContent({ ...recap, signature: null, topNote: null });
+    const empty = buildRecapCardContent({ ...recap, signature: null, topNote: null }, null);
     expect(empty.signature).toBeNull();
     expect(empty.topNote).toBeNull();
     expect(empty.family).toBeNull();
@@ -125,6 +133,15 @@ describe('computeRecapLayout', () => {
     for (const line of [layout.days, layout.consistency, ...layout.name]) {
       expect(measure(line.text, '')).toBeLessThanOrEqual(RECAP_CONTENT_WIDTH);
     }
+  });
+
+  it('o cabeçalho traz a cidade em caixa alta, e sem cidade fica só o título', () => {
+    expect(computeRecapLayout(content(), measure).eyebrow.text).toBe(
+      'SEU ANO EM PERFUMES · SAO PAULO'
+    );
+    expect(computeRecapLayout(content({ city: null }), measure).eyebrow.text).toBe(
+      'SEU ANO EM PERFUMES'
+    );
   });
 
   it('a marca vai em caixa alta e o wordmark fecha o card', () => {

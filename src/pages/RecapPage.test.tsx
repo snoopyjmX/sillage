@@ -86,7 +86,7 @@ describe('RecapPage (Fase 23)', () => {
     }
     // A troca de lâmina espera a saída animada da anterior
     fireEvent.click(await screen.findByRole('button', { name: 'Baixar imagem' }));
-    expect(shareMutate).toHaveBeenCalledWith(recap);
+    expect(shareMutate).toHaveBeenCalledWith({ recap, city: 'Sao Paulo' });
   });
 
   it.each([
