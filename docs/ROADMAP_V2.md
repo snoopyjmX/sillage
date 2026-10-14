@@ -200,11 +200,11 @@ pgTAP `20_annual_recap` (o 18 é dos perfumistas e o 19 da trilha do Nez) (isola
 
 O `scripts/ingest-perfume.mjs` já faz a extração com Gemini, validação Zod, `responseJsonSchema`, `--dry-run` e tem testes. Esta fase **estende** esse script; não cria `ingest-ai.mjs`.
 
-- **Entrada:** além do nome, aceitar `--url` (baixa o HTML e extrai o texto) e `--text` (texto bruto).
-- **Imagem opcional:** `--image <url>` encadeia `download-images` → `process-images`.
+- **Entrada (feito):** além do nome, `--url` (baixa a página, tira o HTML e passa só o texto) e `--text` (texto bruto). Com fonte, o Gemini extrai **somente** dela (o que ela não disser fica `null` ou vazio) e o nome do perfume passa a ser opcional. O texto da fonte vai ao prompt como dado, nunca como instrução.
+- **Imagem opcional (feito, com um desvio do plano original):** `--image <url>` baixa a foto para `scripts/raw-images/<marca>/<perfume>.<ext>` (tipos aceitos pelo `process-images`; nunca sobrescreve) e manda rodar `npm run images` e `npm run images:upload`. O `download-images.mjs` busca por nome no DuckDuckGo/Bing e não aceita URL, então não dá para encadeá-lo; o `process-images.mjs` processa tudo que está em `raw-images/`, por isso também não é disparado sozinho.
 - **Modelo:** via `GEMINI_MODEL` (padrão `gemini-3.5-flash`). O `gemini-2.5-flash` não está mais disponível para contas novas.
 - **Schema:** é o que o script já usa, alinhado ao banco: o banco **não** tem `families` nem `dominant_accord`; `release_year` aceita vazio; as notas são `[{name, family, position, description}]`.
-- **Testes** em `ingest-perfume.test.mjs` com payloads simulados: parse inválido, nota desconhecida e concentração fora do enum nunca podem gerar SQL.
+- **Testes** (`scripts/ingest-perfume.test.mjs` e `scripts/ingest-extension.test.mjs`) com payloads simulados: JSON inválido, concentração fora do enum ou não confirmada, nota com família ou posição desconhecida, perfume sem nenhuma nota aproveitável e nome ou marca sem slug nunca geram SQL; uma descrição com tentativa de injeção fica dentro do literal.
 
 ---
 
