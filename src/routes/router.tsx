@@ -8,7 +8,7 @@ import { RootEntry } from './RootEntry';
 import { RouteError } from './RouteError';
 
 // Rotas públicas: "/" (Landing para visitante, Home para logado), /login, /register, /forgot-password
-// e /reset-password. Todo o resto (catalog, perfumes/:slug, perfumers/:slug, collection, profile e o 404 "*") exige
+// e /reset-password. Todo o resto (catalog, perfumes/:slug, perfumers/:slug, collection, recap/:year, profile e o 404 "*") exige
 // login. Páginas carregam sob demanda.
 // AuthLayout (sessão) fica na raiz; GuestOnly e RequireAuth são guardas de UX: o gate NÃO é barreira
 // de dados (a segurança é a RLS, e a leitura do catálogo segue pública no banco).
@@ -62,6 +62,7 @@ export const routes: RouteObject[] = [
               { path: 'collection', lazy: page(() => import('@/pages/collection/CollectionPage')) },
               { path: 'compare', lazy: page(() => import('@/pages/ComparePage')) },
               { path: 'memorial', lazy: page(() => import('@/pages/MemorialPage')) },
+              { path: 'recap/:year', lazy: page(() => import('@/pages/RecapPage')) },
               { path: 'profile', lazy: page(() => import('@/pages/ProfilePage')) },
               { path: '*', lazy: page(() => import('@/pages/NotFoundPage')) },
             ],

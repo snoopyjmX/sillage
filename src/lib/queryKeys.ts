@@ -40,6 +40,10 @@ export const queryKeys = {
   dna: {
     get: (userId: string) => ['private', userId, 'olfactory-dna'] as const,
   },
+  // Retrospectiva anual: privada (depende do memorial do usuário)
+  recap: {
+    year: (userId: string, year: number) => ['private', userId, 'recap', year] as const,
+  },
   // Card SOTD gerado no aparelho (Blob): privado, nunca persistido
   shareCard: {
     image: (userId: string, parts: readonly (string | number | null)[]) =>

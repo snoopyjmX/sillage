@@ -19,6 +19,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 | `20261012120000_avatars_storage.sql`            | Bucket público `avatars` e 4 policies de dono (Fase 15D)                                                                             |
 | `20261015120000_perfumers.sql`                  | Tabelas `perfumers` e `perfume_perfumers`, RLS (leitura pública, escrita admin) e backfill a partir de `perfumes.perfumer` (Fase 21) |
 | `20261016120000_discovery_candidates.sql`       | Função `get_discovery_candidates` (pré-seleção de candidatos da trilha do Nez, Fase 22; sem tabela nova)                             |
+| `20261017120000_annual_recap.sql`               | Função `get_annual_recap` (retrospectiva anual do Memorial, Fase 23; sem tabela nova)                                                |
 | `20261015130000_drop_perfumer_text.sql`         | Remove a coluna de texto `perfumes.perfumer` (os perfumistas passam a vir das tabelas)                                               |
 | `20261014130000_collection_formats.sql`         | Enum `collection_format`, colunas `format` e `volume_ml` em `collection_items` e os `CHECK`s da RN11 (Fase 17A)                      |
 | `20261014120000_olfactory_dna.sql`              | Função `get_olfactory_dna` (DNA olfativo do Perfil, Fase 16A; sem tabela nova)                                                       |
@@ -140,6 +141,18 @@ A Edge Function `delete-account` (a exclusão em cascata de `auth.users` → `pr
 - **Retorno:** `id, slug, name, brand_name, concentration, gender, families, notes` (`[{ name, position }]`, topo, coração, fundo) e `score`.
 - **Clima → famílias:** a Edge Function traduz a faixa (frio < 15 °C, ameno de 15 a menos de 25 °C, quente a partir de 25 °C) nas famílias cujas faixas de `FAMILY_TEMP_RANGES` (RN10) tocam essa faixa. A cópia vive em `supabase/functions/nez-ai/discovery.ts` e um teste (`src/lib/nezDiscovery.test.ts`) quebra se divergir de `constants/climate.ts`.
 - Testes: `supabase/tests/database/19_discovery_candidates.test.sql`.
+
+## `get_annual_recap` (Fase 23)
+
+`get_annual_recap(p_year int)` devolve `jsonb`. `SECURITY INVOKER`, `STABLE`, `search_path` vazio; `EXECUTE` só para `authenticated` (revogado de `public` e de `anon`). Lê `daily_perfumes` do próprio usuário (a RLS de dono vale, RN01; o filtro por `auth.uid()` deixa a intenção explícita).
+
+- **Ano:** de 2026 até o ano de hoje no fuso do perfil (`profiles.timezone`); fora disso (ou nulo), `22023`. Sem sessão, `42501`.
+- **Dias decorridos:** o ano inteiro para anos passados; de 1º de janeiro até hoje para o ano corrente. `consistency` = dias vestidos / dias decorridos (0 a 1, 4 casas).
+- **Estações (hemisfério Sul, meteorológicas, pelo mês do dia):** verão dez-fev, outono mar-mai, inverno jun-ago, primavera set-nov. O verão do ano N junta jan-fev e dez do **mesmo ano civil**.
+- **Retorno:** `year`, `days_worn`, `days_elapsed`, `consistency`, `signature` (perfume mais vestido: `slug, name, brand_name, image_path, days`), `seasons` (`summer`, `autumn`, `winter`, `spring`, cada uma com o perfume mais vestido na estação ou `null`), `top_note` (`slug, name, family, weight`) e `families` (`first_semester` e `second_semester`: `[{ family, weight }]`, do maior ao menor).
+- **Pesos (mesma regra do DNA):** cada dia vestido soma 1 a cada nota **distinta** do perfume; o peso da família é a soma dos pesos das suas notas. Semestres: 1º = jan-jun, 2º = jul-dez. A "evolução do gosto" compara as duas listas.
+- **Empates:** mais dias, depois nome e id (perfumes); mais peso, depois nome e id (notas); mais peso, depois a ordem alfabética da família.
+- Testes: `supabase/tests/database/20_annual_recap.test.sql`.
 
 ## `get_olfactory_dna` (Fase 16A)
 

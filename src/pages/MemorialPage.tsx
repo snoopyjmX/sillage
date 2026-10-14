@@ -1,4 +1,4 @@
-import { ArrowLeft, CalendarHeart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, CalendarHeart, ChevronLeft, ChevronRight, Gift } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { MemorialCalendar, MemorialCalendarSkeleton } from '@/components/daily/MemorialCalendar';
 import { SeoHead } from '@/components/seo/SeoHead';
@@ -11,6 +11,7 @@ import { useDailyRange } from '@/hooks/useDailyRange';
 import { useProfileTimezone } from '@/hooks/useProfileTimezone';
 import { MIN_MONTH, monthBounds, monthOf, resolveMonth, shiftMonth } from '@/lib/calendar';
 import { formatCount, formatMonthYear } from '@/lib/format';
+import { yearOf } from '@/lib/recap';
 import { DEFAULT_TIMEZONE, todayInTimezone } from '@/lib/timezone';
 
 // Rota privada (RequireAuth). Calendário mensal do Perfume do Dia: cada dia com a miniatura do
@@ -47,6 +48,15 @@ export default function MemorialPage() {
         <header className="flex flex-col gap-1">
           <h1 className="font-heading text-3xl font-medium md:text-4xl">Memorial</h1>
           <p className="text-sm text-muted-foreground">Os perfumes que você escolheu, dia a dia.</p>
+          {today !== null && (
+            <Link
+              to={`/recap/${yearOf(today)}`}
+              className="mt-2 inline-flex min-h-11 items-center gap-2 self-start rounded-lg text-sm font-medium text-primary outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              <Gift className="size-4" aria-hidden />
+              Seu ano em perfumes
+            </Link>
+          )}
         </header>
 
         <nav aria-label="Mês" className="flex items-center justify-between gap-2">
