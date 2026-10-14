@@ -159,3 +159,5 @@ Por que esta ordem:
 - **18A antes de 18B:** a afinidade reaproveita o DNA recém-entregue e ajuda a decidir compras caras, a dor central do colecionador de nicho.
 
 Cada linha é um PR próprio, com docs e testes no mesmo PR (`AGENTS.md`).
+
+As fases seguintes (19.1 e 20 a 24) estão em [ROADMAP_V2.md](ROADMAP_V2.md).
