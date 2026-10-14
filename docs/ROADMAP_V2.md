@@ -32,7 +32,7 @@ As fases não têm ordem obrigatória entre si; as dependências externas estão
 
 ## Fase 19.1: Correções de Interface, Catálogo e Responsividade
 
-Entregue em três PRs: **19.1-a** (itens 4 e 5), **19.1-b** (item 3) e **19.1-c** (itens 1 e 2, bloqueado).
+Entregue em três PRs: **19.1-a** (itens 4 e 5), **19.1-b** (item 3) e **19.1-c** (item 1 bloqueado; do item 2, o recorte da Boemia está feito).
 
 ### 1. Catálogo: fichas e imagens de 3 perfumes (19.1-c, bloqueado)
 
@@ -44,23 +44,13 @@ Hoje Amyi 2.15, Irish Green Man e Caipi d'Argent existem **só** em `supabase/de
 - **Pipeline de imagens:** `scripts/process-images.mjs` → `scripts/upload-images.mjs` (`npm run images:upload`) → SQL de `image_path` (`npm run images`).
 - **Bloqueio:** as fotos originais são fornecidas pelo curador. Sem elas e sem as fichas revisadas, esta tarefa não avança.
 
-### 2. Modo noturno: recorte dos frascos (19.1-c, bloqueado)
+### 2. Modo noturno: recorte dos frascos (Boemia feita; o resto bloqueado com o item 1)
 
-- **Problema:** em fundo escuro (`--stage: #272e29`), Boemia (Granado) tem franjas claras nas bordas e mancha de sombra na base.
-- **Solução:** fazer **merge** no `scripts/image-overrides.json` atual, sem apagar `gigi` e `bonissimo` (`tolerance: 45`). Valores iniciais a calibrar visualmente (`preview-images.mjs`), não definitivos:
-  ```json
-  {
-    "bossa": { "tolerance": 8, "cropBottom": 0.15 },
-    "gigi": { "tolerance": 45 },
-    "bonissimo": { "tolerance": 45 },
-    "boemia": { "tolerance": 32, "cropBottom": 0.12 },
-    "amyi-2-15": { "tolerance": 20 },
-    "irish-green-man": { "tolerance": 22 },
-    "caipi-argent": { "tolerance": 22 }
-  }
-  ```
-- "Feathering" não é chave de override: é a constante fixa `EDGE_SMOOTHING = 0.8` em `process-images.mjs`. Se o recorte da Boemia pedir, criar a chave opcional `edgeSmoothing`, com teste em `process-images.test.mjs`.
-- Reprocessar, enviar e validar Bossa e Boemia no modo noturno.
+- **Problema:** em fundo escuro (`--stage: #272e29`), Boemia (Granado) tem franjas claras nas bordas e uma mancha branca de sombra na base.
+- **Feito (Boemia):** o merge em `scripts/image-overrides.json` mantém `bossa`, `gigi` e `bonissimo` e acrescenta `"boemia": { "tolerance": 14, "cropBottom": 0.22 }`. Os valores vieram de uma comparação lado a lado sobre o palco escuro (as mesmas funções do `process-images.mjs`): sem override, a mancha branca fica; `tolerance: 32` (valor do roadmap original) apaga o líquido e deixa o frasco oco; `tolerance: 14` com `cropBottom: 0.22` tira a mancha e mantém o líquido, ao custo de cortar a base de vidro. As franjas laterais do líquido (pálido como o fundo da foto) não saem só com os parâmetros: só uma foto de origem melhor ou um recorte manual resolve. A Bossa já estava boa com o override que tinha.
+- **Para valer em produção:** rodar `npm run images` (gera o novo hash da Boemia), atualizar o `image_path` dela no `supabase/seed.sql` com o SQL que o comando imprime e rodar `npm run images:upload`. Nada disso foi feito: o seed e o Storage continuam com a versão antiga até lá.
+- **Ainda bloqueado:** os overrides de `amyi-2-15`, `irish-green-man` e `caipi-argent` dependem das fotos originais, que só o curador tem; calibrar sem a foto seria chute.
+- "Feathering" não é chave de override: é a constante fixa `EDGE_SMOOTHING = 0.8` em `process-images.mjs`. Se o recorte pedir, criar a chave opcional `edgeSmoothing`, com teste em `process-images.test.mjs`.
 
 ### 3. Widget de clima: nome real do local (19.1-b)
 

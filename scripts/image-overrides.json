@@ -1,5 +1,6 @@
 {
   "bossa": { "tolerance": 8, "cropBottom": 0.15 },
+  "boemia": { "tolerance": 14, "cropBottom": 0.22 },
   "gigi": { "tolerance": 45 },
   "bonissimo": { "tolerance": 45 }
 }
