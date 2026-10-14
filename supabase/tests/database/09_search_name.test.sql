@@ -50,7 +50,7 @@ end $$;
 insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000001', 'Café Royale', 'cafe-royale');
 
 select is((select search_name from public.brands where id = '22222222-0000-4000-8000-000000000001'), 'cafe royale'::text, 'Busca: marca ''Café Royale'' vira ''cafe royale''');
-select lives_ok($t$insert into public.perfumes (id, brand_id, name, slug, gender, concentration) values ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Café', 'cafe', 'unisex', 'edp')$t$, 'Busca: insere perfume ''Café''');
+select lives_ok($t$insert into public.perfumes (id, brand_id, name, slug, gender, concentration, image_path) values ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Café', 'cafe', 'unisex', 'edp', 'teste/foto.webp')$t$, 'Busca: insere perfume ''Café''');
 select is((select search_name from public.perfumes where id = '11111111-0000-4000-8000-000000000001'), 'cafe'::text, 'Busca: ''Café'' resulta em search_name ''cafe''');
 select lives_ok($t$update public.perfumes set name = 'Ação Ñandú' where id = '11111111-0000-4000-8000-000000000001'$t$, 'Busca: renomeia o perfume');
 select is((select search_name from public.perfumes where id = '11111111-0000-4000-8000-000000000001'), 'acao nandu'::text, 'Busca: UPDATE do name recalcula search_name');

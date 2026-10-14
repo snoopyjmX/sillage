@@ -478,6 +478,8 @@ A proteção de rota no React serve só para UX. A segurança real é a RLS. **O
 
 ## 8. Catálogo, busca e paginação
 
+**Regra do catálogo:** todo perfume tem foto oficial (`perfumes.image_path` é `NOT NULL`). Sem página e foto oficiais, o perfume não entra no catálogo; o script `npm run ingest` exige `--image`.
+
 A busca roda numa função SQL (`search_perfumes`) chamada por RPC, porque combinar nota, posição, família e contagem total em uma só consulta é mais previsível em SQL do que em filtros encadeados do PostgREST.
 
 **Assinatura**

@@ -398,9 +398,11 @@ export const buildMigrationSql = (data, { brandSlug, perfumeSlug }) => {
       .join(',\n'),
     'on conflict (slug) do nothing;',
     '',
-    'insert into public.perfumes (slug, brand_id, name, concentration, gender, release_year, description)',
+    'insert into public.perfumes (slug, brand_id, name, concentration, gender, release_year, description, image_path)',
     `select ${sqlString(perfumeSlug)}, b.id, ${sqlString(data.name)}, ${sqlString(data.concentration)}::public.concentration_type,`,
-    `  ${sqlString(data.gender)}::public.perfume_gender, ${data.releaseYear ?? 'null'}, ${sqlString(data.description)}`,
+    `  ${sqlString(data.gender)}::public.perfume_gender, ${data.releaseYear ?? 'null'}, ${sqlString(data.description)},`,
+    // Provisório, sem hash: `npm run images` imprime o update com o caminho definitivo
+    `  ${sqlString(`${brandSlug}/${perfumeSlug}.webp`)}`,
     `from public.brands b where b.slug = ${sqlString(brandSlug)}`,
     'on conflict (slug) do nothing;',
     '',
@@ -516,6 +518,10 @@ const main = async () => {
     `  Marca ${existing.brandExists ? 'já existe' : 'nova'}; ${existing.noteCount} notas já existem`
   );
 
+  // Catálogo só com foto oficial (perfumes.image_path é NOT NULL): sem --image não se gera migration
+  if (image === null && !dryRun) {
+    fail('Informe --image <url da foto oficial>: o catálogo só aceita perfume com foto.');
+  }
   const sql = buildMigrationSql(data, slugs);
   if (dryRun) {
     console.log(JSON.stringify(data, null, 2));
@@ -538,13 +544,12 @@ const main = async () => {
   console.log(
     '  Revise o SQL e aplique com `npx supabase migration up` (local) ou `db push` (produção).'
   );
-  if (image === null) {
-    console.log('  Adicione imagem e preço depois.');
-    return;
-  }
   const photo = await downloadImage(image, slugs.brandSlug, slugs.perfumeSlug);
   console.log(`✔ Foto salva em ${photo}. CONFIRA se é o frasco certo (e os direitos de uso).`);
   console.log('  Depois: npm run images (recorte) e npm run images:upload (envio ao Storage).');
+  console.log(
+    '  O image_path da migration é provisório (sem hash): aplique o `update` impresso por `npm run images`.'
+  );
 };
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

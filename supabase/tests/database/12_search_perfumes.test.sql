@@ -78,19 +78,19 @@ insert into public.notes (id, name, slug, family) values
 -- p3 Zorro Amad.: omega, parfum, feminine,  sem ano
 -- p4 Alpha:       café,  edc,    unisex,    2010
 -- p5 Zorro:       omega, edp,    unisex,    2012
-insert into public.perfumes (id, brand_id, name, slug, gender, concentration, release_year) values
-  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Café Noir', 'st-cafe-noir', 'unisex', 'edp', 2015),
-  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Zephyr', 'st-zephyr', 'masculine', 'edt', 2020),
-  ('11111111-0000-4000-8000-000000000003', '22222222-0000-4000-8000-000000000003', 'Zorro Amadeirado', 'st-zorro', 'feminine', 'parfum', null),
-  ('11111111-0000-4000-8000-000000000004', '22222222-0000-4000-8000-000000000002', 'Alpha', 'st-alpha', 'unisex', 'edc', 2010),
-  ('11111111-0000-4000-8000-000000000005', '22222222-0000-4000-8000-000000000003', 'Zorro', 'st-zorro-puro', 'unisex', 'edp', 2012),
-  ('11111111-0000-4000-8000-000000000011', '22222222-0000-4000-8000-000000000004', 'Gemeo Duplicado', 'st-gemeo-b', 'unisex', 'edp', null),
-  ('11111111-0000-4000-8000-000000000012', '22222222-0000-4000-8000-000000000004', 'Gemeo Duplicado', 'st-gemeo-a', 'unisex', 'edp', null),
+insert into public.perfumes (id, brand_id, name, slug, gender, concentration, release_year, image_path) values
+  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Café Noir', 'st-cafe-noir', 'unisex', 'edp', 2015, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Zephyr', 'st-zephyr', 'masculine', 'edt', 2020, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000003', '22222222-0000-4000-8000-000000000003', 'Zorro Amadeirado', 'st-zorro', 'feminine', 'parfum', null, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000004', '22222222-0000-4000-8000-000000000002', 'Alpha', 'st-alpha', 'unisex', 'edc', 2010, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000005', '22222222-0000-4000-8000-000000000003', 'Zorro', 'st-zorro-puro', 'unisex', 'edp', 2012, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000011', '22222222-0000-4000-8000-000000000004', 'Gemeo Duplicado', 'st-gemeo-b', 'unisex', 'edp', null, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000012', '22222222-0000-4000-8000-000000000004', 'Gemeo Duplicado', 'st-gemeo-a', 'unisex', 'edp', null, 'teste/foto.webp'),
   -- nomes longos: o trigram sozinho não acha um trecho curto; o LIKE de trecho acha
-  ('11111111-0000-4000-8000-000000000021', '22222222-0000-4000-8000-000000000005', 'Vetiver Extraordinaire Absolu Intense', 'st-vetiver-longo', 'unisex', 'edp', null),
-  ('11111111-0000-4000-8000-000000000022', '22222222-0000-4000-8000-000000000005', 'Alfa_Beta Intensamente Longo Nome Teste', 'st-under', 'unisex', 'edp', null),
-  ('11111111-0000-4000-8000-000000000023', '22222222-0000-4000-8000-000000000005', 'Alfa%Beta Intensamente Longo Nome Teste', 'st-pct', 'unisex', 'edp', null),
-  ('11111111-0000-4000-8000-000000000024', '22222222-0000-4000-8000-000000000005', 'Alfaxbeta Intensamente Longo Nome Teste', 'st-nowild', 'unisex', 'edp', null);
+  ('11111111-0000-4000-8000-000000000021', '22222222-0000-4000-8000-000000000005', 'Vetiver Extraordinaire Absolu Intense', 'st-vetiver-longo', 'unisex', 'edp', null, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000022', '22222222-0000-4000-8000-000000000005', 'Alfa_Beta Intensamente Longo Nome Teste', 'st-under', 'unisex', 'edp', null, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000023', '22222222-0000-4000-8000-000000000005', 'Alfa%Beta Intensamente Longo Nome Teste', 'st-pct', 'unisex', 'edp', null, 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000024', '22222222-0000-4000-8000-000000000005', 'Alfaxbeta Intensamente Longo Nome Teste', 'st-nowild', 'unisex', 'edp', null, 'teste/foto.webp');
 
 insert into public.perfume_notes (perfume_id, note_id, position) values
   ('11111111-0000-4000-8000-000000000001', '33333333-0000-4000-8000-000000000001', 'top'),

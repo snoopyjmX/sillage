@@ -41,12 +41,12 @@ delete from public.perfumes;
 insert into auth.users (id, aud, role, email, raw_user_meta_data) values
   ('a0000000-0000-4000-8000-00000000000a', 'authenticated', 'authenticated', 'a@test.local', '{"name":"Alice"}');
 insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000001', 'Marca Teste', 'marca-teste');
-insert into public.perfumes (id, brand_id, name, slug, gender, concentration) values
-  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Alfa', 'alfa', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Beta', 'beta', 'unisex', 'edt'),
-  ('11111111-0000-4000-8000-000000000003', '22222222-0000-4000-8000-000000000001', 'Gama', 'gama', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000004', '22222222-0000-4000-8000-000000000001', 'Delta', 'delta', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000005', '22222222-0000-4000-8000-000000000001', 'Sem Notas', 'sem-notas', 'unisex', 'edp');
+insert into public.perfumes (id, brand_id, name, slug, gender, concentration, image_path) values
+  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Alfa', 'alfa', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Beta', 'beta', 'unisex', 'edt', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000003', '22222222-0000-4000-8000-000000000001', 'Gama', 'gama', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000004', '22222222-0000-4000-8000-000000000001', 'Delta', 'delta', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000005', '22222222-0000-4000-8000-000000000001', 'Sem Notas', 'sem-notas', 'unisex', 'edp', 'teste/foto.webp');
 insert into public.notes (id, name, slug, family) values
   ('33333333-0000-4000-8000-000000000001', 'Nota Citrica', 'nota-citrica', 'citrus'),
   ('33333333-0000-4000-8000-000000000002', 'Nota Amadeirada A', 'nota-amadeirada-a', 'woody'),
