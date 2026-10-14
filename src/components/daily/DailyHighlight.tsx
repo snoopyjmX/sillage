@@ -34,21 +34,21 @@ export function DailyHighlight({ entry, weather }: DailyHighlightProps) {
         aria-label="Perfume do Dia"
         className="grid overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-floating md:grid-cols-2"
       >
-        <PerfumeStage className="aspect-[4/3] md:aspect-auto md:min-h-80">
+        <PerfumeStage className="h-48 w-full sm:h-60 md:h-auto md:min-h-80">
           <PerfumeImage
             key={perfume.imageUrl}
             url={perfume.imageUrl}
             variant="medium"
             alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
             width={640}
-            height={640}
-            className="size-full object-contain p-2"
+            height={800}
+            className="max-h-full max-w-full object-contain p-3"
             fallback={
               <PerfumePlaceholder family={perfume.families[0]} showIcon className="size-full" />
             }
           />
         </PerfumeStage>
-        <div className="flex flex-col justify-center gap-3 p-6 md:p-10">
+        <div className="flex flex-col justify-center gap-3 p-4 sm:p-6 md:p-10">
           <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
             {perfume.brandName}
           </p>

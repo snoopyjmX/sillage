@@ -41,16 +41,16 @@ export function DailySuggestionCard({
         aria-label="Sugestão do dia"
         className="grid overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-floating md:grid-cols-[2fr_3fr]"
       >
-        <PerfumeStage className="aspect-[4/3] md:aspect-auto md:min-h-96">
+        <PerfumeStage className="h-48 w-full sm:h-60 md:h-auto md:min-h-96">
           <PerfumeImage
             key={perfume.imageUrl}
             url={perfume.imageUrl}
             variant="medium"
             alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
             width={640}
-            height={640}
+            height={800}
             priority
-            className="size-full object-contain p-2"
+            className="max-h-full max-w-full object-contain p-3"
             fallback={
               <PerfumePlaceholder
                 family={perfume.notes[0]?.family}
@@ -171,7 +171,7 @@ export function DailySuggestionSkeleton() {
       aria-label="Carregando a sugestão do dia"
       className="grid overflow-hidden rounded-2xl border bg-card shadow-floating md:grid-cols-[2fr_3fr]"
     >
-      <Skeleton className="aspect-[4/3] w-full rounded-none md:aspect-auto md:min-h-96" />
+      <Skeleton className="h-48 w-full rounded-none sm:h-60 md:h-auto md:min-h-96" />
       <div className="flex flex-col gap-4 p-4 sm:p-6 md:p-8">
         <Skeleton className="h-4 w-1/3" />
         <Skeleton className="h-10 w-3/4" />
