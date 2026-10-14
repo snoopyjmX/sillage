@@ -28,7 +28,10 @@ const row = {
   lowest_price_cents: 24900,
   store_name: 'O Boticário',
   store_url: 'https://www.boticario.com.br',
-  perfumer: 'Olivier Cresp',
+  perfume_perfumers: [
+    { position: 2, perfumer: { slug: 'francis-kurkdjian', name: 'Francis Kurkdjian' } },
+    { position: 1, perfumer: { slug: 'olivier-cresp', name: 'Olivier Cresp' } },
+  ],
   brand: { name: 'O Boticário', slug: 'o-boticario' },
   perfume_notes: [
     {
@@ -50,12 +53,12 @@ const row = {
 describe('perfumeService.getBySlug', () => {
   beforeEach(() => vi.clearAllMocks());
 
-  it('pede perfume, marca e notas numa consulta só', async () => {
+  it('pede perfume, marca, notas e perfumistas numa consulta só', async () => {
     maybeSingle.mockResolvedValue({ data: row, error: null });
     await perfumeService.getBySlug('malbec-signature');
     expect(select).toHaveBeenCalledTimes(1);
     expect(select).toHaveBeenCalledWith(
-      '*, brand:brands(*), perfume_notes(position, note:notes(*))'
+      '*, brand:brands(*), perfume_notes(position, note:notes(*)), perfume_perfumers(position, perfumer:perfumers(slug, name))'
     );
   });
 
@@ -69,8 +72,12 @@ describe('perfumeService.getBySlug', () => {
       lowestPriceCents: 24900,
       storeName: 'O Boticário',
       storeUrl: 'https://www.boticario.com.br',
-      perfumer: 'Olivier Cresp',
     });
+    // Na ordem de crédito, não na ordem em que o banco devolveu
+    expect(detail.perfumers).toEqual([
+      { slug: 'olivier-cresp', name: 'Olivier Cresp' },
+      { slug: 'francis-kurkdjian', name: 'Francis Kurkdjian' },
+    ]);
     expect(detail.notes.map((n) => `${n.name}:${n.position}`)).toEqual([
       'Bergamota:top',
       'Vetiver:base',

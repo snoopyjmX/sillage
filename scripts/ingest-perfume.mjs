@@ -61,7 +61,9 @@ export const PerfumeSchema = z.object({
     .nullable()
     .describe('Concentração oficial; null se não for possível confirmar'),
   gender: z.enum(GENDERS),
-  perfumer: z.string().nullable().describe('Perfumista (nariz); null se desconhecido'),
+  perfumers: z
+    .array(z.string())
+    .describe('Perfumistas (narizes) na ordem de crédito; lista vazia se desconhecidos'),
   description: z
     .string()
     .describe('Descrição envolvente em português do Brasil, até 600 caracteres'),
@@ -134,6 +136,17 @@ export const uniqueNotes = (notes) => {
   return [...bySlug.values()];
 };
 
+// Perfumistas são globais como as notas: um por slug, na ordem de crédito (a posição começa em 1)
+export const uniquePerfumers = (names) => {
+  const bySlug = new Map();
+  for (const raw of names) {
+    const name = raw.trim();
+    const slug = slugify(name);
+    if (slug && !bySlug.has(slug)) bySlug.set(slug, { name, slug, position: bySlug.size + 1 });
+  }
+  return [...bySlug.values()];
+};
+
 // `perfumes` = Map<slug do perfume, slug da marca>. Colisão com outra marca: o slug leva a marca
 export const resolveSlugs = (data, perfumes) => {
   const brandSlug = slugify(data.brand);
@@ -148,6 +161,7 @@ export const resolveSlugs = (data, perfumes) => {
 
 export const buildMigrationSql = (data, { brandSlug, perfumeSlug }) => {
   const notes = uniqueNotes(data.notes);
+  const perfumers = uniquePerfumers(data.perfumers);
   const links = new Map();
   for (const note of data.notes) {
     const slug = slugify(note.name);
@@ -169,12 +183,29 @@ export const buildMigrationSql = (data, { brandSlug, perfumeSlug }) => {
       .join(',\n'),
     'on conflict (slug) do nothing;',
     '',
-    'insert into public.perfumes (slug, brand_id, name, concentration, gender, release_year, perfumer, description)',
+    'insert into public.perfumes (slug, brand_id, name, concentration, gender, release_year, description)',
     `select ${sqlString(perfumeSlug)}, b.id, ${sqlString(data.name)}, ${sqlString(data.concentration)}::public.concentration_type,`,
-    `  ${sqlString(data.gender)}::public.perfume_gender, ${data.releaseYear ?? 'null'}, ${sqlString(data.perfumer?.trim() || null)}, ${sqlString(data.description)}`,
+    `  ${sqlString(data.gender)}::public.perfume_gender, ${data.releaseYear ?? 'null'}, ${sqlString(data.description)}`,
     `from public.brands b where b.slug = ${sqlString(brandSlug)}`,
     'on conflict (slug) do nothing;',
     '',
+    ...(perfumers.length === 0
+      ? []
+      : [
+          'insert into public.perfumers (slug, name) values',
+          perfumers.map((p) => `  (${sqlString(p.slug)}, ${sqlString(p.name)})`).join(',\n'),
+          'on conflict (slug) do nothing;',
+          '',
+          'insert into public.perfume_perfumers (perfume_id, perfumer_id, position)',
+          'select p.id, pf.id, v.position::smallint',
+          'from (values',
+          perfumers.map((p) => `  (${sqlString(p.slug)}, ${p.position})`).join(',\n'),
+          ') as v (perfumer_slug, position)',
+          `join public.perfumes p on p.slug = ${sqlString(perfumeSlug)}`,
+          'join public.perfumers pf on pf.slug = v.perfumer_slug',
+          'on conflict do nothing;',
+          '',
+        ]),
     'insert into public.perfume_notes (perfume_id, note_id, position)',
     'select p.id, n.id, v.position::public.note_position',
     'from (values',
@@ -197,8 +228,8 @@ const fetchFromGemini = async (query) => {
     model: GEMINI_MODEL,
     contents:
       `Perfume: "${query}". Retorne os dados oficiais desse perfume. ` +
-      'Use apenas informações em que você tem confiança: se não souber o ano ou o perfumista, ' +
-      'use null; não invente notas. Nomes de notas em português do Brasil (ex.: Bergamota, Baunilha), ' +
+      'Use apenas informações em que você tem confiança: se não souber o ano, use null; ' +
+      'se não souber os perfumistas, use uma lista vazia; não invente notas. Nomes de notas em português do Brasil (ex.: Bergamota, Baunilha), ' +
       'cada uma com uma descrição sensorial curta (até 240 caracteres). ' +
       'A concentração deve ser exatamente uma de: parfum, extrait, edp, edt, edc. ' +
       'Se não for possível confirmar a concentração oficial, use null: não chute.',

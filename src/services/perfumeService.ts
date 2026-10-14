@@ -55,7 +55,9 @@ export const perfumeService = {
   getBySlug: async (slug: string): Promise<PerfumeDetail> => {
     const { data, error } = await supabase
       .from('perfumes')
-      .select('*, brand:brands(*), perfume_notes(position, note:notes(*))')
+      .select(
+        '*, brand:brands(*), perfume_notes(position, note:notes(*)), perfume_perfumers(position, perfumer:perfumers(slug, name))'
+      )
       .eq('slug', slug)
       .maybeSingle();
     if (error) throw toAppError(error);
@@ -77,7 +79,10 @@ export const perfumeService = {
       lowestPriceCents: data.lowest_price_cents,
       storeName: data.store_name,
       storeUrl: data.store_url,
-      perfumer: data.perfumer,
+      perfumers: data.perfume_perfumers
+        .slice()
+        .sort((a, b) => a.position - b.position)
+        .map(({ perfumer }) => ({ slug: perfumer.slug, name: perfumer.name })),
       notes: data.perfume_notes
         .map(({ position, note }) => ({
           slug: note.slug,

@@ -10,6 +10,9 @@ export const queryKeys = {
     detail: (slug: string) => ['public', 'perfumes', 'detail', slug] as const,
     similar: (perfumeId: string) => ['public', 'perfumes', perfumeId, 'similar'] as const,
   },
+  perfumers: {
+    detail: (slug: string) => ['public', 'perfumers', 'detail', slug] as const,
+  },
   brands: {
     list: () => ['public', 'brands', 'list'] as const,
   },

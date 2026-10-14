@@ -52,7 +52,7 @@ const detail: PerfumeDetail = {
   lowestPriceCents: null,
   storeName: null,
   storeUrl: null,
-  perfumer: null,
+  perfumers: [],
   notes: [
     { slug: 'bergamota', name: 'Bergamota', family: 'citrus', position: 'top', description: null },
     { slug: 'vetiver', name: 'Vetiver', family: 'woody', position: 'base', description: null },
@@ -110,15 +110,34 @@ describe('página de detalhes do perfume', () => {
     await waitFor(() => expect(document.title).toBe('Malbec Signature · O Boticário — Sillage'));
   });
 
-  it('mostra o perfumista só quando informado', async () => {
-    getBySlug.mockResolvedValue({ ...detail, perfumer: 'Olivier Cresp' });
+  it('mostra o perfumista como link para a página dele', async () => {
+    getBySlug.mockResolvedValue({
+      ...detail,
+      perfumers: [{ slug: 'olivier-cresp', name: 'Olivier Cresp' }],
+    });
     renderApp('/perfumes/malbec-signature');
-    expect(
-      await screen.findByText('Perfumista: Olivier Cresp', {}, { timeout: 8000 })
-    ).toBeInTheDocument();
+    const link = await screen.findByRole('link', { name: 'Olivier Cresp' }, { timeout: 8000 });
+    expect(link).toHaveAttribute('href', '/perfumers/olivier-cresp');
+    expect(screen.getByText('Perfumista:')).toBeInTheDocument();
   });
 
-  it('não mostra a linha de perfumista quando é nulo', async () => {
+  it('com mais de um perfumista, lista todos no plural', async () => {
+    getBySlug.mockResolvedValue({
+      ...detail,
+      perfumers: [
+        { slug: 'olivier-cresp', name: 'Olivier Cresp' },
+        { slug: 'francis-kurkdjian', name: 'Francis Kurkdjian' },
+      ],
+    });
+    renderApp('/perfumes/malbec-signature');
+    expect(await screen.findByText('Perfumistas:', {}, { timeout: 8000 })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Francis Kurkdjian' })).toHaveAttribute(
+      'href',
+      '/perfumers/francis-kurkdjian'
+    );
+  });
+
+  it('não mostra a linha de perfumista quando não há nenhum', async () => {
     getBySlug.mockResolvedValue(detail);
     renderApp('/perfumes/malbec-signature');
     await screen.findByRole('heading', { level: 1 }, { timeout: 8000 });

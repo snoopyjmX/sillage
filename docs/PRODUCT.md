@@ -43,15 +43,15 @@ PWA de catálogo e coleção de perfumaria de nicho, em português (BR), mobile-
 
 **Mudanças da v1.3 (Fase 14B: Landing e acesso só com cadastro)**
 
-| Mudança                                                                             | Por quê                                                                                                                                                     |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Só Landing, login, cadastro e recuperação de senha são públicos                     | Decisão do produto (D1). `/catalog`, `/perfumes/:slug`, `/collection`, `/profile` e o 404 exigem login; visitante vai para `/` com `?redirect=`.            |
-| O gate é **só de interface**; RN07 e a RLS ficam como estavam                       | O catálogo segue com leitura pública no banco (a `anon key` já é pública). O gate organiza a experiência; não é barreira de dados (ver `docs/SECURITY.md`). |
-| `/` é a Landing para visitante e a Home para logado, na mesma URL                   | O `start_url` do PWA continua `/` (D8). Enquanto a sessão carrega, mostra-se o esqueleto, nunca a Landing.                                                  |
-| Lighthouse audita `/`, `/login` e `/register` (mesmas metas)                        | As demais rotas redirecionam para a Landing sem login (D2).                                                                                                 |
-| SEO: sitemap só com `/`; `robots.txt` bloqueia as rotas privadas                    | As rotas privadas só redirecionam para a Landing e não têm conteúdo indexável (D1).                                                                         |
-| Offline: sem login só a Landing abre; o cache público persistido continua, sem tela | Reescreve o teste "após logout o catálogo continua disponível" (D7).                                                                                        |
-| Divergência: `AGENTS.md` citava `docs/QA.md`, que não existe                        | A matriz de testes é a seção 12 deste documento (fonte de verdade); nenhum arquivo novo foi criado.                                                         |
+| Mudança                                                                             | Por quê                                                                                                                                                              |
+| ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Só Landing, login, cadastro e recuperação de senha são públicos                     | Decisão do produto (D1). `/catalog`, `/perfumes/:slug`, `/perfumers/:slug`, `/collection`, `/profile` e o 404 exigem login; visitante vai para `/` com `?redirect=`. |
+| O gate é **só de interface**; RN07 e a RLS ficam como estavam                       | O catálogo segue com leitura pública no banco (a `anon key` já é pública). O gate organiza a experiência; não é barreira de dados (ver `docs/SECURITY.md`).          |
+| `/` é a Landing para visitante e a Home para logado, na mesma URL                   | O `start_url` do PWA continua `/` (D8). Enquanto a sessão carrega, mostra-se o esqueleto, nunca a Landing.                                                           |
+| Lighthouse audita `/`, `/login` e `/register` (mesmas metas)                        | As demais rotas redirecionam para a Landing sem login (D2).                                                                                                          |
+| SEO: sitemap só com `/`; `robots.txt` bloqueia as rotas privadas                    | As rotas privadas só redirecionam para a Landing e não têm conteúdo indexável (D1).                                                                                  |
+| Offline: sem login só a Landing abre; o cache público persistido continua, sem tela | Reescreve o teste "após logout o catálogo continua disponível" (D7).                                                                                                 |
+| Divergência: `AGENTS.md` citava `docs/QA.md`, que não existe                        | A matriz de testes é a seção 12 deste documento (fonte de verdade); nenhum arquivo novo foi criado.                                                                  |
 
 ## 2. Escopo do MVP
 
@@ -450,6 +450,7 @@ supabase/
 | `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                                                                    |
 | `/catalog`            | privada            | Busca, filtros e resultados; estado na query string                                                                 |
 | `/perfumes/:slug`     | privada            | Detalhes; coleção, avaliação e Nez                                                                                  |
+| `/perfumers/:slug`    | privada            | Perfumista (Fase 21): país, bio e os perfumes dele no catálogo                                                      |
 | `/collection`         | privada            | Coleção com abas Tenho e Quero                                                                                      |
 | `/memorial`           | privada            | Calendário mensal do Perfume do Dia; mês na query string (`?mes=AAAA-MM`)                                           |
 | `/compare`            | privada            | Comparador de dois perfumes; estado na query string (`?a=<slug>&b=<slug>`)                                          |
