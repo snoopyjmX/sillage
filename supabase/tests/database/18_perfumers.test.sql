@@ -3,7 +3,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(23);
+select plan(27);
 
 create function pg_temp.act_as(
   p_uid uuid,
@@ -64,6 +64,11 @@ select is((select relrowsecurity from pg_class where oid = 'public.perfumers'::r
 select is((select relrowsecurity from pg_class where oid = 'public.perfume_perfumers'::regclass), true, 'RLS ligada em perfume_perfumers');
 select policies_are('public', 'perfumers', array['perfumers: public select', 'perfumers: admin insert', 'perfumers: admin update', 'perfumers: admin delete'], 'perfumers: leitura pública, escrita admin');
 select policies_are('public', 'perfume_perfumers', array['perfume_perfumers: public select', 'perfume_perfumers: admin insert', 'perfume_perfumers: admin update', 'perfume_perfumers: admin delete'], 'perfume_perfumers: leitura pública, escrita admin');
+-- Grants explícitos: em produção as tabelas novas não herdam privilégios padrão
+select ok(has_table_privilege('anon', 'public.perfumers', 'select'), 'anon tem SELECT em perfumers (grant explícito)');
+select ok(has_table_privilege('authenticated', 'public.perfumers', 'select'), 'authenticated tem SELECT em perfumers');
+select ok(has_table_privilege('anon', 'public.perfume_perfumers', 'select'), 'anon tem SELECT em perfume_perfumers');
+select ok(has_table_privilege('authenticated', 'public.perfume_perfumers', 'select'), 'authenticated tem SELECT em perfume_perfumers');
 select hasnt_column('public', 'perfumes', 'perfumer', 'a coluna de texto perfumes.perfumer foi removida');
 
 -- Leitura pública

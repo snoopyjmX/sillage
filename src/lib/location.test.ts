@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { GeocodingResult } from '@/types/weather';
 import {
+  cityDisplayFromTimezone,
   cityFromTimezone,
   formatPlaceLabel,
   locationLabel,
@@ -106,5 +107,27 @@ describe('formatPlaceLabel', () => {
 
   it('sem nome nenhum, devolve null para manter o rótulo genérico', () => {
     expect(formatPlaceLabel({ locality: null, city: '  ', subdivisionCode: 'BR-SP' })).toBeNull();
+  });
+});
+
+describe('cityDisplayFromTimezone', () => {
+  it.each([
+    ['America/Sao_Paulo', 'São Paulo'],
+    ['America/Belem', 'Belém'],
+    ['America/Maceio', 'Maceió'],
+    ['Europe/Lisbon', 'Lisboa'],
+    ['America/Argentina/Buenos_Aires', 'Buenos Aires'],
+    ['America/Fortaleza', 'Fortaleza'],
+  ])('%s -> %s', (timezone, city) => {
+    expect(cityDisplayFromTimezone(timezone)).toBe(city);
+  });
+
+  it('sem cidade no fuso, devolve null como a versão sem acento', () => {
+    expect(cityDisplayFromTimezone('UTC')).toBeNull();
+    expect(cityDisplayFromTimezone('Etc/GMT+3')).toBeNull();
+  });
+
+  it('o acento só troca a grafia: o clima segue usando cityFromTimezone', () => {
+    expect(cityFromTimezone('America/Sao_Paulo')).toBe('Sao Paulo');
   });
 });

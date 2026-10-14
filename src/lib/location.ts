@@ -10,6 +10,26 @@ export const cityFromTimezone = (timezone: string): string | null => {
   return city === '' ? null : city;
 };
 
+// Nome de exibição (com acento) de cidades cujo identificador IANA não tem acento. Só o que muda
+// a grafia em português; o resto usa o próprio identificador ("Sao Paulo" vira "São Paulo" aqui).
+export const CITY_DISPLAY_NAMES: Readonly<Record<string, string>> = {
+  Sao_Paulo: 'São Paulo',
+  Belem: 'Belém',
+  Maceio: 'Maceió',
+  Cuiaba: 'Cuiabá',
+  Lisbon: 'Lisboa',
+  Sao_Tome: 'São Tomé',
+};
+
+// Nome da cidade para mostrar em texto: "America/Sao_Paulo" -> "São Paulo". Mesma regra de
+// cityFromTimezone (fusos sem cidade não resolvem), só com a grafia de exibição.
+export const cityDisplayFromTimezone = (timezone: string): string | null => {
+  const segment = timezone.split('/').at(-1) ?? '';
+  const city = cityFromTimezone(timezone);
+  if (city === null) return null;
+  return CITY_DISPLAY_NAMES[segment] ?? city;
+};
+
 // Entre os resultados do geocoding, só vale o que tem o mesmo fuso do perfil (evita homônimos)
 export const pickGeocodingResult = (
   results: readonly GeocodingResult[],
