@@ -54,6 +54,11 @@ test.describe('perfil', () => {
     await form.getByLabel('Nome').fill('a'.repeat(80));
     await expect(form.getByLabel('Nome')).toHaveValue('a'.repeat(60));
 
+    // Salva um estado válido antes de recarregar: sem isso o fuso mostrado seria o padrão do navegador (UTC no CI)
+    await form.getByLabel('Nome').fill('Ana E2E');
+    await form.getByRole('button', { name: 'Salvar alterações' }).click();
+    await expect(form.getByText(/Fuso horário inválido/)).toHaveCount(0);
+
     await page.reload();
     await expect(page.getByRole('heading', { name: 'Ana E2E', level: 2 })).toBeVisible();
     await expect(page.getByText('Fuso: America/Sao_Paulo')).toBeVisible();
