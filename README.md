@@ -64,6 +64,14 @@ npm run db:start
 npm run dev
 ```
 
+### E-mail de confirmação (produção)
+
+A confirmação de cadastro e a recuperação de senha enviam e-mail pelo **SMTP do Brevo**, configurado no painel do Supabase (_Authentication → Emails → SMTP Settings_: `smtp-relay.brevo.com`, porta `587`, login e SMTP key do Brevo, remetente verificado). Também é preciso ligar _Confirm email_ e liberar `https://<seu-site>/**` em _URL Configuration_. A SMTP key fica só no painel: nunca no repositório nem no front. Localmente a confirmação fica desligada (`enable_confirmations = false`), então o cadastro entra direto. O passo a passo completo está em `docs/PLANO_FINAL.md`.
+
+### Catálogo e imagens
+
+Todo perfume tem foto oficial (`perfumes.image_path` é `NOT NULL`). Para adicionar um: `npm run ingest -- --url <página oficial> --image <url da foto>`, revisar a migration gerada, `npm run images` e `npm run images:upload`. A imagem de pré-visualização dos links (`public/og-image.jpg`) é gerada por `npm run og-image`.
+
 ## 👨‍💻 Autor
 
 **João Marcelo Sousa Garcês de Araújo**  

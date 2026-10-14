@@ -28,14 +28,14 @@ Tudo acontece na branch `release/v1.0.0`, criada a partir da `main`, com um comm
 
 ### Correções ao diagnóstico original
 
-| Premissa antiga | Realidade verificada |
-|---|---|
-| Os preloads de fonte do `index.html` dão 404 em produção | Falso: o Vite reescreve o `href` para `/assets/*-<hash>.woff2` (conferido no `dist/index.html`). A causa do 68 precisa ser medida. |
-| `sotdCanvas` e `recapCanvas` pesam na Landing | Não pesam: só os carregam a Home do logado e a `RecapPage`, ambas lazy. O ganho real é deixar o `ShareCardDialog` lazy. |
-| Falta `pb-24` no AppShell para o botão do Nez | O Footer já reserva `pb-[calc(5rem+env(safe-area-inset-bottom))]`, e o `main` já tem `px-4` (16 px). A colisão acontece durante a rolagem, e padding não a resolve. |
-| Os stubs sem foto estão no seed oficial | Estão só em `supabase/dev/fake-perfumes-e2e.sql` (fixture de E2E). Os 20 perfumes do `seed.sql` têm foto. |
-| Faltam meta tags OG | O `SeoHead` já gera OG e Twitter por rota, mas via JS. Faltam as tags estáticas, que são as que os crawlers leem, e uma imagem própria (hoje usamos `pwa-512x512.png`). |
-| Falta a tela "verifique seu e-mail" | Já existe: `authService.signUp` devolve `needsEmailConfirmation` e a `RegisterPage` exibe o aviso, com testes. Faltam SMTP, `emailRedirectTo`, a página de retorno e o reenvio. |
+| Premissa antiga                                          | Realidade verificada                                                                                                                                                            |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Os preloads de fonte do `index.html` dão 404 em produção | Falso: o Vite reescreve o `href` para `/assets/*-<hash>.woff2` (conferido no `dist/index.html`). A causa do 68 precisa ser medida.                                              |
+| `sotdCanvas` e `recapCanvas` pesam na Landing            | Não pesam: só os carregam a Home do logado e a `RecapPage`, ambas lazy. O ganho real é deixar o `ShareCardDialog` lazy.                                                         |
+| Falta `pb-24` no AppShell para o botão do Nez            | O Footer já reserva `pb-[calc(5rem+env(safe-area-inset-bottom))]`, e o `main` já tem `px-4` (16 px). A colisão acontece durante a rolagem, e padding não a resolve.             |
+| Os stubs sem foto estão no seed oficial                  | Estão só em `supabase/dev/fake-perfumes-e2e.sql` (fixture de E2E). Os 20 perfumes do `seed.sql` têm foto.                                                                       |
+| Faltam meta tags OG                                      | O `SeoHead` já gera OG e Twitter por rota, mas via JS. Faltam as tags estáticas, que são as que os crawlers leem, e uma imagem própria (hoje usamos `pwa-512x512.png`).         |
+| Falta a tela "verifique seu e-mail"                      | Já existe: `authService.signUp` devolve `needsEmailConfirmation` e a `RegisterPage` exibe o aviso, com testes. Faltam SMTP, `emailRedirectTo`, a página de retorno e o reenvio. |
 
 ---
 
@@ -81,18 +81,20 @@ Tudo acontece na branch `release/v1.0.0`, criada a partir da `main`, com um comm
 
 Não editar o `seed.sql` à mão.
 
-| Marca | Perfume | Situação |
-|---|---|---|
-| Granado | Nostalgia | Listado no CATALOGO_REAL, nunca cadastrado |
-| Granado | Époque Tropical | Listado no CATALOGO_REAL, nunca cadastrado |
-| Granado | Carioca | Novo |
-| Natura | Essencial Oud | Listado no CATALOGO_REAL, nunca cadastrado |
-| Natura | Homem Cor.Agio | Novo |
-| O Boticário | Elysée | Listado no CATALOGO_REAL, nunca cadastrado |
-| O Boticário | Zaad Santal | Novo (confirmar que existe na linha Zaad) |
-| Avatim | Seleto | Listado no CATALOGO_REAL, nunca cadastrado |
+| Marca       | Perfume         | Situação                                   |
+| ----------- | --------------- | ------------------------------------------ |
+| Granado     | Nostalgia       | Listado no CATALOGO_REAL, nunca cadastrado |
+| Granado     | Époque Tropical | Listado no CATALOGO_REAL, nunca cadastrado |
+| Granado     | Carioca         | Novo                                       |
+| Natura      | Essencial Oud   | Listado no CATALOGO_REAL, nunca cadastrado |
+| Natura      | Homem Cor.Agio  | Novo                                       |
+| O Boticário | Elysée          | Listado no CATALOGO_REAL, nunca cadastrado |
+| O Boticário | Zaad Santal     | Novo (confirmar que existe na linha Zaad)  |
+| Avatim      | Seleto          | Listado no CATALOGO_REAL, nunca cadastrado |
 
 **Regra:** sem página oficial e foto oficial, o perfume fica de fora. A pirâmide olfativa vem da fonte oficial, não da descrição deste plano.
+
+Para a expansão contínua em larga escala, o backlog completo com os ~720 perfumes categorizados por marcas (Granado, O Boticário, Natura, Avatim, In The Box, Maison Viegas, Nuancielo, Chanel, YSL, JPG, Gucci, Calvin Klein) está catalogado em `docs/CATALOGO_EXPANSAO.md`.
 
 Ao terminar, atualizar `docs/CATALOGO_REAL.md`.
 
@@ -129,7 +131,10 @@ A tabela `perfumers` (migration `20261015120000_perfumers.sql`) já tem as colun
 1. **Medir primeiro:** rodar o Lighthouse mobile em produção (`https://sillage-ashy-gamma.vercel.app/` e `/login`) e anotar as cinco maiores oportunidades: LCP, JS não usado, preloads sem uso (o Fraunces 600 pode não aparecer na Landing), cache e imagens.
 2. **Cache dos assets estáticos** no `vercel.json`: uma entrada própria antes da regra genérica.
    ```json
-   { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+   {
+     "source": "/assets/(.*)",
+     "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+   }
    ```
 3. **`ShareCardDialog` lazy** no `DailyHighlight`: montar só ao abrir, no mesmo padrão do `CollectionDetailsHost` no `AppShell`. Assim o `sotdCanvas` sai do bundle da Home.
 4. **Preloads de fonte:** manter os caminhos atuais (o Vite os reescreve). Remover apenas os que o relatório apontar como não usados.
@@ -165,18 +170,18 @@ Os crawlers do WhatsApp, LinkedIn, Telegram e X não executam JS: leem só o `<h
 
 ### 5.2 Configuração (painel; feita pelo mantenedor)
 
-1. **Brevo** → *Senders, Domains & Dedicated IPs*: verificar o remetente (Gmail).
-2. **Brevo** → *SMTP & API* → *SMTP*: gerar uma **SMTP key** e anotar o login SMTP (formato `xxxx@smtp-brevo.com`).
-3. **Supabase** → *Authentication → Emails → SMTP Settings*:
+1. **Brevo** → _Senders, Domains & Dedicated IPs_: verificar o remetente (Gmail).
+2. **Brevo** → _SMTP & API_ → _SMTP_: gerar uma **SMTP key** e anotar o login SMTP (formato `xxxx@smtp-brevo.com`).
+3. **Supabase** → _Authentication → Emails → SMTP Settings_:
    - Host: `smtp-relay.brevo.com`
    - Porta: `587`
    - Usuário: o login SMTP do Brevo
    - Senha: a SMTP key
    - Sender email: o remetente verificado; Sender name: `Sillage`
-4. **Supabase** → *Authentication → Sign In / Providers → Email*: ligar **Confirm email**.
-5. **Supabase** → *Rate limits*: ajustar os e-mails por hora para algo compatível com o limite do Brevo (sugestão: 30).
-6. **Supabase** → *Email Templates*: traduzir para pt-BR os templates "Confirm signup" e "Reset password", no tom do produto.
-7. **Supabase** → *URL Configuration*: conferir se a Site URL é a da Vercel e se `https://sillage-ashy-gamma.vercel.app/**` está nas Redirect URLs.
+4. **Supabase** → _Authentication → Sign In / Providers → Email_: ligar **Confirm email**.
+5. **Supabase** → _Rate limits_: ajustar os e-mails por hora para algo compatível com o limite do Brevo (sugestão: 30).
+6. **Supabase** → _Email Templates_: traduzir para pt-BR os templates "Confirm signup" e "Reset password", no tom do produto.
+7. **Supabase** → _URL Configuration_: conferir se a Site URL é a da Vercel e se `https://sillage-ashy-gamma.vercel.app/**` está nas Redirect URLs.
 
 A SMTP key fica só no painel do Supabase. Nunca vai para o repositório nem para o front.
 

@@ -208,3 +208,9 @@ O `scripts/ingest-perfume.mjs` já faz a extração com Gemini, validação Zod,
 | **22 (Trilha do Nez)**      | Média (RPC + função) | Média              | Nez (Fase 10) e DNA (16A) | Menos indecisão, mais engajamento   |
 | **23 (Retrospectiva)**      | Média (função SQL)   | Alta               | Memorial (19), 16B e DNA  | Retenção anual                      |
 | **24 (Extensão do ingest)** | Baixa (tooling)      | Baixa (CLI)        | Ingest existente          | Crescimento do catálogo             |
+
+---
+
+## Entrega final v1.0.0
+
+O fechamento da v1.0.0 segue `docs/PLANO_FINAL.md` (branch `release/v1.0.0`). Pendências manuais do mantenedor: configurar o SMTP do Brevo no painel, cadastrar os perfumes nacionais com fonte e foto oficiais (2.1) e subir as imagens e as migrations em produção.

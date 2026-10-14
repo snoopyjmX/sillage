@@ -448,6 +448,7 @@ supabase/
 | `/login`, `/register` | só visitantes      | Autenticação; aceita `?redirect=` (logado volta para o destino ou `/`)                                              |
 | `/forgot-password`    | só visitantes      | Pede o e-mail de recuperação                                                                                        |
 | `/reset-password`     | via link do e-mail | Define a nova senha (evento `PASSWORD_RECOVERY`)                                                                    |
+| `/auth/confirmed`     | via link do e-mail | Retorno da confirmação do e-mail: "Conta confirmada" ou link expirado, com reenvio e cooldown                       |
 | `/catalog`            | privada            | Busca, filtros e resultados; estado na query string                                                                 |
 | `/perfumes/:slug`     | privada            | Detalhes; coleção, avaliação e Nez                                                                                  |
 | `/perfumers/:slug`    | privada            | Perfumista (Fase 21): país, bio e os perfumes dele no catálogo                                                      |
@@ -799,7 +800,7 @@ As regras de segurança e de negócio são testadas **no banco** (pgTAP) e por i
 
 - **Negado:** `?redirect=` malicioso (`//evil.com`, `https://evil.com`, `javascript:`) é descartado (unitário em `lib/redirect`; nos botões da Landing e depois do cadastro, no E2E).
 
-- **Permitido:** visitante abre `/`, `/login`, `/register`, `/forgot-password` e `/reset-password`; depois do login volta para a rota original; logado em `/` vê a Home, não a Landing.
+- **Permitido:** visitante abre `/`, `/login`, `/register`, `/forgot-password`, `/reset-password` e `/auth/confirmed`; depois do login volta para a rota original; logado em `/` vê a Home, não a Landing.
 
 - **Negado:** logado em `/login` e `/register` volta para `/`.
 
