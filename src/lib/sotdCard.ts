@@ -91,7 +91,8 @@ export const buildCardContent = ({
   };
 };
 
-// "São Paulo, BRASIL" -> "São Paulo". A localização do aparelho não é uma cidade: sem cidade.
+// "São Paulo, BRASIL" ou "Curitiba, PR" -> a parte antes da vírgula. O rótulo genérico do
+// aparelho ("Sua localização") não é um lugar: sem cidade.
 export const cityFromLabel = (label: string, deviceLabel: string): string | null => {
   if (label === deviceLabel) return null;
   const city = label.split(',')[0]?.trim() ?? '';

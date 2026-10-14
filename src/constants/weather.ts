@@ -2,6 +2,8 @@
 // Docs: /en/docs, /en/docs/geocoding-api, /en/terms. Dados sob CC BY 4.0.
 export const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast';
 export const GEOCODING_URL = 'https://geocoding-api.open-meteo.com/v1/search';
+// Geocodificação reversa (nome do bairro ou cidade): BigDataCloud, sem chave. Só com localização do aparelho.
+export const REVERSE_GEOCODE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
 
 export const WEATHER_TIMEOUT_MS = 8_000;
 // Limite gratuito: 10.000 chamadas/dia. Clima muda devagar: 30 min de cache por localização.

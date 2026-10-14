@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { GeocodingResult } from '@/types/weather';
 import {
   cityFromTimezone,
+  formatPlaceLabel,
   locationLabel,
   pickGeocodingResult,
   roundCoordinate,
@@ -74,5 +75,36 @@ describe('weatherDescription', () => {
 
   it('código desconhecido não quebra', () => {
     expect(weatherDescription(1234)).toBe('Tempo indefinido');
+  });
+});
+
+describe('formatPlaceLabel', () => {
+  it('usa o bairro ou a localidade e a UF', () => {
+    expect(
+      formatPlaceLabel({
+        locality: 'Curitiba',
+        city: 'Região Metropolitana de Curitiba',
+        subdivisionCode: 'BR-PR',
+      })
+    ).toBe('Curitiba, PR');
+  });
+
+  it('sem localidade, cai na cidade', () => {
+    expect(formatPlaceLabel({ locality: null, city: 'Campinas', subdivisionCode: 'BR-SP' })).toBe(
+      'Campinas, SP'
+    );
+  });
+
+  it('sem UF reconhecível, mostra só o nome', () => {
+    expect(formatPlaceLabel({ locality: 'Lisboa', city: null, subdivisionCode: null })).toBe(
+      'Lisboa'
+    );
+    expect(formatPlaceLabel({ locality: 'Lisboa', city: null, subdivisionCode: 'Lisboa' })).toBe(
+      'Lisboa'
+    );
+  });
+
+  it('sem nome nenhum, devolve null para manter o rótulo genérico', () => {
+    expect(formatPlaceLabel({ locality: null, city: '  ', subdivisionCode: 'BR-SP' })).toBeNull();
   });
 });

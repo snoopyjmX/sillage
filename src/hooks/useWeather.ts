@@ -1,4 +1,5 @@
-// Clima da Home: cidade pelo fuso do perfil (geocoding do Open-Meteo) ou localização do aparelho.
+// Clima da Home: cidade pelo fuso do perfil (geocoding do Open-Meteo) ou localização do aparelho
+// (com o nome do bairro ou cidade pela BigDataCloud).
 // Chaves ['private', userId, 'weather', ...]: nunca persistidas. staleTime de 30 min poupa o limite.
 import { useQuery } from '@tanstack/react-query';
 import { ERROR_MESSAGES, getErrorMessage } from '@/constants/errors';
@@ -9,6 +10,7 @@ import { useProfileTimezone } from '@/hooks/useProfileTimezone';
 import { bandPhrase, highlightFamilies } from '@/lib/climate';
 import {
   cityFromTimezone,
+  formatPlaceLabel,
   locationLabel,
   pickGeocodingResult,
   weatherDescription,
@@ -34,8 +36,28 @@ export const useWeather = () => {
     staleTime: GEOCODING_STALE_TIME,
   });
 
+  // Nome do local só com a localização do aparelho. Se falhar, o rótulo genérico segue valendo e
+  // o clima não espera por isso.
+  const placeQuery = useQuery({
+    queryKey: queryKeys.weather.place(
+      userId,
+      geo.coords?.latitude ?? 0,
+      geo.coords?.longitude ?? 0
+    ),
+    queryFn: async () =>
+      formatPlaceLabel(
+        await weatherService.reverseGeocode({
+          latitude: geo.coords?.latitude ?? 0,
+          longitude: geo.coords?.longitude ?? 0,
+        })
+      ),
+    enabled: userId !== '' && geo.coords !== null,
+    staleTime: GEOCODING_STALE_TIME,
+    retry: false,
+  });
+
   const location: ResolvedLocation | null = geo.coords
-    ? { ...geo.coords, label: DEVICE_LOCATION_LABEL }
+    ? { ...geo.coords, label: placeQuery.data ?? DEVICE_LOCATION_LABEL }
     : cityQuery.data
       ? {
           latitude: cityQuery.data.latitude,
