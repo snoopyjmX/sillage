@@ -6,6 +6,7 @@ import {
   resolveSlugs,
   slugify,
   sqlString,
+  uniquePerfumers,
   validatePerfume,
 } from './ingest-perfume.mjs';
 
@@ -15,7 +16,7 @@ const makeData = (overrides = {}) => ({
   releaseYear: 2020,
   concentration: 'edp',
   gender: 'unisex',
-  perfumer: null,
+  perfumers: [],
   description: "Fresco, com toque d'água.",
   notes: [
     { name: 'Bergamota', family: 'citrus', position: 'top', description: 'Cítrica e luminosa.' },
@@ -81,10 +82,62 @@ describe('buildMigrationSql', () => {
     expect(sql.match(/on conflict/g)).toHaveLength(4);
   });
 
+  it('sem perfumistas, não gera insert de perfumers nem de ligação', () => {
+    expect(sql).not.toContain('perfumers');
+    expect(sql).not.toContain('perfumer');
+  });
+
   it('cria cada nota uma vez, mas liga em todas as posições', () => {
     expect(sql.match(/\('bergamota', 'Bergamota'/g)).toHaveLength(1);
     expect(sql).toContain("('bergamota', 'top')");
     expect(sql).toContain("('bergamota', 'heart')");
     expect(sql).toContain("('ambar', 'base')");
+  });
+});
+
+describe('uniquePerfumers', () => {
+  it('um por slug, na ordem de crédito, ignorando vazios e repetidos', () => {
+    expect(
+      uniquePerfumers([
+        'Dominique Ropion',
+        '  ',
+        'Alberto Morillas',
+        'dominique  ropion',
+        'Éurico Mazzini',
+      ])
+    ).toEqual([
+      { name: 'Dominique Ropion', slug: 'dominique-ropion', position: 1 },
+      { name: 'Alberto Morillas', slug: 'alberto-morillas', position: 2 },
+      { name: 'Éurico Mazzini', slug: 'eurico-mazzini', position: 3 },
+    ]);
+  });
+});
+
+describe('buildMigrationSql com perfumistas', () => {
+  const sql = buildMigrationSql(
+    makeData({ perfumers: ["Jean-Claude D'Ellena", 'Alberto Morillas'] }),
+    { brandSlug: 'maison-exemplo', perfumeSlug: 'l-eau-d-ete' }
+  );
+
+  it('cria os perfumistas e liga ao perfume na ordem de crédito, de forma idempotente', () => {
+    expect(sql).toContain('insert into public.perfumers (slug, name) values');
+    expect(sql).toContain("('jean-claude-d-ellena', 'Jean-Claude D''Ellena')");
+    expect(sql).toContain("('jean-claude-d-ellena', 1)");
+    expect(sql).toContain("('alberto-morillas', 2)");
+    expect(sql).toContain(
+      'insert into public.perfume_perfumers (perfume_id, perfumer_id, position)'
+    );
+    expect(sql.match(/on conflict/g)).toHaveLength(6);
+  });
+
+  it('o texto antigo perfumer não é mais gravado em perfumes', () => {
+    expect(sql).not.toMatch(/release_year, perfumer/);
+  });
+});
+
+describe('PerfumeSchema.perfumers', () => {
+  it('exige uma lista de textos (nunca texto solto)', () => {
+    expect(() => validatePerfume({ ...makeData(), perfumers: 'Alguém' }, 'x')).toThrow();
+    expect(validatePerfume(makeData({ perfumers: ['Alguém'] }), 'x').perfumers).toEqual(['Alguém']);
   });
 });

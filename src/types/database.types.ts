@@ -206,6 +206,39 @@ export type Database = {
           },
         ];
       };
+      perfume_perfumers: {
+        Row: {
+          perfume_id: string;
+          perfumer_id: string;
+          position: number;
+        };
+        Insert: {
+          perfume_id: string;
+          perfumer_id: string;
+          position?: number;
+        };
+        Update: {
+          perfume_id?: string;
+          perfumer_id?: string;
+          position?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'perfume_perfumers_perfume_id_fkey';
+            columns: ['perfume_id'];
+            isOneToOne: false;
+            referencedRelation: 'perfumes';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'perfume_perfumers_perfumer_id_fkey';
+            columns: ['perfumer_id'];
+            isOneToOne: false;
+            referencedRelation: 'perfumers';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       perfume_reviews: {
         Row: {
           comment: string | null;
@@ -254,6 +287,36 @@ export type Database = {
           },
         ];
       };
+      perfumers: {
+        Row: {
+          bio: string | null;
+          country: string | null;
+          created_at: string;
+          id: string;
+          name: string;
+          slug: string;
+          updated_at: string;
+        };
+        Insert: {
+          bio?: string | null;
+          country?: string | null;
+          created_at?: string;
+          id?: string;
+          name: string;
+          slug: string;
+          updated_at?: string;
+        };
+        Update: {
+          bio?: string | null;
+          country?: string | null;
+          created_at?: string;
+          id?: string;
+          name?: string;
+          slug?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       perfumes: {
         Row: {
           brand_id: string;
@@ -265,7 +328,6 @@ export type Database = {
           image_path: string | null;
           lowest_price_cents: number | null;
           name: string;
-          perfumer: string | null;
           release_year: number | null;
           search_name: string;
           slug: string;
@@ -283,7 +345,6 @@ export type Database = {
           image_path?: string | null;
           lowest_price_cents?: number | null;
           name: string;
-          perfumer?: string | null;
           release_year?: number | null;
           search_name: string;
           slug: string;
@@ -301,7 +362,6 @@ export type Database = {
           image_path?: string | null;
           lowest_price_cents?: number | null;
           name?: string;
-          perfumer?: string | null;
           release_year?: number | null;
           search_name?: string;
           slug?: string;

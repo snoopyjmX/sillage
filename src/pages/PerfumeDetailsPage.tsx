@@ -1,4 +1,4 @@
-import { ArrowLeft, Scale, SearchX } from 'lucide-react';
+import { ArrowLeft, Feather, Scale, SearchX } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
@@ -143,8 +143,22 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
             <Chip variant="concentration">{CONCENTRATION_LABELS[perfume.concentration]}</Chip>
             <span className="text-sm text-muted-foreground">{meta}</span>
           </div>
-          {perfume.perfumer && (
-            <p className="text-sm text-muted-foreground">Perfumista: {perfume.perfumer}</p>
+          {perfume.perfumers.length > 0 && (
+            <p className="flex flex-wrap items-center gap-x-1.5 text-sm text-muted-foreground">
+              <Feather className="size-4" aria-hidden />
+              <span>{perfume.perfumers.length > 1 ? 'Perfumistas:' : 'Perfumista:'}</span>
+              {perfume.perfumers.map((perfumer, index) => (
+                <span key={perfumer.slug}>
+                  <Link
+                    to={`/perfumers/${perfumer.slug}`}
+                    className="rounded-sm text-primary underline-offset-4 outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    {perfumer.name}
+                  </Link>
+                  {index < perfume.perfumers.length - 1 && ','}
+                </span>
+              ))}
+            </p>
           )}
           <ReviewSummaryLine perfumeId={perfume.id} />
           {perfume.description && (

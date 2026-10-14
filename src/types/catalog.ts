@@ -71,10 +71,23 @@ export interface PerfumeDetail {
   lowestPriceCents: number | null;
   storeName: string | null;
   storeUrl: string | null;
-  // Perfumista (nariz); nulo quando não informado
-  perfumer: string | null;
+  // Perfumistas (narizes) na ordem de crédito; vazio quando não informados
+  perfumers: PerfumerRef[];
   // Pirâmide montada no cliente: todas as notas, cada uma com a sua posição
   notes: PyramidNote[];
+}
+
+export interface PerfumerRef {
+  slug: string;
+  name: string;
+}
+
+// Página do perfumista: a ficha e os perfumes do catálogo que ele assina
+export interface PerfumerDetail extends PerfumerRef {
+  id: string;
+  bio: string | null;
+  country: string | null;
+  perfumes: PerfumeSummary[];
 }
 
 export type { NotePosition };

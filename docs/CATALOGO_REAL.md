@@ -76,5 +76,5 @@
 4. **Links das lojas:** cada `store_url` é a página do produto (não uma busca), conferida em 2026-10-13. Perfumes sem página confiável (Folha Imperial, Malbec Black, Qimmah e Kayaan Classic) ficam sem oferta; o `BestPrice` some sozinho. Rode `scripts/validate-store-links.mjs` antes de publicar novos links.
 5. **Perfume novo (`npm run ingest`):**
    - `npm run ingest -- [--dry-run] "Marca Perfume"` pergunta ao Gemini (`gemini-3.5-flash`, saída estruturada validada com Zod; `GEMINI_API_KEY` no `.env.local`) e gera `supabase/migrations/<timestamp>_ingest_<slug>.sql`.
-   - O script só lê o catálogo com a chave anon e não grava no banco. A migration é idempotente (`on conflict do nothing`) e traz marca, notas novas (com `description`), perfume e `perfume_notes`.
+   - O script só lê o catálogo com a chave anon e não grava no banco. A migration é idempotente (`on conflict do nothing`) e traz marca, notas novas (com `description`), perfume, `perfume_notes` e, quando o Gemini souber, os perfumistas (`perfumers` e `perfume_perfumers`, na ordem de crédito).
    - Revise o SQL e aplique com `npx supabase migration up` (local) ou `db push` (produção). Concentração não confirmada recusa o cadastro. Imagem e preço entram depois.

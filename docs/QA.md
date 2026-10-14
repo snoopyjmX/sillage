@@ -2,6 +2,15 @@
 
 Matriz de testes por fase. A estratégia geral está em `docs/PRODUCT.md`, Seção 12: regras de banco no pgTAP, regras puras no Vitest, fluxos de interface no Playwright (dois viewports, com axe).
 
+## Fase 21: Perfumistas
+
+| Camada   | O que cobre                                                                                                                                                                                                                                                                                                                                                                                          |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Banco    | `18_perfumers.test.sql`: RLS ligada e policies exatas nas duas tabelas; leitura pública (anon e comum); usuário comum e anon não escrevem; admin escreve; slug único e no formato; `name` em branco recusado; o mesmo perfumista não entra duas vezes no mesmo perfume; `position` ≥ 1; cascata (apagar o perfume ou o perfumista remove só a ligação); a coluna `perfumes.perfumer` não existe mais |
+| Unitário | `perfumerService` (consulta única, perfumes por nome, URL da imagem, `not_found`, erro cru escondido); `perfumeService.getBySlug` (perfumistas na ordem de crédito); `uniquePerfumers` e o SQL gerado pelo ingest (idempotente; sem perfumistas não gera insert)                                                                                                                                     |
+| Página   | `PerfumerDetailsPage`: ficha completa, sem país e bio, sem perfumes (vazio), 404 e erro com retry; detalhe do perfume com o link (singular e plural)                                                                                                                                                                                                                                                 |
+| Backfill | Exercitado à mão numa transação descartada: vários nomes no mesmo texto, acentos, repetidos e texto em branco                                                                                                                                                                                                                                                                                        |
+
 ## Fase 14F: Fechamento e arte de login/cadastro
 
 | Camada     | O que cobre                                                                                                                                                                                                                                                                                                                                                                     |
