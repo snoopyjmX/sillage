@@ -11,8 +11,8 @@ insert into auth.users (id, aud, role, email, raw_user_meta_data) values
   ('a0000000-0000-4000-8000-00000000000a', 'authenticated', 'authenticated', 'a@test.local', '{"name":"Alice"}'),
   ('b0000000-0000-4000-8000-00000000000b', 'authenticated', 'authenticated', 'b@test.local', '{"name":"Bruno"}');
 insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000001', 'Marca Teste', 'marca-teste');
-insert into public.perfumes (id, brand_id, name, slug, gender, concentration) values
-  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Perfume 1', 'perfume-1', 'unisex', 'edp');
+insert into public.perfumes (id, brand_id, name, slug, gender, concentration, image_path) values
+  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Perfume 1', 'perfume-1', 'unisex', 'edp', 'teste/foto.webp');
 insert into public.collection_items (user_id, perfume_id, status) values
   ('a0000000-0000-4000-8000-00000000000a', '11111111-0000-4000-8000-000000000001', 'owned'),
   ('b0000000-0000-4000-8000-00000000000b', '11111111-0000-4000-8000-000000000001', 'owned');

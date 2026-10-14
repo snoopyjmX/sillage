@@ -25,10 +25,10 @@ begin
     ('base-madeira', 'Madeira', 'woody');
 
   -- 3 perfumes
-  insert into public.perfumes (slug, name, brand_id, gender, concentration, release_year) values
-    ('caipi-argent', 'Caipi d''Argent', (select id from public.brands where slug = 'maison-cond'), 'unisex', 'edt', 2020),
-    ('amyi-2-15', 'Amyi 2.15', (select id from public.brands where slug = 'amyi-fragrances'), 'unisex', 'edp', 2022),
-    ('irish-green-man', 'Irish Green Man', (select id from public.brands where slug = 'irish-green'), 'masculine', 'edc', 2021);
+  insert into public.perfumes (slug, name, brand_id, gender, concentration, release_year, image_path) values
+    ('caipi-argent', 'Caipi d''Argent', (select id from public.brands where slug = 'maison-cond'), 'unisex', 'edt', 2020, 'teste/foto.webp'),
+    ('amyi-2-15', 'Amyi 2.15', (select id from public.brands where slug = 'amyi-fragrances'), 'unisex', 'edp', 2022, 'teste/foto.webp'),
+    ('irish-green-man', 'Irish Green Man', (select id from public.brands where slug = 'irish-green'), 'masculine', 'edc', 2021, 'teste/foto.webp');
 
   -- Notas para Caipi: bergamota + lima (top)
   insert into public.perfume_notes (perfume_id, note_id, position) values

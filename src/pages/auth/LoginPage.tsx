@@ -1,13 +1,14 @@
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
+import { ResendConfirmation } from '@/components/auth/ResendConfirmation';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { Field } from '@/components/ui/field';
 import { PasswordField } from '@/components/ui/password-field';
 import { FormAlert } from '@/components/ui/form-alert';
 import { SubmitButton } from '@/components/ui/submit-button';
-import { getErrorMessage } from '@/constants/errors';
+import { AppError, getErrorMessage } from '@/constants/errors';
 import { useSignIn } from '@/hooks/useAuthActions';
 import { zodResolver } from '@/lib/zodResolver';
 import { loginSchema, type LoginValues } from '@/schemas/auth';
@@ -19,6 +20,7 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<LoginValues>({ resolver: zodResolver(loginSchema) });
 
@@ -26,7 +28,10 @@ export default function LoginPage() {
     ? `?redirect=${encodeURIComponent(searchParams.get('redirect') ?? '')}`
     : '';
 
+  const email = useWatch({ control, name: 'email' });
   const onSubmit = handleSubmit((values) => signIn.mutate(values));
+  const notConfirmed =
+    signIn.error instanceof AppError && signIn.error.code === 'email_not_confirmed';
 
   return (
     <>
@@ -42,6 +47,7 @@ export default function LoginPage() {
       >
         <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
           {signIn.isError && <FormAlert>{getErrorMessage(signIn.error)}</FormAlert>}
+          {notConfirmed && <ResendConfirmation email={email ?? ''} />}
           <Field
             label="E-mail"
             type="email"

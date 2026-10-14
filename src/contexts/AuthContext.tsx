@@ -4,7 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import type { Session } from '@supabase/supabase-js';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '@/services/authService';
+import { mayHaveSession } from '@/lib/sessionHint';
 import { AuthContext, type AuthContextValue } from './auth-context';
 
 const toValue = (session: Session | null): AuthContextValue => ({
@@ -20,8 +20,10 @@ interface AuthProviderProps {
 export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  // Quem nunca entrou já nasce visitante: a Landing não espera o Supabase (carregado depois)
+  const [skipLookup] = useState(() => !mayHaveSession());
   const [value, setValue] = useState<AuthContextValue>({
-    status: 'loading',
+    status: skipLookup ? 'unauthenticated' : 'loading',
     session: null,
     user: null,
   });
@@ -36,34 +38,54 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     let active = true;
+    let unsubscribe = () => {};
     const goTo = (to: string) => setPending((current) => ({ id: (current?.id ?? 0) + 1, to }));
 
-    // Callback síncrono: sem await em chamadas ao Supabase aqui dentro (risco de deadlock).
-    const unsubscribe = authService.onAuthStateChange((event, session) => {
-      if (!active) return;
-      setValue(toValue(session));
-      if (event === 'SIGNED_OUT') {
-        // Dados privados saem da memória; o cache ['public'] (catálogo) permanece
-        queryClient.removeQueries({ queryKey: ['private'] });
-        goTo('/');
-      } else if (event === 'PASSWORD_RECOVERY') {
-        goTo('/reset-password');
-      }
-      // TOKEN_REFRESHED e demais eventos: só atualizam a sessão, nada a fazer na UI
-    });
-
-    // Se onAuthStateChange já respondeu, a sessão inicial não sobrescreve o estado mais novo
+    // Se onAuthStateChange já respondeu, a sessão inicial não sobrescreve o estado mais novo. No
+    // atalho de visitante (sem sessão guardada) o estado já nasce "unauthenticated": só uma sessão
+    // que apareceu enquanto o Supabase carregava (login muito rápido) o substitui.
     const settleInitial = (session: Session | null) => {
-      if (active)
-        setValue((current) => (current.status === 'loading' ? toValue(session) : current));
+      if (!active) return;
+      setValue((current) =>
+        current.status === 'loading' || (skipLookup && session !== null && current.session === null)
+          ? toValue(session)
+          : current
+      );
     };
-    authService.getSession().then(settleInitial, () => settleInitial(null));
+
+    const subscribe = async () => {
+      const { authService } = await import('@/services/authService');
+      if (!active) return;
+      // Callback síncrono: sem await em chamadas ao Supabase aqui dentro (risco de deadlock).
+      unsubscribe = authService.onAuthStateChange((event, session) => {
+        if (!active) return;
+        setValue(toValue(session));
+        if (event === 'SIGNED_OUT') {
+          // Dados privados saem da memória; o cache ['public'] (catálogo) permanece
+          queryClient.removeQueries({ queryKey: ['private'] });
+          goTo('/');
+        } else if (event === 'PASSWORD_RECOVERY') {
+          goTo('/reset-password');
+        }
+        // TOKEN_REFRESHED e demais eventos: só atualizam a sessão, nada a fazer na UI
+      });
+      authService.getSession().then(settleInitial, () => settleInitial(null));
+    };
+
+    // Visitante: o Supabase carrega quando o navegador está ocioso, fora do caminho crítico da Landing
+    let idleHandle: number | null = null;
+    if (skipLookup && typeof window.requestIdleCallback === 'function') {
+      idleHandle = window.requestIdleCallback(() => void subscribe(), { timeout: 1500 });
+    } else {
+      void subscribe();
+    }
 
     return () => {
       active = false;
+      if (idleHandle !== null) window.cancelIdleCallback(idleHandle);
       unsubscribe();
     };
-  }, [queryClient]);
+  }, [queryClient, skipLookup]);
 
   const memo = useMemo(() => value, [value]);
   return <AuthContext.Provider value={memo}>{children}</AuthContext.Provider>;

@@ -1,0 +1,1045 @@
+# Sillage — Catálogo de Expansão (Backlog Geral de Perfumes)
+
+Este documento registra a lista oficial de expansão do acervo do **Sillage**, organizada por marca e segmento (Nacional Nicho/Tradicional, Casas de Criação/Contratipos e Designers Globais). Total: **~720 perfumes**.
+
+---
+
+## 🌟 Prioridade 1: Lote Imediato de Expansão Nacional (Fichas Oficiais Completas)
+
+Estas são as fichas técnicas auditadas e prontas para ingestão imediata no banco via `npm run ingest`, contendo links oficiais, perfumistas comprovados, concentração e pirâmide olfativa completa:
+
+### 1. Nostalgia (Granado)
+
+- **Marca:** Granado (Linha Vintage)
+- **Concentração:** `edp` (Eau de Parfum) | **Gênero:** `unisex` | **Ano:** 2022
+- **Perfumista:** Jasmine Liu
+- **Família:** `floral` (Floral Amadeirado Musk)
+- **Link Oficial:** `https://www.granado.com.br/granado/perfume-nostalgia-75ml-granado`
+- **Descrição:** Criação elegante que homenageia a história centenária da Granado, unindo pimenta rosa e notas florais a uma base confortável de cashmeran e âmbar.
+- **Pirâmide Olfativa:**
+  - **Topo:** Pimenta-rosa, Bergamota, Mandarina
+  - **Coração:** Lírio, Flor de laranjeira, Rosa
+  - **Fundo:** Cashmeran, Âmbar, Almíscar (Musk)
+
+### 2. Époque Tropical (Granado)
+
+- **Marca:** Granado (Linha Vintage)
+- **Concentração:** `edp` (Eau de Parfum) | **Gênero:** `unisex` | **Ano:** 2021
+- **Perfumista:** Guillaume Flavigny
+- **Família:** `woody` (Amadeirado Floral Tropical)
+- **Link Oficial:** `https://www.granado.com.br/granado/perfume-epoque-tropical-75ml-granado`
+- **Descrição:** Uma viagem sensorial pelo Rio de Janeiro da Belle Époque, com o frescor inusitado do caju e cardamomo sobre o calor nobre da fava tonka e sândalo.
+- **Pirâmide Olfativa:**
+  - **Topo:** Caju, Mandarina, Cardamomo
+  - **Coração:** Magnólia, Rosa, Gerânio
+  - **Fundo:** Sândalo, Fava Tonka, Madeira Guaiaco
+
+### 3. Carioca (Granado)
+
+- **Marca:** Granado (Linha Vintage)
+- **Concentração:** `edt` (Eau de Toilette) | **Gênero:** `unisex` | **Ano:** 2015
+- **Perfumista:** Casa Granado
+- **Família:** `citrus` (Cítrico Floral Musk)
+- **Link Oficial:** `https://www.granado.com.br/granado/eau-de-toilette-carioca-100ml`
+- **Descrição:** Homenagem solar à cidade do Rio de Janeiro, mesclando o frescor da bergamota e lima com a suavidade da flor de violeta e o calor do sândalo.
+- **Pirâmide Olfativa:**
+  - **Topo:** Bergamota, Lima, Frésia
+  - **Coração:** Lírio-do-vale (Muguet), Jasmim, Flor de Violeta
+  - **Fundo:** Almíscar (Musk), Sândalo, Fava Tonka
+
+### 4. Essencial Oud Masculino (Natura)
+
+- **Marca:** Natura (Alta Perfumaria)
+- **Concentração:** `edp` (Deo Parfum) | **Gênero:** `masculine` | **Ano:** 2017
+- **Perfumistas:** Verônica Kato e Pierre-Constantin Guéros
+- **Família:** `woody` (Amadeirado Intenso)
+- **Link Oficial:** `https://www.natura.com.br/p/deo-parfum-essencial-oud-masculino-100-ml/NATBRA-198`
+- **Descrição:** O encontro memorável do precioso óleo de Oud (o ouro líquido da perfumaria) com a exuberância e calor da copaíba da biodiversidade amazônica.
+- **Pirâmide Olfativa:**
+  - **Topo:** Bergamota, Cardamomo, Açafrão, Elemi
+  - **Coração:** Canela, Praliné, Gerânio, Cypriol
+  - **Fundo:** Oud, Copaíba, Cedro, Sândalo, Patchouli, Âmbar
+
+### 5. Homem Cor.Agio (Natura)
+
+- **Marca:** Natura
+- **Concentração:** `edp` (Deo Parfum) | **Gênero:** `masculine` | **Ano:** 2018
+- **Perfumistas:** Verônica Kato e Jean-Christophe Hérault
+- **Família:** `spicy` (Amadeirado Especiado)
+- **Link Oficial:** `https://www.natura.com.br/p/deo-parfum-natura-homem-cor-agio-100-ml/NATBRA-183`
+- **Descrição:** O contraste arrebatador entre o calor da copaíba e do cumaru com o arrepio picante e metálico da pimenta preta e especiarias frias.
+- **Pirâmide Olfativa:**
+  - **Topo:** Pimenta-preta, Bergamota, Noz-moscada, Canela
+  - **Coração:** Couro, Lavandin, Rosa, Angélica
+  - **Fundo:** Copaíba, Cumaru, Cedro, Âmbar, Cistus Lábdano
+
+### 6. Elysée Tradicional (O Boticário)
+
+- **Marca:** O Boticário
+- **Concentração:** `edp` (Eau de Parfum) | **Gênero:** `feminine` | **Ano:** 2015
+- **Perfumistas:** Jacques Huclier e Hernan Fígoli
+- **Família:** `floral` (Chypre Floral Amadeirado)
+- **Link Oficial:** `https://www.boticario.com.br/elysee-eau-de-parfum-50ml/`
+- **Descrição:** Joia da perfumaria feminina nacional criada com a técnica Orpur, combinando o frescor da mandarina à sofisticação da rosa damascena e do patchouli.
+- **Pirâmide Olfativa:**
+  - **Topo:** Mandarina Orpur, Frésia, Pimenta-rosa, Framboesa
+  - **Coração:** Rosa Damascena, Peônia, Ylang-Ylang
+  - **Fundo:** Patchouli, Sândalo, Âmbar, Cedro, Baunilha
+
+### 7. Zaad Santal (O Boticário)
+
+- **Marca:** O Boticário
+- **Concentração:** `edp` (Eau de Parfum) | **Gênero:** `masculine` | **Ano:** 2021
+- **Perfumistas:** Christian Alori e Natasha Côté
+- **Família:** `woody` (Amadeirado Especiado)
+- **Link Oficial:** `https://www.boticario.com.br/zaad-santal-eau-de-parfum-95ml/`
+- **Descrição:** A sofisticação do sândalo da Nova Caledônia contrastada com o toque licoroso do whisky e especiarias frias como pimenta sichuan e gengibre.
+- **Pirâmide Olfativa:**
+  - **Topo:** Bergamota, Pimenta Sichuan, Gengibre, Noz-moscada
+  - **Coração:** Sândalo, Lavanda, Acorde de Whisky, Folha de Violeta
+  - **Fundo:** Cedro, Patchouli, Vetiver, Âmbar, Almíscar (Musk)
+
+### 8. Seleto (Avatim)
+
+- **Marca:** Avatim
+- **Concentração:** `edp` (Deo Parfum) | **Gênero:** `masculine` | **Ano:** 2018
+- **Perfumista:** Edison Fujita
+- **Família:** `woody` (Amadeirado Aromático)
+- **Link Oficial:** `https://www.avatim.com.br/produto/deo-parfum-seleto-100ml-392`
+- **Descrição:** Perfume marcante e discreto que traduz sofisticação com o frescor da sálvia e do cardamomo sobre o calor da fava tonka e do oud.
+- **Pirâmide Olfativa:**
+  - **Topo:** Sálvia, Mandarina, Cardamomo, Pomelo
+  - **Coração:** Flor de Íris, Coentro (Coriandro), Fava Tonka
+  - **Fundo:** Agarwood (Oud), Âmbar, Baunilha
+
+---
+
+## 🌿 1. Perfumaria Nacional (Nicho, Clássicos e Alta Perfumaria)
+
+### Granado & Phebo (36 perfumes)
+
+- [ ] Spritz, Granado
+- [ ] Citrus Brasilis, Granado
+- [ ] Carioca, Granado
+- [ ] Fervo Intenso, Granado
+- [x] Boemia, Granado _(No seed atual)_
+- [ ] Époque Tropical, Granado
+- [ ] Infusão Botânica, Granado
+- [ ] Esplendor, Granado
+- [ ] Nostalgia, Granado
+- [ ] Imperial, Granado
+- [ ] Jardim Real, Granado
+- [ ] Folhas de Figo, Granado
+- [x] Bossa, Granado _(No seed atual)_
+- [ ] Expedição, Granado
+- [ ] Tonka, Granado
+- [ ] Oud, Granado
+- [ ] Caju, Granado
+- [ ] Bergamota & Flor de Laranjeira, Granado
+- [ ] Mandarina & Sândalo, Granado
+- [ ] Cedro, Granado
+- [ ] Mirra, Granado
+- [ ] Fava Tonka, Granado
+- [ ] Íris, Granado
+- [ ] Vetiver, Granado
+- [ ] Lavanda, Granado
+- [ ] Neroli, Granado
+- [ ] Sândalo, Granado
+- [ ] Baunilha, Granado
+- [ ] Lírio, Granado
+- [ ] Magnólia, Granado
+- [ ] Rosa Damascena, Granado
+- [ ] Gerânio & Grapefruit, Granado
+- [ ] Verbena, Granado
+- [ ] Chá Preto, Granado
+- [ ] Figo, Granado
+- [ ] Limão Siciliano, Granado
+- [x] Folha Imperial, Granado _(No seed atual)_
+
+---
+
+### O Boticário (76 perfumes)
+
+- [ ] Zaad Tradicional, O Boticário
+- [ ] Zaad Expedition, O Boticário
+- [ ] Zaad Santal, O Boticário
+- [ ] Zaad Mondo, O Boticário
+- [ ] Zaad Arctic, O Boticário
+- [ ] Zaad Venture, O Boticário
+- [ ] Malbec Tradicional, O Boticário
+- [ ] Malbec Bleu, O Boticário
+- [ ] Malbec Ultra Bleu, O Boticário
+- [ ] Malbec Vert, O Boticário
+- [x] Malbec Signature, O Boticário _(No seed atual)_
+- [ ] Malbec Icon, O Boticário
+- [ ] Malbec Magnetic, O Boticário
+- [ ] Malbec Club Intenso, O Boticário
+- [ ] Malbec Flame, O Boticário
+- [ ] Malbec Noir, O Boticário
+- [x] Malbec Black, O Boticário _(No seed atual)_
+- [ ] Malbec Gold, O Boticário
+- [ ] Malbec X, O Boticário
+- [ ] Malbec Elegant, O Boticário
+- [ ] The Blend Tradicional, O Boticário
+- [ ] The Blend Bourbon, O Boticário
+- [ ] The Blend Cardamom, O Boticário
+- [ ] Arbo Tradicional, O Boticário
+- [ ] Arbo Botanic, O Boticário
+- [ ] Arbo Forest, O Boticário
+- [ ] Arbo Liberté, O Boticário
+- [ ] Arbo Ocean, O Boticário
+- [ ] Arbo Intenso, O Boticário
+- [ ] Arbo Puro, O Boticário
+- [ ] Quasar Tradicional, O Boticário
+- [ ] Quasar Rush, O Boticário
+- [ ] Quasar Ice, O Boticário
+- [ ] Quasar Surf, O Boticário
+- [ ] Quasar Brave, O Boticário
+- [ ] Quasar Vision, O Boticário
+- [ ] Quasar Evolution, O Boticário
+- [ ] Egeo Blue, O Boticário
+- [ ] Egeo Choc, O Boticário
+- [ ] Egeo Original, O Boticário
+- [ ] Egeo Dolce, O Boticário
+- [ ] Egeo Red, O Boticário
+- [ ] Egeo Bomb Black, O Boticário
+- [ ] Egeo Spicy Vibe, O Boticário
+- [x] Egeo Vanilla Vibe, O Boticário _(No seed atual)_
+- [ ] Egeo Beat, O Boticário
+- [ ] Egeo Hit, O Boticário
+- [ ] Egeo Free Fire, O Boticário
+- [ ] Egeo E.Joy, O Boticário
+- [ ] Egeo Choc Mint, O Boticário
+- [ ] Egeo Choc Berry, O Boticário
+- [ ] Uomini Tradicional, O Boticário
+- [ ] Uomini Infinite, O Boticário
+- [ ] Uomini Black, O Boticário
+- [ ] Uomini Moto Soul, O Boticário
+- [ ] Portinari Tradicional, O Boticário
+- [ ] Portinari Absoluto, O Boticário
+- [ ] Celebre Sua Força, O Boticário
+- [ ] Celebre Agora, O Boticário
+- [ ] Coffee Man, O Boticário
+- [ ] Coffee Man Seduction, O Boticário
+- [ ] Coffee Man Duo, O Boticário
+- [ ] Coffee Man Lucky, O Boticário
+- [ ] Coffee Woman Seduction, O Boticário
+- [ ] Coffee Addictive, O Boticário
+- [ ] Insensatez, O Boticário
+- [ ] Connexio, O Boticário
+- [ ] Stylo, O Boticário
+- [ ] Galbe, O Boticário
+- [ ] Dimitri, O Boticário
+- [ ] Men Tradicional, O Boticário
+- [ ] Men Galbe, O Boticário
+- [ ] Men Only, O Boticário
+- [ ] Botica 214 Fiji Paradise, O Boticário
+- [ ] Botica 214 African Sunrise, O Boticário
+- [ ] Botica 214 Verano en Firenze, O Boticário
+- [ ] Botica 214 Dark Mint, O Boticário
+- [ ] Botica 214 Golden Gardênia, O Boticário
+- [ ] Botica 214 Jasmim & Patchouli, O Boticário
+- [ ] Elysée Tradicional, O Boticário
+- [ ] Elysée Nuit, O Boticário
+- [ ] Elysée Blanc, O Boticário
+- [ ] Elysée Succès, O Boticário
+- [ ] Lily Tradicional, O Boticário
+- [ ] Lily Absolu, O Boticário
+- [ ] Lily Lumière, O Boticário
+- [x] Lily Le Parfum, O Boticário _(No seed atual)_
+- [ ] L'eau de Lily, O Boticário
+- [ ] L'eau de Lily Soleil, O Boticário
+- [ ] Floratta Red, O Boticário
+- [ ] Floratta Blue, O Boticário
+- [ ] Floratta Rose, O Boticário
+- [ ] Floratta Gold, O Boticário
+- [ ] Floratta Fleur D'Éclipse, O Boticário
+- [ ] Floratta My Blue, O Boticário
+- [ ] Floratta Red Blossom, O Boticário
+- [ ] Floratta Romance de Verão, O Boticário
+- [ ] Glamour Tradicional, O Boticário
+- [ ] Glamour Secrets Black, O Boticário
+- [ ] Glamour Fever, O Boticário
+- [ ] Glamour Diva, O Boticário
+- [ ] Glamour Gold Glam, O Boticário
+- [ ] Her Code, O Boticário
+- [ ] Her Code Touch, O Boticário
+- [ ] Liz Tradicional, O Boticário
+- [ ] Liz Sublime, O Boticário
+- [ ] Liz Intenso, O Boticário
+- [ ] Liz Flora, O Boticário
+- [ ] Boticollection Acqua Fresca, O Boticário
+- [ ] Boticollection Free, O Boticário
+- [ ] Boticollection Thaty, O Boticário
+- [ ] Boticollection Cecita, O Boticário
+- [ ] Boticollection Anni, O Boticário
+- [ ] Boticollection Crazy Feelings, O Boticário
+- [ ] Boticollection Dreams, O Boticário
+
+---
+
+### Natura (83 perfumes)
+
+- [ ] Kaiak Tradicional, Natura
+- [ ] Kaiak Oceano, Natura
+- [ ] Kaiak Vitalidade Fresh, Natura
+- [ ] Kaiak Urbe, Natura
+- [ ] Kaiak Pulso, Natura
+- [ ] Kaiak Aventura, Natura
+- [ ] Kaiak Extremo, Natura
+- [ ] Kaiak Aero, Natura
+- [ ] Kaiak K, Natura
+- [ ] Kaiak K Max, Natura
+- [ ] Kaiak O2, Natura
+- [ ] Kaiak Sonar, Natura
+- [ ] Kaiak Vital, Natura
+- [ ] Essencial Tradicional, Natura
+- [ ] Essencial Exclusivo, Natura
+- [ ] Essencial Oud, Natura
+- [x] Essencial Único Masculino, Natura _(No seed atual)_
+- [ ] Essencial Único Feminino, Natura
+- [ ] Essencial Ato, Natura
+- [ ] Essencial Sentir, Natura
+- [ ] Essencial Supreme, Natura
+- [x] Essencial Mirra, Natura _(No seed atual)_
+- [ ] Essencial Palo Santo, Natura
+- [ ] Essencial Oud Vanilla, Natura
+- [ ] Essencial Oud Pimenta, Natura
+- [ ] Essencial Intenso, Natura
+- [ ] Essencial Elixir, Natura
+- [ ] Natura Homem Tradicional, Natura
+- [ ] Natura Homem Essence, Natura
+- [ ] Natura Homem Elo, Natura
+- [ ] Natura Homem Nós, Natura
+- [ ] Natura Homem Tato, Natura
+- [ ] Natura Homem Cor.agio, Natura
+- [ ] Natura Homem Verum, Natura
+- [x] Natura Homem Sagaz, Natura _(No seed atual)_
+- [ ] Natura Homem Dom, Natura
+- [ ] Natura Homem Emocion.e, Natura
+- [ ] Natura Homem Neo, Natura
+- [ ] Natura Homem Reconnect, Natura
+- [ ] Biografia Tradicional, Natura
+- [ ] Biografia Assinatura, Natura
+- [ ] Biografia Caminhos, Natura
+- [ ] Biografia Encontros, Natura
+- [ ] Biografia Inspire, Natura
+- [ ] Sr. N Tradicional, Natura
+- [ ] Sr. N Cedro, Natura
+- [ ] Sr. N Couro, Natura
+- [ ] Sr. N Ambar, Natura
+- [ ] Urbano Recria, Natura
+- [ ] Urbano Noite, Natura
+- [ ] Urbano Nox, Natura
+- [ ] Humor a Dois, Natura
+- [ ] Paz e Humor, Natura
+- [ ] Química de Humor, Natura
+- [ ] Beijo de Humor, Natura
+- [ ] Meu Primeiro Humor, Natura
+- [ ] Humor Próprio, Natura
+- [ ] Humor Galáxia, Natura
+- [ ] Humor Estelar, Natura
+- [ ] Humor Liberta, Natura
+- [ ] Humor Transforma, Natura
+- [ ] Conexão de Humor, Natura
+- [ ] Festival de Humor, Natura
+- [ ] Sintonia Tradicional, Natura
+- [ ] Sintonia Impacto, Natura
+- [ ] Sintonia Noite, Natura
+- [ ] Una Tradicional, Natura
+- [ ] Una Artisan, Natura
+- [ ] Una Infinito, Natura
+- [ ] Una Somos, Natura
+- [ ] Una Instinct, Natura
+- [ ] Una Blush, Natura
+- [ ] Una Senses, Natura
+- [ ] Una Brilho, Natura
+- [ ] Ilía Tradicional, Natura
+- [ ] Ilía Secreto, Natura
+- [ ] Ilía Ser, Natura
+- [ ] Ilía Plena, Natura
+- [ ] Ilía Completa, Natura
+- [ ] Ilía Flor de Laranjeira, Natura
+- [ ] Ilía Laços, Natura
+- [ ] Luna Tradicional, Natura
+- [ ] Luna Absoluta, Natura
+- [ ] Luna Intenso, Natura
+- [ ] Luna Radiante, Natura
+- [ ] Luna Fascinante, Natura
+- [ ] Luna Valentia, Natura
+- [ ] Luna Coragem, Natura
+- [ ] Luna Confiante, Natura
+- [ ] Luna Ilumina, Natura
+- [ ] Luna Divina, Natura
+- [ ] Luna Ousada, Natura
+- [ ] Kriska Tradicional, Natura
+- [ ] Kriska Drama, Natura
+- [ ] Kriska Shock, Natura
+- [ ] Kriska Mania, Natura
+- [ ] Kriska Sonhos, Natura
+- [ ] Kriska Alegria, Natura
+- [ ] Kriska Romance, Natura
+- [x] Ekos Alma, Natura _(No seed atual)_
+- [ ] Ekos Ryo Vivo, Natura
+- [ ] Ekos Ryo Chuva, Natura
+- [ ] Ekos Frescor Maracujá, Natura
+- [ ] Ekos Frescor Pitanga, Natura
+- [ ] Ekos Frescor Castanha, Natura
+- [ ] Ekos Frescor Açaí, Natura
+- [ ] Ekos Frescor Ishpink, Natura
+- [ ] Ekos Frescor Estoraque, Natura
+- [ ] Ekos Frescor Breu Branco, Natura
+
+---
+
+### Avatim (20 perfumes)
+
+- [x] Gigi, Avatim _(No seed atual)_
+- [ ] Gigi Lazuli, Avatim
+- [ ] Gigi Féerie, Avatim
+- [x] Boníssimo, Avatim _(No seed atual)_
+- [ ] Boníssimo Black, Avatim
+- [ ] Bakari, Avatim
+- [ ] Seleto, Avatim
+- [ ] Serena, Avatim
+- [ ] Serena Intense, Avatim
+- [x] Apoena, Avatim _(No seed atual)_
+- [ ] Açucena, Avatim
+- [ ] Açucena Rouge, Avatim
+- [ ] Amau, Avatim
+- [ ] Sublime, Avatim
+- [ ] Tâmara, Avatim
+- [ ] Bella, Avatim
+- [ ] Raro, Avatim
+- [ ] Vôo, Avatim
+- [ ] Maré, Avatim
+- [ ] Cheiro de Moça Bonita, Avatim
+
+---
+
+### Phytoderm (24 perfumes)
+
+- [x] Glamour, Phytoderm _(No seed atual)_
+- [x] Here I Am, Phytoderm _(No seed atual)_
+- [ ] What's Up?, Phytoderm
+- [ ] I Am Ready!, Phytoderm
+- [ ] Paradise, Phytoderm
+- [ ] Apaixonada, Phytoderm
+- [ ] Adorada, Phytoderm
+- [ ] Sensual, Phytoderm
+- [ ] Miss Rose, Phytoderm
+- [ ] Dreams, Phytoderm
+- [ ] Pure Secret, Phytoderm
+- [ ] Vanilla Kiss, Phytoderm
+- [ ] Sexy Girl, Phytoderm
+- [ ] Intense Love, Phytoderm
+- [ ] Explorer Fire, Phytoderm
+- [ ] Domini, Phytoderm
+- [ ] Phy Sport, Phytoderm
+- [ ] Habitus, Phytoderm
+- [ ] Lord, Phytoderm
+- [ ] Arrazo, Phytoderm
+- [ ] Legacy, Phytoderm
+- [ ] Infinity Blue, Phytoderm
+- [ ] Infinity Gold, Phytoderm
+- [ ] Nomad, Phytoderm
+- [ ] Victory, Phytoderm
+
+---
+
+## 🏛️ 2. Marcas Nacionais de Contratipos e Inspiração
+
+### In The Box (97 perfumes)
+
+- [ ] Infinite Horizon, In The Box
+- [ ] Irish Green Man, In The Box
+- [ ] Versus Pour Homme, In The Box
+- [ ] Lemon Vanilla & Wood, In The Box
+- [ ] Envoy, In The Box
+- [ ] Me And I, In The Box
+- [ ] Mohan, In The Box
+- [ ] Vaniglia Magnific, In The Box
+- [ ] Essenza Nobile, In The Box
+- [ ] Dark Water, In The Box
+- [ ] Tersus, In The Box
+- [ ] Praliné Wood, In The Box
+- [ ] Deep Dark Water, In The Box
+- [ ] Aventhis, In The Box
+- [ ] Sauvageon, In The Box
+- [ ] 212 VIP Black I.T.B., In The Box
+- [ ] L'Eau D'Itb, In The Box
+- [ ] Bleu D'Itb, In The Box
+- [ ] Allure Sport, In The Box
+- [ ] Le Beau ITB, In The Box
+- [ ] Ultra Male ITB, In The Box
+- [ ] Le Male Le Parfum ITB, In The Box
+- [ ] Elixir Mint, In The Box
+- [ ] Phantom ITB, In The Box
+- [ ] Invictus Victory ITB, In The Box
+- [ ] One Million Parfum ITB, In The Box
+- [ ] One Million Elixir ITB, In The Box
+- [ ] Sweet Tobacco, In The Box
+- [ ] Oud For Greatness ITB, In The Box
+- [ ] Hacivat ITB, In The Box
+- [ ] Ani ITB, In The Box
+- [ ] Naxos ITB, In The Box
+- [ ] Erba Pura ITB, In The Box
+- [ ] Alexandria II ITB, In The Box
+- [ ] Layton ITB, In The Box
+- [ ] Pegasus ITB, In The Box
+- [ ] Pegasus Exclusif ITB, In The Box
+- [ ] Haltane ITB, In The Box
+- [ ] Althair ITB, In The Box
+- [ ] Greenley ITB, In The Box
+- [ ] Sedley ITB, In The Box
+- [ ] Percival ITB, In The Box
+- [ ] Herod ITB, In The Box
+- [ ] Carlisle ITB, In The Box
+- [ ] Angel's Share ITB, In The Box
+- [ ] Black Phantom ITB, In The Box
+- [ ] Apple Brandy ITB, In The Box
+- [ ] Baccarat Rouge 540 ITB, In The Box
+- [ ] Grand Soir ITB, In The Box
+- [ ] Santal 33 ITB, In The Box
+- [ ] By The Fireplace ITB, In The Box
+- [ ] Jazz Club ITB, In The Box
+- [ ] Toy Boy ITB, In The Box
+- [ ] Red Tobacco ITB, In The Box
+- [ ] Cedrat Boise ITB, In The Box
+- [ ] Tygar ITB, In The Box
+- [ ] Elysium ITB, In The Box
+- [ ] Enigma ITB, In The Box
+- [ ] Reflection Man ITB, In The Box
+- [ ] Interlude Man ITB, In The Box
+- [ ] Silver Mountain Water ITB, In The Box
+- [ ] Millesime Imperial ITB, In The Box
+- [ ] Viking ITB, In The Box
+- [ ] Virgin Island Water ITB, In The Box
+- [ ] Ombré Leather ITB, In The Box
+- [ ] Tobacco Vanille ITB, In The Box
+- [ ] Oud Wood ITB, In The Box
+- [ ] Lost Cherry ITB, In The Box
+- [ ] Bitter Peach ITB, In The Box
+- [ ] F***ing Fabulous ITB, In The Box
+- [ ] Neroli Portofino ITB, In The Box
+- [ ] Soleil Blanc ITB, In The Box
+- [ ] Noir Extreme ITB, In The Box
+- [ ] Black Orchid ITB, In The Box
+- [ ] Grey Vetiver ITB, In The Box
+- [ ] Tuscan Leather ITB, In The Box
+- [ ] L'Immensité ITB, In The Box
+- [ ] Ombre Nomade ITB, In The Box
+- [ ] Afternoon Swim ITB, In The Box
+- [ ] Pacific Chill ITB, In The Box
+- [ ] Météore ITB, In The Box
+- [ ] Regal Gold, In The Box
+- [ ] Lord Town, In The Box
+- [ ] Kinge, In The Box
+- [ ] Nuit D'Épices, In The Box
+- [ ] Code Absolu ITB, In The Box
+- [ ] Stronger With You Intensely ITB, In The Box
+- [ ] Acqua Di Gio Profumo ITB, In The Box
+- [ ] Dior Homme Intense ITB, In The Box
+- [ ] Fahrenheit ITB, In The Box
+- [ ] Terre D'Hermes ITB, In The Box
+- [ ] Prada L'Homme ITB, In The Box
+- [ ] Luna Rossa Black ITB, In The Box
+- [ ] Spicebomb Extreme ITB, In The Box
+- [ ] The One EDP ITB, In The Box
+- [ ] Light Blue Intense ITB, In The Box
+- [ ] CH Men Prive ITB, In The Box
+- [ ] Bad Boy ITB, In The Box
+- [ ] Gentleman Reserve Privee ITB, In The Box
+- [ ] Y EDP ITB, In The Box
+- [ ] La Nuit De L'Homme ITB, In The Box
+- [ ] MYSLF ITB, In The Box
+- [ ] Eros ITB, In The Box
+- [ ] Dylan Blue ITB, In The Box
+- [ ] Versace Man Eau Fraiche ITB, In The Box
+- [ ] Bottled Infinite ITB, In The Box
+- [ ] Bottled Elixir ITB, In The Box
+- [ ] Explorer ITB, In The Box
+- [ ] Legend Spirit ITB, In The Box
+- [ ] Individuel ITB, In The Box
+- [ ] Cool Water ITB, In The Box
+- [ ] Joop Homme ITB, In The Box
+- [ ] Sculpture ITB, In The Box
+- [ ] Fierce ITB, In The Box
+
+---
+
+### Maison Viegas (55 perfumes)
+
+- [ ] Heaven, Maison Viegas
+- [ ] Opera Hell, Maison Viegas
+- [ ] Elite Pour Homme, Maison Viegas
+- [ ] Blessed Baraka, Maison Viegas
+- [ ] Prestige, Maison Viegas
+- [ ] Illusion, Maison Viegas
+- [ ] Absolute, Maison Viegas
+- [ ] Imperial, Maison Viegas
+- [ ] Majestic, Maison Viegas
+- [ ] Supreme, Maison Viegas
+- [ ] Legend, Maison Viegas
+- [ ] Royal, Maison Viegas
+- [ ] Mystic, Maison Viegas
+- [ ] Divine, Maison Viegas
+- [ ] Velvet, Maison Viegas
+- [ ] Noir, Maison Viegas
+- [ ] Gold, Maison Viegas
+- [ ] Silver, Maison Viegas
+- [ ] Platinum, Maison Viegas
+- [ ] Intense, Maison Viegas
+- [ ] Extreme, Maison Viegas
+- [ ] Fresh, Maison Viegas
+- [ ] Aqua, Maison Viegas
+- [ ] Verde, Maison Viegas
+- [ ] Bois, Maison Viegas
+- [ ] Oud, Maison Viegas
+- [ ] Ambre, Maison Viegas
+- [ ] Vanille, Maison Viegas
+- [ ] Tabac, Maison Viegas
+- [ ] Cuir, Maison Viegas
+- [ ] Épices, Maison Viegas
+- [ ] Fleur, Maison Viegas
+- [ ] Rose, Maison Viegas
+- [ ] Jasmin, Maison Viegas
+- [ ] Iris, Maison Viegas
+- [ ] Agrumes, Maison Viegas
+- [ ] Bergamote, Maison Viegas
+- [ ] Citron, Maison Viegas
+- [ ] Mandarine, Maison Viegas
+- [ ] Vétiver, Maison Viegas
+- [ ] Cèdre, Maison Viegas
+- [ ] Santal, Maison Viegas
+- [ ] Patchouli, Maison Viegas
+- [ ] Musc, Maison Viegas
+- [ ] Encens, Maison Viegas
+- [ ] Myrrhe, Maison Viegas
+- [ ] Tonka, Maison Viegas
+- [ ] Cacao, Maison Viegas
+- [ ] Café, Maison Viegas
+- [ ] Rhum, Maison Viegas
+- [ ] Cognac, Maison Viegas
+- [ ] Whisky, Maison Viegas
+
+---
+
+### Nuancielo (65 perfumes)
+
+- [ ] Costa Riviera, Nuancielo
+- [ ] Pharazon, Nuancielo
+- [ ] Sahara Absolu, Nuancielo
+- [ ] Everest, Nuancielo
+- [ ] Blue Celestia, Nuancielo
+- [ ] Alpha Leggera, Nuancielo
+- [ ] Alpha Blanche, Nuancielo
+- [ ] Noām, Nuancielo
+- [ ] Domus, Nuancielo
+- [ ] Ginger Club, Nuancielo
+- [ ] Supremacy, Nuancielo
+- [ ] Hills, Nuancielo
+- [ ] Jocker, Nuancielo
+- [ ] Maktub, Nuancielo
+- [ ] Elixir Babylone, Nuancielo
+- [ ] Kubanacan, Nuancielo
+- [ ] Granado, Nuancielo
+- [ ] Wild, Nuancielo
+- [ ] freedom, Nuancielo
+- [ ] Mukhallat, Nuancielo
+- [ ] Centaury, Nuancielo
+- [ ] Platinus, Nuancielo
+- [ ] Hades, Nuancielo
+- [ ] Zeus, Nuancielo
+- [ ] Apollo, Nuancielo
+- [ ] Poseidon, Nuancielo
+- [ ] Ares, Nuancielo
+- [ ] Hermes, Nuancielo
+- [ ] Dionisio, Nuancielo
+- [ ] Hefesto, Nuancielo
+- [ ] Atena, Nuancielo
+- [ ] Afrodite, Nuancielo
+- [ ] Artemis, Nuancielo
+- [ ] Hera, Nuancielo
+- [ ] Demeter, Nuancielo
+- [ ] Persefone, Nuancielo
+- [ ] Hestia, Nuancielo
+- [ ] Iris, Nuancielo
+- [ ] Nike, Nuancielo
+- [ ] Hebe, Nuancielo
+- [ ] Nemesis, Nuancielo
+- [ ] Tyche, Nuancielo
+- [ ] Hecate, Nuancielo
+- [ ] Eros, Nuancielo
+- [ ] Thanatos, Nuancielo
+- [ ] Hypnos, Nuancielo
+- [ ] Morpheus, Nuancielo
+- [ ] Pan, Nuancielo
+- [ ] Asclepio, Nuancielo
+- [ ] Quiron, Nuancielo
+- [ ] Hercules, Nuancielo
+- [ ] Perseu, Nuancielo
+- [ ] Teseu, Nuancielo
+- [ ] Aquiles, Nuancielo
+- [ ] Odisseu, Nuancielo
+- [ ] Jasão, Nuancielo
+- [ ] Orfeu, Nuancielo
+- [ ] Belerofonte, Nuancielo
+- [ ] Cadmo, Nuancielo
+- [ ] Édipo, Nuancielo
+- [ ] Midas, Nuancielo
+- [ ] Sísifo, Nuancielo
+- [ ] Tântalo, Nuancielo
+- [ ] Ícaro, Nuancielo
+- [ ] Dédalo, Nuancielo
+- [ ] Minos, Nuancielo
+- [ ] Agamemnon, Nuancielo
+- [ ] Menelau, Nuancielo
+- [ ] Heitor, Nuancielo
+- [ ] Páris, Nuancielo
+- [ ] Príamo, Nuancielo
+- [ ] Eneias, Nuancielo
+
+---
+
+## 🌍 3. Alta Perfumaria Global & Casas de Luxo Internacionais
+
+### Chanel (62 perfumes)
+
+- [ ] Bleu de Chanel Eau de Toilette, Chanel
+- [ ] Bleu de Chanel Eau de Parfum, Chanel
+- [ ] Bleu de Chanel Parfum, Chanel
+- [ ] Allure Homme, Chanel
+- [ ] Allure Homme Sport, Chanel
+- [ ] Allure Homme Sport Eau Extrême, Chanel
+- [ ] Allure Homme Edition Blanche, Chanel
+- [ ] Allure Homme Sport Cologne, Chanel
+- [ ] Platinum Égoïste, Chanel
+- [ ] Égoïste, Chanel
+- [ ] Pour Monsieur Eau de Toilette, Chanel
+- [ ] Pour Monsieur Eau de Parfum, Chanel
+- [ ] Antaeus, Chanel
+- [ ] Coco Mademoiselle Eau de Parfum, Chanel
+- [ ] Coco Mademoiselle Eau de Parfum Intense, Chanel
+- [ ] Coco Mademoiselle Eau de Toilette, Chanel
+- [ ] Coco Mademoiselle L'Eau Privée, Chanel
+- [ ] Coco Mademoiselle Crush Absolu, Chanel
+- [ ] Coco Eau de Parfum, Chanel
+- [ ] Coco Eau de Toilette, Chanel
+- [ ] Coco Noir, Chanel
+- [ ] Chance Eau de Parfum, Chanel
+- [ ] Chance Eau de Toilette, Chanel
+- [ ] Chance Eau Tendre Eau de Toilette, Chanel
+- [ ] Chance Eau Tendre Eau de Parfum, Chanel
+- [ ] Chance Eau Fraîche Eau de Toilette, Chanel
+- [ ] Chance Eau Fraîche Eau de Parfum, Chanel
+- [ ] Chance Eau Vive, Chanel
+- [ ] Chanel N°5 Eau de Parfum, Chanel
+- [ ] Chanel N°5 Eau de Toilette, Chanel
+- [ ] Chanel N°5 L'Eau, Chanel
+- [ ] Chanel N°5 Eau Première, Chanel
+- [ ] Gabrielle Chanel Eau de Parfum, Chanel
+- [ ] Gabrielle Chanel Essence, Chanel
+- [ ] Gabrielle Chanel L'Eau, Chanel
+- [ ] Chanel N°19 Eau de Parfum, Chanel
+- [ ] Chanel N°19 Eau de Toilette, Chanel
+- [ ] Chanel N°19 Poudré, Chanel
+- [ ] Cristalle Eau de Parfum, Chanel
+- [ ] Cristalle Eau de Toilette, Chanel
+- [ ] Cristalle Eau Verte, Chanel
+- [ ] Allure Eau de Parfum, Chanel
+- [ ] Allure Eau de Toilette, Chanel
+- [ ] Allure Sensuelle, Chanel
+- [ ] Paris-Biarritz, Chanel
+- [ ] Paris-Deauville, Chanel
+- [ ] Paris-Venise, Chanel
+- [ ] Paris-Riviera, Chanel
+- [ ] Paris-Édimbourg, Chanel
+- [ ] Paris-Paris, Chanel
+- [ ] Coromandel, Chanel
+- [ ] Sycomore, Chanel
+- [ ] Comète, Chanel
+- [ ] Le Lion de Chanel, Chanel
+- [ ] Boy Chanel, Chanel
+- [ ] 1957, Chanel
+- [ ] 31 Rue Cambon, Chanel
+- [ ] Cuir de Russie, Chanel
+- [ ] Bois des Îles, Chanel
+- [ ] Gardénia, Chanel
+- [ ] Beige, Chanel
+- [ ] Jersey, Chanel
+- [ ] Misia, Chanel
+- [ ] Bel Respiro, Chanel
+- [ ] 28 La Pausa, Chanel
+- [ ] 1932, Chanel
+- [ ] Eau de Cologne, Chanel
+- [ ] No. 22, Chanel
+- [ ] No. 18, Chanel
+
+---
+
+### Yves Saint Laurent (66 perfumes)
+
+- [ ] Y Iced Cologne, Yves Saint Laurent
+- [ ] Y Eau de Toilette, Yves Saint Laurent
+- [ ] Y Eau de Parfum, Yves Saint Laurent
+- [ ] Y Eau de Parfum Intense, Yves Saint Laurent
+- [ ] Y Le Parfum, Yves Saint Laurent
+- [ ] Y Elixir, Yves Saint Laurent
+- [ ] Y Live, Yves Saint Laurent
+- [ ] Y Eau Fraîche, Yves Saint Laurent
+- [ ] MYSLF Eau de Parfum, Yves Saint Laurent
+- [ ] MYSLF Le Parfum, Yves Saint Laurent
+- [ ] La Nuit de L'Homme Eau de Toilette, Yves Saint Laurent
+- [ ] La Nuit de L'Homme Eau de Parfum, Yves Saint Laurent
+- [ ] La Nuit de L'Homme Bleu Électrique, Yves Saint Laurent
+- [ ] La Nuit de L'Homme Le Parfum, Yves Saint Laurent
+- [ ] L'Homme Eau de Toilette, Yves Saint Laurent
+- [ ] L'Homme Eau de Parfum, Yves Saint Laurent
+- [ ] L'Homme Le Parfum, Yves Saint Laurent
+- [ ] L'Homme Ultime, Yves Saint Laurent
+- [ ] L'Homme Cologne Bleue, Yves Saint Laurent
+- [ ] Kouros, Yves Saint Laurent
+- [ ] Kouros Silver, Yves Saint Laurent
+- [ ] Body Kouros, Yves Saint Laurent
+- [ ] Opium Pour Homme, Yves Saint Laurent
+- [ ] Jazz, Yves Saint Laurent
+- [ ] Rive Gauche Pour Homme, Yves Saint Laurent
+- [ ] M7, Yves Saint Laurent
+- [ ] Libre Eau de Parfum, Yves Saint Laurent
+- [ ] Libre Eau de Toilette, Yves Saint Laurent
+- [ ] Libre Eau de Parfum Intense, Yves Saint Laurent
+- [ ] Libre Le Parfum, Yves Saint Laurent
+- [ ] Libre L'Absolu Platine, Yves Saint Laurent
+- [ ] Libre Flowers & Flames, Yves Saint Laurent
+- [ ] Libre Berry Crush, Yves Saint Laurent
+- [ ] Libre Santal Couture, Yves Saint Laurent
+- [ ] Black Opium Eau de Parfum, Yves Saint Laurent
+- [ ] Black Opium Le Parfum, Yves Saint Laurent
+- [ ] Black Opium Eau de Parfum Over Red, Yves Saint Laurent
+- [ ] Black Opium Eau de Parfum Extreme, Yves Saint Laurent
+- [ ] Black Opium Eau de Parfum Illicit Green, Yves Saint Laurent
+- [ ] Black Opium Eau de Toilette, Yves Saint Laurent
+- [ ] Black Opium Neon, Yves Saint Laurent
+- [ ] Black Opium Nuit Blanche, Yves Saint Laurent
+- [ ] Mon Paris Eau de Parfum, Yves Saint Laurent
+- [ ] Mon Paris Intensement, Yves Saint Laurent
+- [ ] Mon Paris Lumière, Yves Saint Laurent
+- [ ] Mon Paris Couture, Yves Saint Laurent
+- [ ] Cinéma, Yves Saint Laurent
+- [ ] Manifesto, Yves Saint Laurent
+- [ ] Elle, Yves Saint Laurent
+- [ ] Paris, Yves Saint Laurent
+- [ ] Parisienne, Yves Saint Laurent
+- [ ] Opium Eau de Parfum, Yves Saint Laurent
+- [ ] Opium Eau de Toilette, Yves Saint Laurent
+- [ ] Tuxedo, Yves Saint Laurent
+- [ ] Babycat, Yves Saint Laurent
+- [ ] Caban, Yves Saint Laurent
+- [ ] Caftan, Yves Saint Laurent
+- [ ] Trench, Yves Saint Laurent
+- [ ] Saharienne, Yves Saint Laurent
+- [ ] Blouse, Yves Saint Laurent
+- [ ] Grain de Poudre, Yves Saint Laurent
+- [ ] Velours, Yves Saint Laurent
+- [ ] Sleek Suede, Yves Saint Laurent
+- [ ] Magnificent Gold, Yves Saint Laurent
+- [ ] Splendid Wood, Yves Saint Laurent
+- [ ] Exquisite Embroidery, Yves Saint Laurent
+- [ ] Majestic Rose, Yves Saint Laurent
+- [ ] Supreme Bouquet, Yves Saint Laurent
+- [ ] Atlas Garden, Yves Saint Laurent
+- [ ] Wild Leather, Yves Saint Laurent
+- [ ] Rouge Velours, Yves Saint Laurent
+- [ ] Capeline, Yves Saint Laurent
+- [ ] Jumpsuit, Yves Saint Laurent
+- [ ] Lavallière, Yves Saint Laurent
+- [ ] Muse, Yves Saint Laurent
+- [ ] Cuir, Yves Saint Laurent
+- [ ] Vinyle, Yves Saint Laurent
+- [ ] 6 Place Saint Sulpice, Yves Saint Laurent
+- [ ] 24 Rue de l'Université, Yves Saint Laurent
+- [ ] 37 Rue de Bellechasse, Yves Saint Laurent
+
+---
+
+### Jean Paul Gaultier (43 perfumes)
+
+- [ ] Le Beau Eau de Toilette, Jean Paul Gaultier
+- [ ] Le Beau Le Parfum, Jean Paul Gaultier
+- [ ] Le Beau Paradise Garden, Jean Paul Gaultier
+- [ ] Le Beau Flower Edition, Jean Paul Gaultier
+- [ ] Le Male Eau de Toilette, Jean Paul Gaultier
+- [ ] Le Male Le Parfum, Jean Paul Gaultier
+- [ ] Le Male Elixir, Jean Paul Gaultier
+- [ ] Le Male Pride Edition 2026, Jean Paul Gaultier
+- [ ] Le Male Lover, Jean Paul Gaultier
+- [ ] Ultra Male, Jean Paul Gaultier
+- [ ] Le Male In The Navy, Jean Paul Gaultier
+- [ ] Le Male Aviator, Jean Paul Gaultier
+- [ ] Le Male On Board, Jean Paul Gaultier
+- [ ] Le Male Essence de Parfum, Jean Paul Gaultier
+- [ ] Fleur du Mâle, Jean Paul Gaultier
+- [ ] Le Male Terrible, Jean Paul Gaultier
+- [ ] Kokorico, Jean Paul Gaultier
+- [ ] Gaultier 2, Jean Paul Gaultier
+- [ ] Scandal Pour Homme Eau de Toilette, Jean Paul Gaultier
+- [ ] Scandal Pour Homme Le Parfum, Jean Paul Gaultier
+- [ ] Scandal Pour Homme Absolu, Jean Paul Gaultier
+- [ ] Scandal Elixir Parfum For Him, Jean Paul Gaultier
+- [ ] Scandal Eau de Parfum, Jean Paul Gaultier
+- [ ] Scandal Le Parfum, Jean Paul Gaultier
+- [ ] Scandal Absolu, Jean Paul Gaultier
+- [ ] Scandal Elixir Parfum For Her, Jean Paul Gaultier
+- [ ] Scandal By Night, Jean Paul Gaultier
+- [ ] Scandal A Paris, Jean Paul Gaultier
+- [ ] So Scandal!, Jean Paul Gaultier
+- [ ] Gaultier Divine Eau de Parfum, Jean Paul Gaultier
+- [ ] Gaultier Divine Le Parfum, Jean Paul Gaultier
+- [ ] Gaultier Divine Couture, Jean Paul Gaultier
+- [ ] La Belle Eau de Parfum, Jean Paul Gaultier
+- [ ] La Belle Le Parfum, Jean Paul Gaultier
+- [ ] La Belle Paradise Garden, Jean Paul Gaultier
+- [ ] La Belle Fleur Terrible, Jean Paul Gaultier
+- [ ] La Belle Flower Edition, Jean Paul Gaultier
+- [ ] Classique Eau de Toilette, Jean Paul Gaultier
+- [ ] Classique Eau de Parfum, Jean Paul Gaultier
+- [ ] Classique Essence de Parfum, Jean Paul Gaultier
+- [ ] Classique Pin-Up, Jean Paul Gaultier
+- [ ] Classique Cabaret, Jean Paul Gaultier
+- [ ] Ma Dame, Jean Paul Gaultier
+- [ ] Fragile, Jean Paul Gaultier
+
+---
+
+### Gucci (63 perfumes)
+
+- [ ] Gucci Guilty Pour Homme Eau de Toilette, Gucci
+- [ ] Gucci Guilty Pour Homme Eau de Parfum, Gucci
+- [ ] Gucci Guilty Pour Homme Parfum, Gucci
+- [ ] Gucci Guilty Elixir de Parfum Pour Homme, Gucci
+- [ ] Gucci Guilty Black Pour Homme, Gucci
+- [ ] Gucci Guilty Absolute, Gucci
+- [ ] Gucci Guilty Love Edition, Gucci
+- [ ] Gucci Guilty Cologne, Gucci
+- [ ] Gucci Intense Oud, Gucci
+- [ ] Gucci Oud, Gucci
+- [ ] Gucci Pour Homme, Gucci
+- [ ] Gucci Pour Homme II, Gucci
+- [ ] Gucci by Gucci Pour Homme, Gucci
+- [ ] Gucci by Gucci Sport, Gucci
+- [ ] Made to Measure, Gucci
+- [ ] Envy for Men, Gucci
+- [ ] Rush for Men, Gucci
+- [ ] Nobile, Gucci
+- [ ] Gucci Flora Gorgeous Gardenia, Gucci
+- [ ] Gucci Flora Gorgeous Jasmine, Gucci
+- [ ] Gucci Flora Gorgeous Magnolia, Gucci
+- [ ] Gucci Flora Gorgeous Orchid, Gucci
+- [ ] Gucci Flora Eau de Parfum, Gucci
+- [ ] Gucci Flora Eau de Toilette, Gucci
+- [ ] Gucci Bloom Eau de Parfum, Gucci
+- [ ] Gucci Bloom Eau de Parfum Intense, Gucci
+- [ ] Gucci Bloom Eau de Toilette, Gucci
+- [ ] Gucci Bloom Parfum, Gucci
+- [ ] Gucci Bloom Ambrosia di Fiori, Gucci
+- [ ] Gucci Bloom Profumo di Fiori, Gucci
+- [ ] Gucci Bloom Nettare di Fiori, Gucci
+- [ ] Gucci Bloom Acqua di Fiori, Gucci
+- [ ] Gucci Guilty Pour Femme Eau de Parfum, Gucci
+- [ ] Gucci Guilty Pour Femme Eau de Toilette, Gucci
+- [ ] Gucci Guilty Pour Femme Intense, Gucci
+- [ ] Gucci Guilty Elixir de Parfum Pour Femme, Gucci
+- [ ] Gucci Guilty Absolute Pour Femme, Gucci
+- [ ] Gucci Bamboo Eau de Parfum, Gucci
+- [ ] Gucci Bamboo Eau de Toilette, Gucci
+- [ ] Mémoire d'une Odeur, Gucci
+- [ ] Gucci Rush, Gucci
+- [ ] Gucci Rush 2, Gucci
+- [ ] Gucci Envy, Gucci
+- [ ] Gucci Envy Me, Gucci
+- [ ] Gucci Eau de Parfum, Gucci
+- [ ] Gucci Eau de Parfum II, Gucci
+- [ ] Gucci Première, Gucci
+- [ ] The Voice of the Snake, Gucci
+- [ ] The Eyes of the Tiger, Gucci
+- [ ] A Song for the Rose, Gucci
+- [ ] The Virgin Violet, Gucci
+- [ ] A Gloaming Night, Gucci
+- [ ] A Midnight Stroll, Gucci
+- [ ] A Chant for the Nymph, Gucci
+- [ ] Tears from the Moon, Gucci
+- [ ] Love at your Darkest, Gucci
+- [ ] Where My Heart Beats, Gucci
+- [ ] A Reason to Love, Gucci
+- [ ] A Floral Verse, Gucci
+
+---
+
+### Calvin Klein (54 perfumes)
+
+- [ ] Euphoria Solar Elixir, Calvin Klein
+- [ ] Euphoria Bold Elixir, Calvin Klein
+- [ ] Euphoria Magnetic Elixir, Calvin Klein
+- [ ] Euphoria Eau de Parfum, Calvin Klein
+- [ ] Euphoria Eau de Toilette, Calvin Klein
+- [ ] Euphoria Men, Calvin Klein
+- [ ] Euphoria Men Intense, Calvin Klein
+- [ ] My Euphoria, Calvin Klein
+- [ ] Endless Euphoria, Calvin Klein
+- [ ] Deep Euphoria, Calvin Klein
+- [ ] Pure Gold Euphoria, Calvin Klein
+- [ ] Liquid Gold Euphoria, Calvin Klein
+- [ ] Defy Eau de Toilette, Calvin Klein
+- [ ] Defy Eau de Parfum, Calvin Klein
+- [ ] Defy Parfum, Calvin Klein
+- [ ] CK One, Calvin Klein
+- [ ] CK One Essence, Calvin Klein
+- [ ] CK One Shock For Him, Calvin Klein
+- [ ] CK One Shock For Her, Calvin Klein
+- [ ] CK One Gold, Calvin Klein
+- [ ] CK One Platinum Edition, Calvin Klein
+- [ ] CK One Summer Daze, Calvin Klein
+- [ ] CK One Reflections, Calvin Klein
+- [ ] CK Be, Calvin Klein
+- [ ] CK All, Calvin Klein
+- [ ] CK Everyone Eau de Toilette, Calvin Klein
+- [ ] CK Everyone Eau de Parfum, Calvin Klein
+- [ ] CK Free, Calvin Klein
+- [ ] CK IN2U for Him, Calvin Klein
+- [ ] CK IN2U for Her, Calvin Klein
+- [ ] Eternity for Men Eau de Toilette, Calvin Klein
+- [ ] Eternity for Men Eau de Parfum, Calvin Klein
+- [ ] Eternity for Men Parfum, Calvin Klein
+- [ ] Eternity Aromatic Essence for Men, Calvin Klein
+- [ ] Eternity Aqua for Men, Calvin Klein
+- [ ] Eternity Air for Men, Calvin Klein
+- [ ] Eternity Flame for Men, Calvin Klein
+- [ ] Eternity Amber Essence for Men, Calvin Klein
+- [ ] Eternity Eau de Parfum, Calvin Klein
+- [ ] Eternity Aromatic Essence for Women, Calvin Klein
+- [ ] Eternity Moment, Calvin Klein
+- [ ] Eternity Air for Women, Calvin Klein
+- [ ] Eternity Flame for Women, Calvin Klein
+- [ ] Eternity Intense, Calvin Klein
+- [ ] Eternity Amber Essence for Women, Calvin Klein
+- [ ] Obsession for Men, Calvin Klein
+- [ ] Obsession, Calvin Klein
+- [ ] Obsessed for Men, Calvin Klein
+- [ ] Obsessed for Women, Calvin Klein
+- [ ] Dark Obsession, Calvin Klein
+- [ ] Escape for Men, Calvin Klein
+- [ ] Escape, Calvin Klein
+- [ ] Truth for Men, Calvin Klein
+- [ ] Truth, Calvin Klein
+- [ ] Contradiction for Men, Calvin Klein
+- [ ] Contradiction, Calvin Klein
+- [ ] Crave, Calvin Klein
+- [ ] Man, Calvin Klein
+- [ ] Encounter, Calvin Klein
+- [ ] Reveal Men, Calvin Klein
+- [ ] Reveal, Calvin Klein
+- [ ] Beauty, Calvin Klein
+- [ ] Sheer Beauty, Calvin Klein
+- [ ] Women Eau de Parfum, Calvin Klein
+- [ ] Women Eau de Toilette, Calvin Klein

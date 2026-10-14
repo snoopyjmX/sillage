@@ -6,12 +6,12 @@ create extension if not exists pgtap with schema extensions;
 select plan(11);
 
 insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000001', 'Marca Teste', 'marca-teste');
-insert into public.perfumes (id, brand_id, name, slug, gender, concentration) values
-  ('11111111-0000-4000-8000-0000000000ff', '22222222-0000-4000-8000-000000000001', 'Alvo', 'alvo', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-00000000000a', '22222222-0000-4000-8000-000000000001', 'A tres notas', 'a-tres', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-00000000000b', '22222222-0000-4000-8000-000000000001', 'B duas notas', 'b-duas', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-00000000000c', '22222222-0000-4000-8000-000000000001', 'C uma nota', 'c-uma', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-00000000000d', '22222222-0000-4000-8000-000000000001', 'D nenhuma', 'd-nenhuma', 'unisex', 'edp');
+insert into public.perfumes (id, brand_id, name, slug, gender, concentration, image_path) values
+  ('11111111-0000-4000-8000-0000000000ff', '22222222-0000-4000-8000-000000000001', 'Alvo', 'alvo', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-00000000000a', '22222222-0000-4000-8000-000000000001', 'A tres notas', 'a-tres', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-00000000000b', '22222222-0000-4000-8000-000000000001', 'B duas notas', 'b-duas', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-00000000000c', '22222222-0000-4000-8000-000000000001', 'C uma nota', 'c-uma', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-00000000000d', '22222222-0000-4000-8000-000000000001', 'D nenhuma', 'd-nenhuma', 'unisex', 'edp', 'teste/foto.webp');
 insert into public.notes (id, name, slug, family) values
   ('33333333-0000-4000-8000-000000000001', 'Nota 1', 'nota-1', 'citrus'),
   ('33333333-0000-4000-8000-000000000002', 'Nota 2', 'nota-2', 'floral'),
@@ -64,7 +64,7 @@ select is(
 );
 select results_eq(
   $q$select name, brand_id, slug, image_path, brand_name from public.get_similar_perfumes('11111111-0000-4000-8000-0000000000ff', 1)$q$,
-  $q$values ('A tres notas'::text, '22222222-0000-4000-8000-000000000001'::uuid, 'a-tres'::text, null::text, 'Marca Teste'::text)$q$,
+  $q$values ('A tres notas'::text, '22222222-0000-4000-8000-000000000001'::uuid, 'a-tres'::text, 'teste/foto.webp'::text, 'Marca Teste'::text)$q$,
   'RN09: devolve os campos da interface'
 );
 select is(

@@ -135,6 +135,7 @@ Sem dependência nova, sem migration e sem mudança de policy. O gate é só de 
 | `/`                                                                          | pública            | `PublicLayout` ou `AppShell` | `RootEntry`: esqueleto, Landing ou Home       |
 | `/login`, `/register`, `/forgot-password`                                    | só visitantes      | `AuthCard` (layout próprio)  | `GuestOnly` (logado volta ao destino)         |
 | `/reset-password`                                                            | via link do e-mail | `AuthCard` (layout próprio)  | nenhuma                                       |
+| `/auth/confirmed`                                                            | via link do e-mail | `AuthCard` (layout próprio)  | nenhuma (sessão do link: conta confirmada)    |
 | `/catalog`, `/perfumes/:slug`, `/perfumers/:slug`, `/collection`, `/profile` | privada            | `AppShell`                   | `RequireAuth` (visitante vai a `/?redirect=`) |
 | `*` (404)                                                                    | privada            | `AppShell`                   | `RequireAuth`                                 |
 

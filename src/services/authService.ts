@@ -12,6 +12,9 @@ const DELETE_TIMEOUT_MS = 30_000;
 
 export type AuthStateListener = (event: AuthChangeEvent, session: Session | null) => void;
 
+// Destino do link de confirmação do e-mail (a Redirect URL precisa estar liberada no Supabase)
+const confirmedUrl = (): string => `${window.location.origin}/auth/confirmed`;
+
 export const authService = {
   getSession: async (): Promise<Session | null> => {
     const { data, error } = await supabase.auth.getSession();
@@ -41,11 +44,24 @@ export const authService = {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { display_name: displayName, timezone } },
+      options: {
+        data: { display_name: displayName, timezone },
+        emailRedirectTo: confirmedUrl(),
+      },
     });
     if (error) throw toAuthError(error);
     // Com confirmação de e-mail ligada o cadastro não devolve sessão até o clique no link
     return { needsEmailConfirmation: data.session === null };
+  },
+
+  // Reenvia o link de confirmação do cadastro. Resposta neutra: não revela se o e-mail existe.
+  resendConfirmation: async (email: string): Promise<void> => {
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email,
+      options: { emailRedirectTo: confirmedUrl() },
+    });
+    if (error) throw toAuthError(error);
   },
 
   signOut: async (): Promise<void> => {

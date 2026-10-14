@@ -10,7 +10,7 @@ describe('SeoHead', () => {
     await waitFor(() => expect(document.title).toBe('Catálogo — Sillage'));
     expect(meta('meta[property="og:title"]')).toBe('Catálogo — Sillage');
     expect(meta('meta[property="og:type"]')).toBe('website');
-    expect(meta('meta[property="og:image"]')).toBe(`${window.location.origin}/pwa-512x512.png`);
+    expect(meta('meta[property="og:image"]')).toBe(`${window.location.origin}/og-image.jpg`);
     expect(meta('meta[name="twitter:card"]')).toBe('summary_large_image');
   });
 
@@ -23,5 +23,15 @@ describe('SeoHead', () => {
     render(<SeoHead title="X" imageUrl="https://cdn.test/x.jpg" type="article" />);
     await waitFor(() => expect(meta('meta[property="og:type"]')).toBe('article'));
     expect(meta('meta[name="twitter:image"]')).toBe('https://cdn.test/x.jpg');
+  });
+
+  it('remove as tags estáticas do index.html para não duplicar', async () => {
+    document.head.insertAdjacentHTML(
+      'beforeend',
+      '<meta data-static-seo property="og:title" content="Estático" />'
+    );
+    render(<SeoHead title="Catálogo" />);
+    await waitFor(() => expect(document.head.querySelector('[data-static-seo]')).toBeNull());
+    expect(document.head.querySelectorAll('meta[property="og:title"]')).toHaveLength(1);
   });
 });

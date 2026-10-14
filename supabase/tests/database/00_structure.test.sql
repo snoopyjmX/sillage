@@ -3,7 +3,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(31);
+select plan(32);
 
 -- Helpers: trocam o papel do Postgres e as claims do JWT (nunca testamos como superusuário)
 create function pg_temp.act_as(
@@ -79,6 +79,7 @@ select throws_ok($t$select 'other'::public.concentration_type$t$, '22P02', null,
 -- notes.description: opcional, de 1 a 240 caracteres
 select has_column('public','notes','description','notes tem a coluna description');
 select col_is_null('public','notes','description','notes.description é opcional');
+select col_not_null('public','perfumes','image_path','perfumes.image_path é obrigatório (catálogo só com foto)');
 select throws_ok(
   $t$insert into public.notes (slug, name, family, description) values ('t-longa', 'T', 'citrus', repeat('a', 241))$t$,
   '23514', null, 'notes.description rejeita mais de 240 caracteres'

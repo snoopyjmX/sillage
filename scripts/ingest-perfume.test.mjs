@@ -141,3 +141,11 @@ describe('PerfumeSchema.perfumers', () => {
     expect(validatePerfume(makeData({ perfumers: ['Alguém'] }), 'x').perfumers).toEqual(['Alguém']);
   });
 });
+
+describe('buildMigrationSql com foto obrigatória', () => {
+  it('insere o perfume com um image_path provisório da marca/perfume', () => {
+    const sql = buildMigrationSql(makeData(), { brandSlug: 'granado', perfumeSlug: 'bossa' });
+    expect(sql).toContain('description, image_path)');
+    expect(sql).toContain("'granado/bossa.webp'");
+  });
+});

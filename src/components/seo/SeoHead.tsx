@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
+
 const SITE_NAME = 'Sillage';
-const DEFAULT_IMAGE_PATH = '/pwa-512x512.png';
+const DEFAULT_IMAGE_PATH = '/og-image.jpg';
 const DEFAULT_DESCRIPTION =
   'Sillage: catálogo de perfumes de nicho com pirâmide olfativa, coleção, avaliações e o Perfume do Dia.';
 
@@ -10,7 +12,8 @@ interface SeoHeadProps {
   type?: 'website' | 'article';
 }
 
-// O React 19 move <title> e <meta> para o <head>, sem biblioteca.
+// O React 19 move <title> e <meta> para o <head>, sem biblioteca. As tags estáticas do index.html
+// (data-static-seo) servem aos crawlers sem JS; ao montar, saem do <head> para não duplicar.
 // Cada página monta o seu SeoHead, então a URL lida aqui é a da rota atual.
 export function SeoHead({
   title,
@@ -18,6 +21,10 @@ export function SeoHead({
   imageUrl,
   type = 'website',
 }: SeoHeadProps) {
+  useEffect(() => {
+    document.head.querySelectorAll('[data-static-seo]').forEach((element) => element.remove());
+  }, []);
+
   const fullTitle = title && title !== SITE_NAME ? `${title} — ${SITE_NAME}` : SITE_NAME;
   const url = window.location.href;
   const image = new URL(imageUrl ?? DEFAULT_IMAGE_PATH, window.location.origin).href;

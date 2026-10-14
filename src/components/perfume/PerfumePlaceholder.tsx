@@ -23,7 +23,7 @@ interface PerfumePlaceholderProps {
   className?: string;
 }
 
-// Sem fotos por enquanto (image_path nulo por direitos de imagem): fundo na cor da família
+// Fallback de foto que não carrega (URL quebrada ou offline): fundo na cor da família
 // principal, sem logo.
 export function PerfumePlaceholder({
   family,

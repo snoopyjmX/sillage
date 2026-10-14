@@ -75,6 +75,13 @@ describe('página do perfumista', () => {
     expect(
       await screen.findByText('Nenhuma fragrância por aqui ainda', {}, { timeout: 8000 })
     ).toBeInTheDocument();
+    // Bio e país continuam visíveis, e há saída para o catálogo
+    expect(screen.getByText('França')).toBeInTheDocument();
+    expect(screen.getByText('Nariz francês.')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Explorar o catálogo' })).toHaveAttribute(
+      'href',
+      '/catalog'
+    );
   });
 
   it('slug inexistente mostra "Perfumista não encontrado"', async () => {

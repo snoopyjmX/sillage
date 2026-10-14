@@ -6,6 +6,8 @@ Este documento registra o estado atual do projeto para transição entre computa
 
 ## 1. 📌 Estado Atual do Projeto
 
+> **v1.0.0 em andamento:** o plano vigente é `docs/PLANO_FINAL.md`, na branch `release/v1.0.0`. As notas abaixo são históricas (Fase 15).
+
 - **Branch Ativa:** `feat/phase-15-catalog-and-auth`
 - **Subfases Concluídas:**
   - ✅ **15A (Infra & Auth Online):**

@@ -31,7 +31,7 @@ select 'fake-note-' || g,
 from generate_series(1, 80) g;
 
 -- 5.000 perfumes
-insert into public.perfumes (slug, name, brand_id, gender, concentration, release_year)
+insert into public.perfumes (slug, name, brand_id, gender, concentration, release_year, image_path)
 select 'fake-perfume-' || g,
        (array['Café','Âmbar','Noite','Bosque','Rosa','Vetiver','Oud','Cítrico','Brisa','Maré','Jardim','Veludo'])[1 + g % 12]
          || ' ' || (array['Noir','Intenso','Absolu','Extraordinaire','Fresco','Profundo','Dourado'])[1 + (g / 12) % 7]
@@ -39,7 +39,8 @@ select 'fake-perfume-' || g,
        (select id from public.brands where slug = 'fake-brand-' || (1 + g % 300)),
        (enum_range(null::public.perfume_gender))[1 + g % 3],
        (enum_range(null::public.concentration_type))[1 + g % 6],
-       case when g % 10 = 0 then null else 1990 + g % 37 end
+       case when g % 10 = 0 then null else 1990 + g % 37 end,
+       'teste/foto.webp'
 from generate_series(1, 5000) g;
 
 -- ~6 notas por perfume (2 por posição), ~30.000 ligações

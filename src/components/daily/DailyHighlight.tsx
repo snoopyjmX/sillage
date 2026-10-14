@@ -1,7 +1,6 @@
 import { Share2 } from 'lucide-react';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShareCardDialog } from '@/components/daily/ShareCardDialog';
 import { BlurFade } from '@/components/ui/blur-fade';
 import { Button } from '@/components/ui/button';
 import { Chip } from '@/components/ui/chip';
@@ -12,6 +11,12 @@ import { CONCENTRATION_LABELS, FAMILY_LABELS, GENDER_LABELS } from '@/constants/
 import { formatCivilDate } from '@/lib/format';
 import type { DailyEntry } from '@/types/daily';
 import type { WeatherView } from '@/types/weather';
+
+// O diálogo (e o canvas do card) só carrega quando alguém pede para compartilhar: fica fora do
+// bundle da Home
+const ShareCardDialog = lazy(async () => ({
+  default: (await import('@/components/daily/ShareCardDialog')).ShareCardDialog,
+}));
 
 interface DailyHighlightProps {
   entry: DailyEntry;
@@ -24,6 +29,8 @@ interface DailyHighlightProps {
 export function DailyHighlight({ entry, weather }: DailyHighlightProps) {
   const { perfume } = entry;
   const [shareOpen, setShareOpen] = useState(false);
+  // Depois da primeira abertura segue montado, para a animação de fechar terminar
+  const [shareMounted, setShareMounted] = useState(false);
   const meta = [GENDER_LABELS[perfume.gender], perfume.releaseYear?.toString()]
     .filter(Boolean)
     .join(' · ');
@@ -34,21 +41,21 @@ export function DailyHighlight({ entry, weather }: DailyHighlightProps) {
         aria-label="Perfume do Dia"
         className="grid overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-floating md:grid-cols-2"
       >
-        <PerfumeStage className="aspect-[4/3] md:aspect-auto md:min-h-80">
+        <PerfumeStage className="h-48 w-full sm:h-60 md:h-auto md:min-h-80">
           <PerfumeImage
             key={perfume.imageUrl}
             url={perfume.imageUrl}
             variant="medium"
             alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
             width={640}
-            height={640}
-            className="size-full object-contain p-2"
+            height={800}
+            className="max-h-full max-w-full object-contain p-3"
             fallback={
               <PerfumePlaceholder family={perfume.families[0]} showIcon className="size-full" />
             }
           />
         </PerfumeStage>
-        <div className="flex flex-col justify-center gap-3 p-6 md:p-10">
+        <div className="flex flex-col justify-center gap-3 p-4 sm:p-6 md:p-10">
           <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
             {perfume.brandName}
           </p>
@@ -78,18 +85,28 @@ export function DailyHighlight({ entry, weather }: DailyHighlightProps) {
             >
               Ver detalhes de {perfume.name}
             </Link>
-            <Button variant="outline" onClick={() => setShareOpen(true)}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShareMounted(true);
+                setShareOpen(true);
+              }}
+            >
               <Share2 aria-hidden />
               Compartilhar dia
             </Button>
           </div>
         </div>
-        <ShareCardDialog
-          open={shareOpen}
-          onOpenChange={setShareOpen}
-          entry={entry}
-          weather={weather}
-        />
+        {shareMounted && (
+          <Suspense fallback={null}>
+            <ShareCardDialog
+              open={shareOpen}
+              onOpenChange={setShareOpen}
+              entry={entry}
+              weather={weather}
+            />
+          </Suspense>
+        )}
       </article>
     </BlurFade>
   );

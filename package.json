@@ -1,7 +1,7 @@
 {
   "name": "sillage",
   "private": true,
-  "version": "0.1.1",
+  "version": "1.0.0",
   "type": "module",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
@@ -33,6 +33,7 @@
     "images:download": "node scripts/download-images.mjs",
     "images:upload": "node scripts/upload-images.mjs",
     "images:all": "npm run images:download && npm run images && node scripts/upload-images.mjs",
+    "og-image": "node scripts/og-image.mjs",
     "images:preview": "node scripts/preview-images.mjs"
   },
   "dependencies": {

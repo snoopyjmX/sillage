@@ -5,8 +5,8 @@ export function DailySkeleton() {
   return (
     <div aria-busy="true" aria-label="Carregando o Perfume do Dia" className="flex flex-col gap-10">
       <div className="grid overflow-hidden rounded-2xl border bg-card shadow-floating md:grid-cols-2">
-        <Skeleton className="aspect-[4/3] w-full rounded-none md:aspect-auto md:min-h-80" />
-        <div className="flex flex-col justify-center gap-3 p-6 md:p-10">
+        <Skeleton className="h-48 w-full rounded-none sm:h-60 md:h-auto md:min-h-80" />
+        <div className="flex flex-col justify-center gap-3 p-4 sm:p-6 md:p-10">
           <Skeleton className="h-4 w-1/4" />
           <Skeleton className="h-10 w-3/4" />
           <Skeleton className="h-6 w-1/2" />

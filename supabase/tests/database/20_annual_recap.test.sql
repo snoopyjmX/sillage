@@ -29,10 +29,10 @@ insert into auth.users (id, aud, role, email, raw_user_meta_data) values
   ('b0000000-0000-4000-8000-00000000000b', 'authenticated', 'authenticated', 'b@test.local', '{"name":"Bruno"}'),
   ('c0000000-0000-4000-8000-00000000000c', 'authenticated', 'authenticated', 'c@test.local', '{"name":"Carla"}');
 insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000001', 'Marca Teste', 'marca-teste');
-insert into public.perfumes (id, brand_id, name, slug, gender, concentration) values
-  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Alfa', 'recap-alfa', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Beta', 'recap-beta', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000003', '22222222-0000-4000-8000-000000000001', 'Gama', 'recap-gama', 'unisex', 'edp');
+insert into public.perfumes (id, brand_id, name, slug, gender, concentration, image_path) values
+  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Alfa', 'recap-alfa', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Beta', 'recap-beta', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000003', '22222222-0000-4000-8000-000000000001', 'Gama', 'recap-gama', 'unisex', 'edp', 'teste/foto.webp');
 insert into public.notes (id, name, slug, family) values
   ('33333333-0000-4000-8000-000000000001', 'Nota Citrica', 'recap-citrica', 'citrus'),
   ('33333333-0000-4000-8000-000000000002', 'Nota Amadeirada A', 'recap-amadeirada-a', 'woody'),

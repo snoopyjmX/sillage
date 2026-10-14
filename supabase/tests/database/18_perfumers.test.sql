@@ -3,7 +3,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(27);
+select plan(29);
 
 create function pg_temp.act_as(
   p_uid uuid,
@@ -44,14 +44,18 @@ begin
   return n;
 end $$;
 
+-- Os nove perfumistas do projeto vêm da migration de perfis, todos com país e bio
+select is((select count(*) from public.perfumers where slug in ('veronica-kato','eurico-mazzini','adilson-rato','alberto-morillas','francis-kurkdjian','dominique-ropion','jean-claude-ellena','quentin-bisch','isaac-sinclair')), 9::bigint, 'os nove perfumistas do projeto estão cadastrados');
+select is((select count(*) from public.perfumers where country is null or bio is null), 0::bigint, 'nenhum perfumista fica sem país ou bio');
+
 -- Fixtures (desfeitas pelo rollback no fim)
 insert into auth.users (id, aud, role, email, raw_user_meta_data) values
   ('a0000000-0000-4000-8000-00000000000a', 'authenticated', 'authenticated', 'a@test.local', '{"name":"Alice"}'),
   ('c0000000-0000-4000-8000-00000000000c', 'authenticated', 'authenticated', 'admin@test.local', '{"name":"Admin"}');
 insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000001', 'Marca Teste', 'marca-teste');
-insert into public.perfumes (id, brand_id, name, slug, gender, concentration) values
-  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Perfume 1', 'perfume-1', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Perfume 2', 'perfume-2', 'unisex', 'edp');
+insert into public.perfumes (id, brand_id, name, slug, gender, concentration, image_path) values
+  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Perfume 1', 'perfume-1', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Perfume 2', 'perfume-2', 'unisex', 'edp', 'teste/foto.webp');
 insert into public.perfumers (id, name, slug, bio, country) values
   ('44444444-0000-4000-8000-000000000001', 'Nariz Um', 'nariz-um', 'Biografia', 'França'),
   ('44444444-0000-4000-8000-000000000002', 'Nariz Dois', 'nariz-dois', null, null);
@@ -73,13 +77,13 @@ select hasnt_column('public', 'perfumes', 'perfumer', 'a coluna de texto perfume
 
 -- Leitura pública
 select pg_temp.act_anon();
-select is((select count(*) from public.perfumers), 2::bigint, 'anon lê perfumers');
+select is((select count(*) from public.perfumers where slug like 'nariz-%'), 2::bigint, 'anon lê perfumers');
 select is((select count(*) from public.perfume_perfumers), 2::bigint, 'anon lê perfume_perfumers');
 select throws_ok($t$insert into public.perfumers (name, slug) values ('Anon', 'anon')$t$, '42501', null, 'anon não insere em perfumers');
 
 -- Usuário comum: lê, mas não escreve
 select pg_temp.act_as('a0000000-0000-4000-8000-00000000000a');
-select is((select count(*) from public.perfumers), 2::bigint, 'usuário comum lê perfumers');
+select is((select count(*) from public.perfumers where slug like 'nariz-%'), 2::bigint, 'usuário comum lê perfumers');
 select throws_ok($t$insert into public.perfumers (name, slug) values ('Comum', 'comum')$t$, '42501', null, 'usuário comum não insere em perfumers');
 select is(pg_temp.affected($t$update public.perfumers set name = 'Hack' where slug = 'nariz-um'$t$), 0::bigint, 'usuário comum não altera perfumers');
 select is(pg_temp.affected($t$delete from public.perfumers where slug = 'nariz-um'$t$), 0::bigint, 'usuário comum não apaga perfumers');

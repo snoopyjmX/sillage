@@ -27,11 +27,11 @@ begin
 end $$;
 
 insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000001', 'Marca Teste', 'marca-teste');
-insert into public.perfumes (id, brand_id, name, slug, gender, concentration, lowest_price_cents, store_name, store_url) values
+insert into public.perfumes (id, brand_id, name, slug, gender, concentration, lowest_price_cents, store_name, store_url, image_path) values
   ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Com Oferta', 'com-oferta',
-   'unisex', 'edp', 24900, 'Loja Teste', 'https://loja.example/produto'),
+   'unisex', 'edp', 24900, 'Loja Teste', 'https://loja.example/produto', 'teste/foto.webp'),
   ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Sem Oferta', 'sem-oferta',
-   'unisex', 'edp', null, null, null);
+   'unisex', 'edp', null, null, null, 'teste/foto.webp');
 
 select col_type_is('public', 'perfumes', 'lowest_price_cents', 'integer', 'lowest_price_cents é integer (centavos)');
 select col_is_null('public', 'perfumes', 'lowest_price_cents', 'lowest_price_cents aceita nulo');

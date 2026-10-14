@@ -169,4 +169,90 @@ describe('páginas de autenticação', () => {
     await screen.findByRole('alert');
     expect(fireConfetti).not.toHaveBeenCalled();
   });
+
+  it('/auth/confirmed com sessão mostra "Conta confirmada" e o caminho para o início', async () => {
+    auth.setInitialSession(fakeSession());
+    renderApp('/auth/confirmed');
+    expect(
+      await screen.findByRole('heading', { name: 'Conta confirmada', level: 1 })
+    ).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Ir para o início' })).toHaveAttribute('href', '/');
+  });
+
+  it('/auth/confirmed sem sessão mostra link expirado e reenvia o e-mail', async () => {
+    auth.service.resendConfirmation.mockResolvedValue(undefined);
+    renderApp('/auth/confirmed');
+    expect(
+      await screen.findByRole('heading', { name: 'Link inválido ou expirado', level: 1 })
+    ).toBeVisible();
+
+    const resend = screen.getByRole('button', { name: 'Reenviar e-mail de confirmação' });
+    expect(resend).toHaveAttribute('aria-disabled', 'true');
+    fireEvent.change(screen.getByLabelText('E-mail'), { target: { value: 'ana@exemplo.com' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Reenviar e-mail de confirmação' }));
+
+    await waitFor(() =>
+      expect(auth.service.resendConfirmation).toHaveBeenCalledWith('ana@exemplo.com')
+    );
+    // Cooldown visível: não dá para pedir de novo na hora
+    expect(await screen.findByRole('button', { name: /Reenviar em [0-9]+ s/ })).toHaveAttribute(
+      'aria-disabled',
+      'true'
+    );
+    expect(screen.getByRole('status')).toHaveTextContent('enviamos um novo link');
+  });
+
+  it('/auth/confirmed: falha no reenvio mostra a mensagem mapeada', async () => {
+    auth.service.resendConfirmation.mockRejectedValue(new AppError('rate_limited'));
+    renderApp('/auth/confirmed');
+    await screen.findByRole('heading', { name: 'Link inválido ou expirado', level: 1 });
+    fireEvent.change(screen.getByLabelText('E-mail'), { target: { value: 'ana@exemplo.com' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Reenviar e-mail de confirmação' }));
+    expect(await screen.findByRole('alert')).toHaveTextContent('Muitas tentativas');
+  });
+
+  it('login com e-mail não confirmado oferece reenviar o link para o e-mail digitado', async () => {
+    auth.service.signIn.mockRejectedValue(new AppError('email_not_confirmed'));
+    auth.service.resendConfirmation.mockResolvedValue(undefined);
+    renderApp('/login');
+    await screen.findByRole('heading', { name: 'Entrar', level: 1 });
+    fireEvent.change(screen.getByLabelText('E-mail'), { target: { value: 'ana@exemplo.com' } });
+    fireEvent.change(screen.getByLabelText('Senha'), { target: { value: 'segredo123' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Entrar' }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('Confirme seu e-mail');
+    fireEvent.click(screen.getByRole('button', { name: 'Reenviar e-mail de confirmação' }));
+    await waitFor(() =>
+      expect(auth.service.resendConfirmation).toHaveBeenCalledWith('ana@exemplo.com')
+    );
+  });
+
+  it('login com outro erro não mostra o botão de reenviar', async () => {
+    auth.service.signIn.mockRejectedValue(new AppError('invalid_credentials'));
+    renderApp('/login');
+    await screen.findByRole('heading', { name: 'Entrar', level: 1 });
+    fireEvent.change(screen.getByLabelText('E-mail'), { target: { value: 'ana@exemplo.com' } });
+    fireEvent.change(screen.getByLabelText('Senha'), { target: { value: 'errada123' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Entrar' }));
+    await screen.findByRole('alert');
+    expect(
+      screen.queryByRole('button', { name: 'Reenviar e-mail de confirmação' })
+    ).not.toBeInTheDocument();
+  });
+
+  it('cadastro com confirmação pendente permite reenviar o e-mail', async () => {
+    auth.service.signUp.mockResolvedValue({ needsEmailConfirmation: true });
+    auth.service.resendConfirmation.mockResolvedValue(undefined);
+    renderApp('/register');
+    await screen.findByRole('heading', { name: 'Criar conta', level: 1 });
+    fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Ana' } });
+    fireEvent.change(screen.getByLabelText('E-mail'), { target: { value: 'ana@exemplo.com' } });
+    fireEvent.change(screen.getByLabelText('Senha'), { target: { value: 'segredo123' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Criar conta' }));
+
+    fireEvent.click(await screen.findByRole('button', { name: 'Reenviar e-mail de confirmação' }));
+    await waitFor(() =>
+      expect(auth.service.resendConfirmation).toHaveBeenCalledWith('ana@exemplo.com')
+    );
+  });
 });

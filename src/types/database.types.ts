@@ -325,7 +325,7 @@ export type Database = {
           description: string | null;
           gender: Database['public']['Enums']['perfume_gender'];
           id: string;
-          image_path: string | null;
+          image_path: string;
           lowest_price_cents: number | null;
           name: string;
           release_year: number | null;
@@ -342,7 +342,7 @@ export type Database = {
           description?: string | null;
           gender: Database['public']['Enums']['perfume_gender'];
           id?: string;
-          image_path?: string | null;
+          image_path: string;
           lowest_price_cents?: number | null;
           name: string;
           release_year?: number | null;
@@ -359,7 +359,7 @@ export type Database = {
           description?: string | null;
           gender?: Database['public']['Enums']['perfume_gender'];
           id?: string;
-          image_path?: string | null;
+          image_path?: string;
           lowest_price_cents?: number | null;
           name?: string;
           release_year?: number | null;

@@ -36,3 +36,7 @@ class VisibleIntersectionObserver {
   }
 }
 vi.stubGlobal('IntersectionObserver', VisibleIntersectionObserver);
+
+// Nos testes o app parte do caminho normal (lê a sessão no authService simulado), sem o atalho de
+// visitante. Esse atalho tem teste próprio (src/lib/sessionHint.test.ts e AuthContext.test.tsx).
+vi.mock('@/lib/sessionHint', () => ({ mayHaveSession: vi.fn(() => true) }));

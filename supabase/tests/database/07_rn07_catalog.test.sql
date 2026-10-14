@@ -3,7 +3,7 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
-select plan(28);
+select plan(29);
 
 -- Helpers: trocam o papel do Postgres e as claims do JWT (nunca testamos como superusuário)
 create function pg_temp.act_as(
@@ -51,11 +51,11 @@ insert into auth.users (id, aud, role, email, raw_user_meta_data) values
   ('a0000000-0000-4000-8000-00000000000a', 'authenticated', 'authenticated', 'a@test.local', '{"name":"Alice"}'),
   ('b0000000-0000-4000-8000-00000000000b', 'authenticated', 'authenticated', 'b@test.local', '{"name":"Bruno"}');
 insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000001', 'Marca Teste', 'marca-teste');
-insert into public.perfumes (id, brand_id, name, slug, gender, concentration) values
-  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Perfume 1', 'perfume-1', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Perfume 2', 'perfume-2', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000003', '22222222-0000-4000-8000-000000000001', 'Perfume 3', 'perfume-3', 'unisex', 'edp'),
-  ('11111111-0000-4000-8000-000000000004', '22222222-0000-4000-8000-000000000001', 'Perfume 4', 'perfume-4', 'unisex', 'edp');
+insert into public.perfumes (id, brand_id, name, slug, gender, concentration, image_path) values
+  ('11111111-0000-4000-8000-000000000001', '22222222-0000-4000-8000-000000000001', 'Perfume 1', 'perfume-1', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000002', '22222222-0000-4000-8000-000000000001', 'Perfume 2', 'perfume-2', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000003', '22222222-0000-4000-8000-000000000001', 'Perfume 3', 'perfume-3', 'unisex', 'edp', 'teste/foto.webp'),
+  ('11111111-0000-4000-8000-000000000004', '22222222-0000-4000-8000-000000000001', 'Perfume 4', 'perfume-4', 'unisex', 'edp', 'teste/foto.webp');
 insert into public.notes (id, name, slug, family) values ('33333333-0000-4000-8000-000000000001', 'Nota Teste', 'nota-teste', 'citrus');
 insert into public.perfume_notes (perfume_id, note_id, position) values ('11111111-0000-4000-8000-000000000001', '33333333-0000-4000-8000-000000000001', 'top');
 
@@ -71,7 +71,7 @@ select cmp_ok((select count(*) from public.perfumes), '>', 0::bigint, 'RN07: usu
 select cmp_ok((select count(*) from public.notes), '>', 0::bigint, 'RN07: usuário comum lê notes');
 select cmp_ok((select count(*) from public.perfume_notes), '>', 0::bigint, 'RN07: usuário comum lê perfume_notes');
 select throws_ok($t$insert into public.brands (name, slug) values ('Comum', 'comum-marca')$t$, '42501', null, 'RN07: usuário comum não insere em brands');
-select throws_ok($t$insert into public.perfumes (brand_id, name, slug, gender, concentration) values ('22222222-0000-4000-8000-000000000001', 'X', 'x', 'unisex', 'edp')$t$, '42501', null, 'RN07: usuário comum não insere em perfumes');
+select throws_ok($t$insert into public.perfumes (brand_id, name, slug, gender, concentration, image_path) values ('22222222-0000-4000-8000-000000000001', 'X', 'x', 'unisex', 'edp', 'teste/foto.webp')$t$, '42501', null, 'RN07: usuário comum não insere em perfumes');
 select throws_ok($t$insert into public.notes (name, slug, family) values ('X', 'x', 'citrus')$t$, '42501', null, 'RN07: usuário comum não insere em notes');
 select throws_ok($t$insert into public.perfume_notes (perfume_id, note_id, position) values ('11111111-0000-4000-8000-000000000002', '33333333-0000-4000-8000-000000000001', 'top')$t$, '42501', null, 'RN07: usuário comum não insere em perfume_notes');
 select is(pg_temp.affected($t$update public.perfumes set description = 'hack' where id = '11111111-0000-4000-8000-000000000001'$t$), 0::bigint, 'RN07: usuário comum não atualiza perfumes (0 linhas)');
@@ -85,7 +85,8 @@ select is(pg_temp.affected($t$update public.perfumes set description = 'hack' wh
 select pg_temp.act_as('a0000000-0000-4000-8000-00000000000a', '{"role":"admin"}'::jsonb);
 select is((select public.is_admin()), true::boolean, 'RN07: app_metadata.role = admin é admin');
 select lives_ok($t$insert into public.brands (id, name, slug) values ('22222222-0000-4000-8000-000000000009', 'Admin Marca', 'admin-marca')$t$, 'RN07: admin insere em brands');
-select lives_ok($t$insert into public.perfumes (brand_id, name, slug, gender, concentration) values ('22222222-0000-4000-8000-000000000001', 'Admin', 'admin-perfume', 'unisex', 'edp')$t$, 'RN07: admin insere em perfumes');
+select lives_ok($t$insert into public.perfumes (brand_id, name, slug, gender, concentration, image_path) values ('22222222-0000-4000-8000-000000000001', 'Admin', 'admin-perfume', 'unisex', 'edp', 'teste/foto.webp')$t$, 'RN07: admin insere em perfumes');
+select throws_ok($t$insert into public.perfumes (brand_id, name, slug, gender, concentration) values ('22222222-0000-4000-8000-000000000001', 'Sem Foto', 'sem-foto', 'unisex', 'edp')$t$, '23502', null, 'RN07: nem admin insere perfume sem image_path');
 select lives_ok($t$insert into public.notes (name, slug, family) values ('Admin Nota', 'admin-nota', 'woody')$t$, 'RN07: admin insere em notes');
 select lives_ok($t$insert into public.perfume_notes (perfume_id, note_id, position) values ('11111111-0000-4000-8000-000000000002', '33333333-0000-4000-8000-000000000001', 'heart')$t$, 'RN07: admin insere em perfume_notes');
 select is(pg_temp.affected($t$update public.perfumes set description = 'ok' where id = '11111111-0000-4000-8000-000000000001'$t$), 1::bigint, 'RN07: admin atualiza perfumes');
