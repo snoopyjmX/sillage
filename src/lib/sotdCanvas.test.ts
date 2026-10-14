@@ -1,11 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import {
-  CARD_CONTENT_WIDTH,
-  CARD_NAME_MAX_LINES,
-  computeLayout,
-  wrapText,
-  type MeasureText,
-} from './sotdCanvas';
+import { wrapText, type MeasureText } from './canvas';
+import { CARD_CONTENT_WIDTH, CARD_NAME_MAX_LINES, computeLayout } from './sotdCanvas';
 import type { SotdCardContent } from './sotdCard';
 
 // 10 unidades por caractere: determinístico e sem DOM

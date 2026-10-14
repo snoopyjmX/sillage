@@ -448,6 +448,7 @@ export type Database = {
       };
     };
     Functions: {
+      get_annual_recap: { Args: { p_year: number }; Returns: Json };
       get_discovery_candidates: {
         Args: {
           p_climate_families: Database['public']['Enums']['olfactive_family'][];
