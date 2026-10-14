@@ -26,6 +26,7 @@ export const createAuthMock = () => {
     }),
     signIn: vi.fn(),
     signUp: vi.fn(),
+    resendConfirmation: vi.fn(),
     signOut: vi.fn(),
     sendPasswordReset: vi.fn(),
     updatePassword: vi.fn(),

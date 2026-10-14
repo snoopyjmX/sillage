@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
+import { ResendConfirmation } from '@/components/auth/ResendConfirmation';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { Field } from '@/components/ui/field';
 import { PasswordField } from '@/components/ui/password-field';
@@ -48,10 +49,13 @@ export default function RegisterPage() {
         }
       >
         {needsConfirmation ? (
-          <FormAlert tone="success">
-            Conta criada! Enviamos um link de confirmação para o seu e-mail. Confirme para poder
-            entrar.
-          </FormAlert>
+          <div className="flex flex-col gap-4">
+            <FormAlert tone="success">
+              Conta criada! Enviamos um link de confirmação para o seu e-mail. Confirme para poder
+              entrar.
+            </FormAlert>
+            <ResendConfirmation email={signUp.variables?.email ?? ''} />
+          </div>
         ) : (
           <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
             {signUp.isError && <FormAlert>{getErrorMessage(signUp.error)}</FormAlert>}

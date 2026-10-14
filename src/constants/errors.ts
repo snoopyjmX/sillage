@@ -43,7 +43,7 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   weak_password: 'Essa senha é fraca demais. Use pelo menos 8 caracteres, com letras e números.',
   same_password: 'A nova senha precisa ser diferente da senha atual.',
   email_not_confirmed:
-    'Confirme seu e-mail antes de entrar. Procure a mensagem na sua caixa de entrada.',
+    'Confirme seu e-mail antes de entrar. Procure o link na sua caixa de entrada (e no spam) ou peça um novo abaixo.',
   rate_limited: 'Muitas tentativas em pouco tempo. Aguarde um instante e tente de novo.',
   session_expired: 'O link expirou ou já foi usado. Peça um novo e-mail de recuperação.',
   collection_failed: 'Não foi possível atualizar sua coleção. Tente novamente em instantes.',

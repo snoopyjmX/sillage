@@ -7,8 +7,8 @@ import { RequireAuth } from './RequireAuth';
 import { RootEntry } from './RootEntry';
 import { RouteError } from './RouteError';
 
-// Rotas públicas: "/" (Landing para visitante, Home para logado), /login, /register, /forgot-password
-// e /reset-password. Todo o resto (catalog, perfumes/:slug, perfumers/:slug, collection, recap/:year, profile e o 404 "*") exige
+// Rotas públicas: "/" (Landing para visitante, Home para logado), /login, /register, /forgot-password,
+// /reset-password e /auth/confirmed. Todo o resto (catalog, perfumes/:slug, perfumers/:slug, collection, recap/:year, profile e o 404 "*") exige
 // login. Páginas carregam sob demanda.
 // AuthLayout (sessão) fica na raiz; GuestOnly e RequireAuth são guardas de UX: o gate NÃO é barreira
 // de dados (a segurança é a RLS, e a leitura do catálogo segue pública no banco).
@@ -41,6 +41,8 @@ export const routes: RouteObject[] = [
           },
           // Acessível por qualquer um: o link do e-mail traz a sessão de recuperação
           { path: 'reset-password', lazy: page(() => import('@/pages/auth/ResetPasswordPage')) },
+          // Retorno do link de confirmação do e-mail: o supabase-js troca o token por sessão
+          { path: 'auth/confirmed', lazy: page(() => import('@/pages/auth/ConfirmedPage')) },
         ],
       },
       {

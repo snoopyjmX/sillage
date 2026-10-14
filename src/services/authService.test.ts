@@ -4,6 +4,7 @@ import { AppError } from '@/constants/errors';
 const auth = {
   signInWithPassword: vi.fn(),
   signUp: vi.fn(),
+  resend: vi.fn(),
   signOut: vi.fn(),
   resetPasswordForEmail: vi.fn(),
   updateUser: vi.fn(),
@@ -45,7 +46,10 @@ describe('authService', () => {
     expect(auth.signUp).toHaveBeenCalledWith({
       email: 'a@b.co',
       password: 'segredo123',
-      options: { data: { display_name: 'Ana', timezone: 'America/Sao_Paulo' } },
+      options: {
+        data: { display_name: 'Ana', timezone: 'America/Sao_Paulo' },
+        emailRedirectTo: `${window.location.origin}/auth/confirmed`,
+      },
     });
   });
 
@@ -54,6 +58,29 @@ describe('authService', () => {
     await expect(authService.signUp('a@b.co', 'segredo123', 'Ana', 'UTC')).resolves.toEqual({
       needsEmailConfirmation: true,
     });
+  });
+
+  it('resendConfirmation reenvia o link de cadastro com o mesmo redirecionamento', async () => {
+    auth.resend.mockResolvedValue({ error: null });
+    await authService.resendConfirmation('a@b.co');
+    expect(auth.resend).toHaveBeenCalledWith({
+      type: 'signup',
+      email: 'a@b.co',
+      options: { emailRedirectTo: `${window.location.origin}/auth/confirmed` },
+    });
+  });
+
+  it('resendConfirmation com limite de envios vira rate_limited, sem o texto cru', async () => {
+    auth.resend.mockResolvedValue({
+      error: {
+        code: 'over_email_send_rate_limit',
+        message: 'email rate limit exceeded',
+        status: 429,
+      },
+    });
+    const error = await authService.resendConfirmation('a@b.co').catch((e: unknown) => e);
+    expect(error).toBeInstanceOf(AppError);
+    expect((error as AppError).code).toBe('rate_limited');
   });
 
   it('signUp com e-mail repetido vira email_taken', async () => {

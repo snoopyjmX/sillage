@@ -21,6 +21,9 @@ export const useSignUp = () =>
     onSuccess: fireConfetti,
   });
 
+export const useResendConfirmation = () =>
+  useMutation({ mutationFn: (email: string) => authService.resendConfirmation(email) });
+
 export const useSignOut = () => useMutation({ mutationFn: () => authService.signOut() });
 
 export const useSendPasswordReset = () =>
