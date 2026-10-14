@@ -154,7 +154,7 @@ O DNA **não** vem do cliente. No servidor:
 
 1. validar os enums;
 2. se `useDna`, chamar `get_olfactory_dna()` com o cliente do usuário (JWT);
-3. pré-selecionar ~12 candidatos de forma determinística no banco (RPC nova `get_discovery_candidates`, invoker, só `authenticated`, ou reaproveitar `search_perfumes`);
+3. pré-selecionar ~12 candidatos de forma determinística no banco (RPC `get_discovery_candidates`, invoker, só `authenticated`);
 4. chamar o Gemini com `responseJsonSchema` `{text, picks}`, `picks` sendo enum dos slugs candidatos (máx. 3);
 5. conferir no servidor que `picks ⊆ candidatos` antes de responder;
 6. o prompt de discovery só permite citar os candidatos.
@@ -192,7 +192,7 @@ Security invoker, `search_path = ''`, `revoke ... from public, anon`, grant para
 
 ### 3. Testes
 
-pgTAP `19_annual_recap` (isolamento entre usuários, estações, ano sem dados) e Vitest das lâminas. (Se a Fase 21 não sair antes, os números 18 e 19 seguem a ordem de entrega.)
+pgTAP `20_annual_recap` (o 18 é dos perfumistas e o 19 da trilha do Nez) (isolamento entre usuários, estações, ano sem dados) e Vitest das lâminas.
 
 ---
 

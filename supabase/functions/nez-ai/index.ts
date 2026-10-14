@@ -3,9 +3,21 @@
 // A chave do Gemini vem do secret GEMINI_API_KEY e nunca chega ao front. Erros do provedor não
 // vazam: o front recebe só um código estável.
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
-import { GoogleGenAI } from 'npm:@google/genai';
+import { GoogleGenAI, type GenerateContentConfig } from 'npm:@google/genai';
 import { createClient } from 'npm:@supabase/supabase-js@2';
 import { corsHeaders } from '../_shared/cors.ts';
+import {
+  buildDiscoveryPrompt,
+  buildResponseSchema,
+  CANDIDATE_LIMIT,
+  climateFamilies,
+  DISCOVERY_SYSTEM_PROMPT,
+  parseCandidates,
+  parseDiscoveryRequest,
+  preferredFamilies,
+  topDnaFamilies,
+  validateAnswer,
+} from './discovery.ts';
 
 const MODEL = Deno.env.get('GEMINI_MODEL') ?? 'gemini-3.5-flash-lite';
 // Usado quando o principal segue indisponível depois do retry. `gemini-flash-latest` e os 2.5 não
@@ -18,6 +30,8 @@ const MAX_HISTORY = 6;
 const MAX_HISTORY_TEXT = 1200;
 // Teto da resposta (2 a 4 frases, com folga para não cortar no meio). Com thinking mínimo, os tokens vão para o texto.
 const MAX_OUTPUT_TOKENS = 380;
+// A descoberta devolve JSON (texto + slugs), então precisa de mais folga que o chat
+const DISCOVERY_MAX_OUTPUT_TOKENS = 700;
 // Orçamento total da requisição, abaixo do wall clock do isolate da Edge Function
 const DEADLINE_MS = 20_000;
 // Cada tentativa tem prazo próprio: modelo sobrecarregado demora a falhar, e a reserva precisa de tempo
@@ -73,6 +87,44 @@ const parseHistory = (value: unknown): Turn[] => {
   return turns;
 };
 
+// 1 retry no modelo principal e depois o modelo de reserva, só para erro transitório (503 "high
+// demand", 429, 5xx, rede). Tudo dentro de um prazo total para não estourar o isolate. `accept`
+// converte o texto do modelo no resultado; devolver null conta como tentativa falha.
+const generateWithRetries = async <T>(
+  ai: GoogleGenAI,
+  contents: Turn[],
+  config: GenerateContentConfig,
+  accept: (text: string) => T | null
+): Promise<T | null> => {
+  const deadline = AbortSignal.timeout(DEADLINE_MS);
+  const attempts = [MODEL, MODEL, FALLBACK_MODEL];
+  for (const [index, model] of attempts.entries()) {
+    if (deadline.aborted) break;
+    try {
+      const response = await ai.models.generateContent({
+        model,
+        contents,
+        config: {
+          ...config,
+          // Família 3.x pensa por padrão (e gasta os tokens da resposta); `minimal` mantém só o texto
+          thinkingConfig: { thinkingLevel: 'MINIMAL' },
+          abortSignal: AbortSignal.any([deadline, AbortSignal.timeout(ATTEMPT_MS)]),
+        },
+      });
+      const result = accept(response.text?.trim() ?? '');
+      if (result !== null) return result;
+      console.warn(`nez-ai: tentativa ${index + 1} (${model}) devolveu resposta inválida`);
+    } catch (error) {
+      const status = (error as { status?: number }).status;
+      console.warn(`nez-ai: tentativa ${index + 1} (${model}) falhou`, status ?? error);
+      // Erro definitivo (chave inválida, pedido recusado): repetir não adianta
+      if (status !== undefined && !TRANSIENT_STATUS.has(status)) break;
+    }
+    if (index < attempts.length - 1) await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
+  }
+  return null;
+};
+
 Deno.serve(async (req: Request) => {
   const cors = corsHeaders(req);
   const json = (body: unknown, status = 200): Response =>
@@ -113,8 +165,15 @@ Deno.serve(async (req: Request) => {
     string,
     unknown
   >;
+  const isDiscovery = payload.mode === 'discovery';
+  // Sem `mode`, é o chat de sempre; qualquer outro valor é pedido inválido
+  if (payload.mode !== undefined && !isDiscovery && payload.mode !== 'chat') {
+    return json({ error: 'invalid_request' }, 400);
+  }
+  const discovery = isDiscovery ? parseDiscoveryRequest(payload) : null;
+  if (isDiscovery && !discovery) return json({ error: 'invalid_request' }, 400);
   const question = asText(payload.question, MAX_QUESTION);
-  if (!question) return json({ error: 'invalid_request' }, 400);
+  if (!isDiscovery && !question) return json({ error: 'invalid_request' }, 400);
   const context = asText(payload.context, MAX_CONTEXT);
   const history = parseHistory(payload.history);
 
@@ -124,44 +183,83 @@ Deno.serve(async (req: Request) => {
     return json({ error: 'unavailable' }, 503);
   }
 
-  // 3. Gemini: 1 retry no modelo principal e depois o modelo de reserva, só para erro transitório
-  // (503 "high demand", 429, 5xx, rede). Tudo dentro de um prazo total para não estourar o isolate.
   const ai = new GoogleGenAI({ apiKey });
+
+  // 3a. Descoberta guiada: o banco pré-seleciona os candidatos, o Gemini escolhe entre eles e o
+  // servidor confere a escolha antes de responder.
+  if (discovery) {
+    // Cliente com o JWT do usuário: a RLS e o auth.uid() do banco valem (nunca service_role)
+    const userClient = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_ANON_KEY')!,
+      {
+        auth: { persistSession: false, autoRefreshToken: false },
+        global: { headers: { Authorization: `Bearer ${token}` } },
+      }
+    );
+
+    let dnaFamilies: ReturnType<typeof topDnaFamilies> = [];
+    if (discovery.useDna) {
+      const { data, error } = await userClient.rpc('get_olfactory_dna');
+      if (error) {
+        console.error('nez-ai: get_olfactory_dna falhou', error.code);
+        return json({ error: 'upstream_failed' }, 502);
+      }
+      dnaFamilies = topDnaFamilies(data);
+    }
+    const preferred = preferredFamilies(discovery, dnaFamilies);
+
+    const { data: rows, error: candidatesError } = await userClient.rpc(
+      'get_discovery_candidates',
+      {
+        p_climate_families: climateFamilies(discovery.climate),
+        p_preferred_families: preferred,
+        p_limit: CANDIDATE_LIMIT,
+      }
+    );
+    if (candidatesError) {
+      console.error('nez-ai: get_discovery_candidates falhou', candidatesError.code);
+      return json({ error: 'upstream_failed' }, 502);
+    }
+    const candidates = parseCandidates(rows);
+    // Sem candidatos não há o que recomendar: nem chama o Gemini (sem custo, sem invenção)
+    if (candidates.length === 0) return json({ text: '', picks: [] });
+
+    const answer = await generateWithRetries(
+      ai,
+      [
+        {
+          role: 'user',
+          parts: [{ text: buildDiscoveryPrompt(discovery, dnaFamilies, candidates) }],
+        },
+      ],
+      {
+        systemInstruction: DISCOVERY_SYSTEM_PROMPT,
+        temperature: 0.6,
+        maxOutputTokens: DISCOVERY_MAX_OUTPUT_TOKENS,
+        responseMimeType: 'application/json',
+        responseJsonSchema: buildResponseSchema(candidates.map((candidate) => candidate.slug)),
+      },
+      (text) => validateAnswer(text, candidates)
+    );
+    return answer ? json(answer) : json({ error: 'upstream_failed' }, 502);
+  }
+
+  // 3b. Chat: pergunta, contexto do perfume em foco e as últimas mensagens
+  if (!question) return json({ error: 'invalid_request' }, 400);
   const prompt = context
-    ? `Perfume em foco na tela:\n${context}\n\nPergunta: ${question}`
+    ? `Perfume em foco na tela:
+${context}
+
+Pergunta: ${question}`
     : `Pergunta: ${question}`;
   const contents: Turn[] = [...history, { role: 'user', parts: [{ text: prompt }] }];
-  const deadline = AbortSignal.timeout(DEADLINE_MS);
-
-  const generate = async (model: string): Promise<string | null> => {
-    const response = await ai.models.generateContent({
-      model,
-      contents,
-      config: {
-        systemInstruction: SYSTEM_PROMPT,
-        temperature: 0.7,
-        maxOutputTokens: MAX_OUTPUT_TOKENS,
-        // Família 3.x pensa por padrão (e gasta os tokens da resposta); `minimal` mantém só o texto
-        thinkingConfig: { thinkingLevel: 'MINIMAL' },
-        abortSignal: AbortSignal.any([deadline, AbortSignal.timeout(ATTEMPT_MS)]),
-      },
-    });
-    return response.text?.trim() || null;
-  };
-
-  const attempts = [MODEL, MODEL, FALLBACK_MODEL];
-  for (const [index, model] of attempts.entries()) {
-    if (deadline.aborted) break;
-    try {
-      const text = await generate(model);
-      if (text) return json({ text });
-    } catch (error) {
-      const status = (error as { status?: number }).status;
-      console.warn(`nez-ai: tentativa ${index + 1} (${model}) falhou`, status ?? error);
-      // Erro definitivo (chave inválida, pedido recusado): repetir não adianta
-      if (status !== undefined && !TRANSIENT_STATUS.has(status)) break;
-    }
-    if (index < attempts.length - 1) await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
-  }
+  const text = await generateWithRetries(
+    ai,
+    contents,
+    { systemInstruction: SYSTEM_PROMPT, temperature: 0.7, maxOutputTokens: MAX_OUTPUT_TOKENS },
+    (reply) => reply || null
+  );
+  if (text) return json({ text });
   return json({ error: 'upstream_failed' }, 502);
 });

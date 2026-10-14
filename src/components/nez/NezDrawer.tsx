@@ -1,4 +1,4 @@
-import { Sparkles } from 'lucide-react';
+import { Compass, Sparkles } from 'lucide-react';
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import {
   Drawer,
@@ -7,8 +7,10 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer';
+import { NezDiscovery } from './NezDiscovery';
 import { NezFab } from './NezFab';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
+import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { Textarea } from '@/components/ui/textarea';
@@ -47,6 +49,8 @@ export function NezDrawer() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   // Pergunta que ainda não foi respondida (em andamento ou com erro), para "Tentar novamente"
   const [pending, setPending] = useState<string | null>(null);
+  // 'discovery': trilha guiada no lugar da conversa
+  const [view, setView] = useState<'chat' | 'discovery'>('chat');
   const nextId = useRef(0);
   const scroller = useRef<HTMLDivElement>(null);
   const inputId = useId();
@@ -110,14 +114,29 @@ export function NezDrawer() {
             Nez, seu Mestre Perfumista
           </DrawerTitle>
           <DrawerDescription>
-            {perfumeContext
-              ? 'Pergunte sobre o perfume que você está vendo.'
-              : 'Conte o que você procura e o Nez sugere o caminho olfativo.'}
+            {view === 'discovery'
+              ? 'Três respostas rápidas e o Nez escolhe perfumes do catálogo para você.'
+              : perfumeContext
+                ? 'Pergunte sobre o perfume que você está vendo.'
+                : 'Conte o que você procura e o Nez sugere o caminho olfativo.'}
           </DrawerDescription>
         </DrawerHeader>
 
+        {view === 'discovery' && (
+          <div className="min-h-0 flex-1 overflow-y-auto">
+            <NezDiscovery
+              onBack={() => setView('chat')}
+              onNavigate={() => {
+                setView('chat');
+                setOpen(false);
+              }}
+            />
+          </div>
+        )}
+
         <div
           ref={scroller}
+          hidden={view === 'discovery'}
           role="log"
           aria-label="Conversa com o Nez"
           aria-live="polite"
@@ -125,6 +144,10 @@ export function NezDrawer() {
         >
           {empty && (
             <div className="flex flex-col gap-2 text-sm text-text-secondary">
+              <Button variant="outline" onClick={() => setView('discovery')} className="w-full">
+                <Compass aria-hidden />
+                Guiar minha escolha
+              </Button>
               <p>Experimente perguntar:</p>
               <ul className="flex flex-col gap-2">
                 {SUGGESTIONS.map((suggestion) => (
@@ -188,7 +211,7 @@ export function NezDrawer() {
           )}
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit} hidden={view === 'discovery'} className="flex flex-col gap-2">
           <label htmlFor={inputId} className="text-sm font-medium">
             Sua pergunta ao Nez
           </label>

@@ -448,6 +448,24 @@ export type Database = {
       };
     };
     Functions: {
+      get_discovery_candidates: {
+        Args: {
+          p_climate_families: Database['public']['Enums']['olfactive_family'][];
+          p_limit?: number;
+          p_preferred_families: Database['public']['Enums']['olfactive_family'][];
+        };
+        Returns: {
+          brand_name: string;
+          concentration: Database['public']['Enums']['concentration_type'];
+          families: Database['public']['Enums']['olfactive_family'][];
+          gender: Database['public']['Enums']['perfume_gender'];
+          id: string;
+          name: string;
+          notes: Json;
+          score: number;
+          slug: string;
+        }[];
+      };
       get_olfactory_dna: { Args: Record<PropertyKey, never>; Returns: Json };
       get_similar_perfumes: {
         Args: { limit_count?: number; target_id: string };

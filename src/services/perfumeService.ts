@@ -1,8 +1,14 @@
 // Acesso a dados do catálogo. Só services importam o cliente do Supabase.
 import { AppError, toAppError } from '@/constants/errors';
+import { fromPerfumeRow } from '@/lib/perfume';
 import { supabase } from '@/lib/supabase';
 import { PAGE_SIZE, type CatalogFilters } from '@/schemas/catalogSearch';
-import type { PerfumeDetail, PerfumeSearchResult, SimilarPerfume } from '@/types/catalog';
+import type {
+  PerfumeDetail,
+  PerfumeSearchResult,
+  PerfumeSummary,
+  SimilarPerfume,
+} from '@/types/catalog';
 
 // "ausente" vira undefined para a função usar o padrão (null/array vazio = sem filtro)
 const orUndefined = <T>(list: T[]): T[] | undefined => (list.length > 0 ? list : undefined);
@@ -49,6 +55,33 @@ export const perfumeService = {
       })),
       total: data[0]?.total_count ?? 0,
     };
+  },
+
+  // Resumos para cards a partir de slugs (ex.: as escolhas do Nez), na ordem pedida. Slug que não
+  // existe mais no catálogo simplesmente fica de fora.
+  getSummariesBySlugs: async (slugs: string[]): Promise<PerfumeSummary[]> => {
+    if (slugs.length === 0) return [];
+    const { data, error } = await supabase
+      .from('perfumes')
+      .select('*, brand:brands(*), perfume_notes(note:notes(family))')
+      .in('slug', slugs);
+    if (error) throw toAppError(error);
+
+    const bySlug = new Map(
+      data.map((row) => [
+        row.slug,
+        fromPerfumeRow(
+          row,
+          row.image_path
+            ? supabase.storage.from('perfume-images').getPublicUrl(row.image_path).data.publicUrl
+            : null
+        ),
+      ])
+    );
+    return slugs.flatMap((slug) => {
+      const summary = bySlug.get(slug);
+      return summary ? [summary] : [];
+    });
   },
 
   // Uma consulta só (perfume + marca + notas embutidas), sem N+1. Slug inexistente = not_found.
