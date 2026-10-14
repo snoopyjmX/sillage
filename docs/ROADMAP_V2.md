@@ -66,7 +66,7 @@ Hoje Amyi 2.15, Irish Green Man e Caipi d'Argent existem **só** em `supabase/de
 
 - **Problema:** com GPS permitido, o app mostra a string fixa "Sua localização".
 - **Solução:** Open-Meteo segue como motor meteorológico. A geocodificação reversa da BigDataCloud (`https://api.bigdatacloud.net/data/reverse-geocode-client`) é chamada só quando há GPS.
-- **Formato:** `{Bairro ou Cidade}, {UF}`, com `locality || city` e a UF extraída de `principalSubdivisionCode` ("BR-SP" → "SP"). Exemplos: "Moema, SP", "Curitiba, PR".
+- **Formato:** `{Bairro ou Cidade}, {UF}`, com `locality || city` e a UF extraída de `principalSubdivisionCode` ("BR-SP" → "SP"). Exemplos reais da API (conferidos): coordenadas de Moema devolvem `locality: "São Paulo"` e dão "São Paulo, SP"; as de Curitiba dão "Curitiba, PR". O campo `city` pode vir como região metropolitana ("Região Metropolitana de São Paulo"), por isso `locality` tem prioridade.
 - **Falha da API:** cai no rótulo atual ("Sua localização").
 - **Privacidade:** arredondar as coordenadas a 2 casas antes de enviar; registrar o envio a terceiro no `SECURITY.md`.
 - `vercel.json`: incluir `https://api.bigdatacloud.net` no `connect-src`.

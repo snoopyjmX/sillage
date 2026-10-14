@@ -1,14 +1,15 @@
-// Open-Meteo: previsão atual e geocoding. Fetch nativo, sem chave, sem backend nosso.
-// Nenhuma coordenada é gravada ou enviada a outro lugar; erros viram códigos estáveis (errors.ts).
+// Open-Meteo: previsão atual e geocoding; BigDataCloud: nome do local (só com a localização do
+// aparelho). Fetch nativo, sem chave, sem backend nosso. Nenhuma coordenada é gravada; erros viram códigos estáveis (errors.ts).
 import { z } from 'zod';
 import { AppError } from '@/constants/errors';
 import {
   FORECAST_URL,
   GEOCODING_RESULT_COUNT,
   GEOCODING_URL,
+  REVERSE_GEOCODE_URL,
   WEATHER_TIMEOUT_MS,
 } from '@/constants/weather';
-import type { Coordinates, CurrentWeather, GeocodingResult } from '@/types/weather';
+import type { Coordinates, CurrentWeather, GeocodingResult, ReversePlace } from '@/types/weather';
 
 const forecastSchema = z.object({
   current: z.object({
@@ -32,6 +33,18 @@ const geocodingSchema = z.object({
       })
     )
     .optional(),
+});
+
+// Campos vazios vêm como "": viram null
+const emptyToNull = z
+  .string()
+  .nullish()
+  .transform((value) => (value && value.trim() !== '' ? value : null));
+
+const reverseGeocodeSchema = z.object({
+  locality: emptyToNull,
+  city: emptyToNull,
+  principalSubdivisionCode: emptyToNull,
 });
 
 const fetchJson = async (url: URL): Promise<unknown> => {
@@ -77,6 +90,20 @@ export const weatherService = {
       temperature: current.temperature_2m,
       humidity: current.relative_humidity_2m,
       code: current.weather_code,
+    };
+  },
+
+  // Coordenadas já arredondadas (COORD_DECIMALS) por quem chama; a BigDataCloud não recebe mais que isso
+  reverseGeocode: async ({ latitude, longitude }: Coordinates): Promise<ReversePlace> => {
+    const url = new URL(REVERSE_GEOCODE_URL);
+    url.searchParams.set('latitude', String(latitude));
+    url.searchParams.set('longitude', String(longitude));
+    url.searchParams.set('localityLanguage', 'pt');
+    const body = parse(reverseGeocodeSchema, await fetchJson(url));
+    return {
+      locality: body.locality,
+      city: body.city,
+      subdivisionCode: body.principalSubdivisionCode,
     };
   },
 

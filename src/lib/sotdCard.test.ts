@@ -109,6 +109,10 @@ describe('cityFromLabel', () => {
     expect(cityFromLabel('São Paulo, BRASIL', 'Sua localização')).toBe('São Paulo');
   });
 
+  it('com a localização do aparelho, vale o nome antes da UF', () => {
+    expect(cityFromLabel('Curitiba, PR', 'Sua localização')).toBe('Curitiba');
+  });
+
   it('a localização do aparelho não é uma cidade', () => {
     expect(cityFromLabel('Sua localização', 'Sua localização')).toBeNull();
   });

@@ -20,6 +20,8 @@ export const stubOpenMeteo = async (context: BrowserContext): Promise<void> => {
       },
     })
   );
+  // Sem o nome do local, o rótulo cai no genérico "Sua localização" (o mesmo da falha real)
+  await context.route('**://api.bigdatacloud.net/**', (route) => route.fulfill({ status: 503 }));
   await context.route('**://api.open-meteo.com/**', (route) =>
     route.fulfill({
       json: { current: { temperature_2m: 25, relative_humidity_2m: 55, weather_code: 1 } },

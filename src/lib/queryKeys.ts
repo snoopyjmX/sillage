@@ -52,6 +52,8 @@ export const queryKeys = {
       ['private', userId, 'weather', 'city', timezone] as const,
     current: (userId: string, latitude: number, longitude: number) =>
       ['private', userId, 'weather', 'current', latitude, longitude] as const,
+    place: (userId: string, latitude: number, longitude: number) =>
+      ['private', userId, 'geo', latitude, longitude] as const,
   },
   // Home: catálogo público (persistível)
   home: {

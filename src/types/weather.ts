@@ -16,13 +16,21 @@ export interface GeocodingResult {
   timezone: string | null;
 }
 
+// Resposta da geocodificação reversa já reduzida ao que o rótulo usa
+export interface ReversePlace {
+  locality: string | null;
+  city: string | null;
+  // Ex.: "BR-SP"
+  subdivisionCode: string | null;
+}
+
 export interface Coordinates {
   latitude: number;
   longitude: number;
 }
 
 export interface ResolvedLocation extends Coordinates {
-  // "Cidade, PAÍS" ou "Sua localização"
+  // "Cidade, PAÍS" (fuso do perfil), "Bairro ou Cidade, UF" (aparelho) ou "Sua localização"
   label: string;
 }
 

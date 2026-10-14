@@ -140,3 +140,48 @@ describe('weatherService.searchCity', () => {
     await rejects(weatherService.searchCity('Sao Paulo'), 'weather_failed');
   });
 });
+
+describe('weatherService.reverseGeocode', () => {
+  it('pede só latitude, longitude e idioma, e reduz a resposta ao que o rótulo usa', async () => {
+    fetchMock.mockResolvedValue(
+      json({
+        locality: 'Curitiba',
+        city: 'Região Metropolitana de Curitiba',
+        principalSubdivisionCode: 'BR-PR',
+        postcode: '',
+        plusCode: '586GHPCJ+22',
+      })
+    );
+    await expect(
+      weatherService.reverseGeocode({ latitude: -25.43, longitude: -49.27 })
+    ).resolves.toEqual({
+      locality: 'Curitiba',
+      city: 'Região Metropolitana de Curitiba',
+      subdivisionCode: 'BR-PR',
+    });
+    const url = fetchMock.mock.calls[0]?.[0] as URL;
+    expect(url.origin + url.pathname).toBe(
+      'https://api.bigdatacloud.net/data/reverse-geocode-client'
+    );
+    expect([...url.searchParams.keys()].sort()).toEqual([
+      'latitude',
+      'localityLanguage',
+      'longitude',
+    ]);
+    expect(url.searchParams.get('latitude')).toBe('-25.43');
+  });
+
+  it('campos vazios viram null', async () => {
+    fetchMock.mockResolvedValue(json({ locality: '', city: '', principalSubdivisionCode: '' }));
+    await expect(weatherService.reverseGeocode({ latitude: 0, longitude: 0 })).resolves.toEqual({
+      locality: null,
+      city: null,
+      subdivisionCode: null,
+    });
+  });
+
+  it('5xx vira weather_failed', async () => {
+    fetchMock.mockResolvedValue(json({}, 503));
+    await rejects(weatherService.reverseGeocode({ latitude: 0, longitude: 0 }), 'weather_failed');
+  });
+});
