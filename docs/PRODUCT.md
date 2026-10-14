@@ -945,4 +945,6 @@ Os critérios A a D valem como portões: o bloco seguinte só começa quando o a
 
 > **Exclusão de conta (feita):** Edge Function `delete-account` + dialog com confirmação EXCLUIR no Perfil. Falta apenas o deploy manual: `npx supabase functions deploy delete-account`.
 
+> **Próximas fases:** a Fase 19.1 e as Fases 20 a 24 estão em [ROADMAP_V2.md](ROADMAP_V2.md).
+
 > **Nota (Fase 2):** o preview por PR do Gate A ainda está pendente por falta de hospedagem (Vercel). Até lá, o CI roda `quality` e `database`, sem preview.

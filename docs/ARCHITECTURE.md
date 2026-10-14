@@ -15,7 +15,7 @@
 - **`tw-animate-css`:** o shadcn usa para animar Dialog/Tabs. Não instalado; as animações usam `motion/react`, a única biblioteca de animação do projeto.
 - **`vaul` (Drawer do shadcn):** não instalado; o Drawer é próprio, sobre Radix Dialog + `motion/react`.
 - **`get-contrast` e similares:** a fórmula WCAG está em `scripts/verify-contrast.js`, sem dependências.
-- **`@google/genai` e `zod` (dev):** `scripts/ingest-perfume.mjs` gera a migration de um perfume novo a partir do Gemini (ver `docs/CATALOGO_REAL.md`). Nenhum dos dois entra no bundle.
+- **`@google/genai` (dev):** `scripts/ingest-perfume.mjs` gera a migration de um perfume novo a partir do Gemini (ver `docs/CATALOGO_REAL.md`). Não entra no bundle. O `zod` que o script também usa é a dependência de produção já existente.
 - **CLI do shadcn:** não foi instalada nem executada com `init` (o init sobrescreveria tokens e CSS e traz presets com outras fontes). O `components.json` foi escrito à mão e o código oficial dos componentes foi consultado com `npx shadcn add --view`/`--dry-run`, que não escrevem nada.
 - **`sonner`:** já estava no projeto desde a Fase 1 (Toast do shadcn); só ganhou o wrapper `Toaster` temado.
 
