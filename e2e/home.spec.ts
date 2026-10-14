@@ -222,3 +222,19 @@ test('axe com o menu hambúrguer aberto (360 px)', async ({ page }) => {
   await expect(page.getByRole('dialog', { name: 'Menu' })).toBeVisible();
   expect(await axeViolations(page)).toEqual([]);
 });
+
+test.describe('home em 360 px', () => {
+  test('não rola na horizontal, com a sugestão e o histórico na tela', async ({ page }) => {
+    await registerWithHistory(page);
+    await page.setViewportSize({ width: 360, height: 780 });
+    await page.goto('/');
+
+    await expect(page.getByRole('article', { name: 'Sugestão do dia' })).toBeVisible();
+    await expect(page.getByRole('list', { name: 'Perfumes dos dias anteriores' })).toBeVisible();
+
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(0);
+  });
+});

@@ -60,7 +60,7 @@ export function DailySuggestionCard({
             }
           />
         </PerfumeStage>
-        <div className="flex flex-col gap-4 p-6 md:p-8">
+        <div className="flex flex-col gap-4 p-4 sm:p-6 md:p-8">
           <div className="flex flex-col gap-2">
             <h2 className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
               {eyebrow} · {perfume.brandName}
@@ -133,8 +133,9 @@ export function DailySuggestionCard({
             )}
           </div>
 
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-col gap-2 pt-2 sm:flex-row">
             <Button
+              className="h-auto min-h-11 w-full whitespace-normal py-2 sm:w-auto"
               onClick={onWear}
               disabled={isWornToday || !isOwned || isWearing}
               aria-busy={isWearing}
@@ -147,7 +148,11 @@ export function DailySuggestionCard({
                     ? 'Salvando…'
                     : 'Vestir hoje'}
             </Button>
-            <Button asChild variant="outline">
+            <Button
+              asChild
+              variant="outline"
+              className="h-auto min-h-11 w-full whitespace-normal py-2 sm:w-auto"
+            >
               <Link to={`/perfumes/${perfume.slug}`}>Ver detalhes</Link>
             </Button>
           </div>
@@ -167,7 +172,7 @@ export function DailySuggestionSkeleton() {
       className="grid overflow-hidden rounded-2xl border bg-card shadow-floating md:grid-cols-[2fr_3fr]"
     >
       <Skeleton className="aspect-[4/3] w-full rounded-none md:aspect-auto md:min-h-96" />
-      <div className="flex flex-col gap-4 p-6 md:p-8">
+      <div className="flex flex-col gap-4 p-4 sm:p-6 md:p-8">
         <Skeleton className="h-4 w-1/3" />
         <Skeleton className="h-10 w-3/4" />
         <Skeleton className="h-6 w-20" />
