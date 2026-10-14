@@ -11,7 +11,7 @@ import { getErrorMessage } from '@/constants/errors';
 import { useAnnualRecap } from '@/hooks/useAnnualRecap';
 import { useProfileTimezone } from '@/hooks/useProfileTimezone';
 import { useShareRecap } from '@/hooks/useShareRecap';
-import { cityFromTimezone } from '@/lib/location';
+import { cityDisplayFromTimezone } from '@/lib/location';
 import { isRecapTooEarly, parseRecapYear, yearOf } from '@/lib/recap';
 import { DEFAULT_TIMEZONE, todayInTimezone } from '@/lib/timezone';
 
@@ -125,7 +125,7 @@ export default function RecapPage() {
                 onShare={() =>
                   share.mutate({
                     recap: recap.data,
-                    city: timezone.data ? cityFromTimezone(timezone.data) : null,
+                    city: timezone.data ? cityDisplayFromTimezone(timezone.data) : null,
                   })
                 }
                 isSharing={share.isPending}
