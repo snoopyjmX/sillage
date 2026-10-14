@@ -69,6 +69,8 @@
 - **Similaridade:** `useSimilarPerfumes` (chave pública `['public','perfumes',id,'similar']`) e a seção "Fragrâncias com a mesma alma" abaixo das avaliações. Detalhes da função em `DATABASE.md`.
 - **E2E:** `e2e/nez.spec.ts` intercepta `**/functions/v1/nez-ai` com `page.route`; o teste nunca chama o Gemini. Os cards de similares também têm botão de coleção, então testes que miram o botão do perfume da página usam `.first()`.
 
+- **Trilha de descoberta do Nez (22):** sem dependência nova. A `nez-ai` ganha o modo `discovery` (o chat segue igual, sem `mode`). A lógica pura (validação do pedido, clima → famílias, prompt, schema e conferência da resposta) fica em `supabase/functions/nez-ai/discovery.ts`, sem Deno nem rede, e é testada no Vitest. Fluxo: valida → (`useDna`) `get_olfactory_dna` com o JWT do usuário → `get_discovery_candidates` → Gemini (`responseJsonSchema`) → confere `picks ⊆ candidatos` → resposta `{ text, picks }`; sem candidatos devolve `picks: []` sem chamar o Gemini. Front: `aiService.discoverNez` (resposta validada com Zod), `useNezDiscovery` (mutation, privada) e `useNezPicks` (cards dos slugs, chave pública `['public','perfumes','by-slugs',…]`), `NezDiscovery` e `NezDiscoveryResult` dentro do `NezDrawer`. O clima automático vem de `temperatureBand` aplicado à temperatura do `useWeather`.
+
 ## Decisões da Fase 11 (PWA e offline)
 
 | Dependência                            | Tipo | O que resolve                                                                                                       | Por que o que já existe não resolve                                                                                            |

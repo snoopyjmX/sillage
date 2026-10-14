@@ -18,6 +18,7 @@ Fonte: `docs/PRODUCT.md` (Seções 5 e 6). Tudo vive em `supabase/migrations/` e
 | `20261010120000_remove_concentration_other.sql` | Remove `other` de `concentration_type`                                                                                               |
 | `20261012120000_avatars_storage.sql`            | Bucket público `avatars` e 4 policies de dono (Fase 15D)                                                                             |
 | `20261015120000_perfumers.sql`                  | Tabelas `perfumers` e `perfume_perfumers`, RLS (leitura pública, escrita admin) e backfill a partir de `perfumes.perfumer` (Fase 21) |
+| `20261016120000_discovery_candidates.sql`       | Função `get_discovery_candidates` (pré-seleção de candidatos da trilha do Nez, Fase 22; sem tabela nova)                             |
 | `20261015130000_drop_perfumer_text.sql`         | Remove a coluna de texto `perfumes.perfumer` (os perfumistas passam a vir das tabelas)                                               |
 | `20261014130000_collection_formats.sql`         | Enum `collection_format`, colunas `format` e `volume_ml` em `collection_items` e os `CHECK`s da RN11 (Fase 17A)                      |
 | `20261014120000_olfactory_dna.sql`              | Função `get_olfactory_dna` (DNA olfativo do Perfil, Fase 16A; sem tabela nova)                                                       |
@@ -129,6 +130,16 @@ A Edge Function `delete-account` (a exclusão em cascata de `auth.users` → `pr
 - `limit_count` fora de 1 a 24 levanta `22023`.
 - Retorno: `id, name, brand_id, slug, image_path` (contrato da interface) mais `brand_name, brand_slug, concentration, gender, release_year, families, common_notes`, para o `PerfumeCard` não precisar de segunda consulta.
 - Testes: `supabase/tests/database/14_similar_perfumes.test.sql`.
+
+## `get_discovery_candidates` (Fase 22)
+
+`get_discovery_candidates(p_climate_families olfactive_family[], p_preferred_families olfactive_family[], p_limit int default 12)`. `SECURITY INVOKER`, `STABLE`, `search_path` vazio; `EXECUTE` só para `authenticated` (revogado de `public` e de `anon`). Pré-seleciona, de forma determinística, os perfumes que o Nez pode recomendar; quem escolhe entre eles é o Gemini, e a Edge Function confere a escolha.
+
+- **Pontuação:** sobre as famílias **distintas** das notas de cada perfume: 2 pontos por família preferida (as escolhidas na trilha e, se a pessoa pediu, as 2 mais pesadas do DNA) e 1 ponto por família que combina com o clima. Perfume com 0 ponto não é candidato (nem perfume sem notas).
+- **Ordem e limite:** pontos (desc), nome e id; `p_limit` de 1 a 24, senão `22023`. A trilha usa 12. Arrays nulos valem como vazios.
+- **Retorno:** `id, slug, name, brand_name, concentration, gender, families, notes` (`[{ name, position }]`, topo, coração, fundo) e `score`.
+- **Clima → famílias:** a Edge Function traduz a faixa (frio < 15 °C, ameno de 15 a menos de 25 °C, quente a partir de 25 °C) nas famílias cujas faixas de `FAMILY_TEMP_RANGES` (RN10) tocam essa faixa. A cópia vive em `supabase/functions/nez-ai/discovery.ts` e um teste (`src/lib/nezDiscovery.test.ts`) quebra se divergir de `constants/climate.ts`.
+- Testes: `supabase/tests/database/19_discovery_candidates.test.sql`.
 
 ## `get_olfactory_dna` (Fase 16A)
 

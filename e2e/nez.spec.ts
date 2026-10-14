@@ -240,3 +240,116 @@ test.describe('similaridade (RN09)', () => {
     ]);
   });
 });
+
+test.describe('Nez: trilha de descoberta', () => {
+  const DISCOVERY_TEXT =
+    'Para o seu dia quente, o Malbec Signature abre fresco e termina amadeirado.';
+
+  test('percorre os três passos, manda as escolhas e mostra perfumes reais do catálogo', async ({
+    page,
+  }) => {
+    const calls = await mockNez(page, (route) =>
+      route.fulfill({
+        status: 200,
+        headers: CORS,
+        json: { text: DISCOVERY_TEXT, picks: ['malbec-signature'] },
+      })
+    );
+    await registerViaUi(page);
+    await page.goto(URL);
+
+    const drawer = await openNez(page);
+    await drawer.getByRole('button', { name: 'Guiar minha escolha' }).click();
+
+    // Passo 1: com o clima mockado (25 °C) o calor já vem marcado
+    await expect(drawer.getByText('Passo 1 de 3')).toBeVisible();
+    await expect(drawer.getByRole('button', { name: 'Calor tropical' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    expect(await axeViolations(page)).toEqual([]);
+    await drawer.getByRole('button', { name: 'Continuar' }).click();
+
+    // Passo 2
+    await drawer.getByRole('button', { name: 'Casual, de dia' }).click();
+    await drawer.getByRole('button', { name: 'Continuar' }).click();
+
+    // Passo 3: sem família nem DNA o botão fica desligado
+    await expect(drawer.getByRole('button', { name: 'Pedir a curadoria' })).toBeDisabled();
+    await drawer.getByRole('button', { name: 'Amadeirado' }).click();
+    await drawer.getByRole('button', { name: 'Pedir a curadoria' }).click();
+
+    await expect(drawer.locator('[data-slot="typing-animation"]')).toContainText(DISCOVERY_TEXT);
+    const card = drawer.getByRole('list', { name: 'Perfumes escolhidos pelo Nez' });
+    await expect(card.getByRole('heading', { name: 'Malbec Signature' })).toBeVisible();
+    expect(await axeViolations(page)).toEqual([]);
+
+    expect(calls).toHaveLength(1);
+    expect(calls[0]?.authorization).toMatch(/^Bearer .+/);
+    expect(calls[0]?.body).toEqual({
+      mode: 'discovery',
+      climate: 'hot',
+      occasion: 'casual',
+      families: ['woody'],
+      useDna: false,
+    });
+
+    await card.getByRole('link', { name: 'Ver pirâmide e detalhes' }).click();
+    await expect(page).toHaveURL(/\/perfumes\/malbec-signature$/);
+    await expect(drawer).toBeHidden();
+  });
+
+  test('sem candidatos mostra o estado vazio, sem consultar o catálogo', async ({ page }) => {
+    await mockNez(page, (route) =>
+      route.fulfill({ status: 200, headers: CORS, json: { text: '', picks: [] } })
+    );
+    await registerViaUi(page);
+    await page.goto(URL);
+
+    const drawer = await openNez(page);
+    await drawer.getByRole('button', { name: 'Guiar minha escolha' }).click();
+    await drawer.getByRole('button', { name: 'Frio intenso' }).click();
+    await drawer.getByRole('button', { name: 'Continuar' }).click();
+    await drawer.getByRole('button', { name: 'Noite e encontro' }).click();
+    await drawer.getByRole('button', { name: 'Continuar' }).click();
+    await drawer.getByRole('button', { name: 'Usar o meu DNA olfativo' }).click();
+    await drawer.getByRole('button', { name: 'Pedir a curadoria' }).click();
+
+    await expect(drawer.getByText('Nenhum perfume combinou desta vez')).toBeVisible();
+    await drawer.getByRole('button', { name: 'Refazer a trilha' }).click();
+    await expect(drawer.getByText('Passo 1 de 3')).toBeVisible();
+  });
+
+  test('falha do servidor mostra mensagem amigável e dá para tentar de novo', async ({ page }) => {
+    let attempt = 0;
+    await mockNez(page, async (route) => {
+      attempt += 1;
+      if (attempt === 1) {
+        await route.fulfill({ status: 502, headers: CORS, json: { error: 'upstream_failed' } });
+        return;
+      }
+      await route.fulfill({
+        status: 200,
+        headers: CORS,
+        json: { text: DISCOVERY_TEXT, picks: ['malbec-signature'] },
+      });
+    });
+    await registerViaUi(page);
+    await page.goto(URL);
+
+    const drawer = await openNez(page);
+    await drawer.getByRole('button', { name: 'Guiar minha escolha' }).click();
+    await drawer.getByRole('button', { name: 'Ameno' }).click();
+    await drawer.getByRole('button', { name: 'Continuar' }).click();
+    await drawer.getByRole('button', { name: 'Trabalho e foco' }).click();
+    await drawer.getByRole('button', { name: 'Continuar' }).click();
+    await drawer.getByRole('button', { name: 'Floral' }).click();
+    await drawer.getByRole('button', { name: 'Pedir a curadoria' }).click();
+
+    const alert = drawer.getByRole('alert');
+    await expect(alert).toContainText('O Nez não conseguiu responder agora');
+    await expect(alert).not.toContainText('upstream_failed');
+    await alert.getByRole('button', { name: 'Tentar novamente' }).click();
+    await expect(drawer.getByRole('heading', { name: 'Malbec Signature' })).toBeVisible();
+  });
+});
