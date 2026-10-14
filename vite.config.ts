@@ -134,6 +134,11 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
+    // Os testes não falam com o Supabase: valores falsos evitam o erro de variáveis ausentes no CI
+    env: {
+      VITE_SUPABASE_URL: 'http://127.0.0.1:54321',
+      VITE_SUPABASE_ANON_KEY: 'chave-de-teste',
+    },
     setupFiles: ['./src/test/setup.ts'],
     globals: false,
     // Padrão de 5 s é curto para o import lazy a frio sob carga (docs/QA.md); 15 s é só a folga

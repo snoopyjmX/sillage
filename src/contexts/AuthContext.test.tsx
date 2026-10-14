@@ -1,4 +1,4 @@
-import { act, screen } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { mayHaveSession } from '@/lib/sessionHint';
 import { fakeSession } from '@/test/authMock';
@@ -21,27 +21,23 @@ describe('AuthProvider: atalho de visitante', () => {
     ).toBeInTheDocument();
     await vi.waitFor(() => expect(auth.service.onAuthStateChange).toHaveBeenCalled());
 
-    // Um login feito depois do carregamento tardio do Supabase ainda é percebido
+    // Um login feito depois do carregamento tardio do Supabase ainda é percebido: a Landing sai
     await act(async () => auth.emit('SIGNED_IN', fakeSession()));
-    expect(
-      await screen.findByRole(
-        'heading',
-        { name: 'Você ainda não escolheu um Perfume do Dia' },
-        { timeout: 8000 }
-      )
-    ).toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        screen.queryByRole('heading', { name: 'Descubra perfumes pelas suas notas' })
+      ).toBeNull()
+    );
   });
 
   it('login rápido, antes da assinatura, também é aplicado pela leitura inicial', async () => {
     auth.setInitialSession(fakeSession());
     renderApp('/');
     await vi.waitFor(() => expect(auth.service.getSession).toHaveBeenCalled());
-    expect(
-      await screen.findByRole(
-        'heading',
-        { name: 'Você ainda não escolheu um Perfume do Dia' },
-        { timeout: 8000 }
-      )
-    ).toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        screen.queryByRole('heading', { name: 'Descubra perfumes pelas suas notas' })
+      ).toBeNull()
+    );
   });
 });

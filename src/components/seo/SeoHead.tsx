@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 const SITE_NAME = 'Sillage';
 const DEFAULT_IMAGE_PATH = '/og-image.jpg';
 const DEFAULT_DESCRIPTION =
@@ -21,10 +19,6 @@ export function SeoHead({
   imageUrl,
   type = 'website',
 }: SeoHeadProps) {
-  useEffect(() => {
-    document.head.querySelectorAll('[data-static-seo]').forEach((element) => element.remove());
-  }, []);
-
   const fullTitle = title && title !== SITE_NAME ? `${title} — ${SITE_NAME}` : SITE_NAME;
   const url = window.location.href;
   const image = new URL(imageUrl ?? DEFAULT_IMAGE_PATH, window.location.origin).href;
