@@ -120,13 +120,13 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 
 - [ ] Spritz, Granado
 - [ ] Citrus Brasilis, Granado
-- [ ] Carioca, Granado
+- [x] Carioca, Granado
 - [ ] Fervo Intenso, Granado
 - [x] Boemia, Granado _(No seed atual)_
-- [ ] Époque Tropical, Granado
+- [x] Époque Tropical, Granado
 - [ ] Infusão Botânica, Granado
 - [ ] Esplendor, Granado
-- [ ] Nostalgia, Granado
+- [x] Nostalgia, Granado
 - [ ] Imperial, Granado
 - [ ] Jardim Real, Granado
 - [ ] Folhas de Figo, Granado
@@ -162,7 +162,7 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 
 - [ ] Zaad Tradicional, O Boticário
 - [ ] Zaad Expedition, O Boticário
-- [ ] Zaad Santal, O Boticário
+- [x] Zaad Santal, O Boticário
 - [ ] Zaad Mondo, O Boticário
 - [ ] Zaad Arctic, O Boticário
 - [ ] Zaad Venture, O Boticário
@@ -239,7 +239,7 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 - [ ] Botica 214 Dark Mint, O Boticário
 - [ ] Botica 214 Golden Gardênia, O Boticário
 - [ ] Botica 214 Jasmim & Patchouli, O Boticário
-- [ ] Elysée Tradicional, O Boticário
+- [x] Elysée Tradicional, O Boticário
 - [ ] Elysée Nuit, O Boticário
 - [ ] Elysée Blanc, O Boticário
 - [ ] Elysée Succès, O Boticário

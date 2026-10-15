@@ -30,6 +30,7 @@
 ## 3. Instruções para o Claude Code
 
 ### Passo 0: Inspeção Inicial
+
 1. Verifique a árvore de trabalho (`git status`).
 2. Crie e alterne para a branch dedicada:
    ```bash
@@ -43,6 +44,7 @@
 ---
 
 ### Tarefa 1: Pipeline Integrado de Ingestão e Fotos (`scripts/ingest-catalog.mjs`)
+
 1. Implementar o script `scripts/ingest-catalog.mjs`:
    - **Parser:** Extrai os perfumes de `docs/CATALOGO_EXPANSAO.md` (respeitando seções de marcas e marcas de seleção `[x]`).
    - **Verificação de duplicatas:** Consulta o banco Supabase ou o `supabase/seed.sql` por slug (`brands.slug` e `perfumes.slug`) para pular perfumes já cadastrados.
@@ -66,6 +68,7 @@
 ---
 
 ### Tarefa 2: Execução do Lote Inicial (Prioridade 1 + Granado)
+
 1. Rodar a ingestão para o primeiro lote (Prioridade 1 e linha Granado & Phebo):
    ```bash
    node scripts/ingest-catalog.mjs --limit 45
@@ -75,6 +78,7 @@
 ---
 
 ### Tarefa 3: Processamento e Preview de Imagens
+
 1. Executar o recorte e otimização das imagens capturadas:
    ```bash
    npm run images
@@ -89,13 +93,16 @@
 ---
 
 ### Tarefa 4: Atualização dos Documentos
+
 1. Em `docs/CATALOGO_EXPANSAO.md`, marcar com `[x]` todos os perfumes ingeridos com sucesso.
 2. Atualizar `docs/CATALOGO_REAL.md` com os novos perfumes adicionados ao acervo.
 
 ---
 
 ## 4. Critério de Pronto
+
 O trabalho está concluído quando os seguintes comandos executarem e passarem sem erros:
+
 ```bash
 npm run test
 npm run typecheck
@@ -104,8 +111,8 @@ npm run build
 ```
 
 ## 5. Regras Finais
+
 - Trabalhe estritamente na branch `feat/catalogo-expansao-batch`.
 - Commits organizados seguindo Conventional Commits (`feat:`, `test:`, `docs:`).
 - Não realize `git push` ou merge sem autorização do usuário.
 - Apresente ao final o caminho de `processed-images/_preview.png` e o resumo de quantos perfumes foram ingeridos com sucesso.
-
