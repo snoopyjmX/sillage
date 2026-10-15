@@ -12,6 +12,7 @@ import {
   buildItemPrompt,
   captureImage,
   extractOgImage,
+  isDailyQuota,
   loadKnownPerfumes,
   markDone,
   nextMigrationTimestamp,
@@ -413,5 +414,15 @@ describe('applyImagePaths / markDone', () => {
     expect(markdown).toContain('- [x] Nostalgia, Granado');
     expect(markdown).toContain('- [ ] Malbec Black, O Boticário');
     expect(markdown).toContain('- [x] Boemia, Granado _(No seed atual)_');
+  });
+});
+
+describe('isDailyQuota', () => {
+  it('só a cota diária pára o lote; 503 e limite por minuto seguem com retentativa', () => {
+    expect(
+      isDailyQuota(new Error('quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier'))
+    ).toBe(true);
+    expect(isDailyQuota(new Error('503 UNAVAILABLE'))).toBe(false);
+    expect(isDailyQuota(new Error('GenerateRequestsPerMinutePerProjectPerModel'))).toBe(false);
   });
 });

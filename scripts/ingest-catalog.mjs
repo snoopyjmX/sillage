@@ -56,6 +56,7 @@ for (const file of ['.env.local', '.env']) {
 const GEMINI_MODEL = process.env.GEMINI_MODEL ?? 'gemini-3.5-flash';
 const PAUSE_MIN_MS = 2000; // intervalo entre chamadas ao Gemini (limite de requisições)
 const PAUSE_MAX_MS = 3000;
+const MAX_SEARCH_TRIES = 4;
 const SECTIONS = ['prioridade', 'nacional', 'contratipos', 'global'];
 
 export const USAGE =
@@ -372,10 +373,26 @@ export const captureImage = async (
       extractOgImage(await fetchPage(officialUrl), officialUrl)
     );
   }
-  saved ??= await attempt(
-    'busca',
-    async () => pickImage(await search(`frasco perfume ${brand} ${name}`), { loose }).url
-  );
+  if (!saved) {
+    // Até MAX_SEARCH_TRIES candidatos: o 1º resultado confiável pode estar lento ou bloqueado
+    let urls = [];
+    try {
+      urls = await search(`frasco perfume ${brand} ${name}`);
+    } catch (error) {
+      reasons.push(`busca: ${errorMessage(error)}`);
+    }
+    for (let tries = 0; !saved && urls.length > 0 && tries < MAX_SEARCH_TRIES; tries += 1) {
+      let picked;
+      try {
+        picked = pickImage(urls, { loose }).url;
+      } catch (error) {
+        reasons.push(`busca: ${errorMessage(error)}`);
+        break;
+      }
+      urls = urls.filter((url) => url !== picked);
+      saved = await attempt('busca', async () => picked);
+    }
+  }
   if (!saved) throw new Error(`Sem foto utilizável (${reasons.join('; ')}).`);
   return saved;
 };
@@ -433,6 +450,15 @@ export const parseItemResponse = (text, item) => {
   };
 };
 
+// Cota diária do plano gratuito esgotada: repetir não adianta, o lote pára e o resto fica para depois
+export const isDailyQuota = (error) => /PerDay/i.test(errorMessage(error));
+
+class QuotaError extends Error {
+  constructor(model) {
+    super(`Cota diária do Gemini (${model}) esgotada.`);
+  }
+}
+
 const askGemini = async (ai, item) => {
   for (let attempt = 1; ; attempt += 1) {
     try {
@@ -443,9 +469,10 @@ const askGemini = async (ai, item) => {
       });
       return parseItemResponse(response.text ?? '', item);
     } catch (error) {
+      if (isDailyQuota(error)) throw new QuotaError(GEMINI_MODEL);
       const retryable = /429|503|RESOURCE_EXHAUSTED|UNAVAILABLE/i.test(errorMessage(error));
-      if (!retryable || attempt >= 3) throw error;
-      await sleep(15_000 * attempt);
+      if (!retryable || attempt >= 5) throw error;
+      await sleep(20_000 * attempt);
     }
   }
 };
@@ -548,6 +575,12 @@ const runIngest = async (options) => {
       ingested.push({ brand: item.brand, name: item.name, ...slugs, image: photo.file });
       console.log(`✔ ${label} (${data.notes.length} notas, foto: ${photo.source})`);
     } catch (error) {
+      if (error instanceof QuotaError) {
+        console.error(
+          `! ${error.message} Parando o lote; os demais seguem pendentes (rode de novo depois ou troque GEMINI_MODEL).`
+        );
+        break;
+      }
       failures.push({
         brand: item.brand,
         name: item.name,
