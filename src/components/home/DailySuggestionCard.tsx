@@ -50,7 +50,7 @@ export function DailySuggestionCard({
             width={640}
             height={800}
             priority
-            className="max-h-full max-w-full object-contain p-3"
+            className="size-full object-contain p-3"
             fallback={
               <PerfumePlaceholder
                 family={perfume.notes[0]?.family}

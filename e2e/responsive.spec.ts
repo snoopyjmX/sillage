@@ -24,6 +24,23 @@ const expectInsideViewport = async (page: Page, locator: Locator) => {
   expect(box!.x + box!.width).toBeLessThanOrEqual(width);
 };
 
+// No mobile o palco fica acima do texto: nem ele nem o frasco podem invadir o título.
+// Sem foto o palco mostra o placeholder (aria-hidden, sem img), então a foto é opcional
+const expectBottleAboveHeading = async (card: Locator, heading: Locator) => {
+  const stage = card.locator('[data-slot="perfume-stage"]');
+  const [stageBox, headingBox] = [await stage.boundingBox(), await heading.boundingBox()];
+  expect(stageBox).not.toBeNull();
+  expect(headingBox).not.toBeNull();
+  expect(stageBox!.y + stageBox!.height).toBeLessThanOrEqual(headingBox!.y);
+
+  const bottle = stage.locator('img');
+  if ((await bottle.count()) > 0) {
+    const bottleBox = await bottle.first().boundingBox();
+    expect(bottleBox).not.toBeNull();
+    expect(bottleBox!.y + bottleBox!.height).toBeLessThanOrEqual(headingBox!.y);
+  }
+};
+
 for (const viewport of VIEWPORTS) {
   test.describe(`mobile ${viewport.width}px`, () => {
     test.use({ viewport });
@@ -45,6 +62,10 @@ for (const viewport of VIEWPORTS) {
       await expectInsideViewport(page, highlight);
       await expectInsideViewport(
         page,
+        highlight.getByRole('heading', { name: 'Malbec Signature' })
+      );
+      await expectBottleAboveHeading(
+        highlight,
         highlight.getByRole('heading', { name: 'Malbec Signature' })
       );
       await expectInsideViewport(page, highlight.getByRole('button', { name: 'Compartilhar dia' }));
@@ -79,6 +100,7 @@ for (const viewport of VIEWPORTS) {
       await expectNoHorizontalOverflow(page);
       await expectInsideViewport(page, suggestion);
       await expectInsideViewport(page, suggestion.getByRole('heading', { level: 3 }));
+      await expectBottleAboveHeading(suggestion, suggestion.getByRole('heading', { level: 3 }));
       await expectInsideViewport(page, suggestion.getByRole('link', { name: 'Ver detalhes' }));
       await expectInsideViewport(page, suggestion.getByRole('button').first());
     });

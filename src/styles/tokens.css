@@ -95,8 +95,9 @@
   --secondary: #202823;
   --muted: #202823;
   --accent: #223028;
-  --stage: #272e29;
-  --stage-highlight: #36403a;
+  /* Palco claro também no escuro: as fotos foram recortadas sobre fundo claro */
+  --stage: #efece3;
+  --stage-highlight: #fbfaf6;
 
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(238, 243, 236, 0.5);
