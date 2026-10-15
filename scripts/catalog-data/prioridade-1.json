@@ -1,0 +1,632 @@
+[
+  {
+    "name": "Nostalgia",
+    "brand": "Granado",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": ["Jasmine Liu"],
+    "description": "Criação elegante que homenageia a história centenária da Granado, unindo pimenta rosa e notas florais a uma base confortável de cashmeran e âmbar.",
+    "officialUrl": "https://www.granado.com.br/granado/perfume-nostalgia-75ml-granado",
+    "notes": [
+      {
+        "name": "Pimenta-rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Baga rosada, picante e levemente doce. Dá um brilho efervescente à abertura."
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco, com um toque floral e levemente amargo. Abre o perfume com luz e elegância."
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e suculento, mais macio que o limão. Traz alegria e frescor à saída."
+      },
+      {
+        "name": "Lírio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Flor branca, cremosa e levemente atalcada. Dá um coração elegante e luminoso."
+      },
+      {
+        "name": "Flor de laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco, solar e adocicado, com um fundo de mel. Lembra jardim de cidade pequena."
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétala macia, romântica e levemente frutada. É o clássico coração floral."
+      },
+      {
+        "name": "Cashmeran",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira macia, aveludada e levemente especiada. Dá conforto, como um suéter de lã."
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Acorde quente, resinoso e levemente adocicado. Dá um fundo sensual que se espalha devagar."
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Acorde macio e limpo que lembra pele aquecida. Prolonga o perfume e deixa um rastro suave."
+      }
+    ]
+  },
+  {
+    "name": "Époque Tropical",
+    "brand": "Granado",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": ["Guillaume Flavigny"],
+    "description": "Uma viagem sensorial pelo Rio de Janeiro da Belle Époque, com o frescor inusitado do caju e cardamomo sobre o calor nobre da fava tonka e sândalo.",
+    "officialUrl": "https://www.granado.com.br/granado/perfume-epoque-tropical-75ml-granado",
+    "notes": [
+      {
+        "name": "Caju",
+        "family": "fruity",
+        "position": "top",
+        "description": "Fruta tropical, suculenta e levemente adstringente. Traz um frescor solar e brasileiro."
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e suculento, mais macio que o limão. Traz alegria e frescor à saída."
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca, verde e levemente canforada. Dá um picante limpo e sofisticado."
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Flor cremosa com nuance cítrica, elegante e luminosa. Lembra jardim ao entardecer."
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétala macia, romântica e levemente frutada. É o clássico coração floral."
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Folha rosada, verde e levemente mentolada. Dá frescor aos corações florais."
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira cremosa, suave e levemente láctea. É um fundo macio que abraça a pele."
+      },
+      {
+        "name": "Fava tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Semente doce, com baunilha, amêndoa e feno. Cheira a conforto e calor."
+      },
+      {
+        "name": "Madeira guaiaco",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira escura, defumada e levemente adocicada. Lembra chá e fumaça de lareira."
+      }
+    ]
+  },
+  {
+    "name": "Carioca",
+    "brand": "Granado",
+    "releaseYear": 2015,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "description": "Homenagem solar à cidade do Rio de Janeiro, mesclando o frescor da bergamota e lima com a suavidade da flor de violeta e o calor do sândalo.",
+    "officialUrl": "https://www.granado.com.br/granado/eau-de-toilette-carioca-100ml",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco, com um toque floral e levemente amargo. Abre o perfume com luz e elegância."
+      },
+      {
+        "name": "Lima",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico verde, ácido e vibrante. Dá um frescor imediato de limonada."
+      },
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "top",
+        "description": "Flor delicada e fresca, com ar de pera e cítrico. Leve e translúcida."
+      },
+      {
+        "name": "Lírio-do-vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde e aquoso, limpo e delicado. Evoca primavera e roupa lavada."
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco, intenso e levemente indólico. Sensual e embriagante."
+      },
+      {
+        "name": "Flor de violeta",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétala empoada, doce e levemente verde. Dá uma suavidade romântica."
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Acorde macio e limpo que lembra pele aquecida. Prolonga o perfume e deixa um rastro suave."
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira cremosa, suave e levemente láctea. É um fundo macio que abraça a pele."
+      },
+      {
+        "name": "Fava tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Semente doce, com baunilha, amêndoa e feno. Cheira a conforto e calor."
+      }
+    ]
+  },
+  {
+    "name": "Essencial Oud Masculino",
+    "brand": "Natura",
+    "releaseYear": 2017,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": ["Verônica Kato", "Pierre-Constantin Guéros"],
+    "description": "O encontro memorável do precioso óleo de Oud (o ouro líquido da perfumaria) com a exuberância e calor da copaíba da biodiversidade amazônica.",
+    "officialUrl": "https://www.natura.com.br/p/deo-parfum-essencial-oud-masculino-100-ml/NATBRA-198",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco, com um toque floral e levemente amargo. Abre o perfume com luz e elegância."
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca, verde e levemente canforada. Dá um picante limpo e sofisticado."
+      },
+      {
+        "name": "Açafrão",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria dourada, amadeirada e levemente couro. Dá riqueza ao topo."
+      },
+      {
+        "name": "Elemi",
+        "family": "citrus",
+        "position": "top",
+        "description": "Resina de aroma cítrico, fresco e levemente pimentado. Dá vivacidade ao topo."
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Casca doce, quente e picante. Aquece e adoça o coração do perfume."
+      },
+      {
+        "name": "Praliné",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Doçura de avelã caramelizada, gulosa e cremosa. Dá um coração de confeitaria."
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Folha rosada, verde e levemente mentolada. Dá frescor aos corações florais."
+      },
+      {
+        "name": "Cypriol",
+        "family": "woody",
+        "position": "heart",
+        "description": "Raiz de aroma terroso, defumado e levemente picante. Dá profundidade escura."
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira escura e resinosa, intensa, fumê e levemente animálica. É a joia da perfumaria árabe."
+      },
+      {
+        "name": "Copaíba",
+        "family": "woody",
+        "position": "base",
+        "description": "Resina amazônica de aroma amadeirado e balsâmico, quase medicinal. Traz um calor discreto."
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira seca, limpa e lembra lápis recém-apontado. Dá estrutura e um ar sóbrio."
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira cremosa, suave e levemente láctea. É um fundo macio que abraça a pele."
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Folha terrosa, úmida e escura, com um toque achocolatado. Marca o fundo com personalidade."
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Acorde quente, resinoso e levemente adocicado. Dá um fundo sensual que se espalha devagar."
+      }
+    ]
+  },
+  {
+    "name": "Homem Cor.Agio",
+    "brand": "Natura",
+    "releaseYear": 2018,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": ["Verônica Kato", "Jean-Christophe Hérault"],
+    "description": "O contraste arrebatador entre o calor da copaíba e do cumaru com o arrepio picante e metálico da pimenta preta e especiarias frias.",
+    "officialUrl": "https://www.natura.com.br/p/deo-parfum-natura-homem-cor-agio-100-ml/NATBRA-183",
+    "notes": [
+      {
+        "name": "Pimenta-preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Grão seco, quente e mordaz. Dá energia e a sensação de especiaria recém-moída."
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco, com um toque floral e levemente amargo. Abre o perfume com luz e elegância."
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "top",
+        "description": "Semente quente, adocicada e levemente amadeirada. Aquece o perfume."
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "top",
+        "description": "Casca doce, quente e picante. Aquece e adoça o coração do perfume."
+      },
+      {
+        "name": "Couro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Aroma de couro curtido, defumado e levemente picante. Dá um ar noturno e marcante."
+      },
+      {
+        "name": "Lavandin",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Parente mais forte da lavanda, herbal e canforado. Marca os perfumes masculinos clássicos."
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétala macia, romântica e levemente frutada. É o clássico coração floral."
+      },
+      {
+        "name": "Angélica",
+        "family": "green",
+        "position": "heart",
+        "description": "Raiz verde, terrosa e levemente almiscarada. Dá uma elegância herbal."
+      },
+      {
+        "name": "Copaíba",
+        "family": "woody",
+        "position": "base",
+        "description": "Resina amazônica de aroma amadeirado e balsâmico, quase medicinal. Traz um calor discreto."
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Semente de aroma doce, com feno e amêndoa. É a fava amazônica, quente e envolvente."
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira seca, limpa e lembra lápis recém-apontado. Dá estrutura e um ar sóbrio."
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Acorde quente, resinoso e levemente adocicado. Dá um fundo sensual que se espalha devagar."
+      },
+      {
+        "name": "Cistus lábdano",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resina escura de âmbar e couro, levemente animálica. Dá um fundo quente e profundo."
+      }
+    ]
+  },
+  {
+    "name": "Elysée Tradicional",
+    "brand": "O Boticário",
+    "releaseYear": 2015,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": ["Jacques Huclier", "Hernan Fígoli"],
+    "description": "Joia da perfumaria feminina nacional criada com a técnica Orpur, combinando o frescor da mandarina à sofisticação da rosa damascena e do patchouli.",
+    "officialUrl": "https://www.boticario.com.br/elysee-eau-de-parfum-50ml/",
+    "notes": [
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e suculento, mais macio que o limão. Traz alegria e frescor à saída."
+      },
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "top",
+        "description": "Flor delicada e fresca, com ar de pera e cítrico. Leve e translúcida."
+      },
+      {
+        "name": "Pimenta-rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Baga rosada, picante e levemente doce. Dá um brilho efervescente à abertura."
+      },
+      {
+        "name": "Framboesa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Fruta vermelha, doce e levemente ácida. Traz suculência ao topo."
+      },
+      {
+        "name": "Rosa damascena",
+        "family": "floral",
+        "position": "heart",
+        "description": "Rosa de pétalas densas, com mel e especiarias. Clássica, rica e envolvente."
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Flor macia, rosada e levemente aquosa. Delicada e feminina."
+      },
+      {
+        "name": "Ylang-ylang",
+        "family": "floral",
+        "position": "heart",
+        "description": "Flor amarela cremosa, tropical e levemente frutada. Dá corpo sensual ao coração."
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Folha terrosa, úmida e escura, com um toque achocolatado. Marca o fundo com personalidade."
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira cremosa, suave e levemente láctea. É um fundo macio que abraça a pele."
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Acorde quente, resinoso e levemente adocicado. Dá um fundo sensual que se espalha devagar."
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira seca, limpa e lembra lápis recém-apontado. Dá estrutura e um ar sóbrio."
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cheiro cremoso, doce e reconfortante de fava e creme. Dá um fundo acolhedor."
+      }
+    ]
+  },
+  {
+    "name": "Zaad Santal",
+    "brand": "O Boticário",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": ["Christian Alori", "Natasha Côté"],
+    "description": "A sofisticação do sândalo da Nova Caledônia contrastada com o toque licoroso do whisky e especiarias frias como pimenta sichuan e gengibre.",
+    "officialUrl": "https://www.boticario.com.br/zaad-santal-eau-de-parfum-95ml/",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco, com um toque floral e levemente amargo. Abre o perfume com luz e elegância."
+      },
+      {
+        "name": "Pimenta sichuan",
+        "family": "spicy",
+        "position": "top",
+        "description": "Baga cítrica, picante e levemente formigante. Dá um topo vibrante."
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Raiz fresca, picante e cítrica. Dá energia e brilho à abertura."
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "top",
+        "description": "Semente quente, adocicada e levemente amadeirada. Aquece o perfume."
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira cremosa, suave e levemente láctea. É um fundo macio que abraça a pele."
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Flor aromática limpa, herbal e levemente doce. É o cheiro clássico de frescor e de barbearia."
+      },
+      {
+        "name": "Acorde de whisky",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Efeito de destilado envelhecido, adocicado, defumado e amadeirado. Dá um ar licoroso."
+      },
+      {
+        "name": "Folha de violeta",
+        "family": "green",
+        "position": "heart",
+        "description": "Folha verde, aquosa e levemente metálica. Dá um frescor elegante."
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira seca, limpa e lembra lápis recém-apontado. Dá estrutura e um ar sóbrio."
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Folha terrosa, úmida e escura, com um toque achocolatado. Marca o fundo com personalidade."
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Raiz de capim aromático, terrosa, fresca e levemente defumada. Dá elegância e muita fixação."
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Acorde quente, resinoso e levemente adocicado. Dá um fundo sensual que se espalha devagar."
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Acorde macio e limpo que lembra pele aquecida. Prolonga o perfume e deixa um rastro suave."
+      }
+    ]
+  },
+  {
+    "name": "Seleto",
+    "brand": "Avatim",
+    "releaseYear": 2018,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": ["Edison Fujita"],
+    "description": "Perfume marcante e discreto que traduz sofisticação com o frescor da sálvia e do cardamomo sobre o calor da fava tonka e do oud.",
+    "officialUrl": "https://www.avatim.com.br/produto/deo-parfum-seleto-100ml-392",
+    "notes": [
+      {
+        "name": "Sálvia",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Erva aromática de folha prateada, seca e herbal. Traz um frescor verde, limpo e levemente canforado."
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e suculento, mais macio que o limão. Traz alegria e frescor à saída."
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca, verde e levemente canforada. Dá um picante limpo e sofisticado."
+      },
+      {
+        "name": "Pomelo",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico suculento e levemente amargo. Traz um frescor rosado e vivo."
+      },
+      {
+        "name": "Flor de íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Raiz empoada, fria e elegante, de ar de batom. Dá sofisticação ao coração."
+      },
+      {
+        "name": "Coentro",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Semente cítrica, verde e levemente picante. Dá um frescor especiado."
+      },
+      {
+        "name": "Fava tonka",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Semente doce, com baunilha, amêndoa e feno. Cheira a conforto e calor."
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira escura e resinosa, intensa, fumê e levemente animálica. É a joia da perfumaria árabe."
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Acorde quente, resinoso e levemente adocicado. Dá um fundo sensual que se espalha devagar."
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cheiro cremoso, doce e reconfortante de fava e creme. Dá um fundo acolhedor."
+      }
+    ]
+  }
+]

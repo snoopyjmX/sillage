@@ -9,6 +9,7 @@
 //   --group     marca/grupo do backlog, ex.: granado-phebo, natura (repetível); soma com --section
 //   --limit     máximo de perfumes consultados no Gemini
 //   --name      sufixo da migration (padrão "lote")
+//   --from-json <arquivo>   usa registros curados à mão (scripts/catalog-data/*.json), sem Gemini
 //   --dry-run   só lista a seleção: não chama o Gemini nem baixa nada
 //   --loose     aceita fotos de fontes fora de TRUSTED_DOMAINS (confira uma a uma)
 // Depois das fotos processadas (`npm run images`):
@@ -60,7 +61,7 @@ const MAX_SEARCH_TRIES = 4;
 const SECTIONS = ['prioridade', 'nacional', 'contratipos', 'global'];
 
 export const USAGE =
-  'Uso: npm run ingest:catalog -- [--section <chave>] [--group <slug>] [--limit N] [--name lote1] [--dry-run] [--loose] | --apply-images <migration> | --mark-done <lote.json>';
+  'Uso: npm run ingest:catalog -- [--section <chave>] [--group <slug>] [--limit N] [--name lote1] [--dry-run] [--loose] | --from-json <arquivo> | --apply-images <migration> | --mark-done <lote.json>';
 
 const fail = (message) => {
   console.error(`✖ ${message}`);
@@ -163,6 +164,7 @@ export const parseCatalogArgs = (argv) => {
     loose: false,
     applyImages: null,
     markDone: null,
+    fromJson: null,
   };
   const valueOf = (flag, index) => {
     const value = argv[index + 1];
@@ -173,7 +175,15 @@ export const parseCatalogArgs = (argv) => {
     if (arg === '--dry-run') options.dryRun = true;
     else if (arg === '--loose') options.loose = true;
     else if (
-      ['--section', '--group', '--limit', '--name', '--apply-images', '--mark-done'].includes(arg)
+      [
+        '--section',
+        '--group',
+        '--limit',
+        '--name',
+        '--apply-images',
+        '--mark-done',
+        '--from-json',
+      ].includes(arg)
     ) {
       const value = valueOf(arg, index);
       if (value === null) return { error: `${arg} precisa de um valor. ${USAGE}` };
@@ -193,7 +203,8 @@ export const parseCatalogArgs = (argv) => {
           return { error: '--name aceita só letras minúsculas, números e "_".' };
         }
         options.name = value;
-      } else if (arg === '--apply-images') options.applyImages = value;
+      } else if (arg === '--from-json') options.fromJson = value;
+      else if (arg === '--apply-images') options.applyImages = value;
       else options.markDone = value;
     } else {
       return { error: `Argumento desconhecido: ${arg}. ${USAGE}` };
@@ -203,8 +214,15 @@ export const parseCatalogArgs = (argv) => {
     return { error: 'Use --apply-images ou --mark-done, não os dois.' };
   }
   const ingesting = options.applyImages === null && options.markDone === null;
-  if (ingesting && options.sections.length === 0 && options.groups.length === 0) {
-    return { error: `Informe --section ou --group. ${USAGE}` };
+  if (!ingesting && options.fromJson !== null) {
+    return { error: '--from-json não combina com --apply-images nem --mark-done.' };
+  }
+  const selecting = options.sections.length > 0 || options.groups.length > 0;
+  if (options.fromJson !== null && selecting) {
+    return { error: 'Use --from-json ou --section/--group, não os dois.' };
+  }
+  if (ingesting && options.fromJson === null && !selecting) {
+    return { error: `Informe --section, --group ou --from-json. ${USAGE}` };
   }
   return { options };
 };
@@ -477,6 +495,35 @@ const askGemini = async (ai, item) => {
   }
 };
 
+// Registros curados à mão (sem Gemini): array de objetos no formato do PerfumeSchema, mais
+// `officialUrl` e `imageUrl` opcionais. Cada um é validado como se viesse do Gemini.
+export const parseJsonItems = (text) => {
+  let records;
+  try {
+    records = JSON.parse(text);
+  } catch {
+    throw new Error('O arquivo --from-json não é um JSON válido.');
+  }
+  if (!Array.isArray(records) || records.length === 0) {
+    throw new Error('O arquivo --from-json precisa ser uma lista não vazia.');
+  }
+  return records.map((record, index) => {
+    if (typeof record?.brand !== 'string' || typeof record?.name !== 'string') {
+      throw new Error(`Registro ${index + 1} sem marca ou nome.`);
+    }
+    const officialUrl = typeof record.officialUrl === 'string' ? record.officialUrl : null;
+    return {
+      section: 'json',
+      group: 'json',
+      brand: record.brand,
+      name: record.name,
+      sheet: null,
+      record,
+      officialUrl,
+    };
+  });
+};
+
 // Link oficial da ficha ("**Link Oficial:** `https://...`")
 export const officialUrlOf = (sheet) =>
   /\*\*Link Oficial:\*\*\s*`?(https?:\/\/[^\s`]+)`?/i.exec(sheet ?? '')?.[1] ?? null;
@@ -538,35 +585,52 @@ const saveErrors = async (failures) => {
 };
 
 const runIngest = async (options) => {
-  const backlog = parseBacklog(await readFile(BACKLOG_FILE, 'utf8'));
+  const curated = options.fromJson !== null;
+  const source = curated
+    ? parseJsonItems(await readFile(resolve(options.fromJson), 'utf8'))
+    : parseBacklog(await readFile(BACKLOG_FILE, 'utf8'));
   const known = await loadKnownPerfumes();
   await loadRemotePerfumes(known);
 
-  const selected = selectItems(backlog, options).filter((item) => {
+  const picked = curated
+    ? options.limit === null
+      ? source
+      : source.slice(0, options.limit)
+    : selectItems(source, options);
+  const selected = picked.filter((item) => {
     return known.get(slugify(item.name)) !== slugify(item.brand);
   });
-  console.log(`${selected.length} perfumes a ingerir (backlog sem [x] e fora do banco/seed):`);
+  console.log(
+    `${selected.length} perfumes a ingerir (${curated ? 'do JSON' : 'backlog sem [x]'}, fora do banco/seed):`
+  );
   for (const item of selected)
     console.log(`  - ${item.brand} — ${item.name}${item.sheet ? ' [ficha]' : ''}`);
   if (options.dryRun) return console.log('✔ --dry-run: nada foi consultado nem gravado.');
   if (selected.length === 0) return;
-  if (!process.env.GEMINI_API_KEY) fail('Defina GEMINI_API_KEY no .env.local.');
+  if (!curated && !process.env.GEMINI_API_KEY) fail('Defina GEMINI_API_KEY no .env.local.');
 
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY.trim() });
+  const ai = curated ? null : new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY.trim() });
   const blocks = [];
   const ingested = [];
   const failures = [];
   for (const [index, item] of selected.entries()) {
     const label = `${item.brand} — ${item.name}`;
     try {
-      const { data, imageUrl } = await askGemini(ai, item);
+      const { data, imageUrl } = curated
+        ? parseItemResponse(JSON.stringify(item.record), item)
+        : await askGemini(ai, item);
       const slugs = resolveSlugs(data, known);
       if (slugs.duplicate) {
         console.log(`↷ ${label}: já cadastrado (${slugs.perfumeSlug})`);
         continue;
       }
       const photo = await captureImage(
-        { name: item.name, brand: item.brand, imageUrl, officialUrl: officialUrlOf(item.sheet) },
+        {
+          name: item.name,
+          brand: item.brand,
+          imageUrl,
+          officialUrl: officialUrlOf(item.sheet) ?? item.officialUrl ?? null,
+        },
         slugs,
         { loose: options.loose }
       );
@@ -589,7 +653,7 @@ const runIngest = async (options) => {
       });
       console.error(`✖ ${label}: ${errorMessage(error)}`);
     }
-    if (index < selected.length - 1)
+    if (!curated && index < selected.length - 1)
       await sleep(PAUSE_MIN_MS + Math.random() * (PAUSE_MAX_MS - PAUSE_MIN_MS));
   }
 

@@ -21,6 +21,7 @@ import {
   parseBacklog,
   parseCatalogArgs,
   parseItemResponse,
+  parseJsonItems,
   parseKnownPerfumes,
   parseListLine,
   selectItems,
@@ -424,5 +425,38 @@ describe('isDailyQuota', () => {
     ).toBe(true);
     expect(isDailyQuota(new Error('503 UNAVAILABLE'))).toBe(false);
     expect(isDailyQuota(new Error('GenerateRequestsPerMinutePerProjectPerModel'))).toBe(false);
+  });
+});
+
+describe('--from-json (registros curados, sem Gemini)', () => {
+  it('aceita --from-json sozinho e recusa combinações', () => {
+    expect(parseCatalogArgs(['--from-json', 'a.json']).options.fromJson).toBe('a.json');
+    expect(parseCatalogArgs(['--from-json', 'a.json', '--section', 'global']).error).toEqual(
+      expect.any(String)
+    );
+    expect(parseCatalogArgs(['--from-json', 'a.json', '--mark-done', 'b']).error).toEqual(
+      expect.any(String)
+    );
+    expect(parseCatalogArgs(['--from-json']).error).toEqual(expect.any(String));
+  });
+
+  it('recusa JSON inválido, lista vazia e registro sem marca ou nome', () => {
+    expect(() => parseJsonItems('não é json')).toThrow(/JSON/);
+    expect(() => parseJsonItems('[]')).toThrow(/lista/);
+    expect(() => parseJsonItems('[{"name":"X"}]')).toThrow(/Registro 1/);
+  });
+
+  it('o JSON da Prioridade 1 passa pelo mesmo schema do Gemini e não repete perfume', async () => {
+    const file = new URL('./catalog-data/prioridade-1.json', import.meta.url);
+    const items = parseJsonItems(await readFile(file, 'utf8'));
+    expect(items).toHaveLength(8);
+    const slugs = new Set();
+    for (const item of items) {
+      const { data } = parseItemResponse(JSON.stringify(item.record), item);
+      expect(data.notes.length).toBeGreaterThanOrEqual(9);
+      expect(item.officialUrl).toMatch(/^https:///);
+      slugs.add(`${data.brand}/${data.name}`);
+    }
+    expect(slugs.size).toBe(8);
   });
 });
