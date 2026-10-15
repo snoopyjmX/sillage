@@ -19,27 +19,27 @@ Fonte de verdade dos valores: `src/styles/tokens.css`. Este documento descreve e
 
 Valores em hexadecimal; `rgba` quando há transparência. Classes Tailwind: `bg-background`, `text-muted-foreground`, `border-input` etc. (mapeadas em `@theme inline`).
 
-| Token (CSS)                           | Claro                  | Escuro                   | Uso                                          |
-| ------------------------------------- | ---------------------- | ------------------------ | -------------------------------------------- |
-| `--background`                        | `#F6F4ED`              | `#0F1411`                | Fundo do app                                 |
-| `--surface` / `--card` / `--popover`  | `#FFFFFF`              | `#181E1A`                | Cards, painéis, popovers                     |
-| `--stage` / `--stage-highlight`       | `#EFECE3` / `#FBFAF6`  | `#272E29` / `#36403A`    | Palco das fotos de frasco (gradiente radial) |
-| `--foreground` (`--text-primary`)     | `#17231C`              | `#EEF3EC`                | Texto principal                              |
-| `--text-secondary`                    | `#4C5B52`              | `#B4C0B7`                | Texto de apoio                               |
-| `--text-muted` (`--muted-foreground`) | `#5F6D64`              | `#8E9C93`                | Legendas, placeholders                       |
-| `--primary` (`--ring`)                | `#36694C`              | `#86C9A2`                | Acento: botão, foco, estado ativo            |
-| `--primary-foreground` (on-primary)   | `#FFFFFF`              | `#08150F`                | Texto sobre o primário                       |
-| `--secondary` / `--muted`             | `#EEEBE2`              | `#202823`                | Fundos neutros (abas, skeleton, chip neutro) |
-| `--accent`                            | `#E4EBE0`              | `#223028`                | Hover e seleção                              |
-| `--border`                            | `rgba(0,0,0,0.08)`     | `rgba(255,255,255,0.10)` | Divisórias e contornos (decorativos)         |
-| `--input`                             | `rgba(23,35,28,0.55)`  | `rgba(238,243,236,0.50)` | Borda de campos (≥ 3:1)                      |
-| `--success`                           | `#2E7D5B`              | `#6FAF8F`                | Feedback (texto ≥ 4,5:1)                     |
-| `--warning`                           | `#98641A`              | `#D9A55B`                | Feedback                                     |
-| `--error` (`--destructive`)           | `#C0392B`              | `#E5776E`                | Feedback e ações destrutivas                 |
-| `--destructive-foreground`            | `#FFFFFF`              | `#1A0907`                | Texto sobre destrutivo                       |
-| `--badge-concentration`               | `rgba(54,105,76,0.10)` | `rgba(134,201,162,0.16)` | Fundo do selo de concentração                |
-| `--badge-concentration-foreground`    | `#36694C`              | `#86C9A2`                | Texto do selo                                |
-| `--overlay`                           | `rgba(23,35,28,0.40)`  | `rgba(0,0,0,0.60)`       | Scrim de Dialog/Drawer (sem blur)            |
+| Token (CSS)                           | Claro                  | Escuro                   | Uso                                                                                                                  |
+| ------------------------------------- | ---------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `--background`                        | `#F6F4ED`              | `#0F1411`                | Fundo do app                                                                                                         |
+| `--surface` / `--card` / `--popover`  | `#FFFFFF`              | `#181E1A`                | Cards, painéis, popovers                                                                                             |
+| `--stage` / `--stage-highlight`       | `#EFECE3` / `#FBFAF6`  | `#EFECE3` / `#FBFAF6`    | Palco das fotos de frasco (gradiente radial); igual nos dois temas, porque as fotos são recortadas sobre fundo claro |
+| `--foreground` (`--text-primary`)     | `#17231C`              | `#EEF3EC`                | Texto principal                                                                                                      |
+| `--text-secondary`                    | `#4C5B52`              | `#B4C0B7`                | Texto de apoio                                                                                                       |
+| `--text-muted` (`--muted-foreground`) | `#5F6D64`              | `#8E9C93`                | Legendas, placeholders                                                                                               |
+| `--primary` (`--ring`)                | `#36694C`              | `#86C9A2`                | Acento: botão, foco, estado ativo                                                                                    |
+| `--primary-foreground` (on-primary)   | `#FFFFFF`              | `#08150F`                | Texto sobre o primário                                                                                               |
+| `--secondary` / `--muted`             | `#EEEBE2`              | `#202823`                | Fundos neutros (abas, skeleton, chip neutro)                                                                         |
+| `--accent`                            | `#E4EBE0`              | `#223028`                | Hover e seleção                                                                                                      |
+| `--border`                            | `rgba(0,0,0,0.08)`     | `rgba(255,255,255,0.10)` | Divisórias e contornos (decorativos)                                                                                 |
+| `--input`                             | `rgba(23,35,28,0.55)`  | `rgba(238,243,236,0.50)` | Borda de campos (≥ 3:1)                                                                                              |
+| `--success`                           | `#2E7D5B`              | `#6FAF8F`                | Feedback (texto ≥ 4,5:1)                                                                                             |
+| `--warning`                           | `#98641A`              | `#D9A55B`                | Feedback                                                                                                             |
+| `--error` (`--destructive`)           | `#C0392B`              | `#E5776E`                | Feedback e ações destrutivas                                                                                         |
+| `--destructive-foreground`            | `#FFFFFF`              | `#1A0907`                | Texto sobre destrutivo                                                                                               |
+| `--badge-concentration`               | `rgba(54,105,76,0.10)` | `rgba(134,201,162,0.16)` | Fundo do selo de concentração                                                                                        |
+| `--badge-concentration-foreground`    | `#36694C`              | `#86C9A2`                | Texto do selo                                                                                                        |
+| `--overlay`                           | `rgba(23,35,28,0.40)`  | `rgba(0,0,0,0.60)`       | Scrim de Dialog/Drawer (sem blur)                                                                                    |
 
 ### Famílias olfativas
 
