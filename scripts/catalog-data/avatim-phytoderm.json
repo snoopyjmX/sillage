@@ -10,12 +10,42 @@
     "description": "Inspirada no azul profundo da gema lápis-lazúli, é uma fragrância oriental floral elegante que une a sensualidade da cereja a um buquê de flores brancas radiantes e fundo adocicado cremoso.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-parfum-gigi-lazuli-100ml-399",
     "notes": [
-      { "name": "Cereja", "family": "fruity", "position": "top", "description": "Frutado suculento e adocicado" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso e efervescente" },
-      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco envolvente e sedutor" },
-      { "name": "Narciso", "family": "floral", "position": "heart", "description": "Floral opulento e refinado" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce, cremoso e reconfortante" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Aveludado e suave sensação de segunda pele" }
+      {
+        "name": "Cereja",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado suculento e adocicado"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso e efervescente"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco envolvente e sedutor"
+      },
+      {
+        "name": "Narciso",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral opulento e refinado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce, cremoso e reconfortante"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e suave sensação de segunda pele"
+      }
     ]
   },
   {
@@ -29,12 +59,42 @@
     "description": "Composição mágica e etérea do universo Gigi, tecendo notas de pétalas primaveris, toques frutados cintilantes e uma base ambarada aconchegante cheia de feminilidade.",
     "imageUrl": "https://www.avatim.com.br/linha-gigi",
     "notes": [
-      { "name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doce e vibrante" },
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico suculento e energizante" },
-      { "name": "Orquídea", "family": "floral", "position": "heart", "description": "Floral sofisticado e misterioso" },
-      { "name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral solar e fresco" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso quente e envolvente" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico amendoado e adocicado" }
+      {
+        "name": "Frutas Vermelhas",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce e vibrante"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico suculento e energizante"
+      },
+      {
+        "name": "Orquídea",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sofisticado e misterioso"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral solar e fresco"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso quente e envolvente"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico amendoado e adocicado"
+      }
     ]
   },
   {
@@ -48,12 +108,42 @@
     "description": "Premiada criação que personifica a sofisticação masculina através de ervas aromáticas revigorantes, toque cítrico cortante e madeiras nobres.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-colonia-bonissimo-100ml-1691",
     "notes": [
-      { "name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Fresco, cítrico e cortante" },
-      { "name": "Ervas Aromáticas", "family": "aromatic", "position": "top", "description": "Verde revigorante e natural" },
-      { "name": "Especiarias", "family": "spicy", "position": "heart", "description": "Picante e dinâmico" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático limpo e clássico" },
-      { "name": "Musgo de Carvalho", "family": "woody", "position": "base", "description": "Terroso e profundo" },
-      { "name": "Madeira Tek", "family": "woody", "position": "base", "description": "Amadeirado nobre e estruturado" }
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco, cítrico e cortante"
+      },
+      {
+        "name": "Ervas Aromáticas",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Verde revigorante e natural"
+      },
+      {
+        "name": "Especiarias",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e dinâmico"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático limpo e clássico"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e profundo"
+      },
+      {
+        "name": "Madeira Tek",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e estruturado"
+      }
     ]
   },
   {
@@ -67,12 +157,42 @@
     "description": "Fragrância masculina imponente e moderna construída com frescor aromático, contraste mineral salino e base amadeirada nobre com oud e ambroxan.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-parfum-bakari-100ml-668",
     "notes": [
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico refinado e cintilante" },
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado aromático e fresco" },
-      { "name": "Sal Marinho", "family": "aquatic", "position": "heart", "description": "Brisa oceânica mineral" },
-      { "name": "Couro", "family": "woody", "position": "heart", "description": "Sensual, seco e elegante" },
-      { "name": "Ambroxan", "family": "musky", "position": "base", "description": "Ambarado moderno e aveludado" },
-      { "name": "Agarwood (Oud)", "family": "woody", "position": "base", "description": "Amadeirado resinoso e imponente" }
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico refinado e cintilante"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado aromático e fresco"
+      },
+      {
+        "name": "Sal Marinho",
+        "family": "aquatic",
+        "position": "heart",
+        "description": "Brisa oceânica mineral"
+      },
+      {
+        "name": "Couro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Sensual, seco e elegante"
+      },
+      {
+        "name": "Ambroxan",
+        "family": "musky",
+        "position": "base",
+        "description": "Ambarado moderno e aveludado"
+      },
+      {
+        "name": "Agarwood (Oud)",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado resinoso e imponente"
+      }
     ]
   },
   {
@@ -86,13 +206,48 @@
     "description": "A quintessência do requinte masculino combinando nuances atalcadas de íris, toque especiado e uma base morna de âmbar e baunilha refinada.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-parfum-seleto-100ml-56",
     "notes": [
-      { "name": "Sálvia", "family": "aromatic", "position": "top", "description": "Herbal elegante e aromático" },
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiaria fresca e picante" },
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico doce e suculento" },
-      { "name": "Flor de Íris", "family": "floral", "position": "heart", "description": "Toque sedoso, atalcado e nobre" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "heart", "description": "Doce, amendoado e caloroso" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Denso, acolhedor e sensual" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremoso e sutilmente adocicado" }
+      {
+        "name": "Sálvia",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal elegante e aromático"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca e picante"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e suculento"
+      },
+      {
+        "name": "Flor de Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Toque sedoso, atalcado e nobre"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Doce, amendoado e caloroso"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Denso, acolhedor e sensual"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremoso e sutilmente adocicado"
+      }
     ]
   },
   {
@@ -106,13 +261,48 @@
     "description": "Fragrância inspirada no anoitecer, harmonizando frutas vermelhas silvestres, jasmim delicado e uma base viciante de pralinê e âmbar.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-parfum-serena-100ml-58",
     "notes": [
-      { "name": "Frutos Silvestres", "family": "fruity", "position": "top", "description": "Frutado doce e suculento" },
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico fresco e alegre" },
-      { "name": "Gardênia", "family": "floral", "position": "top", "description": "Floral branco cremoso" },
-      { "name": "Jasmim Sambac", "family": "floral", "position": "heart", "description": "Floral radiante e feminino" },
-      { "name": "Madressilva", "family": "floral", "position": "heart", "description": "Doce floral aveludado" },
-      { "name": "Pralinê", "family": "oriental", "position": "base", "description": "Gourmand amanteigado e crocante" },
-      { "name": "Almíscar Branco", "family": "musky", "position": "base", "description": "Sensação límpida e macia" }
+      {
+        "name": "Frutos Silvestres",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado doce e suculento"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco e alegre"
+      },
+      {
+        "name": "Gardênia",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral branco cremoso"
+      },
+      {
+        "name": "Jasmim Sambac",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral radiante e feminino"
+      },
+      {
+        "name": "Madressilva",
+        "family": "floral",
+        "position": "heart",
+        "description": "Doce floral aveludado"
+      },
+      {
+        "name": "Pralinê",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand amanteigado e crocante"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Sensação límpida e macia"
+      }
     ]
   },
   {
@@ -126,12 +316,42 @@
     "description": "Evolução sofisticada e densa de Serena, mergulhando em facetas verdes de gálbano, coração floral empoado de peônia e íris sobre sândalo aveludado.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-parfum-serena-intense-100-ml-720",
     "notes": [
-      { "name": "Frésia", "family": "floral", "position": "top", "description": "Floral fresco e apimentado" },
-      { "name": "Gálbano", "family": "green", "position": "top", "description": "Verde resinoso e botânico" },
-      { "name": "Peônia", "family": "floral", "position": "heart", "description": "Floral aéreo, leve e gracioso" },
-      { "name": "Íris", "family": "floral", "position": "heart", "description": "Toque atalcado de alta elegância" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso, acolhedor e leitoso" },
-      { "name": "Almíscar Branco", "family": "musky", "position": "base", "description": "Conforto limpo e sofisticado" }
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral fresco e apimentado"
+      },
+      {
+        "name": "Gálbano",
+        "family": "green",
+        "position": "top",
+        "description": "Verde resinoso e botânico"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aéreo, leve e gracioso"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Toque atalcado de alta elegância"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso, acolhedor e leitoso"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Conforto limpo e sofisticado"
+      }
     ]
   },
   {
@@ -145,12 +365,42 @@
     "description": "Vencedora de prêmio de perfumaria, Açucena exalta a alegria e a graciosidade floral com pera crocante, buquê de flores brancas e toque inusitado de avelã.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-colonia-acucena-100ml-60",
     "notes": [
-      { "name": "Pera", "family": "fruity", "position": "top", "description": "Aquosa, fresca e cristalina" },
-      { "name": "Cassis", "family": "fruity", "position": "top", "description": "Frutado escuro e licoroso" },
-      { "name": "Narciso", "family": "floral", "position": "heart", "description": "Floral branco exuberante" },
-      { "name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Luminoso e delicadamente melífluo" },
-      { "name": "Avelã", "family": "oriental", "position": "base", "description": "Nuance seca, crocante e tostada" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado sedoso e aconchegante" }
+      {
+        "name": "Pera",
+        "family": "fruity",
+        "position": "top",
+        "description": "Aquosa, fresca e cristalina"
+      },
+      {
+        "name": "Cassis",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado escuro e licoroso"
+      },
+      {
+        "name": "Narciso",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco exuberante"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Luminoso e delicadamente melífluo"
+      },
+      {
+        "name": "Avelã",
+        "family": "oriental",
+        "position": "base",
+        "description": "Nuance seca, crocante e tostada"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sedoso e aconchegante"
+      }
     ]
   },
   {
@@ -164,12 +414,42 @@
     "description": "Uma interpretação ardente e misteriosa com atmosfera noturna, fundindo a opulência do jasmim sambac ao caramelo salgado sobre camurça envolvente.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-colonia-acucena-rouge-100ml-534",
     "notes": [
-      { "name": "Jasmim Sambac", "family": "floral", "position": "top", "description": "Floral branco denso e magnético" },
-      { "name": "Caramelo", "family": "oriental", "position": "heart", "description": "Doce untuoso e tostado" },
-      { "name": "Sal", "family": "aquatic", "position": "heart", "description": "Cristalino mineral contrastante" },
-      { "name": "Camurça", "family": "woody", "position": "heart", "description": "Textura aveludada e quente" },
-      { "name": "Benjoim", "family": "oriental", "position": "base", "description": "Resinoso balsâmico e reconfortante" },
-      { "name": "Flor de Baunilha", "family": "oriental", "position": "base", "description": "Doçura floral macia" }
+      {
+        "name": "Jasmim Sambac",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral branco denso e magnético"
+      },
+      {
+        "name": "Caramelo",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Doce untuoso e tostado"
+      },
+      {
+        "name": "Sal",
+        "family": "aquatic",
+        "position": "heart",
+        "description": "Cristalino mineral contrastante"
+      },
+      {
+        "name": "Camurça",
+        "family": "woody",
+        "position": "heart",
+        "description": "Textura aveludada e quente"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso balsâmico e reconfortante"
+      },
+      {
+        "name": "Flor de Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doçura floral macia"
+      }
     ]
   },
   {
@@ -183,11 +463,36 @@
     "description": "Fragrância radiante e romântica que evoca frescor matinal através do damasco aveludado, pétalas de peônia orvalhadas e almíscar límpido.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-colonia-amau-100ml-relicario-392",
     "notes": [
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante e revigorante" },
-      { "name": "Damasco", "family": "fruity", "position": "top", "description": "Frutado aveludado e macio" },
-      { "name": "Peônia", "family": "floral", "position": "heart", "description": "Floral etéreo e jovial" },
-      { "name": "Rosa", "family": "floral", "position": "heart", "description": "Pétalas clássicas e românticas" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Maciez de pele limpa e suave" }
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cintilante e revigorante"
+      },
+      {
+        "name": "Damasco",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aveludado e macio"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral etéreo e jovial"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétalas clássicas e românticas"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Maciez de pele limpa e suave"
+      }
     ]
   },
   {
@@ -201,12 +506,42 @@
     "description": "Suntuoso buquê de rosas turcas e búlgaras banhadas pelo doce exótico da lichia e ameixa, ancorado em uma base profunda de âmbar e baunilha.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-parfum-sublime-100ml-391",
     "notes": [
-      { "name": "Lichia", "family": "fruity", "position": "top", "description": "Frutado exótico e refrescante" },
-      { "name": "Ameixa", "family": "fruity", "position": "top", "description": "Fruta madura, licorosa e aveludada" },
-      { "name": "Rosa Turca", "family": "floral", "position": "heart", "description": "Floral opulento e majestoso" },
-      { "name": "Peônia", "family": "floral", "position": "heart", "description": "Floral orvalhado e suave" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Acalentador, denso e sofisticado" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce gourmand envolvente" }
+      {
+        "name": "Lichia",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado exótico e refrescante"
+      },
+      {
+        "name": "Ameixa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Fruta madura, licorosa e aveludada"
+      },
+      {
+        "name": "Rosa Turca",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral opulento e majestoso"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral orvalhado e suave"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Acalentador, denso e sofisticado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce gourmand envolvente"
+      }
     ]
   },
   {
@@ -220,12 +555,42 @@
     "description": "Homenagem à doçura rica e reconfortante das frutas orientais desidratadas mescladas a madeiras calorosas e especiarias suaves.",
     "imageUrl": "https://www.avatim.com.br/perfumaria",
     "notes": [
-      { "name": "Tâmara", "family": "oriental", "position": "top", "description": "Doce melífluo e resinoso" },
-      { "name": "Canela", "family": "spicy", "position": "top", "description": "Especiado picante e quente" },
-      { "name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral cítrico e dourado" },
-      { "name": "Caramelo", "family": "oriental", "position": "heart", "description": "Gourmand macio e doce" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado sóbrio e seco" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Balsâmico profundo e caloroso" }
+      {
+        "name": "Tâmara",
+        "family": "oriental",
+        "position": "top",
+        "description": "Doce melífluo e resinoso"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante e quente"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral cítrico e dourado"
+      },
+      {
+        "name": "Caramelo",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Gourmand macio e doce"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sóbrio e seco"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico profundo e caloroso"
+      }
     ]
   },
   {
@@ -239,12 +604,42 @@
     "description": "Composição feminina graciosa e vibrante com pera luminosa, pimenta rosa e um elegante corpo floral de jasmim e íris sob base almiscarada.",
     "imageUrl": "https://www.avatim.com.br/produto/deo-parfum-bella-100ml-57",
     "notes": [
-      { "name": "Pera", "family": "fruity", "position": "top", "description": "Frutado aquoso e refrescante" },
-      { "name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Especiado floral e cintilante" },
-      { "name": "Magnólia", "family": "floral", "position": "heart", "description": "Floral aveludado e solar" },
-      { "name": "Íris", "family": "floral", "position": "heart", "description": "Elegância atalcada e sedosa" },
-      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado terroso e sofisticado" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce envolvente e acolhedor" }
+      {
+        "name": "Pera",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aquoso e refrescante"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado floral e cintilante"
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado e solar"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Elegância atalcada e sedosa"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso e sofisticado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce envolvente e acolhedor"
+      }
     ]
   },
   {
@@ -258,12 +653,42 @@
     "description": "A criação traduz a força e a singularidade masculina com notas ricas de madeiras defumadas, especiarias quentes e toque aromático verde.",
     "imageUrl": "https://www.avatim.com.br/perfumaria",
     "notes": [
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Fresco, balsâmico e elegante" },
-      { "name": "Grapefruit", "family": "citrus", "position": "top", "description": "Cítrico vibrante com amargor refinado" },
-      { "name": "Vetiver", "family": "woody", "position": "heart", "description": "Terroso, verde e amadeirado" },
-      { "name": "Noz-Moscada", "family": "spicy", "position": "heart", "description": "Especiado aromático e seco" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e resistente" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e envolvente" }
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Fresco, balsâmico e elegante"
+      },
+      {
+        "name": "Grapefruit",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico vibrante com amargor refinado"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "heart",
+        "description": "Terroso, verde e amadeirado"
+      },
+      {
+        "name": "Noz-Moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado aromático e seco"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e resistente"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e envolvente"
+      }
     ]
   },
   {
@@ -277,11 +702,36 @@
     "description": "Uma fragrância contemplativa que remete ao ar livre e aos horizontes abertos com notas verdes, madeiras claras e toque mineral limpo.",
     "imageUrl": "https://www.avatim.com.br/perfumaria",
     "notes": [
-      { "name": "Folhas Verdes", "family": "green", "position": "top", "description": "Orvalho e frescor vegetal" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cortante e natural" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Sensação aromática de limpeza" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Madeira límpida e arquitetônica" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Macio e arejado" }
+      {
+        "name": "Folhas Verdes",
+        "family": "green",
+        "position": "top",
+        "description": "Orvalho e frescor vegetal"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cortante e natural"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Sensação aromática de limpeza"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira límpida e arquitetônica"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Macio e arejado"
+      }
     ]
   },
   {
@@ -295,12 +745,42 @@
     "description": "Captura a brisa costeira e a sensação de renovação do oceano com notas marinhas puras, toques cítricos solares e fundo amadeirado almiscarado.",
     "imageUrl": "https://www.avatim.com.br/perfumaria",
     "notes": [
-      { "name": "Notas Oceânicas", "family": "aquatic", "position": "top", "description": "Frescor aquático e salino" },
-      { "name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Cítrico solar e cortante" },
-      { "name": "Néroli", "family": "floral", "position": "heart", "description": "Floral branco fresco e verde" },
-      { "name": "Alecrim", "family": "aromatic", "position": "heart", "description": "Aromático energizante e herbal" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Maciez límpida e envolvente" },
-      { "name": "Madeiras Claras", "family": "woody", "position": "base", "description": "Toque de madeira ensolarada" }
+      {
+        "name": "Notas Oceânicas",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Frescor aquático e salino"
+      },
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico solar e cortante"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco fresco e verde"
+      },
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático energizante e herbal"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Maciez límpida e envolvente"
+      },
+      {
+        "name": "Madeiras Claras",
+        "family": "woody",
+        "position": "base",
+        "description": "Toque de madeira ensolarada"
+      }
     ]
   },
   {
@@ -314,10 +794,30 @@
     "description": "Clássica atmosfera festiva e alegre brasileira, combinando notas florais espontâneas, nuances adocicadas campestres e um aconchego aveludado.",
     "imageUrl": "https://www.avatim.com.br/perfumaria",
     "notes": [
-      { "name": "Pera", "family": "fruity", "position": "top", "description": "Frutado doce e suculento" },
-      { "name": "Flores Brancas", "family": "floral", "position": "heart", "description": "Buquê floral fresco e feminino" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doçura macia e acolhedora" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Sensação de conforto prolongado" }
+      {
+        "name": "Pera",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado doce e suculento"
+      },
+      {
+        "name": "Flores Brancas",
+        "family": "floral",
+        "position": "heart",
+        "description": "Buquê floral fresco e feminino"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doçura macia e acolhedora"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Sensação de conforto prolongado"
+      }
     ]
   },
   {
@@ -331,12 +831,42 @@
     "description": "Descontraído e moderno, What's Up? expressa atitude jovem através de uma explosão cítrica e aromática com acordes verdes e base amadeirada.",
     "imageUrl": "https://phytoderm.com.br/produto/whats-up-deo-colonia-100ml",
     "notes": [
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso e fresco" },
-      { "name": "Maçã Verde", "family": "fruity", "position": "top", "description": "Crocante e energizante" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático limpo e confortável" },
-      { "name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Especiado sutil e moderno" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e seco" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Fundo limpo e duradouro" }
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso e fresco"
+      },
+      {
+        "name": "Maçã Verde",
+        "family": "fruity",
+        "position": "top",
+        "description": "Crocante e energizante"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático limpo e confortável"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado sutil e moderno"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e seco"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Fundo limpo e duradouro"
+      }
     ]
   },
   {
@@ -350,12 +880,42 @@
     "description": "Fragrância revigorante para homens dinâmicos, abrindo com frescor de hortelã e tangerina seguido por notas aromáticas vibrantes e madeiras masculinas.",
     "imageUrl": "https://phytoderm.com.br/produto/i-am-ready-deo-colonia-100ml",
     "notes": [
-      { "name": "Hortelã", "family": "green", "position": "top", "description": "Frescor mentolado e gelado" },
-      { "name": "Tangerina", "family": "citrus", "position": "top", "description": "Cítrico doce e vibrante" },
-      { "name": "Salvia", "family": "aromatic", "position": "heart", "description": "Herbal elegante" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde com toque apimentado" },
-      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e enérgico" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e fixador" }
+      {
+        "name": "Hortelã",
+        "family": "green",
+        "position": "top",
+        "description": "Frescor mentolado e gelado"
+      },
+      {
+        "name": "Tangerina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e vibrante"
+      },
+      {
+        "name": "Salvia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal elegante"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde com toque apimentado"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e enérgico"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e fixador"
+      }
     ]
   },
   {
@@ -369,12 +929,42 @@
     "description": "Um convite a um refúgio tropical paradisíaco, misturando frutas exóticas vibrantes com flores aquáticas e um fundo solar iluminado.",
     "imageUrl": "https://phytoderm.com.br/produto/paradise-deo-colonia-100ml",
     "notes": [
-      { "name": "Manga", "family": "fruity", "position": "top", "description": "Frutado tropical doce e suculento" },
-      { "name": "Maracujá", "family": "fruity", "position": "top", "description": "Tropical cítrico e energizante" },
-      { "name": "Hibisco", "family": "floral", "position": "heart", "description": "Floral exótico e colorido" },
-      { "name": "Flor de Lótus", "family": "aquatic", "position": "heart", "description": "Floral aquático sereno" },
-      { "name": "Coco", "family": "fruity", "position": "base", "description": "Cremoso e reconfortante" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Aveludado e suave" }
+      {
+        "name": "Manga",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado tropical doce e suculento"
+      },
+      {
+        "name": "Maracujá",
+        "family": "fruity",
+        "position": "top",
+        "description": "Tropical cítrico e energizante"
+      },
+      {
+        "name": "Hibisco",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral exótico e colorido"
+      },
+      {
+        "name": "Flor de Lótus",
+        "family": "aquatic",
+        "position": "heart",
+        "description": "Floral aquático sereno"
+      },
+      {
+        "name": "Coco",
+        "family": "fruity",
+        "position": "base",
+        "description": "Cremoso e reconfortante"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e suave"
+      }
     ]
   },
   {
@@ -388,12 +978,42 @@
     "description": "Romântica e cativante, une a vibração das frutas vermelhas a um coração floral clássico de rosas e jasmim sobre base doce e sedutora.",
     "imageUrl": "https://phytoderm.com.br/produto/apaixonada-deo-colonia-100ml",
     "notes": [
-      { "name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doces e levemente ácidas" },
-      { "name": "Laranja Doce", "family": "citrus", "position": "top", "description": "Alegre e solar" },
-      { "name": "Rosa", "family": "floral", "position": "heart", "description": "Floral elegante e apaixonante" },
-      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Sensual e encorpado" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Aconchegante e doce" },
-      { "name": "Caramelo", "family": "oriental", "position": "base", "description": "Gourmand envolvente" }
+      {
+        "name": "Frutas Vermelhas",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doces e levemente ácidas"
+      },
+      {
+        "name": "Laranja Doce",
+        "family": "citrus",
+        "position": "top",
+        "description": "Alegre e solar"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral elegante e apaixonante"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Sensual e encorpado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Aconchegante e doce"
+      },
+      {
+        "name": "Caramelo",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand envolvente"
+      }
     ]
   },
   {
@@ -407,12 +1027,42 @@
     "description": "Evoca a elegância e a feminilidade atemporal, combinando acordes florais brancos enriquecidos com toques amadeirados aveludados.",
     "imageUrl": "https://phytoderm.com.br/produto/adorada-deo-colonia-100ml",
     "notes": [
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico refinado e fresco" },
-      { "name": "Cassis", "family": "fruity", "position": "top", "description": "Frutado aveludado e profundo" },
-      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco nobre e expansivo" },
-      { "name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Luminoso e envolvente" },
-      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso e moderno" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado e macio" }
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico refinado e fresco"
+      },
+      {
+        "name": "Cassis",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aveludado e profundo"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco nobre e expansivo"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Luminoso e envolvente"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e moderno"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce aveludado e macio"
+      }
     ]
   },
   {
@@ -426,12 +1076,42 @@
     "description": "Fragrância marcante e envolvente concebida para noites inesquecíveis, com acordes de baunilha oriental, flores opulentas e âmbar aquecido.",
     "imageUrl": "https://phytoderm.com.br/produto/sensual-deo-colonia-100ml",
     "notes": [
-      { "name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Especiado picante e moderno" },
-      { "name": "Ameixa", "family": "fruity", "position": "top", "description": "Doce licorosa e intensa" },
-      { "name": "Orquídea", "family": "floral", "position": "heart", "description": "Floral sedutor e exótico" },
-      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral narcótico e noturno" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso quente e radiante" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doçura sensual irresistível" }
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante e moderno"
+      },
+      {
+        "name": "Ameixa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce licorosa e intensa"
+      },
+      {
+        "name": "Orquídea",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sedutor e exótico"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral narcótico e noturno"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso quente e radiante"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doçura sensual irresistível"
+      }
     ]
   },
   {
@@ -445,12 +1125,37 @@
     "description": "Uma celebração moderna à rainha das flores, trazendo o frescor luminoso de rosas recém-colhidas com nuances cítricas e fundo almiscarado.",
     "imageUrl": "https://phytoderm.com.br/produto/miss-rose-deo-colonia-100ml",
     "notes": [
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Luminosa e refrescante" },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Luminosa e refrescante"
+      },
       { "name": "Lichia", "family": "fruity", "position": "top", "description": "Aquosa e doce" },
-      { "name": "Rosa Damascena", "family": "floral", "position": "heart", "description": "Romântica, rica e clássica" },
-      { "name": "Magnólia", "family": "floral", "position": "heart", "description": "Floral sedoso e elegante" },
-      { "name": "Almíscar Branco", "family": "musky", "position": "base", "description": "Macio e sensação de limpeza" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e estruturado" }
+      {
+        "name": "Rosa Damascena",
+        "family": "floral",
+        "position": "heart",
+        "description": "Romântica, rica e clássica"
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sedoso e elegante"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Macio e sensação de limpeza"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e estruturado"
+      }
     ]
   },
   {
@@ -464,11 +1169,36 @@
     "description": "Sonhadora e graciosa, mescla frutas alegres e flores brancas delicadas sobre uma base suave de almíscar e madeiras claras.",
     "imageUrl": "https://phytoderm.com.br/produto/dreams-deo-colonia-100ml",
     "notes": [
-      { "name": "Maçã", "family": "fruity", "position": "top", "description": "Fresca, crocante e doce" },
-      { "name": "Pêssego", "family": "fruity", "position": "top", "description": "Aveludado e suculento" },
-      { "name": "Lírio-do-Vale", "family": "floral", "position": "heart", "description": "Floral verde e cristalino" },
-      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Feminino e iluminado" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Confortável e aveludado" },
+      {
+        "name": "Maçã",
+        "family": "fruity",
+        "position": "top",
+        "description": "Fresca, crocante e doce"
+      },
+      {
+        "name": "Pêssego",
+        "family": "fruity",
+        "position": "top",
+        "description": "Aveludado e suculento"
+      },
+      {
+        "name": "Lírio-do-Vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde e cristalino"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Feminino e iluminado"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Confortável e aveludado"
+      },
       { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e sutil" }
     ]
   },
@@ -483,12 +1213,42 @@
     "description": "Uma fragrância misteriosa e encantadora que mescla frutas vermelhas silvestres com pétalas florais e um rastro adocicado aconchegante.",
     "imageUrl": "https://phytoderm.com.br/produto/pure-secret-deo-colonia-100ml",
     "notes": [
-      { "name": "Amora", "family": "fruity", "position": "top", "description": "Frutado escuro doce e licoroso" },
-      { "name": "Framboesa", "family": "fruity", "position": "top", "description": "Doce ácida e apetitosa" },
-      { "name": "Peônia", "family": "floral", "position": "heart", "description": "Pétalas frescas e delicadas" },
-      { "name": "Violeta", "family": "floral", "position": "heart", "description": "Toque atalcado e elegante" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doçura cremosa e envolvente" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Macio e aconchegante" }
+      {
+        "name": "Amora",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado escuro doce e licoroso"
+      },
+      {
+        "name": "Framboesa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce ácida e apetitosa"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétalas frescas e delicadas"
+      },
+      {
+        "name": "Violeta",
+        "family": "floral",
+        "position": "heart",
+        "description": "Toque atalcado e elegante"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doçura cremosa e envolvente"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Macio e aconchegante"
+      }
     ]
   },
   {
@@ -502,12 +1262,42 @@
     "description": "Irresistivelmente doce e acolhedor, Vanilla Kiss destaca a fava de baunilha em toda sua cremosidade acompanhada por notas florais doces e toques de caramelo.",
     "imageUrl": "https://phytoderm.com.br/produto/vanilla-kiss-deo-colonia-100ml",
     "notes": [
-      { "name": "Amêndoa", "family": "oriental", "position": "top", "description": "Amendoado doce e licoroso" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor luminoso sutil" },
-      { "name": "Orquídea Baunilha", "family": "floral", "position": "heart", "description": "Floral doce e cremoso" },
-      { "name": "Heliotrópio", "family": "floral", "position": "heart", "description": "Atalcado abaunilhado" },
-      { "name": "Baunilha de Madagascar", "family": "oriental", "position": "base", "description": "Gourmand denso e inebriante" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico quente e acolhedor" }
+      {
+        "name": "Amêndoa",
+        "family": "oriental",
+        "position": "top",
+        "description": "Amendoado doce e licoroso"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frescor luminoso sutil"
+      },
+      {
+        "name": "Orquídea Baunilha",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral doce e cremoso"
+      },
+      {
+        "name": "Heliotrópio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Atalcado abaunilhado"
+      },
+      {
+        "name": "Baunilha de Madagascar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand denso e inebriante"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico quente e acolhedor"
+      }
     ]
   },
   {
@@ -521,12 +1311,42 @@
     "description": "Fragrância ousada, sensual e jovial que combina frutas suculentas com flores brancas envolventes e uma base gourmand de cacau e pralinê.",
     "imageUrl": "https://phytoderm.com.br/produto/sexy-girl-deo-colonia-100ml",
     "notes": [
-      { "name": "Amêndoa", "family": "oriental", "position": "top", "description": "Cremoso e sutilmente tostado" },
-      { "name": "Café", "family": "oriental", "position": "top", "description": "Energizante e encorpado" },
-      { "name": "Tuberosa", "family": "floral", "position": "heart", "description": "Floral branco opulento e narcótico" },
-      { "name": "Jasmim Sambac", "family": "floral", "position": "heart", "description": "Sedutor e radiante" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce aveludado" },
-      { "name": "Cacau", "family": "oriental", "position": "base", "description": "Gourmand profundo e quente" }
+      {
+        "name": "Amêndoa",
+        "family": "oriental",
+        "position": "top",
+        "description": "Cremoso e sutilmente tostado"
+      },
+      {
+        "name": "Café",
+        "family": "oriental",
+        "position": "top",
+        "description": "Energizante e encorpado"
+      },
+      {
+        "name": "Tuberosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco opulento e narcótico"
+      },
+      {
+        "name": "Jasmim Sambac",
+        "family": "floral",
+        "position": "heart",
+        "description": "Sedutor e radiante"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce aveludado"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand profundo e quente"
+      }
     ]
   },
   {
@@ -540,12 +1360,42 @@
     "description": "Expressão de paixão e intensidade romântica através de flores vermelhas ardentes, frutas maduras e um fundo aconchegante de sândalo e âmbar.",
     "imageUrl": "https://phytoderm.com.br/produto/intense-love-deo-colonia-100ml",
     "notes": [
-      { "name": "Framboesa", "family": "fruity", "position": "top", "description": "Suculenta e docemente ácida" },
-      { "name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante e jovial" },
-      { "name": "Rosa Vermelha", "family": "floral", "position": "heart", "description": "Intensa, aveludada e passional" },
-      { "name": "Gardênia", "family": "floral", "position": "heart", "description": "Floral branco denso" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira cremosa e elegante" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Caloroso e acolhedor" }
+      {
+        "name": "Framboesa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Suculenta e docemente ácida"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e jovial"
+      },
+      {
+        "name": "Rosa Vermelha",
+        "family": "floral",
+        "position": "heart",
+        "description": "Intensa, aveludada e passional"
+      },
+      {
+        "name": "Gardênia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco denso"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira cremosa e elegante"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Caloroso e acolhedor"
+      }
     ]
   },
   {
@@ -559,12 +1409,42 @@
     "description": "Criação vibrante e destemida para o homem aventureiro, mesclando especiarias ardentes, pimenta preta e madeiras defumadas intensas.",
     "imageUrl": "https://phytoderm.com.br/produto/explorer-fire-deo-colonia-100ml",
     "notes": [
-      { "name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante, seco e estimulante" },
-      { "name": "Grapefruit", "family": "citrus", "position": "top", "description": "Cítrico amargo e energético" },
-      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Especiaria quente e envolvente" },
-      { "name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Balsâmico e aromático" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado viril e robusto" },
-      { "name": "Couro", "family": "woody", "position": "base", "description": "Textura seca, defumada e imponente" }
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante, seco e estimulante"
+      },
+      {
+        "name": "Grapefruit",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo e energético"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria quente e envolvente"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Balsâmico e aromático"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado viril e robusto"
+      },
+      {
+        "name": "Couro",
+        "family": "woody",
+        "position": "base",
+        "description": "Textura seca, defumada e imponente"
+      }
     ]
   },
   {
@@ -578,12 +1458,42 @@
     "description": "Fragrância masculina que transmite liderança e magnetismo através de madeiras aromáticas, especiarias sóbrias e um fundo ambarado acolhedor.",
     "imageUrl": "https://phytoderm.com.br/produto/domini-deo-colonia-100ml",
     "notes": [
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico brilhante e sóbrio" },
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Fresco e aromático" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Clássico herbal refinado" },
-      { "name": "Nóz-Moscada", "family": "spicy", "position": "heart", "description": "Especiaria morna e elegante" },
-      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Amadeirado terroso com presença" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Denso e envolvente" }
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico brilhante e sóbrio"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Fresco e aromático"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Clássico herbal refinado"
+      },
+      {
+        "name": "Nóz-Moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria morna e elegante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso com presença"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Denso e envolvente"
+      }
     ]
   },
   {
@@ -597,12 +1507,42 @@
     "description": "Injeção de energia e vitalidade esportiva, construída com notas cítricas revigorantes, corpo aromático aquoso e base almiscarada dinâmica.",
     "imageUrl": "https://phytoderm.com.br/produto/phy-sport-deo-colonia-100ml",
     "notes": [
-      { "name": "Limão", "family": "citrus", "position": "top", "description": "Cortante, fresco e ultrarrefrescante" },
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Frutada e ensolarada" },
-      { "name": "Alecrim", "family": "aromatic", "position": "heart", "description": "Herbal tônico revigorante" },
-      { "name": "Notas Aquáticas", "family": "aquatic", "position": "heart", "description": "Brisa fresca e esportiva" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Leveza e conforto prolongado" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Madeira limpa e revigorante" }
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cortante, fresco e ultrarrefrescante"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutada e ensolarada"
+      },
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal tônico revigorante"
+      },
+      {
+        "name": "Notas Aquáticas",
+        "family": "aquatic",
+        "position": "heart",
+        "description": "Brisa fresca e esportiva"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Leveza e conforto prolongado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira limpa e revigorante"
+      }
     ]
   },
   {
@@ -616,12 +1556,42 @@
     "description": "Ideal para a rotina do homem clássico, combinando o frescor atemporal da lavanda com nuances herbais e uma base amadeirada marcante.",
     "imageUrl": "https://phytoderm.com.br/produto/habitus-deo-colonia-100ml",
     "notes": [
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Herbal floral puro e relaxante" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Refrescância equilibrada" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Verde, floral e estruturado" },
-      { "name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Aromático requintado" },
-      { "name": "Musgo de Carvalho", "family": "woody", "position": "base", "description": "Fougère terroso autêntico" },
-      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Profundo e amadeirado" }
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal floral puro e relaxante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Refrescância equilibrada"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Verde, floral e estruturado"
+      },
+      {
+        "name": "Sálvia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático requintado"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Fougère terroso autêntico"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Profundo e amadeirado"
+      }
     ]
   },
   {
@@ -635,11 +1605,36 @@
     "description": "Fragrância austera e tradicional que simboliza a cavalheirismo masculino com madeiras secas nobres, tabaco discreto e toques de especiarias finas.",
     "imageUrl": "https://phytoderm.com.br/produto/lord-deo-colonia-100ml",
     "notes": [
-      { "name": "Limão", "family": "citrus", "position": "top", "description": "Clássico e cortante" },
-      { "name": "Artemísia", "family": "aromatic", "position": "top", "description": "Amargor aromático distinto" },
-      { "name": "Cravo-da-Índia", "family": "spicy", "position": "heart", "description": "Especiado quente e pungente" },
-      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Doce, picante e clássica" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Leitoso e aveludado" },
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Clássico e cortante"
+      },
+      {
+        "name": "Artemísia",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Amargor aromático distinto"
+      },
+      {
+        "name": "Cravo-da-Índia",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado quente e pungente"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Doce, picante e clássica"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Leitoso e aveludado"
+      },
       { "name": "Couro", "family": "woody", "position": "base", "description": "Seco e másculo" }
     ]
   },
@@ -654,11 +1649,36 @@
     "description": "Fragrância marcante e de presença imbatível, trazendo a virilidade dos acordes aromáticos amadeirados e uma assinatura fougère vibrante.",
     "imageUrl": "https://phytoderm.com.br/produto/arrazo-deo-colonia-100ml",
     "notes": [
-      { "name": "Menta", "family": "green", "position": "top", "description": "Refrescância gelada e aromática" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Luminosa e cítrica" },
-      { "name": "Coentro", "family": "spicy", "position": "heart", "description": "Aromático especiado fresco" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral herbal reconfortante" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Madeira seca e envolvente" },
+      {
+        "name": "Menta",
+        "family": "green",
+        "position": "top",
+        "description": "Refrescância gelada e aromática"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Luminosa e cítrica"
+      },
+      {
+        "name": "Coentro",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Aromático especiado fresco"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Floral herbal reconfortante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira seca e envolvente"
+      },
       { "name": "Musgo", "family": "woody", "position": "base", "description": "Terroso e denso" }
     ]
   },
@@ -673,12 +1693,42 @@
     "description": "Uma declaração de sofisticação duradoura, combinando especiarias nobres a um coração quente de âmbar e madeiras balsâmicas preciosas.",
     "imageUrl": "https://phytoderm.com.br/produto/legacy-deo-colonia-100ml",
     "notes": [
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Doce, suculenta e radiante" },
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado aristocrático" },
-      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Doce e intensamente quente" },
-      { "name": "Noz-Moscada", "family": "spicy", "position": "heart", "description": "Aromática e envolvente" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Opulento e sensual" },
-      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado escuro e profundo" }
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Doce, suculenta e radiante"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado aristocrático"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Doce e intensamente quente"
+      },
+      {
+        "name": "Noz-Moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Aromática e envolvente"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Opulento e sensual"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado escuro e profundo"
+      }
     ]
   },
   {
@@ -692,12 +1742,42 @@
     "description": "Inspirado na imensidão azul do mar e do céu, é uma fragrância aquática revigorante com cítricos gelados e fundo amadeirado límpido.",
     "imageUrl": "https://phytoderm.com.br/produto/infinity-blue-deo-colonia-100ml",
     "notes": [
-      { "name": "Notas Marinhas", "family": "aquatic", "position": "top", "description": "Brisa do oceano fresca e pura" },
-      { "name": "Grapefruit", "family": "citrus", "position": "top", "description": "Cítrico revigorante e solar" },
-      { "name": "Folhas de Louro", "family": "green", "position": "heart", "description": "Aromático triunfante e verde" },
-      { "name": "Jasmim Aquático", "family": "aquatic", "position": "heart", "description": "Floral límpido e transparente" },
-      { "name": "Madeira Guaiaco", "family": "woody", "position": "base", "description": "Amadeirado nobre e sutilmente balsâmico" },
-      { "name": "Âmbar Cinzento", "family": "musky", "position": "base", "description": "Mineral marinho envolvente" }
+      {
+        "name": "Notas Marinhas",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Brisa do oceano fresca e pura"
+      },
+      {
+        "name": "Grapefruit",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico revigorante e solar"
+      },
+      {
+        "name": "Folhas de Louro",
+        "family": "green",
+        "position": "heart",
+        "description": "Aromático triunfante e verde"
+      },
+      {
+        "name": "Jasmim Aquático",
+        "family": "aquatic",
+        "position": "heart",
+        "description": "Floral límpido e transparente"
+      },
+      {
+        "name": "Madeira Guaiaco",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e sutilmente balsâmico"
+      },
+      {
+        "name": "Âmbar Cinzento",
+        "family": "musky",
+        "position": "base",
+        "description": "Mineral marinho envolvente"
+      }
     ]
   },
   {
@@ -711,12 +1791,42 @@
     "description": "O ápice do luxo e da opulência masculina, combinando notas de couro sensual, canela especiada, tangerina sanguínea e madeiras douradas.",
     "imageUrl": "https://phytoderm.com.br/produto/infinity-gold-deo-colonia-100ml",
     "notes": [
-      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Frutado cítrico luminoso" },
-      { "name": "Hortelã", "family": "green", "position": "top", "description": "Toque gelado e vibrante" },
-      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Picante adocicado e quente" },
-      { "name": "Rosa Absoluta", "family": "floral", "position": "heart", "description": "Floral sutil e sedutor" },
-      { "name": "Couro", "family": "woody", "position": "base", "description": "Sofisticado, rico e aveludado" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso caloroso e marcante" }
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutado cítrico luminoso"
+      },
+      {
+        "name": "Hortelã",
+        "family": "green",
+        "position": "top",
+        "description": "Toque gelado e vibrante"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante adocicado e quente"
+      },
+      {
+        "name": "Rosa Absoluta",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sutil e sedutor"
+      },
+      {
+        "name": "Couro",
+        "family": "woody",
+        "position": "base",
+        "description": "Sofisticado, rico e aveludado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso caloroso e marcante"
+      }
     ]
   },
   {
@@ -730,12 +1840,42 @@
     "description": "Fragrância construída para o espírito livre e explorador, harmonizando o frescor terroso do vetiver com a pimenta preta e resinas profundas.",
     "imageUrl": "https://phytoderm.com.br/produto/nomad-deo-colonia-100ml",
     "notes": [
-      { "name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante, seca e aromática" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor radiante e aberto" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde equilibrador" },
-      { "name": "Vetiver", "family": "woody", "position": "heart", "description": "Terroso, verde e enigmático" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado arquitetônico e firme" },
-      { "name": "Benjoim", "family": "oriental", "position": "base", "description": "Balsâmico quente e confortável" }
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante, seca e aromática"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frescor radiante e aberto"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde equilibrador"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "heart",
+        "description": "Terroso, verde e enigmático"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado arquitetônico e firme"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico quente e confortável"
+      }
     ]
   },
   {
@@ -749,12 +1889,42 @@
     "description": "Fragrância triunfante e dinâmica que impulsiona o homem vitorioso com frescor aromático cortante, toques aquáticos e base amadeirada marcante.",
     "imageUrl": "https://phytoderm.com.br/produto/victory-deo-colonia-100ml",
     "notes": [
-      { "name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Cítrico estimulante e vivo" },
-      { "name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante alegre e moderno" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático clássico e nobre" },
-      { "name": "Olíbano", "family": "oriental", "position": "heart", "description": "Resina incensada misteriosa" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce balsâmico envolvente" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e memorável" }
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico estimulante e vivo"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante alegre e moderno"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático clássico e nobre"
+      },
+      {
+        "name": "Olíbano",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resina incensada misteriosa"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce balsâmico envolvente"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e memorável"
+      }
     ]
   }
 ]

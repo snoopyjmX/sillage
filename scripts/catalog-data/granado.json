@@ -139,9 +139,7 @@
     "releaseYear": 2024,
     "concentration": "edp",
     "gender": "unisex",
-    "perfumers": [
-      "Benoist Lapouza"
-    ],
+    "perfumers": ["Benoist Lapouza"],
     "family": "oriental",
     "description": "Inspirado na efervescência e boemia das festas brasileiras. Uma criação envolvente e calorosa com acorde inebriante de cachaça, íris refinada e fundo cremoso de cacau.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173934/granado-perfume-fervo-intenso-75ml.png",
@@ -208,9 +206,7 @@
     "releaseYear": 2022,
     "concentration": "edp",
     "gender": "unisex",
-    "perfumers": [
-      "Ralf Schwieger"
-    ],
+    "perfumers": ["Ralf Schwieger"],
     "family": "green",
     "description": "Frescor inusitado que evoca a sensação revigorante de uma estufa botânica com sementes de coentro, notas verdes crocantes e uma base sedosa de cashmeran.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173874/granado-perfume-infusao-botanica-75ml.png",
@@ -277,9 +273,7 @@
     "releaseYear": 2024,
     "concentration": "edp",
     "gender": "unisex",
-    "perfumers": [
-      "Gabriela Maldonado"
-    ],
+    "perfumers": ["Gabriela Maldonado"],
     "family": "oriental",
     "description": "Uma interpretação opulenta e luminosa da baunilha madura. Equilibra um buquê de lírios e peônias com o calor balsâmico do benjoim e da madeira de cashmeran.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173935/granado-perfume-esplendor-75ml.png",
@@ -346,9 +340,7 @@
     "releaseYear": 2020,
     "concentration": "edp",
     "gender": "unisex",
-    "perfumers": [
-      "Guillaume Flavigny"
-    ],
+    "perfumers": ["Guillaume Flavigny"],
     "family": "aromatic",
     "description": "Homenagem à história imperial brasileira, aliando o frescor sofisticado do chá branco e da bergamota à nobreza da infusão de mate e flores elegantes.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173873/granado-perfume-imperial-75ml.png",
@@ -415,9 +407,7 @@
     "releaseYear": 2022,
     "concentration": "edp",
     "gender": "unisex",
-    "perfumers": [
-      "Lisa Montes"
-    ],
+    "perfumers": ["Lisa Montes"],
     "family": "floral",
     "description": "Um passeio matinal sob a sombra de um exuberante jardim botânico imperial. Destaca a exuberância da flor de laranjeira e jasmim com um leve toque picante de pimenta rosa.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173875/granado-perfume-jardim-real-75ml.png",
@@ -545,9 +535,7 @@
     "releaseYear": 2023,
     "concentration": "edp",
     "gender": "unisex",
-    "perfumers": [
-      "Florian Gallo"
-    ],
+    "perfumers": ["Florian Gallo"],
     "family": "woody",
     "description": "Uma aventura olfativa pela Mata Atlântica que conecta notas amadeiradas secas de pinheiro e cedro com a sofisticação atalcada da íris e a espiritualidade do incenso Kyara.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173876/granado-perfume-expedicao-75ml.png",
@@ -614,9 +602,7 @@
     "releaseYear": 2019,
     "concentration": "edt",
     "gender": "unisex",
-    "perfumers": [
-      "Leonardo Lucheze"
-    ],
+    "perfumers": ["Leonardo Lucheze"],
     "family": "oriental",
     "description": "Uma fragrância amendoada, quente e cremosa que exalta as facetas ricas da fava tonka brasileira com toques envolventes de leite de coco, baunilha e âmbar.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173952/granado-eau-de-toilette-tonka-100ml.png",
@@ -677,9 +663,7 @@
     "releaseYear": 2020,
     "concentration": "edc",
     "gender": "unisex",
-    "perfumers": [
-      "Leonardo Lucheze"
-    ],
+    "perfumers": ["Leonardo Lucheze"],
     "family": "woody",
     "description": "Uma interpretação equilibrada e elegante do mítico oud. Especiarias frias de cardamomo e pimenta preta contrastam com um fundo amadeirado nobre de guaiaco e agarwood.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173958/granado-colonia-oud-100ml.png",
@@ -880,9 +864,7 @@
     "releaseYear": 2019,
     "concentration": "edc",
     "gender": "unisex",
-    "perfumers": [
-      "Clément Gavarry"
-    ],
+    "perfumers": ["Clément Gavarry"],
     "family": "woody",
     "description": "Harmonia cativante entre o frescor cintilante da mandarina suculenta e o conforto aconchegante e aveludado do sândalo, criando uma atmosfera serena e sofisticada.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173903/colonia-granado-mandarina-sandalo-230ml.png",
@@ -1528,9 +1510,7 @@
     "releaseYear": 2021,
     "concentration": "edc",
     "gender": "unisex",
-    "perfumers": [
-      "Leandro Petit"
-    ],
+    "perfumers": ["Leandro Petit"],
     "family": "floral",
     "description": "Floral branco fresco, luminoso e levemente atalcado. Abre com a doçura natural do pêssego e revela pétalas límpidas de lírio sobre uma base macia e sedosa de almíscar.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173960/granado-colonia-lirio-100ml.png",
@@ -1597,9 +1577,7 @@
     "releaseYear": 2022,
     "concentration": "edc",
     "gender": "feminine",
-    "perfumers": [
-      "Shyamala Maisondieu"
-    ],
+    "perfumers": ["Shyamala Maisondieu"],
     "family": "floral",
     "description": "Uma fragrância floral verde, elegante e aconchegante. Folhas de violeta e acordes verdes dão frescor a um buquê nobre de magnólia e mimosa sobre uma cama aveludada de musk.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173961/granado-colonia-magnolia-100ml.png",
@@ -1666,9 +1644,7 @@
     "releaseYear": 2019,
     "concentration": "edc",
     "gender": "feminine",
-    "perfumers": [
-      "Hernan Fígoli"
-    ],
+    "perfumers": ["Hernan Fígoli"],
     "family": "floral",
     "description": "Retrato fiel de um buquê de rosas rubras orvalhadas. Uma saída frutada de grapefruit e bergamota antecede a opulência aveludada e poética da clássica rosa de damasco.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173962/granado-colonia-rosa-damascena-100ml.png",
@@ -1735,9 +1711,7 @@
     "releaseYear": 2020,
     "concentration": "edc",
     "gender": "unisex",
-    "perfumers": [
-      "Leonardo Lucheze"
-    ],
+    "perfumers": ["Leonardo Lucheze"],
     "family": "citrus",
     "description": "Fragrância revigorante e efervescente. A toranja vibrante e o ruibarbo cortante combinam-se com a floralidade verde do gerânio para uma sensação de banho gelado revitalizante.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173963/granado-colonia-geranio-grapefruit-100ml.png",
@@ -1804,9 +1778,7 @@
     "releaseYear": 2016,
     "concentration": "edc",
     "gender": "unisex",
-    "perfumers": [
-      "Sophie Truitard"
-    ],
+    "perfumers": ["Sophie Truitard"],
     "family": "citrus",
     "description": "Verdadeira ode à natureza. O aroma fresco e verde da verbena combina-se à lima e ao alecrim, transmitindo uma sensação inigualável de vitalidade, asseio e bem-estar.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173964/granado-colonia-verbena-100ml.png",
@@ -1867,9 +1839,7 @@
     "releaseYear": 2023,
     "concentration": "edc",
     "gender": "unisex",
-    "perfumers": [
-      "Véronique Nyberg"
-    ],
+    "perfumers": ["Véronique Nyberg"],
     "family": "aromatic",
     "description": "Equilíbrio refinado entre o frescor cítrico da bergamota e as facetas aconchegantes e secas da infusão de chá preto. Uma fragrância sóbria, elegante e atemporal.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173965/granado-colonia-cha-preto-bergamota-100ml.png",
@@ -1936,9 +1906,7 @@
     "releaseYear": 2023,
     "concentration": "edc",
     "gender": "unisex",
-    "perfumers": [
-      "Florian Gallo"
-    ],
+    "perfumers": ["Florian Gallo"],
     "family": "green",
     "description": "Representa o frescor verde e a naturalidade da folha de figo partida ao meio. Uma criação que equilibra essa personalidade vegetal viva com um fundo amadeirado requintado.",
     "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173966/granado-colonia-figo-100ml.png",

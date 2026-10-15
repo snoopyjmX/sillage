@@ -10,13 +10,48 @@
     "description": "Fragrância revigorante e refinada inspirada na sensação de liberdade infinita, destacando uma saída cítrica cintilante de cidra e bergamota com o conforto reconfortante do chá preto e ambroxan.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/291642142/infinite-horizon-100ml-in-the-box-perfumes-nsqrqc3y8n.png",
     "notes": [
-      { "name": "Cidra Siciliana", "family": "citrus", "position": "top", "description": "Cítrico e efervescente" },
-      { "name": "Bergamota da Calábria", "family": "citrus", "position": "top", "description": "Fresco e luminoso" },
-      { "name": "Néroli Tunisiano", "family": "floral", "position": "heart", "description": "Floral branco cítrico" },
-      { "name": "Gengibre Nigeriano", "family": "spicy", "position": "heart", "description": "Picante e refrescante" },
-      { "name": "Canela do Ceilão", "family": "spicy", "position": "heart", "description": "Especiado quente e aromático" },
-      { "name": "Ambroxan", "family": "musky", "position": "base", "description": "Ambarado, limpo e aveludado" },
-      { "name": "Chá Preto Chinês", "family": "aromatic", "position": "base", "description": "Herbal, seco e sofisticado" }
+      {
+        "name": "Cidra Siciliana",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico e efervescente"
+      },
+      {
+        "name": "Bergamota da Calábria",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e luminoso"
+      },
+      {
+        "name": "Néroli Tunisiano",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco cítrico"
+      },
+      {
+        "name": "Gengibre Nigeriano",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e refrescante"
+      },
+      {
+        "name": "Canela do Ceilão",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado quente e aromático"
+      },
+      {
+        "name": "Ambroxan",
+        "family": "musky",
+        "position": "base",
+        "description": "Ambarado, limpo e aveludado"
+      },
+      {
+        "name": "Chá Preto Chinês",
+        "family": "aromatic",
+        "position": "base",
+        "description": "Herbal, seco e sofisticado"
+      }
     ]
   },
   {
@@ -30,11 +65,36 @@
     "description": "Clássico contemporâneo de perfil verde e herbal nobre. Une o frescor revigorante da lúcia-lima e folhas de violeta a uma base refinada de âmbar gris e sândalo cremoso.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494488/irish-green-man-100ml-in-the-box-perfumes-87f5514f.jpg",
     "notes": [
-      { "name": "Lúcia-lima", "family": "green", "position": "top", "description": "Verde cítrico e aromático" },
-      { "name": "Íris", "family": "floral", "position": "top", "description": "Floral atalcado elegante" },
-      { "name": "Folha de Violeta", "family": "green", "position": "heart", "description": "Aquoso e verde ozônico" },
-      { "name": "Âmbar Cinzento", "family": "musky", "position": "base", "description": "Mineral, salino e envolvente" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira macia e cremosa" }
+      {
+        "name": "Lúcia-lima",
+        "family": "green",
+        "position": "top",
+        "description": "Verde cítrico e aromático"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral atalcado elegante"
+      },
+      {
+        "name": "Folha de Violeta",
+        "family": "green",
+        "position": "heart",
+        "description": "Aquoso e verde ozônico"
+      },
+      {
+        "name": "Âmbar Cinzento",
+        "family": "musky",
+        "position": "base",
+        "description": "Mineral, salino e envolvente"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira macia e cremosa"
+      }
     ]
   },
   {
@@ -48,17 +108,72 @@
     "description": "Uma celebração ao frescor mediterrâneo. Apresenta notas cítricas vibrantes aliadas a um coração floral aromático e um rastro macio de fava tonka e almíscar.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147495029/versus-pour-homme-100ml-in-the-box-perfumes-9ef63e3e.jpg",
     "notes": [
-      { "name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico cortante e fresco" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Luminoso e revigorante" },
-      { "name": "Néroli", "family": "floral", "position": "top", "description": "Floral verde delicado" },
-      { "name": "Rosa de Maio", "family": "floral", "position": "top", "description": "Floral suave e aveludado" },
-      { "name": "Jacinto", "family": "floral", "position": "heart", "description": "Floral verde e aquático" },
-      { "name": "Cedro", "family": "woody", "position": "heart", "description": "Amadeirado seco e elegante" },
-      { "name": "Sálvia Esclaréia", "family": "aromatic", "position": "heart", "description": "Herbal e canforado" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral aromático picante" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce amendoado e envolvente" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Limpo, sedoso e macio" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e resinoso" }
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cortante e fresco"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Luminoso e revigorante"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral verde delicado"
+      },
+      {
+        "name": "Rosa de Maio",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral suave e aveludado"
+      },
+      {
+        "name": "Jacinto",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde e aquático"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado seco e elegante"
+      },
+      {
+        "name": "Sálvia Esclaréia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal e canforado"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aromático picante"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce amendoado e envolvente"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Limpo, sedoso e macio"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e resinoso"
+      }
     ]
   },
   {
@@ -72,12 +187,42 @@
     "description": "Equilíbrio irresistível que remete a uma fina torta de limão sobre base amadeirada. O frescor do limão siciliano funde-se à suntuosidade da baunilha e à nobreza das madeiras.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/176985055/lemon-vanilla---wood-100ml-in-the-box-perfumes-91ec244a.jpg",
     "notes": [
-      { "name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Cítrico cintilante e suculento" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Fresco e levemente amargo" },
-      { "name": "Sândalo", "family": "woody", "position": "heart", "description": "Madeira cremosa e sofisticada" },
-      { "name": "Notas Amadeiradas", "family": "woody", "position": "heart", "description": "Estrutura seca e encorpada" },
-      { "name": "Baunilha de Madagascar", "family": "oriental", "position": "base", "description": "Doce, balsâmica e gourmand" },
-      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso, verde e elegante" }
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cintilante e suculento"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e levemente amargo"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira cremosa e sofisticada"
+      },
+      {
+        "name": "Notas Amadeiradas",
+        "family": "woody",
+        "position": "heart",
+        "description": "Estrutura seca e encorpada"
+      },
+      {
+        "name": "Baunilha de Madagascar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce, balsâmica e gourmand"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso, verde e elegante"
+      }
     ]
   },
   {
@@ -91,17 +236,72 @@
     "description": "Expressivo e moderno, abre com uma inebriante nota de manga combinada a maçã e especiarias sobre um fundo ambarado denso, criando um aroma sensual e impactante.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/263599669/envoy-100ml-in-the-box-perfumes-a41e9ab640.png",
     "notes": [
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado aromático fresco" },
-      { "name": "Maçã", "family": "fruity", "position": "top", "description": "Frutado crocante e suculento" },
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico doce e alegre" },
-      { "name": "Violeta", "family": "floral", "position": "top", "description": "Floral verde delicado" },
-      { "name": "Manga", "family": "fruity", "position": "heart", "description": "Fruta tropical rica e doce" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal clássico e limpo" },
-      { "name": "Pimenta Preta", "family": "spicy", "position": "heart", "description": "Picante e vibrante" },
-      { "name": "Patchouli", "family": "woody", "position": "heart", "description": "Amadeirado úmido e terroso" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e envolvente" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e aveludada" },
-      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e elegante" }
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado aromático fresco"
+      },
+      {
+        "name": "Maçã",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado crocante e suculento"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e alegre"
+      },
+      {
+        "name": "Violeta",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral verde delicado"
+      },
+      {
+        "name": "Manga",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Fruta tropical rica e doce"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal clássico e limpo"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e vibrante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado úmido e terroso"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e envolvente"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremosa e aveludada"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e elegante"
+      }
     ]
   },
   {
@@ -115,10 +315,30 @@
     "description": "Interpretação elegante e contemporânea da flor de laranjeira masculina, contrastada com a bergamota da Calábria e fixada em uma sofisticada base de ambrofix e patchouli.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/268961726/me-and-i-100ml-in-the-box-perfumes-4a57da7382.png",
     "notes": [
-      { "name": "Bergamota da Calábria", "family": "citrus", "position": "top", "description": "Cítrico nobre e cintilante" },
-      { "name": "Flor de Laranjeira Tunisiana", "family": "floral", "position": "heart", "description": "Floral branco limpo e radiante" },
-      { "name": "Ambrofix", "family": "musky", "position": "base", "description": "Ambarado moderno e fixante" },
-      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado sutil e terroso" }
+      {
+        "name": "Bergamota da Calábria",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico nobre e cintilante"
+      },
+      {
+        "name": "Flor de Laranjeira Tunisiana",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco limpo e radiante"
+      },
+      {
+        "name": "Ambrofix",
+        "family": "musky",
+        "position": "base",
+        "description": "Ambarado moderno e fixante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sutil e terroso"
+      }
     ]
   },
   {
@@ -132,15 +352,60 @@
     "description": "Criação cítrica especiada vigorosa e opulenta, combinando explosão de toranja, tangerina e açafrão com base requintada de musgo de carvalho, âmbar e vetiver.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/291642144/mohan-100ml-in-the-box-perfumes-qplv9oik5e.png",
     "notes": [
-      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Cítrico amargo e enérgico" },
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Doce e suculento" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Fresco e luminoso" },
-      { "name": "Gengibre", "family": "spicy", "position": "heart", "description": "Picante e refrescante" },
-      { "name": "Açafrão", "family": "spicy", "position": "heart", "description": "Especiado quente e refinado" },
-      { "name": "Íris", "family": "floral", "position": "heart", "description": "Floral acetinado e nobre" },
-      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e amadeirado" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Calor ambarado profundo" },
-      { "name": "Musgo de Carvalho", "family": "woody", "position": "base", "description": "Musgoso, clássico e seco" }
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo e enérgico"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Doce e suculento"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e luminoso"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e refrescante"
+      },
+      {
+        "name": "Açafrão",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado quente e refinado"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral acetinado e nobre"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e amadeirado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor ambarado profundo"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Musgoso, clássico e seco"
+      }
     ]
   },
   {
@@ -154,12 +419,42 @@
     "description": "Extrait de parfum suntuoso com foco na verdadeira rainha das notas: a fava de baunilha madura, envolta em toques de especiarias nobres, cacau fino e madeiras acolhedoras.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/291642145/vaniglia-magnific-extrait-100ml-in-the-box-perfumes-87gh530.png",
     "notes": [
-      { "name": "Fava de Baunilha", "family": "oriental", "position": "top", "description": "Cremosa, licorosa e intensa" },
-      { "name": "Especiarias Finas", "family": "spicy", "position": "top", "description": "Toque picante aquecido" },
-      { "name": "Orquídea de Baunilha", "family": "floral", "position": "heart", "description": "Floral doce e hipnótico" },
-      { "name": "Cacau", "family": "oriental", "position": "heart", "description": "Achocolatado seco e elegante" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Dourado e acolhedor" },
-      { "name": "Madeiras Nobres", "family": "woody", "position": "base", "description": "Sustentação amadeirada nobre" }
+      {
+        "name": "Fava de Baunilha",
+        "family": "oriental",
+        "position": "top",
+        "description": "Cremosa, licorosa e intensa"
+      },
+      {
+        "name": "Especiarias Finas",
+        "family": "spicy",
+        "position": "top",
+        "description": "Toque picante aquecido"
+      },
+      {
+        "name": "Orquídea de Baunilha",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral doce e hipnótico"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Achocolatado seco e elegante"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Dourado e acolhedor"
+      },
+      {
+        "name": "Madeiras Nobres",
+        "family": "woody",
+        "position": "base",
+        "description": "Sustentação amadeirada nobre"
+      }
     ]
   },
   {
@@ -173,14 +468,54 @@
     "description": "Obra-prima cítrico-aromática inspirada no frescor luxuoso de alta gama. Combina groselha preta, gengibre fresco e bergamota a uma base requintada de sândalo e âmbar cristal.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/273763784/essenza-nobile-100ml-in-the-box-perfumes-3f269a9e3b.png",
     "notes": [
-      { "name": "Groselha Preta", "family": "fruity", "position": "top", "description": "Frutado ácido e refinado" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso e fresco" },
-      { "name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante e refrescante" },
-      { "name": "Alecrim", "family": "aromatic", "position": "top", "description": "Herbal e energizante" },
-      { "name": "Magnólia", "family": "floral", "position": "heart", "description": "Floral aveludado e claro" },
-      { "name": "Rosa Damascena", "family": "floral", "position": "heart", "description": "Rica e sofisticada" },
-      { "name": "Sândalo Indiano", "family": "woody", "position": "base", "description": "Amadeirado sedoso" },
-      { "name": "Âmbar Cristal", "family": "oriental", "position": "base", "description": "Límpido e luminoso" }
+      {
+        "name": "Groselha Preta",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado ácido e refinado"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso e fresco"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e refrescante"
+      },
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal e energizante"
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado e claro"
+      },
+      {
+        "name": "Rosa Damascena",
+        "family": "floral",
+        "position": "heart",
+        "description": "Rica e sofisticada"
+      },
+      {
+        "name": "Sândalo Indiano",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sedoso"
+      },
+      {
+        "name": "Âmbar Cristal",
+        "family": "oriental",
+        "position": "base",
+        "description": "Límpido e luminoso"
+      }
     ]
   },
   {
@@ -194,13 +529,48 @@
     "description": "Fragrância aquática profunda e enigmática. Une a brisa fresca marinha e cítricos brilhantes a um fundo incensado e amadeirado de patchouli que evoca nobreza oceânica.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494480/dark-water-100ml-in-the-box-perfumes-bcf4c6f5.jpg",
     "notes": [
-      { "name": "Notas Marinhas", "family": "aquatic", "position": "top", "description": "Oceânico e mineral refrescante" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico limpo e vibrante" },
-      { "name": "Alecrim", "family": "aromatic", "position": "heart", "description": "Herbal verde e purificante" },
-      { "name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Aromático levemente canforado" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde estruturado" },
-      { "name": "Incenso", "family": "oriental", "position": "base", "description": "Fumaça mística e nobre" },
-      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado escuro e profundo" }
+      {
+        "name": "Notas Marinhas",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Oceânico e mineral refrescante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico limpo e vibrante"
+      },
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal verde e purificante"
+      },
+      {
+        "name": "Sálvia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático levemente canforado"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde estruturado"
+      },
+      {
+        "name": "Incenso",
+        "family": "oriental",
+        "position": "base",
+        "description": "Fumaça mística e nobre"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado escuro e profundo"
+      }
     ]
   },
   {
@@ -214,12 +584,42 @@
     "description": "Aroma de elegância cristalina e energia solar. Une o frescor revigorante da toranja e do gengibre com um toque aquático e a base limpa de ambroxan.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147495027/tersus-100ml-in-the-box-perfumes-d8926943.jpg",
     "notes": [
-      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Amargo e efervescente" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico radiante" },
-      { "name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante e refrescante" },
-      { "name": "Notas Aquáticas", "family": "aquatic", "position": "heart", "description": "Brisa de água pura" },
-      { "name": "Ambroxan", "family": "musky", "position": "base", "description": "Ambarado limpo e moderno" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Madeira seca e refinada" }
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Amargo e efervescente"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico radiante"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e refrescante"
+      },
+      {
+        "name": "Notas Aquáticas",
+        "family": "aquatic",
+        "position": "heart",
+        "description": "Brisa de água pura"
+      },
+      {
+        "name": "Ambroxan",
+        "family": "musky",
+        "position": "base",
+        "description": "Ambarado limpo e moderno"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira seca e refinada"
+      }
     ]
   },
   {
@@ -233,12 +633,42 @@
     "description": "Gourmand refinado que mescla o dulçor crocante do pralinê e castanhas nobres com o aconchego de madeiras preciosas e âmbar aveludado.",
     "imageUrl": null,
     "notes": [
-      { "name": "Avelã", "family": "oriental", "position": "top", "description": "Tostado e amanteigado" },
-      { "name": "Pralinê", "family": "oriental", "position": "top", "description": "Açúcar caramelizado e castanhas" },
-      { "name": "Cacau", "family": "oriental", "position": "heart", "description": "Achocolatado denso e aveludado" },
-      { "name": "Cedro", "family": "woody", "position": "heart", "description": "Amadeirado nobre e equilibrado" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e sedutor" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e duradouro" }
+      {
+        "name": "Avelã",
+        "family": "oriental",
+        "position": "top",
+        "description": "Tostado e amanteigado"
+      },
+      {
+        "name": "Pralinê",
+        "family": "oriental",
+        "position": "top",
+        "description": "Açúcar caramelizado e castanhas"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Achocolatado denso e aveludado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado nobre e equilibrado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e sedutor"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e duradouro"
+      }
     ]
   },
   {
@@ -252,13 +682,48 @@
     "description": "Evolução mais densa e sofisticada do clássico aquático. Combina o frescor cortante das notas marinhas com o mistério envolvente do olíbano e a sobriedade do patchouli.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/267970347/deep-dark-water-100ml-in-the-box-perfumes-872f28120b.png",
     "notes": [
-      { "name": "Notas Marinhas", "family": "aquatic", "position": "top", "description": "Fresco, salgado e oceânico" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cítrico luminoso" },
-      { "name": "Alecrim", "family": "aromatic", "position": "heart", "description": "Herbal refinado e aromático" },
-      { "name": "Sálvia Esclaréia", "family": "aromatic", "position": "heart", "description": "Verde sutilmente ambarado" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral encorpado e vivo" },
-      { "name": "Olíbano", "family": "oriental", "position": "base", "description": "Resina balsâmica e incensada" },
-      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado terroso e nobre" }
+      {
+        "name": "Notas Marinhas",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Fresco, salgado e oceânico"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cítrico luminoso"
+      },
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal refinado e aromático"
+      },
+      {
+        "name": "Sálvia Esclaréia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Verde sutilmente ambarado"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral encorpado e vivo"
+      },
+      {
+        "name": "Olíbano",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resina balsâmica e incensada"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso e nobre"
+      }
     ]
   },
   {
@@ -272,15 +737,55 @@
     "description": "Ícone masculino frutado-chipre de sucesso incontestável. Abre com o lendário acorde de abacaxi defumado e bergamota, assentando em bétula nobre, patchouli e musgo de carvalho.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494474/new-aventhis-100ml-in-the-box-perfumes-6b94c03c.jpg",
     "notes": [
-      { "name": "Abacaxi", "family": "fruity", "position": "top", "description": "Frutado tropical suculento" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico fresco e brilhante" },
-      { "name": "Groselha Preta", "family": "fruity", "position": "top", "description": "Frutado ácido refinado" },
+      {
+        "name": "Abacaxi",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado tropical suculento"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco e brilhante"
+      },
+      {
+        "name": "Groselha Preta",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado ácido refinado"
+      },
       { "name": "Maçã", "family": "fruity", "position": "top", "description": "Crocante e verde" },
-      { "name": "Bétula", "family": "woody", "position": "heart", "description": "Madeira defumada e coriácea" },
-      { "name": "Patchouli", "family": "woody", "position": "heart", "description": "Terroso e elegante" },
-      { "name": "Musgo de Carvalho", "family": "woody", "position": "base", "description": "Musgoso chipre clássico" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Limpo e aveludado" },
-      { "name": "Âmbar Cinzento", "family": "musky", "position": "base", "description": "Mineral e envolvente" }
+      {
+        "name": "Bétula",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira defumada e coriácea"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "heart",
+        "description": "Terroso e elegante"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Musgoso chipre clássico"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Limpo e aveludado"
+      },
+      {
+        "name": "Âmbar Cinzento",
+        "family": "musky",
+        "position": "base",
+        "description": "Mineral e envolvente"
+      }
     ]
   },
   {
@@ -294,13 +799,48 @@
     "description": "Fougère aromático magnético construído sobre a intensidade da bergamota da Calábria, pimentas vibrantes e a poderosa assinatura ambarada do ambroxan.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147495024/sauvegy-100ml-in-the-box-perfumes-21716234.jpg",
     "notes": [
-      { "name": "Bergamota da Calábria", "family": "citrus", "position": "top", "description": "Cítrico cítrico cortante" },
-      { "name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e eletrizante" },
-      { "name": "Pimenta de Szechuan", "family": "spicy", "position": "heart", "description": "Especiado picante e metálico" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral herbal limpo" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Verde floral vívido" },
-      { "name": "Ambroxan", "family": "musky", "position": "base", "description": "Ambarado mineral de alto rastro" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado seco viril" }
+      {
+        "name": "Bergamota da Calábria",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cítrico cortante"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e eletrizante"
+      },
+      {
+        "name": "Pimenta de Szechuan",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado picante e metálico"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Floral herbal limpo"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Verde floral vívido"
+      },
+      {
+        "name": "Ambroxan",
+        "family": "musky",
+        "position": "base",
+        "description": "Ambarado mineral de alto rastro"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado seco viril"
+      }
     ]
   },
   {
@@ -314,12 +854,42 @@
     "description": "Fragrância baladeira e sedutora por excelência. Traz a aura inebriante do absinto e anis temperada pela lavanda fresca sobre um fundo denso de baunilha negra e almíscar.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494477/my-party-up-100ml-in-the-box-perfumes-4a0b5c11.jpg",
     "notes": [
-      { "name": "Absinto", "family": "aromatic", "position": "top", "description": "Licoroso amargo e verde" },
-      { "name": "Anis", "family": "spicy", "position": "top", "description": "Especiado aromático doce" },
-      { "name": "Erva-Doce", "family": "aromatic", "position": "top", "description": "Herbal doce e fresco" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral limpo clássico" },
-      { "name": "Casca de Baunilha Negra", "family": "oriental", "position": "base", "description": "Doce gourmand escuro" },
-      { "name": "Almíscar Negro", "family": "musky", "position": "base", "description": "Sensual e aveludado" }
+      {
+        "name": "Absinto",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Licoroso amargo e verde"
+      },
+      {
+        "name": "Anis",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado aromático doce"
+      },
+      {
+        "name": "Erva-Doce",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal doce e fresco"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Floral limpo clássico"
+      },
+      {
+        "name": "Casca de Baunilha Negra",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce gourmand escuro"
+      },
+      {
+        "name": "Almíscar Negro",
+        "family": "musky",
+        "position": "base",
+        "description": "Sensual e aveludado"
+      }
     ]
   },
   {
@@ -333,11 +903,36 @@
     "description": "Inspiração zen e purificante com frescor aquático milenar. O cítrico exótico do yuzu mescla-se à flor de lótus e a madeiras nobres para transmitir tranquilidade e presença.",
     "imageUrl": null,
     "notes": [
-      { "name": "Yuzu", "family": "citrus", "position": "top", "description": "Cítrico japonês verde e amargo" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Fresco e luminoso" },
-      { "name": "Flor de Lótus", "family": "floral", "position": "heart", "description": "Floral aquático etéreo" },
-      { "name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Especiado aquecido e picante" },
-      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e enraizado" },
+      {
+        "name": "Yuzu",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico japonês verde e amargo"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e luminoso"
+      },
+      {
+        "name": "Flor de Lótus",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aquático etéreo"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado aquecido e picante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e enraizado"
+      },
       { "name": "Cedro", "family": "woody", "position": "base", "description": "Seco e aromático" }
     ]
   },
@@ -352,15 +947,60 @@
     "description": "Versátil, elegante e sofisticado. Uma saída cítrica de toranja e hortelã encontra a complexidade do gengibre e se apoia em uma base luxuosa de incenso e madeiras de cedro.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147495028/the-blue-100ml-in-the-box-perfumes-65f5a892.jpg",
     "notes": [
-      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Cítrico revigorante e amargo" },
-      { "name": "Limão", "family": "citrus", "position": "top", "description": "Fresco e efervescente" },
-      { "name": "Hortelã", "family": "aromatic", "position": "top", "description": "Herbal mentolado gelado" },
-      { "name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Especiado floral vibrante" },
-      { "name": "Gengibre", "family": "spicy", "position": "heart", "description": "Picante quente e fresco" },
-      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral sutil e elegante" },
-      { "name": "Incenso", "family": "oriental", "position": "base", "description": "Místico e esfumaçado" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e sóbrio" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e duradouro" }
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico revigorante e amargo"
+      },
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e efervescente"
+      },
+      {
+        "name": "Hortelã",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal mentolado gelado"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado floral vibrante"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante quente e fresco"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sutil e elegante"
+      },
+      {
+        "name": "Incenso",
+        "family": "oriental",
+        "position": "base",
+        "description": "Místico e esfumaçado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e sóbrio"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e duradouro"
+      }
     ]
   },
   {
@@ -374,13 +1014,48 @@
     "description": "Energia atlética e classe indiscutível. A explosão cintilante de mandarina com notas marinhas é enriquecida por fava tonka e almíscar branco, gerando conforto impecável.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494486/hall-ury-sport-100ml-in-the-box-perfumes-f3162095.jpg",
     "notes": [
-      { "name": "Laranja", "family": "citrus", "position": "top", "description": "Cítrico doce e alegre" },
-      { "name": "Notas Marinhas", "family": "aquatic", "position": "top", "description": "Aquático arejado e salgado" },
-      { "name": "Aldeídos", "family": "citrus", "position": "top", "description": "Sensação límpida e metálica" },
-      { "name": "Pimenta", "family": "spicy", "position": "heart", "description": "Picante e estimulante" },
-      { "name": "Néroli", "family": "floral", "position": "heart", "description": "Floral cítrico limpo" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Baunilha amendoada cremosa" },
-      { "name": "Almíscar Branco", "family": "musky", "position": "base", "description": "Aconchegante e puro" }
+      {
+        "name": "Laranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e alegre"
+      },
+      {
+        "name": "Notas Marinhas",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Aquático arejado e salgado"
+      },
+      {
+        "name": "Aldeídos",
+        "family": "citrus",
+        "position": "top",
+        "description": "Sensação límpida e metálica"
+      },
+      {
+        "name": "Pimenta",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e estimulante"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral cítrico limpo"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Baunilha amendoada cremosa"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Aconchegante e puro"
+      }
     ]
   },
   {
@@ -394,9 +1069,24 @@
     "description": "Fragrância exótica e irresistivelmente sensual. Destaca a madeira de coco tropical abraçada pela bergamota fresca e o calor adocicado da fava tonka.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494493/magnifique-100ml-in-the-box-perfumes-872f28120b.jpg",
     "notes": [
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico fresco e brilhante" },
-      { "name": "Madeira de Coco", "family": "woody", "position": "heart", "description": "Cremoso, lactônico e tropical" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Adocicado quente e envolvente" }
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco e brilhante"
+      },
+      {
+        "name": "Madeira de Coco",
+        "family": "woody",
+        "position": "heart",
+        "description": "Cremoso, lactônico e tropical"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado quente e envolvente"
+      }
     ]
   },
   {
@@ -410,14 +1100,54 @@
     "description": "Potência sedutora com presença imbatível. A doçura marcante da pera suculenta une-se à canela, hortelã e uma baunilha negra aveludada ideal para a vida noturna.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147495031/ultramen-100ml-in-the-box-perfumes-7c91fa02.jpg",
     "notes": [
-      { "name": "Pera", "family": "fruity", "position": "top", "description": "Frutado doce e aquoso" },
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Aromático limpo" },
-      { "name": "Hortelã", "family": "aromatic", "position": "top", "description": "Refrescância gelada" },
-      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Especiado quente adocicado" },
-      { "name": "Sálvia Esclaréia", "family": "aromatic", "position": "heart", "description": "Herbal sofisticado" },
-      { "name": "Baunilha Negra", "family": "oriental", "position": "base", "description": "Cremosa e sedutora" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Calor ambarado duradouro" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado elegante" }
+      {
+        "name": "Pera",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado doce e aquoso"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático limpo"
+      },
+      {
+        "name": "Hortelã",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Refrescância gelada"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado quente adocicado"
+      },
+      {
+        "name": "Sálvia Esclaréia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal sofisticado"
+      },
+      {
+        "name": "Baunilha Negra",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremosa e sedutora"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor ambarado duradouro"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado elegante"
+      }
     ]
   },
   {
@@ -431,12 +1161,42 @@
     "description": "Olfativo imponente e nobre. O impacto especiado do cardamomo abre caminho para a sofisticação da íris e lavanda, ancoradas em rica baunilha oriental.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494487/homine-optimum-100ml-in-the-box-perfumes-c399b64c.jpg",
     "notes": [
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado picante e nobre" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático clássico refinado" },
-      { "name": "Íris", "family": "floral", "position": "heart", "description": "Floral atalcado luxuoso" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce quente e aveludada" },
-      { "name": "Notas Orientais", "family": "oriental", "position": "base", "description": "Calor resinoso profundo" },
-      { "name": "Notas Amadeiradas", "family": "woody", "position": "base", "description": "Madeira escura envolvente" }
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante e nobre"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático clássico refinado"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral atalcado luxuoso"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce quente e aveludada"
+      },
+      {
+        "name": "Notas Orientais",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor resinoso profundo"
+      },
+      {
+        "name": "Notas Amadeiradas",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira escura envolvente"
+      }
     ]
   },
   {
@@ -450,12 +1210,42 @@
     "description": "Injeção revigorante de frescor aromático. A hortelã pura e folhas frescas são exaltadas por nuances cítricas e especiadas sobre base amadeirada confortável.",
     "imageUrl": null,
     "notes": [
-      { "name": "Hortelã-Pimenta", "family": "aromatic", "position": "top", "description": "Gélido, mentolado e vibrante" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral aromático sereno" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Verde e levemente apimentado" },
-      { "name": "Cedro", "family": "woody", "position": "base", "description": "Madeira limpa e elegante" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Macio e aveludado" }
+      {
+        "name": "Hortelã-Pimenta",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Gélido, mentolado e vibrante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Floral aromático sereno"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Verde e levemente apimentado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira limpa e elegante"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Macio e aveludado"
+      }
     ]
   },
   {
@@ -469,12 +1259,42 @@
     "description": "Fragrância futurista e magnética. Combina o contraste elétrico do limão siciliano e lavanda cremosa com um fundo inovador de baunilha e vetiver terroso.",
     "imageUrl": null,
     "notes": [
-      { "name": "Raspas de Limão", "family": "citrus", "position": "top", "description": "Cítrico vibrante e efervescente" },
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Aromático moderno" },
-      { "name": "Maçã", "family": "fruity", "position": "heart", "description": "Frutado doce e crocante" },
-      { "name": "Fumaça", "family": "oriental", "position": "heart", "description": "Toque misterioso e esfumaçado" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce gourmand cremoso" },
-      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Amadeirado verde elegante" }
+      {
+        "name": "Raspas de Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico vibrante e efervescente"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático moderno"
+      },
+      {
+        "name": "Maçã",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Frutado doce e crocante"
+      },
+      {
+        "name": "Fumaça",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Toque misterioso e esfumaçado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce gourmand cremoso"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado verde elegante"
+      }
     ]
   },
   {
@@ -488,13 +1308,48 @@
     "description": "Intensidade vitoriosa em forma de perfume. O frescor especiado da pimenta preta e cardamomo encontra a suntuosidade do incenso e a opulência da fava de baunilha.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/251329584/the-trophy-elixir-100ml-in-the-box-perfumes-87f17ca1.jpg",
     "notes": [
-      { "name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e vigoroso" },
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado nobre e aromático" },
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Herbal clássico equilibrante" },
-      { "name": "Incenso", "family": "oriental", "position": "heart", "description": "Resinoso místico e denso" },
-      { "name": "Patchouli", "family": "woody", "position": "heart", "description": "Amadeirado terroso e rico" },
-      { "name": "Fava de Baunilha", "family": "oriental", "position": "base", "description": "Licoroso gourmand sensual" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Quente e amendoado" }
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e vigoroso"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado nobre e aromático"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal clássico equilibrante"
+      },
+      {
+        "name": "Incenso",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resinoso místico e denso"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado terroso e rico"
+      },
+      {
+        "name": "Fava de Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Licoroso gourmand sensual"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e amendoado"
+      }
     ]
   },
   {
@@ -508,12 +1363,42 @@
     "description": "Opulência solar e audaciosa. Contrasta o calor do couro aveludado e notas resinosas com a luminosidade salina da flor de tuberosa e do óleo de monoi.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494478/aurum-parfum-100ml-in-the-box-perfumes-91ec244a.jpg",
     "notes": [
-      { "name": "Tuberosa", "family": "floral", "position": "top", "description": "Floral branco exuberante e solar" },
-      { "name": "Sal", "family": "oriental", "position": "top", "description": "Mineral marinho surpreendente" },
-      { "name": "Pinheiro", "family": "green", "position": "top", "description": "Balsâmico verde resinoso" },
-      { "name": "Couro Camurça", "family": "oriental", "position": "heart", "description": "Macio, rico e elegante" },
-      { "name": "Âmbar Cinzento", "family": "musky", "position": "base", "description": "Animalico aveludado e mineral" },
-      { "name": "Óleo de Monoi", "family": "floral", "position": "base", "description": "Floral cremoso e exótico" }
+      {
+        "name": "Tuberosa",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral branco exuberante e solar"
+      },
+      {
+        "name": "Sal",
+        "family": "oriental",
+        "position": "top",
+        "description": "Mineral marinho surpreendente"
+      },
+      {
+        "name": "Pinheiro",
+        "family": "green",
+        "position": "top",
+        "description": "Balsâmico verde resinoso"
+      },
+      {
+        "name": "Couro Camurça",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Macio, rico e elegante"
+      },
+      {
+        "name": "Âmbar Cinzento",
+        "family": "musky",
+        "position": "base",
+        "description": "Animalico aveludado e mineral"
+      },
+      {
+        "name": "Óleo de Monoi",
+        "family": "floral",
+        "position": "base",
+        "description": "Floral cremoso e exótico"
+      }
     ]
   },
   {
@@ -527,12 +1412,42 @@
     "description": "A expressão máxima da sedução adocicada da linha. Uma fusão irresistível de maçã licorosa, davana e rosa turca, selada pela baunilha negra absoluta.",
     "imageUrl": null,
     "notes": [
-      { "name": "Maçã", "family": "fruity", "position": "top", "description": "Frutado doce e crocante" },
-      { "name": "Davana", "family": "green", "position": "top", "description": "Herbal licoroso aromático" },
-      { "name": "Rosa Damascena", "family": "floral", "position": "heart", "description": "Floral rica e refinada" },
-      { "name": "Cedro", "family": "woody", "position": "heart", "description": "Seco e aromático" },
-      { "name": "Baunilha Negra Absoluta", "family": "oriental", "position": "base", "description": "Intensa, resinosa e doce" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Quente e reconfortante" }
+      {
+        "name": "Maçã",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado doce e crocante"
+      },
+      {
+        "name": "Davana",
+        "family": "green",
+        "position": "top",
+        "description": "Herbal licoroso aromático"
+      },
+      {
+        "name": "Rosa Damascena",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral rica e refinada"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Seco e aromático"
+      },
+      {
+        "name": "Baunilha Negra Absoluta",
+        "family": "oriental",
+        "position": "base",
+        "description": "Intensa, resinosa e doce"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e reconfortante"
+      }
     ]
   },
   {
@@ -546,14 +1461,54 @@
     "description": "Monumento à perfumaria oriental de luxo. A folha de tabaco nobre e cravo-da-índia fundem-se à fava de baunilha, cacau fino e frutas secas em um aroma viciante e aquecido.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147495026/sweetobacco-100ml-in-the-box-perfumes-8ef0c9e6.jpg",
     "notes": [
-      { "name": "Folha de Tabaco", "family": "oriental", "position": "top", "description": "Aromático, seco e requintado" },
-      { "name": "Notas Especiadas", "family": "spicy", "position": "top", "description": "Especiarias quentes intensas" },
-      { "name": "Baunilha", "family": "oriental", "position": "heart", "description": "Doce gourmand cremoso" },
-      { "name": "Cacau", "family": "oriental", "position": "heart", "description": "Achocolatado profundo" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "heart", "description": "Amendoado e quente" },
-      { "name": "Flor de Tabaco", "family": "floral", "position": "heart", "description": "Floral sutil e balsâmico" },
-      { "name": "Frutas Secas", "family": "fruity", "position": "base", "description": "Doce licoroso maduro" },
-      { "name": "Notas Amadeiradas", "family": "woody", "position": "base", "description": "Madeiras preciosas acolhedoras" }
+      {
+        "name": "Folha de Tabaco",
+        "family": "oriental",
+        "position": "top",
+        "description": "Aromático, seco e requintado"
+      },
+      {
+        "name": "Notas Especiadas",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiarias quentes intensas"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Doce gourmand cremoso"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Achocolatado profundo"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Amendoado e quente"
+      },
+      {
+        "name": "Flor de Tabaco",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sutil e balsâmico"
+      },
+      {
+        "name": "Frutas Secas",
+        "family": "fruity",
+        "position": "base",
+        "description": "Doce licoroso maduro"
+      },
+      {
+        "name": "Notas Amadeiradas",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeiras preciosas acolhedoras"
+      }
     ]
   },
   {
@@ -567,12 +1522,42 @@
     "description": "Pura imponência olfativa mística. O calor refinado do açafrão e da noz-moscada encontra a força ancestral da madeira de oud e a textura refinada do patchouli.",
     "imageUrl": null,
     "notes": [
-      { "name": "Açafrão", "family": "spicy", "position": "top", "description": "Especiado quente e refinado" },
-      { "name": "Noz-moscada", "family": "spicy", "position": "top", "description": "Picante aromático" },
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Floral clássico equilibrado" },
-      { "name": "Oud", "family": "woody", "position": "heart", "description": "Madeira escura e defumada" },
-      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso e elegante" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Aveludado e fixante" }
+      {
+        "name": "Açafrão",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado quente e refinado"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante aromático"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Floral clássico equilibrado"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira escura e defumada"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e elegante"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e fixante"
+      }
     ]
   },
   {
@@ -586,14 +1571,49 @@
     "description": "Chipre contemporâneo arrebatador de fixação marcante. Apresenta um abacaxi maduro e toranja cintilante sustentados por um majestoso acorde de musgo de carvalho e cedro.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494494/makathen-100ml-in-the-box-perfumes-87f5514f.jpg",
     "notes": [
-      { "name": "Abacaxi", "family": "fruity", "position": "top", "description": "Fruta tropical suculenta" },
-      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Cítrico amargo vibrante" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Luminoso e elegante" },
+      {
+        "name": "Abacaxi",
+        "family": "fruity",
+        "position": "top",
+        "description": "Fruta tropical suculenta"
+      },
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo vibrante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Luminoso e elegante"
+      },
       { "name": "Cedro", "family": "woody", "position": "heart", "description": "Seco e nobre" },
-      { "name": "Patchouli", "family": "woody", "position": "heart", "description": "Amadeirado terroso" },
-      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral delicado" },
-      { "name": "Musgo de Carvalho", "family": "woody", "position": "base", "description": "Chipre clássico persistente" },
-      { "name": "Notas Amadeiradas", "family": "woody", "position": "base", "description": "Madeiras secas densas" }
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado terroso"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral delicado"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Chipre clássico persistente"
+      },
+      {
+        "name": "Notas Amadeiradas",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeiras secas densas"
+      }
     ]
   },
   {
@@ -607,14 +1627,54 @@
     "description": "Uma baunilha verde e especiada inigualável. O ardor picante do gengibre e pimenta rosa harmoniza perfeitamente com groselha e baunilha densa, criando uma assinatura memorável.",
     "imageUrl": null,
     "notes": [
-      { "name": "Gengibre", "family": "spicy", "position": "top", "description": "Fresco e picante" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante" },
-      { "name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Floral especiado" },
-      { "name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Aromático e nobre" },
-      { "name": "Groselha Negra", "family": "fruity", "position": "heart", "description": "Frutado ácido refinado" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Gourmand rica e aveludada" },
-      { "name": "Benjoim", "family": "oriental", "position": "base", "description": "Balsâmico quente" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira macia cremosa" }
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Fresco e picante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cintilante"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Floral especiado"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Aromático e nobre"
+      },
+      {
+        "name": "Groselha Negra",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Frutado ácido refinado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand rica e aveludada"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico quente"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira macia cremosa"
+      }
     ]
   },
   {
@@ -628,15 +1688,60 @@
     "description": "Elegância opulenta do mediterrâneo siciliano. Cítricos luminosos e lavanda fresca são envoltos em um coração doce de mel e canela, finalizado em tabaco e fava tonka.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494503/regnum-100ml-in-the-box-perfumes-87f5514f.jpg",
     "notes": [
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Aromático fresco e limpo" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso" },
-      { "name": "Limão", "family": "citrus", "position": "top", "description": "Fresco e cortante" },
-      { "name": "Mel", "family": "oriental", "position": "heart", "description": "Dourado, doce e balsâmico" },
-      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Especiado quente e doce" },
-      { "name": "Cashmeran", "family": "woody", "position": "heart", "description": "Aveludado e almiscarado" },
-      { "name": "Folha de Tabaco", "family": "oriental", "position": "base", "description": "Seco, aromático e nobre" },
-      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Cremoso e amendoado" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Gourmand sedosa" }
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático fresco e limpo"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso"
+      },
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e cortante"
+      },
+      {
+        "name": "Mel",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Dourado, doce e balsâmico"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado quente e doce"
+      },
+      {
+        "name": "Cashmeran",
+        "family": "woody",
+        "position": "heart",
+        "description": "Aveludado e almiscarado"
+      },
+      {
+        "name": "Folha de Tabaco",
+        "family": "oriental",
+        "position": "base",
+        "description": "Seco, aromático e nobre"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremoso e amendoado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand sedosa"
+      }
     ]
   },
   {
@@ -650,13 +1755,48 @@
     "description": "Uma explosão ensolarada de frutas mediterrâneas. Laranja siciliana e bergamota entrelaçam-se a uma cesta de frutas tropicais sobre uma base sensual de almíscar e baunilha.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494502/real-lignum-100ml-in-the-box-perfumes-87f5514f.jpg",
     "notes": [
-      { "name": "Laranja Siciliana", "family": "citrus", "position": "top", "description": "Cítrico suculento e doce" },
-      { "name": "Bergamota da Calábria", "family": "citrus", "position": "top", "description": "Luminoso e refinado" },
-      { "name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Fresco e efervescente" },
-      { "name": "Cesto de Frutas", "family": "fruity", "position": "heart", "description": "Frutado tropical doce" },
-      { "name": "Almíscar Branco", "family": "musky", "position": "base", "description": "Almiscarado limpo de longa duração" },
-      { "name": "Baunilha de Madagascar", "family": "oriental", "position": "base", "description": "Gourmand aveludada" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e envolvente" }
+      {
+        "name": "Laranja Siciliana",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico suculento e doce"
+      },
+      {
+        "name": "Bergamota da Calábria",
+        "family": "citrus",
+        "position": "top",
+        "description": "Luminoso e refinado"
+      },
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e efervescente"
+      },
+      {
+        "name": "Cesto de Frutas",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Frutado tropical doce"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Almiscarado limpo de longa duração"
+      },
+      {
+        "name": "Baunilha de Madagascar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand aveludada"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e envolvente"
+      }
     ]
   },
   {
@@ -670,16 +1810,61 @@
     "description": "Majestade e luxo imperial. A lavanda refinada e o pau-rosa unem-se à canela aromática e flores nobres, assentando em um sândalo cremoso e oud laosiano de presença épica.",
     "imageUrl": null,
     "notes": [
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Floral aromático sofisticado" },
-      { "name": "Pau-Rosa", "family": "woody", "position": "top", "description": "Madeira floral nobre" },
-      { "name": "Canela", "family": "spicy", "position": "top", "description": "Especiado quente acolhedor" },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Floral aromático sofisticado"
+      },
+      {
+        "name": "Pau-Rosa",
+        "family": "woody",
+        "position": "top",
+        "description": "Madeira floral nobre"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado quente acolhedor"
+      },
       { "name": "Maçã", "family": "fruity", "position": "top", "description": "Frutado fresco" },
-      { "name": "Cedro", "family": "woody", "position": "heart", "description": "Seco e aromático" },
-      { "name": "Rosa", "family": "floral", "position": "heart", "description": "Floral rica e aveludada" },
-      { "name": "Oud", "family": "woody", "position": "base", "description": "Madeira escura e resinosa" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e duradouro" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Dourado e quente" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Balsâmica e doce" }
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Seco e aromático"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral rica e aveludada"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira escura e resinosa"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e duradouro"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Dourado e quente"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmica e doce"
+      }
     ]
   },
   {
@@ -694,14 +1879,49 @@
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494492/lord-town-100ml-in-the-box-perfumes-87f5514f.jpg",
     "notes": [
       { "name": "Maçã", "family": "fruity", "position": "top", "description": "Crocante e doce" },
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Herbal clássico e elegante" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Fresco e luminoso" },
-      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Aromático verde picante" },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal clássico e elegante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e luminoso"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Aromático verde picante"
+      },
       { "name": "Violeta", "family": "floral", "position": "heart", "description": "Floral macio" },
-      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco suave" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Gourmand densa e viciante" },
-      { "name": "Cardamomo", "family": "spicy", "position": "base", "description": "Especiado picante" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e refinado" },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco suave"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand densa e viciante"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "base",
+        "description": "Especiado picante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e refinado"
+      },
       { "name": "Pimenta", "family": "spicy", "position": "base", "description": "Picante quente" }
     ]
   },
@@ -716,15 +1936,55 @@
     "description": "Distinto e inconfundível. Apresenta o marcante contraste da amêndoa amarga com lavanda metálica e heliotrópio, evoluindo para um rastro irresistível de baunilha e âmbar.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494479/cheval-100ml-in-the-box-perfumes-87f5514f.jpg",
     "notes": [
-      { "name": "Heliotrópio", "family": "floral", "position": "top", "description": "Floral atalcado com nuance de amêndoa" },
-      { "name": "Alcarávia", "family": "spicy", "position": "top", "description": "Especiado aromático levemente amargo" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico fresco" },
-      { "name": "Amêndoa Amarga", "family": "oriental", "position": "heart", "description": "Amendoado licoroso característico" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático limpo" },
+      {
+        "name": "Heliotrópio",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral atalcado com nuance de amêndoa"
+      },
+      {
+        "name": "Alcarávia",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado aromático levemente amargo"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco"
+      },
+      {
+        "name": "Amêndoa Amarga",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Amendoado licoroso característico"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático limpo"
+      },
       { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral macio" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludada" },
-      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e fixante" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira macia e cremosa" }
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce aveludada"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e fixante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira macia e cremosa"
+      }
     ]
   },
   {
@@ -738,16 +1998,66 @@
     "description": "Versão mais escura, misteriosa e imponente do clássico. A amêndoa amarga e o cardamomo são aprofundados por madeiras defumadas de guaiaco, oud nobre e baunilha escura.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/147494483/grand-cheval-100ml-in-the-box-perfumes-87f5514f.jpg",
     "notes": [
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado nobre picante" },
-      { "name": "Heliotrópio", "family": "floral", "position": "top", "description": "Floral doce atalcado" },
-      { "name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Vibrante e fresco" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico equilibrado" },
-      { "name": "Amêndoa Amarga", "family": "oriental", "position": "heart", "description": "Amendoado denso envolvente" },
-      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático refinado" },
-      { "name": "Oud", "family": "woody", "position": "base", "description": "Madeira escura e nobre" },
-      { "name": "Madeira Guaiac", "family": "woody", "position": "base", "description": "Defumado e balsâmico" },
-      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e sensual" },
-      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e aconchegante" }
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado nobre picante"
+      },
+      {
+        "name": "Heliotrópio",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral doce atalcado"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Vibrante e fresco"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico equilibrado"
+      },
+      {
+        "name": "Amêndoa Amarga",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Amendoado denso envolvente"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático refinado"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira escura e nobre"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "base",
+        "description": "Defumado e balsâmico"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremosa e sensual"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e aconchegante"
+      }
     ]
   },
   {
@@ -761,12 +2071,42 @@
     "description": "Sofisticação aromática e amadeirada sob medida. Une o frescor herbal da sálvia e lavanda a um coração nobre de pralinê e açafrão sobre fundo magnético de oud e cedro.",
     "imageUrl": null,
     "notes": [
-      { "name": "Sálvia Esclaréia", "family": "aromatic", "position": "top", "description": "Herbal elegante e canforado" },
-      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Aromático clássico" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Fresco e luminoso" },
-      { "name": "Açafrão", "family": "spicy", "position": "heart", "description": "Especiado quente aristocrático" },
-      { "name": "Pralinê", "family": "oriental", "position": "heart", "description": "Gourmand caramelizado suave" },
-      { "name": "Oud", "family": "woody", "position": "base", "description": "Amadeirado nobre e defumado" },
+      {
+        "name": "Sálvia Esclaréia",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal elegante e canforado"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático clássico"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e luminoso"
+      },
+      {
+        "name": "Açafrão",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado quente aristocrático"
+      },
+      {
+        "name": "Pralinê",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Gourmand caramelizado suave"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e defumado"
+      },
       { "name": "Cedro", "family": "woody", "position": "base", "description": "Seco e viril" }
     ]
   },
@@ -781,15 +2121,60 @@
     "description": "Tributo contemporâneo à suntuosa baunilha Bourbon. Combina flor de laranjeira e canela a um pralinê gourmand com ambroxan e madeiras nobres de alto requinte.",
     "imageUrl": "https://cdn.awsli.com.br/1000x1000/1218/1218413/produto/283626217/vanilla-dominion-100ml-in-the-box-perfumes-bcf4c6f5.png",
     "notes": [
-      { "name": "Canela", "family": "spicy", "position": "top", "description": "Quente, aromática e doce" },
-      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado nobre e fresco" },
-      { "name": "Flor de Laranjeira", "family": "floral", "position": "top", "description": "Floral branco radiante" },
-      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante" },
-      { "name": "Baunilha de Bourbon", "family": "oriental", "position": "heart", "description": "Rica, licorosa e opulenta" },
-      { "name": "Elemi", "family": "spicy", "position": "heart", "description": "Resinoso cítrico aromático" },
-      { "name": "Pralinê", "family": "oriental", "position": "base", "description": "Crocante doce sedutor" },
-      { "name": "Ambroxan", "family": "musky", "position": "base", "description": "Ambarado limpo e difusor" },
-      { "name": "Madeira Guaiac", "family": "woody", "position": "base", "description": "Amadeirado balsâmico escuro" }
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "top",
+        "description": "Quente, aromática e doce"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado nobre e fresco"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral branco radiante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cintilante"
+      },
+      {
+        "name": "Baunilha de Bourbon",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Rica, licorosa e opulenta"
+      },
+      {
+        "name": "Elemi",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Resinoso cítrico aromático"
+      },
+      {
+        "name": "Pralinê",
+        "family": "oriental",
+        "position": "base",
+        "description": "Crocante doce sedutor"
+      },
+      {
+        "name": "Ambroxan",
+        "family": "musky",
+        "position": "base",
+        "description": "Ambarado limpo e difusor"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado balsâmico escuro"
+      }
     ]
   },
   {
@@ -803,15 +2188,60 @@
     "description": "Turbilhão verde revigorante que evoca a pureza de uma floresta primaveril. A maçã verde estaladiça encontra o petitgrain, madeiras de caxemira e musgo de carvalho.",
     "imageUrl": null,
     "notes": [
-      { "name": "Maçã Verde", "family": "fruity", "position": "top", "description": "Crocante, ácida e energizante" },
-      { "name": "Bergamota da Calábria", "family": "citrus", "position": "top", "description": "Cítrico luminoso e fresco" },
-      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Doce e cítrico suave" },
-      { "name": "Petitgrain", "family": "green", "position": "heart", "description": "Verde folhoso amargo" },
-      { "name": "Cedro", "family": "woody", "position": "heart", "description": "Amadeirado aromático limpo" },
-      { "name": "Violeta", "family": "floral", "position": "heart", "description": "Floral suave orvalhado" },
-      { "name": "Musgo de Carvalho", "family": "woody", "position": "base", "description": "Verde terroso clássico" },
-      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Confortável e aveludado" },
-      { "name": "Amberwood", "family": "woody", "position": "base", "description": "Madeira ambarada de longa fixação" }
+      {
+        "name": "Maçã Verde",
+        "family": "fruity",
+        "position": "top",
+        "description": "Crocante, ácida e energizante"
+      },
+      {
+        "name": "Bergamota da Calábria",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso e fresco"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Doce e cítrico suave"
+      },
+      {
+        "name": "Petitgrain",
+        "family": "green",
+        "position": "heart",
+        "description": "Verde folhoso amargo"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado aromático limpo"
+      },
+      {
+        "name": "Violeta",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral suave orvalhado"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Verde terroso clássico"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Confortável e aveludado"
+      },
+      {
+        "name": "Amberwood",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira ambarada de longa fixação"
+      }
     ]
   }
 ]

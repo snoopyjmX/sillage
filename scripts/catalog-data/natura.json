@@ -10,9 +10,24 @@
     "description": "Clássico da perfumaria brasileira com explosão cítrica e frescor aquático revigorante.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico vibrante e refrescante"},
-      {"name": "Gálbano", "family": "green", "position": "heart", "description": "Verde natural e aromático"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Confortável, limpo e suave"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico vibrante e refrescante"
+      },
+      {
+        "name": "Gálbano",
+        "family": "green",
+        "position": "heart",
+        "description": "Verde natural e aromático"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Confortável, limpo e suave"
+      }
     ]
   },
   {
@@ -26,9 +41,24 @@
     "description": "Sensação de mergulho profundo com notas marinhas puras e madeiras ambaradas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Notas Aquosas", "family": "aquatic", "position": "top", "description": "Frescor aquático profundo e salino"},
-      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Aromático herbáceo e fresco"},
-      {"name": "Âmbar Cinzento", "family": "musky", "position": "base", "description": "Mineral oceânico e quente"}
+      {
+        "name": "Notas Aquosas",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Frescor aquático profundo e salino"
+      },
+      {
+        "name": "Sálvia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático herbáceo e fresco"
+      },
+      {
+        "name": "Âmbar Cinzento",
+        "family": "musky",
+        "position": "base",
+        "description": "Mineral oceânico e quente"
+      }
     ]
   },
   {
@@ -42,9 +72,24 @@
     "description": "Explosão energizante de cítricos cintilantes e acordes verdes estimulantes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Limão", "family": "citrus", "position": "top", "description": "Ácido, brilhante e energizante"},
-      {"name": "Gengibre", "family": "spicy", "position": "heart", "description": "Especiado picante e refrescante"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira seca e estruturada"}
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Ácido, brilhante e energizante"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado picante e refrescante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira seca e estruturada"
+      }
     ]
   },
   {
@@ -58,9 +103,24 @@
     "description": "Contraste vibrante entre o frescor aquoso e o calor envolvente das madeiras.",
     "imageUrl": null,
     "notes": [
-      {"name": "Maçã Verde", "family": "fruity", "position": "top", "description": "Frutado crocante e cítrico"},
-      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Especiaria calorosa e elegante"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira cremosa e aveludada"}
+      {
+        "name": "Maçã Verde",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado crocante e cítrico"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria calorosa e elegante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira cremosa e aveludada"
+      }
     ]
   },
   {
@@ -74,9 +134,24 @@
     "description": "Energia pura com combinação estimulante de ervas aromáticas e especiarias frescas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Cítrico solar e efervescente"},
-      {"name": "Coentro", "family": "spicy", "position": "heart", "description": "Especiado fresco e verde"},
-      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso, seco e elegante"}
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico solar e efervescente"
+      },
+      {
+        "name": "Coentro",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado fresco e verde"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso, seco e elegante"
+      }
     ]
   },
   {
@@ -90,9 +165,24 @@
     "description": "Acorde refrescante de ervas e musgo para homens que buscam conexão com a natureza.",
     "imageUrl": null,
     "notes": [
-      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Frutado cítrico suculento"},
-      {"name": "Lírio-do-vale", "family": "floral", "position": "heart", "description": "Floral verde delicado"},
-      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Verde úmido e terroso"}
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutado cítrico suculento"
+      },
+      {
+        "name": "Lírio-do-vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde delicado"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "green",
+        "position": "base",
+        "description": "Verde úmido e terroso"
+      }
     ]
   },
   {
@@ -106,9 +196,24 @@
     "description": "Frescor congelante e intenso impulsionado por notas minerais e amadeiradas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante gelado"},
-      {"name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Especiado aromático fresco"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Ressonância resinosa quente"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cintilante gelado"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado aromático fresco"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Ressonância resinosa quente"
+      }
     ]
   },
   {
@@ -122,9 +227,24 @@
     "description": "Explosão de vento marítimo e acorde salgado com energia aromática contagiante.",
     "imageUrl": null,
     "notes": [
-      {"name": "Acorde Salgado", "family": "aquatic", "position": "top", "description": "Marinho tônico e mineral"},
-      {"name": "Ruibarbo", "family": "green", "position": "heart", "description": "Ácido, verde e metálico"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Conforto limpo e envolvente"}
+      {
+        "name": "Acorde Salgado",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Marinho tônico e mineral"
+      },
+      {
+        "name": "Ruibarbo",
+        "family": "green",
+        "position": "heart",
+        "description": "Ácido, verde e metálico"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Conforto limpo e envolvente"
+      }
     ]
   },
   {
@@ -138,9 +258,24 @@
     "description": "Intensidade aromática duradoura que une ervas mediterrâneas a madeiras nobres.",
     "imageUrl": null,
     "notes": [
-      {"name": "Zimbro", "family": "aromatic", "position": "top", "description": "Aromático resinoso e gelado"},
-      {"name": "Pimenta Preta", "family": "spicy", "position": "heart", "description": "Picante vibrante"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e estruturado"}
+      {
+        "name": "Zimbro",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático resinoso e gelado"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante vibrante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e estruturado"
+      }
     ]
   },
   {
@@ -154,9 +289,24 @@
     "description": "Potência aromática extrema aliada à força do poejo e de madeiras defumadas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Poejo", "family": "aromatic", "position": "top", "description": "Menta aromática e gelada"},
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "heart", "description": "Picante luminoso e moderno"},
-      {"name": "Breu Branco", "family": "oriental", "position": "base", "description": "Resinoso aromático da Amazônia"}
+      {
+        "name": "Poejo",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Menta aromática e gelada"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante luminoso e moderno"
+      },
+      {
+        "name": "Breu Branco",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso aromático da Amazônia"
+      }
     ]
   },
   {
@@ -170,9 +320,24 @@
     "description": "Uma lufada de oxigênio puro com frescor aquático floral e notas efervescentes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Acorde de Oxigênio", "family": "aquatic", "position": "top", "description": "Arejado límpido e cintilante"},
-      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde orvalhado"},
-      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Seco e terroso refinado"}
+      {
+        "name": "Acorde de Oxigênio",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Arejado límpido e cintilante"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde orvalhado"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Seco e terroso refinado"
+      }
     ]
   },
   {
@@ -186,9 +351,24 @@
     "description": "Inspirado no eco das profundezas dos oceanos, com frescor metálico e madeiras salinas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Acorde Metálico Marinho", "family": "aquatic", "position": "top", "description": "Frio, vibrante e aquoso"},
-      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal clássico e limpo"},
-      {"name": "Madeiras Transparentes", "family": "woody", "position": "base", "description": "Amadeirado etéreo e moderno"}
+      {
+        "name": "Acorde Metálico Marinho",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Frio, vibrante e aquoso"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal clássico e limpo"
+      },
+      {
+        "name": "Madeiras Transparentes",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado etéreo e moderno"
+      }
     ]
   },
   {
@@ -202,9 +382,24 @@
     "description": "Comprovado pela neurociência por trazer ânimo e vitalidade através de algas e gengibre.",
     "imageUrl": null,
     "notes": [
-      {"name": "Gengibre Azul", "family": "spicy", "position": "top", "description": "Cítrico picante energizante"},
-      {"name": "Acorde Marinho", "family": "aquatic", "position": "heart", "description": "Oceânico revitalizante"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Firmeza amadeirada sóbria"}
+      {
+        "name": "Gengibre Azul",
+        "family": "spicy",
+        "position": "top",
+        "description": "Cítrico picante energizante"
+      },
+      {
+        "name": "Acorde Marinho",
+        "family": "aquatic",
+        "position": "heart",
+        "description": "Oceânico revitalizante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Firmeza amadeirada sóbria"
+      }
     ]
   },
   {
@@ -218,9 +413,24 @@
     "description": "Ícone de elegância e sofisticação com nobreza amadeirada e notas aromáticas de topo.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico clássico refinado"},
-      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Especiaria calorosa e sutil"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado seco e imponente"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico clássico refinado"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria calorosa e sutil"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado seco e imponente"
+      }
     ]
   },
   {
@@ -234,9 +444,24 @@
     "description": "Fragrância moderna e envolvente marcada por especiarias frias e madeiras nobres.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiaria fria e aromática"},
-      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Herbal sofisticado"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado denso e refinado"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fria e aromática"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Herbal sofisticado"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado denso e refinado"
+      }
     ]
   },
   {
@@ -250,9 +475,24 @@
     "description": "A opulência do Oud do Oriente Médio combinada à força aromática da Copaíba brasileira.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado potente"},
-      {"name": "Copaíba", "family": "woody", "position": "heart", "description": "Balsâmico amadeirado precioso"},
-      {"name": "Oud", "family": "woody", "position": "base", "description": "Escuro, resinoso e imponente"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado potente"
+      },
+      {
+        "name": "Copaíba",
+        "family": "woody",
+        "position": "heart",
+        "description": "Balsâmico amadeirado precioso"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Escuro, resinoso e imponente"
+      }
     ]
   },
   {
@@ -266,9 +506,24 @@
     "description": "Criação de alta joalheria perfumística com coração de jasmim egípcio e copaíba.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante moderno e cintilante"},
-      {"name": "Jasmim Egípcio", "family": "floral", "position": "heart", "description": "Floral branco opulento e solar"},
-      {"name": "Copaíba", "family": "woody", "position": "base", "description": "Resina preciosa e elegante"}
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante moderno e cintilante"
+      },
+      {
+        "name": "Jasmim Egípcio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco opulento e solar"
+      },
+      {
+        "name": "Copaíba",
+        "family": "woody",
+        "position": "base",
+        "description": "Resina preciosa e elegante"
+      }
     ]
   },
   {
@@ -282,9 +537,24 @@
     "description": "Composição artística inspirada no Pau-Brasil e em flores raras da biodiversidade.",
     "imageUrl": null,
     "notes": [
-      {"name": "Priprioca", "family": "spicy", "position": "top", "description": "Terroso e especiado nativo"},
-      {"name": "Flor do Pau-Brasil", "family": "floral", "position": "heart", "description": "Floral luminoso e refinado"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira arquitetônica sólida"}
+      {
+        "name": "Priprioca",
+        "family": "spicy",
+        "position": "top",
+        "description": "Terroso e especiado nativo"
+      },
+      {
+        "name": "Flor do Pau-Brasil",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral luminoso e refinado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira arquitetônica sólida"
+      }
     ]
   },
   {
@@ -298,9 +568,24 @@
     "description": "Amadeirado envolvente que convida ao toque através de notas aveludadas e âmbar.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso"},
-      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Quente e sedutora"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Doce resinoso e profundo"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Quente e sedutora"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce resinoso e profundo"
+      }
     ]
   },
   {
@@ -314,9 +599,24 @@
     "description": "Intensidade máxima com flor de íris e a imponência do cumaru e cedro.",
     "imageUrl": null,
     "notes": [
-      {"name": "Sálvia", "family": "aromatic", "position": "top", "description": "Herbal nobre e aromático"},
-      {"name": "Íris", "family": "floral", "position": "heart", "description": "Atalcado aveludado e luxuoso"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Baunilhado amendoado quente"}
+      {
+        "name": "Sálvia",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal nobre e aromático"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Atalcado aveludado e luxuoso"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Baunilhado amendoado quente"
+      }
     ]
   },
   {
@@ -330,9 +630,24 @@
     "description": "A sagrada madeira de Palo Santo reinterpretada com o calor aromático do cumaru.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Aromático especiado fresco"},
-      {"name": "Palo Santo", "family": "woody", "position": "heart", "description": "Místico, amadeirado e incensado"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Adocicado quente e resinoso"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Aromático especiado fresco"
+      },
+      {
+        "name": "Palo Santo",
+        "family": "woody",
+        "position": "heart",
+        "description": "Místico, amadeirado e incensado"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado quente e resinoso"
+      }
     ]
   },
   {
@@ -346,9 +661,24 @@
     "description": "Fusão suntuosa entre o poder defumado do Oud e a doçura licorosa da baunilha baiana.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e estimulante"},
-      {"name": "Baunilha Bahiana", "family": "oriental", "position": "heart", "description": "Gourmand rica e licorosa"},
-      {"name": "Oud", "family": "woody", "position": "base", "description": "Escuro e profundamente amadeirado"}
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e estimulante"
+      },
+      {
+        "name": "Baunilha Bahiana",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Gourmand rica e licorosa"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Escuro e profundamente amadeirado"
+      }
     ]
   },
   {
@@ -362,9 +692,24 @@
     "description": "A intensidade magnética do oud incendiada pela picância ousada da pimenta cumari.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Cumari", "family": "spicy", "position": "top", "description": "Picância quente e ardente"},
-      {"name": "Copaíba", "family": "woody", "position": "heart", "description": "Balsâmico denso"},
-      {"name": "Oud", "family": "woody", "position": "base", "description": "Precioso e imponente"}
+      {
+        "name": "Pimenta Cumari",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picância quente e ardente"
+      },
+      {
+        "name": "Copaíba",
+        "family": "woody",
+        "position": "heart",
+        "description": "Balsâmico denso"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Precioso e imponente"
+      }
     ]
   },
   {
@@ -378,9 +723,19 @@
     "description": "Uma leitura mais encorpada e sensual do clássico Essencial, carregada de madeiras.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Brilhante e picante"},
-      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Seco e elegante"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e duradouro"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Brilhante e picante"
+      },
+      { "name": "Cedro", "family": "woody", "position": "heart", "description": "Seco e elegante" },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e duradouro"
+      }
     ]
   },
   {
@@ -394,9 +749,24 @@
     "description": "Assinatura magnética com notas de couro encorpado, conhaque e madeiras quentes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Vibrante e efervescente"},
-      {"name": "Couro", "family": "oriental", "position": "heart", "description": "Encorpado, sofisticado e rústico"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso e profundo"}
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Vibrante e efervescente"
+      },
+      {
+        "name": "Couro",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Encorpado, sofisticado e rústico"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e profundo"
+      }
     ]
   },
   {
@@ -410,9 +780,19 @@
     "description": "Frescor atemporal e equilíbrio perfeito entre notas cítricas e sândalo confortável.",
     "imageUrl": null,
     "notes": [
-      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Fresco picante"},
-      {"name": "Pêra", "family": "fruity", "position": "heart", "description": "Frutado suculento e suave"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado sedoso e aconchegante"}
+      { "name": "Gengibre", "family": "spicy", "position": "top", "description": "Fresco picante" },
+      {
+        "name": "Pêra",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Frutado suculento e suave"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sedoso e aconchegante"
+      }
     ]
   },
   {
@@ -426,9 +806,24 @@
     "description": "Elegância sofisticada construída em torno do âmbar nobre e do cedro refinado.",
     "imageUrl": null,
     "notes": [
-      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante aromático luminoso"},
-      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Quente e adocicada"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Denso, aveludado e rico"}
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante aromático luminoso"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Quente e adocicada"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Denso, aveludado e rico"
+      }
     ]
   },
   {
@@ -442,9 +837,24 @@
     "description": "Conexão revigorante entre o frescor aromático da sálvia e a solidez do vetiver.",
     "imageUrl": null,
     "notes": [
-      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Aromático relaxante e límpido"},
-      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Verde refinado"},
-      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Amadeirado terroso e nobre"}
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático relaxante e límpido"
+      },
+      {
+        "name": "Sálvia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Verde refinado"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso e nobre"
+      }
     ]
   },
   {
@@ -458,9 +868,24 @@
     "description": "Homenagem aos laços autênticos, destacando madeiras confortáveis e especiarias acolhedoras.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado elegante"},
-      {"name": "Íris", "family": "floral", "position": "heart", "description": "Floral macio e sofisticado"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e marcante"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado elegante"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral macio e sofisticado"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e marcante"
+      }
     ]
   },
   {
@@ -474,9 +899,24 @@
     "description": "Sensorial e aveludado, desperta o sentido do toque com notas de couro e cumaru.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Vibrante e aromático"},
-      {"name": "Couro", "family": "oriental", "position": "heart", "description": "Textura aveludada e quente"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Doce balsâmico envolvente"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Vibrante e aromático"
+      },
+      {
+        "name": "Couro",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Textura aveludada e quente"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce balsâmico envolvente"
+      }
     ]
   },
   {
@@ -490,9 +930,24 @@
     "description": "A fragrância mais quente e magnética da linha, com coração ambarado e toque de couro.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante estimulante"},
-      {"name": "Copaíba", "family": "woody", "position": "heart", "description": "Amadeirado resinoso brasileiro"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Adocicado licoroso irresistível"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante estimulante"
+      },
+      {
+        "name": "Copaíba",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado resinoso brasileiro"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado licoroso irresistível"
+      }
     ]
   },
   {
@@ -506,9 +961,24 @@
     "description": "Autenticidade moderna trazida pelas folhas de violeta e um fundo de camurça refinada.",
     "imageUrl": null,
     "notes": [
-      {"name": "Folhas de Violeta", "family": "green", "position": "top", "description": "Verde metálico e ozônico"},
-      {"name": "Camurça", "family": "oriental", "position": "heart", "description": "Couro macio e aconchegante"},
-      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e austero"}
+      {
+        "name": "Folhas de Violeta",
+        "family": "green",
+        "position": "top",
+        "description": "Verde metálico e ozônico"
+      },
+      {
+        "name": "Camurça",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Couro macio e aconchegante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e austero"
+      }
     ]
   },
   {
@@ -522,9 +992,24 @@
     "description": "Contraste sedutor da raiz de priprioca com o dulçor envolvente da baunilha negra.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiaria fresca nobre"},
-      {"name": "Priprioca", "family": "spicy", "position": "heart", "description": "Raiz nativa amadeirada"},
-      {"name": "Baunilha Negra", "family": "oriental", "position": "base", "description": "Adocicada densa e sensual"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca nobre"
+      },
+      {
+        "name": "Priprioca",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Raiz nativa amadeirada"
+      },
+      {
+        "name": "Baunilha Negra",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicada densa e sensual"
+      }
     ]
   },
   {
@@ -538,9 +1023,24 @@
     "description": "Expressão floral amadeirada única com flor de cacto, sândalo e resinas amazônicas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picância fresca e direta"},
-      {"name": "Flor de Cacto", "family": "floral", "position": "heart", "description": "Floral exótico e luminoso"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso, sofisticado e quente"}
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picância fresca e direta"
+      },
+      {
+        "name": "Flor de Cacto",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral exótico e luminoso"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso, sofisticado e quente"
+      }
     ]
   },
   {
@@ -554,9 +1054,24 @@
     "description": "Vanguarda amadeirada com a intensidade da pataqueira e madeiras escuras elegantes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pataqueira", "family": "floral", "position": "top", "description": "Aromático floral silvestre amazônico"},
-      {"name": "Cashmeran", "family": "musky", "position": "heart", "description": "Aveludado e aconchegante"},
-      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Seco, escuro e refinado"}
+      {
+        "name": "Pataqueira",
+        "family": "floral",
+        "position": "top",
+        "description": "Aromático floral silvestre amazônico"
+      },
+      {
+        "name": "Cashmeran",
+        "family": "musky",
+        "position": "heart",
+        "description": "Aveludado e aconchegante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Seco, escuro e refinado"
+      }
     ]
   },
   {
@@ -570,9 +1085,24 @@
     "description": "Fragrância reconfortante e profunda com café tostado, cacau e madeiras nobres.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Fresco e aromático"},
-      {"name": "Café", "family": "oriental", "position": "heart", "description": "Tostado encorpado e quente"},
-      {"name": "Cacau", "family": "oriental", "position": "base", "description": "Gourmand terroso e profundo"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Fresco e aromático"
+      },
+      {
+        "name": "Café",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Tostado encorpado e quente"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand terroso e profundo"
+      }
     ]
   },
   {
@@ -586,9 +1116,24 @@
     "description": "Fragrância atemporal com notas aromáticas confortáveis e fundo amadeirado versátil.",
     "imageUrl": null,
     "notes": [
-      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico fresco e brilhante"},
-      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Especiaria clássica e moderada"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira limpa e equilibrada"}
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco e brilhante"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria clássica e moderada"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira limpa e equilibrada"
+      }
     ]
   },
   {
@@ -602,9 +1147,24 @@
     "description": "Marcante e moderno com o brilho da pimenta preta e a nobreza amadeirada do palo santo.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e estimulante"},
-      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal elegante e fresco"},
-      {"name": "Palo Santo", "family": "woody", "position": "base", "description": "Amadeirado resinoso sofisticado"}
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e estimulante"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal elegante e fresco"
+      },
+      {
+        "name": "Palo Santo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado resinoso sofisticado"
+      }
     ]
   },
   {
@@ -618,9 +1178,24 @@
     "description": "Floral delicado e luminoso com notas aquosas de muguet e toque de pera fresca.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pêra", "family": "fruity", "position": "top", "description": "Doce, suculenta e orvalhada"},
-      {"name": "Lírio-do-vale", "family": "floral", "position": "heart", "description": "Floral branco etéreo e primaveril"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação aveludada de segunda pele"}
+      {
+        "name": "Pêra",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce, suculenta e orvalhada"
+      },
+      {
+        "name": "Lírio-do-vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco etéreo e primaveril"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Sensação aveludada de segunda pele"
+      }
     ]
   },
   {
@@ -634,9 +1209,24 @@
     "description": "Aconchego e feminilidade com bouquet de rosas modernas e patchouli refinado.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Frutado especiado cintilante"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral aveludado e elegante"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado sofisticado e terroso"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Frutado especiado cintilante"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado e elegante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sofisticado e terroso"
+      }
     ]
   },
   {
@@ -650,9 +1240,24 @@
     "description": "Floral verde delicado com pétalas de violeta e conforto de notas almiscaradas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Lichia", "family": "fruity", "position": "top", "description": "Exótico, doce e refrescante"},
-      {"name": "Magnólia", "family": "floral", "position": "heart", "description": "Floral ceroso e elegante"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira clara e suave"}
+      {
+        "name": "Lichia",
+        "family": "fruity",
+        "position": "top",
+        "description": "Exótico, doce e refrescante"
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral ceroso e elegante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira clara e suave"
+      }
     ]
   },
   {
@@ -666,9 +1271,24 @@
     "description": "Marco clássico da barbearia brasileira com frescor de limão e base de patchouli terroso.",
     "imageUrl": null,
     "notes": [
-      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico cítrico tradicional e limpo"},
-      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal clássico e relaxante"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso e amadeirado tradicional"}
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cítrico tradicional e limpo"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal clássico e relaxante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e amadeirado tradicional"
+      }
     ]
   },
   {
@@ -682,9 +1302,24 @@
     "description": "Interpretação robusta e amadeirada do clássico, destacando o corte seco do cedro nobre.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor cítrico austero"},
-      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Especiaria seca"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e resistente"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frescor cítrico austero"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria seca"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e resistente"
+      }
     ]
   },
   {
@@ -698,9 +1333,24 @@
     "description": "Masculinidade rústica e sofisticada pontuada por acordes secos de couro e vetiver.",
     "imageUrl": null,
     "notes": [
-      {"name": "Toranja", "family": "citrus", "position": "top", "description": "Cítrico amargo elegante"},
-      {"name": "Couro", "family": "oriental", "position": "heart", "description": "Rústico e viril"},
-      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Raiz terrosa e seca"}
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo elegante"
+      },
+      {
+        "name": "Couro",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Rústico e viril"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Raiz terrosa e seca"
+      }
     ]
   },
   {
@@ -714,9 +1364,24 @@
     "description": "Calor resinoso e acolhedor somado ao frescor característico da linha Sr. N.",
     "imageUrl": null,
     "notes": [
-      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico quente"},
-      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Especiaria calorosa"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Dourado resinoso e doce"}
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico quente"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria calorosa"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Dourado resinoso e doce"
+      }
     ]
   },
   {
@@ -730,9 +1395,24 @@
     "description": "Energia urbana contemporânea com notas tônicas, gengibre e madeiras transparentes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico efervescente e jovem"},
-      {"name": "Gengibre", "family": "spicy", "position": "heart", "description": "Picante e estimulante"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado urbano e moderno"}
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico efervescente e jovem"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e estimulante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado urbano e moderno"
+      }
     ]
   },
   {
@@ -746,9 +1426,24 @@
     "description": "A vibração noturna da cidade com especiarias instigantes e fundo ambarado.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado frio e vibrante"},
-      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal sofisticado"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Sensual, resinoso e quente"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado frio e vibrante"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal sofisticado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Sensual, resinoso e quente"
+      }
     ]
   },
   {
@@ -762,9 +1457,24 @@
     "description": "Magnetismo e atitude com piper nativo, pimenta preta e fundo amadeirado escuro.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Agressiva e efervescente"},
-      {"name": "Piper", "family": "aromatic", "position": "heart", "description": "Erva aromática misteriosa"},
-      {"name": "Couro", "family": "oriental", "position": "base", "description": "Amadeirado e esfumaçado"}
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Agressiva e efervescente"
+      },
+      {
+        "name": "Piper",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Erva aromática misteriosa"
+      },
+      {
+        "name": "Couro",
+        "family": "oriental",
+        "position": "base",
+        "description": "Amadeirado e esfumaçado"
+      }
     ]
   },
   {
@@ -778,9 +1488,24 @@
     "description": "Provocante mistura de pimenta e bergamota sobre uma base amadeirada sedutora.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante frutada e alegre"},
-      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral aromático equilibrado"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e envolvente"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante frutada e alegre"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aromático equilibrado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e envolvente"
+      }
     ]
   },
   {
@@ -794,9 +1519,24 @@
     "description": "Vibe descontraída com energia solar cítrica de mandarina e sálvia aromática.",
     "imageUrl": null,
     "notes": [
-      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico radiante e alegre"},
-      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal relaxante e fresco"},
-      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce suave e confortável"}
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico radiante e alegre"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal relaxante e fresco"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce suave e confortável"
+      }
     ]
   },
   {
@@ -810,9 +1550,24 @@
     "description": "Feito para misturar: choque eletrizante de romã com piper e madeiras encorpadas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Romã", "family": "fruity", "position": "top", "description": "Frutado agridoce e potente"},
-      {"name": "Piper", "family": "spicy", "position": "heart", "description": "Picante e aromático nativo"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado marcante"}
+      {
+        "name": "Romã",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado agridoce e potente"
+      },
+      {
+        "name": "Piper",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e aromático nativo"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado marcante"
+      }
     ]
   },
   {
@@ -826,9 +1581,24 @@
     "description": "Atração comprovada cientificamente com cacau cremoso e ameixa picante.",
     "imageUrl": null,
     "notes": [
-      {"name": "Ameixa", "family": "fruity", "position": "top", "description": "Doce escuro e licoroso"},
-      {"name": "Cacau", "family": "oriental", "position": "heart", "description": "Gourmand aveludado e sensual"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira macia e quente"}
+      {
+        "name": "Ameixa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce escuro e licoroso"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Gourmand aveludado e sensual"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira macia e quente"
+      }
     ]
   },
   {
@@ -842,9 +1612,24 @@
     "description": "O clássico queridinho com o frescor alegre da pera congelada e toque cítrico.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pêra", "family": "fruity", "position": "top", "description": "Frutado gelado, doce e cristalino"},
-      {"name": "Lírio-do-vale", "family": "floral", "position": "heart", "description": "Floral branco primaveril"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Limpo, suave e jovial"}
+      {
+        "name": "Pêra",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado gelado, doce e cristalino"
+      },
+      {
+        "name": "Lírio-do-vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco primaveril"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Limpo, suave e jovial"
+      }
     ]
   },
   {
@@ -858,9 +1643,24 @@
     "description": "Doçura irresistível e alto astral com calda de cereja em calda e toque de âmbar.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cereja", "family": "fruity", "position": "top", "description": "Frutado doce, licoroso e divertido"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral aveludado delicado"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Sensual, aconchegante e quente"}
+      {
+        "name": "Cereja",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado doce, licoroso e divertido"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado delicado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Sensual, aconchegante e quente"
+      }
     ]
   },
   {
@@ -874,9 +1674,24 @@
     "description": "Viagem cósmica com frutas roxas cintilantes, toranja e fundo amadeirado misterioso.",
     "imageUrl": null,
     "notes": [
-      {"name": "Amora", "family": "fruity", "position": "top", "description": "Fruta roxa ácida e adocicada"},
-      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Brilhante e solar"},
-      {"name": "Madeiras", "family": "woody", "position": "base", "description": "Amadeirado cósmico e suave"}
+      {
+        "name": "Amora",
+        "family": "fruity",
+        "position": "top",
+        "description": "Fruta roxa ácida e adocicada"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Brilhante e solar"
+      },
+      {
+        "name": "Madeiras",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado cósmico e suave"
+      }
     ]
   },
   {
@@ -890,9 +1705,24 @@
     "description": "Frescor sideral e eletrizante com carambola exótica e madeiras espaciais.",
     "imageUrl": null,
     "notes": [
-      {"name": "Carambola", "family": "fruity", "position": "top", "description": "Frutado tropical estelar e aquoso"},
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "heart", "description": "Picante cintilante"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado profundo e terroso"}
+      {
+        "name": "Carambola",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado tropical estelar e aquoso"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante cintilante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado profundo e terroso"
+      }
     ]
   },
   {
@@ -906,9 +1736,24 @@
     "description": "Fragrância sem gênero fluida e viva com pimenta rosa e notas resinosas da Amazônia.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante e livre"},
-      {"name": "Copaíba", "family": "woody", "position": "heart", "description": "Resina nativa acolhedora"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Conforto leve e moderno"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e livre"
+      },
+      {
+        "name": "Copaíba",
+        "family": "woody",
+        "position": "heart",
+        "description": "Resina nativa acolhedora"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Conforto leve e moderno"
+      }
     ]
   },
   {
@@ -922,9 +1767,24 @@
     "description": "Mutável e vibrante, combina o frescor das frutas aquosas ao calor do cumaru.",
     "imageUrl": null,
     "notes": [
-      {"name": "Abacaxi", "family": "fruity", "position": "top", "description": "Tropical refrescante e doce"},
-      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal limpo e sereno"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Adocicado quente e brasileiro"}
+      {
+        "name": "Abacaxi",
+        "family": "fruity",
+        "position": "top",
+        "description": "Tropical refrescante e doce"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal limpo e sereno"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado quente e brasileiro"
+      }
     ]
   },
   {
@@ -938,9 +1798,24 @@
     "description": "A sintonia imediata traduzida em frescor frutado moderno e especiarias radiantes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico estimulante e vivo"},
-      {"name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Especiaria fresca magnética"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira limpa e envolvente"}
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico estimulante e vivo"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria fresca magnética"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira limpa e envolvente"
+      }
     ]
   },
   {
@@ -954,9 +1829,24 @@
     "description": "Energia eufórica de multidão em dia ensolarado com frutas tropicais e florais alegres.",
     "imageUrl": null,
     "notes": [
-      {"name": "Abacaxi", "family": "fruity", "position": "top", "description": "Frutado efervescente e festivo"},
-      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco solar"},
-      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado e jovial"}
+      {
+        "name": "Abacaxi",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado efervescente e festivo"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco solar"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce aveludado e jovial"
+      }
     ]
   },
   {
@@ -970,9 +1860,24 @@
     "description": "Equilíbrio refinado entre o calor amadeirado do sândalo e a sofisticação do âmbar.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico equilibrado"},
-      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Amadeirado clássico"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Aconchegante e sedoso"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico equilibrado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado clássico"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Aconchegante e sedoso"
+      }
     ]
   },
   {
@@ -986,9 +1891,24 @@
     "description": "Assinatura forte e moderna impulsionada pelo cedro e por especiarias intensas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante cortante e dinâmico"},
-      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Quente e encorpada"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Estrutura amadeirada marcante"}
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante cortante e dinâmico"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Quente e encorpada"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Estrutura amadeirada marcante"
+      }
     ]
   },
   {
@@ -1002,9 +1922,24 @@
     "description": "Sensualidade noturna com especiarias doces, cumaru e toque de noz-moscada.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Fresco e instigante"},
-      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Especiaria sedutora"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Doce resinoso e profundo"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Fresco e instigante"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria sedutora"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce resinoso e profundo"
+      }
     ]
   },
   {
@@ -1018,9 +1953,24 @@
     "description": "A pulsante vitalidade das florestas alagadas amazônicas com notas herbais e florais bioativas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Capim Santo", "family": "green", "position": "top", "description": "Verde cítrico e orvalhado"},
-      {"name": "Vitória-Régia", "family": "floral", "position": "heart", "description": "Floral aquático exótico"},
-      {"name": "Breu Branco", "family": "oriental", "position": "base", "description": "Resina aromática profunda"}
+      {
+        "name": "Capim Santo",
+        "family": "green",
+        "position": "top",
+        "description": "Verde cítrico e orvalhado"
+      },
+      {
+        "name": "Vitória-Régia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aquático exótico"
+      },
+      {
+        "name": "Breu Branco",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resina aromática profunda"
+      }
     ]
   },
   {
@@ -1034,9 +1984,24 @@
     "description": "Cheiro inconfundível de terra molhada e chuva tropical caindo sobre as copas amazônicas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Petrichor", "family": "aquatic", "position": "top", "description": "Cheiro mineral de chuva e terra"},
-      {"name": "Priprioca", "family": "spicy", "position": "heart", "description": "Raiz aromática fresca"},
-      {"name": "Musgo", "family": "green", "position": "base", "description": "Verde úmido e reconfortante"}
+      {
+        "name": "Petrichor",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Cheiro mineral de chuva e terra"
+      },
+      {
+        "name": "Priprioca",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Raiz aromática fresca"
+      },
+      {
+        "name": "Musgo",
+        "family": "green",
+        "position": "base",
+        "description": "Verde úmido e reconfortante"
+      }
     ]
   },
   {
@@ -1050,9 +2015,24 @@
     "description": "Frescor azedinho e calmante extraído diretamente do óleo essencial do maracujá.",
     "imageUrl": null,
     "notes": [
-      {"name": "Maracujá", "family": "fruity", "position": "top", "description": "Frutado azedinho refrescante"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral suave e aquoso"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Conforto sereno e limpo"}
+      {
+        "name": "Maracujá",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado azedinho refrescante"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral suave e aquoso"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Conforto sereno e limpo"
+      }
     ]
   },
   {
@@ -1066,9 +2046,24 @@
     "description": "Vibrante e cítrica, celebra a brasilidade com folhas de pitangueira e frutas vermelhas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Folhas de Pitanga", "family": "green", "position": "top", "description": "Verde picante característico"},
-      {"name": "Pitanga", "family": "fruity", "position": "heart", "description": "Fruta suculenta agridoce"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado leve e ensolarado"}
+      {
+        "name": "Folhas de Pitanga",
+        "family": "green",
+        "position": "top",
+        "description": "Verde picante característico"
+      },
+      {
+        "name": "Pitanga",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Fruta suculenta agridoce"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado leve e ensolarado"
+      }
     ]
   },
   {
@@ -1082,9 +2077,24 @@
     "description": "Conforto leitoso e aveludado que evoca o aconchego nutritivo da castanha da Amazônia.",
     "imageUrl": null,
     "notes": [
-      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Limpo e tranquilizante"},
-      {"name": "Castanha", "family": "oriental", "position": "heart", "description": "Oleosa, leitosa e aveludada"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira cremosa e afetuosa"}
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Limpo e tranquilizante"
+      },
+      {
+        "name": "Castanha",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Oleosa, leitosa e aveludada"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira cremosa e afetuosa"
+      }
     ]
   },
   {
@@ -1098,9 +2108,24 @@
     "description": "Energia revigorante da floresta com notas frutadas arroxeadas e florais leves.",
     "imageUrl": null,
     "notes": [
-      {"name": "Açaí", "family": "fruity", "position": "top", "description": "Frutado denso, fresco e exótico"},
-      {"name": "Flor de Lótus", "family": "floral", "position": "heart", "description": "Floral aquático sereno"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Base amadeirada suave"}
+      {
+        "name": "Açaí",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado denso, fresco e exótico"
+      },
+      {
+        "name": "Flor de Lótus",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aquático sereno"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Base amadeirada suave"
+      }
     ]
   },
   {
@@ -1114,9 +2139,24 @@
     "description": "A 'canela da Amazônia' em frescor radiante com especiarias florais quentes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Cintilante e especiada"},
-      {"name": "Ishpink", "family": "spicy", "position": "heart", "description": "Canela amazônica aromática e floral"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e estruturado"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Cintilante e especiada"
+      },
+      {
+        "name": "Ishpink",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Canela amazônica aromática e floral"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e estruturado"
+      }
     ]
   },
   {
@@ -1130,9 +2170,19 @@
     "description": "Erva aromática tradicional do banho de cheiro com frescor verde e revigorante.",
     "imageUrl": null,
     "notes": [
-      {"name": "Estoraque", "family": "green", "position": "top", "description": "Herbal verde intenso e místico"},
-      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático límpido e purificante"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Suave e acolhedor"}
+      {
+        "name": "Estoraque",
+        "family": "green",
+        "position": "top",
+        "description": "Herbal verde intenso e místico"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático límpido e purificante"
+      },
+      { "name": "Musk", "family": "musky", "position": "base", "description": "Suave e acolhedor" }
     ]
   },
   {
@@ -1146,9 +2196,24 @@
     "description": "Preciosa resina perfumada da Amazônia com facetas minerais, frescas e incensadas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico luminoso"},
-      {"name": "Breu Branco", "family": "oriental", "position": "heart", "description": "Resinoso místico aromático"},
-      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e elegante"}
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso"
+      },
+      {
+        "name": "Breu Branco",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resinoso místico aromático"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e elegante"
+      }
     ]
   },
   {
@@ -1162,9 +2227,24 @@
     "description": "A quintessência do luxo com praliné doce, flores brancas nobres e madeiras quentes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Frutado aveludado e doce"},
-      {"name": "Rosa Damascena", "family": "floral", "position": "heart", "description": "Floral clássico e opulento"},
-      {"name": "Pralinê", "family": "oriental", "position": "base", "description": "Gourmand sofisticado e viciante"}
+      {
+        "name": "Pêssego",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aveludado e doce"
+      },
+      {
+        "name": "Rosa Damascena",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral clássico e opulento"
+      },
+      {
+        "name": "Pralinê",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand sofisticado e viciante"
+      }
     ]
   },
   {
@@ -1178,9 +2258,24 @@
     "description": "Chypre autêntico e refinado que combina cassis luminoso a madeiras cremosas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cassis", "family": "fruity", "position": "top", "description": "Fruta escura licorosa e elegante"},
-      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco nobre"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Chypre amadeirado clássico"}
+      {
+        "name": "Cassis",
+        "family": "fruity",
+        "position": "top",
+        "description": "Fruta escura licorosa e elegante"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco nobre"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Chypre amadeirado clássico"
+      }
     ]
   },
   {
@@ -1194,9 +2289,24 @@
     "description": "Inspirado no mistério das galáxias com ameixa negra, cumaru e notas ambaradas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Ameixa Negra", "family": "fruity", "position": "top", "description": "Doce profunda e sedutora"},
-      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral noturno radiante"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Adocicado resinoso estelar"}
+      {
+        "name": "Ameixa Negra",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce profunda e sedutora"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral noturno radiante"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado resinoso estelar"
+      }
     ]
   },
   {
@@ -1210,9 +2320,24 @@
     "description": "Manifesto de força e união feminina com notas intensas de flor de laranjeira e âmbar.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Brilhante e enérgica"},
-      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Solar e expansiva"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Caloroso e acolhedor"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Brilhante e enérgica"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Solar e expansiva"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Caloroso e acolhedor"
+      }
     ]
   },
   {
@@ -1226,9 +2351,24 @@
     "description": "Instintivo e arrebatador, funde a flor de paramela a uma base cremosa de sândalo e baunilha.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cassis", "family": "fruity", "position": "top", "description": "Frutado licoroso e escuro"},
-      {"name": "Paramela", "family": "floral", "position": "heart", "description": "Floral melífluo e picante"},
-      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado e envolvente"}
+      {
+        "name": "Cassis",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado licoroso e escuro"
+      },
+      {
+        "name": "Paramela",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral melífluo e picante"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce aveludado e envolvente"
+      }
     ]
   },
   {
@@ -1242,9 +2382,24 @@
     "description": "Sofisticação rosa e marcante que une o breu branco à doçura da baunilha e flores nobres.",
     "imageUrl": null,
     "notes": [
-      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante e cintilante"},
-      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral radiante e feminino"},
-      {"name": "Breu Branco", "family": "oriental", "position": "base", "description": "Resinoso elegante brasileiro"}
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e cintilante"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral radiante e feminino"
+      },
+      {
+        "name": "Breu Branco",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso elegante brasileiro"
+      }
     ]
   },
   {
@@ -1258,9 +2413,24 @@
     "description": "Sensualidade quente e gourmand construída em torno da tuberosa, cumaru e notas amadeiradas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico adocicado"},
-      {"name": "Tuberosa", "family": "floral", "position": "heart", "description": "Floral narcótico e cremoso"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Balsâmico quente e licoroso"}
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico adocicado"
+      },
+      {
+        "name": "Tuberosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral narcótico e cremoso"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico quente e licoroso"
+      }
     ]
   },
   {
@@ -1274,9 +2444,24 @@
     "description": "Luminosidade festiva traduzida por um buquê radiante de flores brancas e acorde champanhe.",
     "imageUrl": null,
     "notes": [
-      {"name": "Acorde Champanhe", "family": "citrus", "position": "top", "description": "Efervescente, festivo e dourado"},
-      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco luminoso"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Confortável e cintilante"}
+      {
+        "name": "Acorde Champanhe",
+        "family": "citrus",
+        "position": "top",
+        "description": "Efervescente, festivo e dourado"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco luminoso"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Confortável e cintilante"
+      }
     ]
   },
   {
@@ -1290,9 +2475,24 @@
     "description": "Feminilidade em sua máxima expressão através de um buquê floral branco elegante e limpo.",
     "imageUrl": null,
     "notes": [
-      {"name": "Framboesa", "family": "fruity", "position": "top", "description": "Frutado vermelho fresco"},
-      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco delicado e nobre"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Suave, aveludado e confortável"}
+      {
+        "name": "Framboesa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado vermelho fresco"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco delicado e nobre"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Suave, aveludado e confortável"
+      }
     ]
   },
   {
@@ -1306,9 +2506,24 @@
     "description": "Misterioso e magnético com uva roxa licorosa, café arábica e orquídea negra.",
     "imageUrl": null,
     "notes": [
-      {"name": "Uva", "family": "fruity", "position": "top", "description": "Frutado escuro licoroso irresistível"},
-      {"name": "Orquídea", "family": "floral", "position": "heart", "description": "Floral exótico e sensual"},
-      {"name": "Café", "family": "oriental", "position": "base", "description": "Gourmand torrado envolvente"}
+      {
+        "name": "Uva",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado escuro licoroso irresistível"
+      },
+      {
+        "name": "Orquídea",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral exótico e sensual"
+      },
+      {
+        "name": "Café",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand torrado envolvente"
+      }
     ]
   },
   {
@@ -1322,9 +2537,24 @@
     "description": "Transformação feminina celebrada com a intensidade da rosa e a doçura da baunilha baiana.",
     "imageUrl": null,
     "notes": [
-      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Aromático fresco e refinado"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral encorpado e vivo"},
-      {"name": "Baunilha Bahiana", "family": "oriental", "position": "base", "description": "Cremosa e aconchegante"}
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático fresco e refinado"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral encorpado e vivo"
+      },
+      {
+        "name": "Baunilha Bahiana",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremosa e aconchegante"
+      }
     ]
   },
   {
@@ -1338,9 +2568,24 @@
     "description": "A força da rosa reaproveitada com processos sustentáveis aliada à cremosidade da pataqueira.",
     "imageUrl": null,
     "notes": [
-      {"name": "Rosa Upcycling", "family": "floral", "position": "top", "description": "Floral vivo e sustentável"},
-      {"name": "Pataqueira", "family": "floral", "position": "heart", "description": "Floral fresco amazônico"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação limpa e aveludada"}
+      {
+        "name": "Rosa Upcycling",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral vivo e sustentável"
+      },
+      {
+        "name": "Pataqueira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral fresco amazônico"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Sensação limpa e aveludada"
+      }
     ]
   },
   {
@@ -1354,9 +2599,24 @@
     "description": "Luminosidade aquosa e floral moderno que traduz a sensação de plenitude e leveza.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico solar refrescante"},
-      {"name": "Peônia", "family": "floral", "position": "heart", "description": "Floral fresco e arejado"},
-      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira clara e reconfortante"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico solar refrescante"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral fresco e arejado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira clara e reconfortante"
+      }
     ]
   },
   {
@@ -1370,9 +2630,24 @@
     "description": "Homenagem solar à flor de laranjeira com frescor cítrico e base amadeirada macia.",
     "imageUrl": null,
     "notes": [
-      {"name": "Laranja", "family": "citrus", "position": "top", "description": "Frutado cítrico vibrante"},
-      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco luminoso e rico"},
-      {"name": "Musk", "family": "musky", "position": "base", "description": "Aconchegante e delicado"}
+      {
+        "name": "Laranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutado cítrico vibrante"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco luminoso e rico"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Aconchegante e delicado"
+      }
     ]
   },
   {
@@ -1386,9 +2661,24 @@
     "description": "Ternura floral e laços de carinho representados por flores aveludadas e sândalo cremoso.",
     "imageUrl": null,
     "notes": [
-      {"name": "Flor de Cerejeira", "family": "floral", "position": "top", "description": "Floral doce e primaveril"},
-      {"name": "Orquídea", "family": "floral", "position": "heart", "description": "Elegância aveludada"},
-      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso, quente e protetor"}
+      {
+        "name": "Flor de Cerejeira",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral doce e primaveril"
+      },
+      {
+        "name": "Orquídea",
+        "family": "floral",
+        "position": "heart",
+        "description": "Elegância aveludada"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso, quente e protetor"
+      }
     ]
   },
   {
@@ -1402,9 +2692,24 @@
     "description": "O pioneiro chypre brasileiro que conjuga frutas vermelhas a um patchouli moderno e limpo.",
     "imageUrl": null,
     "notes": [
-      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Frutado agridoce e alegre"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral clássico orvalhado"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Chypre terroso elegante"}
+      {
+        "name": "Frutas Vermelhas",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado agridoce e alegre"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral clássico orvalhado"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Chypre terroso elegante"
+      }
     ]
   },
   {
@@ -1418,9 +2723,24 @@
     "description": "Sensualidade e opulência com a misteriosa orquídea negra e o dulçor do cacau.",
     "imageUrl": null,
     "notes": [
-      {"name": "Framboesa", "family": "fruity", "position": "top", "description": "Frutado vermelho intenso"},
-      {"name": "Orquídea Negra", "family": "floral", "position": "heart", "description": "Floral aveludado e noturno"},
-      {"name": "Cacau", "family": "oriental", "position": "base", "description": "Gourmand denso e apaixonante"}
+      {
+        "name": "Framboesa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado vermelho intenso"
+      },
+      {
+        "name": "Orquídea Negra",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado e noturno"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand denso e apaixonante"
+      }
     ]
   },
   {
@@ -1434,9 +2754,24 @@
     "description": "A expressão máxima do chypre brasileiro, enriquecido com patchouli nobre e pêssego maduro.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Frutado aveludado maduro"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral imponente"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado poderoso e sofisticado"}
+      {
+        "name": "Pêssego",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aveludado maduro"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral imponente"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado poderoso e sofisticado"
+      }
     ]
   },
   {
@@ -1450,9 +2785,24 @@
     "description": "Luminosidade solar brasileira com a rara paramela e notas cítricas efervescentes.",
     "imageUrl": null,
     "notes": [
-      {"name": "Mandarina Amarela", "family": "citrus", "position": "top", "description": "Cítrico solar cintilante"},
-      {"name": "Paramela", "family": "floral", "position": "heart", "description": "Floral melífluo e radiante"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Chypre elegante e luminoso"}
+      {
+        "name": "Mandarina Amarela",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico solar cintilante"
+      },
+      {
+        "name": "Paramela",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral melífluo e radiante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Chypre elegante e luminoso"
+      }
     ]
   },
   {
@@ -1466,9 +2816,24 @@
     "description": "Bouquet exuberante de frésia e violeta envolto na doçura sutil de frutas roxas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Frutas Tropicais", "family": "fruity", "position": "top", "description": "Doce e exótico"},
-      {"name": "Frésia", "family": "floral", "position": "heart", "description": "Floral fresco e feminino"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Estrutura chypre refinada"}
+      {
+        "name": "Frutas Tropicais",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce e exótico"
+      },
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral fresco e feminino"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Estrutura chypre refinada"
+      }
     ]
   },
   {
@@ -1482,9 +2847,24 @@
     "description": "Chypre corajoso e potente que mescla amoras pretas, cumaru e flor de metamorfose.",
     "imageUrl": null,
     "notes": [
-      {"name": "Amora Preta", "family": "fruity", "position": "top", "description": "Frutado escuro e licoroso"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral vibrante e determinado"},
-      {"name": "Cumaru", "family": "oriental", "position": "base", "description": "Quente e adocicado brasileiro"}
+      {
+        "name": "Amora Preta",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado escuro e licoroso"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral vibrante e determinado"
+      },
+      {
+        "name": "Cumaru",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e adocicado brasileiro"
+      }
     ]
   },
   {
@@ -1498,9 +2878,24 @@
     "description": "Incentivo à determinação com a flor da protea e a força profunda da copaíba.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante luminoso estimulante"},
-      {"name": "Protea", "family": "floral", "position": "heart", "description": "Floral imponente e exótico"},
-      {"name": "Copaíba", "family": "woody", "position": "base", "description": "Amadeirado resinoso nobre"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante luminoso estimulante"
+      },
+      {
+        "name": "Protea",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral imponente e exótico"
+      },
+      {
+        "name": "Copaíba",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado resinoso nobre"
+      }
     ]
   },
   {
@@ -1514,9 +2909,24 @@
     "description": "Autoconfiança e carisma expressos por notas de patchouli combinadas a flores aveludadas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pêra", "family": "fruity", "position": "top", "description": "Doce, fresca e brilhante"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral afirmativo e elegante"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Chypre amadeirado sólido"}
+      {
+        "name": "Pêra",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce, fresca e brilhante"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral afirmativo e elegante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Chypre amadeirado sólido"
+      }
     ]
   },
   {
@@ -1530,9 +2940,24 @@
     "description": "Brilho dourado e magnetismo traduzidos pela flor da pataqueira e acordes especiados.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Cintilante e moderna"},
-      {"name": "Pataqueira", "family": "floral", "position": "heart", "description": "Floral amazônico luminoso"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado chypre sofisticado"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Cintilante e moderna"
+      },
+      {
+        "name": "Pataqueira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral amazônico luminoso"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado chypre sofisticado"
+      }
     ]
   },
   {
@@ -1546,9 +2971,24 @@
     "description": "Aura celestial com buquê floral branco enriquecido com notas ambaradas e resinas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico nobre e orvalhado"},
-      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco divinal"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Aconchegante e resinoso"}
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico nobre e orvalhado"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco divinal"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Aconchegante e resinoso"
+      }
     ]
   },
   {
@@ -1562,9 +3002,24 @@
     "description": "Audácia feminina traduzida em um chypre intenso com frutas roxas e madeiras escuras.",
     "imageUrl": null,
     "notes": [
-      {"name": "Groselha Preta", "family": "fruity", "position": "top", "description": "Frutado ácido e marcante"},
-      {"name": "Íris", "family": "floral", "position": "heart", "description": "Atalcado moderno luxuoso"},
-      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Denso e envolvente"}
+      {
+        "name": "Groselha Preta",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado ácido e marcante"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Atalcado moderno luxuoso"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Denso e envolvente"
+      }
     ]
   },
   {
@@ -1578,9 +3033,24 @@
     "description": "Clássico doce e feminino que embala gerações com baunilha cremosa e florais suaves.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Doce aveludado suculento"},
-      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral clássico romântico"},
-      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Gourmand cremosa e acolhedora"}
+      {
+        "name": "Pêssego",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce aveludado suculento"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral clássico romântico"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand cremosa e acolhedora"
+      }
     ]
   },
   {
@@ -1594,9 +3064,24 @@
     "description": "Intensidade adocicada e dramática com nozes caramelizadas, açúcar tostado e fava tonka.",
     "imageUrl": null,
     "notes": [
-      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Frutado suculento e ácido"},
-      {"name": "Pralinê", "family": "oriental", "position": "heart", "description": "Noz caramelizada crocante"},
-      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Adocicado denso e sedutor"}
+      {
+        "name": "Frutas Vermelhas",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado suculento e ácido"
+      },
+      {
+        "name": "Pralinê",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Noz caramelizada crocante"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado denso e sedutor"
+      }
     ]
   },
   {
@@ -1610,9 +3095,24 @@
     "description": "Explosão de diversão pop com notas de algodão doce rosa, baunilha e frutas vermelhas.",
     "imageUrl": null,
     "notes": [
-      {"name": "Framboesa", "family": "fruity", "position": "top", "description": "Frutado doce e elétrico"},
-      {"name": "Algodão Doce", "family": "oriental", "position": "heart", "description": "Gourmand açucarado nostálgico"},
-      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e aconchegante"}
+      {
+        "name": "Framboesa",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado doce e elétrico"
+      },
+      {
+        "name": "Algodão Doce",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Gourmand açucarado nostálgico"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremosa e aconchegante"
+      }
     ]
   },
   {
@@ -1626,9 +3126,24 @@
     "description": "Vício doce irresistível combinando calda de caramelo salgado e cacau cremoso.",
     "imageUrl": null,
     "notes": [
-      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante doce vibrante"},
-      {"name": "Caramelo Salgado", "family": "oriental", "position": "heart", "description": "Gourmand sofisticado"},
-      {"name": "Cacau", "family": "oriental", "position": "base", "description": "Denso, aveludado e quente"}
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante doce vibrante"
+      },
+      {
+        "name": "Caramelo Salgado",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Gourmand sofisticado"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "base",
+        "description": "Denso, aveludado e quente"
+      }
     ]
   },
   {
@@ -1642,9 +3157,24 @@
     "description": "A doçura reconfortante de doce de leite com canela em um abraço floral cremoso.",
     "imageUrl": null,
     "notes": [
-      {"name": "Maçã", "family": "fruity", "position": "top", "description": "Frutado fresco e crocante"},
-      {"name": "Doce de Leite", "family": "oriental", "position": "heart", "description": "Cremoso, leitoso e doce"},
-      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico quente acolhedor"}
+      {
+        "name": "Maçã",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado fresco e crocante"
+      },
+      {
+        "name": "Doce de Leite",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Cremoso, leitoso e doce"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico quente acolhedor"
+      }
     ]
   },
   {
@@ -1658,9 +3188,24 @@
     "description": "Celebração do bom humor com pipoca caramelizada e toque alegre de flor de castanha.",
     "imageUrl": null,
     "notes": [
-      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Aromático fresco e alegre"},
-      {"name": "Pipoca Caramelizada", "family": "oriental", "position": "heart", "description": "Gourmand divertido e crocante"},
-      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Caloroso e envolvente"}
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Aromático fresco e alegre"
+      },
+      {
+        "name": "Pipoca Caramelizada",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Gourmand divertido e crocante"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Caloroso e envolvente"
+      }
     ]
   },
   {
@@ -1674,9 +3219,24 @@
     "description": "O lado mais romântico e delicado com frutas vermelhas envoltas em algodão doce e flores.",
     "imageUrl": null,
     "notes": [
-      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doces e frescas"},
-      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral apaixonado e macio"},
-      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Aconchegante e sedosa"}
+      {
+        "name": "Frutas Vermelhas",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doces e frescas"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral apaixonado e macio"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Aconchegante e sedosa"
+      }
     ]
   }
 ]
