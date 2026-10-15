@@ -1,3 +1,4 @@
+import { ScanFace } from 'lucide-react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
@@ -8,15 +9,19 @@ import { Field } from '@/components/ui/field';
 import { PasswordField } from '@/components/ui/password-field';
 import { FormAlert } from '@/components/ui/form-alert';
 import { SubmitButton } from '@/components/ui/submit-button';
-import { AppError, getErrorMessage } from '@/constants/errors';
+import { AppError, getErrorMessage, isSilentError } from '@/constants/errors';
 import { useSignIn } from '@/hooks/useAuthActions';
+import { usePasskeySupport, useSignInWithPasskey } from '@/hooks/usePasskeys';
 import { zodResolver } from '@/lib/zodResolver';
 import { loginSchema, type LoginValues } from '@/schemas/auth';
 
-// O retorno ao destino original (?redirect=) é feito pela GuestOnly quando a sessão surge.
+// O retorno ao destino original (?redirect=) é feito pela GuestOnly quando a sessão surge, venha ela
+// da senha ou da biometria.
 export default function LoginPage() {
   const [searchParams] = useSearchParams();
   const signIn = useSignIn();
+  const passkeySupported = usePasskeySupport();
+  const passkeySignIn = useSignInWithPasskey();
   const {
     register,
     handleSubmit,
@@ -29,9 +34,19 @@ export default function LoginPage() {
     : '';
 
   const email = useWatch({ control, name: 'email' });
-  const onSubmit = handleSubmit((values) => signIn.mutate(values));
+  // Uma forma de entrar por vez: o erro exibido é sempre o da última tentativa
+  const onSubmit = handleSubmit((values) => {
+    passkeySignIn.reset();
+    signIn.mutate(values);
+  });
+  const handlePasskey = () => {
+    signIn.reset();
+    passkeySignIn.mutate();
+  };
   const notConfirmed =
     signIn.error instanceof AppError && signIn.error.code === 'email_not_confirmed';
+  const passkeyError =
+    passkeySignIn.isError && !isSilentError(passkeySignIn.error) ? passkeySignIn.error : null;
 
   return (
     <>
@@ -45,6 +60,26 @@ export default function LoginPage() {
           </>
         }
       >
+        {passkeySupported && (
+          <div className="flex flex-col gap-4">
+            {passkeyError && <FormAlert>{getErrorMessage(passkeyError)}</FormAlert>}
+            <SubmitButton
+              variant="outline"
+              loading={passkeySignIn.isPending}
+              loadingLabel="Aguardando a biometria…"
+              disabled={signIn.isPending}
+              onClick={handlePasskey}
+            >
+              <ScanFace aria-hidden />
+              Entrar com Face ID ou Digital
+            </SubmitButton>
+            <p className="flex items-center gap-3 text-sm text-text-secondary">
+              <span className="h-px flex-1 bg-border" aria-hidden />
+              ou com e-mail e senha
+              <span className="h-px flex-1 bg-border" aria-hidden />
+            </p>
+          </div>
+        )}
         <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
           {signIn.isError && <FormAlert>{getErrorMessage(signIn.error)}</FormAlert>}
           {notConfirmed && <ResendConfirmation email={email ?? ''} />}

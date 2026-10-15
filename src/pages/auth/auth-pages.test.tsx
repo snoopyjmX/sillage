@@ -1,5 +1,5 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireConfetti } from '@/components/ui/confetti';
 import { AppError } from '@/constants/errors';
 import { getBrowserTimezone } from '@/lib/timezone';
@@ -256,5 +256,75 @@ describe('páginas de autenticação', () => {
     await waitFor(() =>
       expect(auth.service.resendConfirmation).toHaveBeenCalledWith('ana@exemplo.com')
     );
+  });
+});
+
+describe('login por biometria', () => {
+  const stubSupport = (available: boolean) =>
+    vi.stubGlobal(
+      'PublicKeyCredential',
+      Object.assign(() => undefined, {
+        isUserVerifyingPlatformAuthenticatorAvailable: () => Promise.resolve(available),
+      })
+    );
+  const passkeyButton = () =>
+    screen.findByRole('button', { name: 'Entrar com Face ID ou Digital' });
+
+  beforeEach(() => {
+    auth.reset();
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('sem suporte no navegador mostra só e-mail e senha', async () => {
+    stubSupport(false);
+    renderApp('/login');
+    await screen.findByRole('heading', { name: 'Entrar', level: 1 });
+    await act(async () => undefined);
+    expect(screen.queryByRole('button', { name: /Face ID/ })).toBeNull();
+    expect(screen.queryByText('ou com e-mail e senha')).toBeNull();
+  });
+
+  it('com suporte mostra o botão e o divisor, e entra sem pedir a senha', async () => {
+    stubSupport(true);
+    auth.service.signInWithPasskey.mockResolvedValue(undefined);
+    renderApp('/login');
+    fireEvent.click(await passkeyButton());
+    expect(screen.getByText('ou com e-mail e senha')).toBeInTheDocument();
+    await waitFor(() => expect(auth.service.signInWithPasskey).toHaveBeenCalled());
+    expect(auth.service.signIn).not.toHaveBeenCalled();
+  });
+
+  it('cancelar a biometria não mostra alerta', async () => {
+    stubSupport(true);
+    auth.service.signInWithPasskey.mockRejectedValue(new AppError('passkey_cancelled'));
+    renderApp('/login');
+    fireEvent.click(await passkeyButton());
+    await waitFor(() => expect(auth.service.signInWithPasskey).toHaveBeenCalled());
+    await act(async () => undefined);
+    expect(screen.queryByRole('alert')).toBeNull();
+  });
+
+  it('falha na biometria mostra a mensagem mapeada e sugere a senha', async () => {
+    stubSupport(true);
+    auth.service.signInWithPasskey.mockRejectedValue(new AppError('passkey_failed'));
+    renderApp('/login');
+    fireEvent.click(await passkeyButton());
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'Não foi possível autenticar com biometria. Tente novamente ou use sua senha.'
+    );
+  });
+
+  it('com sucesso volta ao destino original (?redirect=)', async () => {
+    stubSupport(true);
+    auth.service.signInWithPasskey.mockImplementation(() => {
+      auth.emit('SIGNED_IN', fakeSession());
+      return Promise.resolve();
+    });
+    const { router } = renderApp('/login?redirect=%2Fcollection');
+    fireEvent.click(await passkeyButton());
+    await waitFor(() => expect(router.state.location.pathname).toBe('/collection'));
   });
 });

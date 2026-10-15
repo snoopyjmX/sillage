@@ -10,14 +10,18 @@ const auth = {
   updateUser: vi.fn(),
   getSession: vi.fn(),
   onAuthStateChange: vi.fn(),
+  signInWithPasskey: vi.fn(),
+  registerPasskey: vi.fn(),
 };
-vi.mock('@/lib/supabase', () => ({ supabase: { auth } }));
+const passkey = { list: vi.fn(), update: vi.fn(), delete: vi.fn() };
+vi.mock('@/lib/supabase', () => ({ supabase: { auth: { ...auth, passkey } } }));
 
 const { authService } = await import('./authService');
 
 describe('authService', () => {
   beforeEach(() => {
     Object.values(auth).forEach((fn) => fn.mockReset());
+    Object.values(passkey).forEach((fn) => fn.mockReset());
   });
 
   it('signIn envia e-mail e senha', async () => {
@@ -151,6 +155,101 @@ describe('authService', () => {
       await expect(authService.deleteAccount()).rejects.toMatchObject({ code: 'session_expired' });
       fetchMock.mockRejectedValue(new TypeError('Failed to fetch'));
       await expect(authService.deleteAccount()).rejects.toMatchObject({ code: 'network' });
+    });
+  });
+
+  describe('passkeys', () => {
+    const notAllowed = Object.assign(new Error('The operation was not allowed.'), {
+      name: 'NotAllowedError',
+    });
+
+    it('signInWithPasskey conduz a cerimônia pelo SDK', async () => {
+      auth.signInWithPasskey.mockResolvedValue({ data: { session: {}, user: {} }, error: null });
+      await authService.signInWithPasskey();
+      expect(auth.signInWithPasskey).toHaveBeenCalled();
+    });
+
+    it('cancelar a biometria vira passkey_cancelled; outras falhas, passkey_failed', async () => {
+      auth.signInWithPasskey.mockResolvedValueOnce({
+        data: null,
+        error: { code: 'ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY', cause: notAllowed },
+      });
+      await expect(authService.signInWithPasskey()).rejects.toMatchObject({
+        code: 'passkey_cancelled',
+      });
+      auth.signInWithPasskey.mockResolvedValueOnce({
+        data: null,
+        error: { code: 'passkey_not_found', message: 'Passkey not found', status: 404 },
+      });
+      const error = await authService.signInWithPasskey().catch((e: unknown) => e);
+      expect(error).toMatchObject({ code: 'passkey_failed' });
+      expect((error as AppError).message).not.toMatch(/not found/);
+    });
+
+    it('registerPasskey cadastra e depois dá o nome do aparelho', async () => {
+      auth.registerPasskey.mockResolvedValue({
+        data: { id: 'pk1', created_at: '2026-10-15T12:00:00Z' },
+        error: null,
+      });
+      passkey.update.mockResolvedValue({ data: {}, error: null });
+      await authService.registerPasskey('iPhone');
+      expect(passkey.update).toHaveBeenCalledWith({ passkeyId: 'pk1', friendlyName: 'iPhone' });
+    });
+
+    it('falha ao nomear não desfaz o cadastro', async () => {
+      auth.registerPasskey.mockResolvedValue({
+        data: { id: 'pk1', created_at: '2026-10-15T12:00:00Z' },
+        error: null,
+      });
+      passkey.update.mockResolvedValue({ data: null, error: { message: 'erro' } });
+      await expect(authService.registerPasskey('Mac')).resolves.toBeUndefined();
+    });
+
+    it('aparelho já cadastrado tem erro próprio e não tenta nomear', async () => {
+      auth.registerPasskey.mockResolvedValue({
+        data: null,
+        error: { code: 'ERROR_AUTHENTICATOR_PREVIOUSLY_REGISTERED' },
+      });
+      await expect(authService.registerPasskey('Mac')).rejects.toMatchObject({
+        code: 'passkey_already_registered',
+      });
+      expect(passkey.update).not.toHaveBeenCalled();
+    });
+
+    it('listPasskeys converte para camelCase com nulos explícitos', async () => {
+      passkey.list.mockResolvedValue({
+        data: [
+          {
+            id: 'a',
+            friendly_name: 'iPhone',
+            created_at: '2026-10-01',
+            last_used_at: '2026-10-10',
+          },
+          { id: 'b', created_at: '2026-10-02' },
+        ],
+        error: null,
+      });
+      await expect(authService.listPasskeys()).resolves.toEqual([
+        { id: 'a', name: 'iPhone', createdAt: '2026-10-01', lastUsedAt: '2026-10-10' },
+        { id: 'b', name: null, createdAt: '2026-10-02', lastUsedAt: null },
+      ]);
+    });
+
+    it('listPasskeys e deletePasskey mapeiam erros sem texto cru', async () => {
+      passkey.list.mockResolvedValue({ data: null, error: { message: 'boom', status: 500 } });
+      await expect(authService.listPasskeys()).rejects.toMatchObject({
+        code: 'passkey_list_failed',
+      });
+      passkey.delete.mockResolvedValue({ data: null, error: { message: 'boom', status: 500 } });
+      await expect(authService.deletePasskey('a')).rejects.toMatchObject({
+        code: 'passkey_delete_failed',
+      });
+      passkey.delete.mockResolvedValue({
+        data: null,
+        error: { status: 0, message: 'Failed to fetch' },
+      });
+      await expect(authService.deletePasskey('a')).rejects.toMatchObject({ code: 'network' });
+      expect(passkey.delete).toHaveBeenCalledWith({ passkeyId: 'a' });
     });
   });
 });

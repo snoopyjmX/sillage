@@ -49,6 +49,10 @@ export const queryKeys = {
     image: (userId: string, parts: readonly (string | number | null)[]) =>
       ['private', userId, 'share-card', ...parts] as const,
   },
+  // Aparelhos com passkey (login por biometria): privado, nunca persistido
+  passkeys: {
+    list: (userId: string) => ['private', userId, 'passkeys'] as const,
+  },
   profile: {
     all: (userId: string) => ['private', userId, 'profile'] as const,
     detail: (userId: string) => ['private', userId, 'profile', 'detail'] as const,
