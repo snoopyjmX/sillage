@@ -198,19 +198,30 @@ O `scripts/ingest-perfume.mjs` já faz a extração com Gemini, validação Zod,
 
 ---
 
+## Fase 25: Login por Biometria / Passkeys (WebAuthn)
+
+Especificação completa em [PLANO_PASSKEYS.md](PLANO_PASSKEYS.md).
+
+- **Escopo:** Suporte a Face ID, Touch ID e Windows Hello via WebAuthn para usuários com conta confirmada.
+- **Frontend:** `authService` com métodos de Passkey; hooks em `usePasskeys.ts`; botão "Entrar com Face ID ou Digital" em `LoginPage.tsx`; gestão de aparelhos em `ProfilePage.tsx` (`PasskeyManager.tsx`).
+- **Segurança:** Autenticação FIDO2 criptográfica; chaves privadas protegidas em hardware; query key `['private', userId, 'passkeys']` nunca persistida.
+
+---
+
 ## Matriz de Dependências
 
-| Fase                        | Banco                | UI                 | Depende de                | Benefício                           |
-| :-------------------------- | :------------------- | :----------------- | :------------------------ | :---------------------------------- |
-| **19.1 (Correções)**        | Baixa (seed)         | Média (CSS/mobile) | Fotos e fichas (19.1-c)   | Bugs visuais e paridade de catálogo |
-| **20 (Exclusão de conta)**  | Concluída            | Concluída          | —                         | Conformidade e segurança            |
-| **21 (Perfumistas)**        | Média (2 tabelas)    | Média              | —                         | Navegação relacional                |
-| **22 (Trilha do Nez)**      | Média (RPC + função) | Média              | Nez (Fase 10) e DNA (16A) | Menos indecisão, mais engajamento   |
-| **23 (Retrospectiva)**      | Média (função SQL)   | Alta               | Memorial (19), 16B e DNA  | Retenção anual                      |
-| **24 (Extensão do ingest)** | Baixa (tooling)      | Baixa (CLI)        | Ingest existente          | Crescimento do catálogo             |
+| Fase                        | Banco                | UI                   | Depende de                 | Benefício                            |
+| :-------------------------- | :------------------- | :------------------- | :------------------------- | :----------------------------------- |
+| **19.1 (Correções)**        | Baixa (seed)         | Média (CSS/mobile)   | Fotos e fichas (19.1-c)    | Bugs visuais e paridade de catálogo  |
+| **20 (Exclusão de conta)**  | Concluída            | Concluída            | —                          | Conformidade e segurança             |
+| **21 (Perfumistas)**        | Média (2 tabelas)    | Média                | —                          | Navegação relacional                 |
+| **22 (Trilha do Nez)**      | Média (RPC + função) | Média                | Nez (Fase 10) e DNA (16A)  | Menos indecisão, mais engajamento    |
+| **23 (Retrospectiva)**      | Média (função SQL)   | Alta                 | Memorial (19), 16B e DNA   | Retenção anual                       |
+| **24 (Extensão do ingest)** | Baixa (tooling)      | Baixa (CLI)          | Ingest existente           | Crescimento do catálogo              |
+| **25 (Passkeys / Face ID)** | Baixa (config Auth)  | Média (Login/Perfil) | Conta e e-mail confirmados | Acesso rápido sem senha (PWA nativo) |
 
 ---
 
 ## Entrega final v1.0.0
 
-O fechamento da v1.0.0 segue `docs/PLANO_FINAL.md` (branch `release/v1.0.0`). Pendências manuais do mantenedor: configurar o SMTP do Brevo no painel, cadastrar os perfumes nacionais com fonte e foto oficiais (2.1) e subir as imagens e as migrations em produção.
+O fechamento da v1.0.0 segue `docs/PLANO_FINAL.md` (branch `release/v1.0.0`). Pendências manuais do mantenedor: configurar o SMTP no painel, cadastrar os perfumes nacionais com fonte e foto oficiais (2.1) e subir as imagens e as migrations em produção.

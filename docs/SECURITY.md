@@ -59,6 +59,15 @@ Bucket `avatars`: leitura pública (quem tem a URL vê a foto; é a natureza de 
 - **Respostas validadas** com Zod; falha de formato vira `weather_failed`. Mensagens ao usuário só por `constants/errors.ts`.
 - **Limitação:** o Open-Meteo não tem SLA e a API gratuita é não comercial; a barra de clima degrada para "Clima indisponível" e a sugestão do dia segue funcionando sem clima.
 
+## Login por biometria (passkeys, Fase 25)
+
+- **Quem autentica é o Supabase Auth (GoTrue), via WebAuthn/FIDO2.** O `supabase-js` conduz a cerimônia inteira (`signInWithPasskey`, `registerPasskey`, `passkey.list` e `passkey.delete`), só dentro do `authService`. A chave privada fica no chip seguro do aparelho e nunca trafega; o servidor guarda a chave pública e os metadados (nome, criação, último uso) no schema `auth`. Nenhuma tabela nossa nem policy de RLS mudou.
+- **Cadastro só com sessão ativa**, e a sessão só existe depois do e-mail confirmado. A pessoa só lista e remove as próprias passkeys (o GoTrue filtra pelo JWT); a API de admin (`auth.admin.passkey`) não é usada no front.
+- **Relying Party:** local em `supabase/config.toml` (`rp_id = "localhost"`, origens 5173 e 4173); produção no painel (`rp_id` = domínio da Vercel, origem HTTPS). Origem fora da lista é recusada pelo navegador e pelo servidor, o que impede phishing de outro domínio.
+- **Erros:** `toPasskeyError` (`constants/errors.ts`) converte `WebAuthnError` e erro do GoTrue em código estável. Cancelar o diálogo do sistema (`NotAllowedError` repassado ou `ERROR_CEREMONY_ABORTED`) vira `passkey_cancelled`, que a interface não mostra.
+- **Cache:** `["private", userId, "passkeys"]`, nunca persistido e removido no logout.
+- **Cabeçalhos:** o `Permissions-Policy` não cita `publickey-credentials-*`, então vale o padrão do navegador (`self`): WebAuthn funciona no próprio site e não em iframes de terceiros.
+
 ## Cabeçalhos HTTP (`vercel.json`)
 
 - **CSP:** `script-src 'self'` mais o hash SHA-256 do script inline de tema do `index.html` (sem `unsafe-inline` em scripts). `connect-src` só para o próprio site, o Supabase (`*.supabase.co`, HTTPS e WebSocket) e as duas APIs do Open-Meteo e a `api.bigdatacloud.net`. `img-src` aceita `data:`, `blob:` e o Storage do Supabase. `object-src 'none'`, `base-uri` e `form-action` restritos a `'self'`; `frame-ancestors 'none'`.
@@ -80,6 +89,7 @@ Bucket `avatars`: leitura pública (quem tem a URL vê a foto; é a natureza de 
 | Trocar `perfume_id` de uma avaliação para driblar a RN03 | `UPDATE` restrito por coluna (`perfume_id` e `user_id` imutáveis)                                                                              |
 | XSS em comentário                                        | React escapa; sem `dangerouslySetInnerHTML`; limite de 1000 caracteres                                                                         |
 | Vazar localização do usuário                             | Só por clique (ou permissão já concedida), arredondada, só em memória; storage guarda apenas um aviso booleano; chave privada nunca persistida |
+| Phishing ou senha reaproveitada                          | Passkey (WebAuthn) presa ao domínio do RP; a chave privada não sai do aparelho                                                                 |
 | Chave privada vazada                                     | Secret scanning, `service_role` fora do app, rotação se houver suspeita                                                                        |
 
 ## Limitações conhecidas

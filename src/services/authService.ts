@@ -1,8 +1,9 @@
 // Autenticação (docs/PRODUCT.md, Seção 7). Único ponto que fala com supabase.auth.
 // Erros viram AppError com código estável; a mensagem crua do Supabase nunca sai daqui.
 import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
-import { AppError, toAuthError } from '@/constants/errors';
+import { AppError, toAuthError, toPasskeyError, type ErrorCode } from '@/constants/errors';
 import { supabase } from '@/lib/supabase';
+import type { Passkey } from '@/types/passkey';
 
 const supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL;
 const anonKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -14,6 +15,15 @@ export type AuthStateListener = (event: AuthChangeEvent, session: Session | null
 
 // Destino do link de confirmação do e-mail (a Redirect URL precisa estar liberada no Supabase)
 const confirmedUrl = (): string => `${window.location.origin}/auth/confirmed`;
+
+// Gestão das passkeys: rede e sessão vencida mantêm a mensagem própria; o resto vira `fallback`
+const toPasskeyManageError = (
+  error: { code?: string; message?: string; status?: number },
+  fallback: ErrorCode
+): AppError => {
+  const mapped = toAuthError(error);
+  return mapped.code === 'unknown' ? new AppError(fallback, { cause: error }) : mapped;
+};
 
 export const authService = {
   getSession: async (): Promise<Session | null> => {
@@ -79,6 +89,38 @@ export const authService = {
   updatePassword: async (newPassword: string): Promise<void> => {
     const { error } = await supabase.auth.updateUser({ password: newPassword });
     if (error) throw toAuthError(error);
+  },
+
+  // Passkeys (docs/PLANO_PASSKEYS.md). O supabase-js conduz a cerimônia WebAuthn inteira: a chave
+  // privada fica no aparelho e o servidor só guarda a pública. A sessão chega pelo onAuthStateChange.
+  signInWithPasskey: async (): Promise<void> => {
+    const { error } = await supabase.auth.signInWithPasskey();
+    if (error) throw toPasskeyError(error);
+  },
+
+  // Exige sessão ativa. O SDK não aceita nome no cadastro: o nome amigável vai num update logo
+  // depois e, se falhar, a passkey continua válida (só fica sem nome).
+  registerPasskey: async (name?: string): Promise<void> => {
+    const { data, error } = await supabase.auth.registerPasskey();
+    if (error) throw toPasskeyError(error);
+    if (!name) return;
+    await supabase.auth.passkey.update({ passkeyId: data.id, friendlyName: name.slice(0, 120) });
+  },
+
+  listPasskeys: async (): Promise<Passkey[]> => {
+    const { data, error } = await supabase.auth.passkey.list();
+    if (error) throw toPasskeyManageError(error, 'passkey_list_failed');
+    return data.map((item) => ({
+      id: item.id,
+      name: item.friendly_name ?? null,
+      createdAt: item.created_at,
+      lastUsedAt: item.last_used_at ?? null,
+    }));
+  },
+
+  deletePasskey: async (id: string): Promise<void> => {
+    const { error } = await supabase.auth.passkey.delete({ passkeyId: id });
+    if (error) throw toPasskeyManageError(error, 'passkey_delete_failed');
   },
 
   // Exclusão da própria conta pela Edge Function delete-account (a service_role só existe lá). O

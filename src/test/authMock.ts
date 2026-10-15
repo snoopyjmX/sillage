@@ -31,6 +31,10 @@ export const createAuthMock = () => {
     sendPasswordReset: vi.fn(),
     updatePassword: vi.fn(),
     deleteAccount: vi.fn(),
+    signInWithPasskey: vi.fn(),
+    registerPasskey: vi.fn(),
+    listPasskeys: vi.fn(),
+    deletePasskey: vi.fn(),
   };
   return {
     service,

@@ -6,6 +6,7 @@ import {
   OlfactoryDnaEmpty,
   OlfactoryDnaSkeleton,
 } from '@/components/profile/OlfactoryDnaCard';
+import { PasskeyManager } from '@/components/profile/PasskeyManager';
 import { ProfileForm } from '@/components/profile/ProfileForm';
 import { ProfileHeader, ProfileHeaderSkeleton } from '@/components/profile/ProfileHeader';
 import { ProfileStats, ProfileStatsSkeleton } from '@/components/profile/ProfileStats';
@@ -177,6 +178,10 @@ export default function ProfilePage() {
               </BlurFade>
 
               <BlurFade delay={0.16}>
+                <PasskeyManager />
+              </BlurFade>
+
+              <BlurFade delay={0.2}>
                 <DangerZone />
               </BlurFade>
             </div>

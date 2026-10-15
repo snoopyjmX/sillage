@@ -31,7 +31,13 @@ export type ErrorCode =
   | 'share_card_failed'
   | 'share_failed'
   | 'dna_failed'
-  | 'recap_failed';
+  | 'recap_failed'
+  | 'passkey_failed'
+  | 'passkey_not_supported'
+  | 'passkey_already_registered'
+  | 'passkey_cancelled'
+  | 'passkey_list_failed'
+  | 'passkey_delete_failed';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   network: 'Sem conexão com o servidor. Verifique sua internet e tente de novo.',
@@ -69,6 +75,14 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   share_failed: 'Não foi possível compartilhar a imagem. Tente baixá-la.',
   dna_failed: 'Não foi possível carregar o seu DNA olfativo. Tente novamente em instantes.',
   recap_failed: 'Não foi possível montar a sua retrospectiva agora. Tente novamente em instantes.',
+  passkey_failed: 'Não foi possível autenticar com biometria. Tente novamente ou use sua senha.',
+  passkey_not_supported: 'Este dispositivo ou navegador não suporta biometria.',
+  passkey_already_registered: 'Este aparelho já está cadastrado para entrar com biometria.',
+  // Nunca exibido (a pessoa fechou o pedido de biometria); existe para o código continuar estável
+  passkey_cancelled: 'A biometria foi cancelada.',
+  passkey_list_failed:
+    'Não foi possível carregar os aparelhos cadastrados. Tente novamente em instantes.',
+  passkey_delete_failed: 'Não foi possível remover o aparelho. Tente novamente em instantes.',
 };
 
 export class AppError extends Error {
@@ -122,6 +136,43 @@ export const toAuthError = (error: SupabaseLikeError): AppError => {
   if (error.status === 0 || isNetworkError(error)) return new AppError('network', { cause: error });
   return new AppError('unknown', { cause: error });
 };
+
+interface WebAuthnLikeError extends SupabaseLikeError {
+  cause?: unknown;
+}
+
+// DOMException nem sempre herda de Error em todos os ambientes: compara só pelo nome
+const hasName = (value: unknown, name: string): boolean =>
+  typeof value === 'object' && value !== null && 'name' in value && value.name === name;
+
+const isDomError = (error: WebAuthnLikeError, name: string): boolean =>
+  hasName(error, name) || hasName(error.cause, name);
+
+// Recusa voluntária: o pedido foi abortado (ERROR_CEREMONY_ABORTED) ou a pessoa fechou o diálogo do
+// sistema, que o supabase-js repassa como NotAllowedError (ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY)
+const isCeremonyCancelled = (error: WebAuthnLikeError): boolean =>
+  error.code === 'ERROR_CEREMONY_ABORTED' ||
+  isDomError(error, 'NotAllowedError') ||
+  isDomError(error, 'AbortError');
+
+// Erros das cerimônias de passkey (WebAuthnError do navegador ou AuthError do GoTrue) -> AppError.
+// Rede e limite de tentativas mantêm a mensagem própria; o resto vira passkey_failed.
+export const toPasskeyError = (error: WebAuthnLikeError): AppError => {
+  if (isCeremonyCancelled(error)) return new AppError('passkey_cancelled', { cause: error });
+  if (error.code === 'ERROR_AUTHENTICATOR_PREVIOUSLY_REGISTERED') {
+    return new AppError('passkey_already_registered', { cause: error });
+  }
+  if (isDomError(error, 'NotSupportedError')) {
+    return new AppError('passkey_not_supported', { cause: error });
+  }
+  const auth = toAuthError(error);
+  if (auth.code === 'network' || auth.code === 'rate_limited') return auth;
+  return new AppError('passkey_failed', { cause: error });
+};
+
+// Erros que a interface não mostra: a pessoa desistiu por conta própria
+export const isSilentError = (error: unknown): boolean =>
+  error instanceof AppError && error.code === 'passkey_cancelled';
 
 export const getErrorMessage = (error: unknown): string =>
   error instanceof AppError ? error.message : ERROR_MESSAGES.unknown;

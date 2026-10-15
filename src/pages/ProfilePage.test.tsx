@@ -79,6 +79,7 @@ describe('ProfilePage', () => {
     listCollection.mockResolvedValue([item('owned'), item('owned'), item('wanted')]);
     countDays.mockResolvedValue(5);
     getDna.mockResolvedValue(readyDna);
+    auth.service.listPasskeys.mockResolvedValue([]);
   });
 
   describe('DNA olfativo', () => {

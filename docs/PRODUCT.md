@@ -778,6 +778,8 @@ As regras de segurança e de negócio são testadas **no banco** (pgTAP) e por i
 
 - **Autenticação:** cadastro, login válido, login inválido (mensagem em português, não o código do Supabase), logout, esqueci a senha até redefinir (e-mail capturado pelo Mailpit do Supabase local), rota privada redirecionando para login e voltando.
 
+- **Login por biometria (25):** Vitest de `lib/passkey` (suporte e rótulo do aparelho), `toPasskeyError` (cancelamento silencioso, aparelho já cadastrado, sem suporte, desafio expirado, rede), `authService` com cliente simulado, `usePasskeys` (chave privada, toasts, invalidação) e `PasskeyManager` (lista, confirmação de remoção, vazio, erro, carregando, sem suporte); na página de login, botão só com suporte, cancelamento sem alerta, erro mapeado e retorno ao `?redirect=`. A cerimônia WebAuthn real fica fora do E2E (exige autenticador virtual e RP local); passagem manual num iPhone e num Android antes do release.
+
 - **Catálogo:** abrir, buscar sem acento, filtrar por nota, por posição, combinar filtros, URL restaurando o estado, abrir detalhes, slug inexistente no 404.
 
 - **Coleção:** adicionar como Quero, como Tenho, alternar nos dois sentidos, remover; contagem de linhas permanece 1.
