@@ -5,7 +5,7 @@
     "releaseYear": 2022,
     "concentration": "edp",
     "gender": "unisex",
-    "perfumers": ["Jasmine Liu"],
+    "perfumers": [],
     "description": "Criação elegante que homenageia a história centenária da Granado, unindo pimenta rosa e notas florais a uma base confortável de cashmeran e âmbar.",
     "officialUrl": "https://www.granado.com.br/granado/perfume-nostalgia-75ml-granado",
     "notes": [
@@ -63,7 +63,8 @@
         "position": "base",
         "description": "Acorde macio e limpo que lembra pele aquecida. Prolonga o perfume e deixa um rastro suave."
       }
-    ]
+    ],
+    "pendingPerfumers": ["Jasmine Liu"]
   },
   {
     "name": "Époque Tropical",
@@ -71,7 +72,7 @@
     "releaseYear": 2021,
     "concentration": "edp",
     "gender": "unisex",
-    "perfumers": ["Guillaume Flavigny"],
+    "perfumers": [],
     "description": "Uma viagem sensorial pelo Rio de Janeiro da Belle Époque, com o frescor inusitado do caju e cardamomo sobre o calor nobre da fava tonka e sândalo.",
     "officialUrl": "https://www.granado.com.br/granado/perfume-epoque-tropical-75ml-granado",
     "notes": [
@@ -129,7 +130,8 @@
         "position": "base",
         "description": "Madeira escura, defumada e levemente adocicada. Lembra chá e fumaça de lareira."
       }
-    ]
+    ],
+    "pendingPerfumers": ["Guillaume Flavigny"]
   },
   {
     "name": "Carioca",
@@ -203,7 +205,7 @@
     "releaseYear": 2017,
     "concentration": "edp",
     "gender": "masculine",
-    "perfumers": ["Verônica Kato", "Pierre-Constantin Guéros"],
+    "perfumers": ["Verônica Kato"],
     "description": "O encontro memorável do precioso óleo de Oud (o ouro líquido da perfumaria) com a exuberância e calor da copaíba da biodiversidade amazônica.",
     "officialUrl": "https://www.natura.com.br/p/deo-parfum-essencial-oud-masculino-100-ml/NATBRA-198",
     "notes": [
@@ -291,7 +293,8 @@
         "position": "base",
         "description": "Acorde quente, resinoso e levemente adocicado. Dá um fundo sensual que se espalha devagar."
       }
-    ]
+    ],
+    "pendingPerfumers": ["Pierre-Constantin Guéros"]
   },
   {
     "name": "Homem Cor.Agio",
@@ -299,7 +302,7 @@
     "releaseYear": 2018,
     "concentration": "edp",
     "gender": "masculine",
-    "perfumers": ["Verônica Kato", "Jean-Christophe Hérault"],
+    "perfumers": ["Verônica Kato"],
     "description": "O contraste arrebatador entre o calor da copaíba e do cumaru com o arrepio picante e metálico da pimenta preta e especiarias frias.",
     "officialUrl": "https://www.natura.com.br/p/deo-parfum-natura-homem-cor-agio-100-ml/NATBRA-183",
     "notes": [
@@ -381,7 +384,8 @@
         "position": "base",
         "description": "Resina escura de âmbar e couro, levemente animálica. Dá um fundo quente e profundo."
       }
-    ]
+    ],
+    "pendingPerfumers": ["Jean-Christophe Hérault"]
   },
   {
     "name": "Elysée Tradicional",
@@ -389,7 +393,7 @@
     "releaseYear": 2015,
     "concentration": "edp",
     "gender": "feminine",
-    "perfumers": ["Jacques Huclier", "Hernan Fígoli"],
+    "perfumers": [],
     "description": "Joia da perfumaria feminina nacional criada com a técnica Orpur, combinando o frescor da mandarina à sofisticação da rosa damascena e do patchouli.",
     "officialUrl": "https://www.boticario.com.br/elysee-eau-de-parfum-50ml/",
     "notes": [
@@ -465,7 +469,8 @@
         "position": "base",
         "description": "Cheiro cremoso, doce e reconfortante de fava e creme. Dá um fundo acolhedor."
       }
-    ]
+    ],
+    "pendingPerfumers": ["Jacques Huclier", "Hernan Fígoli"]
   },
   {
     "name": "Zaad Santal",
@@ -473,7 +478,7 @@
     "releaseYear": 2021,
     "concentration": "edp",
     "gender": "masculine",
-    "perfumers": ["Christian Alori", "Natasha Côté"],
+    "perfumers": [],
     "description": "A sofisticação do sândalo da Nova Caledônia contrastada com o toque licoroso do whisky e especiarias frias como pimenta sichuan e gengibre.",
     "officialUrl": "https://www.boticario.com.br/zaad-santal-eau-de-parfum-95ml/",
     "notes": [
@@ -555,7 +560,8 @@
         "position": "base",
         "description": "Acorde macio e limpo que lembra pele aquecida. Prolonga o perfume e deixa um rastro suave."
       }
-    ]
+    ],
+    "pendingPerfumers": ["Christian Alori", "Natasha Côté"]
   },
   {
     "name": "Seleto",
@@ -563,7 +569,7 @@
     "releaseYear": 2018,
     "concentration": "edp",
     "gender": "masculine",
-    "perfumers": ["Edison Fujita"],
+    "perfumers": [],
     "description": "Perfume marcante e discreto que traduz sofisticação com o frescor da sálvia e do cardamomo sobre o calor da fava tonka e do oud.",
     "officialUrl": "https://www.avatim.com.br/produto/deo-parfum-seleto-100ml-392",
     "notes": [
@@ -627,6 +633,7 @@
         "position": "base",
         "description": "Cheiro cremoso, doce e reconfortante de fava e creme. Dá um fundo acolhedor."
       }
-    ]
+    ],
+    "pendingPerfumers": ["Edison Fujita"]
   }
 ]
