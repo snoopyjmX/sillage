@@ -140,6 +140,7 @@ A tabela `perfumers` (migration `20261015120000_perfumers.sql`) já tem as colun
 4. **Preloads de fonte:** manter os caminhos atuais (o Vite os reescreve). Remover apenas os que o relatório apontar como não usados.
 5. Corrigir os demais pontos que a medição apontar.
 6. **Lighthouse CI:** subir o mínimo de performance em `lighthouserc.json` de 0.75 para 0.9 quando três execuções seguidas passarem.
+   - **Estado atual (v1.0.0):** performance está como `warn` (mínimo 0.75), porque o runner da CI é compartilhado e o site mede ~0.8 localmente. Acessibilidade, boas práticas e SEO seguem como `error`.
 
 ---
 
