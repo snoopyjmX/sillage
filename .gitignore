@@ -177,3 +177,6 @@ scripts/raw-images/*.*
 scripts/processed-images/
 stats.html
 .lighthouseci
+
+# Relatórios do ingest em lote (quarentena e registro dos lotes)
+scripts/batch/
