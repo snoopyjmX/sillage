@@ -78,7 +78,7 @@ select hasnt_column('public', 'perfumes', 'perfumer', 'a coluna de texto perfume
 -- Leitura pública
 select pg_temp.act_anon();
 select is((select count(*) from public.perfumers where slug like 'nariz-%'), 2::bigint, 'anon lê perfumers');
-select is((select count(*) from public.perfume_perfumers), 2::bigint, 'anon lê perfume_perfumers');
+select is((select count(*) from public.perfume_perfumers where perfume_id in ('11111111-0000-4000-8000-000000000001', '11111111-0000-4000-8000-000000000002')), 2::bigint, 'anon lê perfume_perfumers');
 select throws_ok($t$insert into public.perfumers (name, slug) values ('Anon', 'anon')$t$, '42501', null, 'anon não insere em perfumers');
 
 -- Usuário comum: lê, mas não escreve

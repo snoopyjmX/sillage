@@ -1,0 +1,665 @@
+[
+  {
+    "brand": "Nuancielo",
+    "name": "Costa Riviera",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aquatic",
+    "description": "Um convite para viver a brisa salgada e o frescor mediterrâneo, harmonizando algas marinhas, cítricos vibrantes e madeiras nobres.",
+    "imageUrl": "https://cdn.dooca.store/88/products/img-5071-b3mwu.jpeg",
+    "notes": [
+      { "name": "Algas Marinhas", "family": "aquatic", "position": "top", "description": "Salino e marinho revigorante" },
+      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado fresco e aromático" },
+      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral herbáceo limpo" },
+      { "name": "Murta", "family": "aromatic", "position": "heart", "description": "Herbáceo canforado" },
+      { "name": "Madeira Flutuante", "family": "woody", "position": "base", "description": "Madeira envelhecida pelo mar" },
+      { "name": "Carvalho", "family": "woody", "position": "base", "description": "Amadeirado nobre e estruturado" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Pharazon",
+    "releaseYear": 2024,
+    "concentration": "extrait",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma fragrância opulenta e monumental que projeta poder através de olíbano fumegante, especiarias quentes e resinas de oud.",
+    "imageUrl": "https://cdn.dooca.store/88/products/img-5042-qtago.jpeg",
+    "notes": [
+      { "name": "Olíbano", "family": "oriental", "position": "top", "description": "Resinoso místico e esfumaçado" },
+      { "name": "Pimenta de Szechuan", "family": "spicy", "position": "top", "description": "Picante e vibrante" },
+      { "name": "Açafrão", "family": "spicy", "position": "heart", "description": "Couroide exótico e refinado" },
+      { "name": "Patchouli", "family": "woody", "position": "heart", "description": "Terroso profundo" },
+      { "name": "Agarwood (Oud)", "family": "woody", "position": "base", "description": "Amadeirado escuro e imponente" },
+      { "name": "Âmbar Cinzento", "family": "oriental", "position": "base", "description": "Mineral marinho e quente" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Sahara Absolu",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Aura ensolarada e envolvente que une a efervescência de groselha e cítricos à cremosidade gourmand de pralinê e âmbar negro.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Groselha Preta", "family": "fruity", "position": "top", "description": "Frutado suculento e levemente ácido" },
+      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso e cortante" },
+      { "name": "Pralinê", "family": "oriental", "position": "heart", "description": "Doce aveludado e caramelizado" },
+      { "name": "Violeta", "family": "floral", "position": "heart", "description": "Floral macio e atalcado" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Madeira seca e refinada" },
+      { "name": "Âmbar Negro", "family": "oriental", "position": "base", "description": "Resinoso quente e balsâmico" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Everest",
+    "releaseYear": 2023,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Sensação gélida e revigorante inspirada em montanhas nevadas, equilibrando cítricos cristalinos com sândalo e ambroxan.",
+    "imageUrl": "https://cdn.dooca.store/88/products/img-2753.jpeg",
+    "notes": [
+      { "name": "Bergamota da Calábria", "family": "citrus", "position": "top", "description": "Cítrico brilhante e tônico" },
+      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Amargo refrescante e revigorante" },
+      { "name": "Sândalo", "family": "woody", "position": "heart", "description": "Amadeirado cremoso límpido" },
+      { "name": "Ambroxan", "family": "musky", "position": "base", "description": "Ambarado mineral e moderno" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Seco e aromático estruturado" },
+      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Limpo, aveludado e suave" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Blue Celestia",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Uma sinfonia luminosa que mescla cítricos mediterrâneos suculentos a um coração aveludado de pêssego e baunilha.",
+    "imageUrl": "https://cdn.dooca.store/88/products/blue-celestia-1280x1280-1.png",
+    "notes": [
+      { "name": "Laranja Siciliana", "family": "citrus", "position": "top", "description": "Cítrico adocicado e solar" },
+      { "name": "Limão", "family": "citrus", "position": "top", "description": "Ácido e efervescente" },
+      { "name": "Pêssego", "family": "fruity", "position": "heart", "description": "Frutado aveludado e macio" },
+      { "name": "Baunilha de Madagascar", "family": "oriental", "position": "base", "description": "Doce cremosa e aconchegante" },
+      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e envolvente" },
+      { "name": "Almíscar Branco", "family": "musky", "position": "base", "description": "Confortável sensação de pureza" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Alpha Leggera",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Explosão esportiva e vibrante com notas cítricas cintilantes que evoluem para um fundo amadeirado elegante.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Cítrico azedo e radiante" },
+      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Fresco e refinado" },
+      { "name": "Gengibre", "family": "spicy", "position": "heart", "description": "Picante quente e tônico" },
+      { "name": "Néroli", "family": "floral", "position": "heart", "description": "Floral branco cítrico e limpo" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado seco viril" },
+      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Macio e transparente" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Alpha Blanche",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Harmonia primorosa entre a acidez luminosa do limão e o conforto amendoado da baunilha de Madagascar.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Limão Verdadeiro", "family": "citrus", "position": "top", "description": "Cítrico revigorante e suculento" },
+      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Fresco solar" },
+      { "name": "Pimenta Rosa", "family": "spicy", "position": "heart", "description": "Especiado leve e floral" },
+      { "name": "Sândalo", "family": "woody", "position": "heart", "description": "Madeira cremosa e refinada" },
+      { "name": "Baunilha de Madagascar", "family": "oriental", "position": "base", "description": "Doce aveludado e sofisticado" },
+      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico amendoado" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Noām",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Composição rica e sedutora onde o mel dourado e o tabaco nobre se entrelaçam com lavanda clássica e canela.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Floral aromático relaxante" },
+      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico brilhante" },
+      { "name": "Mel", "family": "oriental", "position": "heart", "description": "Doce licoroso e denso" },
+      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Especiado quente e acolhedor" },
+      { "name": "Folha de Tabaco", "family": "aromatic", "position": "base", "description": "Aromático seco amadeirado" },
+      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce morno e balsâmico" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Domus",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Imponência e magnetismo com acordes quentes de maçã, especiarias orientais finas e madeira guaiac.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Maçã", "family": "fruity", "position": "top", "description": "Frutado crocante e vivo" },
+      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Clássico e aromático" },
+      { "name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Especiado requintado" },
+      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Verde floral picante" },
+      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e aveludada" },
+      { "name": "Madeira Guaiac", "family": "woody", "position": "base", "description": "Defumado amadeirado profundo" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Ginger Club",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Fragrância elétrica e moderna centrada em gengibre efervescente contrastado com âmbar mineral sofisticado.",
+    "imageUrl": "https://cdn.dooca.store/88/products/img-4246-vfamz.jpeg",
+    "notes": [
+      { "name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante efervescente e revigorante" },
+      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Amargor cítrico moderno" },
+      { "name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbáceo elegante" },
+      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde refrescante" },
+      { "name": "Ambroxan", "family": "musky", "position": "base", "description": "Ambarado mineral de fixação alta" },
+      { "name": "Ládano", "family": "oriental", "position": "base", "description": "Resinoso morno profundo" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Supremacy",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Símbolo de liderança e sofisticação com explosão frutada de abacaxi sobre base terrosa de musgo e madeiras.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Abacaxi", "family": "fruity", "position": "top", "description": "Tropical vívido e suculento" },
+      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante" },
+      { "name": "Patchouli", "family": "woody", "position": "heart", "description": "Terroso e encorpado" },
+      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral opulento" },
+      { "name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Verde úmido clássico" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Seco amadeirado nobre" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Hills",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Uma experiência almiscarada etérea com a radiância translúcida do hedione e magnólia sobre sândalo leitoso.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Magnólia", "family": "floral", "position": "top", "description": "Floral delicado orvalhado" },
+      { "name": "Hedione", "family": "floral", "position": "heart", "description": "Jasmim transparente e aéreo" },
+      { "name": "Almíscar", "family": "musky", "position": "heart", "description": "Aveludado e envolvente" },
+      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado macio e cremoso" },
+      { "name": "Amêndoa", "family": "oriental", "position": "base", "description": "Suave e amendoadado sutil" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Jocker",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "spicy",
+    "description": "Ousado e contemporâneo, combina rosa marcante com a picância da pimenta rosa e um fundo amadeirado de vetiver.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante efervescente refinado" },
+      { "name": "Pêra", "family": "fruity", "position": "top", "description": "Frutado doce suave" },
+      { "name": "Rosa", "family": "floral", "position": "heart", "description": "Floral moderno e denso" },
+      { "name": "Cravo-da-Índia", "family": "spicy", "position": "heart", "description": "Especiado quente penetrante" },
+      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e amadeirado seco" },
+      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso e acolhedor" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Maktub",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma celebração ao misticismo do oud acompanhado de sândalo e cardamomo que cria uma assinatura imponente.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado morno aromático" },
+      { "name": "Pimenta Sichuan", "family": "spicy", "position": "top", "description": "Picante elétrico" },
+      { "name": "Agarwood (Oud)", "family": "woody", "position": "heart", "description": "Amadeirado escuro e resinoso" },
+      { "name": "Sândalo", "family": "woody", "position": "heart", "description": "Madeira macia e balsâmica" },
+      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce reconfortante" },
+      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico amendoado quente" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Elixir Babylone",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Opulência babilônica em forma líquida, combinando o calor do açafrão, notas amadeiradas de cipriol e baunilha.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Açafrão", "family": "spicy", "position": "top", "description": "Couroide nobre e quente" },
+      { "name": "Noz-moscada", "family": "spicy", "position": "top", "description": "Morno e levemente amadeirado" },
+      { "name": "Cipriol", "family": "woody", "position": "heart", "description": "Terroso amadeirado fumegante" },
+      { "name": "Cedro", "family": "woody", "position": "heart", "description": "Seco e imponente" },
+      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado e rico" },
+      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e sutil" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Kubanacan",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Atmosfera boêmia envolvente com nuances alcoólicas de rum dourado, tabaco cubano e benjoim quente.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Rum", "family": "oriental", "position": "top", "description": "Alcoólico, doce e morno" },
+      { "name": "Canela", "family": "spicy", "position": "top", "description": "Especiado picante doce" },
+      { "name": "Tabaco", "family": "aromatic", "position": "heart", "description": "Seco aromático de charuto" },
+      { "name": "Couro", "family": "woody", "position": "heart", "description": "Animalizado elegante e rico" },
+      { "name": "Benjoim", "family": "oriental", "position": "base", "description": "Balsâmico ambarado suave" },
+      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Gourmand e amendoado" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Granado",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Criação magnética inspirada no acorde de âmbar cinzento, açafrão, amêndoa amarga e madeiras cristalinas.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Açafrão", "family": "spicy", "position": "top", "description": "Especiado refinado e seco" },
+      { "name": "Amêndoa Amarga", "family": "oriental", "position": "top", "description": "Amendoado licoroso" },
+      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco etéreo" },
+      { "name": "Cedro", "family": "woody", "position": "heart", "description": "Amadeirado límpido e seco" },
+      { "name": "Âmbar Cinzento", "family": "oriental", "position": "base", "description": "Mineral marinho e adocicado" },
+      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Confortável e aveludado" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Wild",
+    "releaseYear": 2023,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Sensação de liberdade e vento livre com bergamota da Calábria cortante, pimentas e um rastro poderoso de ambroxan.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Bergamota da Calábria", "family": "citrus", "position": "top", "description": "Cítrico luminoso e fresco" },
+      { "name": "Pimenta", "family": "spicy", "position": "top", "description": "Picante e enérgico" },
+      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático clássico refinado" },
+      { "name": "Pimenta de Szechuan", "family": "spicy", "position": "heart", "description": "Vibrante e aromático" },
+      { "name": "Ambroxan", "family": "musky", "position": "base", "description": "Ambarado mineral potente" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Freedom",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Hino à autenticidade feminina unindo a flor de laranjeira luminosa com a lavanda francesa e baunilha sedutora.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Herbal fresco e floral" },
+      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Frutado cítrico suculento" },
+      { "name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco radiante" },
+      { "name": "Jasmim Sambac", "family": "floral", "position": "heart", "description": "Floral opulento e solar" },
+      { "name": "Baunilha de Madagascar", "family": "oriental", "position": "base", "description": "Cremosa e sedutora" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado seco sofisticado" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Mukhallat",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "fruity",
+    "description": "Um deleite gourmand oriental com morangos silvestres maduros, amêndoas torradas e baunilha quente.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Morango Silvestre", "family": "fruity", "position": "top", "description": "Frutado doce e licoroso" },
+      { "name": "Amêndoa Doce", "family": "oriental", "position": "top", "description": "Amendoado leitoso e denso" },
+      { "name": "Bálsamo do Peru", "family": "oriental", "position": "heart", "description": "Resinoso balsâmico doce" },
+      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Gourmand rica e quente" },
+      { "name": "Almíscar Branco", "family": "musky", "position": "base", "description": "Conforto aveludado" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Centaury",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Fragrância aristocrática que equilibra o frescor da maçã e a noz-moscada com uma rosa profunda e patchouli escuro.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Maçã Verde", "family": "fruity", "position": "top", "description": "Frutado crocante e levemente ácido" },
+      { "name": "Noz-moscada", "family": "spicy", "position": "top", "description": "Especiado morno elegante" },
+      { "name": "Rosa", "family": "floral", "position": "heart", "description": "Floral aveludado e nobre" },
+      { "name": "Fava Tonka", "family": "oriental", "position": "heart", "description": "Doce balsâmico amendoado" },
+      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado terroso e rico" },
+      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e envolvente" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Platinus",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Expressão atemporal da elegância fougère moderna com alecrim fresco, lavanda e madeiras nobres de vetiver.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Alecrim", "family": "aromatic", "position": "top", "description": "Herbáceo estimulante e verde" },
+      { "name": "Lavanda", "family": "aromatic", "position": "top", "description": "Floral aromático clássico" },
+      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde e fresco" },
+      { "name": "Sálvia Esclareia", "family": "aromatic", "position": "heart", "description": "Aromático refinado" },
+      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Amadeirado terroso e seco" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Madeira estruturada e sóbria" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Hades",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Fragrância escura e imponente que evoca mistério com couro defumado, resinas orientais e madeiras de oud.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e seca" },
+      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Aromático morno refinado" },
+      { "name": "Couro", "family": "woody", "position": "heart", "description": "Opulento, escuro e viril" },
+      { "name": "Incenso", "family": "oriental", "position": "heart", "description": "Esfumaçado e resinoso" },
+      { "name": "Agarwood (Oud)", "family": "woody", "position": "base", "description": "Madeira profunda e intensa" },
+      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso e encorpado" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Zeus",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Presença triunfante e imponente alicerçada em especiarias nobres, acordes amadeirados e âmbar quente.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Cítrico amargo e energético" },
+      { "name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado fresco aromático" },
+      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Especiado morno e envolvente" },
+      { "name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbáceo clássico refinado" },
+      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso dourado e rico" },
+      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado macio e duradouro" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Apollo",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Luminosidade solar inspiradora com notas cítricas vívidas, ervas aromáticas frescas e um fundo de cedro seco.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cortante e solar" },
+      { "name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Efervescente e limpo" },
+      { "name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco radiante" },
+      { "name": "Alecrim", "family": "aromatic", "position": "heart", "description": "Herbáceo aromático verde" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Madeira nobre e límpida" },
+      { "name": "Almíscar Branco", "family": "musky", "position": "base", "description": "Sensação aveludada e pura" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Poseidon",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aquatic",
+    "description": "A força indomável do oceano traduzida em notas marinhas cristalinas, cítricos cintilantes e cedro robusto.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Notas Oceânicas", "family": "aquatic", "position": "top", "description": "Brisa marinha refrescante" },
+      { "name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso" },
+      { "name": "Manjericão", "family": "green", "position": "heart", "description": "Verde herbáceo e aromático" },
+      { "name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral fresco e viril" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e sóbrio" },
+      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso e profundo" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Ares",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "spicy",
+    "description": "Vigor ardente e audacioso combinando pimenta preta, especiarias ardentes e uma base amadeirada marcante.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Pimenta Vermelha", "family": "spicy", "position": "top", "description": "Picante quente intenso" },
+      { "name": "Laranja Amarga", "family": "citrus", "position": "top", "description": "Cítrico seco aromático" },
+      { "name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Especiado morno e vibrante" },
+      { "name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Amadeirado e quente" },
+      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Seco e terroso viril" },
+      { "name": "Couro", "family": "woody", "position": "base", "description": "Animalizado e imponente" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Hermes",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Dinamismo e rapidez expressos em notas de cidra e zimbro sobre acordes minerais e pimenta preta.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Cidra", "family": "citrus", "position": "top", "description": "Cítrico seco e aromático" },
+      { "name": "Toranja", "family": "citrus", "position": "top", "description": "Fresco e amargo revigorante" },
+      { "name": "Zimbro", "family": "aromatic", "position": "heart", "description": "Aromático canforado e fresco" },
+      { "name": "Pimenta", "family": "spicy", "position": "heart", "description": "Picante e dinâmico" },
+      { "name": "Vetiver", "family": "woody", "position": "base", "description": "Amadeirado seco mineral" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Estruturado e elegante" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Dionisio",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Celebração aos prazeres da vida com notas licorosas de uvas nobres, canela, fava tonka e baunilha.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Uva Vermelha", "family": "fruity", "position": "top", "description": "Frutado licoroso e suculento" },
+      { "name": "Rum", "family": "oriental", "position": "top", "description": "Alcoólico doce e morno" },
+      { "name": "Canela", "family": "spicy", "position": "heart", "description": "Especiado quente e doce" },
+      { "name": "Mirra", "family": "oriental", "position": "heart", "description": "Resinoso balsâmico nobre" },
+      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Amendoado e envolvente" },
+      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce cremosa aveludada" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Hefesto",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "O calor das forjas divinas em acordes amadeirados defumados, especiarias minerais e notas resinosas de âmbar.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e seca" },
+      { "name": "Açafrão", "family": "spicy", "position": "top", "description": "Morno couroide exótico" },
+      { "name": "Madeira Guaiac", "family": "woody", "position": "heart", "description": "Defumado amadeirado forte" },
+      { "name": "Ládano", "family": "oriental", "position": "heart", "description": "Resinoso e balsâmico" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e firme" },
+      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso dourado e quente" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Atena",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Serenidade e sabedoria em um buquê clássico de lírios e violetas envolto em almíscar suave e sândalo.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Violeta", "family": "floral", "position": "top", "description": "Floral macio e sutilmente verde" },
+      { "name": "Rosa", "family": "floral", "position": "top", "description": "Floral clássico aveludado" },
+      { "name": "Lírio Branco", "family": "floral", "position": "heart", "description": "Floral branco limpo e nobre" },
+      { "name": "Lírio-do-Vale", "family": "floral", "position": "heart", "description": "Fresco e verde primaveril" },
+      { "name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e aveludado" },
+      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Puro, sedoso e confortável" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Afrodite",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Uma celebração ao amor e à sensualidade irresistível, com cereja preta madura, jasmim e baunilha.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Cereja Preta", "family": "fruity", "position": "top", "description": "Frutado doce, suculento e sedutor" },
+      { "name": "Tangerina", "family": "citrus", "position": "top", "description": "Cítrico adocicado brilhante" },
+      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco sensual e envolvente" },
+      { "name": "Lírio-do-Vale", "family": "floral", "position": "heart", "description": "Floral delicado" },
+      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado gourmand" },
+      { "name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e marcante" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Artemis",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Espírito livre e selvagem das florestas em acordes orvalhados de frésia branca, pera inglesa e madeiras límpidas.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Pera", "family": "fruity", "position": "top", "description": "Suculento fresco e orvalhado" },
+      { "name": "Melão", "family": "fruity", "position": "top", "description": "Aquático frutal suave" },
+      { "name": "Frésia", "family": "floral", "position": "heart", "description": "Floral branco radiante e limpo" },
+      { "name": "Rosa", "family": "floral", "position": "heart", "description": "Floral clássico suave" },
+      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Confortável e aveludado" },
+      { "name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso amadeirado leve" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Hera",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Soberania e graça expressas em flores brancas aveludadas, mandarina luminosa e fundo ambarado acolhedor.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico doce e alegre" },
+      { "name": "Flor de Laranjeira", "family": "floral", "position": "top", "description": "Floral solar radiante" },
+      { "name": "Tuberosa", "family": "floral", "position": "heart", "description": "Floral branco cremoso e opulento" },
+      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Intenso e sofisticado" },
+      { "name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado luxuoso" },
+      { "name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre sóbrio" }
+    ]
+  },
+  {
+    "brand": "Nuancielo",
+    "name": "Demeter",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "fruity",
+    "description": "Abundância e vitalidade da terra representada por morangos silvestres maduros, flores silvestres e fava tonka.",
+    "imageUrl": null,
+    "notes": [
+      { "name": "Morango Silvestre", "family": "fruity", "position": "top", "description": "Doce natural e frutado suculento" },
+      { "name": "Framboesa", "family": "fruity", "position": "top", "description": "Frutado vermelho fresco e vivo" },
+      { "name": "Flor de Violeta", "family": "floral", "position": "heart", "description": "Floral macio atalcado" },
+      { "name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco delicado" },
+      { "name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Amendoado doce morno" },
+      { "name": "Almíscar", "family": "musky", "position": "base", "description": "Sensação aveludada e pura" }
+    ]
+  }
+]

@@ -31,6 +31,13 @@
 - **Elysée** (Chypre Floral / Frésia / Patchouli)
 - **Egeo Vanilla Vibe** (Oriental Gourmand / Baunilha / Pimenta Rosa)
 
+### 🆕 Lote Prioridade 1 (migration `ingest_catalog_prioridade1`)
+
+- **Granado:** Nostalgia, Époque Tropical, Carioca
+- **Natura:** Essencial Oud Masculino, Homem Cor.Agio
+- **O Boticário:** Elysée Tradicional, Zaad Santal
+- **Pendente:** Seleto (Avatim): sem foto confiável (a página oficial devolve o frasco do Amaú); coloque a foto em `scripts/raw-images/avatim/seleto.jpg` e rode de novo sem `--skip`.
+
 ### 🌿 Avatim (Sensorial Baiano)
 
 - **Gigi** (Floral Oriental / Figo / Romã / Baunilha)
@@ -79,4 +86,10 @@
    - **Fonte do curador (Fase 24):** `--url <página>` ou `--text "<texto copiado>"` (um dos dois) faz o Gemini extrair **só** do que a fonte afirma; o nome do perfume vira opcional (`npm run ingest -- --dry-run --url https://marca.com/produto`). O que a fonte não diz sai `null` ou vazio, e a validação recusa o que faltar de essencial (concentração, notas).
    - **Foto:** `--image <url da foto>` baixa a imagem para `scripts/raw-images/<marca>/<perfume>.<ext>` (nunca sobrescreve). Confira se é o frasco certo e os direitos de uso; depois `npm run images` (recorte) e `npm run images:upload`.
    - O script só lê o catálogo com a chave anon e não grava no banco. A migration é idempotente (`on conflict do nothing`) e traz marca, notas novas (com `description`), perfume, `perfume_notes` e, quando o Gemini souber, os perfumistas (`perfumers` e `perfume_perfumers`, na ordem de crédito).
-   - Revise o SQL e aplique com `npx supabase migration up` (local) ou `db push` (produção). Concentração não confirmada recusa o cadastro. Imagem e preço entram depois.
+   6. **Lote do backlog (`npm run ingest:catalog`):** lê `docs/CATALOGO_EXPANSAO.md` e gera **uma migration por lote** (`<timestamp>_ingest_catalog_<nome>.sql`, sempre depois da última migration existente), baixando a foto de cada frasco em `scripts/raw-images/` (URL do Gemini, `og:image` da página oficial ou busca em fontes confiáveis, nessa ordem). O que falhar vai para `scripts/batch/erros-ingest.json` (fora do git) e o lote segue.
+   - Seleção: `--section prioridade|nacional|contratipos|global` e/ou `--group <marca>` (soma), `--limit N`, `--dry-run` (só lista). A cota diária do Gemini (plano gratuito: 20 requisições) pára o lote sem perder o que já foi feito; rode de novo depois.
+   - **Sem Gemini:** `--from-json scripts/catalog-data/<arquivo>.json` ingere registros curados à mão (mesmo schema, validado igual); `--skip <perfume>` deixa um perfume de fora (vai para a quarentena como pendente). Os 8 perfumes da Prioridade 1 estão em `scripts/catalog-data/prioridade-1.json`.
+   - Perfumistas: só entram em `perfume_perfumers` os que já têm perfil (país e bio, regra do teste `18_perfumers`). Os demais ficam em `pendingPerfumers` no JSON até ganharem perfil.
+   - Depois das fotos: `npm run images`, `npm run ingest:catalog -- --apply-images <migration>` (troca o `image_path` provisório pelo com hash), `npm run images:preview` e `--mark-done scripts/batch/<lote>.json` (marca `[x]` no backlog).
+
+- Revise o SQL e aplique com `npx supabase migration up` (local) ou `db push` (produção). Concentração não confirmada recusa o cadastro. Imagem e preço entram depois.

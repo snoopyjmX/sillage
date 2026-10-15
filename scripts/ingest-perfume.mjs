@@ -91,7 +91,7 @@ export const PerfumeSchema = z.object({
 
 // A API do Gemini não aceita o `$schema` do Zod, e `anyOf: [X, null]` (de .nullable())
 // vira `type: [X, 'null']`
-const toGeminiSchema = (node) => {
+export const toGeminiSchema = (node) => {
   if (Array.isArray(node)) return node.map(toGeminiSchema);
   if (node === null || typeof node !== 'object') return node;
   const { anyOf, $schema: _ignored, ...others } = node;

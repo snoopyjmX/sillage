@@ -19,6 +19,7 @@
     "preview": "vite preview",
     "analyze": "ANALYZE=1 vite build",
     "ingest": "node scripts/ingest-perfume.mjs",
+    "ingest:catalog": "node scripts/ingest-catalog.mjs",
     "db:start": "supabase start",
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
