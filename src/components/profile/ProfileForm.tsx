@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Field } from '@/components/ui/field';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { toast } from '@/lib/toast';
@@ -74,15 +75,12 @@ export function ProfileForm({ values, timezones, saving, onSave }: ProfileFormPr
         error={errors.timezone?.message}
         {...register('timezone')}
       />
-      <label className="flex cursor-pointer items-center gap-3 text-sm font-medium">
-        <input
-          type="checkbox"
-          checked={auto}
-          onChange={(event) => handleAutoChange(event.target.checked)}
-          className="size-5 accent-primary"
-        />
-        Detectar fuso horário automaticamente
-      </label>
+      <Checkbox
+        label="Detectar fuso horário automaticamente"
+        checked={auto}
+        onChange={(event) => handleAutoChange(event.target.checked)}
+        className="font-medium"
+      />
       <datalist id={DATALIST_ID}>
         {timezones.map((zone) => (
           <option key={zone} value={zone} />

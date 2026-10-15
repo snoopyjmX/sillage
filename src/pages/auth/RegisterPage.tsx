@@ -1,7 +1,8 @@
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
+import { PasswordStrength } from '@/components/auth/PasswordStrength';
 import { ResendConfirmation } from '@/components/auth/ResendConfirmation';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { Field } from '@/components/ui/field';
@@ -24,8 +25,10 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<RegisterValues>({ resolver: zodResolver(registerSchema) });
+  const password = useWatch({ control, name: 'password' }) ?? '';
 
   const redirect = searchParams.get('redirect');
   const search = redirect ? `?redirect=${encodeURIComponent(redirect)}` : '';
@@ -76,12 +79,12 @@ export default function RegisterPage() {
             />
             <PasswordField
               label="Senha"
-
               autoComplete="new-password"
               hint={`Mínimo de ${MIN_PASSWORD_LENGTH} caracteres, com letras e números.`}
               error={errors.password?.message}
               {...register('password')}
             />
+            <PasswordStrength value={password} />
             <SubmitButton loading={signUp.isPending} loadingLabel="Criando conta…">
               Criar conta
             </SubmitButton>

@@ -4,6 +4,8 @@ import { z } from 'zod';
 export const MIN_PASSWORD_LENGTH = 8;
 export const MAX_PASSWORD_LENGTH = 72; // limite do bcrypt usado pelo GoTrue
 export const MAX_NAME_LENGTH = 60;
+export const PASSWORD_LETTER = /[A-Za-z]/;
+export const PASSWORD_DIGIT = /\d/;
 
 const email = z
   .string()
@@ -16,8 +18,8 @@ const newPassword = z
   .string()
   .min(MIN_PASSWORD_LENGTH, `A senha precisa ter pelo menos ${MIN_PASSWORD_LENGTH} caracteres.`)
   .max(MAX_PASSWORD_LENGTH, `A senha pode ter no máximo ${MAX_PASSWORD_LENGTH} caracteres.`)
-  .regex(/[A-Za-z]/, 'Inclua pelo menos uma letra.')
-  .regex(/\d/, 'Inclua pelo menos um número.');
+  .regex(PASSWORD_LETTER, 'Inclua pelo menos uma letra.')
+  .regex(PASSWORD_DIGIT, 'Inclua pelo menos um número.');
 
 export const loginSchema = z.object({
   email,
