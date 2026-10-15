@@ -1,0 +1,2592 @@
+[
+  {
+    "brand": "Maison Viegas",
+    "name": "Heaven",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Inspirado em Imagination, Heaven é uma criação luminosa e revigorante que equilibra o frescor cítrico refinado com a sofisticação aromática do chá preto e a sensualidade do ambroxan.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.100398.jpg",
+    "notes": [
+      {
+        "name": "Cidra",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico efervescente e revigorante"
+      },
+      {
+        "name": "Bergamota da Calábria",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso e refinado"
+      },
+      {
+        "name": "Laranja Siciliana",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico suculento e doce"
+      },
+      {
+        "name": "Néroli Tunisiano",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco limpo e radiante"
+      },
+      {
+        "name": "Gengibre da Nigéria",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado picante e refrescante"
+      },
+      {
+        "name": "Canela do Ceilão",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado quente e aromático"
+      },
+      {
+        "name": "Chá Preto Chinês",
+        "family": "aromatic",
+        "position": "base",
+        "description": "Herbal sofisticado e elegante"
+      },
+      {
+        "name": "Ambroxan",
+        "family": "musky",
+        "position": "base",
+        "description": "Ambarado limpo, moderno e aveludado"
+      },
+      {
+        "name": "Olíbano",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso místico e envolvente"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado profundo e levemente defumado"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Opera Hell",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Composição magnética e sedutora que combina abertura frutada efervescente de abacaxi com um corpo floral nobre e uma base densa de pralinê, vetiver e cedro.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Abacaxi",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado tropical doce e vibrante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco e cintilante"
+      },
+      {
+        "name": "Gerânio",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Floral aromático verde e refinado"
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado e luminoso"
+      },
+      {
+        "name": "Pralinê",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce gourmand caloroso e cremoso"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso amadeirado e profundo"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e estruturado"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado seco e elegante"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Elite Pour Homme",
+    "releaseYear": 2025,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirado em Bvlgari Pour Homme EDP, traduz o conceito de luxo discreto através de uma saída fresca de chá Darjeeling e especiarias, repousando sobre madeiras e almíscar suave.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.125912.jpg",
+    "notes": [
+      {
+        "name": "Chá Darjeeling",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal elegante e sutil"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante e revigorante"
+      },
+      {
+        "name": "Chá Preto",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Chá aromático e refinado"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado denso e exótico"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Almiscarado limpo e confortável"
+      },
+      {
+        "name": "Ambreta",
+        "family": "musky",
+        "position": "base",
+        "description": "Nuance aveludada e sensual"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Blessed Baraka",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Fragrância hipnótica e reconfortante focada na energia solar do sândalo cremoso, envolvido pela riqueza dourada do âmbar e da baunilha sedutora.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral branco fresco e radiante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cintilante e leve"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado macio, leitoso e balsâmico"
+      },
+      {
+        "name": "Âmbar Branco",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Caloroso, envolvente e sofisticado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce aveludado e confortável"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Macio e acolhedor"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Prestige",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma fragrância sofisticada que personifica o requinte clássico, construída a partir de especiarias nobres, madeiras nobres e nuances ambaradas aromáticas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado fresco e nobre"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico elegante e revigorante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado nobre e viril"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático fresco e refinado"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado seco e terroso"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso aconchegante e quente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Illusion",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Criação moderna e etérea onde o frescor aromático e notas florais delicadas se mesclam a uma base pura e aveludada de madeiras claras.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e suculento"
+      },
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Erva aromática fresca e revigorante"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral atalcado e elegante"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado frutado e vibrante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado seco e limpo"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e reconfortante"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Absolute",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Intensidade refinada onde o acorde de couro suavemente tostado encontra incenso misterioso, mirra preciosa e calorosas notas amadeiradas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Couro",
+        "family": "oriental",
+        "position": "top",
+        "description": "Acorde balsâmico quente e sofisticado"
+      },
+      {
+        "name": "Incenso",
+        "family": "oriental",
+        "position": "top",
+        "description": "Defumado místico e envolvente"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "heart",
+        "description": "Terroso profundo e herbal"
+      },
+      {
+        "name": "Mirra",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resina balsâmica e aromática"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e estruturado"
+      },
+      {
+        "name": "Davana",
+        "family": "aromatic",
+        "position": "base",
+        "description": "Doçura licorosa e herbácea"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Imperial",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma fragrância vibrante e aristocrática com foco em madeiras ultra-modernas, manjericão fresco picante e uma infusão profunda de vetiver.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Manjericão",
+        "family": "green",
+        "position": "top",
+        "description": "Verde fresco e aromático"
+      },
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo e cintilante"
+      },
+      {
+        "name": "Pimenta Timut",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado picante e efervescente"
+      },
+      {
+        "name": "Akigalawood",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado apimentado e vibrante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado esfumaçado e terroso"
+      },
+      {
+        "name": "Ambroxan",
+        "family": "musky",
+        "position": "base",
+        "description": "Fixador aveludado e moderno"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Majestic",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma sinfonia opulenta digna da realeza, unindo o calor pungente do açafrão com um coração suntuoso de rosa damascena e madeiras raras.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Açafrão",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado quente e acourado"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "top",
+        "description": "Doce e picante"
+      },
+      {
+        "name": "Rosa de Damasco",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral nobre, denso e licoroso"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira escura e mística"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Dourado, doce e resinoso"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand cremosa e envolvente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Supreme",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Fragrância poderosa e iluminada, desenhada em torno do magnetismo do jasmim sambac, contrastado com notas amadeiradas cremosas de cashmeran.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Jasmim Sambac",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral branco potente e solar"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Luminosa e feminina"
+      },
+      {
+        "name": "Cashmeran",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado almiscarado e aveludado"
+      },
+      {
+        "name": "Âmbar Branco",
+        "family": "oriental",
+        "position": "base",
+        "description": "Ambarado mineral e quente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Legend",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Um clássico fougère aromático contemporâneo, combinando notas cítricas frescas, lavanda elegante e um rastro amadeirado másculo e versátil.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Floral aromático limpo e clássico"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico revigorante"
+      },
+      {
+        "name": "Folha de Abacaxi",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado verde e refrescante"
+      },
+      {
+        "name": "Gerânio",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Floral verde com nuances de menta"
+      },
+      {
+        "name": "Maçã Vermelha",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Frutado crocante e alegre"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado amendolado e quente"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sedoso e refinado"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Royal",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "spicy",
+    "description": "Inspirado na aura majestosa dos palácios nobres, mescla especiarias incandescentes de pimenta e canela com lavanda francesa e fundo amadeirado.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado seco e picante"
+      },
+      {
+        "name": "Laranja Sanguínea",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico vibrante e agridoce"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Aromático nobre e purificante"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral elegante e ensolarado"
+      },
+      {
+        "name": "Madeiras Nobres",
+        "family": "woody",
+        "position": "base",
+        "description": "Acorde amadeirado encorpado"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e profundo"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Mystic",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma imersão sensorial profunda no universo místico dos templos orientais, destacando o olíbano puro, mirra sagrada e notas de resinas defumadas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Olíbano",
+        "family": "oriental",
+        "position": "top",
+        "description": "Incenso sagrado e aromático"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado balsâmico requintado"
+      },
+      {
+        "name": "Ládano",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resina âmbar quente e densa"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira nobre e seca"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce balsâmico baunilhado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resina aconchegante e persistente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Divine",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Elegância celestial sintetizada em um buquê de flores brancas radiantes, envolvidas pela suculência de pera dourada e o conforto de almíscares aveludados.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Pera",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado doce, aquoso e suculento"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e efervescente"
+      },
+      {
+        "name": "Tuberosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco narcótico e opulento"
+      },
+      {
+        "name": "Jasmim Sambac",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral luminoso e inebriante"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Limpo, macio e celestial"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand cremosa e envolvente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Velvet",
+    "releaseYear": 2026,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Textura aveludada e sofisticada, onde o cedro nobre é trabalhado com especiarias delicadas e toques florais em um equilíbrio impecável de maciez e presença.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado fino e refinado"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso e delicado"
+      },
+      {
+        "name": "Cedro do Atlas",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado sedoso e nobre"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Quente e amadeirada"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado seco e elegante"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Toque de veludo acolhedor"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Noir",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma interpretação misteriosa e enigmática da noite, combinando vetiver terroso, cipreste verde aromático e um fundo amadeirado de caxemira fumegante.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo e revigorante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e luminoso"
+      },
+      {
+        "name": "Cipreste",
+        "family": "green",
+        "position": "heart",
+        "description": "Verde conífero aromático e escuro"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal elegante e clássico"
+      },
+      {
+        "name": "Vetiver Bourbon",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado defumado, terroso e úmido"
+      },
+      {
+        "name": "Madeira de Caxemira",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado almiscarado e escuro"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Gold",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Um tesouro olfativo banhado em ouro líquido, com notas de açafrão precioso, flores do deserto e uma fusão quente de âmbar, sândalo e resinas ricas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Açafrão",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado quente e dourado"
+      },
+      {
+        "name": "Laranja Amarga",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cítrico sofisticado"
+      },
+      {
+        "name": "Rosa Búlgara",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral suntuoso e exuberante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado profundo e herbal"
+      },
+      {
+        "name": "Âmbar Dourado",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente, radiante e doce"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira nobre cremosa"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Silver",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Inspirado no frescor alpino e na pureza da água nas montanhas, trazendo acordes metálicos gelados, chá verde reconfortante e almíscares cristalinos.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico límpido e cortante"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutado cítrico suculento"
+      },
+      {
+        "name": "Chá Verde",
+        "family": "green",
+        "position": "heart",
+        "description": "Verde suave e revigorante"
+      },
+      {
+        "name": "Groselha Negra",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Fruta silvestre ácida e marcante"
+      },
+      {
+        "name": "Gálbano",
+        "family": "green",
+        "position": "base",
+        "description": "Resinoso verde fresco"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Puro, limpo e cristalino"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Platinum",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Assinatura assertiva e brilhante, marcada pelo frescor verde de alecrim e lavanda sobre uma base viril de musgo de carvalho e madeiras secas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático canforado e fresco"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal clássico e elegante"
+      },
+      {
+        "name": "Gerânio",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Verde floral picante"
+      },
+      {
+        "name": "Sálvia Esclareia",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal amadeirado e limpo"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira nobre imponente"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso e clássico"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Intense",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Fragrância intensa de presença irresistível, harmonizando maçã especiada com canela quente, cravo e madeiras resinosas profundas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Maçã",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado doce e crocante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco energizante"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado quente e adocicado"
+      },
+      {
+        "name": "Cravo-da-Índia",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado pungente e aromático"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Aconchegante e cremosa"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado rico e leitoso"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Extreme",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Carga máxima de vigor e adrenalina em uma combinação potente de hortelã gelada, cipreste verde e madeiras nobres de alto impacto.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Hortelã",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Frescor mentolado cortante"
+      },
+      {
+        "name": "Cipreste",
+        "family": "green",
+        "position": "top",
+        "description": "Verde conífero balsâmico"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado picante vibrante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira estruturada e nobre"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado quente e envolvente"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira sedosa e persistente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Fresh",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Uma explosão refrescante de vitalidade cítrica mediterrânea, equilibrada por folhas aromáticas verdes e uma base almiscarada suave.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico ácido, solar e brilhante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e revigorante"
+      },
+      {
+        "name": "Menta",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal gelado e refrescante"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco cítrico e limpo"
+      },
+      {
+        "name": "Cedro Claro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado suave e elegante"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Sensação de banho tomado e pureza"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Aqua",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aquatic",
+    "description": "Fragrância marinha ultrarrefrescante que evoca a brisa oceânica, fundindo notas aquáticas salinas com raspas de limão e cedro fresco.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Notas Marinhas",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Brisa oceânica fresca e salina"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico leve e efervescente"
+      },
+      {
+        "name": "Calone",
+        "family": "aquatic",
+        "position": "heart",
+        "description": "Acorde aquático límpido e arejado"
+      },
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal verde aromático"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado limpo e firme"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso sofisticado"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Verde",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "green",
+    "description": "Pura comunhão com a natureza exuberante, capturando o frescor orvalhado de folhas esmagadas, gálbano resinoso e madeiras claras.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Folhas Verdes",
+        "family": "green",
+        "position": "top",
+        "description": "Verde fresco e orvalhado"
+      },
+      {
+        "name": "Gálbano",
+        "family": "green",
+        "position": "top",
+        "description": "Amargo e intensamente verde"
+      },
+      {
+        "name": "Folha de Figo",
+        "family": "green",
+        "position": "heart",
+        "description": "Verde lactônico e vegetal"
+      },
+      {
+        "name": "Chá Verde",
+        "family": "green",
+        "position": "heart",
+        "description": "Herbal sereno e relaxante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Raiz terrosa amadeirada"
+      },
+      {
+        "name": "Musgo",
+        "family": "woody",
+        "position": "base",
+        "description": "Chão de floresta úmido"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Bois",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Um tributo às madeiras nobres da perfumaria fina, intercalando o calor do sândalo com a firmeza do cedro e toques de especiarias finas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante aromático"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado suave e floral"
+      },
+      {
+        "name": "Cedro da Virgínia",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado nobre e seco"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado denso e fumado"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado leitoso e quente"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Seco, elegante e austero"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Oud",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirado na opulência oriental, combina a profundidade esfumaçada da madeira de agar (oud) com pau-rosa, cardamomo e âmbar aconchegante.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Pau-Rosa",
+        "family": "woody",
+        "position": "top",
+        "description": "Amadeirado aromático floral suave"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado fresco e resinoso"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "heart",
+        "description": "Resinoso escuro, animal e exótico"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado cremoso balsâmico"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce amendoado envolvente"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e sensual"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Ambre",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Rico acorde ambarado oriental pontuado por nuances resinosas de benjoim e fava de baunilha, trazendo uma aura de conforto e sofisticação atemporal.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Abertura fresca e equilibrada"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria quente e aconchegante"
+      },
+      {
+        "name": "Âmbar Resinoso",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Dourado, balsâmico e denso"
+      },
+      {
+        "name": "Ládano",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resina profunda com toques de couro"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce licorosa e cremosa"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico reconfortante"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Vanille",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma celebração à baunilha nobre de Madagascar, distante do dulçor infantil, destacando facetas licorosas, ambaradas e amadeiradas de puro requinte.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral branco doce e solar"
+      },
+      {
+        "name": "Amêndoa",
+        "family": "oriental",
+        "position": "top",
+        "description": "Amendoada e aveludada"
+      },
+      {
+        "name": "Baunilha de Bourbon",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Baunilha rica, escura e licorosa"
+      },
+      {
+        "name": "Orquídea",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral exótico sofisticado"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce balsâmico e reconfortante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sedoso que ancora a doçura"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Tabac",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Fragrância opulenta e calorosa com folhas nobres de tabaco maceradas em especiarias finas, fava tonka dourada e néctar de frutas secas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Folha de Tabaco",
+        "family": "oriental",
+        "position": "top",
+        "description": "Aromático seco, nobre e herbáceo"
+      },
+      {
+        "name": "Especiarias Quentes",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado denso e convidativo"
+      },
+      {
+        "name": "Flor de Tabaco",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sutil adocicado"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Amargo gourmand aveludado"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico doce e cremoso"
+      },
+      {
+        "name": "Frutas Secas",
+        "family": "fruity",
+        "position": "base",
+        "description": "Doce licoroso e encorpado"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Cuir",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "O prestígio e o arrojo do couro nobre artesanal, envolto pelo calor aromático do açafrão, toques florais de jasmim da noite e musgo úmido.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado nobre e refinado"
+      },
+      {
+        "name": "Açafrão",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado seco com faceta de couro"
+      },
+      {
+        "name": "Couro Preto",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Acorde animal elegante e imponente"
+      },
+      {
+        "name": "Jasmim Sambac",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco que amacia o couro"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso escuro e amadeirado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e resinoso"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Épices",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "spicy",
+    "description": "Uma jornada eletrizante pela rota das especiarias, unindo o frescor pungente de pimentas nobres com a calidez da canela e madeiras nobres.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Seca, picante e aromática"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Cítrico especiado revigorante"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Doce, calorosa e envolvente"
+      },
+      {
+        "name": "Cravo-da-Índia",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Aromático picante tradicional"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado firme e elegante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Seco e terroso"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Fleur",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Inspirado em Fleur Narcotique, é um floral hipnotizante e arejado, enriquecido com a lichia suculenta, flor de laranjeira luminosa e peônia radiante.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Lichia",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aquoso, doce e exótico"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico claro e cintilante"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral orvalhado e romântico"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Branca, luminosa e sedutora"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Toque terroso que equilibra as flores"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e suave"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Rose",
+    "releaseYear": 2025,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Um tributo moderno à rainha das flores, trazendo a elegância cristalina da rosa de maio entrelaçada com notas frescas e fundo de cedro nobre.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Groselha Preta",
+        "family": "fruity",
+        "position": "top",
+        "description": "Fruta vermelha ácida e suculenta"
+      },
+      {
+        "name": "Pêssego",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aveludado doce"
+      },
+      {
+        "name": "Rosa de Maio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral puro, fresco e aveludado"
+      },
+      {
+        "name": "Rosa Turca",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral rico, profundo e sensual"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado estruturado e elegante"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Limpo, sedoso e duradouro"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Jasmin",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "A sedução inebriante do jasmim colhido ao entardecer, revelando facetas solares, cremosas e sensuais sobre um leito macio de sândalo.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce e alegre"
+      },
+      {
+        "name": "Pera",
+        "family": "fruity",
+        "position": "top",
+        "description": "Suculenta e orvalhada"
+      },
+      {
+        "name": "Jasmim Sambac",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco opulento e solar"
+      },
+      {
+        "name": "Jasmim Grandiflorum",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral nobre e aveludado"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sedoso e aconchegante"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Macio e duradouro"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Iris",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "floral",
+    "description": "A nobreza atalcada da raiz de íris em sua expressão máxima de elegância, entrelaçada com notas sutis de madeira ambarada e toques verdes.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Folhas de Laranjeira",
+        "family": "green",
+        "position": "top",
+        "description": "Verde sutil e refrescante"
+      },
+      {
+        "name": "Flor de Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico floral delicado"
+      },
+      {
+        "name": "Íris Florentina",
+        "family": "floral",
+        "position": "heart",
+        "description": "Atalcado refinado, terroso e nobre"
+      },
+      {
+        "name": "Violeta",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado nostálgico"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso e limpo"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Suave, etéreo e confortável"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Agrumes",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Uma celebração efervescente de frutas cítricas colhidas sob o sol, mesclando toranja viva, limões cintilantes e petitgrain estimulante.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Amarga, cítrica e revitalizante"
+      },
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Ácido e cristalino"
+      },
+      {
+        "name": "Laranja Amarga",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico aromático e efervescente"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco limpo e aromático"
+      },
+      {
+        "name": "Petitgrain",
+        "family": "green",
+        "position": "heart",
+        "description": "Verde folhoso cítrico"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira clara e equilibrada"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Bergamote",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "O frescor nobre da bergamota calabresa em primeiro plano, realçado por pétalas de néroli e amparado por um sutil toque amadeirado de vetiver.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Bergamota da Calábria",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico floral refinado e brilhante"
+      },
+      {
+        "name": "Petitgrain",
+        "family": "green",
+        "position": "top",
+        "description": "Verde cítrico revigorante"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral delicado e ensolarado"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado sutilmente quente"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e elegante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e seco"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Citron",
+    "releaseYear": 2025,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Uma explosão refrescante de cidra e cítricos ensolarados com nuances picantes de gengibre, criando uma fragrância energizante e de alta elegância.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Cidra",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico aromático e vivaz"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutado doce e efervescente"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante estimulante e fresco"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral radiante e puro"
+      },
+      {
+        "name": "Ambroxan",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e fixador mineral"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e limpo"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Mandarine",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "A polpa e as raspas da mandarina madura em evidência, harmonizadas com frescor aromático de manjericão e uma base almiscarada limpa.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Mandarina Italiana",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico doce, sumarento e vibrante"
+      },
+      {
+        "name": "Clementina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Doce solar e cintilante"
+      },
+      {
+        "name": "Manjericão",
+        "family": "green",
+        "position": "heart",
+        "description": "Herbal verde aromático e fresco"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco suave e luminoso"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado aveludado e calmo"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "base",
+        "description": "Puro, macio e envolvente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Vétiver",
+    "releaseYear": 2023,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirado em Grey Vetiver, traz um vetiver magistralmente polido com toranja cintilante, especiarias nobres e rastro amadeirado impecável.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo elegante"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "top",
+        "description": "Luminosa e clássica"
+      },
+      {
+        "name": "Sálvia",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal aromático refinado"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria quente e aconchegante"
+      },
+      {
+        "name": "Raiz de Orris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Toque atalcado de distinção"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso seco e aristocrático"
+      },
+      {
+        "name": "Musgo de Carvalho",
+        "family": "woody",
+        "position": "base",
+        "description": "Clássico e profundo"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Cèdre",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "A sobriedade e majestade dos bosques de coníferas em um perfume seco, lapidado com cardamomo aromático e raspas de cedro nobre.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico revigorante"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante e aromático"
+      },
+      {
+        "name": "Cedro do Atlas",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado nobre, resinoso e seco"
+      },
+      {
+        "name": "Cedro da Virgínia",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado puro e viril"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e estruturado"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e persistente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Santal",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Construído em torno da cremosidade do sândalo nobre com nuances de cardamomo, violeta e toques de couro aveludado, exalando sofisticação moderna.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado aromático e refinado"
+      },
+      {
+        "name": "Violeta",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral verde atalcado"
+      },
+      {
+        "name": "Papiro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado seco e terroso"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Nobreza atalcada e aveludada"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado cremoso e balsâmico"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Estrutura amadeirada marcante"
+      },
+      {
+        "name": "Couro",
+        "family": "oriental",
+        "position": "base",
+        "description": "Toque quente e sofisticado"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Patchouli",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "A riqueza boêmia e refinada do patchouli indonésio, enriquecido por notas ambaradas balsâmicas e uma sutil aura de benjoim adocicado.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico equilibrado"
+      },
+      {
+        "name": "Coentro",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado herbal leve"
+      },
+      {
+        "name": "Patchouli da Indonésia",
+        "family": "woody",
+        "position": "heart",
+        "description": "Terroso rico, escuro e amadeirado"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sutil que harmoniza a terra"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico quente e doce"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso e acolhedor"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Musc",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "musky",
+    "description": "Uma segunda pele de extrema pureza e sensualidade, tecida com almíscares brancos aveludados, aldeídos cintilantes e pétalas suaves.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Aldeídos",
+        "family": "floral",
+        "position": "top",
+        "description": "Efervescente, limpo e arejado"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Fresco e luminoso"
+      },
+      {
+        "name": "Almíscar Branco",
+        "family": "musky",
+        "position": "heart",
+        "description": "Puro, aveludado e reconfortante"
+      },
+      {
+        "name": "Lírio-do-vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde delicado"
+      },
+      {
+        "name": "Ambreta",
+        "family": "musky",
+        "position": "base",
+        "description": "Almiscarado floral e quente"
+      },
+      {
+        "name": "Cedro Claro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira sutil e limpa"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Encens",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "A névoa sagrada e aromática do incenso somaliano, combinando fumaça resinosa, pimenta rosa cintilante e notas amadeiradas profundas.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante e fresco"
+      },
+      {
+        "name": "Olíbano",
+        "family": "oriental",
+        "position": "top",
+        "description": "Incenso resinoso puro"
+      },
+      {
+        "name": "Incenso Defumado",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Fumaça aromática contemplativa"
+      },
+      {
+        "name": "Mirra",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resina terrosa e nobre"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e estruturador"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce balsâmico envolvente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Myrrhe",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma fragrância balsâmica e reconfortante focada na mirra ancestral da Namíbia, envolta em fava tonka amendolada e lavanda sutil.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático fresco e purificante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Luminosa e equilibrada"
+      },
+      {
+        "name": "Mirra da Namíbia",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resina rica, doce e balsâmica"
+      },
+      {
+        "name": "Amêndoa",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Toque aveludado e cremoso"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adocicado quente e baunilhado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremosa e sensual"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Tonka",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Exploração sublime da fava tonka brasileira, revelando suas facetas gourmands de amêndoa tostada, feno doce e tabaco macio.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Amêndoa Amarga",
+        "family": "oriental",
+        "position": "top",
+        "description": "Amendoada aromática intensa"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico refinado"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Doce aveludado com feno e cumarina"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado equilibrante"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce licoroso aconchegante"
+      },
+      {
+        "name": "Tabaco Doce",
+        "family": "oriental",
+        "position": "base",
+        "description": "Aromático quente e macio"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Cacao",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "A riqueza intensa do cacau nobre e amargo, lapidado com canela fina, toques cítricos de laranja e uma base balsâmica deliciosa.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Laranja Amarga",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico sofisticado"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado quente e aromático"
+      },
+      {
+        "name": "Cacau Puro",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Gourmand escuro, aveludado e amargo"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Doce amendolado aconchegante"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremosa e reconfortante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado macio e elegante"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Café",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "O aroma viciante e revigorante de grãos de café recém-torrados, envolvidos pela delicadeza de pétalas de rosa e a doçura do caramelo ambarado.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Café Torrado",
+        "family": "oriental",
+        "position": "top",
+        "description": "Aroma profundo de grãos selecionados"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado aromático vibrante"
+      },
+      {
+        "name": "Rosa de Grasse",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral delicado que harmoniza o amargor"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Cremosa e adocicada"
+      },
+      {
+        "name": "Caramelo",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doce aveludado e denso"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e persistente"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Rhum",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Inspirado no calor do Caribe, captura a essência alcoólica do rum envelhecido em barris, com canela em pau, tabaco aromático e couro macio.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Rum Escuro",
+        "family": "oriental",
+        "position": "top",
+        "description": "Alcoólico doce, denso e licoroso"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso"
+      },
+      {
+        "name": "Noz-moscada",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiado aromático amadeirado"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Quente e envolvente"
+      },
+      {
+        "name": "Tabaco",
+        "family": "oriental",
+        "position": "base",
+        "description": "Seco, aromático e viril"
+      },
+      {
+        "name": "Baunilha de Madagascar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Cremosa, sedutora e confortável"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Cognac",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "A suntuosidade de um licor nobre servido em taça de cristal, com conhaque maduro, canela em lascas, pralinê caramelizado e carvalho tostado.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Conhaque",
+        "family": "oriental",
+        "position": "top",
+        "description": "Alcoólico rico, quente e nobre"
+      },
+      {
+        "name": "Canela",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante adocicado"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Balsâmico cremoso amendoado"
+      },
+      {
+        "name": "Carvalho",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira nobre de barril envelhecido"
+      },
+      {
+        "name": "Pralinê",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand doce caramelizado"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado aveludado e suave"
+      }
+    ]
+  },
+  {
+    "brand": "Maison Viegas",
+    "name": "Whisky",
+    "releaseYear": null,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Fragrância marcante e sofisticada construída em torno do malte escocês maturado em carvalho, com nuances de fumo, frutas secas e âmbar tostado.",
+    "imageUrl": null,
+    "notes": [
+      {
+        "name": "Acorde de Whisky",
+        "family": "oriental",
+        "position": "top",
+        "description": "Alcoólico maltado amadeirado"
+      },
+      {
+        "name": "Frutas Secas",
+        "family": "fruity",
+        "position": "top",
+        "description": "Doce licoroso e encorpado"
+      },
+      {
+        "name": "Madeira de Carvalho",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado tostado e firme"
+      },
+      {
+        "name": "Especiarias Quentes",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e convidativo"
+      },
+      {
+        "name": "Tabaco",
+        "family": "oriental",
+        "position": "base",
+        "description": "Nobre, aromático e elegante"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e persistente"
+      }
+    ]
+  }
+]

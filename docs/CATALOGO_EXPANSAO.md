@@ -395,12 +395,12 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 ### Avatim (20 perfumes)
 
 - [x] Gigi, Avatim _(No seed atual)_
-- [ ] Gigi Lazuli, Avatim
+- [x] Gigi Lazuli, Avatim
 - [ ] Gigi Féerie, Avatim
 - [x] Boníssimo, Avatim _(No seed atual)_
 - [ ] Boníssimo Black, Avatim
 - [ ] Bakari, Avatim
-- [ ] Seleto, Avatim
+- [x] Seleto, Avatim
 - [ ] Serena, Avatim
 - [ ] Serena Intense, Avatim
 - [x] Apoena, Avatim _(No seed atual)_
@@ -451,7 +451,7 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 
 ### In The Box (97 perfumes)
 
-- [ ] Infinite Horizon, In The Box
+- [x] Infinite Horizon, In The Box
 - [ ] Irish Green Man, In The Box
 - [ ] Versus Pour Homme, In The Box
 - [ ] Lemon Vanilla & Wood, In The Box
@@ -570,9 +570,9 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 
 ### Maison Viegas (55 perfumes)
 
-- [ ] Heaven, Maison Viegas
-- [ ] Opera Hell, Maison Viegas
-- [ ] Elite Pour Homme, Maison Viegas
+- [x] Heaven, Maison Viegas
+- [x] Opera Hell, Maison Viegas
+- [x] Elite Pour Homme, Maison Viegas
 - [ ] Blessed Baraka, Maison Viegas
 - [ ] Prestige, Maison Viegas
 - [ ] Illusion, Maison Viegas
@@ -599,12 +599,12 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 - [ ] Ambre, Maison Viegas
 - [ ] Vanille, Maison Viegas
 - [ ] Tabac, Maison Viegas
-- [ ] Cuir, Maison Viegas
-- [ ] Épices, Maison Viegas
-- [ ] Fleur, Maison Viegas
-- [ ] Rose, Maison Viegas
-- [ ] Jasmin, Maison Viegas
-- [ ] Iris, Maison Viegas
+- [x] Cuir, Maison Viegas
+- [x] Épices, Maison Viegas
+- [x] Fleur, Maison Viegas
+- [x] Rose, Maison Viegas
+- [x] Jasmin, Maison Viegas
+- [x] Iris, Maison Viegas
 - [ ] Agrumes, Maison Viegas
 - [ ] Bergamote, Maison Viegas
 - [ ] Citron, Maison Viegas
@@ -635,13 +635,13 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 - [x] Alpha Leggera, Nuancielo
 - [x] Alpha Blanche, Nuancielo
 - [x] Noām, Nuancielo
-- [ ] Domus, Nuancielo
+- [x] Domus, Nuancielo
 - [x] Ginger Club, Nuancielo
-- [ ] Supremacy, Nuancielo
-- [ ] Hills, Nuancielo
-- [ ] Jocker, Nuancielo
-- [ ] Maktub, Nuancielo
-- [ ] Elixir Babylone, Nuancielo
+- [x] Supremacy, Nuancielo
+- [x] Hills, Nuancielo
+- [x] Jocker, Nuancielo
+- [x] Maktub, Nuancielo
+- [x] Elixir Babylone, Nuancielo
 - [ ] Kubanacan, Nuancielo
 - [ ] Granado, Nuancielo
 - [ ] Wild, Nuancielo
@@ -866,49 +866,49 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 ### Jean Paul Gaultier (43 perfumes)
 
 - [ ] Le Beau Eau de Toilette, Jean Paul Gaultier
-- [ ] Le Beau Le Parfum, Jean Paul Gaultier
-- [ ] Le Beau Paradise Garden, Jean Paul Gaultier
+- [x] Le Beau Le Parfum, Jean Paul Gaultier
+- [x] Le Beau Paradise Garden, Jean Paul Gaultier
 - [ ] Le Beau Flower Edition, Jean Paul Gaultier
 - [ ] Le Male Eau de Toilette, Jean Paul Gaultier
-- [ ] Le Male Le Parfum, Jean Paul Gaultier
-- [ ] Le Male Elixir, Jean Paul Gaultier
+- [x] Le Male Le Parfum, Jean Paul Gaultier
+- [x] Le Male Elixir, Jean Paul Gaultier
 - [ ] Le Male Pride Edition 2026, Jean Paul Gaultier
 - [ ] Le Male Lover, Jean Paul Gaultier
-- [ ] Ultra Male, Jean Paul Gaultier
-- [ ] Le Male In The Navy, Jean Paul Gaultier
-- [ ] Le Male Aviator, Jean Paul Gaultier
-- [ ] Le Male On Board, Jean Paul Gaultier
-- [ ] Le Male Essence de Parfum, Jean Paul Gaultier
-- [ ] Fleur du Mâle, Jean Paul Gaultier
+- [x] Ultra Male, Jean Paul Gaultier
+- [x] Le Male In The Navy, Jean Paul Gaultier
+- [x] Le Male Aviator, Jean Paul Gaultier
+- [x] Le Male On Board, Jean Paul Gaultier
+- [x] Le Male Essence de Parfum, Jean Paul Gaultier
+- [x] Fleur du Mâle, Jean Paul Gaultier
 - [ ] Le Male Terrible, Jean Paul Gaultier
-- [ ] Kokorico, Jean Paul Gaultier
+- [x] Kokorico, Jean Paul Gaultier
 - [ ] Gaultier 2, Jean Paul Gaultier
 - [ ] Scandal Pour Homme Eau de Toilette, Jean Paul Gaultier
-- [ ] Scandal Pour Homme Le Parfum, Jean Paul Gaultier
-- [ ] Scandal Pour Homme Absolu, Jean Paul Gaultier
+- [x] Scandal Pour Homme Le Parfum, Jean Paul Gaultier
+- [x] Scandal Pour Homme Absolu, Jean Paul Gaultier
 - [ ] Scandal Elixir Parfum For Him, Jean Paul Gaultier
 - [ ] Scandal Eau de Parfum, Jean Paul Gaultier
-- [ ] Scandal Le Parfum, Jean Paul Gaultier
-- [ ] Scandal Absolu, Jean Paul Gaultier
+- [x] Scandal Le Parfum, Jean Paul Gaultier
+- [x] Scandal Absolu, Jean Paul Gaultier
 - [ ] Scandal Elixir Parfum For Her, Jean Paul Gaultier
-- [ ] Scandal By Night, Jean Paul Gaultier
-- [ ] Scandal A Paris, Jean Paul Gaultier
-- [ ] So Scandal!, Jean Paul Gaultier
+- [x] Scandal By Night, Jean Paul Gaultier
+- [x] Scandal A Paris, Jean Paul Gaultier
+- [x] So Scandal!, Jean Paul Gaultier
 - [ ] Gaultier Divine Eau de Parfum, Jean Paul Gaultier
-- [ ] Gaultier Divine Le Parfum, Jean Paul Gaultier
+- [x] Gaultier Divine Le Parfum, Jean Paul Gaultier
 - [ ] Gaultier Divine Couture, Jean Paul Gaultier
 - [ ] La Belle Eau de Parfum, Jean Paul Gaultier
-- [ ] La Belle Le Parfum, Jean Paul Gaultier
-- [ ] La Belle Paradise Garden, Jean Paul Gaultier
+- [x] La Belle Le Parfum, Jean Paul Gaultier
+- [x] La Belle Paradise Garden, Jean Paul Gaultier
 - [ ] La Belle Fleur Terrible, Jean Paul Gaultier
 - [ ] La Belle Flower Edition, Jean Paul Gaultier
 - [ ] Classique Eau de Toilette, Jean Paul Gaultier
-- [ ] Classique Eau de Parfum, Jean Paul Gaultier
-- [ ] Classique Essence de Parfum, Jean Paul Gaultier
-- [ ] Classique Pin-Up, Jean Paul Gaultier
-- [ ] Classique Cabaret, Jean Paul Gaultier
-- [ ] Ma Dame, Jean Paul Gaultier
-- [ ] Fragile, Jean Paul Gaultier
+- [x] Classique Eau de Parfum, Jean Paul Gaultier
+- [x] Classique Essence de Parfum, Jean Paul Gaultier
+- [x] Classique Pin-Up, Jean Paul Gaultier
+- [x] Classique Cabaret, Jean Paul Gaultier
+- [x] Ma Dame, Jean Paul Gaultier
+- [x] Fragile, Jean Paul Gaultier
 
 ---
 

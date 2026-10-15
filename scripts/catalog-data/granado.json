@@ -1,0 +1,2069 @@
+[
+  {
+    "brand": "Granado",
+    "name": "Spritz",
+    "releaseYear": 2024,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Explosão cítrica, luminosa e efervescente inspirada no frescor de um drink ao sol. Combina notas vibrantes de laranja amarga e gengibre com a elegância da flor de laranjeira.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173950/granado-eau-de-toilette-spritz-100ml.png",
+    "notes": [
+      {
+        "name": "Laranja Vermelha",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico, doce e efervescente"
+      },
+      {
+        "name": "Laranja Amarga",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco com toque seco"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante e refrescante"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco luminoso e solar"
+      },
+      {
+        "name": "Ylang Ylang",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral exótico e adocicado"
+      },
+      {
+        "name": "Orquídea Vermelha",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado e elegante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e estruturante"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Confortável, macio e limpo"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso quente e sutil"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Citrus Brasilis",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Celebração vibrante da tradição cítrica da perfumaria brasileira. A mandarina e o limão encontram o frescor herbal da menta e um fundo elegante e aveludado de musk.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173872/granado-perfume-citrus-brasilis-75ml.png",
+    "notes": [
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico suculento e ensolarado"
+      },
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cortante e revigorante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico refinado e cintilante"
+      },
+      {
+        "name": "Menta",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal refrescante e aromático"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco sedoso"
+      },
+      {
+        "name": "Kumquat",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Frutado cítrico exótico e agridoce"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e aconchegante"
+      },
+      {
+        "name": "Folhas de Violeta",
+        "family": "green",
+        "position": "base",
+        "description": "Verde aquoso e refinado"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso e amadeirado clássico"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Fervo Intenso",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [
+      "Benoist Lapouza"
+    ],
+    "family": "oriental",
+    "description": "Inspirado na efervescência e boemia das festas brasileiras. Uma criação envolvente e calorosa com acorde inebriante de cachaça, íris refinada e fundo cremoso de cacau.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173934/granado-perfume-fervo-intenso-75ml.png",
+    "notes": [
+      {
+        "name": "Laranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico efervescente e doce"
+      },
+      {
+        "name": "Pomelo",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo e suculento"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico brilhante e luminoso"
+      },
+      {
+        "name": "Cachaça",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Alcoólico quente e provocante"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado seco e elegante"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral atalcado sofisticado"
+      },
+      {
+        "name": "Cacau",
+        "family": "oriental",
+        "position": "base",
+        "description": "Amendoado profundo e gourmand amargo"
+      },
+      {
+        "name": "Mirra",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso balsâmico e místico"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira macia e aveludada"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Infusão Botânica",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [
+      "Ralf Schwieger"
+    ],
+    "family": "green",
+    "description": "Frescor inusitado que evoca a sensação revigorante de uma estufa botânica com sementes de coentro, notas verdes crocantes e uma base sedosa de cashmeran.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173874/granado-perfume-infusao-botanica-75ml.png",
+    "notes": [
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco e límpido"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante estimulante"
+      },
+      {
+        "name": "Coentro",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal aromático e efervescente"
+      },
+      {
+        "name": "Notas Verdes",
+        "family": "green",
+        "position": "heart",
+        "description": "Folhagens frescas e orvalhadas"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral delicado e aerado"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria fresca e sofisticada"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Limpo, macio e reconfortante"
+      },
+      {
+        "name": "Cashmeran",
+        "family": "musky",
+        "position": "base",
+        "description": "Almiscarado tátil como lã macia"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso e elegante"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Esplendor",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [
+      "Gabriela Maldonado"
+    ],
+    "family": "oriental",
+    "description": "Uma interpretação opulenta e luminosa da baunilha madura. Equilibra um buquê de lírios e peônias com o calor balsâmico do benjoim e da madeira de cashmeran.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173935/granado-perfume-esplendor-75ml.png",
+    "notes": [
+      {
+        "name": "Lírio",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral branco imponente e puro"
+      },
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral arejado e fresco"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "top",
+        "description": "Pétalas florais suaves"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resinoso doce e incensado"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado clássico"
+      },
+      {
+        "name": "Lírio-do-Vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde delicado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Dourado, quente e sedutor"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Adoce e licorosa de fava nobre"
+      },
+      {
+        "name": "Cashmeran",
+        "family": "musky",
+        "position": "base",
+        "description": "Aconchegante e amadeirado macio"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Imperial",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [
+      "Guillaume Flavigny"
+    ],
+    "family": "aromatic",
+    "description": "Homenagem à história imperial brasileira, aliando o frescor sofisticado do chá branco e da bergamota à nobreza da infusão de mate e flores elegantes.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173873/granado-perfume-imperial-75ml.png",
+    "notes": [
+      {
+        "name": "Chá Branco",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal sereno e requintado"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico refinado e orvalhado"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico suave e brilhante"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral fresco e elegante"
+      },
+      {
+        "name": "Lírio-do-Vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Verde floral cristalino"
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral cremoso levemente cítrico"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Segunda pele aconchegante"
+      },
+      {
+        "name": "Mate",
+        "family": "green",
+        "position": "base",
+        "description": "Herbal terroso e reconfortante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira aveludada e cremosa"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Jardim Real",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [
+      "Lisa Montes"
+    ],
+    "family": "floral",
+    "description": "Um passeio matinal sob a sombra de um exuberante jardim botânico imperial. Destaca a exuberância da flor de laranjeira e jasmim com um leve toque picante de pimenta rosa.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173875/granado-perfume-jardim-real-75ml.png",
+    "notes": [
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico frutado ensolarado"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico aromático clássico"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria floral picante"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco expansivo e solar"
+      },
+      {
+        "name": "Jasmim Sambac",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral inebriante e nobre"
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral delicado e aveludado"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Pureza e conforto suave"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado verde elegante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e envolvente"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Folhas de Figo",
+    "releaseYear": 2020,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "green",
+    "description": "Retrata o frescor natural da folha de figueira em um dia chuvoso. Notas aquosas abrem caminho para a seiva verde da folhagem sobre uma base macia de cashmere e sândalo.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/170942/colonia-phebo-folhas-de-figo-260ml.png",
+    "notes": [
+      {
+        "name": "Notas Aquosas",
+        "family": "aquatic",
+        "position": "top",
+        "description": "Frescor aquático transparente"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso"
+      },
+      {
+        "name": "Folha de Figo",
+        "family": "green",
+        "position": "heart",
+        "description": "Verde botânico terroso e leitoso"
+      },
+      {
+        "name": "Madeira de Cashmere",
+        "family": "woody",
+        "position": "heart",
+        "description": "Textura sedosa e elegante"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Herbal e floral canforado"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e calmante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Terroso amadeirado seco"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Profundo e resinoso"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Expedição",
+    "releaseYear": 2023,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [
+      "Florian Gallo"
+    ],
+    "family": "woody",
+    "description": "Uma aventura olfativa pela Mata Atlântica que conecta notas amadeiradas secas de pinheiro e cedro com a sofisticação atalcada da íris e a espiritualidade do incenso Kyara.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173876/granado-perfume-expedicao-75ml.png",
+    "notes": [
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico ácido e revigorante"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picância quente e aromática"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico levemente floral"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Atalcado seco requintado"
+      },
+      {
+        "name": "Incenso Kyara",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resina esfumaçada contemplativa"
+      },
+      {
+        "name": "Pinheiro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Aromático resinoso de floresta"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso, rico e reconfortante"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor balsâmico"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira limpa e estruturante"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Tonka",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [
+      "Leonardo Lucheze"
+    ],
+    "family": "oriental",
+    "description": "Uma fragrância amendoada, quente e cremosa que exalta as facetas ricas da fava tonka brasileira com toques envolventes de leite de coco, baunilha e âmbar.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173952/granado-eau-de-toilette-tonka-100ml.png",
+    "notes": [
+      {
+        "name": "Coco",
+        "family": "fruity",
+        "position": "top",
+        "description": "Cremoso lactônico e suave"
+      },
+      {
+        "name": "Cumarina",
+        "family": "oriental",
+        "position": "top",
+        "description": "Doce balsâmico amendoado"
+      },
+      {
+        "name": "Notas Amadeiradas",
+        "family": "woody",
+        "position": "top",
+        "description": "Madeiras secas sutis"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Aveludada, quente e tostada"
+      },
+      {
+        "name": "Madeira de Âmbar",
+        "family": "woody",
+        "position": "heart",
+        "description": "Resina amadeirada marcante"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Gourmand envolvente"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Toque sedoso aconchegante"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e resinoso"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Oud",
+    "releaseYear": 2020,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [
+      "Leonardo Lucheze"
+    ],
+    "family": "woody",
+    "description": "Uma interpretação equilibrada e elegante do mítico oud. Especiarias frias de cardamomo e pimenta preta contrastam com um fundo amadeirado nobre de guaiaco e agarwood.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173958/granado-colonia-oud-100ml.png",
+    "notes": [
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "top",
+        "description": "Amadeirado esfumaçado denso"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante e aromática"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado fresco e nobre"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado nobre e sóbrio"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "heart",
+        "description": "Terroso e profundo"
+      },
+      {
+        "name": "Elemi",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resinoso com nuances cítricas"
+      },
+      {
+        "name": "Oud",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira escura majestosa e mística"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira aveludada e cremosa"
+      },
+      {
+        "name": "Absinto",
+        "family": "aromatic",
+        "position": "base",
+        "description": "Herbal amargo e aromático"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Caju",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "fruity",
+    "description": "Uma celebração solar e autêntica dos pomares do Brasil. O caju suculento e levemente adstringente ganha destaque envolvido pelo toque floral da frésia e madeiras claras.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/170940/granado-perfume-flor-de-cajueiro-100ml.png",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico orvalhado e cintilante"
+      },
+      {
+        "name": "Laranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Doce e suculento"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutado cítrico radiante"
+      },
+      {
+        "name": "Caju",
+        "family": "fruity",
+        "position": "heart",
+        "description": "Frutado tropical característico e carnudo"
+      },
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral fresco e primaveril"
+      },
+      {
+        "name": "Lírio-do-Vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco etéreo"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira leitosa e suave"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Almiscarado limpo e confortável"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre acolhedor"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Bergamota & Flor de Laranjeira",
+    "releaseYear": 2019,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Revigorante e ensolarada, traduz o frescor límpido das flores de pomar com a vibração da bergamota e a elegância aromática da erva-doce sobre madeiras confortáveis.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173901/colonia-granado-bergamota-flor-laranjeira-230ml.png",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cintilante e fresco"
+      },
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Acidez limpa e brilhante"
+      },
+      {
+        "name": "Erva-Doce",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático anisado e verde"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco limpo e ensolarado"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral luminoso e suave"
+      },
+      {
+        "name": "Gengibre",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Picante e refrescante"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Aconchegante e suave"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e aveludado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado limpo e refinado"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Mandarina & Sândalo",
+    "releaseYear": 2019,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [
+      "Clément Gavarry"
+    ],
+    "family": "woody",
+    "description": "Harmonia cativante entre o frescor cintilante da mandarina suculenta e o conforto aconchegante e aveludado do sândalo, criando uma atmosfera serena e sofisticada.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173903/colonia-granado-mandarina-sandalo-230ml.png",
+    "notes": [
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico ensolarado e alegre"
+      },
+      {
+        "name": "Laranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutado doce cítrico"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frescor refinado clássico"
+      },
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral diáfano e limpo"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Sensual e aveludado"
+      },
+      {
+        "name": "Gardênia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco denso e opulento"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira leitosa e quente"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Maciez de segunda pele"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso aconchegante"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Cedro",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Amadeirado nobre, sóbrio e sedoso. O cedro surge lapidado e confortável, envolvido por sementes de hibisco e a cremosidade do sândalo, perfeito para uso solo ou layering.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173951/granado-eau-de-toilette-cedro-100ml.png",
+    "notes": [
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "top",
+        "description": "Limpo, aveludado e suave"
+      },
+      {
+        "name": "Hibisco",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral fresco e exótico"
+      },
+      {
+        "name": "Semente de Hibisco",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático almiscarado e ambretado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado seco e elegante"
+      },
+      {
+        "name": "Madeira de Cashmere",
+        "family": "woody",
+        "position": "heart",
+        "description": "Textura aveludada e macia"
+      },
+      {
+        "name": "Açafrão",
+        "family": "spicy",
+        "position": "heart",
+        "description": "Especiaria nobre com nuance terrosa"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e reconfortante"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Quente e resinoso"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Mirra",
+    "releaseYear": 2021,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Criação mística e balsâmica que celebra a riqueza aromática da mirra em harmonia com acordes resinosos e madeiras preciosas, ideal para momentos contemplativos.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173956/granado-colonia-mirra-100ml.png",
+    "notes": [
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiado picante refinado"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picância floral suave"
+      },
+      {
+        "name": "Mirra",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Resina balsâmica e incensada"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado clássico e sóbrio"
+      },
+      {
+        "name": "Incenso",
+        "family": "oriental",
+        "position": "heart",
+        "description": "Aroma meditativo e esfumaçado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor dourado envolvente"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira cremosa e suave"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e macio"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Fava Tonka",
+    "releaseYear": 2024,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Exaltação pura da semente da fava tonka. Uma fragrância aconchegante com acordes adocicados, notas amendoadas de cumarina e um rastro macio e envolvente.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173905/colonia-granado-fava-tonka-230ml.png",
+    "notes": [
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca e elegante"
+      },
+      {
+        "name": "Olíbano",
+        "family": "oriental",
+        "position": "top",
+        "description": "Resinoso aromático limpo"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico orvalhado"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral delicado e aveludado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Estrutura amadeirada seca"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral verde aromático"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Balsâmico amendoado e adocicado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor resinoso duradouro"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e denso"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Íris",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "floral",
+    "description": "A íris surge em interpretação fresca, transparente e contemporânea. Uma floralidade atalcada envolvida por notas de pera, pimenta rosa e uma base nobre de âmbar e cedro.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173954/granado-eau-de-toilette-iris-100ml.png",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico cintilante e leve"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picância fresca e efervescente"
+      },
+      {
+        "name": "Pera",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aquoso, crocante e doce"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral atalcado sofisticado e elegante"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco luminoso"
+      },
+      {
+        "name": "Lírio-do-Vale",
+        "family": "floral",
+        "position": "heart",
+        "description": "Frescor verde floral primaveril"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Segunda pele macia e pura"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor suave e envolvente"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado refinado"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Vetiver",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Amadeirado nobre e multifacetado. O vetiver revela suas raízes terrosas e elegantes entrelaçadas à delicadeza floral de peônias e violetas com a intensidade do cedro.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173953/granado-eau-de-toilette-vetiver-100ml.png",
+    "notes": [
+      {
+        "name": "Violeta",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral atalcado verde e fresco"
+      },
+      {
+        "name": "Lírio",
+        "family": "floral",
+        "position": "top",
+        "description": "Floral puro e elegante"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante aromático vigoroso"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "heart",
+        "description": "Raiz terrosa e esfumaçada"
+      },
+      {
+        "name": "Tiaré",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral exótico e luminoso"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aveludado e sutil"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado estruturante nobre"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor balsâmico de fixação"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Lavanda",
+    "releaseYear": 2020,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Fragrância clássica e acolhedora. Evoca a calmaria dos campos floridos através de um buquê de lavandas harmonizadas com a suavidade da peônia e o conforto do cedro.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173957/granado-colonia-lavanda-100ml.png",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco e brilhante"
+      },
+      {
+        "name": "Lima",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico verde e energético"
+      },
+      {
+        "name": "Eucalipto",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Canforado fresco e medicinal"
+      },
+      {
+        "name": "Lavanda",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Floral aromático relaxante e límpido"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral suave e gracioso"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétalas aveludadas delicadas"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Aconchegante e suave"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado sereno e macio"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Limpeza e sensação de banho tomado"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Neroli",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Criação luminosa e solar que explora o néroli em sua plenitude floral e cítrica. Acompanhado por bergamota e folhas verdes, oferece um frescor mediterrâneo inconfundível.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173955/granado-eau-de-toilette-neroli-100ml.png",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico orvalhado e cintilante"
+      },
+      {
+        "name": "Grapefruit",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo e borbulhante"
+      },
+      {
+        "name": "Petitgrain",
+        "family": "green",
+        "position": "top",
+        "description": "Verde folhoso levemente amargo"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco cítrico e revigorante"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral luminoso límpido"
+      },
+      {
+        "name": "Flor de Laranjeira",
+        "family": "floral",
+        "position": "heart",
+        "description": "Solar, rica e delicada"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira limpa e equilibrada"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Almiscarado macio e confortável"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor suave de sustentação"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Sândalo",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Um tributo à nobreza e cremosidade do sândalo. Uma criação amadeirada, atemporal e elegante que combina nuances especiadas de cardamomo a um corpo amadeirado viciante.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173949/granado-eau-de-toilette-sandalo-100ml.png",
+    "notes": [
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca e sofisticada"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso refinado"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picância aromática marcante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "heart",
+        "description": "Madeira cremosa e aveludada"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado seco e elegante"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "heart",
+        "description": "Terroso e profundo"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Conforto suave de pele limpa"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resinoso aconchegante"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Baunilha",
+    "releaseYear": 2021,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Interpretação sutil e elegante da baunilha. Afastando-se do excesso gourmand, apresenta uma doçura confortável harmonizada com frésias, cítricos luminosos e vetiver.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173959/granado-colonia-baunilha-100ml.png",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico fresco e brilhante"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Suculento e solar"
+      },
+      {
+        "name": "Semente de Coentro",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Aromático especiado leve"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco sedoso"
+      },
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral diáfano e arejado"
+      },
+      {
+        "name": "Baunilha",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doçura macia de fava nobre"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Aveludado e acolhedor"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso seco"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Lírio",
+    "releaseYear": 2021,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [
+      "Leandro Petit"
+    ],
+    "family": "floral",
+    "description": "Floral branco fresco, luminoso e levemente atalcado. Abre com a doçura natural do pêssego e revela pétalas límpidas de lírio sobre uma base macia e sedosa de almíscar.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173960/granado-colonia-lirio-100ml.png",
+    "notes": [
+      {
+        "name": "Pêssego",
+        "family": "fruity",
+        "position": "top",
+        "description": "Frutado aveludado e suculento"
+      },
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico revigorante"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picância sutil estimulante"
+      },
+      {
+        "name": "Lírio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco puro, nobre e majestoso"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral fresco e arejado"
+      },
+      {
+        "name": "Acácia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral doce e primaveril"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Sensação aveludada e limpa"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e macio"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado suave"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Magnólia",
+    "releaseYear": 2022,
+    "concentration": "edc",
+    "gender": "feminine",
+    "perfumers": [
+      "Shyamala Maisondieu"
+    ],
+    "family": "floral",
+    "description": "Uma fragrância floral verde, elegante e aconchegante. Folhas de violeta e acordes verdes dão frescor a um buquê nobre de magnólia e mimosa sobre uma cama aveludada de musk.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173961/granado-colonia-magnolia-100ml.png",
+    "notes": [
+      {
+        "name": "Acorde Verde",
+        "family": "green",
+        "position": "top",
+        "description": "Frescor límpido de seiva"
+      },
+      {
+        "name": "Folha de Violeta",
+        "family": "green",
+        "position": "top",
+        "description": "Verde aquoso e sofisticado"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico luminoso"
+      },
+      {
+        "name": "Magnólia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral cremoso e sutilmente cítrico"
+      },
+      {
+        "name": "Mimosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral amarelo melífluo e atalcado"
+      },
+      {
+        "name": "Frésia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral cristalino"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Aconchegante e sedoso"
+      },
+      {
+        "name": "Fava Tonka",
+        "family": "oriental",
+        "position": "base",
+        "description": "Doçura amendoada sutil"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Madeira reconfortante"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Rosa Damascena",
+    "releaseYear": 2019,
+    "concentration": "edc",
+    "gender": "feminine",
+    "perfumers": [
+      "Hernan Fígoli"
+    ],
+    "family": "floral",
+    "description": "Retrato fiel de um buquê de rosas rubras orvalhadas. Uma saída frutada de grapefruit e bergamota antecede a opulência aveludada e poética da clássica rosa de damasco.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173962/granado-colonia-rosa-damascena-100ml.png",
+    "notes": [
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo e borbulhante"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico orvalhado"
+      },
+      {
+        "name": "Mandarina",
+        "family": "citrus",
+        "position": "top",
+        "description": "Frutado cítrico suculento"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétalas nobres, aveludadas e intensas"
+      },
+      {
+        "name": "Peônia",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral fresco e romântico"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco luminoso"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Suavidade de pele perfumada"
+      },
+      {
+        "name": "Patchouli",
+        "family": "woody",
+        "position": "base",
+        "description": "Nuance terrosa elegante"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor ambarado macio"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Gerânio & Grapefruit",
+    "releaseYear": 2020,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [
+      "Leonardo Lucheze"
+    ],
+    "family": "citrus",
+    "description": "Fragrância revigorante e efervescente. A toranja vibrante e o ruibarbo cortante combinam-se com a floralidade verde do gerânio para uma sensação de banho gelado revitalizante.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173963/granado-colonia-geranio-grapefruit-100ml.png",
+    "notes": [
+      {
+        "name": "Toranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico amargo e muito fresco"
+      },
+      {
+        "name": "Ruibarbo",
+        "family": "green",
+        "position": "top",
+        "description": "Verde crocante, ácido e moderno"
+      },
+      {
+        "name": "Pimenta Rosa",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picante floral leve"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral aromático verde e canforado"
+      },
+      {
+        "name": "Flor de Toranja",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral cítrico solar"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco cristalino"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Limpeza confortável"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado terroso e fresco"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "base",
+        "description": "Suave e aveludado"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Verbena",
+    "releaseYear": 2016,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [
+      "Sophie Truitard"
+    ],
+    "family": "citrus",
+    "description": "Verdadeira ode à natureza. O aroma fresco e verde da verbena combina-se à lima e ao alecrim, transmitindo uma sensação inigualável de vitalidade, asseio e bem-estar.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173964/granado-colonia-verbena-100ml.png",
+    "notes": [
+      {
+        "name": "Verbena",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal cítrico extremamente refrescante"
+      },
+      {
+        "name": "Lima",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico verde ácido e efervescente"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico aromático radiante"
+      },
+      {
+        "name": "Néroli",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral cítrico delicado"
+      },
+      {
+        "name": "Alecrim",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal aromático estimulante"
+      },
+      {
+        "name": "Litsea Cubeba",
+        "family": "citrus",
+        "position": "heart",
+        "description": "Cítrico alimonado intenso"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Verde floral canforado"
+      },
+      {
+        "name": "Almíscar",
+        "family": "musky",
+        "position": "base",
+        "description": "Puro, macio e aconchegante"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Chá Preto",
+    "releaseYear": 2023,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [
+      "Véronique Nyberg"
+    ],
+    "family": "aromatic",
+    "description": "Equilíbrio refinado entre o frescor cítrico da bergamota e as facetas aconchegantes e secas da infusão de chá preto. Uma fragrância sóbria, elegante e atemporal.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173965/granado-colonia-cha-preto-bergamota-100ml.png",
+    "notes": [
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico sofisticado e límpido"
+      },
+      {
+        "name": "Limão",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico vibrante"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca e aromática"
+      },
+      {
+        "name": "Chá Preto",
+        "family": "aromatic",
+        "position": "heart",
+        "description": "Herbal seco, terroso e reconfortante"
+      },
+      {
+        "name": "Íris",
+        "family": "floral",
+        "position": "heart",
+        "description": "Toque atalcado nobre"
+      },
+      {
+        "name": "Gerânio",
+        "family": "floral",
+        "position": "heart",
+        "description": "Verde floral equilibrante"
+      },
+      {
+        "name": "Vetiver",
+        "family": "woody",
+        "position": "base",
+        "description": "Raiz amadeirada terrosa"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre e sutilmente defumado"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Acolhedor e suave"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Figo",
+    "releaseYear": 2023,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [
+      "Florian Gallo"
+    ],
+    "family": "green",
+    "description": "Representa o frescor verde e a naturalidade da folha de figo partida ao meio. Uma criação que equilibra essa personalidade vegetal viva com um fundo amadeirado requintado.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/173966/granado-colonia-figo-100ml.png",
+    "notes": [
+      {
+        "name": "Laranja",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico suave e suculento"
+      },
+      {
+        "name": "Pimenta Preta",
+        "family": "spicy",
+        "position": "top",
+        "description": "Picância aromática seca"
+      },
+      {
+        "name": "Cardamomo",
+        "family": "spicy",
+        "position": "top",
+        "description": "Especiaria fresca e sofisticada"
+      },
+      {
+        "name": "Folha de Figo",
+        "family": "green",
+        "position": "heart",
+        "description": "Verde natural vegetal e leitoso"
+      },
+      {
+        "name": "Violeta",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral sutil e assabonetado"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "heart",
+        "description": "Amadeirado estruturante"
+      },
+      {
+        "name": "Sândalo",
+        "family": "woody",
+        "position": "base",
+        "description": "Cremoso e reconfortante"
+      },
+      {
+        "name": "Madeira Guaiac",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre acolhedor"
+      },
+      {
+        "name": "Âmbar",
+        "family": "oriental",
+        "position": "base",
+        "description": "Calor suave balsâmico"
+      }
+    ]
+  },
+  {
+    "brand": "Granado",
+    "name": "Limão Siciliano",
+    "releaseYear": 2014,
+    "concentration": "edc",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Ícone da perfumaria solar brasileira. Celebra a alegria revigorante do limão siciliano recém-colhido, harmonizado com notas florais limpas e madeiras leves que prolongam o frescor.",
+    "imageUrl": "https://granado.vtexassets.com/arquivos/ids/170939/colonia-phebo-limao-siciliano-200ml.png",
+    "notes": [
+      {
+        "name": "Limão Siciliano",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico espumante, ácido e solar"
+      },
+      {
+        "name": "Bergamota",
+        "family": "citrus",
+        "position": "top",
+        "description": "Cítrico refinado e fresco"
+      },
+      {
+        "name": "Artemísia",
+        "family": "aromatic",
+        "position": "top",
+        "description": "Herbal amargo e aromático"
+      },
+      {
+        "name": "Jasmim",
+        "family": "floral",
+        "position": "heart",
+        "description": "Floral branco limpo e transparente"
+      },
+      {
+        "name": "Rosa",
+        "family": "floral",
+        "position": "heart",
+        "description": "Pétalas suaves e orvalhadas"
+      },
+      {
+        "name": "Violeta",
+        "family": "floral",
+        "position": "heart",
+        "description": "Delicadeza floral verde"
+      },
+      {
+        "name": "Cedro",
+        "family": "woody",
+        "position": "base",
+        "description": "Amadeirado nobre suave"
+      },
+      {
+        "name": "Musk",
+        "family": "musky",
+        "position": "base",
+        "description": "Sensação aveludada pós-banho"
+      },
+      {
+        "name": "Benjoim",
+        "family": "oriental",
+        "position": "base",
+        "description": "Resina suave com fixação macia"
+      }
+    ]
+  }
+]

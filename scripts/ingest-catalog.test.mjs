@@ -150,6 +150,12 @@ describe('parseCatalogArgs / selectItems', () => {
     ).toEqual(['epoque-tropical', 'seleto']);
   });
 
+  it('--quarantine define o arquivo de pendências', () => {
+    expect(
+      parseCatalogArgs(['--from-json', 'a.json', '--quarantine', 'q.json']).options.quarantine
+    ).toBe('q.json');
+  });
+
   it('pós-processamento dispensa seleção', () => {
     expect(parseCatalogArgs(['--mark-done', 'lote.json']).options.markDone).toBe('lote.json');
   });

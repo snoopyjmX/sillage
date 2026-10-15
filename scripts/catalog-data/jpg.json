@@ -1,0 +1,927 @@
+[
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male",
+    "releaseYear": 1995,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Francis Kurkdjian"
+    ],
+    "family": "oriental",
+    "description": "Um ícone atemporal da perfumaria que presta homenagem à figura do marinheiro viril e sedutor. Combina o frescor mentolado da barbearia tradicional com a sensualidade doce e reconfortante da baunilha, criando um rastro inesquecível.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.430.jpg",
+    "notes": [
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Fresco e mentolado revigorante"},
+      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Floral aromático e clássico de barbearia"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado doce e aromático"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco limpo e iluminado"},
+      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Especiado quente e adocicado"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce, quente e envolvente"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Amendoado doce e balsâmico"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso e aveludado"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado cremoso e suave"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male Le Parfum",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch",
+      "Nathalie Gracia-Cetto"
+    ],
+    "family": "oriental",
+    "description": "Assumindo o comando da linha com autoridade e sofisticação, esta fragrância traz um acorde nobre de íris e cardamomo que se une à clássica lavanda em uma base oriental escura de baunilha oriental intensa e madeiras nobres.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.61856.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado quente e aromático refinado"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático fresco e refinado"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Floral atalcado e elegante"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludada e misteriosa"},
+      {"name": "Notas Orientais", "family": "oriental", "position": "base", "description": "Acorde ambarado e suntuoso"},
+      {"name": "Notas Amadeiradas", "family": "woody", "position": "base", "description": "Amadeirado seco e estruturado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male Elixir",
+    "releaseYear": 2023,
+    "concentration": "parfum",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch"
+    ],
+    "family": "oriental",
+    "description": "Uma infusão escaldante de sensualidade envolta em ouro reluzente. A lavanda aromática incendeia-se com as facetas ricas de benjoim balsâmico, mel selvagem e tabaco tostado, resultando em uma potência viciante e magnética.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.81642.jpg",
+    "notes": [
+      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Aromático fresco e penetrante"},
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Fresco e herbal cortante"},
+      {"name": "Baunilha", "family": "oriental", "position": "heart", "description": "Doce, licorosa e opulenta"},
+      {"name": "Benjoim", "family": "oriental", "position": "heart", "description": "Resinoso quente e ambarado"},
+      {"name": "Mel", "family": "oriental", "position": "base", "description": "Adocicado denso e animálico dourado"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce amendoador e tostado"},
+      {"name": "Tabaco", "family": "woody", "position": "base", "description": "Seco, aromático e fumado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Ultra Male",
+    "releaseYear": 2015,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Francis Kurkdjian"
+    ],
+    "family": "oriental",
+    "description": "Uma explosão gourmand e irresistível de pera suculenta banhada em especiarias negras e baunilha sedutora. Um perfume vibrante e baladeiro por excelência, desenvolvido para projetar intensidade e charme sem limites.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.30947.jpg",
+    "notes": [
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Frutado suculento e doce"},
+      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Herbal fresco e limpo"},
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Fresco e canforado"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cítrico e efervescente"},
+      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Especiado quente e picante"},
+      {"name": "Sálvia Esclareia", "family": "aromatic", "position": "heart", "description": "Herbal refinado e texturizado"},
+      {"name": "Casca de Baunilha Negra", "family": "oriental", "position": "base", "description": "Doce escuro, cremoso e sedutor"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso e aveludado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e viril"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Beau",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch",
+      "Sonia Constant"
+    ],
+    "family": "woody",
+    "description": "Inspirado no Jardim das Tentações, Le Beau é um torso masculino esculpido com folha de videira dourada. Destaca uma fusão ultra sensual de madeira de coco fresca, bergamota revigorante e fava tonka torrada.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.55854.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico fresco e brilhante"},
+      {"name": "Coco", "family": "fruity", "position": "heart", "description": "Tropical, leitoso e amadeirado"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce, amendoada e balsâmica"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Beau Le Parfum",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch"
+    ],
+    "family": "oriental",
+    "description": "Uma tentação tropical levada ao ápice da intensidade. A madeira de coco ganha nuances amadeiradas profundas de sândalo e cipreste, enquanto o acorde de abacaxi suculento e fava tonka incendeia o rastro com sedução voraz.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.72158.jpg",
+    "notes": [
+      {"name": "Abacaxi", "family": "fruity", "position": "top", "description": "Frutado tropical doce e cortante"},
+      {"name": "Íris", "family": "floral", "position": "top", "description": "Floral atalcado e requintado"},
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Especiado fresco e picante"},
+      {"name": "Coco", "family": "fruity", "position": "heart", "description": "Cremoso, tostado e exótico"},
+      {"name": "Notas Amadeiradas", "family": "woody", "position": "heart", "description": "Madeiras intensas e encorpadas"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico quente e resinoso"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado cremoso e sensual"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Ambarado aveludado e fixador"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Beau Paradise Garden",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch"
+    ],
+    "family": "aquatic",
+    "description": "Um éden aquático e verdejante de paixão libertadora. O frescor radiante da água salgada e da hortelã encontra a textura aveludada do figo verde e a doçura tropical do coco, repousando em sândalo elegante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.88836.jpg",
+    "notes": [
+      {"name": "Notas Aquáticas", "family": "aquatic", "position": "top", "description": "Fresco, oceânico e salino"},
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Verde revigorante e gélido"},
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante e efervescente"},
+      {"name": "Figo", "family": "fruity", "position": "heart", "description": "Frutado verde lactônico e sofisticado"},
+      {"name": "Coco", "family": "fruity", "position": "heart", "description": "Leitoso cremoso e solar"},
+      {"name": "Sal", "family": "aquatic", "position": "heart", "description": "Mineral cristalino e moderno"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce amendoado e envolvente"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado aveludado e nobre"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Scandal Pour Homme",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch",
+      "Christophe Raynaud",
+      "Nathalie Gracia-Cetto"
+    ],
+    "family": "oriental",
+    "description": "O campeão do ringue que seduz com um nocaute olfativo. Uma combinação viciante de caramelo tostado com a masculinidade aromática da sálvia esclareia e a elegância terrosa do vetiver, coroado com imponência real.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.67971.jpg",
+    "notes": [
+      {"name": "Sálvia Esclareia", "family": "aromatic", "position": "top", "description": "Aromático herbal e elegante"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico suculento e alegre"},
+      {"name": "Caramelo", "family": "oriental", "position": "heart", "description": "Gourmand doce e tostado"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "heart", "description": "Balsâmico amendoado refinado"},
+      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso, seco e sofisticado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Scandal Pour Homme Le Parfum",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch",
+      "Nathalie Gracia-Cetto",
+      "Christophe Raynaud"
+    ],
+    "family": "oriental",
+    "description": "O pugilista retorna ainda mais audacioso e escandaloso. O caramelo adquire tonalidades intensas com o calor do gerânio aromático e a riqueza da fava tonka e sândalo amadeirado, projetando pura sensualidade viril.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.74751.jpg",
+    "notes": [
+      {"name": "Gerânio", "family": "floral", "position": "top", "description": "Floral aromático picante e vivo"},
+      {"name": "Caramelo", "family": "oriental", "position": "heart", "description": "Denso, cremoso e tostado"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce aveludado e sedutor"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira nobre e cremosa"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Scandal Pour Homme Absolu",
+    "releaseYear": 2024,
+    "concentration": "parfum",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch",
+      "Nathalie Gracia-Cetto",
+      "Christophe Raynaud"
+    ],
+    "family": "oriental",
+    "description": "Livre de convenções e coroado em ouro opulento, este parfum une o licor suculento da ameixa mirabelle ao acorde gourmand de castanha tostada e uma overdose magnética de sândalo cremoso.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.91053.jpg",
+    "notes": [
+      {"name": "Ameixa Mirabelle", "family": "fruity", "position": "top", "description": "Frutado doce, licoroso e dourado"},
+      {"name": "Castanha", "family": "oriental", "position": "heart", "description": "Gourmand quente, tostado e amendoado"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado sedoso e opulento"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique",
+    "releaseYear": 1993,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [
+      "Jacques Cavallier"
+    ],
+    "family": "oriental",
+    "description": "O espartilho mais famoso do mundo em forma de fragrância. Um tributo à feminilidade fatal que mistura a flor de laranjeira luminosa à provocação do gengibre picante e a doçura acariciante da baunilha e do âmbar.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.427.jpg",
+    "notes": [
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "top", "description": "Floral solar e radiante"},
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Especiado fresco e picante"},
+      {"name": "Anis Estrelado", "family": "spicy", "position": "top", "description": "Especiado aromático e anisado"},
+      {"name": "Ylang Ylang", "family": "floral", "position": "heart", "description": "Floral exótico, cremoso e doce"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Atalcado requintado e sedoso"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado e sensual"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso aconchegante e quente"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique Eau de Parfum",
+    "releaseYear": 1990,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Jacques Cavallier"
+    ],
+    "family": "oriental",
+    "description": "Uma versão ainda mais carnal, calorosa e inebriante do clássico atemporal. O narciso suntuoso e a orquídea baunilha fundem-se a notas de rum licoroso e fava tonka sobre um espartilho de renda vermelha.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.729.jpg",
+    "notes": [
+      {"name": "Rosa", "family": "floral", "position": "top", "description": "Floral aveludado e clássico"},
+      {"name": "Rum", "family": "oriental", "position": "top", "description": "Licoroso alcoólico e envolvente"},
+      {"name": "Orquídea Baunilha", "family": "floral", "position": "heart", "description": "Floral exótico e adocicado"},
+      {"name": "Narciso", "family": "floral", "position": "heart", "description": "Floral branco denso e narcótico"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Gourmand doce e cremoso"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico quente e sedutor"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado macio e persistente"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "La Belle",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Quentin Bisch",
+      "Sonia Constant"
+    ],
+    "family": "oriental",
+    "description": "Nascida no Jardim do Éden para arrebatar os sentidos, La Belle é o fruto proibido em forma de pera caramelizada suculenta, equilibrada pelo brilho da bergamota e envolvida por uma baunilha oriental hipnótica.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.55853.jpg",
+    "notes": [
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Frutado aquoso, doce e cristalino"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante e fresco"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce gourmand suntuoso e profundo"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "La Belle Le Parfum",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Quentin Bisch",
+      "Sonia Constant"
+    ],
+    "family": "oriental",
+    "description": "A versão intensa da maçã tentadora. A pera assada com calda de caramelo se funde à fava tonka sedutora e à fita aveludada do jasmim, repousando sobre uma base de baunilha oriental ultra encorpada.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.65243.jpg",
+    "notes": [
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Frutado quente, assado e licoroso"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "heart", "description": "Doce balsâmico e tostado"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco opulento e feminino"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Gourmand escuro e ultra viciante"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "La Belle Paradise Garden",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Quentin Bisch"
+    ],
+    "family": "floral",
+    "description": "Um jardim paradisíaco iluminado pelo sol exótico. O lótus azul aquático flutua sobre um véu de íris nobre e atalcada, finalizado com uma baunilha paradisíaca que veste a pele com frescor e sensualidade radiante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.88873.jpg",
+    "notes": [
+      {"name": "Lótus Azul", "family": "aquatic", "position": "top", "description": "Floral aquático cristalino e sereno"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Floral nobre, atalcado e elegante"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce suave, solar e acolhedor"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Scandal",
+    "releaseYear": 2017,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Daphné Bugey",
+      "Fabrice Pellegrin",
+      "Christophe Raynaud"
+    ],
+    "family": "oriental",
+    "description": "Um escândalo de feminilidade para mulheres elegantes de dia e desinibidas à noite. Uma overdose de mel cremoso e flor de laranjeira combinada ao patchouli amadeirado, criando um rastro aditivo e gourmand.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.45693.jpg",
+    "notes": [
+      {"name": "Laranja Sanguínea", "family": "citrus", "position": "top", "description": "Cítrico vibrante e sumarento"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico doce e ensolarado"},
+      {"name": "Mel", "family": "oriental", "position": "heart", "description": "Gourmand espesso, dourado e doce"},
+      {"name": "Gardênia", "family": "floral", "position": "heart", "description": "Floral branco cremoso e sedutor"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral limpo e radiante"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado terroso e elegante"},
+      {"name": "Cera de Abelha", "family": "oriental", "position": "base", "description": "Ceroso quente e balsâmico"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Scandal By Night",
+    "releaseYear": 2018,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Daphné Bugey"
+    ],
+    "family": "oriental",
+    "description": "A faceta mais audaciosa e noturna de Scandal. A tuberosa inebriante se junta ao mel aveludado e à fava tonka, complementados por notas licorosas de cereja para dominar as pistas com sensualidade magnética.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.50748.jpg",
+    "notes": [
+      {"name": "Mel", "family": "oriental", "position": "top", "description": "Denso, licoroso e gourmand"},
+      {"name": "Laranja Amarga", "family": "citrus", "position": "top", "description": "Cítrico tônico e cintilante"},
+      {"name": "Tuberosa", "family": "floral", "position": "heart", "description": "Floral branco narcótico e carnal"},
+      {"name": "Cereja", "family": "fruity", "position": "heart", "description": "Frutado vermelho doce e licoroso"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico amendoado e envolvente"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso amadeirado encorpado"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e aveludado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Scandal A Paris",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [
+      "Daphné Bugey"
+    ],
+    "family": "floral",
+    "description": "Um escândalo arejado e luminoso que desfila pelas avenidas parisienses. A doçura translúcida da pera suculenta abre caminho para um coração elegante de jasmim fresco e um toque aveludado de mel radiante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.54107.jpg",
+    "notes": [
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Fresco, frutado e cristalino"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco etéreo e sofisticado"},
+      {"name": "Mel", "family": "oriental", "position": "base", "description": "Doce dourado, macio e aveludado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Scandal Le Parfum",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Fabrice Pellegrin",
+      "Daphné Bugey",
+      "Ane Ayo"
+    ],
+    "family": "oriental",
+    "description": "Um frasco em vermelho flamejante que quebra todas as regras. O jasmim opulento é abraçado por um caramelo salgado quente e uma baunilha cremosa extraordinária, garantindo um rastro doce, impactante e viciante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.74752.jpg",
+    "notes": [
+      {"name": "Jasmim", "family": "floral", "position": "top", "description": "Floral branco luminoso e cativante"},
+      {"name": "Caramelo Salgado", "family": "oriental", "position": "heart", "description": "Gourmand doce com contraste salino"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Aveludada, quente e sensual"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Scandal Absolu",
+    "releaseYear": 2024,
+    "concentration": "parfum",
+    "gender": "feminine",
+    "perfumers": [
+      "Daphné Bugey",
+      "Fabrice Pellegrin",
+      "Ane Ayo"
+    ],
+    "family": "oriental",
+    "description": "O escândalo atinge o status de mito em ouro puro. A doçura carnuda do figo negro se entrelaça com a intensidade narcótica da tuberosa e a suntuosidade amadeirada do sândalo, resultando em luxo irresistível.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.91052.jpg",
+    "notes": [
+      {"name": "Figo Negro", "family": "fruity", "position": "top", "description": "Frutado escuro denso e suculento"},
+      {"name": "Tuberosa", "family": "floral", "position": "heart", "description": "Floral branco opulento e sedutor"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado cremoso e sofisticado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Gaultier Divine",
+    "releaseYear": 2023,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Quentin Bisch"
+    ],
+    "family": "floral",
+    "description": "Uma celebração da divindade feminina com seu icônico espartilho cônico dourado. Uma fusão inédita e radiante de lírio floral exuberante, suspiro doce gourmand e uma brisa marinha salgada e magnética.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.83955.jpg",
+    "notes": [
+      {"name": "Brisa Marinha", "family": "aquatic", "position": "top", "description": "Salino, iodado e fresco"},
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doce suave e cintilante"},
+      {"name": "Lírio", "family": "floral", "position": "heart", "description": "Floral branco luminoso e majestoso"},
+      {"name": "Ylang Ylang", "family": "floral", "position": "heart", "description": "Exótico, solar e cremoso"},
+      {"name": "Suspiro", "family": "oriental", "position": "base", "description": "Doce aéreo açucarado e delicado"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Estruturado, terroso e chique"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Gaultier Divine Le Parfum",
+    "releaseYear": 2024,
+    "concentration": "parfum",
+    "gender": "feminine",
+    "perfumers": [
+      "Quentin Bisch"
+    ],
+    "family": "oriental",
+    "description": "A divindade solar em sua plenitude dourada. Notas solares intensas iluminam a flor de frangipani e o lírio sagrado sobre uma cama profunda de âmbar resinoso e benjoim quente banhado por sal marinho.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.93887.jpg",
+    "notes": [
+      {"name": "Notas Solares", "family": "floral", "position": "top", "description": "Quente radiante e luminoso"},
+      {"name": "Lírio", "family": "floral", "position": "top", "description": "Floral branco majestoso"},
+      {"name": "Frangipani", "family": "floral", "position": "heart", "description": "Floral tropical cremoso e envolvente"},
+      {"name": "Sal Marinho", "family": "aquatic", "position": "heart", "description": "Mineral cristalino e contrastante"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso dourado e acolhedor"},
+      {"name": "Benjoim", "family": "oriental", "position": "base", "description": "Balsâmico doce e sofisticado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Fleur du Mâle",
+    "releaseYear": 2007,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Francis Kurkdjian"
+    ],
+    "family": "floral",
+    "description": "Uma revolução audaciosa que colocou a flor de laranjeira no centro da masculinidade. Apresentado em um busto de porcelana branca impecável, alia o frescor verde do petitgrain à cremosidade floral e feno acolhedor.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.889.jpg",
+    "notes": [
+      {"name": "Petitgrain", "family": "green", "position": "top", "description": "Verde cítrico amargo e fresco"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco narcótico e limpo"},
+      {"name": "Feno", "family": "green", "position": "base", "description": "Seco, herbáceo e reconfortante"},
+      {"name": "Camomila", "family": "aromatic", "position": "base", "description": "Herbal doce e relaxante"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Kokorico",
+    "releaseYear": 2011,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Olivier Cresp",
+      "Annick Menardo"
+    ],
+    "family": "woody",
+    "description": "Um grito viril de conquista contido em um frasco escultural de perfil duplo. Revela o frescor botânico da folha de figo que se aprofunda em uma nota intensa de cacau amargo e patchouli amadeirado sofisticado.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.12711.jpg",
+    "notes": [
+      {"name": "Folha de Figo", "family": "green", "position": "top", "description": "Verde folhoso, fresco e vegetal"},
+      {"name": "Cacau", "family": "oriental", "position": "heart", "description": "Gourmand escuro, terroso e amargo"},
+      {"name": "Patchouli", "family": "woody", "position": "heart", "description": "Amadeirado úmido e profundo"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Seco e arquitetônico"},
+      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e elegante"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Ma Dame",
+    "releaseYear": 2008,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [
+      "Francis Kurkdjian"
+    ],
+    "family": "fruity",
+    "description": "Uma fragrância eletrizante, rebelde e jovial em um bloco de vidro rosa neon. Uma combinação efervescente de groselha e xarope de romã com rosa fresca e almíscar limpo, pura energia pop.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.3681.jpg",
+    "notes": [
+      {"name": "Laranja", "family": "citrus", "position": "top", "description": "Cítrico doce e energizante"},
+      {"name": "Romã", "family": "fruity", "position": "heart", "description": "Frutado doce, ácido e efervescente"},
+      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral orvalhado e jovial"},
+      {"name": "Almíscar", "family": "musky", "position": "base", "description": "Macio, sedoso e acolhedor"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado limpo e linear"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Fragile",
+    "releaseYear": 1999,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Francis Kurkdjian"
+    ],
+    "family": "floral",
+    "description": "Eternizado em um mítico globo de neve com partículas de ouro flutuantes. Uma obra-prima exuberante focada na tuberosa narcótica, iluminada por tangerina e gengibre sobre uma rica base de âmbar e baunilha.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.434.jpg",
+    "notes": [
+      {"name": "Tangerina", "family": "citrus", "position": "top", "description": "Cítrico doce e suculento"},
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Especiado picante e brilhante"},
+      {"name": "Tuberosa", "family": "floral", "position": "heart", "description": "Floral branco voluptuoso e narcótico"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral opulento e feminino"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso quente e acolhedor"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce envolvente e balsâmico"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Ma Dame Eau de Parfum",
+    "releaseYear": 2010,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Francis Kurkdjian"
+    ],
+    "family": "floral",
+    "description": "A versão black rocker da mulher Ma Dame. A rosa ganha facetas escuras e aveludadas acompanhada por patchouli esfumaçado, almíscar sensual e um toque licoroso de pimenta rosa.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.7306.jpg",
+    "notes": [
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Especiado fresco e frutado"},
+      {"name": "Rosa Negra", "family": "floral", "position": "heart", "description": "Floral aveludado, denso e profundo"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado terroso e misterioso"},
+      {"name": "Almíscar", "family": "musky", "position": "base", "description": "Sensual, limpo e envolvente"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado seco e elegante"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male On Board",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Christophe Raynaud"
+    ],
+    "family": "aromatic",
+    "description": "Frequentemente buscado como On The Beach, este flanker traz a tripulação para a brisa solar de alto-mar. Combina a bergamota refrescante ao gerânio aromático e à doçura suave da fava tonka e âmbar mineral.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.65595.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cítrico refrescante e cintilante"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Verde floral picante"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "heart", "description": "Doce amendoado e acolhedor"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Ambarado suave e almiscarado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male Aviator",
+    "releaseYear": 2020,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Christophe Raynaud"
+    ],
+    "family": "aromatic",
+    "description": "Vestido com uma estampa militar cáqui de aviador, este fougère moderno eleva os sentidos aos céus com uma rajada revigorante de hortelã fresca, folhas de violeta elegantes e uma base amadeirada sutil.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.58770.jpg",
+    "notes": [
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Gélido, fresco e revigorante"},
+      {"name": "Folha de Violeta", "family": "green", "position": "heart", "description": "Verde aquoso ozônico e elegante"},
+      {"name": "Notas Amadeiradas", "family": "woody", "position": "base", "description": "Amadeirado nobre e estruturado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male Pride Edition",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [
+      "Nathalie Cetto",
+      "Quentin Bisch"
+    ],
+    "family": "floral",
+    "description": "Um manifesto olfativo de orgulho e liberdade. Compartilhável e vibrante, abre com uma explosão de néroli fresco e laranjeira cítrica que se fundem a um coração floral limpo sobre almíscar e madeiras claras.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.74161.jpg",
+    "notes": [
+      {"name": "Laranja Sanguínea", "family": "citrus", "position": "top", "description": "Cítrico efervescente e vibrante"},
+      {"name": "Yuzu", "family": "citrus", "position": "top", "description": "Cítrico aromático e exótico"},
+      {"name": "Néroli", "family": "floral", "position": "heart", "description": "Floral branco limpo e cintilante"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral solar radiante"},
+      {"name": "Almíscar", "family": "musky", "position": "base", "description": "Confortável, suave e envolvente"},
+      {"name": "Madeiras Claras", "family": "woody", "position": "base", "description": "Amadeirado leve e moderno"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique Pride Edition",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [
+      "Nathalie Cetto",
+      "Quentin Bisch"
+    ],
+    "family": "floral",
+    "description": "Celebrando todas as cores do amor no espartilho com as listras do arco-íris. Uma composição compartilhável e radiante com néroli solar, yuzu luminoso e uma infusão almiscarada reconfortante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.74162.jpg",
+    "notes": [
+      {"name": "Yuzu", "family": "citrus", "position": "top", "description": "Cítrico verde e revigorante"},
+      {"name": "Laranja Sanguínea", "family": "citrus", "position": "top", "description": "Suculento, doce e vibrante"},
+      {"name": "Néroli", "family": "floral", "position": "heart", "description": "Floral alaranjado refinado"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Branco floral e solar"},
+      {"name": "Almíscar", "family": "musky", "position": "base", "description": "Macio e sedoso"},
+      {"name": "Madeiras Brancas", "family": "woody", "position": "base", "description": "Seco, arejado e elegante"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male Essence de Parfum",
+    "releaseYear": 2016,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch"
+    ],
+    "family": "oriental",
+    "description": "Com ombros mais largos e cintura esguia, esta reinterpretação moderna traz uma abertura picante de cardamomo unida a uma nota distinta de couro aveludado e madeiras nobres, envoltas em lavanda contemporânea.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.39668.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado picante e quente"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico fresco e límpido"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático limpo e contemporâneo"},
+      {"name": "Couro", "family": "oriental", "position": "heart", "description": "Aveludado, rico e esfumado"},
+      {"name": "Costus", "family": "musky", "position": "base", "description": "Animálico sensual e macio"},
+      {"name": "Madeira de Âmbar", "family": "woody", "position": "base", "description": "Amadeirado quente e persistente"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique Essence de Parfum",
+    "releaseYear": 2016,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Daphné Bugey"
+    ],
+    "family": "oriental",
+    "description": "Com silhueta mais geométrica e curvilínea, abre com gengibre e tangerina picantes que revelam um coração cremoso de flor de laranjeira e jasmim, adocicado por chantilly delicioso e baunilha amadeirada.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.39667.jpg",
+    "notes": [
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Especiado picante e efervescente"},
+      {"name": "Tangerina", "family": "citrus", "position": "top", "description": "Doce suculento e cítrico"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco doce e sedutor"},
+      {"name": "Jasmim Sambac", "family": "floral", "position": "heart", "description": "Floral opulento e feminino"},
+      {"name": "Chantilly", "family": "oriental", "position": "base", "description": "Gourmand leitoso e adocicado"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Quente cremosa e envolvente"},
+      {"name": "Benjoim", "family": "oriental", "position": "base", "description": "Resinoso balsâmico ambarado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male In The Navy",
+    "releaseYear": 2018,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Quentin Bisch",
+      "Christophe Raynaud"
+    ],
+    "family": "aquatic",
+    "description": "O marinheiro mais audacioso dos mares. Uma fragrância revigorante e marinha que combina a frescura gélida da hortelã a notas oceânicas salgadas, contrastadas pela base clássica de baunilha e âmbar sensual.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.51058.jpg",
+    "notes": [
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Refrescante, herbal e mentolado"},
+      {"name": "Notas Aquáticas", "family": "aquatic", "position": "top", "description": "Oceânico fresco e salgado"},
+      {"name": "Notas Oceânicas", "family": "aquatic", "position": "heart", "description": "Brisa marinha iodada"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado e reconfortante"},
+      {"name": "Âmbar Cinzento", "family": "oriental", "position": "base", "description": "Mineral quente e sensual"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique Cabaret",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Fabrice Pellegrin"
+    ],
+    "family": "oriental",
+    "description": "Vestido com um espartilho vermelho brilhante com lantejoulas digno dos palcos parisienses. Uma homenagem ao glamour com flor de laranjeira caramelizada, toque picante de gengibre e uma base gourmand de baunilha e âmbar cinzento.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.53187.jpg",
+    "notes": [
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante estimulante e fresco"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco voluptuoso e doce"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce sedutor e aveludado"},
+      {"name": "Âmbar Cinzento", "family": "oriental", "position": "base", "description": "Mineral quente e sofisticado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique Pin Up",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Fabrice Pellegrin"
+    ],
+    "family": "oriental",
+    "description": "Uma estrela cor-de-rosa cintilante que desfila com charme retrô. Abre com o contraste cítrico do cidra e gengibre, revelando um coração irresistível de flor de laranjeira banhada em marshmallow fofo e baunilha suave.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.58769.jpg",
+    "notes": [
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Especiado picante e alegre"},
+      {"name": "Cidra", "family": "citrus", "position": "top", "description": "Cítrico aromático e zesty"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco luminoso"},
+      {"name": "Marshmallow", "family": "oriental", "position": "heart", "description": "Gourmand fofo, doce e açucarado"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremoso, suave e acolhedor"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso macio e fixador"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique Airlines",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Daphné Bugey"
+    ],
+    "family": "oriental",
+    "description": "Edição especial comemorativa que veste o icônico espartilho para uma viagem de primeira classe. Traz a assinatura inebriante do clássico com rum aveludado, rosa sedosa, orquídea baunilha e notas resinosas envolventes.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.60943.jpg",
+    "notes": [
+      {"name": "Rum", "family": "oriental", "position": "top", "description": "Licoroso quente e sofisticado"},
+      {"name": "Rosa", "family": "floral", "position": "top", "description": "Floral clássico elegante"},
+      {"name": "Orquídea Baunilha", "family": "floral", "position": "heart", "description": "Floral doce e cremoso"},
+      {"name": "Narciso", "family": "floral", "position": "heart", "description": "Floral branco opulento"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce envolvente e profundo"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso e aveludado"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Amendoado doce balsâmico"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male Airlines",
+    "releaseYear": 2020,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Francis Kurkdjian"
+    ],
+    "family": "oriental",
+    "description": "Pronto para decolar em estilo com o uniforme icônico de comandante de bordo. A fórmula clássica e consagrada de Le Male em frasco de colecionador, com menta gelada, lavanda aromática e base sensual de baunilha.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.60944.jpg",
+    "notes": [
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Fresco cortante e mentolado"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado picante aromático"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral aromático clássico"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral fresco e suave"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludada e quente"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico amendoado refinado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e estruturado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique Wonder Woman",
+    "releaseYear": 2017,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [
+      "Daphné Bugey"
+    ],
+    "family": "floral",
+    "description": "Uma homenagem heroica e solar à Mulher-Maravilha. Um coquetel energizante de sorvete de limão, suco de cana-de-açúcar e gengibre, que se funde à flor de tiaré tropical e uma base macia de baunilha e almíscar.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.43711.jpg",
+    "notes": [
+      {"name": "Sorvete de Limão", "family": "citrus", "position": "top", "description": "Cítrico gelado e adocicado"},
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante e efervescente"},
+      {"name": "Cana-de-Açúcar", "family": "oriental", "position": "top", "description": "Doce açucarado e fresco"},
+      {"name": "Flor de Tiaré", "family": "floral", "position": "heart", "description": "Floral tropical e solar"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco delicado"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremoso doce e aconchegante"},
+      {"name": "Almíscar", "family": "musky", "position": "base", "description": "Sedoso e envolvente"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male Superman",
+    "releaseYear": 2017,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Nathalie Gracia-Cetto"
+    ],
+    "family": "aromatic",
+    "description": "Inspirado no lendário Homem de Aço, esta versão Eau Fraîche traz uma saída ultra revigorante de hortelã, néroli e aldeídos cintilantes, combinados à sálvia aromática e uma base cremosa de fava tonka e sândalo.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.43712.jpg",
+    "notes": [
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Fresco e gélido"},
+      {"name": "Aldeídos", "family": "fresh", "position": "top", "description": "Arejado, cintilante e limpo"},
+      {"name": "Néroli", "family": "floral", "position": "top", "description": "Cítrico floral e radiante"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbal refinado e texturizado"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doce amendoado suave"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado cremoso"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce envolvente"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique I Love Gaultier",
+    "releaseYear": 2017,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [
+      "Daphné Bugey"
+    ],
+    "family": "floral",
+    "description": "Edição limitada de colecionador estampada com a declaração I Love Gaultier. Destaca a vivacidade do sorbet de limão e gengibre fundidos à exuberância da flor de tiaré e flor de laranjeira sobre baunilha.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.43711.jpg",
+    "notes": [
+      {"name": "Sorvete de Limão", "family": "citrus", "position": "top", "description": "Gélido cítrico e açucarado"},
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante refrescante"},
+      {"name": "Flor de Tiaré", "family": "floral", "position": "heart", "description": "Exótico cremoso e tropical"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral solar e limpo"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce macio e sedutor"},
+      {"name": "Almíscar", "family": "musky", "position": "base", "description": "Sensual e aveludado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Le Male I Love Gaultier",
+    "releaseYear": 2017,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [
+      "Nathalie Gracia-Cetto"
+    ],
+    "family": "aromatic",
+    "description": "Edição de colecionador Eau Fraîche com a declaração I Love Gaultier. Apresenta o frescor efervescente de hortelã e néroli combinado à sálvia elegante e à assinatura gourmand de baunilha e fava tonka.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.43712.jpg",
+    "notes": [
+      {"name": "Hortelã", "family": "aromatic", "position": "top", "description": "Fresco e canforado"},
+      {"name": "Aldeídos", "family": "fresh", "position": "top", "description": "Arejado e cintilante"},
+      {"name": "Néroli", "family": "floral", "position": "top", "description": "Floral cítrico limpo"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Aromático verde e elegante"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Balsâmico doce suave"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Gourmand macio"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "Classique Intense",
+    "releaseYear": 2014,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Francis Kurkdjian"
+    ],
+    "family": "oriental",
+    "description": "Uma metamorfose dourada do clássico, vestida inteiramente em ouro metálico. A flor de tiare solar e a romã brilhante unem-se a uma overdose de flor de laranjeira e baunilha rica e ambarada.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.25779.jpg",
+    "notes": [
+      {"name": "Flor de Tiaré", "family": "floral", "position": "top", "description": "Floral solar rico e exótico"},
+      {"name": "Romã", "family": "fruity", "position": "top", "description": "Frutado doce e suculento"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco radiante e opulento"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral sedutor e aveludado"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce dourado e profundo"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado elegante e estruturado"}
+    ]
+  },
+  {
+    "brand": "Jean Paul Gaultier",
+    "name": "So Scandal!",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [
+      "Fabrice Pellegrin",
+      "Daphné Bugey"
+    ],
+    "family": "floral",
+    "description": "Um escândalo floral frutado com silhueta plissada couture em tom framboesa profundo. Uma explosão desinibida de framboesa suculenta e leite aveludado que envolvem uma trindade inebriante de tuberosa, jasmim e flor de laranjeira.",
+    "imageUrl": "https://fimgs.net/mdimg/perfume/375x500.60942.jpg",
+    "notes": [
+      {"name": "Framboesa", "family": "fruity", "position": "top", "description": "Frutado vermelho suculento e doce"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco radiante e cintilante"},
+      {"name": "Tuberosa", "family": "floral", "position": "heart", "description": "Floral opulento carnal e sedutor"},
+      {"name": "Jasmim Sambac", "family": "floral", "position": "heart", "description": "Floral rico feminino e envolvente"},
+      {"name": "Leite", "family": "oriental", "position": "base", "description": "Lactônico macio, aveludado e cremoso"}
+    ]
+  }
+]

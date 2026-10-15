@@ -1,0 +1,2016 @@
+[
+  {
+    "brand": "O Boticário",
+    "name": "Zaad Tradicional",
+    "releaseYear": 2006,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": ["Thierry Bessard"],
+    "family": "woody",
+    "description": "Fragrância sofisticada e revigorante que combina notas aromáticas nobres com a elegância de madeiras clássicas, inspirada pelo espírito de viagens e descobertas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3990.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico, efervescente e revigorante"},
+      {"name": "Coentro", "family": "spicy", "position": "top", "description": "Aromático com leve toque picante"},
+      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Amadeirado nobre e estruturado"},
+      {"name": "Cravo", "family": "spicy", "position": "heart", "description": "Especiado quente e refinado"},
+      {"name": "Sândalo Australiano", "family": "woody", "position": "base", "description": "Madeira cremosa e aveludada"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Terroso e elegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Zaad Expedition",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Explora o frescor sofisticado do acorde de Gin combinado ao Vetiver de Java, trazendo uma experiência olfativa marcante e elegante para homens exploradores.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.76828.jpg",
+    "notes": [
+      {"name": "Gin", "family": "aromatic", "position": "top", "description": "Bebida aromática fresca e gelada"},
+      {"name": "Notas Aquáticas", "family": "aquatic", "position": "top", "description": "Aquoso e límpido"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbal e aromática"},
+      {"name": "Alecrim", "family": "aromatic", "position": "heart", "description": "Fresco e revigorante"},
+      {"name": "Vetiver de Java", "family": "woody", "position": "base", "description": "Amadeirado seco e esfumaçado"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Couro macio e sofisticado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Zaad Mondo",
+    "releaseYear": 2017,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma união harmônica entre notas aromáticas frescas e o exclusivo acorde Blue Juniper, resultando em frescor frutado e base amadeirada contemporânea.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.46328.jpg",
+    "notes": [
+      {"name": "Zimbro", "family": "aromatic", "position": "top", "description": "Frutado aromático e fresco"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado frio e elegante"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde e adstringente"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Aromática e herbal"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Estrutura seca e amadeirada"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado terroso e encorpado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Zaad Arctic",
+    "releaseYear": 2023,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirado no Círculo Polar Ártico, contrasta o frescor extremo da água glacial com o conforto térmico de madeiras quentes e musgos.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.82420.jpg",
+    "notes": [
+      {"name": "Acorde Água Glacial", "family": "aquatic", "position": "top", "description": "Frio cortante e ultra refrescante"},
+      {"name": "Toranja", "family": "citrus", "position": "top", "description": "Cítrico amargo e cintilante"},
+      {"name": "Chá Preto", "family": "aromatic", "position": "heart", "description": "Aromático refinado e levemente amargo"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "heart", "description": "Picante e estimulante"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira sóbria e estruturada"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso e aconchegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Zaad Venture",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Evoca a imensidão da Patagônia com o frescor verde da bétula prateada aliado a nuances aromáticas de especiarias e fundo amadeirado requintado.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.93248.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiaria fresca e picante"},
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Floral frutada e vibrante"},
+      {"name": "Vidoeiro", "family": "woody", "position": "heart", "description": "Madeira clara e aromática"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal floral relaxante"},
+      {"name": "Cashmeran", "family": "musky", "position": "base", "description": "Amadeirado almiscarado e aveludado"},
+      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e profundo"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Tradicional",
+    "releaseYear": 2004,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": ["Napoleon Bastos"],
+    "family": "woody",
+    "description": "O pioneiro e mais icônico perfume amadeirado do Brasil, macerado em barris de carvalho francês, expressando masculinidade e sofisticação pura.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4005.jpg",
+    "notes": [
+      {"name": "Folhas de Cedro", "family": "green", "position": "top", "description": "Verde resinoso e fresco"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado estimulante"},
+      {"name": "Cedro da Virgínia", "family": "woody", "position": "heart", "description": "Amadeirado nobre e intenso"},
+      {"name": "Patchouli", "family": "woody", "position": "heart", "description": "Terroso marcante"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Clássico e seco"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e envolvente"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Bleu",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": ["Alberto Morillas"],
+    "family": "aquatic",
+    "description": "Uma revolução aquática na linha Malbec, harmonizando o frescor marinho do Aquospace com a força enigmática do sândalo e carvalho.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.65825.jpg",
+    "notes": [
+      {"name": "Aquospace", "family": "aquatic", "position": "top", "description": "Acorde aquático ultra fresco e mineral"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico brilhante"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbal elegante"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral aromática limpa"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e envolvente"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Seco e sofisticado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Ultra Bleu",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": ["Alberto Morillas"],
+    "family": "woody",
+    "description": "Uma versão ainda mais profunda e intensa do frescor azul, capturando a força das profundezas do oceano com vinho envelhecido sob as ondas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.75704.jpg",
+    "notes": [
+      {"name": "Acorde Aquático Glacial", "family": "aquatic", "position": "top", "description": "Gélido e oceânico profundo"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico doce e suculento"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático sofisticado"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso escuro"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira densa e elegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Vert",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "A união inusitada entre a densidade das madeiras de Malbec e o frescor efervescente das uvas Icewine, colhidas congeladas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.58045.jpg",
+    "notes": [
+      {"name": "Uva Icewine", "family": "fruity", "position": "top", "description": "Frutado congelado e revigorante"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiaria fresca"},
+      {"name": "Vetiver", "family": "woody", "position": "heart", "description": "Madeira terrosa e seca"},
+      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Amadeirado nobre"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso quente"},
+      {"name": "Musgo", "family": "green", "position": "base", "description": "Verde terroso"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Icon",
+    "releaseYear": 2024,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Celebra a essência lendária de Malbec com a técnica de maceração em ânforas minerais, intensificando a rusticidade amadeirada com elegância moderna.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.93246.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado refinado"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor cítrico elegante"},
+      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Coração amadeirado imponente"},
+      {"name": "Patchouli", "family": "woody", "position": "heart", "description": "Terroso clássico"},
+      {"name": "Acorde Mineral", "family": "woody", "position": "base", "description": "Sensação de pedra e ânfora"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Envolvente e quente"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Magnetic",
+    "releaseYear": 2018,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Traz a expressão magnética das uvas brancas Riesling maceradas em carvalho, criando uma assinatura amadeirada frutada envolvente e sensual.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.51901.jpg",
+    "notes": [
+      {"name": "Uva Riesling", "family": "fruity", "position": "top", "description": "Frutado licoroso e elegante"},
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante e fresca"},
+      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral discreto e sofisticado"},
+      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Estrutura amadeirada marcante"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso e escuro"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Adocicado aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Club Intenso",
+    "releaseYear": 2018,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma releitura sofisticada e intensa do DNA original de Malbec, destacando o calor das madeiras e o refinamento do couro e especiarias.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.51899.jpg",
+    "notes": [
+      {"name": "Folhas de Cedro", "family": "green", "position": "top", "description": "Herbal amadeirado fresco"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Quente e vibrante"},
+      {"name": "Madeira de Carvalho", "family": "woody", "position": "heart", "description": "Rica e licorosa"},
+      {"name": "Patchouli", "family": "woody", "position": "heart", "description": "Amadeirado clássico"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Sensual e encorpado"},
+      {"name": "Musgo", "family": "green", "position": "base", "description": "Terroso aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Flame",
+    "releaseYear": 2020,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Fragrância amadeirada quente e incandescente, combinando o toque defumado da uva Nerello com o calor da pimenta preta e resinas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.62776.jpg",
+    "notes": [
+      {"name": "Uva Nerello", "family": "fruity", "position": "top", "description": "Frutado vulcânico e licoroso"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Intensamente picante"},
+      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Madeira estruturada"},
+      {"name": "Resina de Mirra", "family": "oriental", "position": "heart", "description": "Balsâmica e quente"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Amadeirado terroso"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Fundo opulento e denso"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Noir",
+    "releaseYear": 2015,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": ["Napoleon Bastos"],
+    "family": "woody",
+    "description": "Inspirado no ritual de colheita noturna das uvas Pinot Noir, entrega um amadeirado misterioso enriquecido pelo frescor especiado irresistível.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.32832.jpg",
+    "notes": [
+      {"name": "Uva Pinot Noir", "family": "fruity", "position": "top", "description": "Frutado escuro e refinado"},
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Frescor picante sutil"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromática limpa e suave"},
+      {"name": "Vinho Tinto", "family": "fruity", "position": "heart", "description": "Acorde vinícola inebriante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e confortável"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Calor sensual persistente"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Gold",
+    "releaseYear": 2017,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Elaborado com a inovadora tecnologia Goldsense, traz o carvalho tostado em alta temperatura para um perfume amadeirado âmbar potente e magnético.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.47040.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Picante aromático luminoso"},
+      {"name": "Maçã Dourada", "family": "fruity", "position": "top", "description": "Frutado crocante levemente doce"},
+      {"name": "Carvalho Tostado", "family": "woody", "position": "heart", "description": "Madeira densa e esfumada"},
+      {"name": "Patchouli", "family": "woody", "position": "heart", "description": "Terroso aprofundado"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Dourado e incandescente"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Sensação de couro enriquecido"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec X",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": ["Christophe Raynaud"],
+    "family": "oriental",
+    "description": "Desenvolvido com o Fator X, comprovado cientificamente por despertar o desejo, combina o calor do âmbar a notas de couro e toques balsâmicos sedutores.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.72914.jpg",
+    "notes": [
+      {"name": "Yuzu", "family": "citrus", "position": "top", "description": "Cítrico oriental vibrante"},
+      {"name": "Folhas de Violeta", "family": "green", "position": "top", "description": "Verde metálico refinado"},
+      {"name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Especiado picante e quente"},
+      {"name": "Fator X", "family": "oriental", "position": "heart", "description": "Acorde afrodisíaco e magnético"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Texturizado e aveludado"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e duradouro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Malbec Elegant",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Redefine a elegância masculina ao aliar a nobreza floral do acorde de madeira e flor à estrutura amadeirada marcante e requintada de Malbec.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.84920.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Frutado cítrico suculento"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picância seca e elegante"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco luminoso"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde aromático"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e estruturado"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Fundo terroso aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "The Blend Tradicional",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": ["Alberto Morillas"],
+    "family": "spicy",
+    "description": "Nascido da destilação em alambique de quatro especiarias quentes (cravo, canela, noz-moscada e pimenta preta), entregando riqueza amadeirada inigualável.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.55180.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico sofisticado e fresco"},
+      {"name": "Rum", "family": "oriental", "position": "top", "description": "Toque alcoólico refinado"},
+      {"name": "Cravo da Índia", "family": "spicy", "position": "heart", "description": "Especiaria quente e pungente"},
+      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Doce e intensamente especiada"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira cremosa reconfortante"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "The Blend Bourbon",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Enriquece o óleo essencial das 4 especiarias com o toque gourmand e licoroso da Baunilha Bourbon de Madagascar, criando um aroma sensual e envolvente.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.58043.jpg",
+    "notes": [
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Floral e picante sutil"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor inicial luminoso"},
+      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Especiaria doce e picante"},
+      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Amadeirada aromática"},
+      {"name": "Baunilha Bourbon", "family": "oriental", "position": "base", "description": "Doçura licorosa e cremosa"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Base amadeirada sóbria"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "The Blend Cardamom",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "spicy",
+    "description": "Contrapõe o calor do clássico blend de especiarias com o frescor gelado e aromático do Cardamomo da Guatemala, revelando sofisticação vibrante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.68650.jpg",
+    "notes": [
+      {"name": "Cardamomo Verde", "family": "spicy", "position": "top", "description": "Especiado frio e vibrante"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico claro e nítido"},
+      {"name": "Gengibre", "family": "spicy", "position": "heart", "description": "Picante e refrescante"},
+      {"name": "Cravo", "family": "spicy", "position": "heart", "description": "Calor especiado clássico"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira estruturada"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso profundo e elegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Arbo Tradicional",
+    "releaseYear": 2002,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": ["Carlos Benaim"],
+    "family": "green",
+    "description": "O clássico do homem que busca conexão com a natureza, trazendo o frescor verde da montanha através do exclusivo acorde de ar da montanha.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3986.jpg",
+    "notes": [
+      {"name": "Hortelã", "family": "green", "position": "top", "description": "Fresco, mentolado e revigorante"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico levemente adocicado"},
+      {"name": "Acorde Ar da Montanha", "family": "green", "position": "heart", "description": "Sensação de ar puro e orvalho"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbal aromático natural"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Verde terroso e reconfortante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira suave e serena"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Arbo Botanic",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "green",
+    "description": "Inspirado nos jardins botânicos urbanos, combina a energia revigorante do acorde ENERGY e notas de sálvia para reconectar os sentidos ao verde.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.67104.jpg",
+    "notes": [
+      {"name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Cítrico luminoso e efervescente"},
+      {"name": "Notas Verdes", "family": "green", "position": "top", "description": "Folhas frescas recém-cortadas"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Aromática e revitalizante"},
+      {"name": "Violeta", "family": "floral", "position": "heart", "description": "Floral verde delicado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado elegante"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Confortável e limpo"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Arbo Forest",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "green",
+    "description": "Capta o efeito terapêutico do Shinrin-yoku (banho de floresta), liberando fitoncidas que transmitem a sensação relaxante da mata densa.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.77196.jpg",
+    "notes": [
+      {"name": "Acorde Floresta Verde", "family": "green", "position": "top", "description": "Orvalho e folhagens úmidas"},
+      {"name": "Ruibarbo", "family": "fruity", "position": "top", "description": "Verde ácido e crocante"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbal equilibrado"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Frescor floral sereno"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Tronco de árvore firme e seco"},
+      {"name": "Musgo", "family": "green", "position": "base", "description": "Chão de mata úmida"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Arbo Liberté",
+    "releaseYear": 2016,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aquatic",
+    "description": "Inspirado na exuberância das cachoeiras, traz o acorde Headspace da cachoeira para um frescor revigorante e sensação de liberdade plena.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.39088.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico radiante"},
+      {"name": "Pomelo", "family": "citrus", "position": "top", "description": "Amargor cítrico fresco"},
+      {"name": "Acorde de Queda D'Água", "family": "aquatic", "position": "heart", "description": "Gotas d'água em movimento"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "heart", "description": "Toque picante estimulante"},
+      {"name": "Musgo", "family": "green", "position": "base", "description": "Verde aveludado"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Conforto amadeirado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Arbo Ocean",
+    "releaseYear": 2016,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aquatic",
+    "description": "Traduz a sensação de mergulhar nas águas cristalinas do oceano, unindo frescor cítrico a notas aquáticas salinas e madeiras ensolaradas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.41870.jpg",
+    "notes": [
+      {"name": "Notas Oceânicas", "family": "aquatic", "position": "top", "description": "Brisa marinha cristalina"},
+      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico cortante e fresco"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático suave e limpo"},
+      {"name": "Alecrim", "family": "aromatic", "position": "heart", "description": "Herbal energizante"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira clara e resistente"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Calor sutil do sol na pele"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Arbo Intenso",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "A faceta mais amadeirada e profunda de Arbo, inspirada na imponência da Ilha da Madeira, trazendo cedro e folhas aromáticas puras.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.82522.jpg",
+    "notes": [
+      {"name": "Toranja", "family": "citrus", "position": "top", "description": "Amargor cítrico revigorante"},
+      {"name": "Maçã Verde", "family": "fruity", "position": "top", "description": "Frutado crocante e azedinho"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático equilibrado"},
+      {"name": "Louro", "family": "green", "position": "heart", "description": "Erva nobre e fresca"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira densa e marcante"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso e enraizado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Arbo Puro",
+    "releaseYear": 2024,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "green",
+    "description": "Inspirado no ar mais limpo do planeta na cordilheira de Tian Shan, combina o frescor da água do degelo com o frescor verde do bambu.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.93247.jpg",
+    "notes": [
+      {"name": "Bambu", "family": "green", "position": "top", "description": "Verde aquoso e cristalino"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor cítrico puro"},
+      {"name": "Menta", "family": "green", "position": "heart", "description": "Toque mentolado e arejado"},
+      {"name": "Violeta", "family": "floral", "position": "heart", "description": "Floral verde sutil"},
+      {"name": "Musgo", "family": "green", "position": "base", "description": "Verde suave e terroso"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado limpo e confortável"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Uomini Tradicional",
+    "releaseYear": 1996,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Um clássico atemporal da masculinidade versátil, destacando a elegância aromática da lavanda combinada ao frescor do tomilho e madeiras nobres.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4009.jpg",
+    "notes": [
+      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Floral aromático relaxante e limpo"},
+      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico direto e clássico"},
+      {"name": "Tomilho", "family": "aromatic", "position": "heart", "description": "Herbal especiado tradicional"},
+      {"name": "Manjericão", "family": "green", "position": "heart", "description": "Verde fresco e aromático"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira aveludada"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Seco e elegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Uomini Infinite",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Expressa a busca pela liberdade sem limites através de uma moderna assinatura amadeirada com nuances cítricas e toque de couro metálico.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.70258.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado picante vibrante"},
+      {"name": "Laranja Doce", "family": "citrus", "position": "top", "description": "Cítrico envolvente"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromático clássico refinado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Estrutura amadeirada sóbria"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Moderno, quente e sensual"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Uomini Black",
+    "releaseYear": 2006,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma fragrância misteriosa e marcante, construída com notas quentes de baunilha preta, âmbar e especiarias para noites inesquecíveis.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4010.jpg",
+    "notes": [
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e instigante"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Aromático picante frio"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Equilíbrio floral aromático"},
+      {"name": "Baunilha Negra", "family": "oriental", "position": "base", "description": "Doce denso e licoroso"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e resinoso"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso profundo"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Uomini Moto Soul",
+    "releaseYear": 2020,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Captura a adrenalina sobre duas rodas, associando o calor da pimenta preta ao acorde autêntico de couro e madeiras rústicas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.60334.jpg",
+    "notes": [
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Vibrante e aromática"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Fresco e pungente"},
+      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Quente e envolvente"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Sensação de jaqueta de couro"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado rústico e firme"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Portinari Tradicional",
+    "releaseYear": 1998,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirado no pintor Candido Portinari, equilibra o frescor dos cítricos com o calor da noz-moscada, sândalo e âmbar para o homem criativo.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4008.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor cítrico clássico"},
+      {"name": "Cipreste", "family": "green", "position": "top", "description": "Verde resinoso fresco"},
+      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Especiada e aromática"},
+      {"name": "Cravo", "family": "spicy", "position": "heart", "description": "Floral picante aquecido"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e refinado"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Aconchegante e durável"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Portinari Absoluto",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma homenagem intensa à genialidade artística de Portinari, trazendo notas amadeiradas profundas com toques licorosos e resinas nobres.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.86540.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Picância aromática refinada"},
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Frescor picante vibrante"},
+      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Estrutura nobre de madeira"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso clássico"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Calor denso e duradouro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Celebre Sua Força",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Uma fragrância potente e otimista para celebrar as conquistas diárias, combinando notas cítricas brilhantes a especiarias e madeiras secas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.70257.jpg",
+    "notes": [
+      {"name": "Limão Siciliano", "family": "citrus", "position": "top", "description": "Energizante e fresco"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromática limpa e moderna"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "heart", "description": "Picante e estimulante"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado marcante e firme"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e acolhedor"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Celebre Agora",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Convida a viver o momento presente com entusiasmo, trazendo uma saída aquosa e frutada amparada pela energia de ervas e madeiras.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.86541.jpg",
+    "notes": [
+      {"name": "Maçã Verde", "family": "fruity", "position": "top", "description": "Crocante e frutada"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado refrescante"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral aromático sereno"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado estruturado"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Quasar Tradicional",
+    "releaseYear": 1990,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "O clássico Fougère Aromático do dinamismo e energia masculina, unindo o frescor do limão e da bergamota a notas de sândalo e musgo.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4011.jpg",
+    "notes": [
+      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico puro e cortante"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor cítrico aromático"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal clássico e limpo"},
+      {"name": "Gálbano", "family": "green", "position": "heart", "description": "Verde resinoso característico"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Fougère tradicional"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Estrutura amadeirada firme"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Quasar Rush",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Inspirado no Cedar Blue, alia o impacto aquoso do frescor contemporâneo à força impetuosa das madeiras nobres.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.67103.jpg",
+    "notes": [
+      {"name": "Notas Aquáticas", "family": "aquatic", "position": "top", "description": "Fresco e revigorante"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico luminoso"},
+      {"name": "Cedro Azul", "family": "woody", "position": "heart", "description": "Amadeirado frio e imponente"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbal elegante"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Limpo e confortável"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Calor sutil e duradouro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Quasar Ice",
+    "releaseYear": 2020,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Traz o arrepio do ar glacial do cume das montanhas através do inovador ingrediente Cedarwood Glacier, com frescor extremo.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.62778.jpg",
+    "notes": [
+      {"name": "Notas Glaciais", "family": "aquatic", "position": "top", "description": "Frescor gélido e revigorante"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbal fresco"},
+      {"name": "Pimenta", "family": "spicy", "position": "heart", "description": "Contraste picante frio"},
+      {"name": "Cedarwood Glacier", "family": "woody", "position": "base", "description": "Cedro congelado mineral"},
+      {"name": "Musgo", "family": "green", "position": "base", "description": "Seco e aromático"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Quasar Surf",
+    "releaseYear": 2017,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aquatic",
+    "description": "Inspirado nas praias lendárias de surf pelo mundo, combina o acorde de algas marinhas e flores do Pacífico com o frescor do mar aberto.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.44391.jpg",
+    "notes": [
+      {"name": "Abacaxi", "family": "fruity", "position": "top", "description": "Frutado tropical suculento"},
+      {"name": "Brisa Marinha", "family": "aquatic", "position": "top", "description": "Salino aquático revigorante"},
+      {"name": "Flores do Pacífico", "family": "floral", "position": "heart", "description": "Nuance floral fresca e exótica"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado clássico"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e macio"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Quasar Brave",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Combina a bravura da pimenta rosa e notas amadeiradas ao exclusivo acorde de saquê purificado, evocando a força da cultura samurai.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.55179.jpg",
+    "notes": [
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picante e fresca"},
+      {"name": "Toranja", "family": "citrus", "position": "top", "description": "Cítrico amargo cintilante"},
+      {"name": "Acorde de Saquê", "family": "aromatic", "position": "heart", "description": "Fermentado limpo e exótico"},
+      {"name": "Folhas de Chá Preto", "family": "aromatic", "position": "heart", "description": "Seco e refinado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira nobre"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e marcante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Quasar Vision",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Traduz o dinamismo do homem de visão de futuro, associando notas metálicas e aromáticas a um fundo amadeirado vibrante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.86542.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico enérgico"},
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picância fresca e efervescente"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromática contemporânea"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira estruturada e firme"},
+      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Elegância terrosa"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Quasar Evolution",
+    "releaseYear": 2015,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Uma evolução do dinamismo com a tecnologia Booster, garantindo potência aromática através de cítricos e acordes amadeirados.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.32049.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Explosão cítrica luminosa"},
+      {"name": "Maçã", "family": "fruity", "position": "top", "description": "Frutado crocante"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral aromático revigorante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira macia"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação aveludada e durável"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Blue",
+    "releaseYear": 2018,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma fragrância jovem e viciante que mistura o frescor do gengibre com o doce irresistível da fava tonka, baunilha e notas de malte.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.51900.jpg",
+    "notes": [
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante e refrescante"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Quente e efervescente"},
+      {"name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Aromático especiado"},
+      {"name": "Malte", "family": "oriental", "position": "heart", "description": "Cereal adocicado e rico"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Adocicado amendoado viciante"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e aveludada"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Choc",
+    "releaseYear": 2011,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "O clássico gourmand irresistível que combina chocolate, creme de leite e chantilly com o toque adocicado e alegre de frutas vermelhas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.12644.jpg",
+    "notes": [
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doce, suculento e alegre"},
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Aveludado e macio"},
+      {"name": "Chocolate", "family": "oriental", "position": "heart", "description": "Cacau cremoso e aconchegante"},
+      {"name": "Creme de Leite", "family": "oriental", "position": "heart", "description": "Lácteo aveludado gourmand"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce e reconfortante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira aveludada suave"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Original",
+    "releaseYear": 2002,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Icônica colônia masculina focada na sensualidade descontraída, destacando o frescor da artemísia e lavanda sobre âmbar e madeiras.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3988.jpg",
+    "notes": [
+      {"name": "Artemísia", "family": "aromatic", "position": "top", "description": "Herbal amargo característico"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor cítrico clássico"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Floral herbal envolvente"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Verde floral aromático"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira cremosa"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e sensual"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Dolce",
+    "releaseYear": 2007,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Famoso pela doçura açucarada que lembra algodão-doce, marshmallow e baunilha, ideal para quem adora deixar um rastro doce inesquecível.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4007.jpg",
+    "notes": [
+      {"name": "Algodão-Doce", "family": "oriental", "position": "top", "description": "Açúcar derretido nostálgico e doce"},
+      {"name": "Framboesa", "family": "fruity", "position": "top", "description": "Frutado vermelho doce"},
+      {"name": "Marshmallow", "family": "oriental", "position": "heart", "description": "Fofo, doce e gourmand"},
+      {"name": "Violeta", "family": "floral", "position": "heart", "description": "Floral atalcado suave"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e açucarada"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Adocicado aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Red",
+    "releaseYear": 2018,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma explosão intensa e picante com frutas vermelhas, acorde de rum e pimenta rosa, trazendo sensualidade e atitude jovial.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.51897.jpg",
+    "notes": [
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doce provocante e suculento"},
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picância aromática"},
+      {"name": "Marshmallow", "family": "oriental", "position": "heart", "description": "Gourmand macio"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral radiante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira reconfortante"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Sensual e duradouro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Bomb Black",
+    "releaseYear": 2017,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Mistura inusitada entre o couro e o caramelo, potencializada pelo frescor aromático da artemísia para causar impacto irresistível.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.47041.jpg",
+    "notes": [
+      {"name": "Artemísia", "family": "aromatic", "position": "top", "description": "Herbal amargo fresco"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico efervescente"},
+      {"name": "Caramelo", "family": "oriental", "position": "heart", "description": "Doce denso e tostado"},
+      {"name": "Couro", "family": "oriental", "position": "heart", "description": "Sensual e encorpado"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Aconchego amendoado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado marcante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Spicy Vibe",
+    "releaseYear": 2020,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "spicy",
+    "description": "Combina o calor da pimenta preta e da canela com o frescor da bergamota e a cremosidade da fava tonka, vibrante e cheio de energia.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.60333.jpg",
+    "notes": [
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e estimulante"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante"},
+      {"name": "Canela", "family": "spicy", "position": "heart", "description": "Especiaria quente doce"},
+      {"name": "Cardamomo", "family": "spicy", "position": "heart", "description": "Aromático fresco"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Doçura macia"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Seco e estruturado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Beat",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Embala o ritmo das pistas com uma combinação envolvente de pimentas, cardamomo e um acorde viciante de leite de coco amendoado.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.68652.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Picante aromático refrescante"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Quente e ousado"},
+      {"name": "Leite de Coco", "family": "oriental", "position": "heart", "description": "Cremoso gourmand aveludado"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal sereno"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado moderno"},
+      {"name": "Fava Tonka", "family": "oriental", "position": "base", "description": "Adocicado sedutor"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Hit",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "fruity",
+    "description": "Fragrância radiante e vibrante que traz o brilho do pêssego amarelo e da manga combinados ao conforto de madeiras e almíscar.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.68651.jpg",
+    "notes": [
+      {"name": "Manga", "family": "fruity", "position": "top", "description": "Tropical, doce e suculento"},
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Aveludado e solar"},
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "heart", "description": "Picante suave festivo"},
+      {"name": "Flor de Peônia", "family": "floral", "position": "heart", "description": "Floral delicado e fresco"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Macio e aconchegante"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Calor sutil envolvente"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Free Fire",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "fruity",
+    "description": "Inspirado no jogo Free Fire, mistura o frescor do acorde Booyah e ruibarbo com a doçura do morango e a energia do cedro.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.73887.jpg",
+    "notes": [
+      {"name": "Ruibarbo", "family": "fruity", "position": "top", "description": "Ácido, verde e vibrante"},
+      {"name": "Morango", "family": "fruity", "position": "top", "description": "Doce e jovial"},
+      {"name": "Cedro", "family": "woody", "position": "heart", "description": "Amadeirado potente"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso marcante"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Aconchegante e moderno"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo E.Joy",
+    "releaseYear": 2024,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "fruity",
+    "description": "Feito para celebrar a vibração dos festivais de música, trazendo o acorde de pipoca caramelizada e frutas com energia contagiante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.90048.jpg",
+    "notes": [
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Suculenta e refrescante"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico solar"},
+      {"name": "Pipoca Caramelizada", "family": "oriental", "position": "heart", "description": "Gourmand crocante e doce"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco envolvente"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e persistente"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Profundo e estruturado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Choc Mint",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "A união surpreendente entre o dulçor irresistível do chocolate com a explosão refrescante da menta silvestre.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.86543.jpg",
+    "notes": [
+      {"name": "Menta", "family": "green", "position": "top", "description": "Refrescante e mentolada"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico leve e alegre"},
+      {"name": "Chocolate", "family": "oriental", "position": "heart", "description": "Cacau cremoso e gourmand"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Aveludada e doce"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado confortável"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Egeo Choc Berry",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Combina o cacau aveludado da linha Choc com a acidez suculenta de frutas vermelhas silvestres para uma tentação gourmand.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.86544.jpg",
+    "notes": [
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Suculento, ácido e doce"},
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Frescor aquoso frutado"},
+      {"name": "Chocolate", "family": "oriental", "position": "heart", "description": "Cacau doce reconfortante"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludado cremoso"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Macio e aconchegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Coffee Man",
+    "releaseYear": 2011,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Elaborado com extrato de café Arábica de alta qualidade aliado a notas de cardamomo, couro e tabaco, transmitindo requinte e charme.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.12643.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado fino refrescante"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico elegante"},
+      {"name": "Café Arábica", "family": "oriental", "position": "heart", "description": "Torrado, quente e aromático"},
+      {"name": "Tabaco", "family": "oriental", "position": "heart", "description": "Seco, adocicado e denso"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Sensual e aveludado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Estrutura amadeirada nobre"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Coffee Man Seduction",
+    "releaseYear": 2011,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma fragrância sensual inspirada nos rituais de sedução, contrastando café com notas de noz-moscada, sândalo e âmbar quente.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.12642.jpg",
+    "notes": [
+      {"name": "Noz-moscada", "family": "spicy", "position": "top", "description": "Especiada aromática e quente"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico adocicado alegre"},
+      {"name": "Café", "family": "oriental", "position": "heart", "description": "Torrado refinado e sedutor"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e envolvente"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e marcante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Coffee Man Duo",
+    "releaseYear": 2018,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirado no café Latte Macchiato, combina o amargor do café preto com a cremosidade do leite e a elegância de madeiras nobres.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.51898.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso"},
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picância fresca e efervescente"},
+      {"name": "Café", "family": "oriental", "position": "heart", "description": "Grãos torrados marcantes"},
+      {"name": "Notas Lácteas", "family": "oriental", "position": "heart", "description": "Cremoso e reconfortante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Macio e aveludado"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso clássico"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Coffee Man Lucky",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirado na energia dos jogos e na sorte, combina o calor do âmbar e do café com o frescor moderno da pimenta preta e zimbro.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.67102.jpg",
+    "notes": [
+      {"name": "Zimbro", "family": "aromatic", "position": "top", "description": "Aromático revigorante"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e vibrante"},
+      {"name": "Café", "family": "oriental", "position": "heart", "description": "Aroma encorpado e quente"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira estruturada"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e duradouro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Coffee Woman Seduction",
+    "releaseYear": 2011,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Fragrância feminina irresistível inspirada no chocolate branco e café, acompanhada por notas deliciosas de lichia e marmelo.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.12641.jpg",
+    "notes": [
+      {"name": "Lichia", "family": "fruity", "position": "top", "description": "Exótica, floral e suculenta"},
+      {"name": "Kiwi", "family": "fruity", "position": "top", "description": "Frutado doce e refrescante"},
+      {"name": "Chocolate Branco", "family": "oriental", "position": "heart", "description": "Gourmand amanteigado e doce"},
+      {"name": "Café", "family": "oriental", "position": "heart", "description": "Torrado quente elegante"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e sensual"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Confortável e aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Coffee Addictive",
+    "releaseYear": 2024,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Explora o aspecto mais viciante do café com uma dose intensa de cacau e especiarias doces para uma assinatura gourmand envolvente.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.93249.jpg",
+    "notes": [
+      {"name": "Café", "family": "oriental", "position": "top", "description": "Aroma denso de grãos selecionados"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado fino refrescante"},
+      {"name": "Cacau", "family": "oriental", "position": "heart", "description": "Doce aveludado e rico"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e acolhedor"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Adocicado reconfortante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Insensatez",
+    "releaseYear": 1996,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Um marco sem gênero dos anos 90, que preza pela liberdade e autenticidade com o frescor transparente da bergamota, chá e jasmim.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3999.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante e leve"},
+      {"name": "Abacaxi", "family": "fruity", "position": "top", "description": "Frutado aquoso e refrescante"},
+      {"name": "Chá Verde", "family": "green", "position": "heart", "description": "Aromático límpido e zen"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco translúcido"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação de banho tomado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado suave"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Connexio",
+    "releaseYear": 2007,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma fragrância moderna voltada à sintonia entre o homem e seu universo, unindo especiarias picantes a um fundo amadeirado sólido.",
+    "imageUrl": null,
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico revigorante"},
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picante e estimulante"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromática limpa"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado sóbrio"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Envolvente e quente"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Stylo",
+    "releaseYear": 2005,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Fragrância contemporânea com personalidade arrojada, unindo frescor cítrico especiado a madeiras macias e couro discreto.",
+    "imageUrl": null,
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado fino refrescante"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico doce"},
+      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Aromática e quente"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Estrutura amadeirada"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Aconchegante e limpo"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Galbe",
+    "releaseYear": 2000,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Energia pura e revigorante que combina o frescor cítrico do limão a notas aromáticas de lavanda e um toque amadeirado de sândalo.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3995.jpg",
+    "notes": [
+      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico vibrante e refrescante"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal relaxante e límpido"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde clássico"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado aveludado"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Macio e durável"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Dimitri",
+    "releaseYear": 1999,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Fragrância masculina fresca e descomplicada, combinando o frescor da lavanda e sálvia com notas de sândalo e musgo de carvalho.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3997.jpg",
+    "notes": [
+      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Aromática clássica fresca"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso"},
+      {"name": "Sálvia", "family": "aromatic", "position": "heart", "description": "Herbal sofisticado"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Verde seco tradicional"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado seguro e firme"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Men Tradicional",
+    "releaseYear": 2008,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Projetado para a rotina prática e dinâmica do homem moderno, oferecendo sensação de limpeza prolongada com ervas e madeiras.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.12645.jpg",
+    "notes": [
+      {"name": "Menta", "family": "green", "position": "top", "description": "Refrescância imediata mentolada"},
+      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico enérgico"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Limpeza aromática clássica"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira seca e presente"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação aveludada duradoura"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Men Galbe",
+    "releaseYear": 2017,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Versão moderna da assinatura Galbe para a linha MEN, amplificando o acorde de folhas verdes e cítricos com sofisticação urbana.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.46329.jpg",
+    "notes": [
+      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico cortante e fresco"},
+      {"name": "Notas Verdes", "family": "green", "position": "top", "description": "Folhas frescas esmagadas"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde elegante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira reconfortante"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Limpo e transparente"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Men Only",
+    "releaseYear": 2016,
+    "concentration": "edt",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Fragrância envolvente com assinatura ambarada, combinando o calor do couro, tabaco e especiarias para ocasiões especiais.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.38048.jpg",
+    "notes": [
+      {"name": "Pimenta Preta", "family": "spicy", "position": "top", "description": "Picância quente e provocante"},
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Aromático refinado"},
+      {"name": "Tabaco", "family": "oriental", "position": "heart", "description": "Rico, quente e aveludado"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Sensual e texturizado"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Calor denso e magnético"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Botica 214 Fiji Paradise",
+    "releaseYear": 2023,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "spicy",
+    "description": "Inspirado na exuberância das ilhas Fiji, une a frescura especiada do cardamomo com notas de noz-moscada e madeiras tropicais nobres.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.86545.jpg",
+    "notes": [
+      {"name": "Cardamomo", "family": "spicy", "position": "top", "description": "Especiado fino refrescante"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso"},
+      {"name": "Noz-moscada", "family": "spicy", "position": "heart", "description": "Aromática quente"},
+      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Terroso e nobre"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Aconchegante e solar"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Botica 214 African Sunrise",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Traduz o espetáculo do amanhecer na savana africana, combinando o frescor do zimbro com o calor do alecrim e madeiras nobres.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.93250.jpg",
+    "notes": [
+      {"name": "Zimbro", "family": "aromatic", "position": "top", "description": "Aromático fresco e picante"},
+      {"name": "Alecrim", "family": "aromatic", "position": "heart", "description": "Herbal solar revigorante"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira seca e imponente"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso clássico refinado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Botica 214 Verano en Firenze",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirado no verão em Florença, une a sofisticação do acorde de l'Erba Matta à masculinidade de madeiras nobres e aveludadas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.72915.jpg",
+    "notes": [
+      {"name": "Erva-doce", "family": "aromatic", "position": "top", "description": "Aromático anisado e fresco"},
+      {"name": "Toranja", "family": "citrus", "position": "top", "description": "Amargor cítrico brilhante"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromática tradicional toscana"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado estruturado"},
+      {"name": "Couro", "family": "oriental", "position": "base", "description": "Toque refinado e luxuoso"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Botica 214 Dark Mint",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "masculine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Contraste inusitado entre o frescor gelado da hortelã nanah marroquina e a densidade opulenta do cedro e âmbar.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.60335.jpg",
+    "notes": [
+      {"name": "Hortelã Marroquina", "family": "green", "position": "top", "description": "Frescor verde e gelado"},
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Frutado aquoso sutil"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Herbal elegante"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Madeira escura e densa"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e misterioso"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Botica 214 Golden Gardênia",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Fragrância radiante e luxuosa centrada na gardênia dourada da Polinésia Francesa, enriquecida por notas quentes de âmbar e baunilha.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.58044.jpg",
+    "notes": [
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Frutado macio e aveludado"},
+      {"name": "Gardênia", "family": "floral", "position": "heart", "description": "Floral branco opulento e solar"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Intenso e sensual"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente e dourado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Botica 214 Jasmim & Patchouli",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Celebra a sofisticação atemporal do jasmim floral branco contrastado pela profundidade misteriosa e terrosa do patchouli indonésio.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.55181.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante e fresco"},
+      {"name": "Jasmim Sambac", "family": "floral", "position": "heart", "description": "Floral branco denso e nobre"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso envelhecido elegante"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso e acolhedor"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Elysée Nuit",
+    "releaseYear": 2017,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Um chypre floral moderno e sofisticado para noites inesquecíveis, destacando a rosa damascena colhida à noite e notas gourmand de macaron.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.44392.jpg",
+    "notes": [
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doce requintado e suculento"},
+      {"name": "Rosa Damascena", "family": "floral", "position": "heart", "description": "Floral nobre e aveludado"},
+      {"name": "Macaron", "family": "oriental", "position": "heart", "description": "Gourmand doce amendoado"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Chypre terroso elegante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e sensual"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Elysée Blanc",
+    "releaseYear": 2019,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "A pureza e o luxo do chipre branco, unindo a doçura aveludada do pêssego de Damasco à nobreza floral do jasmim sambac da Índia.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.55182.jpg",
+    "notes": [
+      {"name": "Pêssego de Damasco", "family": "fruity", "position": "top", "description": "Suculento, aveludado e solar"},
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Frescor aquoso frutado"},
+      {"name": "Jasmim Sambac", "family": "floral", "position": "heart", "description": "Floral branco rico e luminoso"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Chypre moderno e sofisticado"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Aconchegante e refinado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Elysée Succès",
+    "releaseYear": 2021,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Inspirado na rosa negra de Halfeti, entrega um floral amadeirado opulento com facetas licorosas e fundo ambarado intenso para mulheres de sucesso.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.67101.jpg",
+    "notes": [
+      {"name": "Ameixa Negra", "family": "fruity", "position": "top", "description": "Licoroso escuro sedutor"},
+      {"name": "Rosa Negra", "family": "floral", "position": "heart", "description": "Floral denso, misterioso e raro"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Elegância amadeirada marcante"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Adocicado nobre e aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Lily Tradicional",
+    "releaseYear": 2006,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": ["Verônica Casanova"],
+    "family": "floral",
+    "description": "Obtido pelo raro processo artesanal do enfleurage dos lírios, é a assinatura máxima da feminilidade, delicadeza e elegância pura.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4002.jpg",
+    "notes": [
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Aveludado e delicado"},
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Fresco e aquoso"},
+      {"name": "Lírio", "family": "floral", "position": "heart", "description": "Floral nobre, puro e marcante"},
+      {"name": "Gardênia", "family": "floral", "position": "heart", "description": "Floral branco cremoso"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado macio e confortável"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Aconchego acetinado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Lily Absolu",
+    "releaseYear": 2020,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Traz o exclusivo Lírio de Grasse cultivado em solo francês, enriquecendo o buquê floral branco com luminosidade e intensidade única.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.60336.jpg",
+    "notes": [
+      {"name": "Frangipani", "family": "floral", "position": "top", "description": "Solar e levemente adocicado"},
+      {"name": "Lírio de Grasse", "family": "floral", "position": "heart", "description": "Branco floral puro e luminoso"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Cítrico floral radiante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e sofisticado"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doçura sutil e elegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Lily Lumière",
+    "releaseYear": 2022,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Celebra a mulher radiante ao combinar o clássico enfleurage de lírios com a flor de laranjeira do Marrocos e notas doces de baunilha.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.75705.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso e fresco"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco solar exuberante"},
+      {"name": "Lírio", "family": "floral", "position": "heart", "description": "Floral característico e delicado"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e aveludada"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira reconfortante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "L'eau de Lily",
+    "releaseYear": 2021,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "A versão mais fresca e diurna do sofisticado universo floral de Lily, combinando mandarina e lírios para uma sensação radiante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.68653.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico fresco e solar"},
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Aquoso crocante e suave"},
+      {"name": "Lírio", "family": "floral", "position": "heart", "description": "Floral delicado e límpido"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação de banho perfumado"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado sutil"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "L'eau de Lily Soleil",
+    "releaseYear": 2024,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Uma homenagem ao brilho do sol, mesclando o floral elegante do lírio com a luminosidade do Ylang Ylang de Madagascar e notas de pera.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.90049.jpg",
+    "notes": [
+      {"name": "Pera", "family": "fruity", "position": "top", "description": "Frutado suculento e luminoso"},
+      {"name": "Ylang Ylang", "family": "floral", "position": "heart", "description": "Floral exótico e radiante"},
+      {"name": "Lírio", "family": "floral", "position": "heart", "description": "Elegância floral clássica"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Conforto amadeirado aveludado"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Leve e acolhedor"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Floratta Red",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "fruity",
+    "description": "Inspirado na flor da Maçã de Vermont, entrega uma combinação irresistivelmente doce e sedutora de maçã vermelha, frutas vermelhas e chocolate.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.55183.jpg",
+    "notes": [
+      {"name": "Maçã Vermelha", "family": "fruity", "position": "top", "description": "Doce, crocante e suculento"},
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Alegre e provocante"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral doce e radiante"},
+      {"name": "Chocolate", "family": "oriental", "position": "base", "description": "Gourmand envolvente"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Aveludado e confortável"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Floratta Blue",
+    "releaseYear": 1998,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": ["Napoleão Bastos"],
+    "family": "floral",
+    "description": "Um clássico eterno da perfumaria brasileira que traduz conforto e serenidade com o toque limpo do almíscar, gerânio e notas florais suaves.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3993.jpg",
+    "notes": [
+      {"name": "Gerânio", "family": "floral", "position": "top", "description": "Verde floral aromático leve"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico suave e límpido"},
+      {"name": "Lírio-do-vale", "family": "floral", "position": "heart", "description": "Floral branco limpo e aquoso"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação aveludada de conforto puro"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira macia serena"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Floratta Rose",
+    "releaseYear": 2008,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Fragrância delicada e feminina que reúne as melhores pétalas de rosas em um buquê romântico com toques frutados e fundo almiscarado.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.12646.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico alegre e brilhante"},
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Aveludado e suave"},
+      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Pétalas frescas românticas"},
+      {"name": "Lírio-do-vale", "family": "floral", "position": "heart", "description": "Verde floral delicado"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Macio e acetinado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Floratta Gold",
+    "releaseYear": 1998,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Fragrância marcante e inesquecível construída em torno da orquídea dourada, sustentada por madeiras nobres, âmbar e baunilha sedutora.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3994.jpg",
+    "notes": [
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Frutado doce e quente"},
+      {"name": "Orquídea", "family": "floral", "position": "heart", "description": "Floral opulento e sofisticado"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Branco floral intenso"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludada e clássica"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado nobre e acolhedor"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Floratta Fleur D'Éclipse",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Inspirado no momento mágico do eclipse solar, captura a flor de osmanthus revelando facetas frutadas e aveludadas de damasco sob a penumbra.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.76829.jpg",
+    "notes": [
+      {"name": "Pimenta Rosa", "family": "spicy", "position": "top", "description": "Picância fresca luminosa"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico cintilante"},
+      {"name": "Osmanthus", "family": "floral", "position": "heart", "description": "Floral com nuances de damasco"},
+      {"name": "Magnólia", "family": "floral", "position": "heart", "description": "Floral suave e cremoso"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso misterioso"},
+      {"name": "Vetiver", "family": "woody", "position": "base", "description": "Seco e elegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Floratta My Blue",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Reinventa o clássico Floratta Blue com maior cremosidade e sensualidade, destacando o calor envolvente do sândalo e flores delicadas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.73888.jpg",
+    "notes": [
+      {"name": "Melão", "family": "fruity", "position": "top", "description": "Frutado aquoso e refrescante"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico solar alegre"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Floral atalcado sofisticado"},
+      {"name": "Lírio-do-vale", "family": "floral", "position": "heart", "description": "Floral branco suave"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e marcante"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação de aconchego puro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Floratta Red Blossom",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Uma releitura mais fresca e luminosa do Floratta Red, explorando as pétalas da flor de maçã de Vermont com notas florais radiantes.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.82523.jpg",
+    "notes": [
+      {"name": "Maçã", "family": "fruity", "position": "top", "description": "Frutado crocante alegre"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico fresco e brilhante"},
+      {"name": "Flor de Maçã", "family": "floral", "position": "heart", "description": "Floral delicado e aveludado"},
+      {"name": "Gardênia", "family": "floral", "position": "heart", "description": "Branco cremoso sutil"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Confortável e macio"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Floratta Romance de Verão",
+    "releaseYear": 2024,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "fruity",
+    "description": "Captura a paixão intensa de um amor sob o sol de verão, misturando pêssego suculento e frutas tropicais a um buquê solar irresistível.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.93251.jpg",
+    "notes": [
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Suculento, doce e ensolarado"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico cintilante"},
+      {"name": "Flores Solares", "family": "floral", "position": "heart", "description": "Floral quente e radiante"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doçura macia reconfortante"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Aveludado e acolhedor"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Glamour Tradicional",
+    "releaseYear": 2001,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": ["Alberto Morillas"],
+    "family": "oriental",
+    "description": "Um ícone de feminilidade curvilínea e charme despretensioso, exaltando notas florais aveludadas, mandarina e a sofisticação da ameixa.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3998.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico solar e doce"},
+      {"name": "Ameixa", "family": "fruity", "position": "top", "description": "Frutado aveludado e rico"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco luminoso"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Toque atalcado luxuoso"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira cremosa e suave"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Chypre aveludado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Glamour Secrets Black",
+    "releaseYear": 2010,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Misterioso e envolvente, reúne a doçura da praliné e framboesa à sofisticação da flor de tiare para encontros e ocasiões noturnas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.12648.jpg",
+    "notes": [
+      {"name": "Framboesa", "family": "fruity", "position": "top", "description": "Frutado vermelho adocicado"},
+      {"name": "Laranja", "family": "citrus", "position": "top", "description": "Frescor cítrico sutil"},
+      {"name": "Flor de Tiare", "family": "floral", "position": "heart", "description": "Floral exótico e cremoso"},
+      {"name": "Praliné", "family": "oriental", "position": "base", "description": "Gourmand doce com avelã"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Aveludada e quente"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado sedutor"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Glamour Fever",
+    "releaseYear": 2020,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Inspirado no print animal leopardo, destaca o acorde da orquídea vermelha envolto pelo calor picante do gengibre e baunilha.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.62779.jpg",
+    "notes": [
+      {"name": "Gengibre", "family": "spicy", "position": "top", "description": "Picante estimulante luminoso"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor cítrico inicial"},
+      {"name": "Orquídea Vermelha", "family": "floral", "position": "heart", "description": "Floral exótico e sensual"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doçura quente e envolvente"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado sofisticado"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Glamour Diva",
+    "releaseYear": 2019,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Inspirada no glamour clássico dos tapetes vermelhos, combina a sofisticação da cereja turca à nobreza da flor de laranjeira e sândalo.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.58046.jpg",
+    "notes": [
+      {"name": "Cereja Turca", "family": "fruity", "position": "top", "description": "Licoroso, suculento e nobre"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico elegante"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco exuberante"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado cremoso"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Resinoso e aconchegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Glamour Gold Glam",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Comemora o brilho do ouro e a riqueza das noites luxuosas com o calor do âmbar, toques florais refinados e madeiras aveludadas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.75706.jpg",
+    "notes": [
+      {"name": "Framboesa", "family": "fruity", "position": "top", "description": "Doçura frutada brilhante"},
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Aveludado e ensolarado"},
+      {"name": "Orquídea", "family": "floral", "position": "heart", "description": "Floral sofisticado e nobre"},
+      {"name": "Âmbar Dourado", "family": "oriental", "position": "base", "description": "Quente, radiante e rico"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso clássico e elegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Her Code",
+    "releaseYear": 2023,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": ["Louise Turner"],
+    "family": "oriental",
+    "description": "Incentiva as mulheres a explorarem seu prazer sem tabus através do acorde Secreto, que mescla a sensualidade de frutas vermelhas e cacau.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.86546.jpg",
+    "notes": [
+      {"name": "Cereja", "family": "fruity", "position": "top", "description": "Licorosa, provocante e escura"},
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doce suculento e vívido"},
+      {"name": "Jasmim", "family": "floral", "position": "heart", "description": "Floral branco sensual"},
+      {"name": "Cacau", "family": "oriental", "position": "base", "description": "Denso, aveludado e gourmand"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e envolvente"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Her Code Touch",
+    "releaseYear": 2024,
+    "concentration": "edp",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Uma experiência olfativa ainda mais sensorial que convida ao toque e ao prazer feminino com notas amadeiradas quentes e baunilha refinada.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.93252.jpg",
+    "notes": [
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doces e envolventes"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral solar sedutor"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Aveludada e cremosa"},
+      {"name": "Madeiras Sensuais", "family": "woody", "position": "base", "description": "Calor amadeirado aconchegante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Liz Tradicional",
+    "releaseYear": 2020,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Inspirada na força e delicadeza feminina, une a nobreza da Íris Nobre ao exclusivo acorde de Mousse de Saxe para uma identidade inesquecível.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.62780.jpg",
+    "notes": [
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Cítrico luminoso e fresco"},
+      {"name": "Açafrão", "family": "spicy", "position": "top", "description": "Especiaria nobre dourada"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Floral atalcado sofisticado"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Solar e elegante"},
+      {"name": "Mousse de Saxe", "family": "woody", "position": "base", "description": "Acorde clássico terroso e aveludado"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Madeira macia e cremosa"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Liz Sublime",
+    "releaseYear": 2022,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Uma versão alegre e efervescente da linha Liz, adicionando toques frutados cintilantes e florais radiantes à assinatura de Íris Nobre.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.75707.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico doce e alegre"},
+      {"name": "Pêssego", "family": "fruity", "position": "top", "description": "Aveludado e solar"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Atalcado refinado"},
+      {"name": "Mousse de Saxe", "family": "woody", "position": "base", "description": "Amadeirado sedutor icônico"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e confortável"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Liz Intenso",
+    "releaseYear": 2023,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "woody",
+    "description": "Potencializa a densidade amadeirada de Liz com a resina do sândalo e mirra, resultando em um aroma envolvente, sofisticado e marcante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.86547.jpg",
+    "notes": [
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Suculento e encorpado"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Floral atalcado de assinatura"},
+      {"name": "Mousse de Saxe", "family": "woody", "position": "base", "description": "Amadeirado clássico denso"},
+      {"name": "Mirra", "family": "oriental", "position": "base", "description": "Resina mística e profunda"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e duradouro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Liz Flora",
+    "releaseYear": 2024,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Exalta a beleza floral espontânea feminina, aliando a flor do jacarandá à nobreza da base amadeirada aveludada característica de Liz.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.93253.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico luminoso fresco"},
+      {"name": "Flor de Jacarandá", "family": "floral", "position": "heart", "description": "Floral vibrante e elegante"},
+      {"name": "Íris", "family": "floral", "position": "heart", "description": "Toque atalcado nobre"},
+      {"name": "Mousse de Saxe", "family": "woody", "position": "base", "description": "Fundo clássico aveludado"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Estrutura amadeirada sutil"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Boticollection Acqua Fresca",
+    "releaseYear": 1979,
+    "concentration": "edc",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "A primeiríssima fragrância de O Boticário e patrimônio afetivo brasileiro, famosa pelo frescor inconfundível de ervas, pinho e cítricos radiantes.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3985.jpg",
+    "notes": [
+      {"name": "Limão", "family": "citrus", "position": "top", "description": "Cítrico puro e cortante"},
+      {"name": "Bergamota", "family": "citrus", "position": "top", "description": "Frescor clássico borbulhante"},
+      {"name": "Flor de Laranjeira", "family": "floral", "position": "heart", "description": "Floral branco fresco e arejado"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromática limpa e relaxante"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Verde clássico terroso"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado nobre e seco"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Boticollection Free",
+    "releaseYear": 1993,
+    "concentration": "edt",
+    "gender": "unisex",
+    "perfumers": [],
+    "family": "citrus",
+    "description": "Um grito de liberdade e energia que combina o frescor cítrico da mandarina e limão com notas aromáticas de gerânio e madeiras nobres.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4001.jpg",
+    "notes": [
+      {"name": "Limão", "family": "citrus", "position": "top", "description": "Energizante e vibrante"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Frutado cítrico estimulante"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde clássico"},
+      {"name": "Lavanda", "family": "aromatic", "position": "heart", "description": "Aromática e fresca"},
+      {"name": "Musgo de Carvalho", "family": "green", "position": "base", "description": "Seco e atemporal"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado seguro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Boticollection Thaty",
+    "releaseYear": 1980,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "aromatic",
+    "description": "Uma fragrância jovem e afetuosa criada em homenagem à filha do fundador, unindo lavanda suave a notas de eucalipto, musk e madeiras.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4004.jpg",
+    "notes": [
+      {"name": "Lavanda", "family": "aromatic", "position": "top", "description": "Suave, floral e relaxante"},
+      {"name": "Eucalipto", "family": "aromatic", "position": "top", "description": "Herbal fresco e arejado"},
+      {"name": "Gerânio", "family": "floral", "position": "heart", "description": "Floral verde delicado"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Sensação límpida de aconchego"},
+      {"name": "Cedro", "family": "woody", "position": "base", "description": "Amadeirado sutil"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Boticollection Cecita",
+    "releaseYear": 1982,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Fragrância floral clássica e envolvente que celebra a elegância atemporal, combinando notas de rosa, osmanthus e madeiras aveludadas.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.3987.jpg",
+    "notes": [
+      {"name": "Damasco", "family": "fruity", "position": "top", "description": "Frutado aveludado e doce"},
+      {"name": "Gálbano", "family": "green", "position": "top", "description": "Verde fresco e clássico"},
+      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Pétalas nobres românticas"},
+      {"name": "Osmanthus", "family": "floral", "position": "heart", "description": "Floral frutado requintado"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Cremoso e aconchegante"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Doce aveludada clássica"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Boticollection Anni",
+    "releaseYear": 2010,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Doce e nostálgica, Anni combina o romantismo de um buquê de flores brancas com a delicadeza de frutas suaves e um fundo de baunilha macia.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.12650.jpg",
+    "notes": [
+      {"name": "Frutas Vermelhas", "family": "fruity", "position": "top", "description": "Doce suave e jovial"},
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico solar delicado"},
+      {"name": "Flores Brancas", "family": "floral", "position": "heart", "description": "Buquê floral romântico"},
+      {"name": "Baunilha", "family": "oriental", "position": "base", "description": "Cremosa e nostálgica"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Aconchegante e puro"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Boticollection Crazy Feelings",
+    "releaseYear": 1995,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "oriental",
+    "description": "Intensa, ousada e inesquecível, equilibra o ardor da flor de cravo e mandarina com a opulência da rosa, âmbar e patchouli marcante.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4003.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Cítrico vivo e efervescente"},
+      {"name": "Flor de Cravo", "family": "spicy", "position": "heart", "description": "Floral especiado e pungente"},
+      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Floral intenso e dramático"},
+      {"name": "Patchouli", "family": "woody", "position": "base", "description": "Terroso envelhecido denso"},
+      {"name": "Âmbar", "family": "oriental", "position": "base", "description": "Quente, sensual e fixante"}
+    ]
+  },
+  {
+    "brand": "O Boticário",
+    "name": "Boticollection Dreams",
+    "releaseYear": 1993,
+    "concentration": "edt",
+    "gender": "feminine",
+    "perfumers": [],
+    "family": "floral",
+    "description": "Traz a leveza e poesia dos sonhos, combinando notas florais delicadas de violeta e rosa com o frescor de frutas e o aconchego do sândalo.",
+    "imageUrl": "https://fimgs.net/mdimg/perfumes/375x500.4000.jpg",
+    "notes": [
+      {"name": "Mandarina", "family": "citrus", "position": "top", "description": "Frescor cítrico suave"},
+      {"name": "Maçã", "family": "fruity", "position": "top", "description": "Frutado crocante sutil"},
+      {"name": "Rosa", "family": "floral", "position": "heart", "description": "Romântica e aveludada"},
+      {"name": "Violeta", "family": "floral", "position": "heart", "description": "Floral atalcado límpido"},
+      {"name": "Sândalo", "family": "woody", "position": "base", "description": "Amadeirado macio e sereno"},
+      {"name": "Musk", "family": "musky", "position": "base", "description": "Acolhedor e limpo"}
+    ]
+  }
+]

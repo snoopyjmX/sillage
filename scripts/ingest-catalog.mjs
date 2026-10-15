@@ -11,6 +11,7 @@
 //   --name      sufixo da migration (padrão "lote")
 //   --from-json <arquivo>   usa registros curados à mão (scripts/catalog-data/*.json), sem Gemini
 //   --skip      não ingere esse perfume (nome; repetível): vai para a quarentena como pendente
+//   --quarantine <arquivo>  grava a quarentena nesse JSON (padrão scripts/batch/erros-ingest.json)
 //   --dry-run   só lista a seleção: não chama o Gemini nem baixa nada
 //   --loose     aceita fotos de fontes fora de TRUSTED_DOMAINS (confira uma a uma)
 // Depois das fotos processadas (`npm run images`):
@@ -167,6 +168,7 @@ export const parseCatalogArgs = (argv) => {
     markDone: null,
     fromJson: null,
     skip: [],
+    quarantine: null,
   };
   const valueOf = (flag, index) => {
     const value = argv[index + 1];
@@ -186,6 +188,7 @@ export const parseCatalogArgs = (argv) => {
         '--mark-done',
         '--from-json',
         '--skip',
+        '--quarantine',
       ].includes(arg)
     ) {
       const value = valueOf(arg, index);
@@ -207,6 +210,7 @@ export const parseCatalogArgs = (argv) => {
         }
         options.name = value;
       } else if (arg === '--skip') options.skip.push(slugify(value));
+      else if (arg === '--quarantine') options.quarantine = value;
       else if (arg === '--from-json') options.fromJson = value;
       else if (arg === '--apply-images') options.applyImages = value;
       else options.markDone = value;
@@ -577,13 +581,13 @@ const readJson = async (file, fallback) => {
   }
 };
 
-const saveErrors = async (failures) => {
-  const previous = await readJson(ERRORS_FILE, []);
+const saveErrors = async (failures, file = ERRORS_FILE) => {
+  const previous = await readJson(file, []);
   const key = (e) => `${slugify(e.brand)}/${slugify(e.name)}`;
   const fresh = new Set(failures.map(key));
-  await mkdir(BATCH_DIR, { recursive: true });
+  await mkdir(dirname(file), { recursive: true });
   await writeFile(
-    ERRORS_FILE,
+    file,
     `${JSON.stringify([...previous.filter((e) => !fresh.has(key(e))), ...failures], null, 2)}\n`
   );
 };
@@ -669,7 +673,8 @@ const runIngest = async (options) => {
       await sleep(PAUSE_MIN_MS + Math.random() * (PAUSE_MAX_MS - PAUSE_MIN_MS));
   }
 
-  if (failures.length > 0) await saveErrors(failures);
+  const quarantineFile = options.quarantine ? resolve(options.quarantine) : ERRORS_FILE;
+  if (failures.length > 0) await saveErrors(failures, quarantineFile);
   let migration = null;
   if (blocks.length > 0) {
     const stamp = nextMigrationTimestamp(await readdir(MIGRATIONS_DIR));
@@ -685,7 +690,9 @@ const runIngest = async (options) => {
       `${JSON.stringify({ migration, items: ingested }, null, 2)}\n`
     );
   }
-  console.log(`\n${ingested.length} ingeridos, ${failures.length} na quarentena (${ERRORS_FILE}).`);
+  console.log(
+    `\n${ingested.length} ingeridos, ${failures.length} na quarentena (${quarantineFile}).`
+  );
   if (migration) {
     console.log(`Migration: ${migration}`);
     console.log('Próximos passos: conferir as fotos em scripts/raw-images/, `npm run images`,');
