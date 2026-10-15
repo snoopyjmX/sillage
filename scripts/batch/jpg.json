@@ -1,0 +1,341 @@
+{
+  "migration": "C:\\Users\\JRPSGO\\sillage\\supabase\\migrations\\20261020120006_ingest_catalog_jpg.sql",
+  "items": [
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male Le Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male-le-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male-le-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male Elixir",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male-elixir",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male-elixir.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Ultra Male",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "ultra-male",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\ultra-male.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Beau",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-beau",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-beau.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Beau Le Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-beau-le-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-beau-le-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Beau Paradise Garden",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-beau-paradise-garden",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-beau-paradise-garden.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Scandal Pour Homme",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "scandal-pour-homme",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\scandal-pour-homme.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Scandal Pour Homme Le Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "scandal-pour-homme-le-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\scandal-pour-homme-le-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Scandal Pour Homme Absolu",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "scandal-pour-homme-absolu",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\scandal-pour-homme-absolu.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique Eau de Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-eau-de-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-eau-de-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "La Belle",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "la-belle",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\la-belle.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "La Belle Le Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "la-belle-le-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\la-belle-le-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "La Belle Paradise Garden",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "la-belle-paradise-garden",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\la-belle-paradise-garden.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Scandal",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "scandal",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\scandal.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Scandal By Night",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "scandal-by-night",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\scandal-by-night.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Scandal A Paris",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "scandal-a-paris",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\scandal-a-paris.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Scandal Le Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "scandal-le-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\scandal-le-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Scandal Absolu",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "scandal-absolu",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\scandal-absolu.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Gaultier Divine",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "gaultier-divine",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\gaultier-divine.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Gaultier Divine Le Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "gaultier-divine-le-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\gaultier-divine-le-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Fleur du Mâle",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "fleur-du-male",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\fleur-du-male.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Kokorico",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "kokorico",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\kokorico.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Ma Dame",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "ma-dame",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\ma-dame.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Fragile",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "fragile",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\fragile.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Ma Dame Eau de Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "ma-dame-eau-de-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\ma-dame-eau-de-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male On Board",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male-on-board",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male-on-board.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male Aviator",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male-aviator",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male-aviator.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male Pride Edition",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male-pride-edition",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male-pride-edition.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique Pride Edition",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-pride-edition",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-pride-edition.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male Essence de Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male-essence-de-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male-essence-de-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique Essence de Parfum",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-essence-de-parfum",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-essence-de-parfum.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male In The Navy",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male-in-the-navy",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male-in-the-navy.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique Cabaret",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-cabaret",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-cabaret.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique Pin Up",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-pin-up",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-pin-up.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique Airlines",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-airlines",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-airlines.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Le Male Airlines",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "le-male-airlines",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\le-male-airlines.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique Wonder Woman",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-wonder-woman",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-wonder-woman.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique I Love Gaultier",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-i-love-gaultier",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-i-love-gaultier.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "Classique Intense",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "classique-intense",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\classique-intense.jpg"
+    },
+    {
+      "brand": "Jean Paul Gaultier",
+      "name": "So Scandal!",
+      "brandSlug": "jean-paul-gaultier",
+      "perfumeSlug": "so-scandal",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\jean-paul-gaultier\\so-scandal.jpg"
+    }
+  ]
+}

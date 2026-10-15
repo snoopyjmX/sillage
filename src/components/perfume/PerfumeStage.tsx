@@ -13,7 +13,10 @@ export function PerfumeStage({ children, className }: PerfumeStageProps) {
   return (
     <div
       data-slot="perfume-stage"
-      className={cn('grid place-items-center bg-radial from-stage-highlight to-stage', className)}
+      className={cn(
+        'flex items-center justify-center overflow-hidden bg-radial from-stage-highlight to-stage',
+        className
+      )}
     >
       {children}
     </div>

@@ -49,7 +49,7 @@ export function DailyHighlight({ entry, weather }: DailyHighlightProps) {
             alt={`Frasco do perfume ${perfume.name}, ${perfume.brandName}`}
             width={640}
             height={800}
-            className="max-h-full max-w-full object-contain p-3"
+            className="size-full object-contain p-3"
             fallback={
               <PerfumePlaceholder family={perfume.families[0]} showIcon className="size-full" />
             }

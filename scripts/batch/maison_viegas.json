@@ -1,0 +1,69 @@
+{
+  "migration": "C:\\Users\\JRPSGO\\sillage\\supabase\\migrations\\20261020120003_ingest_catalog_maison_viegas.sql",
+  "items": [
+    {
+      "brand": "Maison Viegas",
+      "name": "Heaven",
+      "brandSlug": "maison-viegas",
+      "perfumeSlug": "heaven",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\maison-viegas\\heaven.jpg"
+    },
+    {
+      "brand": "Maison Viegas",
+      "name": "Elite Pour Homme",
+      "brandSlug": "maison-viegas",
+      "perfumeSlug": "elite-pour-homme",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\maison-viegas\\elite-pour-homme.jpg"
+    },
+    {
+      "brand": "Maison Viegas",
+      "name": "Cuir",
+      "brandSlug": "maison-viegas",
+      "perfumeSlug": "cuir",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\maison-viegas\\cuir.webp"
+    },
+    {
+      "brand": "Maison Viegas",
+      "name": "Épices",
+      "brandSlug": "maison-viegas",
+      "perfumeSlug": "epices",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\maison-viegas\\epices.webp"
+    },
+    {
+      "brand": "Maison Viegas",
+      "name": "Fleur",
+      "brandSlug": "maison-viegas",
+      "perfumeSlug": "fleur",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\maison-viegas\\fleur.webp"
+    },
+    {
+      "brand": "Maison Viegas",
+      "name": "Rose",
+      "brandSlug": "maison-viegas",
+      "perfumeSlug": "rose",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\maison-viegas\\rose.webp"
+    },
+    {
+      "brand": "Maison Viegas",
+      "name": "Jasmin",
+      "brandSlug": "maison-viegas",
+      "perfumeSlug": "jasmin",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\maison-viegas\\jasmin.webp"
+    },
+    {
+      "brand": "Maison Viegas",
+      "name": "Iris",
+      "brandSlug": "maison-viegas",
+      "perfumeSlug": "iris",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\maison-viegas\\iris.webp"
+    }
+  ]
+}

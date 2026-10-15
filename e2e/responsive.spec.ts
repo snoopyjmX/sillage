@@ -24,6 +24,14 @@ const expectInsideViewport = async (page: Page, locator: Locator) => {
   expect(box!.x + box!.width).toBeLessThanOrEqual(width);
 };
 
+// No mobile o palco fica acima do texto: o frasco (ou o placeholder, sem foto) não pode invadir o título
+const expectBottleAboveHeading = async (bottle: Locator, heading: Locator) => {
+  const [imgBox, headingBox] = [await bottle.boundingBox(), await heading.boundingBox()];
+  expect(imgBox).not.toBeNull();
+  expect(headingBox).not.toBeNull();
+  expect(imgBox!.y + imgBox!.height).toBeLessThanOrEqual(headingBox!.y);
+};
+
 for (const viewport of VIEWPORTS) {
   test.describe(`mobile ${viewport.width}px`, () => {
     test.use({ viewport });
@@ -45,6 +53,10 @@ for (const viewport of VIEWPORTS) {
       await expectInsideViewport(page, highlight);
       await expectInsideViewport(
         page,
+        highlight.getByRole('heading', { name: 'Malbec Signature' })
+      );
+      await expectBottleAboveHeading(
+        highlight.locator('[data-slot="perfume-stage"] > *').first(),
         highlight.getByRole('heading', { name: 'Malbec Signature' })
       );
       await expectInsideViewport(page, highlight.getByRole('button', { name: 'Compartilhar dia' }));
@@ -79,6 +91,10 @@ for (const viewport of VIEWPORTS) {
       await expectNoHorizontalOverflow(page);
       await expectInsideViewport(page, suggestion);
       await expectInsideViewport(page, suggestion.getByRole('heading', { level: 3 }));
+      await expectBottleAboveHeading(
+        suggestion.locator('[data-slot="perfume-stage"] > *').first(),
+        suggestion.getByRole('heading', { level: 3 })
+      );
       await expectInsideViewport(page, suggestion.getByRole('link', { name: 'Ver detalhes' }));
       await expectInsideViewport(page, suggestion.getByRole('button').first());
     });

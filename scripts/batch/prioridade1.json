@@ -1,0 +1,61 @@
+{
+  "migration": "C:\\Users\\JRPSGO\\sillage\\supabase\\migrations\\20261020120001_ingest_catalog_prioridade1.sql",
+  "items": [
+    {
+      "brand": "Granado",
+      "name": "Nostalgia",
+      "brandSlug": "granado",
+      "perfumeSlug": "nostalgia",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\granado\\nostalgia.jpg"
+    },
+    {
+      "brand": "Granado",
+      "name": "Époque Tropical",
+      "brandSlug": "granado",
+      "perfumeSlug": "epoque-tropical",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\granado\\epoque-tropical.png"
+    },
+    {
+      "brand": "Granado",
+      "name": "Carioca",
+      "brandSlug": "granado",
+      "perfumeSlug": "carioca",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\granado\\carioca.png"
+    },
+    {
+      "brand": "Natura",
+      "name": "Essencial Oud Masculino",
+      "brandSlug": "natura",
+      "perfumeSlug": "essencial-oud-masculino",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\natura\\essencial-oud-masculino.webp"
+    },
+    {
+      "brand": "Natura",
+      "name": "Homem Cor.Agio",
+      "brandSlug": "natura",
+      "perfumeSlug": "homem-cor-agio",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\natura\\homem-cor-agio.jpg"
+    },
+    {
+      "brand": "O Boticário",
+      "name": "Elysée Tradicional",
+      "brandSlug": "o-boticario",
+      "perfumeSlug": "elysee-tradicional",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\o-boticario\\elysee-tradicional.jpg"
+    },
+    {
+      "brand": "O Boticário",
+      "name": "Zaad Santal",
+      "brandSlug": "o-boticario",
+      "perfumeSlug": "zaad-santal",
+      "duplicate": false,
+      "image": "C:\\Users\\JRPSGO\\sillage\\scripts\\raw-images\\o-boticario\\zaad-santal.jpg"
+    }
+  ]
+}
