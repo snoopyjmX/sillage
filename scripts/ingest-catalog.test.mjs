@@ -143,6 +143,13 @@ describe('parseCatalogArgs / selectItems', () => {
     expect(parseCatalogArgs(argv).error).toEqual(expect.any(String));
   });
 
+  it('--skip é repetível e normalizado em slug', () => {
+    expect(
+      parseCatalogArgs(['--section', 'global', '--skip', 'Époque Tropical', '--skip', 'Seleto'])
+        .options.skip
+    ).toEqual(['epoque-tropical', 'seleto']);
+  });
+
   it('pós-processamento dispensa seleção', () => {
     expect(parseCatalogArgs(['--mark-done', 'lote.json']).options.markDone).toBe('lote.json');
   });

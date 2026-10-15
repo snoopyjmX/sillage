@@ -10,6 +10,7 @@
 //   --limit     máximo de perfumes consultados no Gemini
 //   --name      sufixo da migration (padrão "lote")
 //   --from-json <arquivo>   usa registros curados à mão (scripts/catalog-data/*.json), sem Gemini
+//   --skip      não ingere esse perfume (nome; repetível): vai para a quarentena como pendente
 //   --dry-run   só lista a seleção: não chama o Gemini nem baixa nada
 //   --loose     aceita fotos de fontes fora de TRUSTED_DOMAINS (confira uma a uma)
 // Depois das fotos processadas (`npm run images`):
@@ -61,7 +62,7 @@ const MAX_SEARCH_TRIES = 4;
 const SECTIONS = ['prioridade', 'nacional', 'contratipos', 'global'];
 
 export const USAGE =
-  'Uso: npm run ingest:catalog -- [--section <chave>] [--group <slug>] [--limit N] [--name lote1] [--dry-run] [--loose] | --from-json <arquivo> | --apply-images <migration> | --mark-done <lote.json>';
+  'Uso: npm run ingest:catalog -- [--section <chave>] [--group <slug>] [--limit N] [--name lote1] [--skip <perfume>] [--dry-run] [--loose] | --from-json <arquivo> | --apply-images <migration> | --mark-done <lote.json>';
 
 const fail = (message) => {
   console.error(`✖ ${message}`);
@@ -165,6 +166,7 @@ export const parseCatalogArgs = (argv) => {
     applyImages: null,
     markDone: null,
     fromJson: null,
+    skip: [],
   };
   const valueOf = (flag, index) => {
     const value = argv[index + 1];
@@ -183,6 +185,7 @@ export const parseCatalogArgs = (argv) => {
         '--apply-images',
         '--mark-done',
         '--from-json',
+        '--skip',
       ].includes(arg)
     ) {
       const value = valueOf(arg, index);
@@ -203,7 +206,8 @@ export const parseCatalogArgs = (argv) => {
           return { error: '--name aceita só letras minúsculas, números e "_".' };
         }
         options.name = value;
-      } else if (arg === '--from-json') options.fromJson = value;
+      } else if (arg === '--skip') options.skip.push(slugify(value));
+      else if (arg === '--from-json') options.fromJson = value;
       else if (arg === '--apply-images') options.applyImages = value;
       else options.markDone = value;
     } else {
@@ -597,9 +601,12 @@ const runIngest = async (options) => {
       ? source
       : source.slice(0, options.limit)
     : selectItems(source, options);
-  const selected = picked.filter((item) => {
-    return known.get(slugify(item.name)) !== slugify(item.brand);
-  });
+  const skipped = picked.filter((item) => options.skip.includes(slugify(item.name)));
+  const selected = picked
+    .filter((item) => !skipped.includes(item))
+    .filter((item) => {
+      return known.get(slugify(item.name)) !== slugify(item.brand);
+    });
   console.log(
     `${selected.length} perfumes a ingerir (${curated ? 'do JSON' : 'backlog sem [x]'}, fora do banco/seed):`
   );
@@ -612,7 +619,12 @@ const runIngest = async (options) => {
   const ai = curated ? null : new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY.trim() });
   const blocks = [];
   const ingested = [];
-  const failures = [];
+  const failures = skipped.map((item) => ({
+    brand: item.brand,
+    name: item.name,
+    reason: 'Pulado com --skip (foto ou dados pendentes).',
+    at: new Date().toISOString(),
+  }));
   for (const [index, item] of selected.entries()) {
     const label = `${item.brand} — ${item.name}`;
     try {
