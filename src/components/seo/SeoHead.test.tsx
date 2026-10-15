@@ -1,6 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { SeoHead } from './SeoHead';
+import { removeStaticSeoTags } from '@/lib/seoStatic';
 
 const meta = (selector: string) => document.head.querySelector(selector)?.getAttribute('content');
 
@@ -25,13 +26,14 @@ describe('SeoHead', () => {
     expect(meta('meta[name="twitter:image"]')).toBe('https://cdn.test/x.jpg');
   });
 
-  it('remove as tags estáticas do index.html para não duplicar', async () => {
+  it('removeStaticSeoTags tira as metas estáticas do index.html e deixa as do SeoHead', () => {
     document.head.insertAdjacentHTML(
       'beforeend',
       '<meta data-static-seo property="og:title" content="Estático" />'
     );
+    removeStaticSeoTags();
+    expect(document.head.querySelector('[data-static-seo]')).toBeNull();
     render(<SeoHead title="Catálogo" />);
-    await waitFor(() => expect(document.head.querySelector('[data-static-seo]')).toBeNull());
     expect(document.head.querySelectorAll('meta[property="og:title"]')).toHaveLength(1);
   });
 });

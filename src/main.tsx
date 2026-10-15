@@ -14,6 +14,7 @@ import {
 import { listenForInstallPrompt, registerServiceWorker } from '@/lib/pwa';
 import { queryClient } from '@/lib/queryClient';
 import { createAppRouter } from '@/routes/router';
+import { removeStaticSeoTags } from '@/lib/seoStatic';
 import '@/styles/globals.css';
 
 // Vitrine só em desenvolvimento: em produção `import.meta.env.DEV` é false e o chunk some do build.
@@ -33,6 +34,7 @@ const root = document.getElementById('root');
 if (!root) throw new Error('Elemento #root não encontrado');
 
 const router = showShowcase ? null : createAppRouter();
+removeStaticSeoTags();
 
 createRoot(root).render(
   <StrictMode>

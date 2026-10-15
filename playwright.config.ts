@@ -14,6 +14,8 @@ export default defineConfig({
   use: {
     baseURL: BASE_URL,
     locale: 'pt-BR',
+    // Fuso fixo: a cidade do clima sai do fuso do perfil, e o CI roda em UTC (sem cidade, sem clima)
+    timezoneId: 'America/Sao_Paulo',
     reducedMotion: 'reduce',
     trace: 'on-first-retry',
   },

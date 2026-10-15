@@ -2,6 +2,7 @@ import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireConfetti } from '@/components/ui/confetti';
 import { AppError } from '@/constants/errors';
+import { getBrowserTimezone } from '@/lib/timezone';
 import { fakeSession } from '@/test/authMock';
 import { renderApp } from '@/test/renderApp';
 
@@ -70,7 +71,8 @@ describe('páginas de autenticação', () => {
       'ana@exemplo.com',
       'segredo123',
       'Ana',
-      expect.stringMatching(/\//) as unknown as string,
+      // O fuso é o do navegador: UTC no CI, São Paulo na máquina de quem roda local
+      getBrowserTimezone(),
     ]);
   });
 
