@@ -76,6 +76,22 @@ describe('páginas de autenticação', () => {
     ]);
   });
 
+  it('cadastro: digitar a senha mostra o medidor de força', async () => {
+    renderApp('/register');
+    await screen.findByRole('heading', { name: 'Criar conta', level: 1 });
+    expect(screen.queryByRole('meter')).not.toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText('Senha'), { target: { value: 'segredo123' } });
+    expect(await screen.findByRole('meter', { name: 'Força da senha' })).toBeInTheDocument();
+  });
+
+  it('redefinir senha: o medidor aparece uma vez, no campo "Nova senha"', async () => {
+    auth.setInitialSession(fakeSession());
+    renderApp('/reset-password');
+    await screen.findByRole('heading', { name: 'Nova senha', level: 1 });
+    fireEvent.change(screen.getByLabelText('Nova senha'), { target: { value: 'novasenha1' } });
+    expect(await screen.findAllByRole('meter')).toHaveLength(1);
+  });
+
   it('cadastro: e-mail repetido mostra a mensagem mapeada', async () => {
     auth.service.signUp.mockRejectedValue(new AppError('email_taken'));
     renderApp('/register');

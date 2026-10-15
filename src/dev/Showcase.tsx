@@ -2,6 +2,9 @@
 // Não entra no build de produção. Mostra os componentes nos dois modos lado a lado.
 import { Bell, SearchX } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
+import { PasswordStrength } from '@/components/auth/PasswordStrength';
+import { Checkbox } from '@/components/ui/checkbox';
+import { PasswordField } from '@/components/ui/password-field';
 import { ThemeToggler } from '@/components/ui/theme-toggler';
 import { Button } from '@/components/ui/button';
 import {
@@ -54,6 +57,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 function Panel({ mode }: { mode: 'light' | 'dark' }) {
   const [rating, setRating] = useState<number | null>(3);
   const [selected, setSelected] = useState<string | null>(FAMILIES[0] ?? null);
+  const [password, setPassword] = useState('');
 
   return (
     <div className={`${mode} flex flex-col gap-8 bg-background p-6 text-foreground`}>
@@ -80,6 +84,26 @@ function Panel({ mode }: { mode: 'light' | 'dark' }) {
         <div className="grid gap-2 sm:grid-cols-2">
           <Input placeholder="Buscar" aria-label="Buscar" />
           <Input defaultValue="Valor inválido" aria-invalid aria-label="Campo inválido" />
+        </div>
+      </Section>
+
+      <Section title="Checkbox">
+        <div className="flex flex-col">
+          <Checkbox label="Desmarcado" />
+          <Checkbox label="Marcado" defaultChecked />
+          <Checkbox label="Desabilitado" disabled />
+          <Checkbox label="Desabilitado marcado" disabled defaultChecked />
+        </div>
+      </Section>
+
+      <Section title="Força da senha">
+        <div className="flex flex-col gap-2">
+          <PasswordField
+            label="Senha"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <PasswordStrength value={password} />
         </div>
       </Section>
 

@@ -2,6 +2,7 @@ import { Download, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogContent,
@@ -97,15 +98,11 @@ function ShareCardBody({ entry, weather }: Pick<ShareCardDialogProps, 'entry' | 
       </AsyncBoundary>
 
       {hasCity && (
-        <label className="flex min-h-11 items-center gap-3 text-sm">
-          <input
-            type="checkbox"
-            checked={showCity}
-            onChange={(event) => handleCityChange(event.target.checked)}
-            className="size-5 accent-primary"
-          />
-          Mostrar a cidade
-        </label>
+        <Checkbox
+          label="Mostrar a cidade"
+          checked={showCity}
+          onChange={(event) => handleCityChange(event.target.checked)}
+        />
       )}
 
       <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">

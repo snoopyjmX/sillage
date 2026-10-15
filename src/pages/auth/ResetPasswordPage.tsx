@@ -1,7 +1,8 @@
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { AuthLink } from '@/components/auth/AuthLink';
+import { PasswordStrength } from '@/components/auth/PasswordStrength';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { Button } from '@/components/ui/button';
 import { PasswordField } from '@/components/ui/password-field';
@@ -24,8 +25,10 @@ export default function ResetPasswordPage() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<ResetPasswordValues>({ resolver: zodResolver(resetPasswordSchema) });
+  const password = useWatch({ control, name: 'password' }) ?? '';
 
   const onSubmit = handleSubmit(({ password }) =>
     updatePassword.mutate(password, {
@@ -71,6 +74,7 @@ export default function ResetPasswordPage() {
             error={errors.password?.message}
             {...register('password')}
           />
+          <PasswordStrength value={password} />
           <PasswordField
             label="Repita a nova senha"
             autoComplete="new-password"
