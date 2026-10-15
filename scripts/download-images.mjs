@@ -15,7 +15,7 @@
 //  - Se o DuckDuckGo mudar a API ou limitar as requisições, o perfume é pulado e o script continua;
 //    nesse caso, jogue a foto à mão na pasta da marca.
 import { mkdir, readdir, writeFile } from 'node:fs/promises';
-import { dirname, join, parse } from 'node:path';
+import { dirname, join, parse, resolve } from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
@@ -33,7 +33,7 @@ const FORCE = process.argv.includes('--force'); // substitui fotos já baixadas
 const LOOSE = process.argv.includes('--loose'); // aceita fontes fora de TRUSTED_DOMAINS
 
 // Fontes preferidas: sites das marcas, e-commerces de perfumaria e CDNs de produto
-const TRUSTED_DOMAINS = [
+export const TRUSTED_DOMAINS = [
   'granado.com.br',
   'natura.com.br',
   'boticario.com.br',
@@ -51,7 +51,7 @@ const TRUSTED_DOMAINS = [
 ];
 
 // Bancos de imagens e fontes genéricas: nunca são foto de produto
-const STOCK_DOMAINS = [
+export const STOCK_DOMAINS = [
   'shutterstock.com',
   'istockphoto.com',
   'gettyimages.com',
@@ -146,7 +146,7 @@ const fetchOk = async (url, headers) => {
   return response;
 };
 
-const searchDuckDuckGo = async (query) => {
+export const searchDuckDuckGo = async (query) => {
   const page = await fetchOk(
     `https://duckduckgo.com/?q=${encodeURIComponent(query)}&iar=images`,
     HEADERS
@@ -165,7 +165,7 @@ const searchDuckDuckGo = async (query) => {
 };
 
 // Fallback quando o DuckDuckGo bloqueia: todos os `murl` (URL original) do HTML do Bing
-const searchBing = async (query) => {
+export const searchBing = async (query) => {
   const page = await fetchOk(
     `https://www.bing.com/images/search?q=${encodeURIComponent(query)}&first=1`,
     HEADERS
@@ -177,7 +177,7 @@ const searchBing = async (query) => {
   return urls;
 };
 
-const hostnameOf = (url) => {
+export const hostnameOf = (url) => {
   try {
     return new URL(url).hostname.toLowerCase();
   } catch {
@@ -185,15 +185,15 @@ const hostnameOf = (url) => {
   }
 };
 
-const matchesDomain = (hostname, domains) =>
+export const matchesDomain = (hostname, domains) =>
   domains.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`));
 
 // 1º resultado de fonte confiável; senão, o 1º que não seja banco de imagens genérico
-const pickImage = (urls) => {
+export const pickImage = (urls, { loose = LOOSE } = {}) => {
   const trusted = urls.find((url) => matchesDomain(hostnameOf(url), TRUSTED_DOMAINS));
   if (trusted) return { url: trusted, trusted: true };
   // Fora da lista o resultado costuma ser lixo (mapas, jogos, tutoriais): só com --loose
-  if (!LOOSE) throw new Error('nenhum resultado de fonte confiável; coloque a foto à mão');
+  if (!loose) throw new Error('nenhum resultado de fonte confiável; coloque a foto à mão');
   const product = urls.find((url) => {
     const hostname = hostnameOf(url);
     return hostname !== '' && !matchesDomain(hostname, STOCK_DOMAINS);
@@ -257,4 +257,5 @@ const main = async () => {
   );
 };
 
-await main();
+// Só roda quando chamado direto (`npm run images:download`); importar o módulo não baixa nada
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();
