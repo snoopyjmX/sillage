@@ -627,16 +627,16 @@ Estas são as fichas técnicas auditadas e prontas para ingestão imediata no ba
 
 ### Nuancielo (65 perfumes)
 
-- [ ] Costa Riviera, Nuancielo
-- [ ] Pharazon, Nuancielo
-- [ ] Sahara Absolu, Nuancielo
-- [ ] Everest, Nuancielo
-- [ ] Blue Celestia, Nuancielo
-- [ ] Alpha Leggera, Nuancielo
-- [ ] Alpha Blanche, Nuancielo
-- [ ] Noām, Nuancielo
+- [x] Costa Riviera, Nuancielo
+- [x] Pharazon, Nuancielo
+- [x] Sahara Absolu, Nuancielo
+- [x] Everest, Nuancielo
+- [x] Blue Celestia, Nuancielo
+- [x] Alpha Leggera, Nuancielo
+- [x] Alpha Blanche, Nuancielo
+- [x] Noām, Nuancielo
 - [ ] Domus, Nuancielo
-- [ ] Ginger Club, Nuancielo
+- [x] Ginger Club, Nuancielo
 - [ ] Supremacy, Nuancielo
 - [ ] Hills, Nuancielo
 - [ ] Jocker, Nuancielo
