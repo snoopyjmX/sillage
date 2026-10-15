@@ -454,7 +454,7 @@ describe('--from-json (registros curados, sem Gemini)', () => {
     for (const item of items) {
       const { data } = parseItemResponse(JSON.stringify(item.record), item);
       expect(data.notes.length).toBeGreaterThanOrEqual(9);
-      expect(item.officialUrl).toMatch(/^https:///);
+      expect(item.officialUrl).toMatch(/^https:\/\//);
       slugs.add(`${data.brand}/${data.name}`);
     }
     expect(slugs.size).toBe(8);
