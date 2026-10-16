@@ -71,7 +71,7 @@ export function OlfactoryPyramid({ notes }: OlfactoryPyramidProps) {
                 {dominant.map((family) => FAMILY_LABELS[family]).join(' · ')}
               </span>
             </p>
-            <FamilyBar shares={familyBreakdown(notes)} />
+            <FamilyBar shares={familyBreakdown(notes)} linkFamilies />
           </div>
         )}
         {layers.map(({ position, notes: layerNotes }) => {

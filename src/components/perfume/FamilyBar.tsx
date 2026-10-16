@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { FAMILY_LABELS, type OlfactiveFamily } from '@/constants/labels';
 import { transitions } from '@/lib/motion';
 import type { FamilyShare } from '@/lib/pyramid';
@@ -21,11 +22,13 @@ interface FamilyBarProps {
   shares: FamilyShare[];
   // Atraso da entrada (s), para escalonar a barra geral e as das camadas
   delay?: number;
+  // Cada família da legenda vira atalho para o catálogo filtrado por ela
+  linkFamilies?: boolean;
 }
 
 // Barra segmentada com o peso de cada família e a legenda visível ("Amadeirado 60%").
 // A barra é decorativa (aria-hidden); a lista da legenda leva a informação.
-export function FamilyBar({ shares, delay = 0 }: FamilyBarProps) {
+export function FamilyBar({ shares, delay = 0, linkFamilies = false }: FamilyBarProps) {
   const reduceMotion = useReducedMotion() === true;
   if (shares.length === 0) return null;
   return (
@@ -49,7 +52,18 @@ export function FamilyBar({ shares, delay = 0 }: FamilyBarProps) {
         {shares.map(({ family, share }) => (
           <li key={family} className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <span aria-hidden className={`size-2 rounded-full ${SEGMENT_BG[family]}`} />
-            {FAMILY_LABELS[family]} {Math.round(share * 100)}%
+            {linkFamilies ? (
+              <Link
+                to={`/catalog?families=${family}`}
+                className="inline-flex min-h-11 items-center rounded-sm underline-offset-4 outline-none hover:text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              >
+                {FAMILY_LABELS[family]} {Math.round(share * 100)}%
+              </Link>
+            ) : (
+              <>
+                {FAMILY_LABELS[family]} {Math.round(share * 100)}%
+              </>
+            )}
           </li>
         ))}
       </ul>

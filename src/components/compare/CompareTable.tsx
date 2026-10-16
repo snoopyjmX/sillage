@@ -140,7 +140,7 @@ export function CompareTable({ left, right }: CompareTableProps) {
       <Row
         id="compare-families"
         title="Famílias"
-        {...cells((view) => <FamilyBar shares={view.families} />)}
+        {...cells((view) => <FamilyBar shares={view.families} linkFamilies />)}
       />
       <Row
         id="compare-performance"

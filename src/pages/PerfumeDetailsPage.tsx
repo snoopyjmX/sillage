@@ -17,6 +17,7 @@ import { PerfumeStage } from '@/components/perfume/PerfumeStage';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
+import { BrandLink } from '@/components/perfume/BrandLink';
 import { Chip } from '@/components/ui/chip';
 import { EmptyState } from '@/components/ui/empty-state';
 import { AppError, getErrorMessage } from '@/constants/errors';
@@ -134,7 +135,7 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
 
         <div className="flex flex-col gap-3">
           <p className="text-sm font-medium tracking-wider text-muted-foreground uppercase">
-            {perfume.brandName}
+            <BrandLink brandName={perfume.brandName} brandSlug={perfume.brandSlug} />
           </p>
           <h1 className="font-heading text-3xl leading-tight font-medium md:text-5xl">
             {perfume.name}
