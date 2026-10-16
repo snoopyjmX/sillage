@@ -129,7 +129,7 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
 
   // O Nez já recebe o perfume como contexto: só deixa a pergunta pronta no campo
   const handleAskNez = () => {
-    setNezDraft(`Quando e como usar ${perfume.name}, de ${perfume.brandName}?`);
+    setNezDraft({ text: `Quando e como usar ${perfume.name}, de ${perfume.brandName}?` });
     setNezOpen(true);
   };
 
