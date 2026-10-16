@@ -93,6 +93,32 @@ describe('CollectionPage', () => {
     );
   });
 
+  it('busca por nome ou marca, sem acento, e limpa pelo estado sem resultado', async () => {
+    list.mockResolvedValue([entry('owned', 'a', 'Lírio Essencial'), entry('owned', 'b', 'Malbec')]);
+    renderApp('/collection');
+    const search = await screen.findByRole('searchbox', {
+      name: 'Buscar na coleção por nome ou marca',
+    });
+    fireEvent.change(search, { target: { value: 'lirio' } });
+    expect(screen.getByRole('heading', { level: 2, name: 'Lírio Essencial' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: 'Malbec' })).not.toBeInTheDocument();
+    // A contagem da aba segue sendo a da coleção inteira
+    expect(screen.getByRole('tab', { name: 'Tenho (2)' })).toBeInTheDocument();
+
+    fireEvent.change(search, { target: { value: 'zzz' } });
+    expect(screen.getByText('Nenhum resultado')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Limpar busca' }));
+    expect(search).toHaveValue('');
+    expect(screen.getByRole('heading', { level: 2, name: 'Malbec' })).toBeInTheDocument();
+  });
+
+  it('coleção vazia não mostra o campo de busca', async () => {
+    list.mockResolvedValue([]);
+    renderApp('/collection');
+    expect(await screen.findByText('Sua coleção está vazia')).toBeInTheDocument();
+    expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
+  });
+
   it('coleção vazia mostra o estado vazio com link para o catálogo', async () => {
     list.mockResolvedValue([]);
     renderApp('/collection');

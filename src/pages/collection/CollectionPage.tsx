@@ -1,4 +1,5 @@
-import { Library } from 'lucide-react';
+import { Library, Search, SearchX } from 'lucide-react';
+import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { FormatBadge } from '@/components/collection/FormatBadge';
 import { PerfumeGridSkeleton } from '@/components/perfume/PerfumeCardSkeleton';
@@ -7,10 +8,12 @@ import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
+import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getErrorMessage } from '@/constants/errors';
 import { COLLECTION_STATUS_LABELS, useCollection } from '@/hooks/useCollection';
 import { useDaily, useWearToday } from '@/hooks/useDaily';
+import { filterCollection } from '@/lib/collectionFilter';
 import { openCollectionDetails } from '@/lib/collectionDetailsStore';
 import type { PerfumeSummary } from '@/types/catalog';
 import type { CollectionItem, CollectionStatus } from '@/types/collection';
@@ -32,6 +35,8 @@ export default function CollectionPage() {
   const [params, setParams] = useSearchParams();
   const tabParam = params.get('tab') ?? '';
   const tab: CollectionStatus = isStatus(tabParam) ? tabParam : 'owned';
+  // Busca em memória (nome e marca) sobre a coleção já carregada; não vai para a URL
+  const [query, setQuery] = useState('');
   const collection = useCollection();
   const daily = useDaily();
   const wear = useWearToday();
@@ -40,6 +45,7 @@ export default function CollectionPage() {
   const items: CollectionItem[] = collection.data ?? [];
   const byStatus = (status: CollectionStatus) => items.filter((item) => item.status === status);
   const loaded = collection.status === 'success';
+  const searching = query.trim() !== '';
 
   const handleTabChange = (value: string) => {
     if (isStatus(value)) setParams(value === 'owned' ? {} : { tab: value }, { replace: true });
@@ -85,6 +91,27 @@ export default function CollectionPage() {
           <p className="text-sm text-muted-foreground">Os perfumes que você tem e os que quer.</p>
         </header>
 
+        {items.length > 0 && (
+          <div role="search" className="relative md:max-w-sm">
+            <label htmlFor="collection-search" className="sr-only">
+              Buscar na coleção por nome ou marca
+            </label>
+            <Search
+              className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
+              aria-hidden
+            />
+            <Input
+              id="collection-search"
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Buscar por nome ou marca"
+              autoComplete="off"
+              className="pl-9"
+            />
+          </div>
+        )}
+
         <Tabs value={tab} onValueChange={handleTabChange} className="gap-6">
           <TabsList aria-label="Estado na coleção" className="md:max-w-sm">
             {STATUSES.map((status) => (
@@ -100,7 +127,8 @@ export default function CollectionPage() {
           </TabsList>
 
           {STATUSES.map((status) => {
-            const list = byStatus(status);
+            const total = byStatus(status);
+            const list = filterCollection(total, query);
             return (
               <TabsContent key={status} value={status}>
                 <AsyncBoundary
@@ -108,7 +136,18 @@ export default function CollectionPage() {
                   isEmpty={list.length === 0}
                   loading={<PerfumeGridSkeleton />}
                   empty={
-                    items.length === 0 ? (
+                    searching && total.length > 0 ? (
+                      <EmptyState
+                        icon={SearchX}
+                        title="Nenhum resultado"
+                        description={`Nada em “${COLLECTION_STATUS_LABELS[status]}” combina com “${query.trim()}”.`}
+                        action={
+                          <Button variant="outline" onClick={() => setQuery('')}>
+                            Limpar busca
+                          </Button>
+                        }
+                      />
+                    ) : items.length === 0 ? (
                       <EmptyState
                         icon={Library}
                         title="Sua coleção está vazia"
