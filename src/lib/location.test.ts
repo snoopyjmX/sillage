@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { GeocodingResult } from '@/types/weather';
 import {
+  approximateCityLabel,
   cityDisplayFromTimezone,
   cityFromTimezone,
   formatPlaceLabel,
@@ -129,5 +130,16 @@ describe('cityDisplayFromTimezone', () => {
 
   it('o acento só troca a grafia: o clima segue usando cityFromTimezone', () => {
     expect(cityFromTimezone('America/Sao_Paulo')).toBe('Sao Paulo');
+  });
+});
+
+describe('approximateCityLabel', () => {
+  it('marca a cidade do fuso como região, com a grafia de exibição', () => {
+    expect(approximateCityLabel('America/Sao_Paulo')).toBe('Região de São Paulo');
+    expect(approximateCityLabel('America/Belem')).toBe('Região de Belém');
+  });
+
+  it('fuso sem cidade não resolve', () => {
+    expect(approximateCityLabel('UTC')).toBeNull();
   });
 });

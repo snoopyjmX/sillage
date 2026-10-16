@@ -9,10 +9,12 @@ import { useGeolocation } from '@/hooks/useGeolocation';
 import { useProfileTimezone } from '@/hooks/useProfileTimezone';
 import { bandPhrase, highlightFamilies } from '@/lib/climate';
 import {
+  approximateCityLabel,
   cityFromTimezone,
   formatPlaceLabel,
   locationLabel,
   pickGeocodingResult,
+  roundCoordinate,
   weatherDescription,
 } from '@/lib/location';
 import { queryKeys } from '@/lib/queryKeys';
@@ -36,28 +38,30 @@ export const useWeather = () => {
     staleTime: GEOCODING_STALE_TIME,
   });
 
-  // Nome do local só com a localização do aparelho. Se falhar, o rótulo genérico segue valendo e
-  // o clima não espera por isso.
+  // Nome do local só com a localização do aparelho. Coordenadas arredondadas (~1 km): o mesmo
+  // lugar reaproveita o cache e poupa o limite da BigDataCloud em redes móveis (CGNAT). Uma nova
+  // tentativa cobre a falha passageira; se ainda assim falhar, o clima não espera por isso.
+  const latitude = roundCoordinate(geo.coords?.latitude ?? 0);
+  const longitude = roundCoordinate(geo.coords?.longitude ?? 0);
   const placeQuery = useQuery({
-    queryKey: queryKeys.weather.place(
-      userId,
-      geo.coords?.latitude ?? 0,
-      geo.coords?.longitude ?? 0
-    ),
+    queryKey: queryKeys.weather.place(userId, latitude, longitude),
     queryFn: async () =>
-      formatPlaceLabel(
-        await weatherService.reverseGeocode({
-          latitude: geo.coords?.latitude ?? 0,
-          longitude: geo.coords?.longitude ?? 0,
-        })
-      ),
+      formatPlaceLabel(await weatherService.reverseGeocode({ latitude, longitude })),
     enabled: userId !== '' && geo.coords !== null,
     staleTime: GEOCODING_STALE_TIME,
-    retry: false,
+    retry: 1,
   });
 
+  // Sem o nome do local (falha), a cidade do fuso do perfil entra marcada como aproximada, nunca
+  // como se fosse o nome exato do aparelho. Enquanto a consulta roda, vale o rótulo genérico.
+  const deviceLabel = (() => {
+    if (placeQuery.data) return placeQuery.data;
+    if (!placeQuery.isError) return DEVICE_LOCATION_LABEL;
+    return approximateCityLabel(timezone) ?? DEVICE_LOCATION_LABEL;
+  })();
+
   const location: ResolvedLocation | null = geo.coords
-    ? { ...geo.coords, label: placeQuery.data ?? DEVICE_LOCATION_LABEL }
+    ? { ...geo.coords, label: deviceLabel }
     : cityQuery.data
       ? {
           latitude: cityQuery.data.latitude,
