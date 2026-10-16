@@ -107,6 +107,45 @@ describe('MemorialPage (Fase 19)', () => {
     expect(within(grid).getByText(/\(hoje\): sem perfume/)).toBeInTheDocument();
   });
 
+  it('?vista=varal mostra os dias como fotos no varal, do mais antigo ao mais recente', async () => {
+    renderApp('/memorial?vista=varal');
+    const carousel = await screen.findByRole('region', {
+      name: `Varal de memórias de ${formatMonthYear(`${current}-01`)}`,
+    });
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+    const slides = within(carousel).getAllByRole('group');
+    expect(slides.map((slide) => slide.getAttribute('aria-label'))).toEqual([
+      expect.stringMatching(/^1 de 2: Alfa/),
+      expect.stringMatching(/^2 de 2: Beta/),
+    ]);
+    expect(within(carousel).getByRole('link', { name: /Alfa/ })).toHaveAttribute(
+      'href',
+      '/perfumes/alfa'
+    );
+  });
+
+  it('alterna entre Calendário e Varal pela URL, e trocar de mês mantém a visão', async () => {
+    const { router } = renderApp('/memorial');
+    await screen.findByRole('table');
+    fireEvent.mouseDown(screen.getByRole('tab', { name: 'Varal de memórias' }));
+    await screen.findByRole('region', { name: /Varal de memórias de/ });
+    expect(router.state.location.search).toBe('?vista=varal');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Mês anterior' }));
+    await waitFor(() => expect(router.state.location.search).toBe(`?vista=varal&mes=${previous}`));
+
+    fireEvent.mouseDown(screen.getByRole('tab', { name: 'Calendário' }));
+    await screen.findByRole('table');
+    expect(router.state.location.search).toBe(`?mes=${previous}`);
+  });
+
+  it('varal sem registros no mês mostra o estado vazio, sem carrossel', async () => {
+    getRange.mockResolvedValue([]);
+    renderApp('/memorial?vista=varal');
+    expect(await screen.findByText('Nenhum perfume neste mês')).toBeVisible();
+    expect(screen.queryByRole('region', { name: /Varal de memórias de/ })).not.toBeInTheDocument();
+  });
+
   it('mês anterior e próximo: navega, guarda na URL e limita ao mês de hoje', async () => {
     const { router } = renderApp('/memorial');
     await screen.findByRole('table');

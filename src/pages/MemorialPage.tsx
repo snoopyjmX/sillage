@@ -1,11 +1,21 @@
-import { ArrowLeft, CalendarHeart, ChevronLeft, ChevronRight, Gift } from 'lucide-react';
+import {
+  ArrowLeft,
+  CalendarDays,
+  CalendarHeart,
+  ChevronLeft,
+  ChevronRight,
+  Gift,
+  Images,
+} from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { MemorialCalendar, MemorialCalendarSkeleton } from '@/components/daily/MemorialCalendar';
+import { MemorialLine, MemorialLineSkeleton } from '@/components/daily/MemorialLine';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/empty-state';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getErrorMessage } from '@/constants/errors';
 import { useDailyRange } from '@/hooks/useDailyRange';
 import { useProfileTimezone } from '@/hooks/useProfileTimezone';
@@ -14,9 +24,15 @@ import { formatCount, formatMonthYear } from '@/lib/format';
 import { yearOf } from '@/lib/recap';
 import { DEFAULT_TIMEZONE, todayInTimezone } from '@/lib/timezone';
 
+type MemorialView = 'calendario' | 'varal';
+
+const isView = (value: string): value is MemorialView =>
+  value === 'calendario' || value === 'varal';
+
 // Rota privada (RequireAuth). Calendário mensal do Perfume do Dia: cada dia com a miniatura do
 // perfume e o link para ele. O mês vem da URL (`?mes=AAAA-MM`), validado: inválido ou futuro volta
-// para o mês de hoje. As datas já são civis no fuso do perfil, sem conversão.
+// para o mês de hoje. A visão (`?vista=varal`) alterna o calendário e o varal de fotos; as duas
+// mostram o mesmo mês. As datas já são civis no fuso do perfil, sem conversão.
 export default function MemorialPage() {
   const [params, setParams] = useSearchParams();
   const timezone = useProfileTimezone();
@@ -31,7 +47,21 @@ export default function MemorialPage() {
   const isCurrent = month >= currentMonth;
   const entries = range.data ?? [];
   const label = formatMonthYear(from);
-  const goTo = (next: string) => setParams({ mes: next });
+  const viewParam = params.get('vista') ?? '';
+  const view: MemorialView = isView(viewParam) ? viewParam : 'calendario';
+  // Trocar o mês mantém a visão, e trocar a visão mantém o mês
+  const goTo = (next: string) => {
+    const merged = new URLSearchParams(params);
+    merged.set('mes', next);
+    setParams(merged);
+  };
+  const handleViewChange = (value: string) => {
+    if (!isView(value)) return;
+    const merged = new URLSearchParams(params);
+    if (value === 'calendario') merged.delete('vista');
+    else merged.set('vista', value);
+    setParams(merged, { replace: true });
+  };
 
   return (
     <>
@@ -102,36 +132,67 @@ export default function MemorialPage() {
           </Button>
         </nav>
 
-        <AsyncBoundary
-          status={ready ? range.status : 'pending'}
-          loading={<MemorialCalendarSkeleton />}
-          onRetry={() => void range.refetch()}
-          errorTitle="Não foi possível carregar o calendário"
-          errorDescription={getErrorMessage(range.error)}
-          offlineDescription="Conecte-se à internet para ver o calendário do memorial."
-        >
-          {today !== null && (
-            <div className="flex flex-col gap-4">
-              <MemorialCalendar month={month} today={today} entries={entries} />
-              {entries.length === 0 ? (
-                <EmptyState
-                  icon={CalendarHeart}
-                  title="Nenhum perfume neste mês"
-                  description="Os dias em que você veste um perfume aparecem aqui."
-                  action={
-                    <Button asChild variant="outline">
-                      <Link to="/catalog">Explorar o catálogo</Link>
-                    </Button>
-                  }
-                />
-              ) : (
-                <p className="text-sm text-muted-foreground">
-                  {formatCount(entries.length, 'dia registrado', 'dias registrados')} em {label}.
-                </p>
-              )}
-            </div>
-          )}
-        </AsyncBoundary>
+        <Tabs value={view} onValueChange={handleViewChange} className="gap-4">
+          <TabsList aria-label="Visão do memorial" className="sm:max-w-sm">
+            <TabsTrigger value="calendario">
+              <CalendarDays aria-hidden />
+              Calendário
+            </TabsTrigger>
+            <TabsTrigger value="varal">
+              <Images aria-hidden />
+              Varal de memórias
+            </TabsTrigger>
+          </TabsList>
+
+          {(['calendario', 'varal'] as const).map((tab) => (
+            <TabsContent key={tab} value={tab}>
+              <AsyncBoundary
+                status={ready ? range.status : 'pending'}
+                loading={tab === 'varal' ? <MemorialLineSkeleton /> : <MemorialCalendarSkeleton />}
+                onRetry={() => void range.refetch()}
+                errorTitle={
+                  tab === 'varal'
+                    ? 'Não foi possível carregar o varal'
+                    : 'Não foi possível carregar o calendário'
+                }
+                errorDescription={getErrorMessage(range.error)}
+                offlineDescription={
+                  tab === 'varal'
+                    ? 'Conecte-se à internet para ver o varal do memorial.'
+                    : 'Conecte-se à internet para ver o calendário do memorial.'
+                }
+              >
+                {today !== null && (
+                  <div className="flex flex-col gap-4">
+                    {tab === 'calendario' && (
+                      <MemorialCalendar month={month} today={today} entries={entries} />
+                    )}
+                    {tab === 'varal' && entries.length > 0 && (
+                      <MemorialLine entries={entries} monthLabel={label} />
+                    )}
+                    {entries.length === 0 ? (
+                      <EmptyState
+                        icon={CalendarHeart}
+                        title="Nenhum perfume neste mês"
+                        description="Os dias em que você veste um perfume aparecem aqui."
+                        action={
+                          <Button asChild variant="outline">
+                            <Link to="/catalog">Explorar o catálogo</Link>
+                          </Button>
+                        }
+                      />
+                    ) : (
+                      <p className="text-sm text-muted-foreground">
+                        {formatCount(entries.length, 'dia registrado', 'dias registrados')} em{' '}
+                        {label}.
+                      </p>
+                    )}
+                  </div>
+                )}
+              </AsyncBoundary>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </>
   );
