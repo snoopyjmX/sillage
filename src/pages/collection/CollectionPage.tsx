@@ -1,6 +1,5 @@
 import { Library } from 'lucide-react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { FormatBadge } from '@/components/collection/FormatBadge';
 import { PerfumeGridSkeleton } from '@/components/perfume/PerfumeCardSkeleton';
 import { PerfumeGrid } from '@/components/perfume/PerfumeGrid';
@@ -29,7 +28,10 @@ const CatalogLink = () => (
 
 // Rota privada (RequireAuth). Dois estados da RN02 em abas, com a contagem real de cada um.
 export default function CollectionPage() {
-  const [tab, setTab] = useState<CollectionStatus>('owned');
+  // A aba vive na URL (`?tab=wanted`): link do perfil, voltar e recarregar mantêm o estado
+  const [params, setParams] = useSearchParams();
+  const tabParam = params.get('tab') ?? '';
+  const tab: CollectionStatus = isStatus(tabParam) ? tabParam : 'owned';
   const collection = useCollection();
   const daily = useDaily();
   const wear = useWearToday();
@@ -40,7 +42,7 @@ export default function CollectionPage() {
   const loaded = collection.status === 'success';
 
   const handleTabChange = (value: string) => {
-    if (isStatus(value)) setTab(value);
+    if (isStatus(value)) setParams(value === 'owned' ? {} : { tab: value }, { replace: true });
   };
 
   // Só "Tenho" pode virar Perfume do Dia (RN06); "Quero" não recebe a ação

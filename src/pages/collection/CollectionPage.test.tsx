@@ -69,6 +69,30 @@ describe('CollectionPage', () => {
     expect(within(panel).getByRole('heading', { level: 2, name: 'Beta' })).toBeInTheDocument();
   });
 
+  it('?tab=wanted abre a aba Quero e trocar de aba atualiza a URL', async () => {
+    list.mockResolvedValue([entry('owned', 'a', 'Alfa'), entry('wanted', 'b', 'Beta')]);
+    const { router } = renderApp('/collection?tab=wanted');
+    expect(await screen.findByRole('tab', { name: 'Quero (1)' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
+    expect(screen.getByRole('heading', { level: 2, name: 'Beta' })).toBeInTheDocument();
+
+    fireEvent.mouseDown(screen.getByRole('tab', { name: 'Tenho (1)' }));
+    await waitFor(() => expect(router.state.location.search).toBe(''));
+    fireEvent.mouseDown(screen.getByRole('tab', { name: 'Quero (1)' }));
+    await waitFor(() => expect(router.state.location.search).toBe('?tab=wanted'));
+  });
+
+  it('?tab inválido cai na aba Tenho', async () => {
+    list.mockResolvedValue([entry('owned', 'a', 'Alfa')]);
+    renderApp('/collection?tab=outra');
+    expect(await screen.findByRole('tab', { name: 'Tenho (1)' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
+  });
+
   it('coleção vazia mostra o estado vazio com link para o catálogo', async () => {
     list.mockResolvedValue([]);
     renderApp('/collection');
