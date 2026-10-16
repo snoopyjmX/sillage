@@ -11,23 +11,25 @@ interface StatCardProps {
   hint: string;
 }
 
+// `dl > div > dt + dd` continua válido: o link fica dentro do `dt` e se estende por cima do cartão
+// inteiro (`after:absolute after:inset-0`), então o cartão todo é clicável.
 const StatCard = ({ label, to, value, hint }: StatCardProps) => (
-  <div>
-    <Link
-      to={to}
-      className="block h-full rounded-xl outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-    >
-      <Card className="h-full gap-1 p-4 shadow-subtle transition-colors hover:bg-accent">
-        <dt className="text-sm font-medium text-muted-foreground">{label}</dt>
-        <dd className="flex flex-col gap-1">
-          <span className="font-heading text-3xl leading-tight font-medium text-foreground">
-            {formatInteger(value)}
-          </span>
-          <span className="text-sm text-muted-foreground">{hint}</span>
-        </dd>
-      </Card>
-    </Link>
-  </div>
+  <Card className="relative gap-1 p-4 shadow-subtle transition-colors hover:bg-accent">
+    <dt className="text-sm font-medium text-muted-foreground">
+      <Link
+        to={to}
+        className="rounded-sm outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ring"
+      >
+        {label}
+      </Link>
+    </dt>
+    <dd className="flex flex-col gap-1">
+      <span className="font-heading text-3xl leading-tight font-medium text-foreground">
+        {formatInteger(value)}
+      </span>
+      <span className="text-sm text-muted-foreground">{hint}</span>
+    </dd>
+  </Card>
 );
 
 export function ProfileStatsSkeleton() {

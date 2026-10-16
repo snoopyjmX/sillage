@@ -46,7 +46,7 @@ const okReply = (route: Route) =>
   route.fulfill({ status: 200, headers: CORS, json: { text: ANSWER } });
 
 const openNez = async (page: Page) => {
-  await page.getByRole('button', { name: 'Nez' }).click();
+  await page.getByRole('button', { name: 'Abrir o Nez' }).click();
   const drawer = page.getByRole('dialog', { name: 'Nez, seu Mestre Perfumista' });
   await expect(drawer).toBeVisible();
   return drawer;
@@ -58,14 +58,14 @@ test.describe('Nez, o mestre perfumista', () => {
   }) => {
     await page.goto(URL);
     await expect(page).toHaveURL(/\/\?redirect=%2Fperfumes%2Fmalbec-signature$/);
-    await expect(page.getByRole('button', { name: 'Nez' })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Abrir o Nez' })).toHaveCount(0);
   });
 
   test('logado vê o botão do Nez nos detalhes', async ({ page }) => {
     await registerViaUi(page);
     await page.goto(URL);
     await expect(page.getByRole('heading', { level: 1, name: 'Malbec Signature' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Nez' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Abrir o Nez' })).toBeVisible();
   });
 
   test('abre o drawer, envia a pergunta com o perfume como contexto e mostra a resposta digitada', async ({
@@ -169,7 +169,7 @@ test.describe('Nez, o mestre perfumista', () => {
 
     await page.keyboard.press('Escape');
     await expect(drawer).toBeHidden();
-    await expect(page.getByRole('button', { name: 'Nez' })).toBeFocused();
+    await expect(page.getByRole('button', { name: 'Abrir o Nez' })).toBeFocused();
   });
 
   test('falha do servidor mostra mensagem amigável (nunca a crua) e tentar de novo funciona', async ({

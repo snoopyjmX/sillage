@@ -24,7 +24,7 @@ describe('ProfileStats', () => {
         <ProfileStats owned={1} wanted={0} memorialDays={1} />
       </MemoryRouter>
     );
-    expect(screen.getByRole('link', { name: /Tenho/ })).toHaveTextContent('1perfume');
-    expect(screen.getByRole('link', { name: /No memorial/ })).toHaveTextContent('1dia registrado');
+    expect(screen.getByText('perfume')).toBeInTheDocument();
+    expect(screen.getByText('dia registrado')).toBeInTheDocument();
   });
 });

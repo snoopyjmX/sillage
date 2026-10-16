@@ -61,8 +61,8 @@ const AUTO_TZ = 'Detectar fuso horário automaticamente';
 const item = (status: 'owned' | 'wanted') => ({ status });
 
 const statValue = (label: string): string => {
-  const term = screen.getByText(label, { selector: 'dt' });
-  return term.nextElementSibling?.firstElementChild?.textContent ?? '';
+  const term = screen.getByText(label, { selector: 'dt a' }).closest('dt');
+  return term?.nextElementSibling?.firstElementChild?.textContent ?? '';
 };
 
 describe('ProfilePage', () => {
@@ -151,7 +151,7 @@ describe('ProfilePage', () => {
       'href',
       '/catalog'
     );
-    expect(screen.queryByText('Tenho', { selector: 'dt' })).not.toBeInTheDocument();
+    expect(screen.queryByText('Tenho', { selector: 'dt a' })).not.toBeInTheDocument();
   });
 
   it('falha no resumo mostra mensagem amigável e tenta de novo, sem esconder o formulário', async () => {
