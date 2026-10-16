@@ -3,7 +3,7 @@
 // vários perfumes do catálogo, então a seção de similaridade tem conteúdo.
 import type { Page, Route } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
-import { axeViolations, registerViaUi } from './helpers.ts';
+import { axeViolations, registerViaUi, similarPerfumes } from './helpers.ts';
 
 const URL = '/perfumes/malbec-signature';
 const NEZ_ROUTE = '**/functions/v1/nez-ai';
@@ -212,15 +212,18 @@ test.describe('similaridade (RN09)', () => {
     await expect(section).toBeVisible();
 
     const list = section.getByRole('list', { name: 'Fragrâncias parecidas' });
-    const first = 'Essencial Único Masculino';
-    await expect(list.getByRole('heading', { level: 2, name: first })).toBeVisible();
+    // A lista é a do banco (get_similar_perfumes): o primeiro é o que a função devolve primeiro
+    const similar = similarPerfumes('malbec-signature');
+    const first = similar[0];
+    expect(first, 'o banco devolve parecidos').toBeDefined();
+    await expect(list.getByRole('heading', { level: 2, name: first?.name })).toBeVisible();
     await expect(list.getByRole('heading', { level: 2, name: 'Malbec Signature' })).toHaveCount(0);
 
-    // No seed, 7 perfumes dividem notas com o Malbec Signature; a lista mostra os 6 primeiros
-    await expect(list.getByRole('heading', { level: 2 })).toHaveCount(6);
+    // A página mostra no máximo 6 parecidos
+    await expect(list.getByRole('heading', { level: 2 })).toHaveCount(similar.length);
 
-    await list.getByRole('link', { name: new RegExp(first) }).click();
-    await expect(page).toHaveURL(/\/perfumes\/essencial-unico-masculino$/);
+    await list.getByRole('link', { name: first?.name ?? '' }).click();
+    await expect(page).toHaveURL(new RegExp(`/perfumes/${first?.slug}$`));
   });
 
   test('ordena por notas em comum e desempata pelo nome (da página do Boníssimo)', async ({
@@ -229,15 +232,10 @@ test.describe('similaridade (RN09)', () => {
     await page.goto('/perfumes/bonissimo');
     const list = page.getByRole('list', { name: 'Fragrâncias parecidas' });
     await expect(list.getByRole('heading', { level: 2 })).toHaveCount(6);
-    // Folha Imperial (4 notas em comum), Attar Al Wesal (3) e depois os de 2 e 1 em ordem alfabética
-    expect(await list.getByRole('heading', { level: 2 }).allTextContents()).toEqual([
-      'Folha Imperial',
-      'Attar Al Wesal',
-      'Bossa',
-      'Ekos Alma',
-      'Malbec Signature',
-      'Apoena',
-    ]);
+    // A ordem é a do banco: mais notas em comum primeiro, empate pelo nome
+    expect(await list.getByRole('heading', { level: 2 }).allTextContents()).toEqual(
+      similarPerfumes('bonissimo').map((perfume) => perfume.name)
+    );
   });
 });
 

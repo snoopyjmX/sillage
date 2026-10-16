@@ -3,7 +3,7 @@
 // patchouli, âmbar e vetiver). O seed não traz foto, então o hero usa o placeholder.
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
-import { axeViolations, cards, registerViaUi } from './helpers.ts';
+import { axeViolations, CATALOG_MALBEC, cards, registerViaUi } from './helpers.ts';
 
 // O gate libera estas rotas só para quem tem conta: cada teste entra antes de navegar.
 test.beforeEach(async ({ page }) => {
@@ -113,7 +113,7 @@ test.describe('detalhes do perfume', () => {
   test('a rota do card do catálogo abre os detalhes e o voltar leva ao catálogo', async ({
     page,
   }) => {
-    await page.goto('/catalog');
+    await page.goto(CATALOG_MALBEC);
     await page.getByRole('link', { name: /Malbec Signature/ }).click();
     await expect(page).toHaveURL(URL);
     await expect(page.getByRole('heading', { level: 1, name: 'Malbec Signature' })).toBeVisible();

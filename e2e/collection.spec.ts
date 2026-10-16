@@ -1,6 +1,13 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, stubOpenMeteo, test } from './fixtures.ts';
-import { axeViolations, cardTitle, cards, openNav, registerViaUi } from './helpers.ts';
+import {
+  axeViolations,
+  CATALOG_MALBEC,
+  cardTitle,
+  cards,
+  openNav,
+  registerViaUi,
+} from './helpers.ts';
 
 const THEME_KEY = 'sillage-theme';
 const NAME = 'Malbec Signature';
@@ -29,7 +36,7 @@ test.describe('coleção', () => {
     isMobile,
   }) => {
     await registerViaUi(page);
-    await page.goto('/catalog');
+    await page.goto(CATALOG_MALBEC);
     await choose(page, card(page), 'Quero');
 
     await expect(toggleIn(card(page))).toHaveText(/Quero/);
@@ -45,7 +52,7 @@ test.describe('coleção', () => {
     page,
   }) => {
     await registerViaUi(page);
-    await page.goto('/catalog');
+    await page.goto(CATALOG_MALBEC);
     await choose(page, card(page), 'Quero');
 
     await page.goto('/collection');
@@ -71,7 +78,7 @@ test.describe('coleção', () => {
     page,
   }) => {
     await registerViaUi(page);
-    await page.goto('/catalog');
+    await page.goto(CATALOG_MALBEC);
     await choose(page, card(page), 'Tenho');
 
     // D8: marcar "Tenho" não pede nada; o toast só oferece detalhar
@@ -118,7 +125,7 @@ test.describe('coleção', () => {
 
   test('formato (RN11): o diálogo de detalhar passa no axe', async ({ page }) => {
     await registerViaUi(page);
-    await page.goto('/catalog');
+    await page.goto(CATALOG_MALBEC);
     await choose(page, card(page), 'Tenho');
     await page.goto('/collection');
     await card(page)
@@ -156,7 +163,7 @@ test.describe('coleção', () => {
 
   test('a coleção de um usuário não aparece para outro (RLS)', async ({ page, browser }) => {
     await registerViaUi(page);
-    await page.goto('/catalog');
+    await page.goto(CATALOG_MALBEC);
     await choose(page, card(page), 'Tenho');
 
     // Contexto novo = outro navegador, sem a sessão do primeiro
@@ -182,8 +189,9 @@ for (const theme of ['light', 'dark'] as const) {
     test('abas Tenho e Quero com itens, e o menu do toggle aberto', async ({ page }) => {
       await page.setViewportSize({ width: 360, height: 780 });
       await registerViaUi(page);
-      await page.goto('/catalog');
+      await page.goto(CATALOG_MALBEC);
       await choose(page, card(page), 'Tenho');
+      await page.goto('/catalog?q=Bon%C3%ADssimo');
       await choose(page, card(page, 'Boníssimo'), 'Quero', 'Boníssimo');
 
       await page.goto('/collection');

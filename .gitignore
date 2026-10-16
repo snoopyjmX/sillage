@@ -180,3 +180,10 @@ stats.html
 
 # Relatórios do ingest em lote (quarentena e registro dos lotes)
 scripts/batch/
+
+# Vídeo promocional (subprojeto Remotion e binários)
+video/node_modules/
+video/out/
+video/public/
+video/*.mp3
+video/*.mp4

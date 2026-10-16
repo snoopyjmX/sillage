@@ -94,6 +94,93 @@ export const runSql = (sql: string): void => {
   );
 };
 
+// Lê SQL como dono do banco e devolve a saída pura (uma linha por resultado, sem cabeçalho)
+const querySql = (sql: string): string =>
+  execFileSync(
+    'docker',
+    [
+      'exec',
+      '-i',
+      DB_CONTAINER,
+      'psql',
+      '-U',
+      'postgres',
+      '-d',
+      'postgres',
+      '-At',
+      '-v',
+      'ON_ERROR_STOP=1',
+    ],
+    { input: sql, encoding: 'utf8' }
+  ).trim();
+
+export interface SimilarPerfume {
+  name: string;
+  slug: string;
+}
+
+// Fragrâncias parecidas de um perfume, como o banco as ordena (get_similar_perfumes é a regra RN09):
+// o teste compara a tela com esta lista, não com uma ordem copiada de um seed antigo
+export const similarPerfumes = (slug: string, limit = 6): SimilarPerfume[] =>
+  JSON.parse(
+    querySql(`
+    select coalesce(json_agg(json_build_object('name', s.name, 'slug', s.slug)), '[]')
+    from public.get_similar_perfumes((select id from public.perfumes where slug = '${slug}'), ${Number(limit)}) s`)
+  ) as SimilarPerfume[];
+
+// Fatos do catálogo lidos do banco, para os testes não fixarem números de um seed antigo. Cada
+// valor usa a mesma regra da busca (ver supabase/migrations/*search_perfumes*).
+// Tamanho da página do catálogo (src/schemas/catalogSearch.ts). Não importamos de src/ aqui porque
+// o tsconfig do E2E não resolve o alias '@/'.
+export const PAGE_SIZE = 24;
+
+// Malbec Signature não cabe mais na primeira página do catálogo (o seed cresceu): os testes que
+// precisam dele entram pela busca
+export const CATALOG_MALBEC = '/catalog?q=Malbec%20Signature';
+
+export interface CatalogFacts {
+  total: number;
+  brandNames: string[];
+  boticario: number;
+  granado: number;
+  bergamotTop: number;
+  bergamotTopCitrus: number;
+  bergamotHeart: number;
+  limaoAndBergamot: string[];
+  firstByName: string;
+}
+
+export const catalogFacts = (): CatalogFacts =>
+  JSON.parse(
+    querySql(`
+    select json_build_object(
+      'total', (select count(*) from public.perfumes),
+      'brandNames', (select coalesce(json_agg(b.name order by b.name), '[]') from public.brands b
+                     where exists (select 1 from public.perfumes p where p.brand_id = b.id)),
+      'boticario', (select count(*) from public.perfumes p join public.brands b on b.id = p.brand_id
+                    where b.name = 'O Boticário'),
+      'granado', (select count(*) from public.perfumes p join public.brands b on b.id = p.brand_id
+                  where b.name = 'Granado'),
+      'bergamotTop', (select count(*) from public.perfumes p where exists (
+                        select 1 from public.perfume_notes pn join public.notes n on n.id = pn.note_id
+                        where pn.perfume_id = p.id and n.slug = 'bergamota' and pn.position = 'top')),
+      'bergamotTopCitrus', (select count(*) from public.perfumes p where exists (
+                        select 1 from public.perfume_notes pn join public.notes n on n.id = pn.note_id
+                        where pn.perfume_id = p.id and n.slug = 'bergamota' and pn.position = 'top')
+                      and exists (select 1 from public.perfume_notes pn join public.notes n on n.id = pn.note_id
+                        where pn.perfume_id = p.id and n.family = 'citrus')),
+      'bergamotHeart', (select count(*) from public.perfumes p where exists (
+                        select 1 from public.perfume_notes pn join public.notes n on n.id = pn.note_id
+                        where pn.perfume_id = p.id and n.slug = 'bergamota' and pn.position = 'heart')),
+      'limaoAndBergamot', (select coalesce(json_agg(p.name order by p.name), '[]') from public.perfumes p
+                  where exists (select 1 from public.perfume_notes pn join public.notes n on n.id = pn.note_id
+                        where pn.perfume_id = p.id and n.slug = 'limao-siciliano')
+                    and exists (select 1 from public.perfume_notes pn join public.notes n on n.id = pn.note_id
+                        where pn.perfume_id = p.id and n.slug = 'bergamota')),
+      'firstByName', (select p.name from public.perfumes p order by p.search_name asc limit 1)
+    )`)
+  ) as CatalogFacts;
+
 export const seedDaily = (email: string, entries: DailySeed[]): void => {
   const values = entries
     .map(

@@ -1,6 +1,9 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
-import { cards, registerViaUi } from './helpers.ts';
+import { cards, catalogFacts, PAGE_SIZE, registerViaUi } from './helpers.ts';
+
+const facts = catalogFacts();
+const FIRST_PAGE = Math.min(facts.total, PAGE_SIZE);
 
 // O gate libera estas rotas só para quem tem conta: cada teste entra antes de navegar.
 test.beforeEach(async ({ page }) => {
@@ -25,7 +28,7 @@ const tabUntil = async (page: Page, predicate: string): Promise<boolean> => {
 test.describe('teclado', () => {
   test('Tab alcança os filtros e os cards', async ({ page, isMobile }) => {
     await page.goto('/catalog');
-    await expect(cards(page)).toHaveCount(20);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
 
     // Filtros: no desktop, um chip dentro do painel; no celular, o botão que abre a gaveta
     const filterTarget = isMobile
@@ -62,7 +65,7 @@ test.describe('teclado', () => {
   test('Esc fecha a gaveta de filtros e devolve o foco ao botão', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'A gaveta só existe no celular; no desktop os filtros são um painel fixo');
     await page.goto('/catalog');
-    await expect(cards(page)).toHaveCount(20);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
 
     const trigger = page.getByRole('button', { name: /^Filtros/ });
     await trigger.focus();
@@ -81,7 +84,7 @@ test.describe('teclado', () => {
   }) => {
     test.skip(!isMobile, 'Só o celular tem a gaveta de filtros');
     await page.goto('/catalog');
-    await expect(cards(page)).toHaveCount(20);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
     const blur = () =>
       page.evaluate(() => {
         const bar = document.querySelector('header.glass-bar');
