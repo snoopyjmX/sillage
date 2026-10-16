@@ -291,6 +291,16 @@ describe('página de detalhes do perfume', () => {
     });
   });
 
+  it('"Perguntar ao Nez" abre o drawer com a pergunta no campo, sem enviar', async () => {
+    getBySlug.mockResolvedValue(detail);
+    renderApp('/perfumes/malbec-signature');
+    fireEvent.click(await screen.findByRole('button', { name: 'Perguntar ao Nez' }));
+    const dialog = await screen.findByRole('dialog', { name: /Nez/ });
+    expect(await within(dialog).findByRole('textbox')).toHaveValue(
+      'Quando e como usar Malbec Signature, de O Boticário?'
+    );
+  });
+
   describe('Comparar com… (Fase 18B)', () => {
     const bossa = {
       id: 'p2',

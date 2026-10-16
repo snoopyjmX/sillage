@@ -1,4 +1,4 @@
-import { ArrowLeft, Feather, Scale, SearchX } from 'lucide-react';
+import { ArrowLeft, Feather, Scale, SearchX, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
@@ -22,7 +22,7 @@ import { Chip } from '@/components/ui/chip';
 import { EmptyState } from '@/components/ui/empty-state';
 import { AppError, getErrorMessage } from '@/constants/errors';
 import { CONCENTRATION_LABELS, FAMILIES, GENDER_LABELS } from '@/constants/labels';
-import { useNezPerfumeContext } from '@/hooks/useNez';
+import { useNez, useNezPerfumeContext } from '@/hooks/useNez';
 import { usePerfumeDetail } from '@/hooks/usePerfumes';
 import { buildPerfumeContext } from '@/lib/nez';
 import { toPerfumeSummary } from '@/lib/perfume';
@@ -125,6 +125,13 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
   useNezPerfumeContext(buildPerfumeContext(perfume));
   const navigate = useNavigate();
   const [comparing, setComparing] = useState(false);
+  const { setOpen: setNezOpen, setDraft: setNezDraft } = useNez();
+
+  // O Nez já recebe o perfume como contexto: só deixa a pergunta pronta no campo
+  const handleAskNez = () => {
+    setNezDraft(`Quando e como usar ${perfume.name}, de ${perfume.brandName}?`);
+    setNezOpen(true);
+  };
 
   return (
     <>
@@ -171,6 +178,10 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
             <Button variant="outline" onClick={() => setComparing(true)}>
               <Scale aria-hidden />
               Comparar com…
+            </Button>
+            <Button variant="outline" onClick={handleAskNez}>
+              <Sparkles aria-hidden />
+              Perguntar ao Nez
             </Button>
           </div>
           <div className="md:max-w-72">
