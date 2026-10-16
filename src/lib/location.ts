@@ -30,6 +30,13 @@ export const cityDisplayFromTimezone = (timezone: string): string | null => {
   return CITY_DISPLAY_NAMES[segment] ?? city;
 };
 
+// Rótulo do clima quando o nome do local do aparelho não veio: a cidade do fuso, avisando que é
+// aproximada ("Região de São Paulo"). Fuso sem cidade (UTC) não resolve.
+export const approximateCityLabel = (timezone: string): string | null => {
+  const city = cityDisplayFromTimezone(timezone);
+  return city === null ? null : `Região de ${city}`;
+};
+
 // Entre os resultados do geocoding, só vale o que tem o mesmo fuso do perfil (evita homônimos)
 export const pickGeocodingResult = (
   results: readonly GeocodingResult[],

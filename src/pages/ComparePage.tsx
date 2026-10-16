@@ -9,6 +9,7 @@ import { PerfumeStage } from '@/components/perfume/PerfumeStage';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
+import { BrandLink } from '@/components/perfume/BrandLink';
 import { Chip } from '@/components/ui/chip';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getErrorMessage } from '@/constants/errors';
@@ -76,7 +77,7 @@ function PerfumeHeader({
         />
       </PerfumeStage>
       <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
-        {perfume.brandName}
+        <BrandLink brandName={perfume.brandName} brandSlug={perfume.brandSlug} />
       </p>
       <h2 className="font-heading text-xl leading-tight font-medium">{perfume.name}</h2>
       <div>

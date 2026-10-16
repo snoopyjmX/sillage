@@ -783,6 +783,7 @@ As regras de segurança e de negócio são testadas **no banco** (pgTAP) e por i
 - **Catálogo:** abrir, buscar sem acento, filtrar por nota, por posição, combinar filtros, URL restaurando o estado, abrir detalhes, slug inexistente no 404.
 
 - **Coleção:** adicionar como Quero, como Tenho, alternar nos dois sentidos, remover; contagem de linhas permanece 1.
+- **Resiliência do clima e UX de navegação (Fase 25):** geocodificação reversa com 1 nova tentativa e coordenadas arredondadas; se falhar, a cidade do fuso entra como "Região de ..." (nunca como nome exato) e, sem cidade no fuso, vale "Sua localização"; marca e famílias da pirâmide e do comparador levam ao catálogo filtrado (`?brands=`, `?families=`); cartões do perfil levam a `/collection`, `/collection?tab=wanted` e `/memorial`; `?tab=` da coleção (inválido cai em Tenho) e busca em memória por nome e marca, sem acento, com estado "nenhum resultado"; "Perguntar ao Nez" só preenche o campo, sem enviar; Memorial com `?vista=varal` (preserva `?mes=`), varal ordenado do mais antigo ao mais recente, teclado, botões Anterior/Próximo e vazio sem carrossel.
 
 - **Memorial em calendário (19):** `dailyService.getRange(from, to)` traz o intervalo com as duas pontas incluídas, do mais antigo ao mais novo, só do dono (RLS); mês sem registro, mês inválido ou futuro na URL, virada de mês e de ano, fevereiro bissexto, semana de domingo a sábado; um usuário não vê o calendário de outro; sem rolagem horizontal a 360 px, células de pelo menos 43 px de lado e axe em 2 temas e 2 viewports.
 

@@ -114,7 +114,7 @@ test.describe('offline', () => {
     await expect(page.getByRole('button', { name: 'Avaliar fragrância' })).toBeEnabled();
     await context.setOffline(true);
     await expect(page.getByRole('button', { name: 'Avaliar fragrância' })).toBeDisabled();
-    await expect(page.getByRole('button', { name: 'Nez' })).toHaveAttribute(
+    await expect(page.getByRole('button', { name: 'Abrir o Nez' })).toHaveAttribute(
       'aria-disabled',
       'true'
     );

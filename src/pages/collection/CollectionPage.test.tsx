@@ -69,6 +69,56 @@ describe('CollectionPage', () => {
     expect(within(panel).getByRole('heading', { level: 2, name: 'Beta' })).toBeInTheDocument();
   });
 
+  it('?tab=wanted abre a aba Quero e trocar de aba atualiza a URL', async () => {
+    list.mockResolvedValue([entry('owned', 'a', 'Alfa'), entry('wanted', 'b', 'Beta')]);
+    const { router } = renderApp('/collection?tab=wanted');
+    expect(await screen.findByRole('tab', { name: 'Quero (1)' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
+    expect(screen.getByRole('heading', { level: 2, name: 'Beta' })).toBeInTheDocument();
+
+    fireEvent.mouseDown(screen.getByRole('tab', { name: 'Tenho (1)' }));
+    await waitFor(() => expect(router.state.location.search).toBe(''));
+    fireEvent.mouseDown(screen.getByRole('tab', { name: 'Quero (1)' }));
+    await waitFor(() => expect(router.state.location.search).toBe('?tab=wanted'));
+  });
+
+  it('?tab inválido cai na aba Tenho', async () => {
+    list.mockResolvedValue([entry('owned', 'a', 'Alfa')]);
+    renderApp('/collection?tab=outra');
+    expect(await screen.findByRole('tab', { name: 'Tenho (1)' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
+  });
+
+  it('busca por nome ou marca, sem acento, e limpa pelo estado sem resultado', async () => {
+    list.mockResolvedValue([entry('owned', 'a', 'Lírio Essencial'), entry('owned', 'b', 'Malbec')]);
+    renderApp('/collection');
+    const search = await screen.findByRole('searchbox', {
+      name: 'Buscar na coleção por nome ou marca',
+    });
+    fireEvent.change(search, { target: { value: 'lirio' } });
+    expect(screen.getByRole('heading', { level: 2, name: 'Lírio Essencial' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: 'Malbec' })).not.toBeInTheDocument();
+    // A contagem da aba segue sendo a da coleção inteira
+    expect(screen.getByRole('tab', { name: 'Tenho (2)' })).toBeInTheDocument();
+
+    fireEvent.change(search, { target: { value: 'zzz' } });
+    expect(screen.getByText('Nenhum resultado')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Limpar busca' }));
+    expect(search).toHaveValue('');
+    expect(screen.getByRole('heading', { level: 2, name: 'Malbec' })).toBeInTheDocument();
+  });
+
+  it('coleção vazia não mostra o campo de busca', async () => {
+    list.mockResolvedValue([]);
+    renderApp('/collection');
+    expect(await screen.findByText('Sua coleção está vazia')).toBeInTheDocument();
+    expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
+  });
+
   it('coleção vazia mostra o estado vazio com link para o catálogo', async () => {
     list.mockResolvedValue([]);
     renderApp('/collection');

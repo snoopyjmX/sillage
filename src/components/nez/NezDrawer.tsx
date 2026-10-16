@@ -43,7 +43,7 @@ function NezLoading() {
 // Drawer lateral do Nez: conversa da sessão (perguntas e respostas), com o perfume em foco como
 // contexto. Só a resposta mais recente é digitada; as anteriores aparecem prontas.
 export function NezDrawer() {
-  const { open, setOpen, perfumeContext } = useNez();
+  const { open, setOpen, perfumeContext, draft } = useNez();
   const ask = useAskNez();
   const [question, setQuestion] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -54,6 +54,16 @@ export function NezDrawer() {
   const nextId = useRef(0);
   const scroller = useRef<HTMLDivElement>(null);
   const inputId = useId();
+  // Rascunho já aplicado ao campo. Ajuste de estado durante a renderização, sem efeito: um
+  // rascunho novo ("Perguntar ao Nez") vai para o campo para o usuário revisar; nunca é enviado.
+  const [appliedDraft, setAppliedDraft] = useState(draft);
+  if (draft !== appliedDraft) {
+    setAppliedDraft(draft);
+    if (draft !== null) {
+      setQuestion(draft.text);
+      setView('chat');
+    }
+  }
   const trimmed = question.trim();
 
   const newMessage = (role: NezMessage['role'], text: string): ChatMessage => ({

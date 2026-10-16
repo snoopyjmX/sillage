@@ -1,4 +1,4 @@
-import { ArrowLeft, Feather, Scale, SearchX } from 'lucide-react';
+import { ArrowLeft, Feather, Scale, SearchX, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CollectionToggle } from '@/components/collection/CollectionToggle';
@@ -17,11 +17,12 @@ import { PerfumeStage } from '@/components/perfume/PerfumeStage';
 import { SeoHead } from '@/components/seo/SeoHead';
 import { AsyncBoundary } from '@/components/ui/async-boundary';
 import { Button } from '@/components/ui/button';
+import { BrandLink } from '@/components/perfume/BrandLink';
 import { Chip } from '@/components/ui/chip';
 import { EmptyState } from '@/components/ui/empty-state';
 import { AppError, getErrorMessage } from '@/constants/errors';
 import { CONCENTRATION_LABELS, FAMILIES, GENDER_LABELS } from '@/constants/labels';
-import { useNezPerfumeContext } from '@/hooks/useNez';
+import { useNez, useNezPerfumeContext } from '@/hooks/useNez';
 import { usePerfumeDetail } from '@/hooks/usePerfumes';
 import { buildPerfumeContext } from '@/lib/nez';
 import { toPerfumeSummary } from '@/lib/perfume';
@@ -124,6 +125,13 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
   useNezPerfumeContext(buildPerfumeContext(perfume));
   const navigate = useNavigate();
   const [comparing, setComparing] = useState(false);
+  const { setOpen: setNezOpen, setDraft: setNezDraft } = useNez();
+
+  // O Nez já recebe o perfume como contexto: só deixa a pergunta pronta no campo
+  const handleAskNez = () => {
+    setNezDraft({ text: `Quando e como usar ${perfume.name}, de ${perfume.brandName}?` });
+    setNezOpen(true);
+  };
 
   return (
     <>
@@ -134,7 +142,7 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
 
         <div className="flex flex-col gap-3">
           <p className="text-sm font-medium tracking-wider text-muted-foreground uppercase">
-            {perfume.brandName}
+            <BrandLink brandName={perfume.brandName} brandSlug={perfume.brandSlug} />
           </p>
           <h1 className="font-heading text-3xl leading-tight font-medium md:text-5xl">
             {perfume.name}
@@ -170,6 +178,10 @@ function PerfumeDetails({ perfume }: { perfume: PerfumeDetail }) {
             <Button variant="outline" onClick={() => setComparing(true)}>
               <Scale aria-hidden />
               Comparar com…
+            </Button>
+            <Button variant="outline" onClick={handleAskNez}>
+              <Sparkles aria-hidden />
+              Perguntar ao Nez
             </Button>
           </div>
           <div className="md:max-w-72">
