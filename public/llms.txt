@@ -1,0 +1,26 @@
+# Sillage — Enciclopédia Olfativa e Acervo Pessoal
+
+> Sillage (lê-se "sii-áj") é uma Progressive Web App (PWA) mobile-first em português (pt-BR) dedicada à perfumaria de nicho e autoral. Reúne catálogo com pirâmide olfativa interativa, acervo pessoal (Tenho/Quero com formatos e volumes), curadoria climática em tempo real para o Perfume do Dia, diário olfativo (Memorial em calendário e varal) e consultoria guiada com IA.
+
+## Páginas Públicas
+
+- [/](https://sillage-website-v1.vercel.app/): Landing page para visitantes, apresentando a proposta do produto, como funciona a enciclopédia olfativa e atalhos para cadastro e login.
+- [/login](https://sillage-website-v1.vercel.app/login): Acesso à conta por e-mail e senha ou biometria nativa do aparelho via Passkeys (WebAuthn / Face ID / Digital).
+- [/register](https://sillage-website-v1.vercel.app/register): Criação de conta imediata com medidor de força de senha.
+- [/forgot-password](https://sillage-website-v1.vercel.app/forgot-password): Recuperação de senha via e-mail.
+
+## Recursos Principais do Produto (Acesso Autenticado)
+
+- **Catálogo & Pirâmide Olfativa:** Busca rápida tolerante a erros e acentos (PostgreSQL `pg_trgm` + `unaccent`), filtros por família olfativa, notas, concentração e páginas de perfumistas autorais ("Os Narizes").
+- **Afinidade ("Combina com você?"):** Heurística que cruza as notas do perfume com o DNA Olfativo do usuário, sugerindo afinidade alta, média ou baixa sem expor porcentagens artificiais.
+- **Comparador Lado a Lado:** Comparação direta de duas fragrâncias (pirâmide, famílias, projeção e adequação ao clima).
+- **Curadoria Climática & Perfume do Dia (SOTD):** Integração com Open-Meteo para sugerir a fragrância ideal para a temperatura da sua cidade, com geração de card 9:16 compartilhável.
+- **Memorial & Retrospectiva:** Registro dos perfumes vestidos ao longo do ano em calendário civil ou varal de fotografias com física de catenária, acompanhado de retrospectiva anual ("Seu Ano em Perfumes").
+- **Consultor Olfativo Nez (IA):** Assistente com Google Gemini via Supabase Edge Functions que analisa clima, ocasião e preferências reais do usuário, recomendando exclusivamente perfumes existentes no catálogo (zero alucinação).
+
+## Arquitetura & Engenharia
+
+- **Frontend:** React 19, TypeScript strict, Vite, Tailwind CSS (100% tokens, zero cores soltas, WCAG AA) e animações físicas via Motion.
+- **Backend & Dados:** Supabase, PostgreSQL com Row Level Security (RLS) estrita (`auth.uid()`), funções PL/pgSQL transacionais e testes automatizados via pgTAP.
+- **Offline & Cache:** PWA Workbox com precache do shell e cache segregado (dados públicos em IndexedDB vs dados privados exclusivamente em memória RAM, limpos no logout).
+
