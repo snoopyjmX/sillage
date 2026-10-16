@@ -2,7 +2,10 @@
 // Dados reais do seed: 20 perfumes de 6 marcas (catálogo real, Fase 12).
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
-import { cards, registerViaUi } from './helpers.ts';
+import { cards, catalogFacts, PAGE_SIZE, registerViaUi } from './helpers.ts';
+
+const facts = catalogFacts();
+const FIRST_PAGE = Math.min(facts.total, PAGE_SIZE);
 
 const BANNER = 'Você está navegando offline. O catálogo salvo continua disponível.';
 const PERSIST_KEY = 'sillage-query-cache';
@@ -70,7 +73,7 @@ test.describe('offline', () => {
   }) => {
     await registerViaUi(page);
     await installServiceWorker(page);
-    await expect(cards(page)).toHaveCount(20);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
     // O cache persistido é gravado com atraso (throttle): espera aparecer no IndexedDB
     await expect.poll(() => readPersisted(page), { timeout: 10_000 }).toContain('"public"');
 
@@ -78,8 +81,8 @@ test.describe('offline', () => {
     await page.reload();
 
     await expect(page.getByText(BANNER)).toBeVisible();
-    await expect(cards(page)).toHaveCount(20);
-    await expect(page.getByRole('heading', { level: 2, name: 'Malbec Signature' })).toBeVisible();
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
+    await expect(cards(page).first().getByRole('heading', { level: 2 })).toBeVisible();
   });
 
   test('o banner aparece ao perder a conexão e some ao voltar', async ({ page, context }) => {
@@ -99,7 +102,7 @@ test.describe('offline', () => {
   }) => {
     await registerViaUi(page);
     await page.goto('/catalog');
-    await expect(cards(page)).toHaveCount(20);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
     const toggle = cards(page)
       .first()
       .getByRole('button', { name: /Adicionar à Coleção|Tenho|Quero/ });
@@ -133,7 +136,7 @@ test.describe('offline', () => {
     const email = await registerViaUi(page);
     await page.goto('/collection');
     await page.goto('/catalog');
-    await expect(cards(page)).toHaveCount(20);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
     await expect.poll(() => readPersisted(page), { timeout: 10_000 }).toContain('"public"');
 
     const raw = (await readPersisted(page)) ?? '';
@@ -149,7 +152,7 @@ test.describe('offline', () => {
   }) => {
     await registerViaUi(page);
     await installServiceWorker(page);
-    await expect(cards(page)).toHaveCount(20);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
     await expect.poll(() => readPersisted(page), { timeout: 10_000 }).toContain('"public"');
 
     await page.goto('/profile');

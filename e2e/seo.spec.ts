@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
-import { registerViaUi } from './helpers.ts';
+import { CATALOG_MALBEC, registerViaUi } from './helpers.ts';
 
 // O gate libera estas rotas só para quem tem conta: cada teste entra antes de navegar.
 test.beforeEach(async ({ page }) => {
@@ -34,7 +34,7 @@ test.describe('seo', () => {
   });
 
   test('navegação no cliente atualiza os metadados sem recarregar', async ({ page }) => {
-    await page.goto('/catalog');
+    await page.goto(CATALOG_MALBEC);
     await expect(ogTitle(page)).toHaveAttribute('content', 'Catálogo — Sillage');
     await page
       .getByRole('link', { name: /Malbec Signature/ })

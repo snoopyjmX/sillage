@@ -1,7 +1,10 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures.ts';
-import { cards, openFilters, registerViaUi } from './helpers.ts';
+import { catalogFacts, cards, openFilters, PAGE_SIZE, registerViaUi } from './helpers.ts';
+
+const facts = catalogFacts();
+const FIRST_PAGE = Math.min(facts.total, PAGE_SIZE);
 
 // O gate libera estas rotas só para quem tem conta: cada teste entra antes de navegar.
 test.beforeEach(async ({ page }) => {
@@ -35,14 +38,14 @@ for (const theme of THEMES) {
 
     test('catálogo com resultados', async ({ page }) => {
       await page.goto('/catalog');
-      await expect(cards(page)).toHaveCount(20);
+      await expect(cards(page)).toHaveCount(FIRST_PAGE);
       await expect(page.locator('html')).toHaveClass(theme === 'dark' ? /dark/ : /^(?!.*dark)/);
       expect(await scan(page)).toEqual([]);
     });
 
     test('gaveta de filtros aberta, com notas e posição', async ({ page }) => {
       await page.goto('/catalog?notes=bergamota&pos=top');
-      await expect(cards(page)).toHaveCount(6);
+      await expect(cards(page)).toHaveCount(facts.bergamotTop);
       const filters = await openFilters(page, true);
       await filters.getByRole('combobox', { name: 'Buscar nota' }).focus();
       await expect(filters.getByRole('listbox')).toBeVisible();
@@ -69,7 +72,7 @@ test('axe no desktop (1280 px) com o painel lateral de filtros', async ({ page, 
   test.skip(isMobile, 'O painel lateral só existe em telas largas');
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/catalog?notes=bergamota&pos=top');
-  await expect(cards(page)).toHaveCount(6);
+  await expect(cards(page)).toHaveCount(facts.bergamotTop);
   await expect(page.getByRole('complementary', { name: 'Filtros' })).toBeVisible();
   expect(await scan(page)).toEqual([]);
 });

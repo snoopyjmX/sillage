@@ -1,9 +1,11 @@
-// Dados reais do seed (supabase/seed.sql): 20 perfumes de 6 marcas (Granado, Natura, O Boticário,
-// Avatim, Al Wataniah e Phytoderm). Bergamota só aparece no topo, em 6 perfumes, e nunca no coração.
+// Os números vêm do banco local (catalogFacts), não de um seed fixo: o seed cresce e os testes
+// acompanham. Só os nomes que o teste usa de propósito (Malbec, Bossa, Boníssimo) ficam fixos.
 import { expect, test } from './fixtures.ts';
 import {
   cardTitle,
   cards,
+  catalogFacts,
+  PAGE_SIZE,
   closeFilters,
   openFilters,
   openNav,
@@ -19,8 +21,9 @@ test.beforeEach(async ({ page }) => {
 const MALBEC = 'Malbec Signature';
 const BOSSA = 'Bossa';
 const BONISSIMO = 'Boníssimo';
-const SEED_TOTAL = 20;
-const BERGAMOT_TOP = 6;
+const facts = catalogFacts();
+// Primeira página sem filtro: o total ou o tamanho da página, o que for menor
+const FIRST_PAGE = Math.min(facts.total, PAGE_SIZE);
 
 test.describe('catálogo', () => {
   test('a página tem título (<title> do React 19)', async ({ page }) => {
@@ -30,10 +33,10 @@ test.describe('catálogo', () => {
     await expect(page).toHaveTitle('Catálogo — Sillage');
   });
 
-  test('sem filtros lista os 20 perfumes do seed', async ({ page }) => {
+  test('sem filtros lista a primeira página e informa o total do banco', async ({ page }) => {
     await page.goto('/catalog');
-    await expect(cards(page)).toHaveCount(SEED_TOTAL);
-    await expect(page.getByText(`${SEED_TOTAL} perfumes`)).toBeVisible();
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
+    await expect(page.getByText(`${facts.total} perfumes`)).toBeVisible();
   });
 
   test('buscar "boticario" (sem acento) encontra só os perfumes d\'O Boticário', async ({
@@ -41,23 +44,23 @@ test.describe('catálogo', () => {
   }) => {
     await page.goto('/catalog');
     await page.getByRole('searchbox', { name: 'Buscar perfumes ou marcas' }).fill('boticario');
-    await expect(cards(page)).toHaveCount(4);
+    await expect(cards(page)).toHaveCount(facts.boticario);
     await expect(cardTitle(page, MALBEC)).toBeVisible();
     await expect(cardTitle(page, BOSSA)).toHaveCount(0);
     await expect(page).toHaveURL(/q=boticario/);
   });
 
-  test('nota bergamota + posição topo = os 6 perfumes com bergamota no topo', async ({
+  test('nota bergamota + posição topo = os perfumes com bergamota no topo', async ({
     page,
     isMobile,
   }) => {
     await page.goto('/catalog');
     const filters = await openFilters(page, isMobile);
-    await pickNote(filters, 'berg', /Bergamota/);
+    await pickNote(filters, 'berg', /^Bergamota \(/);
     await filters.getByRole('button', { name: 'Topo' }).click();
     await closeFilters(page, isMobile);
 
-    await expect(cards(page)).toHaveCount(BERGAMOT_TOP);
+    await expect(cards(page)).toHaveCount(facts.bergamotTop);
     await expect(cardTitle(page, MALBEC)).toBeVisible();
     await expect(cardTitle(page, BOSSA)).toBeVisible();
     await expect(cardTitle(page, BONISSIMO)).toHaveCount(0);
@@ -65,33 +68,39 @@ test.describe('catálogo', () => {
     await expect(page).toHaveURL(/pos=top/);
   });
 
-  test('limão-siciliano + bergamota (AND) = só a Bossa', async ({ page, isMobile }) => {
+  test('limão-siciliano + bergamota (AND) = só os perfumes com as duas notas', async ({
+    page,
+    isMobile,
+  }) => {
     await page.goto('/catalog');
     const filters = await openFilters(page, isMobile);
-    await pickNote(filters, 'limão', /^Limão-siciliano/);
-    await pickNote(filters, 'berg', /Bergamota/);
+    await pickNote(filters, 'limão', /^Limão Siciliano \(/);
+    await pickNote(filters, 'berg', /^Bergamota \(/);
     await closeFilters(page, isMobile);
 
-    await expect(cards(page)).toHaveCount(1);
-    await expect(cardTitle(page, BOSSA)).toBeVisible();
+    await expect(cards(page)).toHaveCount(facts.limaoAndBergamot.length);
+    for (const name of facts.limaoAndBergamot) {
+      await expect(cardTitle(page, name)).toBeVisible();
+    }
+    await expect(cardTitle(page, BONISSIMO)).toHaveCount(0);
   });
 
-  test('o filtro de marca lista as 6 marcas do banco e filtra os perfumes reais', async ({
+  test('o filtro de marca lista as marcas do banco e filtra os perfumes reais', async ({
     page,
     isMobile,
   }) => {
     await page.goto('/catalog');
     const filters = await openFilters(page, isMobile);
     const brands = filters.getByRole('group', { name: 'Marca', exact: true });
-    for (const name of ['Al Wataniah', 'Avatim', 'Granado', 'Natura', 'O Boticário', 'Phytoderm']) {
+    for (const name of facts.brandNames) {
       await expect(brands.getByRole('button', { name, exact: true })).toBeVisible();
     }
-    await expect(brands.getByRole('button')).toHaveCount(6);
+    await expect(brands.getByRole('button')).toHaveCount(facts.brandNames.length);
 
     await brands.getByRole('button', { name: 'Granado', exact: true }).click();
     await closeFilters(page, isMobile);
 
-    await expect(cards(page)).toHaveCount(3);
+    await expect(cards(page)).toHaveCount(facts.granado);
     await expect(cardTitle(page, BOSSA)).toBeVisible();
     await expect(cardTitle(page, MALBEC)).toHaveCount(0);
     await expect(page).toHaveURL(/brands=granado/);
@@ -103,15 +112,17 @@ test.describe('catálogo', () => {
   }) => {
     await page.goto('/catalog');
     const filters = await openFilters(page, isMobile);
-    await pickNote(filters, 'berg', /Bergamota/);
+    await pickNote(filters, 'berg', /^Bergamota \(/);
     await filters.getByRole('button', { name: 'Coração' }).click();
     await closeFilters(page, isMobile);
 
+    // Pré-condição do cenário: nenhum perfume tem bergamota no coração
+    expect(facts.bergamotHeart).toBe(0);
     await expect(page.getByRole('heading', { name: 'Nenhum perfume encontrado' })).toBeVisible();
     await expect(cards(page)).toHaveCount(0);
 
     await page.getByRole('button', { name: 'Limpar filtros' }).first().click();
-    await expect(cards(page)).toHaveCount(SEED_TOTAL);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
   });
 
   test('recarregar uma URL com filtros restaura o painel e os resultados', async ({
@@ -121,7 +132,7 @@ test.describe('catálogo', () => {
     await page.goto('/catalog?notes=bergamota&pos=top&families=citrus');
 
     const check = async () => {
-      await expect(cards(page)).toHaveCount(BERGAMOT_TOP);
+      await expect(cards(page)).toHaveCount(facts.bergamotTopCitrus);
       await expect(
         page.getByRole('button', { name: 'Remover filtro: Nota: Bergamota' })
       ).toBeVisible();
@@ -158,7 +169,7 @@ test.describe('catálogo', () => {
 
   test('valores inválidos na URL caem nos padrões sem quebrar', async ({ page }) => {
     await page.goto('/catalog?sort=zzz&page=-3&notes=..%2Fetc&families=bogus&ymin=abc');
-    await expect(cards(page)).toHaveCount(SEED_TOTAL);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
     await expect(page.getByLabel('Ordenar por')).toHaveValue('newest');
   });
 
@@ -166,7 +177,7 @@ test.describe('catálogo', () => {
     await page.goto('/catalog?page=9');
     await expect(page.getByRole('heading', { name: 'Essa página não existe' })).toBeVisible();
     await page.getByRole('button', { name: 'Ir para a página 1' }).click();
-    await expect(cards(page)).toHaveCount(SEED_TOTAL);
+    await expect(cards(page)).toHaveCount(FIRST_PAGE);
     await expect(page).not.toHaveURL(/page=/);
   });
 
@@ -174,7 +185,10 @@ test.describe('catálogo', () => {
     await page.goto('/catalog');
     await page.getByLabel('Ordenar por').selectOption('name_asc');
     await expect(page).toHaveURL(/sort=name_asc/);
-    await expect(cards(page).first().getByRole('heading', { level: 2 })).toHaveText('Apoena');
+    // A ordenação usa search_name (sem acento): o primeiro é o mesmo que o banco ordena primeiro
+    await expect(cards(page).first().getByRole('heading', { level: 2 })).toHaveText(
+      facts.firstByName
+    );
   });
 
   test('rota desconhecida mostra o 404 amigável', async ({ page }) => {
