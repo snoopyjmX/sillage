@@ -52,7 +52,7 @@ export function MemorialLineSkeleton() {
       className="flex gap-4 overflow-hidden px-4 pt-6"
     >
       {Array.from({ length: 5 }, (_, index) => (
-        <Skeleton key={index} className="h-64 w-44 shrink-0 rounded-md sm:w-52" />
+        <Skeleton key={index} className="h-72 w-44 shrink-0 rounded-md sm:w-52" />
       ))}
     </div>
   );

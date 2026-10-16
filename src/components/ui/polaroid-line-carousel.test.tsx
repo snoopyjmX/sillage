@@ -1,6 +1,6 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter, useLocation } from 'react-router-dom';
+import { describe, expect, it } from 'vitest';
 import { PolaroidLineCarousel, type PolaroidItem } from './polaroid-line-carousel';
 
 const items: PolaroidItem[] = [
@@ -21,71 +21,75 @@ const items: PolaroidItem[] = [
   },
 ];
 
+const Path = () => <output aria-label="rota">{useLocation().pathname}</output>;
+
 const renderCarousel = () =>
   render(
     <MemoryRouter>
       <PolaroidLineCarousel items={items} label="Varal de memórias" />
+      <Path />
     </MemoryRouter>
   );
 
-const scrollBy = vi.fn();
+const status = () => screen.getByText(/^Foto \d+ de \d+/);
 
 describe('PolaroidLineCarousel', () => {
-  beforeEach(() => {
-    scrollBy.mockReset();
-    Element.prototype.scrollBy = scrollBy as unknown as typeof Element.prototype.scrollBy;
-  });
-  afterEach(() => {
-    Reflect.deleteProperty(Element.prototype, 'scrollBy');
-  });
-
   it('é um carrossel com uma lâmina rotulada "N de M" por foto', () => {
     renderCarousel();
     expect(screen.getByRole('region', { name: 'Varal de memórias' })).toHaveAttribute(
       'aria-roledescription',
       'carrossel'
     );
-    const slides = screen.getAllByRole('group');
-    expect(slides.map((slide) => slide.getAttribute('aria-label'))).toEqual([
+    expect(screen.getAllByRole('group').map((slide) => slide.getAttribute('aria-label'))).toEqual([
       '1 de 3: Alfa',
       '2 de 3: Beta',
       '3 de 3: Gama',
     ]);
+    expect(status()).toHaveTextContent('Foto 1 de 3: Alfa');
   });
 
-  it('só as fotos com destino viram link', () => {
+  it('só a foto ativa entra na ordem de tabulação; as fotos com destino viram link', () => {
     renderCarousel();
-    expect(screen.getAllByRole('link')).toHaveLength(2);
-    expect(within(screen.getByRole('group', { name: /Beta/ })).queryByRole('link')).toBeNull();
-    expect(screen.getByRole('link', { name: /Alfa/ })).toHaveAttribute('href', '/perfumes/alfa');
+    expect(screen.getAllByRole('link', { hidden: true })).toHaveLength(2);
+    const [alfa, gama] = screen.getAllByRole('link', { hidden: true });
+    expect(alfa).toHaveAttribute('href', '/perfumes/alfa');
+    expect(alfa).toHaveAttribute('tabindex', '0');
+    expect(gama).toHaveAttribute('tabindex', '-1');
   });
 
-  it('Próximo e Anterior rolam a trilha', () => {
+  it('Próximo e Anterior trocam a foto e respeitam as pontas', () => {
     renderCarousel();
-    fireEvent.click(screen.getByRole('button', { name: 'Próximo' }));
-    expect(scrollBy).toHaveBeenLastCalledWith(
-      expect.objectContaining({ left: expect.any(Number) })
-    );
-    expect(scrollBy.mock.calls[0]?.[0].left).toBeGreaterThanOrEqual(0);
+    const previous = screen.getByRole('button', { name: 'Anterior' });
+    const next = screen.getByRole('button', { name: 'Próximo' });
+    expect(previous).toBeDisabled();
+    fireEvent.click(next);
+    expect(status()).toHaveTextContent('Foto 2 de 3: Beta');
+    fireEvent.click(next);
+    expect(status()).toHaveTextContent('Foto 3 de 3: Gama');
+    expect(next).toBeDisabled();
+    fireEvent.click(previous);
+    expect(status()).toHaveTextContent('Foto 2 de 3: Beta');
   });
 
-  it('Anterior começa desabilitado (já está no início)', () => {
+  it('as setas do teclado percorrem as fotos', () => {
     renderCarousel();
-    expect(screen.getByRole('button', { name: 'Anterior' })).toBeDisabled();
+    const region = screen.getByRole('region', { name: 'Varal de memórias' });
+    expect(region).toHaveAttribute('tabindex', '0');
+    fireEvent.keyDown(region, { key: 'ArrowRight' });
+    fireEvent.keyDown(region, { key: 'ArrowRight' });
+    fireEvent.keyDown(region, { key: 'ArrowRight' });
+    expect(status()).toHaveTextContent('Foto 3 de 3: Gama');
+    fireEvent.keyDown(region, { key: 'ArrowLeft' });
+    expect(status()).toHaveTextContent('Foto 2 de 3: Beta');
   });
 
-  it('as setas do teclado percorrem a trilha', () => {
+  it('clicar numa foto fora do centro a traz para o centro; só a ativa navega', () => {
     renderCarousel();
-    const track = screen.getByLabelText(/use as setas/);
-    fireEvent.keyDown(track, { key: 'ArrowRight' });
-    fireEvent.keyDown(track, { key: 'ArrowLeft' });
-    expect(scrollBy).toHaveBeenCalledTimes(2);
-    expect(scrollBy.mock.calls[0]?.[0].left).toBeGreaterThanOrEqual(0);
-    expect(scrollBy.mock.calls[1]?.[0].left).toBeLessThanOrEqual(0);
-  });
-
-  it('a trilha é focável pelo teclado', () => {
-    renderCarousel();
-    expect(screen.getByLabelText(/use as setas/)).toHaveAttribute('tabindex', '0');
+    const [, gama] = screen.getAllByRole('link', { hidden: true });
+    fireEvent.click(gama as HTMLElement);
+    expect(status()).toHaveTextContent('Foto 3 de 3: Gama');
+    expect(screen.getByLabelText('rota')).toHaveTextContent('/');
+    fireEvent.click(screen.getAllByRole('link', { hidden: true })[1] as HTMLElement);
+    expect(screen.getByLabelText('rota')).toHaveTextContent('/perfumes/gama');
   });
 });
