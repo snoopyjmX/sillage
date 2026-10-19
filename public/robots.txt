@@ -7,4 +7,4 @@ Disallow: /compare
 Disallow: /memorial
 Disallow: /profile
 
-Sitemap: https://sillage-website-v1.vercel.app/sitemap.xml
+Sitemap: https://sillage-ashy-gamma.vercel.app/sitemap.xml

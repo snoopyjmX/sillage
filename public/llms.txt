@@ -4,10 +4,10 @@
 
 ## Páginas Públicas
 
-- [/](https://sillage-website-v1.vercel.app/): Landing page para visitantes, apresentando a proposta do produto, como funciona a enciclopédia olfativa e atalhos para cadastro e login.
-- [/login](https://sillage-website-v1.vercel.app/login): Acesso à conta por e-mail e senha ou biometria nativa do aparelho via Passkeys (WebAuthn / Face ID / Digital).
-- [/register](https://sillage-website-v1.vercel.app/register): Criação de conta imediata com medidor de força de senha.
-- [/forgot-password](https://sillage-website-v1.vercel.app/forgot-password): Recuperação de senha via e-mail.
+- [/](https://sillage-ashy-gamma.vercel.app/): Landing page para visitantes, apresentando a proposta do produto, como funciona a enciclopédia olfativa e atalhos para cadastro e login.
+- [/login](https://sillage-ashy-gamma.vercel.app/login): Acesso à conta por e-mail e senha ou biometria nativa do aparelho via Passkeys (WebAuthn / Face ID / Digital).
+- [/register](https://sillage-ashy-gamma.vercel.app/register): Criação de conta imediata com medidor de força de senha.
+- [/forgot-password](https://sillage-ashy-gamma.vercel.app/forgot-password): Recuperação de senha via e-mail.
 
 ## Recursos Principais do Produto (Acesso Autenticado)
 
